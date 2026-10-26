@@ -119,8 +119,7 @@ fn merror(sstring : Value, l : Value) -> Value raise {
     if symval(q_ear_quit_on_error).truthy() {
       d_quit(exit_code=Fix(1L)) |> ignore
     }
-    // (throw 'macsyma-quit 'maxima-error)
-    raise merror__condition(sstring, l)
+    throw_tag(q_macsyma_quit, q_maxima_error)
   }
 }
 

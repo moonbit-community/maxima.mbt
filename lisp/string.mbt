@@ -39,7 +39,7 @@ pub fn lstring(x : Value) -> String {
       }
       sb.to_string()
     }
-    Sym(s) => s.name
+    Sym(s) => if s.name.has_prefix(":") { s.name.substring(start=1) } else { s.name }
     Nil => "nil"
     Char(c) => c.to_string()
     _ => ""

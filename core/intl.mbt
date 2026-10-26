@@ -1017,7 +1017,7 @@ fn intl_read_nested_comment(
           Some(sb) =>
             set(
               q_ear_translator_comment,
-              Str(string_right_trim(sb.to_string(), " \n")),
+              Str(string_right_trim(" \n", sb.to_string())),
             )
             |> ignore
           None => ()

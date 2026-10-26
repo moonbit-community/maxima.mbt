@@ -95,7 +95,8 @@ pub fn symbolp(x : Value) -> Bool {
 pub fn symbol_name(x : Value) -> String raise LispError {
   match x {
     Nil => "nil"
-    Sym(s) => s.name
+    // CL keyword names exclude the package marker.
+    Sym(s) => if s.name.has_prefix(":") { s.name.substring(start=1) } else { s.name }
     _ => raise SimpleError("symbol-name: not a symbol: \{x}")
   }
 }

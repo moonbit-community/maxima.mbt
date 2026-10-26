@@ -1952,7 +1952,7 @@ fn nonvanishing_common_factor(p : Value, q : Value) -> Value raise {
   let q_factors = trigi__factors(q)
   let pp = fapply(q_d_set, p_factors)
   let qq = fapply(q_d_set, q_factors)
-  let ss = cdr(d_intersection(pp, qq))
+  let ss = cdr(d_intersection(pp, list1(qq)))
   let mut ll : Value = Nil
   for sx in ss.iter() {
     if eq(t, mnqp(sx, Fix(0L))) {

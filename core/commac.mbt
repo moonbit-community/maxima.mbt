@@ -210,7 +210,7 @@ fn extended_number_p(x : Value) -> Value raise {
 ///|
 /// ($mkey '$demo) ==> :demo
 fn d_mkey(variable : Value) -> Value raise {
-  kw(string_left_trim(lstring(string(variable)), "$"))
+  kw(string_left_trim("$", lstring(string(variable))))
 }
 
 ///|
@@ -1211,7 +1211,7 @@ fn commac__extract_groups(matches : Value, s : Value) -> Array[Value] raise {
 ///
 /// Trailing unparsed stuff causes the parser to fail (return NIL).
 fn d_parse_timedate(s : Value) -> Value raise {
-  let mut s : Value = Str(string_trim(lstring(s), " \t\n\r"))
+  let mut s : Value = Str(string_trim(" \t\n\r", lstring(s)))
   let mut hours : Value = Fix(0L)
   let mut minutes : Value = Fix(0L)
   let mut seconds : Value = Fix(0L)
