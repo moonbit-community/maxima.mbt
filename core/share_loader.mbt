@@ -32,8 +32,9 @@ fn share_try_load(path : String) -> Bool raise {
     for g in group {
       match share_module_loader(g) {
         Some(f) => f()
-        None => ()
+        None => share_loader__load_maxima_member(path, g)
       }
+      share_loader__group_forms(key, g)
     }
     return true
   }
@@ -43,5 +44,39 @@ fn share_try_load(path : String) -> Bool raise {
       true
     }
     None => false
+  }
+}
+
+///|
+/// A member of a loader group that is a Maxima file rather than a Lisp file
+/// (the loader does `($load "stem")` and Maxima finds `stem.mac` next to
+/// it): load it with $load. Members that are Lisp files without a port are
+/// skipped.
+fn share_loader__load_maxima_member(path : String, member : String) -> Unit raise {
+  let dir = match path.rev_find("/") {
+    Some(i) => path.substring(end=i)
+    None => "."
+  }
+  let stem = match member.rev_find("/") {
+    Some(i) => member.substring(start=i + 1)
+    None => member
+  }
+  if probe_file(dir + "/" + stem + ".lisp") {
+    return
+  }
+  let mac = dir + "/" + stem + ".mac"
+  if probe_file(mac) {
+    d_load(Str(mac)) |> ignore
+  }
+}
+
+///|
+/// Top-level forms of a loader file between its loads of group members,
+/// run after loading MEMBER.
+fn share_loader__group_forms(key : String, member : String) -> Unit raise {
+  match (key, member) {
+    // load-sym-lisp-files.lisp: ($operation) after ($load "ecrivain")
+    ("sym/load-sym-lisp-files", "sym/ecrivain") => d_operation() |> ignore
+    _ => ()
   }
 }
