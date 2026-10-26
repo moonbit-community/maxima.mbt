@@ -48,6 +48,7 @@ import sys
 sys.setrecursionlimit(100000)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPOS_DIR = os.path.join(ROOT, ".repos") if os.path.isdir(os.path.join(ROOT, ".repos")) else "/Users/dii/git/maxima.mbt/.repos"
 
 
 def _find_src():
@@ -58,7 +59,7 @@ def _find_src():
             return cand
         parent = os.path.dirname(d)
         if parent == d:
-            return os.path.join(ROOT, ".repos", "maxima", "src", "numerical", "slatec")
+            return os.path.join(REPOS_DIR, "maxima", "src", "numerical", "slatec")
         d = parent
 
 

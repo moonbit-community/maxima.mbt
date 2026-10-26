@@ -110,6 +110,9 @@ let q_d__pctl : Value = sym("$%l")
 let q_d__pctm : Value = sym("$%m")
 
 ///|
+let q_d__pctmrings : Value = sym("$%mrings")
+
+///|
 let q_d__pcto : Value = sym("$%o")
 
 ///|
@@ -179,7 +182,7 @@ let q_d_op_plus : Value = sym("$+")
 let q_d_op_cm : Value = sym("$,")
 
 ///|
-let q_d_op_ : Value = sym("$-")
+let q_d_op_h_ : Value = sym("$-")
 
 ///|
 let q_d__read_aux : Value = sym("$-read-aux")
@@ -248,6 +251,9 @@ let q_d__ca_lpha : Value = sym("$Alpha")
 let q_d__cb_eta : Value = sym("$Beta")
 
 ///|
+let q_d__cc_ : Value = sym("$C")
+
+///|
 let q_d__cc_hi : Value = sym("$Chi")
 
 ///|
@@ -266,10 +272,19 @@ let q_d__ce_xpt : Value = sym("$Expt")
 let q_d__cg_amma : Value = sym("$Gamma")
 
 ///|
+let q_d__ch_ : Value = sym("$H")
+
+///|
 let q_d__ci_ota : Value = sym("$Iota")
 
 ///|
+let q_d__cj_ : Value = sym("$J")
+
+///|
 let q_d__ck_appa : Value = sym("$Kappa")
+
+///|
+let q_d__cl_ : Value = sym("$L")
 
 ///|
 let q_d__cl_ambda : Value = sym("$Lambda")
@@ -311,6 +326,9 @@ let q_d__cp_roduct : Value = sym("$Product")
 let q_d__cp_si : Value = sym("$Psi")
 
 ///|
+let q_d__cq_ : Value = sym("$Q")
+
+///|
 let q_d__cq_uotient : Value = sym("$Quotient")
 
 ///|
@@ -326,10 +344,16 @@ let q_d__cs_igma : Value = sym("$Sigma")
 let q_d__cs_um : Value = sym("$Sum")
 
 ///|
+let q_d__ct_ : Value = sym("$T")
+
+///|
 let q_d__ct_au : Value = sym("$Tau")
 
 ///|
 let q_d__ct_heta : Value = sym("$Theta")
+
+///|
+let q_d__cu_ : Value = sym("$U")
 
 ///|
 let q_d__cu_psilon : Value = sym("$Upsilon")
@@ -359,7 +383,7 @@ let q_d_op_hat : Value = sym("$^")
 let q_d_op_hat_hat : Value = sym("$^^")
 
 ///|
-let q_d_op_u_ : Value = sym("$_")
+let q_d_op_ : Value = sym("$_")
 
 ///|
 let q_d_op__ : Value = sym("$__")
@@ -797,6 +821,9 @@ let q_d_bigfloat_bits : Value = sym("$bigfloat_bits")
 let q_d_bigfloat_eps : Value = sym("$bigfloat_eps")
 
 ///|
+let q_d_bigfloatfield : Value = sym("$bigfloatfield")
+
+///|
 let q_d_bindtest : Value = sym("$bindtest")
 
 ///|
@@ -1067,6 +1094,9 @@ let q_d_complete : Value = sym("$complete")
 let q_d_complex : Value = sym("$complex")
 
 ///|
+let q_d_complexfield : Value = sym("$complexfield")
+
+///|
 let q_d_concat : Value = sym("$concat")
 
 ///|
@@ -1160,7 +1190,13 @@ let q_d_cyclep : Value = sym("$cyclep")
 let q_d_d : Value = sym("$d")
 
 ///|
+let q_d_d2_pct : Value = sym("$d2%")
+
+///|
 let q_d_deactivate : Value = sym("$deactivate")
+
+///|
+let q_d_debug : Value = sym("$debug")
 
 ///|
 let q_d_debugmode : Value = sym("$debugmode")
@@ -1667,6 +1703,9 @@ let q_d_ef_unset : Value = sym("$ef_unset")
 let q_d_eigens_by_jacobi : Value = sym("$eigens_by_jacobi")
 
 ///|
+let q_d_eigensbyjacobi : Value = sym("$eigensbyjacobi")
+
+///|
 let q_d_eigenvalues : Value = sym("$eigenvalues")
 
 ///|
@@ -2169,6 +2208,9 @@ let q_d_float_precision : Value = sym("$float_precision")
 
 ///|
 let q_d_float_sign : Value = sym("$float_sign")
+
+///|
+let q_d_floatfield : Value = sym("$floatfield")
 
 ///|
 let q_d_floatnump : Value = sym("$floatnump")
@@ -2678,6 +2720,12 @@ let q_d_host : Value = sym("$host")
 let q_d_hstep : Value = sym("$hstep")
 
 ///|
+let q_d_hypergeo11 : Value = sym("$hypergeo11")
+
+///|
+let q_d_hypergeo21 : Value = sym("$hypergeo21")
+
+///|
 let q_d_hypergeometric : Value = sym("$hypergeometric")
 
 ///|
@@ -2780,6 +2828,9 @@ let q_d_inflag : Value = sym("$inflag")
 let q_d_info : Value = sym("$info")
 
 ///|
+let q_d_infolevel : Value = sym("$infolevel")
+
+///|
 let q_d_infolists : Value = sym("$infolists")
 
 ///|
@@ -2838,6 +2889,9 @@ let q_d_intersect : Value = sym("$intersect")
 
 ///|
 let q_d_intersection : Value = sym("$intersection")
+
+///|
+let q_d_interval : Value = sym("$interval")
 
 ///|
 let q_d_intervalp : Value = sym("$intervalp")
@@ -3143,7 +3197,13 @@ let q_d_letvarsimp : Value = sym("$letvarsimp")
 let q_d_lex : Value = sym("$lex")
 
 ///|
+let q_d_lexp : Value = sym("$lexp")
+
+///|
 let q_d_lfreeof : Value = sym("$lfreeof")
+
+///|
+let q_d_lg : Value = sym("$lg")
 
 ///|
 let q_d_lgtreillis : Value = sym("$lgtreillis")
@@ -3176,10 +3236,19 @@ let q_d_limsubst : Value = sym("$limsubst")
 let q_d_linalg_rank : Value = sym("$linalg_rank")
 
 ///|
+let q_d_linalgextra : Value = sym("$linalgextra")
+
+///|
+let q_d_linalgutilities : Value = sym("$linalgutilities")
+
+///|
 let q_d_linear : Value = sym("$linear")
 
 ///|
 let q_d_linear2 : Value = sym("$linear2")
+
+///|
+let q_d_linearalgebra : Value = sym("$linearalgebra")
 
 ///|
 let q_d_linechar : Value = sym("$linechar")
@@ -3246,6 +3315,9 @@ let q_d_listdummyvars : Value = sym("$listdummyvars")
 
 ///|
 let q_d_listify : Value = sym("$listify")
+
+///|
+let q_d_listofei : Value = sym("$listofei")
 
 ///|
 let q_d_listofvars : Value = sym("$listofvars")
@@ -3632,6 +3704,9 @@ let q_d_most_negative_float : Value = sym("$most_negative_float")
 let q_d_most_positive_float : Value = sym("$most_positive_float")
 
 ///|
+let q_d_mring : Value = sym("$mring")
+
+///|
 let q_d_mu : Value = sym("$mu")
 
 ///|
@@ -3756,6 +3831,9 @@ let q_d_non0 : Value = sym("$non0")
 
 ///|
 let q_d_nonarray : Value = sym("$nonarray")
+
+///|
+let q_d_noncommutingring : Value = sym("$noncommutingring")
 
 ///|
 let q_d_noninteger : Value = sym("$noninteger")
@@ -4016,7 +4094,13 @@ let q_d_ordermagnitudep : Value = sym("$ordermagnitudep")
 let q_d_orthogonal_complement : Value = sym("$orthogonal_complement")
 
 ///|
+let q_d_orthopoly : Value = sym("$orthopoly")
+
+///|
 let q_d_orthopoly_recur : Value = sym("$orthopoly_recur")
+
+///|
+let q_d_orthopoly_returns_intervals : Value = sym("$orthopoly_returns_intervals")
 
 ///|
 let q_d_orthopoly_weight : Value = sym("$orthopoly_weight")
@@ -4206,6 +4290,9 @@ let q_d_pnz : Value = sym("$pnz")
 
 ///|
 let q_d_pochhammer : Value = sym("$pochhammer")
+
+///|
+let q_d_pochhammer_max_index : Value = sym("$pochhammer_max_index")
 
 ///|
 let q_d_pointbound : Value = sym("$pointbound")
@@ -4706,6 +4793,9 @@ let q_d_ratfac : Value = sym("$ratfac")
 let q_d_rational : Value = sym("$rational")
 
 ///|
+let q_d_rationalfield : Value = sym("$rationalfield")
+
+///|
 let q_d_rationalize : Value = sym("$rationalize")
 
 ///|
@@ -4997,6 +5087,9 @@ let q_d_rhs : Value = sym("$rhs")
 let q_d_ring_of_integers : Value = sym("$ring_of_integers")
 
 ///|
+let q_d_ringeval : Value = sym("$ringeval")
+
+///|
 let q_d_risch : Value = sym("$risch")
 
 ///|
@@ -5051,7 +5144,13 @@ let q_d_ruletype : Value = sym("$ruletype")
 let q_d_run_testsuite : Value = sym("$run_testsuite")
 
 ///|
+let q_d_runningerror : Value = sym("$runningerror")
+
+///|
 let q_d_runtime : Value = sym("$runtime")
+
+///|
+let q_d_s : Value = sym("$s")
 
 ///|
 let q_d_save : Value = sym("$save")
@@ -5205,6 +5304,9 @@ let q_d_signbfloat : Value = sym("$signbfloat")
 
 ///|
 let q_d_signum : Value = sym("$signum")
+
+///|
+let q_d_silent : Value = sym("$silent")
 
 ///|
 let q_d_similaritytransform : Value = sym("$similaritytransform")
@@ -6413,10 +6515,10 @@ let q_p_fresnel_s : Value = sym("%fresnel_s")
 let q_p_gamma : Value = sym("%gamma")
 
 ///|
-let q_p_gamma_incomplete : Value = sym("%gamma-incomplete")
+let q_p_gamma_h_incomplete : Value = sym("%gamma-incomplete")
 
 ///|
-let q_p_gamma_u_incomplete : Value = sym("%gamma_incomplete")
+let q_p_gamma_incomplete : Value = sym("%gamma_incomplete")
 
 ///|
 let q_p_gamma_incomplete_generalized : Value = sym("%gamma_incomplete_generalized")
@@ -7034,6 +7136,9 @@ let q_ear_bfmhalf : Value = sym("*bfmhalf*")
 let q_ear_big_float_op : Value = sym("*big-float-op*")
 
 ///|
+let q_ear_bigfloatfield : Value = sym("*bigfloatfield*")
+
+///|
 let q_ear_bigfloatone : Value = sym("*bigfloatone*")
 
 ///|
@@ -7139,6 +7244,9 @@ let q_ear_colinv : Value = sym("*colinv*")
 let q_ear_collect_errors : Value = sym("*collect-errors*")
 
 ///|
+let q_ear_complexfield : Value = sym("*complexfield*")
+
+///|
 let q_ear_complexsign : Value = sym("*complexsign*")
 
 ///|
@@ -7155,6 +7263,9 @@ let q_ear_conv : Value = sym("*conv*")
 
 ///|
 let q_ear_cr : Value = sym("*cr*")
+
+///|
+let q_ear_crering : Value = sym("*crering*")
 
 ///|
 let q_ear_current_assumptions : Value = sym("*current-assumptions*")
@@ -7346,6 +7457,9 @@ let q_ear_ef_red : Value = sym("*ef-red*")
 let q_ear_ef_red_q : Value = sym("*ef-red?*")
 
 ///|
+let q_ear_ef_ring : Value = sym("*ef-ring*")
+
+///|
 let q_ear_ef_x_hatq_powers : Value = sym("*ef-x^q-powers*")
 
 ///|
@@ -7454,6 +7568,9 @@ let q_ear_features : Value = sym("*features*")
 let q_n_starflg : Value = sym("*flg")
 
 ///|
+let q_ear_floatfield : Value = sym("*floatfield*")
+
+///|
 let q_ear_flonum_op : Value = sym("*flonum-op*")
 
 ///|
@@ -7523,6 +7640,9 @@ let q_ear_gcdl : Value = sym("*gcdl*")
 let q_ear_general_display_prefix : Value = sym("*general-display-prefix*")
 
 ///|
+let q_ear_generalring : Value = sym("*generalring*")
+
+///|
 let q_ear_getsignl_asksign_ok : Value = sym("*getsignl-asksign-ok*")
 
 ///|
@@ -7533,6 +7653,9 @@ let q_ear_gf_char : Value = sym("*gf-char*")
 
 ///|
 let q_ear_gf_char_q : Value = sym("*gf-char?*")
+
+///|
+let q_ear_gf_coeff_ring : Value = sym("*gf-coeff-ring*")
 
 ///|
 let q_ear_gf_data_q : Value = sym("*gf-data?*")
@@ -7572,6 +7695,12 @@ let q_ear_gf_red : Value = sym("*gf-red*")
 
 ///|
 let q_ear_gf_red_q : Value = sym("*gf-red?*")
+
+///|
+let q_ear_gf_ring : Value = sym("*gf-ring*")
+
+///|
+let q_ear_gf_rings : Value = sym("*gf-rings*")
 
 ///|
 let q_ear_gf_x_hatp_powers : Value = sym("*gf-x^p-powers*")
@@ -8024,6 +8153,9 @@ let q_ear_nodiverg : Value = sym("*nodiverg*")
 let q_n_starnoexpand : Value = sym("*noexpand")
 
 ///|
+let q_ear_noncommutingring : Value = sym("*noncommutingring*")
+
+///|
 let q_ear_nonz : Value = sym("*nonz*")
 
 ///|
@@ -8240,6 +8372,9 @@ let q_ear_rank : Value = sym("*rank*")
 let q_n_starratexp : Value = sym("*ratexp")
 
 ///|
+let q_ear_rationalfield : Value = sym("*rationalfield*")
+
+///|
 let q_ear_ratsimp : Value = sym("*ratsimp*")
 
 ///|
@@ -8310,6 +8445,9 @@ let q_ear_rulesw : Value = sym("*rulesw*")
 
 ///|
 let q_ear_running_error_op : Value = sym("*running-error-op*")
+
+///|
+let q_ear_runningerror : Value = sym("*runningerror*")
 
 ///|
 let q_ear_s : Value = sym("*s*")
@@ -8672,7 +8810,7 @@ let q_n_plussl : Value = sym("+sl")
 let q_n_plussm : Value = sym("+sm")
 
 ///|
-let q_op_ : Value = sym("-")
+let q_op_h_ : Value = sym("-")
 
 ///|
 let q_n_1_sl_sl2 : Value = sym("-1//2")
@@ -9005,7 +9143,7 @@ let q_op_lb : Value = sym("[")
 let q_n_lbmax_trunc_rb : Value = sym("[max-trunc]")
 
 ///|
-let q_op_u_ : Value = sym("_")
+let q_op_ : Value = sym("_")
 
 ///|
 let q_n__cl_ : Value = sym("_L")
@@ -9551,10 +9689,25 @@ let q_argument_length_check : Value = sym("argument-length-check")
 let q_array : Value = sym("array")
 
 ///|
+let q_array_elem : Value = sym("array-elem")
+
+///|
+let q_array_infinity_norm : Value = sym("array-infinity-norm")
+
+///|
 let q_array_meqp : Value = sym("array-meqp")
 
 ///|
 let q_array_mode : Value = sym("array-mode")
+
+///|
+let q_array_to_maxima_list : Value = sym("array-to-maxima-list")
+
+///|
+let q_array_to_maxima_matrix : Value = sym("array-to-maxima-matrix")
+
+///|
+let q_array_to_row_list : Value = sym("array-to-row-list")
 
 ///|
 let q_arraydims : Value = sym("arraydims")
@@ -9705,6 +9858,18 @@ let q_assign_symbols : Value = sym("assign-symbols")
 
 ///|
 let q_assoc : Value = sym("assoc")
+
+///|
+let q_assoc_leg_cos : Value = sym("assoc-leg-cos")
+
+///|
+let q_assoc_legendre_q_nn : Value = sym("assoc-legendre-q-nn")
+
+///|
+let q_assoc_legendre_p : Value = sym("assoc_legendre_p")
+
+///|
+let q_assoc_legendre_q : Value = sym("assoc_legendre_q")
 
 ///|
 let q_associative : Value = sym("associative")
@@ -10496,6 +10661,9 @@ let q_bf_min : Value = sym("bigfloat::min")
 let q_bf_not_done : Value = sym("bigfloat::not-done")
 
 ///|
+let q_bf_pochhammer : Value = sym("bigfloat::pochhammer")
+
+///|
 let q_bf_polylog_inversion_formula : Value = sym("bigfloat::polylog-inversion-formula")
 
 ///|
@@ -11105,10 +11273,19 @@ let q_chebyli3 : Value = sym("chebyli3")
 let q_chebys12 : Value = sym("chebys12")
 
 ///|
+let q_chebyshev_t : Value = sym("chebyshev_t")
+
+///|
+let q_chebyshev_u : Value = sym("chebyshev_u")
+
+///|
 let q_check : Value = sym("check")
 
 ///|
 let q_check_arg : Value = sym("check-arg")
+
+///|
+let q_check_arg_length : Value = sym("check-arg-length")
 
 ///|
 let q_check_call_to__dolspecint : Value = sym("check-call-to-$specint")
@@ -11334,6 +11511,9 @@ let q_coerce_bfloat_fun : Value = sym("coerce-bfloat-fun")
 
 ///|
 let q_coerce_coeff : Value = sym("coerce-coeff")
+
+///|
+let q_coerce_expr_to_clcomplex : Value = sym("coerce-expr-to-clcomplex")
 
 ///|
 let q_coerce_float_fun : Value = sym("coerce-float-fun")
@@ -12617,6 +12797,9 @@ let q_det : Value = sym("det")
 let q_det1 : Value = sym("det1")
 
 ///|
+let q_determinant_by_lu_factors : Value = sym("determinant-by-lu-factors")
+
+///|
 let q_determinant1 : Value = sym("determinant1")
 
 ///|
@@ -12830,10 +13013,22 @@ let q_dimension_array : Value = sym("dimension-array")
 let q_dimension_array_object : Value = sym("dimension-array-object")
 
 ///|
+let q_dimension_assoc_legendre_p : Value = sym("dimension-assoc-legendre-p")
+
+///|
+let q_dimension_assoc_legendre_q : Value = sym("dimension-assoc-legendre-q")
+
+///|
 let q_dimension_atom : Value = sym("dimension-atom")
 
 ///|
 let q_dimension_build_info : Value = sym("dimension-build-info")
+
+///|
+let q_dimension_chebyshev_t : Value = sym("dimension-chebyshev-t")
+
+///|
+let q_dimension_chebyshev_u : Value = sym("dimension-chebyshev-u")
 
 ///|
 let q_dimension_defstruct : Value = sym("dimension-defstruct")
@@ -12842,10 +13037,28 @@ let q_dimension_defstruct : Value = sym("dimension-defstruct")
 let q_dimension_function : Value = sym("dimension-function")
 
 ///|
+let q_dimension_gen_laguerre : Value = sym("dimension-gen-laguerre")
+
+///|
+let q_dimension_hermite : Value = sym("dimension-hermite")
+
+///|
 let q_dimension_indices : Value = sym("dimension-indices")
 
 ///|
 let q_dimension_infix : Value = sym("dimension-infix")
+
+///|
+let q_dimension_jacobi_p : Value = sym("dimension-jacobi-p")
+
+///|
+let q_dimension_laguerre : Value = sym("dimension-laguerre")
+
+///|
+let q_dimension_legendre_p : Value = sym("dimension-legendre-p")
+
+///|
+let q_dimension_legendre_q : Value = sym("dimension-legendre-q")
 
 ///|
 let q_dimension_list : Value = sym("dimension-list")
@@ -12866,16 +13079,40 @@ let q_dimension_nofix : Value = sym("dimension-nofix")
 let q_dimension_paren : Value = sym("dimension-paren")
 
 ///|
+let q_dimension_pochhammer : Value = sym("dimension-pochhammer")
+
+///|
 let q_dimension_postfix : Value = sym("dimension-postfix")
 
 ///|
 let q_dimension_prefix : Value = sym("dimension-prefix")
 
 ///|
+let q_dimension_spherical_bessel_j : Value = sym("dimension-spherical-bessel-j")
+
+///|
+let q_dimension_spherical_bessel_y : Value = sym("dimension-spherical-bessel-y")
+
+///|
+let q_dimension_spherical_hankel_1 : Value = sym("dimension-spherical-hankel-1")
+
+///|
+let q_dimension_spherical_hankel_2 : Value = sym("dimension-spherical-hankel-2")
+
+///|
+let q_dimension_spherical_harmonic : Value = sym("dimension-spherical-harmonic")
+
+///|
 let q_dimension_string : Value = sym("dimension-string")
 
 ///|
+let q_dimension_sub_and_super_scripted_function : Value = sym("dimension-sub-and-super-scripted-function")
+
+///|
 let q_dimension_superscript : Value = sym("dimension-superscript")
+
+///|
+let q_dimension_ultraspherical : Value = sym("dimension-ultraspherical")
 
 ///|
 let q_dimnary : Value = sym("dimnary")
@@ -13052,10 +13289,10 @@ let q_distrexpandroot : Value = sym("distrexpandroot")
 let q_distrfactor : Value = sym("distrfactor")
 
 ///|
-let q_distribute_over : Value = sym("distribute-over")
+let q_distribute_h_over : Value = sym("distribute-over")
 
 ///|
-let q_distribute_u_over : Value = sym("distribute_over")
+let q_distribute_over : Value = sym("distribute_over")
 
 ///|
 let q_distrinplusprev : Value = sym("distrinplusprev")
@@ -13545,6 +13782,9 @@ let q_ef_ring : Value = sym("ef-ring")
 
 ///|
 let q_egcd : Value = sym("egcd")
+
+///|
+let q_ei : Value = sym("ei")
 
 ///|
 let q_ei_asymptotic_expansion : Value = sym("ei-asymptotic-expansion")
@@ -14528,6 +14768,9 @@ let q_factxn_plus1 : Value = sym("factxn+1")
 let q_factxn_1 : Value = sym("factxn-1")
 
 ///|
+let q_fadd : Value = sym("fadd")
+
+///|
 let q_fail : Value = sym("fail")
 
 ///|
@@ -14615,6 +14858,9 @@ let q_fboundp : Value = sym("fboundp")
 let q_fceiling : Value = sym("fceiling")
 
 ///|
+let q_fconvert : Value = sym("fconvert")
+
+///|
 let q_fcs_star : Value = sym("fcs*")
 
 ///|
@@ -14685,6 +14931,9 @@ let q_fillarray : Value = sym("fillarray")
 
 ///|
 let q_filter_sum : Value = sym("filter-sum")
+
+///|
+let q_final_simp : Value = sym("final-simp")
 
 ///|
 let q_finally : Value = sym("finally")
@@ -14870,6 +15119,9 @@ let q_flatsize : Value = sym("flatsize")
 let q_flattenl_op : Value = sym("flattenl-op")
 
 ///|
+let q_fld : Value = sym("fld")
+
+///|
 let q_flet : Value = sym("flet")
 
 ///|
@@ -14973,6 +15225,9 @@ let q_fmp1 : Value = sym("fmp1")
 
 ///|
 let q_fmt : Value = sym("fmt")
+
+///|
+let q_fmult : Value = sym("fmult")
 
 ///|
 let q_fn : Value = sym("fn")
@@ -15665,6 +15920,21 @@ let q_fourth_pctpi : Value = sym("fourth%pi")
 let q_fp : Value = sym("fp")
 
 ///|
+let q_fp_star : Value = sym("fp*")
+
+///|
+let q_fp_plus : Value = sym("fp+")
+
+///|
+let q_fp_ : Value = sym("fp-")
+
+///|
+let q_fp_abs : Value = sym("fp-abs")
+
+///|
+let q_fp_sl : Value = sym("fp/")
+
+///|
 let q_fp2flo : Value = sym("fp2flo")
 
 ///|
@@ -15959,6 +16229,9 @@ let q_freevnz2 : Value = sym("freevnz2")
 let q_fresh_line : Value = sym("fresh-line")
 
 ///|
+let q_frevert : Value = sym("frevert")
+
+///|
 let q_frpoly_q : Value = sym("frpoly?")
 
 ///|
@@ -15974,6 +16247,9 @@ let q_fsplit : Value = sym("fsplit")
 let q_fstringc : Value = sym("fstringc")
 
 ///|
+let q_fsub : Value = sym("fsub")
+
+///|
 let q_fsubr : Value = sym("fsubr")
 
 ///|
@@ -15984,6 +16260,9 @@ let q_ftake_star : Value = sym("ftake*")
 
 ///|
 let q_full_log : Value = sym("full-log")
+
+///|
+let q_full_matrix_map : Value = sym("full-matrix-map")
 
 ///|
 let q_fullratsimp : Value = sym("fullratsimp")
@@ -16055,7 +16334,7 @@ let q_gam_const : Value = sym("gam-const")
 let q_gamma : Value = sym("gamma")
 
 ///|
-let q_gamma_incomplete : Value = sym("gamma-incomplete")
+let q_gamma_h_incomplete : Value = sym("gamma-incomplete")
 
 ///|
 let q_gamma_incomplete_asymptotic : Value = sym("gamma-incomplete-asymptotic")
@@ -16085,7 +16364,7 @@ let q_gamma_upper_trans : Value = sym("gamma-upper-trans")
 let q_gamma1 : Value = sym("gamma1")
 
 ///|
-let q_gamma_u_incomplete : Value = sym("gamma_incomplete")
+let q_gamma_incomplete : Value = sym("gamma_incomplete")
 
 ///|
 let q_gamma_incomplete_to_gamma_incomplete_lower : Value = sym("gamma_incomplete-to-gamma-incomplete-lower")
@@ -16182,6 +16461,12 @@ let q_gen : Value = sym("gen")
 
 ///|
 let q_gen_point : Value = sym("gen-point")
+
+///|
+let q_gen_laguerre : Value = sym("gen_laguerre")
+
+///|
+let q_gen_laguerre_1 : Value = sym("gen_laguerre-1")
 
 ///|
 let q_genatan : Value = sym("genatan")
@@ -17054,6 +17339,9 @@ let q_header : Value = sym("header")
 let q_height : Value = sym("height")
 
 ///|
+let q_hermite : Value = sym("hermite")
+
+///|
 let q_hermite_to_hypergeometric : Value = sym("hermite-to-hypergeometric")
 
 ///|
@@ -17165,6 +17453,12 @@ let q_hyperex0 : Value = sym("hyperex0")
 let q_hyperex1 : Value = sym("hyperex1")
 
 ///|
+let q_hypergeo11_float : Value = sym("hypergeo11-float")
+
+///|
+let q_hypergeo21_float : Value = sym("hypergeo21-float")
+
+///|
 let q_hypergeometric_0f0 : Value = sym("hypergeometric-0f0")
 
 ///|
@@ -17232,6 +17526,9 @@ let q_ideal_saturation : Value = sym("ideal-saturation")
 
 ///|
 let q_ideal_saturation_1 : Value = sym("ideal-saturation-1")
+
+///|
+let q_identfor : Value = sym("identfor")
 
 ///|
 let q_identity : Value = sym("identity")
@@ -17418,6 +17715,9 @@ let q_infinityp : Value = sym("infinityp")
 
 ///|
 let q_infolstchk : Value = sym("infolstchk")
+
+///|
+let q_inform : Value = sym("inform")
 
 ///|
 let q_infostore : Value = sym("infostore")
@@ -17702,6 +18002,9 @@ let q_interval_error : Value = sym("interval-error")
 let q_interval_list : Value = sym("interval-list")
 
 ///|
+let q_interval_mult : Value = sym("interval-mult")
+
+///|
 let q_interval2 : Value = sym("interval2")
 
 ///|
@@ -17900,6 +18203,9 @@ let q_invert1 : Value = sym("invert1")
 let q_invertbigfloat : Value = sym("invertbigfloat")
 
 ///|
+let q_invertible_matrixp : Value = sym("invertible-matrixp")
+
+///|
 let q_invlex_gt : Value = sym("invlex>")
 
 ///|
@@ -18033,6 +18339,12 @@ let q_jacobi_nc : Value = sym("jacobi_nc")
 
 ///|
 let q_jacobi_ns : Value = sym("jacobi_ns")
+
+///|
+let q_jacobi_p : Value = sym("jacobi_p")
+
+///|
+let q_jacobi_p_1 : Value = sym("jacobi_p-1")
 
 ///|
 let q_jacobi_sc : Value = sym("jacobi_sc")
@@ -18212,6 +18524,9 @@ let q_lagrange3 : Value = sym("lagrange3")
 let q_lagrange33 : Value = sym("lagrange33")
 
 ///|
+let q_laguerre : Value = sym("laguerre")
+
+///|
 let q_lambda : Value = sym("lambda")
 
 ///|
@@ -18372,6 +18687,9 @@ let q_legen : Value = sym("legen")
 
 ///|
 let q_legendre_funct_to_be_discovered : Value = sym("legendre-funct-to-be-discovered")
+
+///|
+let q_legendre_p : Value = sym("legendre_p")
 
 ///|
 let q_legenpol : Value = sym("legenpol")
@@ -18756,6 +19074,12 @@ let q_lisp_array_alike1 : Value = sym("lisp-array-alike1")
 
 ///|
 let q_lisp_array_elements_alike1 : Value = sym("lisp-array-elements-alike1")
+
+///|
+let q_lisp_complex_to_maxima : Value = sym("lisp-complex-to-maxima")
+
+///|
+let q_lisp_float_to_maxima_float : Value = sym("lisp-float-to-maxima-float")
 
 ///|
 let q_lisp_implementation_version1 : Value = sym("lisp-implementation-version1")
@@ -19196,6 +19520,9 @@ let q_ltw : Value = sym("ltw")
 let q_lty : Value = sym("lty")
 
 ///|
+let q_lu_factor : Value = sym("lu-factor")
+
+///|
 let q_lucas : Value = sym("lucas")
 
 ///|
@@ -19224,6 +19551,12 @@ let q_m_plust : Value = sym("m+t")
 
 ///|
 let q_m_ : Value = sym("m-")
+
+///|
+let q_m_elem : Value = sym("m-elem")
+
+///|
+let q_m_elem_reflect : Value = sym("m-elem-reflect")
 
 ///|
 let q_m_t : Value = sym("m-t")
@@ -20021,6 +20354,9 @@ let q_marrow : Value = sym("marrow")
 let q_mat : Value = sym("mat")
 
 ///|
+let q_mat_cond_by_lu : Value = sym("mat-cond-by-lu")
+
+///|
 let q_match : Value = sym("match")
 
 ///|
@@ -20069,7 +20405,16 @@ let q_matout : Value = sym("matout")
 let q_matrix : Value = sym("matrix")
 
 ///|
+let q_matrix_map : Value = sym("matrix-map")
+
+///|
 let q_matrix_matrix_productp : Value = sym("matrix-matrix-productp")
+
+///|
+let q_matrix_sign_sylvester : Value = sym("matrix-sign-sylvester")
+
+///|
+let q_matrixexp_simp : Value = sym("matrixexp-simp")
 
 ///|
 let q_matrixhelper : Value = sym("matrixhelper")
@@ -20150,6 +20495,9 @@ let q_maxima_display : Value = sym("maxima-display")
 let q_maxima_error : Value = sym("maxima-error")
 
 ///|
+let q_maxima_float_to_lisp_float : Value = sym("maxima-float-to-lisp-float")
+
+///|
 let q_maxima_getenv : Value = sym("maxima-getenv")
 
 ///|
@@ -20196,6 +20544,12 @@ let q_maxima_string : Value = sym("maxima-string")
 
 ///|
 let q_maxima_substitute : Value = sym("maxima-substitute")
+
+///|
+let q_maxima_to_array : Value = sym("maxima-to-array")
+
+///|
+let q_maxima_to_lisp_complex_float : Value = sym("maxima-to-lisp-complex-float")
 
 ///|
 let q_maxima_undeclared_array_alike1 : Value = sym("maxima-undeclared-array-alike1")
@@ -21860,6 +22214,9 @@ let q_nformat_all : Value = sym("nformat-all")
 let q_nformat_check : Value = sym("nformat-check")
 
 ///|
+let q_nilpotent_p : Value = sym("nilpotent-p")
+
+///|
 let q_nisaddon : Value = sym("nisaddon")
 
 ///|
@@ -21981,6 +22338,9 @@ let q_no_init : Value = sym("no-init")
 
 ///|
 let q_no_sing_err : Value = sym("no-sing-err")
+
+///|
+let q_no_value : Value = sym("no-value")
 
 ///|
 let q_noask : Value = sym("noask")
@@ -22649,6 +23009,9 @@ let q_orde : Value = sym("orde")
 let q_order_limits : Value = sym("order-limits")
 
 ///|
+let q_order_of_root : Value = sym("order-of-root")
+
+///|
 let q_order_vars_by_strength : Value = sym("order-vars-by-strength")
 
 ///|
@@ -22677,6 +23040,9 @@ let q_ordmexpt : Value = sym("ordmexpt")
 
 ///|
 let q_origval : Value = sym("origval")
+
+///|
+let q_orthopoly_return_handler : Value = sym("orthopoly-return-handler")
 
 ///|
 let q_oscip : Value = sym("oscip")
@@ -22791,6 +23157,9 @@ let q_p__descending_powers : Value = sym("p-descending-powers")
 
 ///|
 let q_p__eval : Value = sym("p-eval")
+
+///|
+let q_p__fun : Value = sym("p-fun")
 
 ///|
 let q_p__hipow_var : Value = sym("p-hipow-var")
@@ -23013,6 +23382,15 @@ let q_partial_integration : Value = sym("partial-integration")
 
 ///|
 let q_partial_logarc : Value = sym("partial-logarc")
+
+///|
+let q_partial_matrix_prod : Value = sym("partial-matrix-prod")
+
+///|
+let q_partial_matrix_prod_complex_float : Value = sym("partial-matrix-prod-complex-float")
+
+///|
+let q_partial_matrix_prod_float : Value = sym("partial-matrix-prod-float")
 
 ///|
 let q_partition : Value = sym("partition")
@@ -23321,6 +23699,9 @@ let q_pget : Value = sym("pget")
 let q_pgsubst : Value = sym("pgsubst")
 
 ///|
+let q_phi : Value = sym("phi")
+
+///|
 let q_pin_pctex : Value = sym("pin%ex")
 
 ///|
@@ -23472,6 +23853,9 @@ let q_pnthroot : Value = sym("pnthroot")
 
 ///|
 let q_pnthrootp : Value = sym("pnthrootp")
+
+///|
+let q_pochhammer_quotient : Value = sym("pochhammer-quotient")
 
 ///|
 let q_pofx : Value = sym("pofx")
@@ -24653,7 +25037,16 @@ let q_q_star : Value = sym("q*")
 let q_q__1 : Value = sym("q-1")
 
 ///|
+let q_q__fun : Value = sym("q-fun")
+
+///|
+let q_q0m : Value = sym("q0m")
+
+///|
 let q_q1 : Value = sym("q1")
+
+///|
+let q_q1m : Value = sym("q1m")
 
 ///|
 let q_q2 : Value = sym("q2")
@@ -24927,6 +25320,12 @@ let q_rational : Value = sym("rational")
 
 ///|
 let q_rational_hypergeometric_numerical_eval : Value = sym("rational-hypergeometric-numerical-eval")
+
+///|
+let q_rational_residue : Value = sym("rational-residue")
+
+///|
+let q_rational_square_root : Value = sym("rational-square-root")
 
 ///|
 let q_rationalizer : Value = sym("rationalizer")
@@ -25211,6 +25610,9 @@ let q_recoverorder1 : Value = sym("recoverorder1")
 let q_recoverorder2 : Value = sym("recoverorder2")
 
 ///|
+let q_rect_minus_one_power : Value = sym("rect-minus-one-power")
+
+///|
 let q_rectzto_pctpi2 : Value = sym("rectzto%pi2")
 
 ///|
@@ -25230,6 +25632,9 @@ let q_redgcd : Value = sym("redgcd")
 
 ///|
 let q_redresult : Value = sym("redresult")
+
+///|
+let q_reduce : Value = sym("reduce")
 
 ///|
 let q_reduce_angle_mod_2pi : Value = sym("reduce-angle-mod-2pi")
@@ -25407,6 +25812,9 @@ let q_replist : Value = sym("replist")
 
 ///|
 let q_replist1 : Value = sym("replist1")
+
+///|
+let q_require_lambda : Value = sym("require-lambda")
 
 ///|
 let q_require_list : Value = sym("require-list")
@@ -25617,6 +26025,9 @@ let q_ring : Value = sym("ring")
 
 ///|
 let q_ring_div : Value = sym("ring-div")
+
+///|
+let q_ring_eval : Value = sym("ring-eval")
 
 ///|
 let q_ring_intersection : Value = sym("ring-intersection")
@@ -26348,6 +26759,9 @@ let q_setarg1 : Value = sym("setarg1")
 let q_setf : Value = sym("setf")
 
 ///|
+let q_setmatelem : Value = sym("setmatelem")
+
+///|
 let q_setq : Value = sym("setq")
 
 ///|
@@ -27045,6 +27459,9 @@ let q_simp_stirling2 : Value = sym("simp-stirling2")
 
 ///|
 let q_simp_unit_step : Value = sym("simp-unit-step")
+
+///|
+let q_simp_unk : Value = sym("simp-unk")
 
 ///|
 let q_simp1f2 : Value = sym("simp1f2")
@@ -28313,6 +28730,21 @@ let q_specsimp : Value = sym("specsimp")
 let q_spexp : Value = sym("spexp")
 
 ///|
+let q_spherical_bessel_j : Value = sym("spherical_bessel_j")
+
+///|
+let q_spherical_bessel_y : Value = sym("spherical_bessel_y")
+
+///|
+let q_spherical_hankel1 : Value = sym("spherical_hankel1")
+
+///|
+let q_spherical_hankel2 : Value = sym("spherical_hankel2")
+
+///|
+let q_spherical_harmonic : Value = sym("spherical_harmonic")
+
+///|
 let q_spinexactp : Value = sym("spinexactp")
 
 ///|
@@ -29324,6 +29756,12 @@ let q_tex_array_display_indices : Value = sym("tex-array-display-indices")
 let q_tex_array_simple : Value = sym("tex-array-simple")
 
 ///|
+let q_tex_assoc_legendre_p : Value = sym("tex-assoc-legendre-p")
+
+///|
+let q_tex_assoc_legendre_q : Value = sym("tex-assoc-legendre-q")
+
+///|
 let q_tex_at : Value = sym("tex-at")
 
 ///|
@@ -29337,6 +29775,12 @@ let q_tex_bigfloat : Value = sym("tex-bigfloat")
 
 ///|
 let q_tex_char : Value = sym("tex-char")
+
+///|
+let q_tex_chebyshev_t : Value = sym("tex-chebyshev-t")
+
+///|
+let q_tex_chebyshev_u : Value = sym("tex-chebyshev-u")
 
 ///|
 let q_tex_choose : Value = sym("tex-choose")
@@ -29369,6 +29813,12 @@ let q_tex_function : Value = sym("tex-function")
 let q_tex_gamma : Value = sym("tex-gamma")
 
 ///|
+let q_tex_gen_laguerre : Value = sym("tex-gen-laguerre")
+
+///|
+let q_tex_hermite : Value = sym("tex-hermite")
+
+///|
 let q_tex_hypergeometric : Value = sym("tex-hypergeometric")
 
 ///|
@@ -29378,10 +29828,22 @@ let q_tex_infix : Value = sym("tex-infix")
 let q_tex_int : Value = sym("tex-int")
 
 ///|
+let q_tex_jacobi_poly : Value = sym("tex-jacobi-poly")
+
+///|
 let q_tex_kron_delta : Value = sym("tex-kron-delta")
 
 ///|
+let q_tex_laguerre : Value = sym("tex-laguerre")
+
+///|
 let q_tex_lbp : Value = sym("tex-lbp")
+
+///|
+let q_tex_legendre_p : Value = sym("tex-legendre-p")
+
+///|
+let q_tex_legendre_q : Value = sym("tex-legendre-q")
 
 ///|
 let q_tex_limit : Value = sym("tex-limit")
@@ -29444,6 +29906,9 @@ let q_tex_nofix : Value = sym("tex-nofix")
 let q_tex_paren : Value = sym("tex-paren")
 
 ///|
+let q_tex_pochhammer : Value = sym("tex-pochhammer")
+
+///|
 let q_tex_postfix : Value = sym("tex-postfix")
 
 ///|
@@ -29465,6 +29930,21 @@ let q_tex_space_after_control_word : Value = sym("tex-space-after-control-word")
 let q_tex_spaceout : Value = sym("tex-spaceout")
 
 ///|
+let q_tex_spherical_bessel_j : Value = sym("tex-spherical-bessel-j")
+
+///|
+let q_tex_spherical_bessel_y : Value = sym("tex-spherical-bessel-y")
+
+///|
+let q_tex_spherical_hankel_1 : Value = sym("tex-spherical-hankel-1")
+
+///|
+let q_tex_spherical_hankel_2 : Value = sym("tex-spherical-hankel-2")
+
+///|
+let q_tex_spherical_harmonic : Value = sym("tex-spherical-harmonic")
+
+///|
 let q_tex_sqrt : Value = sym("tex-sqrt")
 
 ///|
@@ -29474,10 +29954,16 @@ let q_tex_string : Value = sym("tex-string")
 let q_tex_stripdollar : Value = sym("tex-stripdollar")
 
 ///|
+let q_tex_sub_and_super_scripted_function : Value = sym("tex-sub-and-super-scripted-function")
+
+///|
 let q_tex_sum : Value = sym("tex-sum")
 
 ///|
 let q_tex_try_sym : Value = sym("tex-try-sym")
+
+///|
+let q_tex_ultraspherical : Value = sym("tex-ultraspherical")
 
 ///|
 let q_tex1 : Value = sym("tex1")
@@ -29523,6 +30009,9 @@ let q_the : Value = sym("the")
 
 ///|
 let q_then : Value = sym("then")
+
+///|
+let q_theta : Value = sym("theta")
 
 ///|
 let q_thing : Value = sym("thing")
@@ -29924,6 +30413,9 @@ let q_triang : Value = sym("triang")
 let q_triang2 : Value = sym("triang2")
 
 ///|
+let q_triangular_mat_cond : Value = sym("triangular-mat-cond")
+
+///|
 let q_trig : Value = sym("trig")
 
 ///|
@@ -30215,6 +30707,15 @@ let q_ul : Value = sym("ul")
 let q_ulabs : Value = sym("ulabs")
 
 ///|
+let q_ultrapsherical : Value = sym("ultrapsherical")
+
+///|
+let q_ultraspherical : Value = sym("ultraspherical")
+
+///|
+let q_ultraspherical_1 : Value = sym("ultraspherical-1")
+
+///|
 let q_un : Value = sym("un")
 
 ///|
@@ -30288,6 +30789,9 @@ let q_unix_like_basename : Value = sym("unix-like-basename")
 
 ///|
 let q_unix_like_dirname : Value = sym("unix-like-dirname")
+
+///|
+let q_unk : Value = sym("unk")
 
 ///|
 let q_unkind : Value = sym("unkind")
@@ -30368,7 +30872,13 @@ let q_uprimitive : Value = sym("uprimitive")
 let q_use_cp : Value = sym("use-cp")
 
 ///|
+let q_use_float : Value = sym("use-float")
+
+///|
 let q_use_float_hypergeometric_numerical_eval : Value = sym("use-float-hypergeometric-numerical-eval")
+
+///|
+let q_use_hypergeo : Value = sym("use-hypergeo")
 
 ///|
 let q_use_radcan_p : Value = sym("use-radcan-p")
@@ -30710,6 +31220,9 @@ let q_xa_star : Value = sym("xa*")
 let q_xappend : Value = sym("xappend")
 
 ///|
+let q_xcomplexp : Value = sym("xcomplexp")
+
+///|
 let q_xexponget : Value = sym("xexponget")
 
 ///|
@@ -30821,6 +31334,9 @@ let q_zeroequiv2 : Value = sym("zeroequiv2")
 let q_zeroes : Value = sym("zeroes")
 
 ///|
+let q_zerofor : Value = sym("zerofor")
+
+///|
 let q_zerohk : Value = sym("zerohk")
 
 ///|
@@ -30875,6 +31391,9 @@ let q_zgcd_lift_star : Value = sym("zgcd-lift*")
 let q_zgcd1 : Value = sym("zgcd1")
 
 ///|
+let q_zi : Value = sym("zi")
+
+///|
 let q_ziredup : Value = sym("ziredup")
 
 ///|
@@ -30920,7 +31439,7 @@ let q_zn_gcdex2 : Value = sym("zn-gcdex2")
 let q_zn_nrt : Value = sym("zn-nrt")
 
 ///|
-let q_zn_order : Value = sym("zn-order")
+let q_zn_h_order : Value = sym("zn-order")
 
 ///|
 let q_zn_p_errchk : Value = sym("zn-p-errchk")
@@ -30944,7 +31463,7 @@ let q_zn_shanks_phi_step_bc : Value = sym("zn-shanks-phi-step-bc")
 let q_zn_table_errchk : Value = sym("zn-table-errchk")
 
 ///|
-let q_zn_u_order : Value = sym("zn_order")
+let q_zn_order : Value = sym("zn_order")
 
 ///|
 let q_zp : Value = sym("zp")

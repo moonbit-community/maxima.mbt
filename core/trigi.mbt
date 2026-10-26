@@ -2275,7 +2275,7 @@ fn init_trigi() -> Unit raise {
       q_p_acsc, q_p_asec, q_p_asinh, q_p_acosh, q_p_atanh, q_p_acoth, q_p_acsch,
       q_p_asech,
     ] {
-    setf_get(x, q_distribute_u_over, dist) |> ignore
+    setf_get(x, q_distribute_over, dist) |> ignore
   }
   trigi__fill_flonum_op()
   trigi__fill_big_float_op()
@@ -2322,6 +2322,6 @@ fn init_trigi() -> Unit raise {
     ]),
   )
   // atan2 distributes over lists, matrices, and equations
-  putprop(q_p_atan2, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_u_over)
+  putprop(q_p_atan2, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_over)
   |> ignore
 }

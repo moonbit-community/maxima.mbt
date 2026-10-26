@@ -698,7 +698,7 @@ fn extra_simp(e : Value) -> Value raise {
     let arg = extra_simp(caddr(e))
     mul2(
       ftake(q_mexpt, [arg, sub(p, Fix(1L))]),
-      ftake(q_p_gamma_u_incomplete, [sub(Fix(1L), p), arg]),
+      ftake(q_p_gamma_incomplete, [sub(Fix(1L), p), arg]),
     )
   } else if d_subvarp(mop(e)).truthy() {
     // subscripted function

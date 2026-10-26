@@ -1,4 +1,5 @@
 #!/bin/sh
 # Reference Maxima built from .repos/maxima-ref (same source as the port).
 REF="$(cd "$(dirname "$0")/.." && pwd)/.repos/maxima-ref"
+[ -d "$REF" ] || REF=/Users/dii/git/maxima.mbt/.repos/maxima-ref
 MAXIMA_PREFIX="$REF" exec sbcl --core "$REF/src/binary-sbcl/maxima.core" --noinform --end-runtime-options "$@"

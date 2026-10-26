@@ -83,12 +83,12 @@ def mangle0(n, alt=False):
            "]": "_rb", "{": "_lc", "}": "_rc", '"': "_dq", "`": "_bq", ";": "_sc"}
     if not pre and re.match(r"^(d|p|kw|ear|bf|q|n)-", s):
         s = s.replace("-", "--", 1)
-    if alt:
+    if alt == "h":
         rep = dict(rep)
-        rep["_"] = "_u_"
+        rep["-"] = "_h_"
     out = []
     for c in s:
-        if c == "_" and alt:
+        if c == "_" and alt is True:
             out.append("_u_")
         elif c.isascii() and (c.isalnum() or c == "_"):
             if c.isupper():
@@ -270,6 +270,9 @@ def ret_type(f):
 
 
 def compute_overrides(db):
+    """Resolve names that mangle identically. The underscore spelling (the
+    Maxima-level name, e.g. %gamma_incomplete) keeps the natural identifier;
+    the hyphenated Lisp spelling gets "-" mangled as "_h_"."""
     names = set()
     for d in db:
         names |= set(d["symbols"])
@@ -282,8 +285,8 @@ def compute_overrides(db):
     for m, ns in by.items():
         if len(ns) > 1:
             for n in ns:
-                if "_" in n:
-                    OVERRIDES[n] = mangle0(n, alt=True)
+                if "-" in n:
+                    OVERRIDES[n] = mangle0(n, alt="h")
             rest = [n for n in ns if n not in OVERRIDES]
             if len(rest) > 1:
                 print("UNRESOLVED CLASH", m, rest, file=sys.stderr)

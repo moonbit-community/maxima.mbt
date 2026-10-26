@@ -1343,7 +1343,7 @@ fn gamma3__init() -> Unit raise {
   let bags = list3(q_mlist, q_d_matrix, q_mequal)
 
   // fresnel_s
-  putprop(q_p_fresnel_s, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_fresnel_s, bags, q_distribute_over) |> ignore
   putprop(q_p_fresnel_s, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_fresnel_s, q_odd_function_reflect, q_reflection_rule) |> ignore
   gamma3__defgrad(q_p_fresnel_s, [q_d_z], [maxima_lit("sin((%pi*z^2)/2)")])
@@ -1364,7 +1364,7 @@ fn gamma3__init() -> Unit raise {
   )
 
   // fresnel_c
-  putprop(q_p_fresnel_c, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_fresnel_c, bags, q_distribute_over) |> ignore
   putprop(q_p_fresnel_c, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_fresnel_c, q_odd_function_reflect, q_reflection_rule) |> ignore
   gamma3__defgrad(q_p_fresnel_c, [q_d_z], [maxima_lit("cos((%pi*z^2)/2)")])
@@ -1382,6 +1382,10 @@ fn gamma3__init() -> Unit raise {
   // Beta is symmetric beta(a,b) = beta(b,a)
   with_specials([(q_d_context, q_d_global), (q_context, q_d_global)], () => {
     meval(list3(list1(q_d_declare), q_p_beta, q_d_symmetric)) |> ignore
+    // As for erf_generalized (gamma_2.mbt): the CL image has the operator
+    // property too, since $symmetric is already on OPERS there.
+    putprop(q_p_beta, t, q_d_symmetric) |> ignore
+    putprop(q_p_beta, t, q_opers) |> ignore
     // Let's remove built-in symbols from list for user-defined properties.
     set(q_d_props, remove(q_p_beta, symval(q_d_props)))
   })
@@ -1389,7 +1393,7 @@ fn gamma3__init() -> Unit raise {
 
   // beta_incomplete
   // *beta-incomplete-maxit* and *beta-incomplete-eps* are literal defvars.
-  putprop(q_p_beta_incomplete, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_beta_incomplete, bags, q_distribute_over) |> ignore
   gamma3__defgrad(q_p_beta_incomplete, [q_d_a, q_d_b, q_d_z], [
     // Derivative wrt a
     maxima_lit(
@@ -1412,7 +1416,7 @@ fn gamma3__init() -> Unit raise {
   |> ignore
 
   // beta_incomplete_generalized
-  putprop(q_p_beta_incomplete_generalized, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_beta_incomplete_generalized, bags, q_distribute_over) |> ignore
   putprop(
     q_p_beta_incomplete_generalized,
     q_conjugate_beta_incomplete_generalized,
@@ -1447,7 +1451,7 @@ fn gamma3__init() -> Unit raise {
   |> ignore
 
   // beta_incomplete_regularized
-  putprop(q_p_beta_incomplete_regularized, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_beta_incomplete_regularized, bags, q_distribute_over) |> ignore
   gamma3__defgrad(q_p_beta_incomplete_regularized, [q_d_a, q_d_b, q_d_z], [
     // Derivative wrt a
     maxima_lit(
