@@ -721,7 +721,7 @@ fn intira(funct : Value, x : Value) -> Value raise {
   let polfact = cdras(q_p, assoclist)
   // n is of the form s/2; make n = s.
   n = cadr(n)
-  let signn = irinte__checksigntm(n)
+  let signn = checksigntm(n)
   let ec_1 = power(c, Fix(-1L))
   let b = cdras(q_b, assoclist)
   let a = cdras(q_c, assoclist)
@@ -938,7 +938,7 @@ let irinte__productcase : Ref[Value] = Ref(Nil)
 
 ///|
 /// The sign of EXPR, remembered in *CHECKCOEFSIGNLIST*.
-fn irinte__checksigntm(expr : Value) -> Value raise {
+fn checksigntm(expr : Value) -> Value raise {
   irinte__zerosigntest.val = Nil
   irinte__productcase.val = Nil
   let mut aslist = symval(q_ear_checkcoefsignlist)
@@ -948,7 +948,7 @@ fn irinte__checksigntm(expr : Value) -> Value raise {
   while true {
     if aslist is Nil {
       let old = symval(q_ear_checkcoefsignlist)
-      let quest = irinte__checkflagandact(expr)
+      let quest = checkflagandact(expr)
       set(
         q_ear_checkcoefsignlist,
         append(old, list1(cons(expr, list1(quest)))),
@@ -965,25 +965,25 @@ fn irinte__checksigntm(expr : Value) -> Value raise {
 }
 
 ///|
-fn irinte__checkflagandact(expr : Value) -> Value raise {
+fn checkflagandact(expr : Value) -> Value raise {
   if irinte__productcase.val.truthy() {
     irinte__productcase.val = Nil
-    findsignoftheirproduct(irinte__findsignofactors(cdr(expr)))
+    findsignoftheirproduct(findsignofactors(cdr(expr)))
   } else {
     asksign(d_realpart(expr))
   }
 }
 
 ///|
-fn irinte__findsignofactors(listofactors : Value) -> Value raise {
+fn findsignofactors(listofactors : Value) -> Value raise {
   if listofactors is Nil {
     Nil
   } else if eq(irinte__zerosigntest.val, q_d_zero) {
     q_d_zero
   } else {
-    let s = irinte__checksigntm(car(listofactors))
+    let s = checksigntm(car(listofactors))
     irinte__zerosigntest.val = s
-    append(list1(s), irinte__findsignofactors(cdr(listofactors)))
+    append(list1(s), findsignofactors(cdr(listofactors)))
   }
 }
 
@@ -1025,8 +1025,8 @@ fn changesign(sign : Value) -> Value raise {
 /// Integrate 1/sqrt(c*x^2+b*x+a) (G&R 2.261).
 fn den1(c : Value, b : Value, a : Value, x : Value) -> Value raise {
   let expr = addn_([muln_([Fix(2L), c, x]), b])
-  let signc = irinte__checksigntm(power(c, Fix(-1L)))
-  let signb = irinte__checksigntm(power(b, Fix(2L)))
+  let signc = checksigntm(power(c, Fix(-1L)))
+  let signb = checksigntm(power(b, Fix(2L)))
   let signdiscrim = signdis2(c, b, a, signc, signb)
   if eq(signc, q_d_positive) && eq(signdiscrim, q_d_negative) {
     // c > 0, D > 0
@@ -1119,7 +1119,7 @@ fn den1(c : Value, b : Value, a : Value, x : Value) -> Value raise {
 ///|
 /// Sign of the discriminant b^2-4*c*a of c*x^2+b*x+a.
 fn signdiscr(c : Value, b : Value, a : Value) -> Value raise {
-  irinte__checksigntm(
+  checksigntm(
     simplifya(
       addn_([power(b, Fix(2L)), muln_([Fix(-4L), c, a])]),
       Nil,
@@ -1129,7 +1129,7 @@ fn signdiscr(c : Value, b : Value, a : Value) -> Value raise {
 
 ///|
 fn askinver(a : Value) -> Value raise {
-  irinte__checksigntm(inv(a))
+  checksigntm(inv(a))
 }
 
 ///|
@@ -1141,7 +1141,7 @@ fn signdis1(c : Value, b : Value, a : Value) -> Value raise {
       q_d_nonzero
     }
   } else {
-    irinte__checksigntm(
+    checksigntm(
       power(addn_([muln_([b, b]), muln_([Fix(-4L), c, a])]), Fix(2L)),
     )
   }
@@ -1185,7 +1185,7 @@ fn signdis3(
   ec_1 : Value,
 ) -> Value raise {
   if equal(b, Fix(0L)) {
-    if equal(irinte__checksigntm(ec_1), signa) {
+    if equal(checksigntm(ec_1), signa) {
       q_d_negative
     } else {
       q_d_positive
@@ -1446,7 +1446,7 @@ fn denmdenn(
   let mut res2 : Value = Nil
   let mut m : Value = Nil
   let mut partres : Value = Nil
-  let signa = irinte__checksigntm(simplifya(a, Nil))
+  let signa = checksigntm(simplifya(a, Nil))
   if eq(signa, q_d_zero) {
     return noconstquad(lst, p, c, b, x)
   }
@@ -1641,7 +1641,7 @@ fn den1denn(
   x : Value,
   ec_1 : Value,
 ) -> Value raise {
-  let signa = irinte__checksigntm(power(a, Fix(2L)))
+  let signa = checksigntm(power(a, Fix(2L)))
   let ea_1 = inv(a)
   if eq(signa, q_d_zero) {
     noconstquad(Fix(1L), p, c, b, x)
@@ -1676,7 +1676,7 @@ fn den1den1(
 ) -> Value raise {
   let exp2 = addn_([muln_([b, x]), a, a])
   let mut exp3 = inv(simplify(list2(list1(q_mabs), x)))
-  let signa = irinte__checksigntm(simplifya(a, Nil))
+  let signa = checksigntm(simplifya(a, Nil))
   if eq(signa, q_d_zero) {
     return noconstquad(list1(list2(Fix(1L), Fix(1L))), Fix(0L), c, b, x)
   }
@@ -1794,7 +1794,7 @@ fn noconstquad(
   let mut res1 : Value = Nil
   let mut m : Value = Nil
   let mut partres : Value = Nil
-  let signb = irinte__checksigntm(power(b, Fix(2L)))
+  let signb = checksigntm(power(b, Fix(2L)))
   if eq(signb, q_d_zero) {
     return trivial1(lst, p, c, x)
   }
@@ -2263,7 +2263,7 @@ fn denmnumn(
   if eq(car(lst), t) {
     lst = cdr(lst)
   } else {
-    let signa = irinte__checksigntm(power(a, Fix(2L)))
+    let signa = checksigntm(power(a, Fix(2L)))
     if eq(signa, q_d_zero) {
       return nonconstquadenum(lst, p, c, b, x, ec_1)
     }
@@ -2603,7 +2603,7 @@ fn case1(
         st = 3
       }
       3 => {
-        let signb = irinte__checksigntm(power(b, Fix(2L)))
+        let signb = checksigntm(power(b, Fix(2L)))
         if eq(signb, q_d_zero) {
           count = Fix(5L)
           st = 5
@@ -2611,7 +2611,7 @@ fn case1(
         }
         count = Fix(4L)
         m = Fix(0L)
-        let signc = irinte__checksigntm(ec_1)
+        let signc = checksigntm(ec_1)
         if eq(signc, q_d_positive) {
           res = augmult(
             mul_star(
@@ -2760,7 +2760,7 @@ fn case0(
   let exp1 = mk_simp(q_rat, [Fix(1L), Fix(4L)])
   let exp2 = addn_([b, muln_([Fix(2L), c, x])])
   let exp3 = power(c, mk_simp(q_rat, [Fix(-3L), Fix(2L)]))
-  let signc = irinte__checksigntm(ec_1)
+  let signc = checksigntm(ec_1)
   let mut p : Value = Fix(1L)
   let mut result : Value = Nil
   // sqrt(c*x^2+b*x)
