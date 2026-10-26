@@ -20,6 +20,8 @@ pub fn initialize() -> Unit raise {
 ///|
 /// Exit the process with a status code.
 pub fn exit(code : Int) -> Unit {
+  // the cleanup of CL-USER::RUN
+  let _ = delete_temp_files() catch { _ => Nil }
   flush_stdout()
   exit_process(code)
 }

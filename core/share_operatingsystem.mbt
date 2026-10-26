@@ -1,14 +1,20 @@
 // Port of share/contrib/operatingsystem/operatingsystem.lisp (functions
 // from CLOCC, added to Maxima by Wolfgang Dautermann): directory and file
 // operations used by operatingsystem.mac. The port uses the file functions
-// of moonbitlang/x/fs; changing the working directory is not available.
+// of moonbitlang/x/fs and the runtime's process primitives.
 
 ///|
-/// Change the working directory.
+/// Change the working directory; returns the new working directory (SBCL's
+/// new *DEFAULT-PATHNAME-DEFAULTS*), with a trailing slash.
 fn os_chdir(dir : Value) -> Value raise {
-  merr("chdir: changing the working directory is not supported in this port; cannot change to ~M", [
-    dir,
-  ])
+  if !change_directory(lstring(dir)) {
+    raise LispError::Condition(
+      intern("sb-posix:syscall-error"),
+      "Error in SB-POSIX:CHDIR: cannot change to " + lstring(dir),
+      dir,
+    )
+  }
+  Str(current_directory() + "/")
 }
 
 ///|
@@ -34,14 +40,9 @@ fn os_rmdir(dir : Value) -> Value raise {
 
 ///|
 /// Return the current directory (with a trailing slash, as a namestring).
-/// The port never changes its working directory, so this is the directory
-/// it was started in.
 fn os_getcurrentdirectory() -> Value raise {
-  match getenv("PWD") {
-    Some(d) if d != "" => Str(if d.has_suffix("/") { d } else { d + "/" })
-    _ =>
-      merr("getcurrentdirectory: the current directory is not available in this port", [])
-  }
+  let d = current_directory()
+  Str(if d.has_suffix("/") { d } else { d + "/" })
 }
 
 ///|

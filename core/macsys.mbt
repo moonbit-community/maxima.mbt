@@ -10,8 +10,8 @@
 //   ":" break commands are not supported.
 // - CL two-way streams do not exist; *QUERY-IO-INPUT* (a port-only special)
 //   names the input side when *QUERY-IO* is used as a two-way stream.
-// - Memory accounting (used-area), dribble transcripts, $system, $room and
-//   $ed are not available.
+// - Memory accounting (used-area), dribble transcripts and $room are not
+//   available.
 
 ///|
 /// INTERNAL-TIME-UNITS-PER-SECOND (as in SBCL).
@@ -915,9 +915,15 @@ fn d_closefile() -> Value raise {
 }
 
 ///|
+/// (ed (maxima-string x)): SBCL's ED only runs the functions in
+/// SB-EXT:*ED-FUNCTIONS*, of which there are none, so it signals an error.
 fn d_ed(x : Value) -> Value raise {
-  ignore(x)
-  merr("ed: not supported in this port", [])
+  let name = princ_to_string(print_invert_case(x))
+  raise LispError::SimpleError(
+    "Don't know how to ED " +
+    name +
+    "\nSee also:\n  The SBCL Manual, Variable SB-EXT:*ED-FUNCTIONS*",
+  )
 }
 
 ///|
@@ -976,9 +982,34 @@ fn d_sconcat(x : Value) -> Value raise {
 }
 
 ///|
+/// Run the arguments, joined by spaces, as a /bin/sh command and print its
+/// standard output line by line (to *SOCKET-CONNECTION* when Xmaxima is
+/// connected).  As with SBCL's RUN-PROGRAM, the command's standard input is
+/// /dev/null and its standard error is Maxima's.
 fn d_system(args : Value) -> Value raise {
-  ignore(args)
-  merr("system: not supported in this port", [])
+  let s = if boundp(q_ear_socket_connection) {
+    symval(q_ear_socket_connection)
+  } else {
+    Nil
+  }
+  let out = if s.truthy() { s } else { t }
+  let cmd = lstring(format(Nil, "~{~a~^ ~}", [args]))
+  // (run-program "/bin/sh" (list "-c" cmd) :search t :output :stream)
+  let (_, text) = shell_command_output(
+    "exec /bin/sh -c '" +
+    cmd.replace_all(old="'", new="'\\''") +
+    "' </dev/null",
+  )
+  // (loop for line = (read-line output-stream nil) while line
+  //       do (format out "~a~%" line))
+  let lines = text.split("\n").map(v => v.to_string()).to_array()
+  if lines.length() > 0 && lines[lines.length() - 1] == "" {
+    lines.pop() |> ignore
+  }
+  for line in lines {
+    format(out, "~a~%", [Str(line)]) |> ignore
+  }
+  Nil
 }
 
 ///|

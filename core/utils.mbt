@@ -10,6 +10,9 @@ fn maxima_getenv(envvar : Value) -> Value raise {
 
 ///|
 fn bye(exit_code? : Value = Fix(0L)) -> Value raise {
+  // SB-EXT:QUIT unwinds the stack, which runs the cleanup form of
+  // CL-USER::RUN: (delete-temp-files).
+  let _ = delete_temp_files() catch { _ => Nil }
   exit_process(to_int(exit_code))
   Nil
 }
