@@ -99,5 +99,26 @@
   "nelder_mead/la",
   "nelder_mead/neldermead",
   "nelder_mead/nm-maxima"
+ ],
+ "affine/affine": [
+  "affine/sys-declaim",
+  "affine/compat",
+  "affine/amacros",
+  "affine/polybas",
+  "affine/sparsemat",
+  "affine/aquotient",
+  "affine/new-rat",
+  "affine/polya",
+  "affine/ndotsimp",
+  "affine/polyb",
+  "affine/polysmp",
+  "affine/sub-proj",
+  "affine/polyc",
+  "affine/polyd",
+  "affine/sheafa",
+  "affine/sheafb",
+  "affine/sheafc",
+  "affine/dim-3",
+  "affine/modsimp"
  ]
 }

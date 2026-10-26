@@ -85,7 +85,8 @@ fn d_untellrat(args : Value) -> Value raise {
 
 ///|
 fn d_tellrat(args : Value) -> Value raise {
-  mapc(x => tellrat1(x) |> ignore, args) |> ignore
+  // Through the function cell: share/affine/new-rat.lisp redefines TELLRAT1.
+  mapc(x => funcall(q_tellrat1, [x]) |> ignore, args) |> ignore
   if !(args is Nil) {
     add2lnc(q_tellratlist, symval(q_d_myoptions)) |> ignore
   }
