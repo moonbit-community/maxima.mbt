@@ -424,104 +424,6 @@ fn cheby_prime(x : Value, chebarr : Value) -> Value raise {
 }
 
 ///|
-/// SLATEC INITDS (single-float accumulation).
-fn specfn__initds(os : Array[Double], nos : Int, eta : Float) -> Int {
-  let mut err : Float = 0.0
-  let mut i = 0
-  for ii in 1..=nos {
-    i = nos + 1 - ii
-    err = err + Float::from_double(os[i - 1]).abs()
-    if err > eta {
-      break
-    }
-  }
-  i
-}
-
-///|
-/// SLATEC DCSEVL: evaluate the N-term Chebyshev series CS at X.
-fn specfn__dcsevl(x : Double, cs : Array[Double], n : Int) -> Double {
-  let mut b1 = 0.0
-  let mut b0 = 0.0
-  let mut b2 = 0.0
-  let twox = 2.0 * x
-  for i in 1..=n {
-    b2 = b1
-    b1 = b0
-    let ni = n + 1 - i
-    b0 = twox * b1 - b2 + cs[ni - 1]
-  }
-  0.5 * (b0 - b2)
-}
-
-///|
-let specfn__spencs : Array[Double] = [
-  0.1527365598892406, 0.08169658058051014, 0.005814157140778731, 5.371619814541527e-4,
-  5.724704675185826e-5, 6.6745461216493364e-6, 8.276467339715677e-7, 1.073315673030679e-7,
-  1.4400772943032394e-8, 1.9844420299659065e-9, 2.7940058221636385e-10, 4.0039913108833116e-11,
-  5.8234628920446385e-12, 8.576708692638689e-13, 1.276862586280193e-13, 1.918826209042517e-14,
-  2.907319206977138e-15, 4.4371126852767803e-16, 6.8157277874146e-17, 1.0530173860155745e-17,
-  1.635389806752377e-18, 2.551852874940464e-19, 3.99902062199936e-20, 6.291501645216812e-21,
-  9.933827435675679e-22, 1.5736795707499649e-22, 2.500595316849476e-23, 3.984740918383811e-24,
-  6.366473210082844e-25, 1.0196742872396784e-25, 1.636881058913519e-26, 2.6333104394176502e-27,
-  4.244811560123977e-28, 6.855411983680052e-29, 1.1091224334380564e-29, 1.7974313049998914e-30,
-  2.917505845976095e-31, 4.742646808928671e-32,
-]
-
-///|
-/// SLATEC DSPENC: Spence's function (numerical/slatec/dspenc.lisp; the
-/// SLATEC library is not part of the port).
-fn specfn__dspenc(x : Double) -> Double {
-  let pi26 = 1.6449340668482264
-  let d1mach3 = 1.1102230246251565e-16
-  let nspenc = specfn__initds(
-    specfn__spencs,
-    38,
-    Float::from_double(0.1) * Float::from_double(d1mach3),
-  )
-  let xbig = 1.0 / d1mach3
-  let cs = specfn__spencs
-  if x > 2.0 {
-    let lx = @math.ln(x)
-    let mut dspenc = 2.0 * pi26 - 0.5 * (lx * lx)
-    if x < xbig {
-      dspenc = dspenc + -(1.0 + specfn__dcsevl(4.0 / x - 1.0, cs, nspenc)) / x
-    }
-    dspenc
-  } else if x > 1.0 {
-    pi26 +
-    -0.5 * @math.ln(x) * @math.ln((x - 1.0) * (x - 1.0) / x) +
-    (x - 1.0) *
-    (1.0 + specfn__dcsevl(4.0 * (x - 1.0) / x - 1.0, cs, nspenc)) /
-    x
-  } else if x > 0.5 {
-    let mut dspenc = pi26
-    if x != 1.0 {
-      dspenc = pi26 -
-        @math.ln(x) * @math.ln(1.0 - x) -
-        (1.0 - x) *
-        (1.0 + specfn__dcsevl(4.0 * (1.0 - x) - 1.0, cs, nspenc))
-    }
-    dspenc
-  } else if x >= 0.0 {
-    x * (1.0 + specfn__dcsevl(4.0 * x - 1.0, cs, nspenc))
-  } else if x > -1.0 {
-    let l = @math.ln(1.0 - x)
-    -0.5 * (l * l) +
-    -x * (1.0 + specfn__dcsevl(4.0 * x / (x - 1.0) - 1.0, cs, nspenc)) /
-    (x - 1.0)
-  } else {
-    let aln = @math.ln(1.0 - x)
-    let mut dspenc = -0.5 * aln * (2.0 * @math.ln(-x) - aln) - pi26
-    if x > -xbig {
-      dspenc = dspenc +
-        (1.0 + specfn__dcsevl(4.0 / (1.0 - x) - 1.0, cs, nspenc)) / (1.0 - x)
-    }
-    dspenc
-  }
-}
-
-///|
 /// The local LI2 of LI2NUMER (CL arithmetic).
 fn specfn__li2(x : Value) -> Value raise {
   let pi2 = expt(Flo(@math.PI), int(2))
@@ -537,7 +439,7 @@ fn specfn__li2(x : Value) -> Value raise {
       num_neg(num_div(pi2, int(6))),
     )
   } else if num_lt(x, int(1)) {
-    Flo(specfn__dspenc(to_double(x)))
+    Flo(@slatec.dspenc(to_double(x)))
   } else if num_eq(x, int(1)) {
     num_div(pi2, int(6))
   } else {

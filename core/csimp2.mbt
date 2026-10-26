@@ -893,130 +893,6 @@ fn gamma_lanczos(z : Value) -> Value raise {
   }
 }
 
-// SLATEC's DGAMMA and D9LGMC (numerical/slatec, not in this port's
-// contract), used by GAMMAFLOAT.
-
-///|
-let csimp2__gamcs : Array[Double] = [
-  0.00857119559098933, 0.004415381324841007, 0.05685043681599363, -0.00421983539641856,
-  0.0013268081812124603, -1.8930245297988805e-4, 3.606925327441245e-5, -6.056761904460864e-6,
-  1.0558295463022833e-6, -1.811967365542384e-7, 3.117724964715322e-8, -5.354219639019687e-9,
-  9.193275519859589e-10, -1.5779412802883398e-10, 2.7079806229349544e-11, -4.64681865382573e-12,
-  7.97335019200742e-13, -1.368078209830916e-13, 2.3473194865638007e-14, -4.027432614949067e-15,
-  6.910051747372101e-16, -1.185584500221993e-16, 2.034148542496374e-17, -3.490054341717406e-18,
-  5.987993856485306e-19, -1.027378057872228e-19, 1.7627028160605298e-20, -3.024320653735306e-21,
-  5.188914660218398e-22, -8.902770842456576e-23, 1.5274740684933426e-23, -2.620731256187363e-24,
-  4.496464047830539e-25, -7.714712731336878e-26, 1.323635453126044e-26, -2.2709994129429287e-27,
-  3.8964189980039913e-28, -6.685198115125953e-29, 1.1469986631400244e-29, -1.9679385863451348e-30,
-  3.376448816585338e-31, -5.793070335782136e-32,
-]
-
-///|
-let csimp2__algmcs : Array[Double] = [
-  0.16663894804518634, -1.384948176067564e-5, 9.81082564692473e-9, -1.809129475572494e-11,
-  6.221098041892606e-14, -3.399615005417722e-16, 2.683181998482699e-18, -2.868042435334643e-20,
-  3.9628370610464347e-22, -6.831888753985767e-24, 1.4292273559424982e-25, -3.5475981581010704e-27,
-  1.025680058010471e-28, -3.401102254316749e-30, 1.276642195630063e-31,
-]
-
-///|
-/// SLATEC INITDS: number of terms of the Chebyshev series OS needed for
-/// accuracy ETA (single-float arithmetic).
-fn csimp2__initds(os : Array[Double], eta : Float) -> Int {
-  let nos = os.length()
-  let mut err : Float = 0.0
-  let mut i = 0
-  for ii in 1..=nos {
-    i = nos + 1 - ii
-    err = err + Float::from_double(os[i - 1]).abs()
-    if err > eta {
-      break
-    }
-  }
-  i
-}
-
-///|
-/// SLATEC DCSEVL: evaluate the N-term Chebyshev series CS at X.
-fn csimp2__dcsevl(x : Double, cs : Array[Double], n : Int) -> Double {
-  let mut b1 = 0.0
-  let mut b0 = 0.0
-  let mut b2 = 0.0
-  let twox = 2.0 * x
-  for i in 1..=n {
-    b2 = b1
-    b1 = b0
-    let ni = n + 1 - i
-    b0 = twox * b1 - b2 + cs[ni - 1]
-  }
-  0.5 * (b0 - b2)
-}
-
-///|
-/// SLATEC DGAMMA for |x| <= 10, x not 0 or a negative integer.
-fn csimp2__dgamma(x : Double) -> Double raise {
-  // d1mach(3) = 2^-53
-  let eta = Float::from_double(0.1) *
-    Float::from_double(1.1102230246251565e-16)
-  let ngam = csimp2__initds(csimp2__gamcs, eta)
-  let y0 = if x < 0.0 { -x } else { x }
-  if y0 > 10.0 {
-    raise LispError::SimpleError("DGAMMA: |X| > 10 not supported")
-  }
-  let mut n = x.trunc().to_int()
-  if x < 0.0 {
-    n = n - 1
-  }
-  let y = x - n.to_double()
-  n = n - 1
-  let mut dgamma = 0.9375 + csimp2__dcsevl(2.0 * y - 1.0, csimp2__gamcs, ngam)
-  if n == 0 {
-    return dgamma
-  }
-  if n > 0 {
-    for i in 1..=n {
-      dgamma = (y + i.to_double()) * dgamma
-    }
-    return dgamma
-  }
-  n = -n
-  if x == 0.0 {
-    raise LispError::SimpleError("SLATEC DGAMMA: X IS 0")
-  }
-  if x < 0.0 && x + n.to_double() - 2.0 == 0.0 {
-    raise LispError::SimpleError("SLATEC DGAMMA: X IS A NEGATIVE INTEGER")
-  }
-  for i in 1..=n {
-    dgamma = dgamma / (x + i.to_double() - 1.0)
-  }
-  dgamma
-}
-
-///|
-/// SLATEC D9LGMC: log gamma correction factor for x >= 10.
-fn csimp2__d9lgmc(x : Double) -> Double raise {
-  let d1mach1 = 2.2250738585072014e-308
-  let d1mach2 = 1.7976931348623157e308
-  let d1mach3 = 1.1102230246251565e-16
-  let nalgm = csimp2__initds(csimp2__algmcs, Float::from_double(d1mach3))
-  let xbig = 1.0 / (d1mach3).sqrt()
-  let a = @math.ln(d1mach2 / 12.0)
-  let b = -@math.ln(12.0 * d1mach1)
-  let xmax = @math.exp(if a < b { a } else { b })
-  if x < 10.0 {
-    raise LispError::SimpleError("SLATEC D9LGMC: X MUST BE GE 10")
-  }
-  if x >= xmax {
-    return 0.0
-  }
-  let mut d9lgmc = 1.0 / (12.0 * x)
-  if x < xbig {
-    let t = 10.0 / x
-    d9lgmc = csimp2__dcsevl(2.0 * (t * t) - 1.0, csimp2__algmcs, nalgm) / x
-  }
-  d9lgmc
-}
-
 ///|
 fn gammafloat(a0 : Value) -> Value raise {
   let a = to_double(a0)
@@ -1031,9 +907,9 @@ fn gammafloat(a0 : Value) -> Value raise {
     // Use gamma(x) = gamma(1+x)/x when x is very small
     Flo(to_double(gammafloat(Flo(1.0 + a))) / a)
   } else if a < 10.0 {
-    Flo(csimp2__dgamma(a))
+    Flo(@slatec.dgamma(a))
   } else {
-    let c = (2.0 * @math.PI).sqrt() * @math.exp(csimp2__d9lgmc(a))
+    let c = (2.0 * @math.PI).sqrt() * @math.exp(@slatec.d9lgmc(a))
     let v = @math.pow(a, 0.5 * a - 0.25)
     let result = v * (v / @math.exp(a)) * c
     if result.is_nan() || result.is_inf() {
