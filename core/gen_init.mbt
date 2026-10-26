@@ -986,6 +986,7 @@ fn share_load_mathml() -> Unit raise {
 fn share_load_allgentran() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_gentran_allgentran()
   register_share_allgentran()
+  init_share_allgentran()
 }
 
 ///|
@@ -1466,6 +1467,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "noninteractive/noninteractive" => Some(share_load_noninteractive)
     "maximaMathML/maximaMathML" => Some(share_load_maxima_cm_ath_cm__cl_)
     "maximaMathML/mathmldisplay" => Some(share_load_mathmldisplay)
+    "gentran/allgentran" => Some(share_load_allgentran)
     "elliptic_curves/modular_polynomials" => Some(share_load_modular_polynomials)
     "altsimp/altsimp" => Some(share_load_altsimp)
     "unicodedata/unicodedata" => Some(share_load_unicodedata)
@@ -1501,6 +1503,7 @@ fn share_module_group(key : String) -> Array[String]? {
     "colnew/load-colnew" => Some(["colnew/colnew-if"])
     "draw/draw" => Some(["draw/grcommon", "draw/gnuplot", "draw/vtk", "draw/picture"])
     "fftpack5/load-fftpack5" => Some(["fftpack5/fftpack5-interface"])
+    "gentran/gentran" => Some(["gentran/allgentran"])
     "graphs/load-graphs" => Some(["graphs/graph_core", "graphs/spring_embedding", "graphs/isomorphism", "graphs/matching", "graphs/graph6", "graphs/demoucron", "graphs/dijkstra", "graphs/wiener_index"])
     "hompack/load-hompack" => Some(["hompack/hompack-interface"])
     "lapack/load-lapack" => Some(["lapack/eigensys", "lapack/dgesv", "lapack/dgeqrf", "lapack/dgemm"])

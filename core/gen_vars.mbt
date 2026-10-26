@@ -1545,7 +1545,7 @@ fn init_vars_n_dot_dot_share_contrib_lurkmathml_mathml() -> Unit raise {
 ///|
 fn init_vars_n_dot_dot_share_contrib_gentran_allgentran() -> Unit raise {
   defvar_init(q_semicolon, lread("|;|"))
-  defvar_init(q_sharpsign, lread("#"))
+  defvar_init(q_sharpsign, lread("|#|"))
   defvar_init(q_lefttype, q_real)
 }
 

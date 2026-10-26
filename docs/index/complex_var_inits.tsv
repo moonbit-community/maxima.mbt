@@ -35,7 +35,7 @@ $fpprec	globals.lisp:685	$maxfpprintprec
 $error	globals.lisp:854	`((mlist simp) "No error.")
 featurel	globals.lisp:865	($integer $noninteger $even $odd $rational $irrational $real $imaginary $complex $analytic $increasing $decreasing $oddfun $evenfun $posfun $constant $commutative $lassociative $rassociative $symmetric $antisymmetric $integervalued)
 $features	globals.lisp:871	(cons '(mlist simp) (append featurel nil))
-munbound	globals.lisp:905	#####
+munbound	globals.lisp:905	|#####|
 fixunbound	globals.lisp:906	most-negative-fixnum
 flounbound	globals.lisp:907	+most-negative-flonum+
 *mlambda-call-stack*	globals.lisp:934	(make-array 30 :fill-pointer 0 :adjustable t)
@@ -290,7 +290,7 @@ $allunitslist	../share/contrib/unit/unit-functions.lisp:97	`((mlist))
 *real-askequal*	../share/contrib/noninteractive/asksign1.lisp:56	(symbol-function '$askequal)
 *in*	../share/contrib/maximaMathML/mathml-maxima.lisp:25	*parse-stream*
 semicolon	../share/contrib/gentran/allgentran.lisp:32	|;|
-sharpsign	../share/contrib/gentran/allgentran.lisp:33	#
+sharpsign	../share/contrib/gentran/allgentran.lisp:33	|#|
 *circuit-elements*	../share/contrib/state/readfile.lisp:22	(make-array 6 :initial-contents '((#\1 . $unknown) (#\V . $vsource) (#\C . $capacitor) (#\R . $resistor) (#\L . $inductor) (#\I . $isource)))
 *circuit-elements-tree*	../share/contrib/state/readfile.lisp:29	(make-array 4 :initial-contents '($unknown $capacitor $resistor $vsource))
 *circuit-elements-link*	../share/contrib/state/readfile.lisp:34	(make-array 4 :initial-contents '($unknown $inductor $resistor $isource))

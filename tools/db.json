@@ -28,7 +28,7 @@
 {
 "head": "do-external-symbols",
 "line": 317,
-"text": "(do-external-symbols (s '#:bigfloat-impl) (export s '#:bigfloat))"
+"text": "(do-external-symbols (s '|#:bigfloat-impl|) (export s '|#:bigfloat|))"
 },
 {
 "head": "provide",
@@ -2251,7 +2251,7 @@ null
 "name": "munbound",
 "init": {
 "k": "quote",
-"v": "#####"
+"v": "|#####|"
 },
 "line": 905
 },
@@ -23752,7 +23752,7 @@ null
 {
 "head": "define-initial-symbols",
 "line": 1619,
-"text": "(define-initial-symbols + - * ^ < = > |(| |)| [ ] |,| : ! # |'| |;| $ & ** ^^ := :: !! <= >= |''| && ::=)"
+"text": "(define-initial-symbols + - * ^ < = > |(| |)| [ ] |,| : ! |#| |'| |;| $ & ** ^^ := :: !! <= >= |''| && ::=)"
 },
 {
 "head": "define-symbol",
@@ -65575,7 +65575,7 @@ null
 {
 "head": "macrolet",
 "line": 1199,
-"text": "(macrolet ((frob (op) (let ((method (intern (concatenate 'string (string '#:two-arg-) (symbol-name op)))) (cl-fun (find-symbol (symbol-name op) :cl))) `(progn (defmethod ,method ((a float) (b float)) "
+"text": "(macrolet ((frob (op) (let ((method (intern (concatenate 'string (string '|#:two-arg-|) (symbol-name op)))) (cl-fun (find-symbol (symbol-name op) :cl))) `(progn (defmethod ,method ((a float) (b float)"
 },
 {
 "head": "defmethod",
@@ -65800,7 +65800,7 @@ null
 {
 "head": "macrolet",
 "line": 1470,
-"text": "(macrolet ((frob (name &optional big-float-op-p) (if big-float-op-p (let ((big-op (intern (concatenate 'string (string '#:big-float-) (string name)) '#:maxima))) `(defmethod ,name ((a complex-bigfloat"
+"text": "(macrolet ((frob (name &optional big-float-op-p) (if big-float-op-p (let ((big-op (intern (concatenate 'string (string '|#:big-float-|) (string name)) '|#:maxima|))) `(defmethod ,name ((a complex-bigf"
 },
 {
 "head": "defmethod",
@@ -65860,12 +65860,12 @@ null
 {
 "head": "macrolet",
 "line": 1560,
-"text": "(macrolet ((frob (name) (let ((cl-name (intern (string name) '#:cl))) `(defmethod ,name ((a number)) (,cl-name a))))) (frob realpart) (frob imagpart) (frob conjugate) (frob phase))"
+"text": "(macrolet ((frob (name) (let ((cl-name (intern (string name) '|#:cl|))) `(defmethod ,name ((a number)) (,cl-name a))))) (frob realpart) (frob imagpart) (frob conjugate) (frob phase))"
 },
 {
 "head": "macrolet",
 "line": 1570,
-"text": "(macrolet ((frob (name) (let ((cl-name (intern (string name) '#:cl))) `(defmethod ,name ((a number) &optional (divisor 1)) (,cl-name a divisor))))) (frob floor) (frob ffloor) (frob ceiling) (frob fcei"
+"text": "(macrolet ((frob (name) (let ((cl-name (intern (string name) '|#:cl|))) `(defmethod ,name ((a number) &optional (divisor 1)) (,cl-name a divisor))))) (frob floor) (frob ffloor) (frob ceiling) (frob fc"
 },
 {
 "head": "defmethod",
@@ -66080,7 +66080,7 @@ null
 {
 "head": "macrolet",
 "line": 2049,
-"text": "(macrolet ((frob (op) (let ((method (intern (concatenate 'string (string '#:two-arg-) (symbol-name op))))) `(define-compiler-macro ,op (number &rest more-numbers) (do* ((n number (car nlist)) (nlist m"
+"text": "(macrolet ((frob (op) (let ((method (intern (concatenate 'string (string '|#:two-arg-|) (symbol-name op))))) `(define-compiler-macro ,op (number &rest more-numbers) (do* ((n number (car nlist)) (nlist"
 },
 {
 "head": "defmethod",
@@ -287304,7 +287304,7 @@ null
 "name": "sharpsign",
 "init": {
 "k": "quote",
-"v": "#"
+"v": "|#|"
 },
 "line": 33
 },
