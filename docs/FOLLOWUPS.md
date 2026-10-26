@@ -7,3 +7,7 @@
 - exploden_format_float_pretty / pregexp_extract_groups_integers declared multi-value incorrectly; parse_lambda_list_mv
 - intl: .mo catalogs not loadable; commac: local timezone = UTC
 - init_globals handles //, limitp, *alpha
+- operatorp/operatorp1 come from def-operatorp macros: not declared; call via funcall(q_operatorp1,..) — consider declaring
+- mgenarray struct slots: aref aset type null generator content; instream: stream line stream-name
+- maxima_lit never evaluates; use meval_star(maxima_lit(..)) where Lisp evaluated
+- REPL must not reprint merror text (merror prints itself)
