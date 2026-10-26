@@ -117,7 +117,7 @@ GLUE = {"arg", "rest_args", "key_arg", "check_arity_range", "check_arity", "arit
         "take_star", "ftake", "ftake_star", "fapply", "fapply_star", "addn_", "addn_star",
         "muln_", "muln_star", "inv", "inv_star", "ncmul_", "eq0", "eq1", "mk", "mk_simp",
         "op_of", "is_op", "merr", "save_specials", "catch_tag", "throw_tag",
-        "is_maxima_error", "errset"}
+        "is_maxima_error", "errset", "defmfun_check_keywords", "set_init"}
 
 
 def fn_name(n):
@@ -250,6 +250,7 @@ def signature(f, symbols):
         rest = pn(ll["rest"])
         params.append("%s : Value" % rest)
     keys = []
+    keyspecs = []
     for (n, d) in ll["key"]:
         p = pn(n)
         e = lit_expr(d, symbols)
@@ -260,8 +261,10 @@ def signature(f, symbols):
         else:
             params.append("%s? : Value = %s" % (p, e))
         keys.append((n, p))
+        symbols.add("$" + n)
+        keyspecs.append((n, p, e))
     # keyword params are always plain options so absent keys keep defaults
-    return params, {"req": req, "opts": opts, "rest": rest, "keys": keys}
+    return params, {"req": req, "opts": opts, "rest": rest, "keys": keys, "keyspecs": keyspecs}
 
 
 def ret_type(f):
@@ -454,9 +457,13 @@ def main():
                 complex_vars.append("%s\t%s.lisp:%d\t%s" % (nm, d["file"], v["line"], v["init"].get("v")))
                 vt = v["init"].get("v") or ""
                 if v["init"]["k"] == "quote" and not any(x in vt for x in ("#<", "##", "`", ",", "#$")):
-                    body.append("  defvar_init(%s, lread(%s))" % (sym_const(nm), moon_str(v["init"]["v"])))
+                    init_fn = "set_init" if v["kind"] in ("defparameter", "defconstant") else "defvar_init"
+                    body.append("  %s(%s, lread(%s))" % (init_fn, sym_const(nm), moon_str(v["init"]["v"])))
                 continue
-            body.append("  defvar_init(%s, %s)" % (sym_const(nm), e))
+            # defparameter (and defconstant) always assign; defvar/defmvar
+            # only when unbound
+            init_fn = "set_init" if v["kind"] in ("defparameter", "defconstant") else "defvar_init"
+            body.append("  %s(%s, %s)" % (init_fn, sym_const(nm), e))
         if body:
             fnm = "init_vars_" + mangle(d["file"].replace("/", "-"))
             var_lines.append("///|")
@@ -524,6 +531,13 @@ def gen_call(mn, info, rt, check=None):
     for (kname, p) in keys:
         args.append("%s?=key_arg(args, %d, %s)" % (p, nreq + len(opts), moon_str(":" + kname)))
     call = "%s(%s)%s" % (mn, ", ".join(args), post)
+    if check is not None and keys:
+        # defmfun-keywords: every option must be `name = value` with a
+        # recognized name, else Maxima's "Unrecognized keyword" error
+        specs = ", ".join("(%s, %s)" % (sym_const("$" + kname), kdefault or "Nil")
+                          for (kname, p, kdefault) in info.get("keyspecs", []))
+        call = "{ defmfun_check_keywords(%s, args, %d, [%s]); %s }" % (
+            sym_const(check), nreq + len(opts), specs, call)
     if check is not None:
         mx = -1 if (rest is not None or keys) else nreq + len(opts)
         return "{ check_arity_range(%s, args, %d, %d); %s }" % (moon_str(check), nreq, mx, call)

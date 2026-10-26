@@ -263,27 +263,40 @@ pub fn big_to_double(b : BigInt) -> Double {
 }
 
 ///|
-/// Correctly rounded n/d -> Double (d > 0).
+/// Correctly rounded n/d -> Double (d > 0): one round-half-even at the
+/// destination exponent, including subnormal precision.
 pub fn ratio_to_double(n : BigInt, d : BigInt) -> Double {
   if n.is_zero() {
     return 0.0
   }
   let neg = n < 0N
   let a = if neg { -n } else { n }
-  // scale so that the quotient has ~65 bits
-  let k = 65 - (a.bit_length() - d.bit_length())
-  let (num, den) = if k >= 0 { (a.shl(k), d) } else { (a, d.shl(-k)) }
-  let q = num / den
-  let rem = num - q * den
-  let mut qq = q
-  if !rem.is_zero() {
-    qq = qq.lor(1N)
+  // choose e so that a / (d * 2^e) lies in [2^52, 2^53)
+  let mut e = a.bit_length() - d.bit_length() - 53
+  let quot = fn(e : Int) -> (BigInt, BigInt, BigInt) {
+    let (num, den) = if e <= 0 { (a.shl(-e), d) } else { (a, d.shl(e)) }
+    let q = num / den
+    (q, num - q * den, den)
   }
-  let r = @math.scalbn(big_to_double(qq), -k)
-  if neg {
-    -r
+  let (q0, _, _) = quot(e)
+  if q0 >= 1N.shl(53) {
+    e += 1
+  }
+  if e < -1074 {
+    e = -1074
+  }
+  let (q, r, den) = quot(e)
+  let twice = r * 2N
+  let q2 = if twice > den || (twice == den && !(q % 2N).is_zero()) {
+    q + 1N
   } else {
-    r
+    q
+  }
+  let res = @math.scalbn(q2.to_int64().to_double(), e)
+  if neg {
+    -res
+  } else {
+    res
   }
 }
 
@@ -392,41 +405,50 @@ pub fn rational(x : Value) -> Value raise LispError {
 }
 
 ///|
-/// `(rationalize x)`: simplest rational within float precision.
+/// `(rationalize x)`: SBCL's algorithm -- the simplest rational within the
+/// float's rounding interval (subnormals normalized as SBCL's
+/// INTEGER-DECODE-FLOAT does).
 pub fn rationalize(x : Value) -> Value raise LispError {
   match x {
     Flo(d) => {
-      if d == 0.0 {
-        return Fix(0L)
+      let (frac0, expo0, sign) = integer_decode_float(d)
+      let (frac, expo) = if !frac0.is_zero() && frac0.bit_length() < 53 {
+        let extra = 53 - frac0.bit_length()
+        (frac0.shl(extra), expo0 - extra)
+      } else {
+        (frac0, expo0)
       }
-      // Stern-Brocot / continued fraction search for the simplest rational
-      // that rounds to d.
-      let neg = d < 0.0
-      let a = d.abs()
-      let mut p0 = 0N
-      let mut q0 = 1N
-      let mut p1 = 1N
-      let mut q1 = 0N
-      let mut v = a
-      for _ in 0..<64 {
-        let ai = v.floor()
-        let aib = from_double_integer(ai)
-        let p2 = aib * p1 + p0
-        let q2 = aib * q1 + q0
+      if frac.is_zero() || expo >= 0 {
+        let v = frac.shl(expo.max(0))
+        return from_big(if sign < 0 { -v } else { v })
+      }
+      let den = 1N.shl(1 - expo)
+      let mut a = make_ratio(frac * 2N - 1N, den)
+      let mut b = make_ratio(frac * 2N + 1N, den)
+      let mut p0 = Fix(0L)
+      let mut q0 = Fix(1L)
+      let mut p1 = Fix(1L)
+      let mut q1 = Fix(0L)
+      while true {
+        let c = ceiling1(a)
+        if num_lt(c, b) {
+          let top = num_add(num_mul(c, p1), p0)
+          let bot = num_add(num_mul(c, q1), q0)
+          return num_div(if sign < 0 { num_neg(top) } else { top }, bot)
+        }
+        let k = one_minus(c)
+        let p2 = num_add(num_mul(k, p1), p0)
+        let q2 = num_add(num_mul(k, q1), q0)
+        let na = num_div(Fix(1L), num_sub(b, k))
+        let nb = num_div(Fix(1L), num_sub(a, k))
+        a = na
+        b = nb
         p0 = p1
         q0 = q1
         p1 = p2
         q1 = q2
-        if ratio_to_double(p1, q1) == a {
-          break
-        }
-        let frac = v - ai
-        if frac == 0.0 {
-          break
-        }
-        v = 1.0 / frac
       }
-      make_ratio(if neg { -p1 } else { p1 }, q1)
+      Nil
     }
     _ => rational(x)
   }
@@ -917,6 +939,9 @@ pub fn num_floor(a : Value, b? : Value = Fix(1L)) -> (Value, Value) raise LispEr
           let x = to_double(a)
           let y = to_double(b)
           let q = (x / y).floor()
+          if q.is_inf() || q.is_nan() {
+            raise Condition(intern("floating-point-overflow"), "arithmetic error FLOATING-POINT-OVERFLOW signalled", Nil)
+          }
           (from_big(from_double_integer(q)), Flo(x - q * y))
         }
         _ => raise type_error(a, "real")
@@ -966,6 +991,9 @@ pub fn num_truncate(a : Value, b? : Value = Fix(1L)) -> (Value, Value) raise Lis
           let x = to_double(a)
           let y = to_double(b)
           let q = (x / y).trunc()
+          if q.is_inf() || q.is_nan() {
+            raise Condition(intern("floating-point-overflow"), "arithmetic error FLOATING-POINT-OVERFLOW signalled", Nil)
+          }
           (from_big(from_double_integer(q)), Flo(x - q * y))
         }
         _ => raise type_error(a, "real")
@@ -1282,7 +1310,11 @@ fn expt_int(base : Value, power : Value) -> Value raise LispError {
     }
     Ratio(n, d) => {
       let e = to_big(power)
-      Ratio(n.pow(e), d.pow(e))
+      if e.is_zero() {
+        Fix(1L)
+      } else {
+        Ratio(n.pow(e), d.pow(e))
+      }
     }
     _ => {
       // complex: repeated squaring

@@ -135,7 +135,7 @@ pub fn ceiling1(Value) -> Value raise LispError
 
 pub fn cexp(Value) -> Value raise LispError
 
-pub fn char_at(String, Int32) -> Char
+pub fn char_at(String, Int32) -> Char raise LispError
 
 pub fn char_code(Char) -> Int32
 
@@ -302,6 +302,8 @@ pub fn format(Value, String, Array[Value]) -> Value raise
 pub fn format_exp(Double, Int32?) -> String
 
 pub fn format_fixed(Double, Int32?, Int32?, Bool) -> String
+
+pub fn format_general(Double, Int32?, Int32?) -> String
 
 pub fn format_to_string(String, Array[Value], hook? : (Char, Bool, Bool, Array[Value?], Value, StringBuilder) -> Bool raise) -> String raise
 

@@ -12,7 +12,15 @@ fn LHash::hash_of(self : LHash, k : Value) -> Int {
         Sym(s) => s.id
         Fix(n) => n.to_int()
         Char(c) => c.to_int()
-        Str(s) => s.hash() // identity semantics approximated
+        // identity keys: their contents can change, so hash only by kind
+        // (numbers are compared by value under EQL)
+        Cons(_) => 101
+        Str(_) => 103
+        Vec(_) => 107
+        Struct(s) => s.stype.id * 31 + 109
+        Hash(_) => 113
+        Func(_) => 127
+        Stream(_) | Box(_) => 131
         _ => hash_equal(k)
       }
     Equal | Equalp =>
@@ -167,7 +175,7 @@ pub fn clrhash(table : Value) -> Value raise LispError {
 ///|
 /// `(hash-table-count table)`
 pub fn hash_table_count(table : Value) -> Int raise LispError {
-  as_hash(table).entries().length()
+  as_hash(table).count
 }
 
 ///|

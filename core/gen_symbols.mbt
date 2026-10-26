@@ -776,6 +776,9 @@ let q_d_animated_gif : Value = sym("$animated_gif")
 let q_d_announce_rules_firing : Value = sym("$announce_rules_firing")
 
 ///|
+let q_d_answers_from_file : Value = sym("$answers_from_file")
+
+///|
 let q_d_anti : Value = sym("$anti")
 
 ///|
@@ -941,6 +944,9 @@ let q_d_auto_mexpr : Value = sym("$auto_mexpr")
 let q_d_autoload : Value = sym("$autoload")
 
 ///|
+let q_d_autoloading_p : Value = sym("$autoloading-p")
+
+///|
 let q_d_average_degree : Value = sym("$average_degree")
 
 ///|
@@ -987,6 +993,9 @@ let q_d_bashindices : Value = sym("$bashindices")
 
 ///|
 let q_d_batch : Value = sym("$batch")
+
+///|
+let q_d_batch_or_demo_flag : Value = sym("$batch-or-demo-flag")
 
 ///|
 let q_d_batch_answers_from_file : Value = sym("$batch_answers_from_file")
@@ -1667,6 +1676,9 @@ let q_d_copylist : Value = sym("$copylist")
 let q_d_copymatrix : Value = sym("$copymatrix")
 
 ///|
+let q_d_copyright : Value = sym("$copyright")
+
+///|
 let q_d_cos : Value = sym("$cos")
 
 ///|
@@ -1895,6 +1907,9 @@ let q_d_derivlist : Value = sym("$derivlist")
 let q_d_derivsubst : Value = sym("$derivsubst")
 
 ///|
+let q_d_descendp : Value = sym("$descendp")
+
+///|
 let q_d_desimp : Value = sym("$desimp")
 
 ///|
@@ -2015,6 +2030,9 @@ let q_d_display2d : Value = sym("$display2d")
 let q_d_display2d_unicode : Value = sym("$display2d_unicode")
 
 ///|
+let q_d_display_all : Value = sym("$display_all")
+
+///|
 let q_d_display_box_double_lines : Value = sym("$display_box_double_lines")
 
 ///|
@@ -2025,6 +2043,9 @@ let q_d_display_format_internal : Value = sym("$display_format_internal")
 
 ///|
 let q_d_display_index_separator : Value = sym("$display_index_separator")
+
+///|
+let q_d_display_known_bugs : Value = sym("$display_known_bugs")
 
 ///|
 let q_d_display_matrix_brackets : Value = sym("$display_matrix_brackets")
@@ -2510,6 +2531,12 @@ let q_d_elem : Value = sym("$elem")
 let q_d_elem_init : Value = sym("$elem_init")
 
 ///|
+let q_d_element_key : Value = sym("$element-key")
+
+///|
+let q_d_element_type : Value = sym("$element-type")
+
+///|
 let q_d_elementaire : Value = sym("$elementaire")
 
 ///|
@@ -2592,6 +2619,12 @@ let q_d_encode_time : Value = sym("$encode_time")
 
 ///|
 let q_d_end : Value = sym("$end")
+
+///|
+let q_d_end1 : Value = sym("$end1")
+
+///|
+let q_d_end2 : Value = sym("$end2")
 
 ///|
 let q_d_endcons : Value = sym("$endcons")
@@ -2742,6 +2775,9 @@ let q_d_eval_string_lisp : Value = sym("$eval_string_lisp")
 
 ///|
 let q_d_eval_when : Value = sym("$eval_when")
+
+///|
+let q_d_evaluate_summand : Value = sym("$evaluate-summand")
 
 ///|
 let q_d_evaluated_when : Value = sym("$evaluated_when")
@@ -3117,6 +3153,9 @@ let q_d_filled_square : Value = sym("$filled_square")
 
 ///|
 let q_d_filled_up_triangle : Value = sym("$filled_up_triangle")
+
+///|
+let q_d_filterp : Value = sym("$filterp")
 
 ///|
 let q_d_find_cycle : Value = sym("$find_cycle")
@@ -4145,6 +4184,12 @@ let q_d_init_piej : Value = sym("$init_piej")
 let q_d_initial : Value = sym("$initial")
 
 ///|
+let q_d_initial_contents : Value = sym("$initial-contents")
+
+///|
+let q_d_initial_element : Value = sym("$initial-element")
+
+///|
 let q_d_inlabels : Value = sym("$inlabels")
 
 ///|
@@ -4161,6 +4206,9 @@ let q_d_inpart : Value = sym("$inpart")
 
 ///|
 let q_d_input : Value = sym("$input")
+
+///|
+let q_d_input_stream : Value = sym("$input-stream")
 
 ///|
 let q_d_inrt : Value = sym("$inrt")
@@ -4239,6 +4287,9 @@ let q_d_inv_mod : Value = sym("$inv_mod")
 
 ///|
 let q_d_inverse : Value = sym("$inverse")
+
+///|
+let q_d_inverse_fft_p : Value = sym("$inverse-fft-p")
 
 ///|
 let q_d_inverse_erf : Value = sym("$inverse_erf")
@@ -5240,6 +5291,9 @@ let q_d_maxima_tempdir : Value = sym("$maxima_tempdir")
 let q_d_maxima_userdir : Value = sym("$maxima_userdir")
 
 ///|
+let q_d_maxiter : Value = sym("$maxiter")
+
+///|
 let q_d_maxmin : Value = sym("$maxmin")
 
 ///|
@@ -5852,6 +5906,9 @@ let q_d_omicron : Value = sym("$omicron")
 let q_d_on : Value = sym("$on")
 
 ///|
+let q_d_one_shot : Value = sym("$one-shot")
+
+///|
 let q_d_one_norm : Value = sym("$one_norm")
 
 ///|
@@ -5970,6 +6027,9 @@ let q_d_orthopoly_returns_intervals : Value = sym("$orthopoly_returns_intervals"
 
 ///|
 let q_d_orthopoly_weight : Value = sym("$orthopoly_weight")
+
+///|
+let q_d_out : Value = sym("$out")
 
 ///|
 let q_d_out_neighbors : Value = sym("$out_neighbors")
@@ -7628,6 +7688,9 @@ let q_d_sha1sum : Value = sym("$sha1sum")
 let q_d_sha256sum : Value = sym("$sha256sum")
 
 ///|
+let q_d_share_tests : Value = sym("$share_tests")
+
+///|
 let q_d_share_testsuite_files : Value = sym("$share_testsuite_files")
 
 ///|
@@ -7644,6 +7707,12 @@ let q_d_shortest_path : Value = sym("$shortest_path")
 
 ///|
 let q_d_shortest_weighted_path : Value = sym("$shortest_weighted_path")
+
+///|
+let q_d_show_all : Value = sym("$show-all")
+
+///|
+let q_d_show_expected : Value = sym("$show-expected")
 
 ///|
 let q_d_show_form : Value = sym("$show_form")
@@ -7728,6 +7797,9 @@ let q_d_sinvertcase : Value = sym("$sinvertcase")
 
 ///|
 let q_d_sixth : Value = sym("$sixth")
+
+///|
+let q_d_skip_exponent_check_p : Value = sym("$skip-exponent-check-p")
 
 ///|
 let q_d_slength : Value = sym("$slength")
@@ -7922,6 +7994,12 @@ let q_d_staircase : Value = sym("$staircase")
 let q_d_stardisp : Value = sym("$stardisp")
 
 ///|
+let q_d_start1 : Value = sym("$start1")
+
+///|
+let q_d_start2 : Value = sym("$start2")
+
+///|
 let q_d_statistic : Value = sym("$statistic")
 
 ///|
@@ -7956,6 +8034,9 @@ let q_d_storage : Value = sym("$storage")
 
 ///|
 let q_d_strdisp : Value = sym("$strdisp")
+
+///|
+let q_d_stream : Value = sym("$stream")
 
 ///|
 let q_d_strim : Value = sym("$strim")
@@ -8192,10 +8273,16 @@ let q_d_terminal : Value = sym("$terminal")
 let q_d_terminated : Value = sym("$terminated")
 
 ///|
+let q_d_test : Value = sym("$test")
+
+///|
 let q_d_test_normality : Value = sym("$test_normality")
 
 ///|
 let q_d_testpartpol : Value = sym("$testpartpol")
+
+///|
+let q_d_tests : Value = sym("$tests")
 
 ///|
 let q_d_testsuite_files : Value = sym("$testsuite_files")
@@ -8405,6 +8492,12 @@ let q_d_transparent : Value = sym("$transparent")
 let q_d_transpose : Value = sym("$transpose")
 
 ///|
+let q_d_transpose_a : Value = sym("$transpose_a")
+
+///|
+let q_d_transpose_b : Value = sym("$transpose_b")
+
+///|
 let q_d_transrun : Value = sym("$transrun")
 
 ///|
@@ -8460,6 +8553,9 @@ let q_d_troncelem : Value = sym("$troncelem")
 
 ///|
 let q_d_true : Value = sym("$true")
+
+///|
+let q_d_truename : Value = sym("$truename")
 
 ///|
 let q_d_trunc : Value = sym("$trunc")

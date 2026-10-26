@@ -306,7 +306,23 @@ fn fmt_run(st : FmtState, end : Int) -> Bool raise {
         }
         st.out.write_string(s)
       }
-      'e' | 'g' => {
+      'g' => {
+        let arg = st.next_arg()
+        let w = match p0 {
+          Some(Fix(n)) => Some(n.to_int())
+          _ => None
+        }
+        let dd = match params.get(1).unwrap_or(None) {
+          Some(Fix(n)) => Some(n.to_int())
+          _ => None
+        }
+        if realp(arg) {
+          st.out.write_string(format_general(to_double(arg), w, dd))
+        } else {
+          st.out.write_string(princ_to_string(arg))
+        }
+      }
+      'e' => {
         let arg = st.next_arg()
         let dd = match params.get(1).unwrap_or(None) {
           Some(Fix(n)) => Some(n.to_int())
@@ -710,29 +726,84 @@ pub fn format_fixed(x : Double, w : Int?, d : Int?, plus : Bool) -> String {
 }
 
 ///|
-/// Exponential float formatting (`~,dE`).
+/// Exponential float formatting (`~,dE`), as SBCL: the exponent is chosen
+/// before rounding (so 9.999 with d=2 prints "10.00e+0") and the mantissa
+/// is rounded half-up from the exact value.
 pub fn format_exp(x : Double, d : Int?) -> String {
-  if x == 0.0 {
-    return "0.0e+0"
-  }
   let sign = if x < 0.0 { "-" } else { "" }
+  if x == 0.0 {
+    return match d {
+      Some(dn) => sign + "0." + "0".repeat(dn) + "e+0"
+      None => sign + "0.0e+0"
+    }
+  }
   let (digits, e) = float_digits(x.abs())
-  let mant = match d {
+  let ex = e - 1
+  let expstr = "e" + (if ex >= 0 { "+" } else { "-" }) + ex.abs().to_string()
+  match d {
     Some(dn) => {
-      let ds = if digits.length() > dn + 1 {
-        digits.substring(end=dn + 1)
-      } else {
-        digits + "0".repeat(dn + 1 - digits.length())
+      let m = (fn() -> String raise {
+        let r = double_to_rational(x.abs())
+        // r * 10^(dn - ex), rounded half up
+        let k = dn - ex
+        let scaled = if k >= 0 {
+          num_mul(r, from_big(10N.pow(BigInt::from_int(k))))
+        } else {
+          num_div(r, from_big(10N.pow(BigInt::from_int(-k))))
+        }
+        let (q, rem) = num_floor(scaled)
+        let up = num_ge(num_mul(Fix(2L), rem), Fix(1L))
+        to_big(if up { one_plus(q) } else { q }).to_string()
+      })() catch {
+        _ => digits
       }
-      ds.substring(end=1) + "." + ds.substring(start=1)
+      if dn == 0 {
+        sign + m + "." + expstr
+      } else {
+        let ms = if m.length() <= dn { "0".repeat(dn + 1 - m.length()) + m } else { m }
+        sign +
+        ms.substring(end=ms.length() - dn) +
+        "." +
+        ms.substring(start=ms.length() - dn) +
+        expstr
+      }
     }
     None =>
+      sign +
       digits.substring(end=1) +
       "." +
-      (if digits.length() > 1 { digits.substring(start=1) } else { "0" })
+      (if digits.length() > 1 { digits.substring(start=1) } else { "0" }) +
+      expstr
   }
-  let ex = e - 1
-  sign + mant + "e" + (if ex >= 0 { "+" } else { "-" }) + ex.abs().to_string()
+}
+
+///|
+/// General float formatting (`~w,dG`), as CLHS/SBCL: fixed notation with
+/// ee=4 trailing spaces when 0.1 <= |x| < 10^dd, else ~E.
+pub fn format_general(x : Double, w : Int?, d : Int?) -> String {
+  let a = x.abs()
+  let (digits, e) = if x == 0.0 { ("0", 1) } else { float_digits(a) }
+  let n = if x == 0.0 { 0 } else { e }
+  let dd = match d {
+    Some(dn) => dn
+    None => digits.length().max(n.min(7))
+  }
+  let ee = 4
+  if a >= 0.1 && (n < dd || x == 0.0) {
+    let ww = w.map(v => v - ee)
+    let fixed = format_fixed(x, ww, Some((dd - n).max(0)), false)
+    let padded = match ww {
+      Some(wn) => " ".repeat((wn - fixed.length()).max(0)) + fixed
+      None => fixed
+    }
+    padded + " ".repeat(ee)
+  } else {
+    let s = format_exp(x, d)
+    match w {
+      Some(wn) => " ".repeat((wn - s.length()).max(0)) + s
+      None => s
+    }
+  }
 }
 
 ///|

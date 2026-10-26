@@ -2,12 +2,12 @@
 
 ///|
 fn init_vars_float_format() -> Unit raise {
-  defvar_init(q_n_plusflonum_exponent_marker_plus, Char('D'))
+  set_init(q_n_plusflonum_exponent_marker_plus, Char('D'))
 }
 
 ///|
 fn init_vars_intl() -> Unit raise {
-  defvar_init(q_kw_ear_default_domain, Str("maxima"))
+  set_init(q_kw_ear_default_domain, Str("maxima"))
   defvar_init(q_ear_locale_directories, lread("(\"/usr/share/locale/\")"))
   defvar_init(q_ear_locale, Str("C"))
   defvar_init(q_ear_default_domain, Str("maxima"))
@@ -34,7 +34,7 @@ fn init_vars_globals() -> Unit raise {
   defvar_init(q_d_taylordepth, Fix(3L))
   defvar_init(q_d_verbose, Nil)
   defvar_init(q_silent_taylor_flag, Nil)
-  defvar_init(q_n_staropers_list, lread("(($linear . linearize1))"))
+  set_init(q_n_staropers_list, lread("(($linear . linearize1))"))
   defvar_init(q_d_rootsconmode, t)
   defvar_init(q_d_exptsubst, Nil)
   defvar_init(q_d_partswitch, Nil)
@@ -433,7 +433,7 @@ fn init_vars_mlisp() -> Unit raise {
   defvar_init(q_d_optionset, Nil)
   defvar_init(q_d_setcheckbreak, Nil)
   defvar_init(q_d_setval, q_d_setval)
-  defvar_init(q_n_plushasher_mod_plus, Fix(32768L))
+  set_init(q_n_plushasher_mod_plus, Fix(32768L))
   defvar_init(q_ear_lambda_expr_funs_max, Fix(128L))
   defvar_init(q_ear_last_meval1_form, Nil)
   defvar_init(q_ear__dolerrormsg_value, Nil)
@@ -513,7 +513,7 @@ fn init_vars_macsys() -> Unit raise {
 
 ///|
 fn init_vars_testsuite() -> Unit raise {
-  defvar_init(q_d_share_testsuite_files, lread("((mlist simp) ((mlist simp) \"rtest_facexp\") \"rtest_orthopoly\" \"rtest_pslq\" \"rtestflatten\" \"rtest_z_transform\" \"rtest_zeilberger_extreme\" \"rtest_zeilberger\" \"rtest_boolsimp\" \"rtest_eigen\" \"rtest_lsquares\" \"rtest_pytranslate\" \"rtest_odelin\" \"rtestezunits\" \"rtest_numericalio\" \"rtest_simplify_sum\" \"rtest_solve_rec\" ((mlist simp) \"rtest_stringproc\") ((mlist simp) \"rtest_md5sum\") \"rtest_opproperties\" \"rtest_stats\" \"rtest_distrib\" ((mlist simp) \"rtest_descriptive\") \"rtest_interpol\" ((mlist simp) \"rtest_levin\") \"rtest_fractals\" \"rtest_bernstein\" \"rtest_atensor\" \"rtest_ctensor\" \"rtest_itensor\" \"rtest_dlsode\" ((mlist simp) \"rtest_fourier_elim\" ((mlist simp) 146 147 148 149)) ((mlist simp) \"rtest_sequence\" ((mlist simp) 55)) \"rtest_cholesky\" \"rtest_eigens_by_jacobi\" \"rtest_lu\" \"rtest_linalg\" \"rtest_matrixexp\" ((mlist simp) \"rtest_romberg\" ((mlist simp) 18 20)) \"rtest_wilcoxon\" \"rtest_accumulate\" \"rtest_list_operations\" \"rtest_bitwise\" \"rtest_gf\" \"rtest_arag\" ((mlist simp) \"rtest_pdiff\") ((mlist simp) \"rtest_to_poly\") ((mlist simp) \"rtestprintf\" ((mlist simp) 61 63 65 69)) \"rtest_simplex\" ((mlist simp) \"rtest_graphs\") ((mlist simp) \"rtest_abs_integrate\" ((mlist) 173 249)) \"rtest_pochhammer\" ((mlist simp) \"rtest_to_poly_solve\" ((mlist simp) 64 74 80 116 140 141 168 184 245 322)) ((mlist simp) \"rtest_sym\" ((mlist simp))) \"rtest_mnewton\" \"rtest_solve_rat_ineq\" ((mlist simp) \"rtest_vect\" ((mlist simp) 4 9 10 13 16 20 21 24 25)) \"rtest_antid\" \"rtest_bffac\" \"rtest_diff_form\" \"rtest_grobner\" ((mlist simp) \"rtest_finance\") \"rtest_fft\" \"rtest_rfft\" \"rtest_rk_adaptive\" \"rtest_wrstcse\" \"rtest_draw\" ((mlist simp) \"rtest_engineering_format\") ((mlist simp) \"rtest_raddenest\" ((mlist simp) 123)) \"rtest_decfp\")"))
+  set_init(q_d_share_testsuite_files, lread("((mlist simp) ((mlist simp) \"rtest_facexp\") \"rtest_orthopoly\" \"rtest_pslq\" \"rtestflatten\" \"rtest_z_transform\" \"rtest_zeilberger_extreme\" \"rtest_zeilberger\" \"rtest_boolsimp\" \"rtest_eigen\" \"rtest_lsquares\" \"rtest_pytranslate\" \"rtest_odelin\" \"rtestezunits\" \"rtest_numericalio\" \"rtest_simplify_sum\" \"rtest_solve_rec\" ((mlist simp) \"rtest_stringproc\") ((mlist simp) \"rtest_md5sum\") \"rtest_opproperties\" \"rtest_stats\" \"rtest_distrib\" ((mlist simp) \"rtest_descriptive\") \"rtest_interpol\" ((mlist simp) \"rtest_levin\") \"rtest_fractals\" \"rtest_bernstein\" \"rtest_atensor\" \"rtest_ctensor\" \"rtest_itensor\" \"rtest_dlsode\" ((mlist simp) \"rtest_fourier_elim\" ((mlist simp) 146 147 148 149)) ((mlist simp) \"rtest_sequence\" ((mlist simp) 55)) \"rtest_cholesky\" \"rtest_eigens_by_jacobi\" \"rtest_lu\" \"rtest_linalg\" \"rtest_matrixexp\" ((mlist simp) \"rtest_romberg\" ((mlist simp) 18 20)) \"rtest_wilcoxon\" \"rtest_accumulate\" \"rtest_list_operations\" \"rtest_bitwise\" \"rtest_gf\" \"rtest_arag\" ((mlist simp) \"rtest_pdiff\") ((mlist simp) \"rtest_to_poly\") ((mlist simp) \"rtestprintf\" ((mlist simp) 61 63 65 69)) \"rtest_simplex\" ((mlist simp) \"rtest_graphs\") ((mlist simp) \"rtest_abs_integrate\" ((mlist) 173 249)) \"rtest_pochhammer\" ((mlist simp) \"rtest_to_poly_solve\" ((mlist simp) 64 74 80 116 140 141 168 184 245 322)) ((mlist simp) \"rtest_sym\" ((mlist simp))) \"rtest_mnewton\" \"rtest_solve_rat_ineq\" ((mlist simp) \"rtest_vect\" ((mlist simp) 4 9 10 13 16 20 21 24 25)) \"rtest_antid\" \"rtest_bffac\" \"rtest_diff_form\" \"rtest_grobner\" ((mlist simp) \"rtest_finance\") \"rtest_fft\" \"rtest_rfft\" \"rtest_rk_adaptive\" \"rtest_wrstcse\" \"rtest_draw\" ((mlist simp) \"rtest_engineering_format\") ((mlist simp) \"rtest_raddenest\" ((mlist simp) 123)) \"rtest_decfp\")"))
 }
 
 ///|
@@ -806,7 +806,7 @@ fn init_vars_matrix() -> Unit raise {
 ///|
 fn init_vars_linnew() -> Unit raise {
   defvar_init(q_ear_tmarrays, Nil)
-  defvar_init(q_ear_threshold, Fix(10L))
+  set_init(q_ear_threshold, Fix(10L))
 }
 
 ///|
@@ -837,7 +837,7 @@ fn init_vars_tlimit() -> Unit raise {
 
 ///|
 fn init_vars_limit() -> Unit raise {
-  defvar_init(q_n_plusbehavior_count_plus, Fix(4L))
+  set_init(q_n_plusbehavior_count_plus, Fix(4L))
   defvar_init(q_ear_getsignl_asksign_ok, Nil)
   defvar_init(q_ear_old_integer_info, Nil)
   defvar_init(q_ear_limit_assumptions, Nil)
@@ -915,13 +915,13 @@ fn init_vars_gamma() -> Unit raise {
 
 ///|
 fn init_vars_rand_mt19937() -> Unit raise {
-  defvar_init(q_mt19937_n, Fix(624L))
-  defvar_init(q_mt19937_m, Fix(397L))
-  defvar_init(q_mt19937_upper_mask, Fix(2147483648L))
-  defvar_init(q_mt19937_lower_mask, Fix(2147483647L))
-  defvar_init(q_mt19937_b, Fix(2636928640L))
-  defvar_init(q_mt19937_c, Fix(4022730752L))
-  defvar_init(q_random_chunk_length, Fix(32L))
+  set_init(q_mt19937_n, Fix(624L))
+  set_init(q_mt19937_m, Fix(397L))
+  set_init(q_mt19937_upper_mask, Fix(2147483648L))
+  set_init(q_mt19937_lower_mask, Fix(2147483647L))
+  set_init(q_mt19937_b, Fix(2636928640L))
+  set_init(q_mt19937_c, Fix(4022730752L))
+  set_init(q_random_chunk_length, Fix(32L))
 }
 
 ///|
@@ -1062,7 +1062,7 @@ fn init_vars_n_dot_dot_share_stringproc_sha1() -> Unit raise {
 ///|
 fn init_vars_n_dot_dot_share_contrib__cg_robner_grobner() -> Unit raise {
   defvar_init(q_ear_elimination_order, Nil)
-  defvar_init(q_ear_priority_queue_allocation_size, Fix(16L))
+  set_init(q_ear_priority_queue_allocation_size, Fix(16L))
   defvar_init(q_d_poly_monomial_order, q_d_lex)
   defvar_init(q_d_poly_coefficient_ring, q_d_expression_ring)
   defvar_init(q_d_poly_primary_elimination_order, Nil)
@@ -1173,12 +1173,12 @@ fn init_vars_n_dot_dot_share_simplex_simplex_algorithm() -> Unit raise {
 
 ///|
 fn init_vars_n_dot_dot_share_pytranslate_pytranslate() -> Unit raise {
-  defvar_init(q_ear_maxima_function_dictionary_name, Str("f"))
-  defvar_init(q_ear_maxima_variables_dictionary_name, Str("v"))
-  defvar_init(q_ear_python_hierarchial_dict_name, Str("Stack"))
-  defvar_init(q_ear_symbols_directly_convert, lread("()"))
-  defvar_init(q_ear_ins_method_name, Str("ins"))
-  defvar_init(q_ear_assignment_method_name, Str("assign"))
+  set_init(q_ear_maxima_function_dictionary_name, Str("f"))
+  set_init(q_ear_maxima_variables_dictionary_name, Str("v"))
+  set_init(q_ear_python_hierarchial_dict_name, Str("Stack"))
+  set_init(q_ear_symbols_directly_convert, lread("()"))
+  set_init(q_ear_ins_method_name, Str("ins"))
+  set_init(q_ear_assignment_method_name, Str("assign"))
   defvar_init(q_ear_ir_forms_to_append, lread("()"))
 }
 

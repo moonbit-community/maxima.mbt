@@ -519,3 +519,46 @@ test "format ~d non-integer like sbcl" {
   inspect(try! format_to_string("~5d|", [Value::Flo(1.5)]), content="1.5|")
   inspect(try! format_to_string("~5d|", [int(42)]), content="   42|")
 }
+
+///|
+test "rationalize and ratio->double like sbcl" {
+  inspect(try! rationalize(Value::Flo(0.1)), content="1/10")
+  inspect(try! rationalize(Value::Flo(3.14159)), content="314159/100000")
+  inspect(try! rationalize(Value::Flo(-2.5)), content="-5/2")
+  inspect(try! rationalize(Value::Flo(1.0e20)), content="100000000000000000000")
+  let p54 = 1N.shl(54)
+  inspect(Value::Flo(ratio_to_double(p54 + 1N, 1N.shl(1129))), content="4.9406564584124654e-324")
+  inspect(Value::Flo(ratio_to_double(p54 * 3N - 1N, 1N.shl(1129))), content="4.9406564584124654e-324")
+  inspect(Value::Flo(ratio_to_double(1N, 3N)), content="0.3333333333333333")
+}
+
+///|
+test "rationalize subnormal like sbcl" {
+  let r = try! rationalize(Value::Flo(1.0e-310))
+  inspect(
+    r,
+    content="1/10000000000000029585700532568710905412162044573659127867256961394138855916216577035990592132781655066040632299219124298160699847459562696640056798183800907088924439778379480018907727530761128912150211171876367354579208524858715189730041035925482684218362104686626453532566663427340026346067178972764032033222344",
+  )
+}
+
+///|
+test "format ~E ~G like sbcl" {
+  inspect(
+    try! format_to_string("~,1E|~,1E|~,2E|~,2E|~,0E|~E", [
+      Value::Flo(0.125), Value::Flo(0.375), Value::Flo(1.999), Value::Flo(9.999), Value::Flo(2.5), Value::Flo(1.999),
+    ]),
+    content="1.3e-1|3.8e-1|2.00e+0|10.00e+0|3.e+0|1.999e+0",
+  )
+  inspect(
+    try! format_to_string("~,2G|~,3G|~G|~,2G|~,2G|~8,2G|", [
+      Value::Flo(1.999), Value::Flo(1234.5), Value::Flo(1.999), Value::Flo(0.05), Value::Flo(123456.0), Value::Flo(3.5),
+    ]),
+    content="2.0    |1.235e+3|1.999    |5.00e-2|1.23e+5| 3.5    |",
+  )
+  inspect(
+    try! format_to_string("~,2E|~,2E|~10,2E|~,3E", [
+      Value::Flo(0.0), Value::Flo(-1.5e10), Value::Flo(1.5e-5), Value::Flo(123.456),
+    ]),
+    content="0.00e+0|-1.50e+10|   1.50e-5|1.235e+2",
+  )
+}

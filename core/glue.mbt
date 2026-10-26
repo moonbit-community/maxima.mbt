@@ -153,6 +153,12 @@ fn defvar_init(s : Value, v : Value) -> Unit {
 }
 
 ///|
+/// Initial value of a `defparameter`: always assigned (also on reload).
+fn set_init(s : Value, v : Value) -> Unit {
+  set(s, v) |> ignore
+}
+
+///|
 /// `(gettext s)` — no translation catalogs in the port.
 fn gettext(s : String) -> String {
   s
@@ -368,3 +374,30 @@ fn errset(f : () -> Value raise) -> Value? raise {
 /// `#$expr$`: parse Maxima syntax once (cached) and return the expression.
 /// Implemented by the port of nparse.lisp.
 declare fn maxima_lit(s : String) -> Value raise
+
+///|
+/// DEFMFUN's keyword handling for Maxima callers: options after the
+/// positional arguments must be `name = value` equations naming one of the
+/// function's keywords, else defmfun-keywords' errors ("Badly formed
+/// keyword option", "Unrecognized keyword"), reported against the
+/// function's call form with its default values, as DEFMFUN does.
+fn defmfun_check_keywords(
+  fname : Value,
+  args : Array[Value],
+  start : Int,
+  specs : Array[(Value, Value)],
+) -> Unit raise {
+  if start >= args.length() {
+    return
+  }
+  // Lisp callers pass CL keyword/value pairs: nothing to check
+  if keywordp(args[start]) {
+    return
+  }
+  let valid = list(specs.map(sp => sp.0))
+  let form = cons(
+    list1(fname),
+    list(specs.map(sp => list3(list1(q_mequal), sp.0, sp.1))),
+  )
+  defmfun_keywords(form, rest_args(args, start), valid) |> ignore
+}

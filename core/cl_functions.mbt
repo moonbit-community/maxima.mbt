@@ -168,7 +168,12 @@ fn register_cl_functions() -> Unit {
   cl__def("make-symbol", a => make_symbol(lstring(arg(a, 0))))
   cl__def("gensym", a => gensym())
   cl__def("funcall", a => funcall(arg(a, 0), a[1:].to_array()))
-  cl__def("apply", a => apply(arg(a, 0), arg(a, a.length() - 1)))
+  // (apply f a1 ... list): the last argument is a list of further args
+  cl__def("apply", a => {
+    let spread = list_to_array(arg(a, a.length() - 1))
+    let lead = if a.length() > 2 { a[1:a.length() - 1].to_array() } else { [] }
+    funcall(arg(a, 0), lead + spread)
+  })
   cl__def("identity", a => arg(a, 0))
   cl__def("values", a => arg(a, 0))
   cl__def("print", a => print(arg(a, 0)))
@@ -219,7 +224,16 @@ fn register_cl_functions() -> Unit {
     }
   })
   cl__def("copy-seq", a => copy_seq(arg(a, 0)))
-  cl__def("mapcar", a => mapcar(x => funcall(arg(a, 0), [x]), arg(a, 1)))
+  // (mapcar f l1 l2 ...): stops at the shortest list
+  cl__def("mapcar", a => {
+    let ls = a[1:].to_array().map(list_to_array)
+    let n = ls.fold(init=if ls.is_empty() { 0 } else { ls[0].length() }, (m, l) => m.min(l.length()))
+    let out = []
+    for i in 0..<n {
+      out.push(funcall(arg(a, 0), ls.map(l => l[i])))
+    }
+    list(out)
+  })
   cl__def("remove", a => remove(arg(a, 0), arg(a, 1)))
   cl__def("delete", a => delete(arg(a, 0), arg(a, 1)))
   cl__def("subst", a => subst(arg(a, 0), arg(a, 1), arg(a, 2)))

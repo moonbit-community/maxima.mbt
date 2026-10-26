@@ -304,7 +304,7 @@ pub fn Value::iter(self : Value) -> Iter[Value] {
 /// `(length l)` for lists, strings and vectors.
 pub fn length(l : Value) -> Int {
   match l {
-    Str(s) => s.length()
+    Str(s) => string_length(s)
     Vec(a) =>
       match a.fill {
         Some(f) => f

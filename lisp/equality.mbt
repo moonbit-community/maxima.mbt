@@ -63,7 +63,9 @@ pub fn equal(a : Value, b : Value) -> Bool {
         } else {
           return physical_equal(v1, v2)
         }
-      (Str(_), Vec(_)) | (Vec(_), Str(_)) => return lstring(x) == lstring(y)
+      (Str(_), Vec(v)) | (Vec(v), Str(_)) =>
+        return v.elt == "character" && v.dims.length() == 1 &&
+          lstring(x) == lstring(y)
       _ => return eql(x, y)
     }
   }

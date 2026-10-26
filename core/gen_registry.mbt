@@ -1202,21 +1202,21 @@ fn register_generated_functions() -> Unit {
   defun(q_slatec_dqaws, args => slatec_dqaws(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8), arg(args, 9), arg(args, 10), arg(args, 11), arg(args, 12), arg(args, 13), arg(args, 14), arg(args, 15), arg(args, 16)).0)
   defun(q_slatec_dqawc, args => slatec_dqawc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8), arg(args, 9), arg(args, 10), arg(args, 11), arg(args, 12), arg(args, 13), arg(args, 14)).0)
   defun(q_float_or_lose, args => float_or_lose(arg(args, 0)))
-  defun(q_d_quad_qag, args => { check_arity_range("$quad_qag", args, 5, -1); d_quad_qag(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), limit?=key_arg(args, 5, ":limit"), epsabs?=key_arg(args, 5, ":epsabs")) })
+  defun(q_d_quad_qag, args => { check_arity_range("$quad_qag", args, 5, -1); { defmfun_check_keywords(q_d_quad_qag, args, 5, [(q_d_epsrel, Flo(1.0e-08)), (q_d_limit, Fix(200L)), (q_d_epsabs, Flo(0.0))]); d_quad_qag(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), limit?=key_arg(args, 5, ":limit"), epsabs?=key_arg(args, 5, ":epsabs")) } })
   putprop(q_d_quad_qag, t, q_translated) |> ignore
-  defun(q_d_quad_qags, args => { check_arity_range("$quad_qags", args, 4, -1); d_quad_qags(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), epsrel?=key_arg(args, 4, ":epsrel"), limit?=key_arg(args, 4, ":limit"), epsabs?=key_arg(args, 4, ":epsabs")) })
+  defun(q_d_quad_qags, args => { check_arity_range("$quad_qags", args, 4, -1); { defmfun_check_keywords(q_d_quad_qags, args, 4, [(q_d_epsrel, Flo(1.0e-08)), (q_d_limit, Fix(200L)), (q_d_epsabs, Flo(0.0))]); d_quad_qags(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), epsrel?=key_arg(args, 4, ":epsrel"), limit?=key_arg(args, 4, ":limit"), epsabs?=key_arg(args, 4, ":epsabs")) } })
   putprop(q_d_quad_qags, t, q_translated) |> ignore
-  defun(q_d_quad_qagi, args => { check_arity_range("$quad_qagi", args, 4, -1); d_quad_qagi(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), epsrel?=key_arg(args, 4, ":epsrel"), limit?=key_arg(args, 4, ":limit"), epsabs?=key_arg(args, 4, ":epsabs")) })
+  defun(q_d_quad_qagi, args => { check_arity_range("$quad_qagi", args, 4, -1); { defmfun_check_keywords(q_d_quad_qagi, args, 4, [(q_d_epsrel, Flo(1.0e-08)), (q_d_limit, Fix(200L)), (q_d_epsabs, Flo(0.0))]); d_quad_qagi(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), epsrel?=key_arg(args, 4, ":epsrel"), limit?=key_arg(args, 4, ":limit"), epsabs?=key_arg(args, 4, ":epsabs")) } })
   putprop(q_d_quad_qagi, t, q_translated) |> ignore
-  defun(q_d_quad_qawc, args => { check_arity_range("$quad_qawc", args, 5, -1); d_quad_qawc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), limit?=key_arg(args, 5, ":limit"), epsabs?=key_arg(args, 5, ":epsabs")) })
+  defun(q_d_quad_qawc, args => { check_arity_range("$quad_qawc", args, 5, -1); { defmfun_check_keywords(q_d_quad_qawc, args, 5, [(q_d_epsrel, Flo(1.0e-08)), (q_d_limit, Fix(200L)), (q_d_epsabs, Flo(0.0))]); d_quad_qawc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), limit?=key_arg(args, 5, ":limit"), epsabs?=key_arg(args, 5, ":epsabs")) } })
   putprop(q_d_quad_qawc, t, q_translated) |> ignore
-  defun(q_d_quad_qawf, args => { check_arity_range("$quad_qawf", args, 5, -1); d_quad_qawf(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsabs?=key_arg(args, 5, ":epsabs"), limit?=key_arg(args, 5, ":limit"), maxp1?=key_arg(args, 5, ":maxp1"), limlst?=key_arg(args, 5, ":limlst")) })
+  defun(q_d_quad_qawf, args => { check_arity_range("$quad_qawf", args, 5, -1); { defmfun_check_keywords(q_d_quad_qawf, args, 5, [(q_d_epsabs, Flo(1.0e-10)), (q_d_limit, Fix(200L)), (q_d_maxp1, Fix(100L)), (q_d_limlst, Fix(10L))]); d_quad_qawf(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsabs?=key_arg(args, 5, ":epsabs"), limit?=key_arg(args, 5, ":limit"), maxp1?=key_arg(args, 5, ":maxp1"), limlst?=key_arg(args, 5, ":limlst")) } })
   putprop(q_d_quad_qawf, t, q_translated) |> ignore
-  defun(q_d_quad_qawo, args => { check_arity_range("$quad_qawo", args, 6, -1); d_quad_qawo(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), epsrel?=key_arg(args, 6, ":epsrel"), limit?=key_arg(args, 6, ":limit"), maxp1?=key_arg(args, 6, ":maxp1"), epsabs?=key_arg(args, 6, ":epsabs")) })
+  defun(q_d_quad_qawo, args => { check_arity_range("$quad_qawo", args, 6, -1); { defmfun_check_keywords(q_d_quad_qawo, args, 6, [(q_d_epsrel, Flo(1.0e-08)), (q_d_limit, Fix(200L)), (q_d_maxp1, Fix(100L)), (q_d_epsabs, Flo(0.0))]); d_quad_qawo(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), epsrel?=key_arg(args, 6, ":epsrel"), limit?=key_arg(args, 6, ":limit"), maxp1?=key_arg(args, 6, ":maxp1"), epsabs?=key_arg(args, 6, ":epsabs")) } })
   putprop(q_d_quad_qawo, t, q_translated) |> ignore
-  defun(q_d_quad_qaws, args => { check_arity_range("$quad_qaws", args, 7, -1); d_quad_qaws(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), epsrel?=key_arg(args, 7, ":epsrel"), limit?=key_arg(args, 7, ":limit"), epsabs?=key_arg(args, 7, ":epsabs")) })
+  defun(q_d_quad_qaws, args => { check_arity_range("$quad_qaws", args, 7, -1); { defmfun_check_keywords(q_d_quad_qaws, args, 7, [(q_d_epsrel, Flo(1.0e-08)), (q_d_limit, Fix(200L)), (q_d_epsabs, Flo(0.0))]); d_quad_qaws(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), epsrel?=key_arg(args, 7, ":epsrel"), limit?=key_arg(args, 7, ":limit"), epsabs?=key_arg(args, 7, ":epsabs")) } })
   putprop(q_d_quad_qaws, t, q_translated) |> ignore
-  defun(q_d_quad_qagp, args => { check_arity_range("$quad_qagp", args, 5, -1); d_quad_qagp(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), epsabs?=key_arg(args, 5, ":epsabs"), limit?=key_arg(args, 5, ":limit")) })
+  defun(q_d_quad_qagp, args => { check_arity_range("$quad_qagp", args, 5, -1); { defmfun_check_keywords(q_d_quad_qagp, args, 5, [(q_d_epsrel, Flo(1.0e-08)), (q_d_epsabs, Flo(0.0)), (q_d_limit, Fix(200L))]); d_quad_qagp(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), epsabs?=key_arg(args, 5, ":epsabs"), limit?=key_arg(args, 5, ":limit")) } })
   putprop(q_d_quad_qagp, t, q_translated) |> ignore
   defun(q_quad_argument_check, args => quad_argument_check(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_quad_control, args => quad_control(arg(args, 0), new_value?=args.get(1)))
@@ -1732,7 +1732,7 @@ fn register_generated_functions() -> Unit {
   defun(q_intersect_tests, args => intersect_tests(arg(args, 0)))
   defun(q_print_testsuite_summary, args => print_testsuite_summary(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_validate_given_tests, args => validate_given_tests(arg(args, 0), arg(args, 1)))
-  defun(q_d_run_testsuite, args => { check_arity_range("$run_testsuite", args, 0, -1); d_run_testsuite(tests?=key_arg(args, 0, ":tests"), display_all?=key_arg(args, 0, ":display_all"), display_known_bugs?=key_arg(args, 0, ":display_known_bugs"), share_tests?=key_arg(args, 0, ":share_tests"), time?=key_arg(args, 0, ":time"), debug_?=key_arg(args, 0, ":debug"), answers_from_file?=key_arg(args, 0, ":answers_from_file")).0 })
+  defun(q_d_run_testsuite, args => { check_arity_range("$run_testsuite", args, 0, -1); { defmfun_check_keywords(q_d_run_testsuite, args, 0, [(q_d_tests, Nil), (q_d_display_all, Nil), (q_d_display_known_bugs, Nil), (q_d_share_tests, Nil), (q_d_time, Nil), (q_d_debug, Nil), (q_d_answers_from_file, t)]); d_run_testsuite(tests?=key_arg(args, 0, ":tests"), display_all?=key_arg(args, 0, ":display_all"), display_known_bugs?=key_arg(args, 0, ":display_known_bugs"), share_tests?=key_arg(args, 0, ":share_tests"), time?=key_arg(args, 0, ":time"), debug_?=key_arg(args, 0, ":debug"), answers_from_file?=key_arg(args, 0, ":answers_from_file")).0 } })
   putprop(q_d_run_testsuite, t, q_translated) |> ignore
   defun(q_d_get_tex_environment_default, args => { check_arity_range("$get_tex_environment_default", args, 0, 0); d_get_tex_environment_default() })
   putprop(q_d_get_tex_environment_default, t, q_translated) |> ignore
@@ -9904,7 +9904,7 @@ fn register_share_dgeqrf() -> Unit {
 
 ///|
 fn register_share_dgemm() -> Unit {
-  defun(q_d_dgemm, args => { check_arity_range("$dgemm", args, 2, -1); d_dgemm(arg(args, 0), arg(args, 1), c?=key_arg(args, 2, ":c"), transpose_a?=key_arg(args, 2, ":transpose_a"), transpose_b?=key_arg(args, 2, ":transpose_b"), alpha?=key_arg(args, 2, ":alpha"), beta?=key_arg(args, 2, ":beta")) })
+  defun(q_d_dgemm, args => { check_arity_range("$dgemm", args, 2, -1); { defmfun_check_keywords(q_d_dgemm, args, 2, [(q_d_c, Nil), (q_d_transpose_a, Nil), (q_d_transpose_b, Nil), (q_d_alpha, Flo(1.0)), (q_d_beta, Flo(0.0))]); d_dgemm(arg(args, 0), arg(args, 1), c?=key_arg(args, 2, ":c"), transpose_a?=key_arg(args, 2, ":transpose_a"), transpose_b?=key_arg(args, 2, ":transpose_b"), alpha?=key_arg(args, 2, ":alpha"), beta?=key_arg(args, 2, ":beta")) } })
   putprop(q_d_dgemm, t, q_translated) |> ignore
 }
 

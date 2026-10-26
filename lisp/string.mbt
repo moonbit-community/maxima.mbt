@@ -95,20 +95,7 @@ pub fn both_case_p(c : Char) -> Bool {
 pub fn alpha_char_p(c : Char) -> Bool {
   (c >= 'a' && c <= 'z') ||
   (c >= 'A' && c <= 'Z') ||
-  (c.to_int() > 127 && (both_case_p(c) || is_unicode_letter(c)))
-}
-
-///|
-fn is_unicode_letter(c : Char) -> Bool {
-  let n = c.to_int()
-  // A coarse approximation of Unicode letters beyond Latin-1 case pairs:
-  // CJK, Greek, Cyrillic, etc.
-  (n >= 0x00C0 && n <= 0x024F && n != 0xD7 && n != 0xF7) ||
-  (n >= 0x0370 && n <= 0x03FF) ||
-  (n >= 0x0400 && n <= 0x04FF) ||
-  (n >= 0x4E00 && n <= 0x9FFF) ||
-  (n >= 0x3040 && n <= 0x30FF) ||
-  (n >= 0xAC00 && n <= 0xD7AF)
+  (c.to_int() > 127 && unicode_letter_p(c.to_int()))
 }
 
 ///|
@@ -189,9 +176,19 @@ pub fn chars_to_string(cs : Array[Char]) -> String {
 
 ///|
 /// `(char s i)` by code point index.
-pub fn char_at(s : String, i : Int) -> Char {
-  let cs = string_chars(s)
-  cs[i]
+pub fn char_at(s : String, i : Int) -> Char raise LispError {
+  let mut k = 0
+  for c in s {
+    if k == i {
+      return c
+    }
+    k += 1
+  }
+  raise Condition(
+    intern("type-error"),
+    "The index \{i} is out of bounds for a string of length \{k}",
+    Str(s),
+  )
 }
 
 ///|

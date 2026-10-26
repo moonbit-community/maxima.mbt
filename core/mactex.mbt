@@ -127,27 +127,18 @@ fn d_tex(l : Value) -> Value raise {
 
 ///|
 fn quote_chars(sym_ : Value, ch_str : Value) -> Value raise {
+  // Lisp: recursively insert a backslash before each character of SYM_
+  // that occurs in CH_STR; done here in one linear pass.
   let strsym = mactex__string(sym_)
-  let chs = mactex__string(ch_str)
-  let n = string_length(strsym)
-  let mut pos = -1
-  for i in 0..<n {
-    if string_search(char_at(strsym, i).to_string(), chs) >= 0 {
-      pos = i
-      break
+  let chs = string_chars(mactex__string(ch_str))
+  let sb = StringBuilder::new()
+  for c in strsym {
+    if chs.contains(c) {
+      sb.write_char('\\')
     }
+    sb.write_char(c)
   }
-  if pos >= 0 {
-    let rest = quote_chars(Str(substring(strsym, pos + 1)), ch_str)
-    Str(
-      substring(strsym, 0, end=pos) +
-      "\\" +
-      substring(strsym, pos, end=pos + 1) +
-      mactex__string(rest),
-    )
-  } else {
-    Str(strsym)
-  }
+  Str(sb.to_string())
 }
 
 ///|
@@ -426,12 +417,12 @@ fn tex_stripdollar(sym_ : Value) -> Value raise {
 
 ///|
 fn mactex__all_digits(s : String, from : Int) -> Bool {
-  let n = string_length(s)
-  if from >= n {
+  let cs = string_chars(s)
+  if from >= cs.length() {
     return false
   }
-  for i in from..<n {
-    let c = char_at(s, i)
+  for i in from..<cs.length() {
+    let c = cs[i]
     if c < '0' || c > '9' {
       return false
     }
