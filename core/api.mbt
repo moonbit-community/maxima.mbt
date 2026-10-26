@@ -9,6 +9,7 @@ pub fn initialize() -> Unit raise {
   if !api__initialized.val {
     api__initialized.val = true
     init_generated()
+    init_cl__setup_paths()
   }
 }
 
