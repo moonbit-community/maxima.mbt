@@ -7,6 +7,8 @@ import {
   "dii/maxima/lbfgs",
   "dii/maxima/odepack",
   "dii/maxima/lapack",
+  "dii/maxima/hompack",
+  "dii/maxima/colnew",
   "moonbitlang/x/fs",
 }
 
