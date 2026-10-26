@@ -617,29 +617,34 @@ fn share_load_picture() -> Unit raise {
 ///|
 fn share_load_descriptive_util() -> Unit raise {
   register_share_descriptive_util()
+  init_share_descriptive_util()
 }
 
 ///|
 fn share_load_wbd() -> Unit raise {
   init_vars_n_dot_dot_share_draw_wbd()
   register_share_wbd()
+  init_share_wbd()
 }
 
 ///|
 fn share_load_numdistrib() -> Unit raise {
   init_vars_n_dot_dot_share_distrib_numdistrib()
   register_share_numdistrib()
+  init_share_numdistrib()
 }
 
 ///|
 fn share_load_to_poly_solve_extra() -> Unit raise {
   register_share_to_poly_solve_extra()
+  init_share_to_poly_solve_extra()
 }
 
 ///|
 fn share_load_miller_format() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_format_miller_format()
   register_share_miller_format()
+  init_share_miller_format()
 }
 
 ///|
@@ -764,6 +769,10 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "draw/gnuplot" => Some(share_load_gnuplot)
     "draw/vtk" => Some(share_load_vtk)
     "draw/picture" => Some(share_load_picture)
+    "descriptive/descriptive_util" => Some(share_load_descriptive_util)
+    "draw/wbd" => Some(share_load_wbd)
+    "distrib/numdistrib" => Some(share_load_numdistrib)
+    "to_poly_solve/to_poly_solve_extra" => Some(share_load_to_poly_solve_extra)
     "format/miller-format" => Some(share_load_miller_format)
     "lbfgs/maxima-lbfgs" => Some(share_load_maxima_lbfgs)
     "odepack/dlsode-interface" => Some(share_load_dlsode_interface)
