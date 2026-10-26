@@ -29,3 +29,18 @@
 - LHash iteration order after remhash+reinsert differs from SBCL's free-list reuse (graphs works around with share_graphs__remhash); SBCL behaviour is intricate (high-water mark + free list)
 - format ~a on non-$ Lisp symbols prints lowercase (SBCL prints upcase) — only error messages
 - Codex #10: keyword supplied-p not tracked by the generator (dgemm infers 'beta given' from value; beta=0.0 without C not rejected)
+
+Reported while porting the remaining files (affine, gentran, plot, translator, Lisp evaluator, help/debugger, f2cl libraries, share contrib):
+- generator takes a function's lambda list from the FIRST defun when a file redefines it (affine blowup-pls, non-singular-complete-intersection-p, linear-solvedp; modsimp $find_sygy; dim4-help $psublis): ports install the live definition at load; consider preferring the last defun
+- more multi-valued functions declared with one value (ldata-subset, get-tag, sp-gcd-column, grnm-optimize/nm-optimize, bs-exp-%i*x, fftpack5 test-*fft): private _mv helpers; fftpack5_test_*fft_mv take positional verbose, so gen_lisp_mv skips them
+- missing arguments to plain-defun Lisp functions called from Maxima become false instead of an argument-count error (generated registry)
+- f2cl packages: an out-of-range array index panics (Lisp signals an error and continues)
+- a share file that redefines a core function only takes effect via the function cell; some core functions got Ref cells (merror, meval*, kill1, nformat, toplevel-macsyma-eval, ensure-sign, $askequal, ask-prop) — altsimp's simplus/pls/plusin still bypassed by ~30 direct callers
+- Ref(fn) top-level cells (commac__exploden_cell) make moon check very slow; use Ref(None) + fallback
+- apropos lists names in a different order from SBCL (symbol table iteration order)
+- the runtime float printer ignores *read-default-float-format* (f90/fortran print 2.0, SBCL 2.0d0)
+- describe/?/?? need doc/info/maxima-index.lisp, built from the texinfo docs (makeinfo not installed here)
+- share_sregex.mbt carries its own copy of pregexp; could use core/pregexp.mbt
+- maxima-server (contrib) server side needs listen/accept/fork in the runtime
+- time_constrained/timeouts are checked at each meval1 (no async interrupts)
+- CL random shares Maxima's random state (elliptic-curve random points differ from SBCL)

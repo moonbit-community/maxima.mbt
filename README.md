@@ -21,17 +21,31 @@ moon build --release
 
 | Test suite | Passing |
 |---|---|
-| Core (`run_testsuite()`, 92 files) | 16413 / 16441 (99.8%), all files complete — `docs/TESTS.md` |
-| Share packages (`share_tests=only`, 72 files) | 5021 / 5061 (99.2%) — `docs/TESTS_SHARE.md` |
+| Core (`run_testsuite()`, 92 files) | 16435 / 16441 (99.96%), all files complete — `docs/TESTS.md` |
+| Share packages (`share_tests=only`, 72 files) | 5027 / 5061 (99.3%) — `docs/TESTS_SHARE.md` |
+| `rtest_translator` (not in the default list; `batch(file, test)`) | 307 / 307 |
 
 The LAPACK tests (`rtest_dgemm`, `rtest_dgeqrf`, `rtest_dgesv`) are left out
 of Maxima's test list under SBCL; run with `batch(file, test)` they pass.
 
-Not supported, by design: compiling Maxima code to Lisp (`translate` and
-`compile` keep their interface but functions stay interpreted), loading
-arbitrary Lisp source files, plotting via external programs (`draw` writes
-its gnuplot/vtk files but does not run gnuplot), the `describe`/help
-system, `system()`, and the debugger.
+Every Lisp function of Maxima's sources and share packages is ported
+(`tools/unported.py` lists none). This includes:
+
+- the translator (`translate`, `compile`, `translate_file`, `compile_file`):
+  the generated Lisp runs on a Lisp evaluator (`core/lisp_eval*.mbt`), which
+  also loads Lisp source files and serves `:lisp` and `to_lisp()`;
+- plotting through gnuplot / xmaxima / geomview, `draw`, and `system()`;
+- the help system (`describe`, `?`, `??`), which needs Maxima's built info
+  index (the source tree has none until the documentation is built with
+  texinfo), the debugger and break commands, the command-line options, and
+  the `-s <port>` client mode;
+- all the Fortran libraries Maxima ships as f2cl-generated Lisp (SLATEC,
+  QUADPACK, LAPACK/BLAS, ODEPACK, LBFGS, MINPACK, COBYLA, FFTPACK5, HOMPACK,
+  COLNEW).
+
+Not available: the server side of `share/contrib/maxima-server` (the runtime
+cannot listen on sockets or fork), and loaded Lisp code that redefines a
+ported function only changes calls made through the function cell.
 
 ## Layout
 
@@ -47,8 +61,9 @@ system, `system()`, and the debugger.
     from the Lisp sources: a `declare fn` for every Lisp function (the
     contract every translated file implements), symbol constants, function
     registration and initialization in SBCL's load order.
-- `slatec/`, `lbfgs/`, `odepack/`, `lapack/`, `f2cl/` — the Fortran
-  numerical libraries Maxima ships as f2cl-generated Lisp, translated
+- `slatec/`, `lbfgs/`, `odepack/`, `lapack/`, `minpack/`, `cobyla/`,
+  `fftpack5/`, `hompack/`, `colnew/`, `f2cl/` — the Fortran numerical
+  libraries Maxima ships as f2cl-generated Lisp, translated
   mechanically by `tools/f2cl2mbt.py` and checked bit-for-bit against SBCL.
 - `cmd/main/` — the command-line program.
 - `tools/` — the source analyzer/generators, test runners
