@@ -245,6 +245,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "sregex" => Some(share_load_sregex)
     "unwind_protect" => Some(share_load_unwind_protect)
     "grobner" => Some(share_load_grobner)
+    "trigrat" => Some(share_load_trigrat)
     _ => None
   }
 }
