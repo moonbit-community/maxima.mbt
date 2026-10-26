@@ -340,6 +340,9 @@ def main():
                 simp_verbs.append((base, f["args"], opts))
                 continue
             reg_lines.append("  defun(%s, args => %s)" % (q, call))
+            if kind == "defmfun":
+                symbols.add("translated")
+                reg_lines.append("  putprop(%s, t, q_translated) |> ignore" % q)
     reg_lines.append("}")
     reg_lines.append("")
     # function-like macros: declared so their port can be shared

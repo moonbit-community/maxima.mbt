@@ -74,16 +74,27 @@ fn register_generated_functions() -> Unit {
   defun(q_d_float_eps, args => d_float_eps())
   defun(q_d_bigfloat_eps, args => d_bigfloat_eps())
   defun(q_d_float_bits, args => { check_arity_range("$float_bits", args, 0, 0); d_float_bits() })
+  putprop(q_d_float_bits, t, q_translated) |> ignore
   defun(q_d_bigfloat_bits, args => { check_arity_range("$bigfloat_bits", args, 0, 0); d_bigfloat_bits() })
+  putprop(q_d_bigfloat_bits, t, q_translated) |> ignore
   defun(q_d_float_precision, args => { check_arity_range("$float_precision", args, 1, 1); d_float_precision(arg(args, 0)) })
+  putprop(q_d_float_precision, t, q_translated) |> ignore
   defun(q_d_unit_in_last_place, args => { check_arity_range("$unit_in_last_place", args, 1, 1); d_unit_in_last_place(arg(args, 0)) })
+  putprop(q_d_unit_in_last_place, t, q_translated) |> ignore
   defun(q_d_is_power_of_two, args => { check_arity_range("$is_power_of_two", args, 1, 1); d_is_power_of_two(arg(args, 0)) })
+  putprop(q_d_is_power_of_two, t, q_translated) |> ignore
   defun(q_d_scale_float, args => { check_arity_range("$scale_float", args, 2, 2); d_scale_float(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_scale_float, t, q_translated) |> ignore
   defun(q_d_decode_float, args => { check_arity_range("$decode_float", args, 1, 1); d_decode_float(arg(args, 0)) })
+  putprop(q_d_decode_float, t, q_translated) |> ignore
   defun(q_d_integer_decode_float, args => { check_arity_range("$integer_decode_float", args, 1, 1); d_integer_decode_float(arg(args, 0)) })
+  putprop(q_d_integer_decode_float, t, q_translated) |> ignore
   defun(q_d_float_sign, args => { check_arity_range("$float_sign", args, 1, 1); d_float_sign(arg(args, 0)) })
+  putprop(q_d_float_sign, t, q_translated) |> ignore
   defun(q_d_float_infinity_p, args => { check_arity_range("$float_infinity_p", args, 1, 1); d_float_infinity_p(arg(args, 0)) })
+  putprop(q_d_float_infinity_p, t, q_translated) |> ignore
   defun(q_d_float_nan_p, args => { check_arity_range("$float_nan_p", args, 1, 1); d_float_nan_p(arg(args, 0)) })
+  putprop(q_d_float_nan_p, t, q_translated) |> ignore
   defun(q_float_nan_p, args => float_nan_p(arg(args, 0)))
   defun(q_float_inf_p, args => float_inf_p(arg(args, 0)))
   defun(q_beyond_extreme_values, args => beyond_extreme_values(arg(args, 0)))
@@ -96,6 +107,7 @@ fn register_generated_functions() -> Unit {
   defun(q_onep, args => onep(arg(args, 0)))
   defun(q_extended_number_p, args => extended_number_p(arg(args, 0)))
   defun(q_d_mkey, args => { check_arity_range("$mkey", args, 1, 1); d_mkey(arg(args, 0)) })
+  putprop(q_d_mkey, t, q_translated) |> ignore
   defun(q_narg1, args => narg1(arg(args, 0), arg(args, 1)))
   defun(q_setarg1, args => setarg1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_listify1, args => listify1(arg(args, 0), arg(args, 1)))
@@ -128,6 +140,7 @@ fn register_generated_functions() -> Unit {
   defun(q_backslash_check, args => backslash_check(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_eat_continuations, args => eat_continuations(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_timedate, args => { check_arity_range("$timedate", args, 0, 2); d_timedate(time?=args.get(0), tz?=args.get(1)) })
+  putprop(q_d_timedate, t, q_translated) |> ignore
   defun(q_match_date_yyyy_mm_dd, args => match_date_yyyy_mm_dd(arg(args, 0)))
   defun(q_match_time_hh_mm_ss, args => match_time_hh_mm_ss(arg(args, 0)))
   defun(q_match_fraction_nnn, args => match_fraction_nnn(arg(args, 0)))
@@ -136,11 +149,14 @@ fn register_generated_functions() -> Unit {
   defun(q_match_tz_hh, args => match_tz_hh(arg(args, 0)))
   defun(q_match_tz_z, args => match_tz_z(arg(args, 0)))
   defun(q_d_parse_timedate, args => { check_arity_range("$parse_timedate", args, 1, 1); d_parse_timedate(arg(args, 0)) })
+  putprop(q_d_parse_timedate, t, q_translated) |> ignore
   defun(q_pregexp_extract_groups_integers, args => pregexp_extract_groups_integers(arg(args, 0), arg(args, 1)).0)
   defun(q_parse_integer_or_sign, args => parse_integer_or_sign(arg(args, 0)))
   defun(q_encode_time_with_all_parts, args => encode_time_with_all_parts(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7)))
   defun(q_d_encode_time, args => { check_arity_range("$encode_time", args, 6, 7); d_encode_time(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), tz_offset?=args.get(6)) })
+  putprop(q_d_encode_time, t, q_translated) |> ignore
   defun(q_d_decode_time, args => { check_arity_range("$decode_time", args, 1, 2); d_decode_time(arg(args, 0), tz?=args.get(1)) })
+  putprop(q_d_decode_time, t, q_translated) |> ignore
   defun(q_functionp, args => functionp_(arg(args, 0)))
   defun(q_symbolconc, args => symbolconc(rest_args(args, 0)))
   defun(q_make_parser_fun_def, args => make_parser_fun_def(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -154,6 +170,7 @@ fn register_generated_functions() -> Unit {
   defun(q_infinityp, args => infinityp(arg(args, 0)))
   defun(q_mget, args => mget(arg(args, 0), arg(args, 1)))
   defun(q_d_get, args => { check_arity_range("$get", args, 2, 2); d_get(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_get, t, q_translated) |> ignore
   defun(q_mputprop, args => mputprop(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_optimize_print_inst, args => optimize_print_inst(arg(args, 0)))
   defun(q_mformat_translate_open, args => mformat_translate_open(rest_args(args, 0)))
@@ -186,6 +203,7 @@ fn register_generated_functions() -> Unit {
   defun(q_morp, args => morp(arg(args, 0), arg(args, 1)))
   defun(q_delsimp, args => delsimp(arg(args, 0)))
   defun(q_d_bfloatp, args => { check_arity_range("$bfloatp", args, 1, 1); d_bfloatp(arg(args, 0)) })
+  putprop(q_d_bfloatp, t, q_translated) |> ignore
   defun(q_zerop1, args => zerop1(arg(args, 0)))
   defun(q_ratdisrep, args => ratdisrep(arg(args, 0)))
   defun(q_specdisrep, args => specdisrep(arg(args, 0)))
@@ -200,6 +218,7 @@ fn register_generated_functions() -> Unit {
   defun(q_margs, args => margs(arg(args, 0)))
   defun(q_atomchk, args => atomchk(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_member, args => { check_arity_range("$member", args, 2, 2); d_member(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_member, t, q_translated) |> ignore
   defun(q_among, args => among(arg(args, 0), arg(args, 1)))
   defun(q_assol, args => assol(arg(args, 0), arg(args, 1)))
   defun(q_assolike, args => assolike(arg(args, 0), arg(args, 1)))
@@ -403,6 +422,7 @@ fn register_generated_functions() -> Unit {
   defun(q_intersect_star, args => intersect_star(arg(args, 0), arg(args, 1)))
   defun(q_nthelem, args => nthelem(arg(args, 0), arg(args, 1)))
   defun(q_d_listp, args => { check_arity_range("$listp", args, 1, 1); d_listp(arg(args, 0)) })
+  putprop(q_d_listp, t, q_translated) |> ignore
   defun(q_depends, args => depends(arg(args, 0), arg(args, 1)))
   defun(q_dependsl, args => dependsl(arg(args, 0), arg(args, 1)))
   defun(q_free1, args => free1(arg(args, 0)))
@@ -507,11 +527,17 @@ fn register_generated_functions() -> Unit {
   defun(q_parse__doldo, args => parse__doldo(arg(args, 0)))
   defun(q_mopstrip, args => mopstrip(arg(args, 0)))
   defun(q_d_prefix, args => { check_arity_range("$prefix", args, 1, 4); d_prefix(arg(args, 0), rbp?=args.get(1), rpos?=args.get(2), pos?=args.get(3)) })
+  putprop(q_d_prefix, t, q_translated) |> ignore
   defun(q_d_postfix, args => { check_arity_range("$postfix", args, 1, 4); d_postfix(arg(args, 0), lbp?=args.get(1), lpos?=args.get(2), pos?=args.get(3)) })
+  putprop(q_d_postfix, t, q_translated) |> ignore
   defun(q_d_infix, args => { check_arity_range("$infix", args, 1, 6); d_infix(arg(args, 0), lbp?=args.get(1), rbp?=args.get(2), lpos?=args.get(3), rpos?=args.get(4), pos?=args.get(5)) })
+  putprop(q_d_infix, t, q_translated) |> ignore
   defun(q_d_nary, args => { check_arity_range("$nary", args, 1, 4); d_nary(arg(args, 0), bp?=args.get(1), argpos?=args.get(2), pos?=args.get(3)) })
+  putprop(q_d_nary, t, q_translated) |> ignore
   defun(q_d_matchfix, args => { check_arity_range("$matchfix", args, 2, 4); d_matchfix(arg(args, 0), arg(args, 1), argpos?=args.get(2), pos?=args.get(3)) })
+  putprop(q_d_matchfix, t, q_translated) |> ignore
   defun(q_d_nofix, args => { check_arity_range("$nofix", args, 1, 2); d_nofix(arg(args, 0), pos?=args.get(1)) })
+  putprop(q_d_nofix, t, q_translated) |> ignore
   defun(q_def_operator, args => def_operator(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8), arg(args, 9), arg(args, 10), arg(args, 11)))
   defun(q_op_setup, args => op_setup(arg(args, 0)))
   defun(q_kill_operator, args => kill_operator(arg(args, 0)))
@@ -557,28 +583,36 @@ fn register_generated_functions() -> Unit {
   defun(q_cput, args => cput(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_prefixp, args => prefixp(arg(args, 0), arg(args, 1), test_?=key_arg(args, 2, ":test")))
   defun(q_d_sumcontract, args => { check_arity_range("$sumcontract", args, 1, 1); d_sumcontract(arg(args, 0)) })
+  putprop(q_d_sumcontract, t, q_translated) |> ignore
   defun(q_d_intosum, args => { check_arity_range("$intosum", args, 1, 1); d_intosum(arg(args, 0)) })
+  putprop(q_d_intosum, t, q_translated) |> ignore
   defun(q_sumcontract1, args => sumcontract1(arg(args, 0)))
   defun(q_sumcontract2, args => sumcontract2(arg(args, 0), arg(args, 1)))
   defun(q_sumcombine1, args => sumcombine1(arg(args, 0), arg(args, 1)))
   defun(q_sumcombine2, args => sumcombine2(arg(args, 0), arg(args, 1)))
   defun(q_get_free_index, args => get_free_index(arg(args, 0), i?=args.get(1)))
   defun(q_d_bashindices, args => { check_arity_range("$bashindices", args, 1, 1); d_bashindices(arg(args, 0)) })
+  putprop(q_d_bashindices, t, q_translated) |> ignore
   defun(q_d_niceindices, args => { check_arity_range("$niceindices", args, 1, 1); d_niceindices(arg(args, 0)) })
+  putprop(q_d_niceindices, t, q_translated) |> ignore
   defun(q_sumconsimp, args => sumconsimp(arg(args, 0)))
   defun(q_d_sublis, args => { check_arity_range("$sublis", args, 2, 2); d_sublis(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_sublis, t, q_translated) |> ignore
   defun(q_msublis, args => msublis(arg(args, 0), arg(args, 1)))
   defun(q_msublis_setup, args => msublis_setup())
   defun(q_msublis_unsetup, args => msublis_unsetup())
   defun(q_msublis_subst, args => msublis_subst(arg(args, 0), arg(args, 1)))
   defun(q_d_error, args => { check_arity_range("$error", args, 0, -1); d_error(rest_args(args, 0)) })
+  putprop(q_d_error, t, q_translated) |> ignore
   defun(q_d_warning, args => { check_arity_range("$warning", args, 0, -1); d_warning(rest_args(args, 0)) })
+  putprop(q_d_warning, t, q_translated) |> ignore
   defun(q_error_size, args => error_size(arg(args, 0)))
   defun(q_merror, args => merror(arg(args, 0), rest_args(args, 1)))
   defun(q_mwarning, args => mwarning(rest_args(args, 0)))
   defun(q_assign_symbols, args => assign_symbols(arg(args, 0), arg(args, 1)))
   defun(q_process_error_argl, args => process_error_argl(arg(args, 0)))
   defun(q_d_errormsg, args => { check_arity_range("$errormsg", args, 0, 0); d_errormsg() })
+  putprop(q_d_errormsg, t, q_translated) |> ignore
   defun(q_rat_error, args => rat_error(rest_args(args, 0)))
   defun(q_fstringc, args => fstringc(arg(args, 0)))
   defun(q_mformat, args => mformat(rest_args(args, 0)))
@@ -587,23 +621,36 @@ fn register_generated_functions() -> Unit {
   defun(q_displaf, args => displaf(arg(args, 0), arg(args, 1)))
   defun(q_mtell, args => mtell(rest_args(args, 0)))
   defun(q_d_assoc, args => { check_arity_range("$assoc", args, 2, 3); d_assoc(arg(args, 0), arg(args, 1), default?=args.get(2)) })
+  putprop(q_d_assoc, t, q_translated) |> ignore
   defun(q_d_gensym, args => { check_arity_range("$gensym", args, 0, 1); d_gensym(x?=args.get(0)) })
+  putprop(q_d_gensym, t, q_translated) |> ignore
   defun(q_d_ratp, args => { check_arity_range("$ratp", args, 1, 1); d_ratp(arg(args, 0)) })
+  putprop(q_d_ratp, t, q_translated) |> ignore
   defun(q_d_ratnump, args => { check_arity_range("$ratnump", args, 1, 1); d_ratnump(arg(args, 0)) })
+  putprop(q_d_ratnump, t, q_translated) |> ignore
   defun(q_d_floatnump, args => { check_arity_range("$floatnump", args, 1, 1); d_floatnump(arg(args, 0)) })
+  putprop(q_d_floatnump, t, q_translated) |> ignore
   defun(q_d_numberp, args => { check_arity_range("$numberp", args, 1, 1); d_numberp(arg(args, 0)) })
+  putprop(q_d_numberp, t, q_translated) |> ignore
   defun(q_d_integerp, args => { check_arity_range("$integerp", args, 1, 1); d_integerp(arg(args, 0)) })
+  putprop(q_d_integerp, t, q_translated) |> ignore
   defun(q_d_oddp, args => { check_arity_range("$oddp", args, 1, 1); d_oddp(arg(args, 0)) })
+  putprop(q_d_oddp, t, q_translated) |> ignore
   defun(q_d_evenp, args => { check_arity_range("$evenp", args, 1, 1); d_evenp(arg(args, 0)) })
+  putprop(q_d_evenp, t, q_translated) |> ignore
   defun(q_d_taylorp, args => { check_arity_range("$taylorp", args, 1, 1); d_taylorp(arg(args, 0)) })
+  putprop(q_d_taylorp, t, q_translated) |> ignore
   defun(q_d_isolate, args => { check_arity_range("$isolate", args, 2, 2); d_isolate(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_isolate, t, q_translated) |> ignore
   defun(q_iso1, args => iso1(arg(args, 0), arg(args, 1)))
   defun(q_iso2, args => iso2(arg(args, 0), arg(args, 1)))
   defun(q_mgen2, args => mgen2(arg(args, 0)))
   defun(q_memsimilarl, args => memsimilarl(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_memsimilar, args => memsimilar(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_pickapart, args => { check_arity_range("$pickapart", args, 2, 2); d_pickapart(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_pickapart, t, q_translated) |> ignore
   defun(q_d_reveal, args => { check_arity_range("$reveal", args, 2, 2); d_reveal(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_reveal, t, q_translated) |> ignore
   defun(q_simple, args => simple(arg(args, 0)))
   defun(q_reveal, args => reveal(arg(args, 0), arg(args, 1), arg(args, 2)))
   register_mspec(q_d_properties, d_properties)
@@ -616,25 +663,32 @@ fn register_generated_functions() -> Unit {
   defun(q_dispgradefs, args => dispgradefs(arg(args, 0)))
   defun(q_dispmatchdeclares, args => dispmatchdeclares(arg(args, 0)))
   defun(q_d_changevar, args => { check_arity_range("$changevar", args, 4, 4); d_changevar(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_changevar, t, q_translated) |> ignore
   defun(q_solvable, args => solvable(arg(args, 0), arg(args, 1), errswitch?=args.get(2)))
   defun(q_changevar, args => changevar(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_kernsubst, args => kernsubst(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_factorsum, args => { check_arity_range("$factorsum", args, 1, 1); d_factorsum(arg(args, 0)) })
+  putprop(q_d_factorsum, t, q_translated) |> ignore
   defun(q_d_gfactorsum, args => { check_arity_range("$gfactorsum", args, 1, 1); d_gfactorsum(arg(args, 0)) })
+  putprop(q_d_gfactorsum, t, q_translated) |> ignore
   defun(q_factorsum0, args => factorsum0(arg(args, 0), arg(args, 1)))
   defun(q_factorsum1, args => factorsum1(arg(args, 0)))
   defun(q_dcon, args => dcon(arg(args, 0)))
   defun(q_factorsum2, args => factorsum2(arg(args, 0)))
   defun(q_d_combine, args => { check_arity_range("$combine", args, 1, 1); d_combine(arg(args, 0)) })
+  putprop(q_d_combine, t, q_translated) |> ignore
   defun(q_combine, args => combine(arg(args, 0)))
   defun(q_d_factorout, args => { check_arity_range("$factorout", args, 1, -1); d_factorout(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_factorout, t, q_translated) |> ignore
   defun(q_marrayp, args => marrayp(arg(args, 0)))
   defun(q_marray_type, args => marray_type(arg(args, 0)))
   defun(q_d_make_array, args => { check_arity_range("$make_array", args, 1, -1); d_make_array(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_make_array, t, q_translated) |> ignore
   defun(q_dimension_array_object, args => dimension_array_object(arg(args, 0), arg(args, 1)))
   defun(q_msize_array_object, args => msize_array_object(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_marray_check, args => marray_check(arg(args, 0)))
   defun(q_d_array_dimension_n, args => { check_arity_range("$array_dimension_n", args, 2, 2); d_array_dimension_n(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_array_dimension_n, t, q_translated) |> ignore
   defun(q_marray_type_unknown, args => marray_type_unknown(arg(args, 0)))
   defun(q_marrayref_gensub, args => marrayref_gensub(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_bad_index_error, args => bad_index_error(arg(args, 0)))
@@ -642,17 +696,22 @@ fn register_generated_functions() -> Unit {
   defun(q_meval1_extend, args => meval1_extend(arg(args, 0)))
   defun(q_arrstore_extend, args => arrstore_extend(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_substitute, args => { check_arity_range("$substitute", args, 2, 3); d_substitute(arg(args, 0), arg(args, 1), expr?=args.get(2)) })
+  putprop(q_d_substitute, t, q_translated) |> ignore
   defun(q_d_psubstitute, args => { check_arity_range("$psubstitute", args, 2, 3); d_psubstitute(arg(args, 0), arg(args, 1), expr?=args.get(2)) })
+  putprop(q_d_psubstitute, t, q_translated) |> ignore
   defun(q_expthack, args => expthack(arg(args, 0), arg(args, 1)))
   defun(q_subst_diff_match, args => subst_diff_match(arg(args, 0), arg(args, 1)))
   defun(q_at_substp, args => at_substp(arg(args, 0)))
   defun(q_d_depends, args => { check_arity_range("$depends", args, 0, -1); d_depends(rest_args(args, 0)) })
+  putprop(q_d_depends, t, q_translated) |> ignore
   defun(q_depends1, args => depends1(arg(args, 0), arg(args, 1)))
   register_mspec(q_d_dependencies, d_dependencies)
   defun(q_i__doldependencies, args => i__doldependencies(arg(args, 0)))
   register_mspec(q_d_gradef, d_gradef)
   defun(q_d_diff, args => { check_arity_range("$diff", args, 0, -1); d_diff(rest_args(args, 0)) })
+  putprop(q_d_diff, t, q_translated) |> ignore
   defun(q_d_del, args => { check_arity_range("$del", args, 1, 1); d_del(arg(args, 0)) })
+  putprop(q_d_del, t, q_translated) |> ignore
   defun(q_deriv, args => deriv(arg(args, 0)))
   defun(q_chainrule, args => chainrule(arg(args, 0), arg(args, 1)))
   defun(q_atomgrad, args => atomgrad(arg(args, 0), arg(args, 1)))
@@ -666,20 +725,29 @@ fn register_generated_functions() -> Unit {
   defun(q_notloreq, args => notloreq(arg(args, 0)))
   defun(q_remsimp, args => remsimp(arg(args, 0)))
   defun(q_d_trunc, args => { check_arity_range("$trunc", args, 1, 1); d_trunc(arg(args, 0)) })
+  putprop(q_d_trunc, t, q_translated) |> ignore
   defun(q_nonvarcheck, args => nonvarcheck(arg(args, 0), arg(args, 1)))
   register_mspec(q_d_ldisplay, d_ldisplay)
   defun(q_d_ldisp, args => { check_arity_range("$ldisp", args, 0, -1); d_ldisp(rest_args(args, 0)) })
+  putprop(q_d_ldisp, t, q_translated) |> ignore
   register_mspec(q_d_display, d_display)
   defun(q_d_disp, args => { check_arity_range("$disp", args, 0, -1); d_disp(rest_args(args, 0)) })
+  putprop(q_d_disp, t, q_translated) |> ignore
   defun(q_disp1, args => disp1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_disp2, args => disp2(arg(args, 0)))
   defun(q_elabel, args => elabel(arg(args, 0)))
   defun(q_d_dispterms, args => { check_arity_range("$dispterms", args, 1, 1); d_dispterms(arg(args, 0)) })
+  putprop(q_d_dispterms, t, q_translated) |> ignore
   defun(q_d_dispform, args => { check_arity_range("$dispform", args, 1, 2); d_dispform(arg(args, 0), flag?=args.get(1)) })
+  putprop(q_d_dispform, t, q_translated) |> ignore
   defun(q_d_op, args => { check_arity_range("$op", args, 1, 1); d_op(arg(args, 0)) })
+  putprop(q_d_op, t, q_translated) |> ignore
   defun(q_d_operatorp, args => { check_arity_range("$operatorp", args, 2, 2); d_operatorp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_operatorp, t, q_translated) |> ignore
   defun(q_d_part, args => { check_arity_range("$part", args, 0, -1); d_part(rest_args(args, 0)) })
+  putprop(q_d_part, t, q_translated) |> ignore
   defun(q_d_inpart, args => { check_arity_range("$inpart", args, 0, -1); d_inpart(rest_args(args, 0)) })
+  putprop(q_d_inpart, t, q_translated) |> ignore
   register_mspec(q_d_substpart, d_substpart)
   register_mspec(q_d_substinpart, d_substinpart)
   defun(q_part1, args => part1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
@@ -687,33 +755,56 @@ fn register_generated_functions() -> Unit {
   defun(q_mpart, args => mpart(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_getop, args => getop(arg(args, 0)))
   defun(q_d_cons, args => { check_arity_range("$cons", args, 2, 2); d_cons(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_cons, t, q_translated) |> ignore
   defun(q_d_endcons, args => { check_arity_range("$endcons", args, 2, 2); d_endcons(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_endcons, t, q_translated) |> ignore
   defun(q_d_reverse, args => { check_arity_range("$reverse", args, 1, 1); d_reverse(arg(args, 0)) })
+  putprop(q_d_reverse, t, q_translated) |> ignore
   defun(q_d_append, args => { check_arity_range("$append", args, 0, -1); d_append(rest_args(args, 0)) })
+  putprop(q_d_append, t, q_translated) |> ignore
   defun(q_mcons_exp_args, args => mcons_exp_args(arg(args, 0), arg(args, 1)))
   defun(q_format1, args => format1(arg(args, 0)))
   defun(q_d_first, args => { check_arity_range("$first", args, 1, 1); d_first(arg(args, 0)) })
+  putprop(q_d_first, t, q_translated) |> ignore
   defun(q_d_rest, args => { check_arity_range("$rest", args, 1, 2); d_rest(arg(args, 0), n?=args.get(1)) })
+  putprop(q_d_rest, t, q_translated) |> ignore
   defun(q_d_last, args => { check_arity_range("$last", args, 1, 1); d_last(arg(args, 0)) })
+  putprop(q_d_last, t, q_translated) |> ignore
   defun(q_d_firstn, args => { check_arity_range("$firstn", args, 2, 2); d_firstn(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_firstn, t, q_translated) |> ignore
   defun(q_d_lastn, args => { check_arity_range("$lastn", args, 2, 2); d_lastn(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_lastn, t, q_translated) |> ignore
   defun(q_d_args, args => { check_arity_range("$args", args, 1, 1); d_args(arg(args, 0)) })
+  putprop(q_d_args, t, q_translated) |> ignore
   defun(q_d_delete, args => { check_arity_range("$delete", args, 2, 3); d_delete(arg(args, 0), arg(args, 1), n?=args.get(2)) })
+  putprop(q_d_delete, t, q_translated) |> ignore
   defun(q_d_length, args => { check_arity_range("$length", args, 1, 1); d_length(arg(args, 0)) })
+  putprop(q_d_length, t, q_translated) |> ignore
   defun(q_d_atom, args => { check_arity_range("$atom", args, 1, 1); d_atom(arg(args, 0)) })
+  putprop(q_d_atom, t, q_translated) |> ignore
   defun(q_d_symbolp, args => { check_arity_range("$symbolp", args, 1, 1); d_symbolp(arg(args, 0)) })
+  putprop(q_d_symbolp, t, q_translated) |> ignore
   defun(q_num_denom_split, args => num_denom_split(arg(args, 0)).0)
   defun(q_d_num_denom, args => { check_arity_range("$num_denom", args, 1, 1); d_num_denom(arg(args, 0)) })
+  putprop(q_d_num_denom, t, q_translated) |> ignore
   defun(q_d_num, args => { check_arity_range("$num", args, 1, 1); d_num(arg(args, 0)) })
+  putprop(q_d_num, t, q_translated) |> ignore
   defun(q_d_denom, args => { check_arity_range("$denom", args, 1, 1); d_denom(arg(args, 0)) })
+  putprop(q_d_denom, t, q_translated) |> ignore
   defun(q_d_entier, args => { check_arity_range("$entier", args, 1, 1); d_entier(arg(args, 0)) })
+  putprop(q_d_entier, t, q_translated) |> ignore
   defun(q_d_fix, args => { check_arity_range("$fix", args, 1, 1); d_fix(arg(args, 0)) })
+  putprop(q_d_fix, t, q_translated) |> ignore
   defun(q_try_float_computation, args => try_float_computation(arg(args, 0)))
   defun(q_d_float, args => { check_arity_range("$float", args, 1, 1); d_float(arg(args, 0)) })
+  putprop(q_d_float, t, q_translated) |> ignore
   defun(q_d_coeff, args => { check_arity_range("$coeff", args, 2, 3); d_coeff(arg(args, 0), arg(args, 1), n?=args.get(2)) })
+  putprop(q_d_coeff, t, q_translated) |> ignore
   defun(q_coeff_contains_powers, args => coeff_contains_powers(arg(args, 0), arg(args, 1)))
   defun(q_d_hipow, args => { check_arity_range("$hipow", args, 2, 2); d_hipow(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_hipow, t, q_translated) |> ignore
   defun(q_d_lopow, args => { check_arity_range("$lopow", args, 2, 2); d_lopow(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_lopow, t, q_translated) |> ignore
   defun(q_findpowers, args => findpowers(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_findpowers1, args => findpowers1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_checkpow, args => checkpow(arg(args, 0), arg(args, 1)))
@@ -728,15 +819,18 @@ fn register_generated_functions() -> Unit {
   defun(q_stotaldiff, args => stotaldiff(arg(args, 0)))
   defun(q_extractvars, args => extractvars(arg(args, 0)))
   defun(q_d_atvalue, args => { check_arity_range("$atvalue", args, 3, 3); d_atvalue(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_atvalue, t, q_translated) |> ignore
   defun(q_simp__pctat, args => simp__pctat(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_at_not_dependent, args => at_not_dependent(arg(args, 0), arg(args, 1)))
   defun(q_at_not_dependent_find_vars, args => at_not_dependent_find_vars(arg(args, 0), arg(args, 1)))
   defun(q_at_not_dependent_find_vars_1, args => at_not_dependent_find_vars_1(arg(args, 0), arg(args, 1)))
   defun(q_d_at, args => { check_arity_range("$at", args, 2, 2); d_at(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_at, t, q_translated) |> ignore
   defun(q_atscan, args => atscan(arg(args, 0), arg(args, 1)))
   defun(q_at1, args => at1(arg(args, 0)))
   defun(q_atfind, args => atfind(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_logcontract, args => { check_arity_range("$logcontract", args, 1, 1); d_logcontract(arg(args, 0)) })
+  putprop(q_d_logcontract, t, q_translated) |> ignore
   defun(q_logcon, args => logcon(arg(args, 0)))
   defun(q_lgcplus, args => lgcplus(arg(args, 0)))
   defun(q_lgctimes, args => lgctimes(arg(args, 0)))
@@ -746,6 +840,7 @@ fn register_generated_functions() -> Unit {
   defun(q_lgcreciprocal, args => lgcreciprocal(arg(args, 0)))
   defun(q_logconcoeffp, args => logconcoeffp(arg(args, 0)))
   defun(q_d_rootscontract, args => { check_arity_range("$rootscontract", args, 1, 1); d_rootscontract(arg(args, 0)) })
+  putprop(q_d_rootscontract, t, q_translated) |> ignore
   defun(q_rtcon, args => rtcon(arg(args, 0), arg(args, 1)))
   defun(q_rt_separ, args => rt_separ(arg(args, 0), arg(args, 1)))
   defun(q_simp_roots, args => simp_roots(arg(args, 0), arg(args, 1)))
@@ -753,37 +848,53 @@ fn register_generated_functions() -> Unit {
   defun(q_rtc_fixitup, args => rtc_fixitup(arg(args, 0), arg(args, 1)))
   defun(q_rtc_divide_by_gcd, args => rtc_divide_by_gcd(arg(args, 0), arg(args, 1)))
   defun(q_d_nterms, args => { check_arity_range("$nterms", args, 1, 1); d_nterms(arg(args, 0)) })
+  putprop(q_d_nterms, t, q_translated) |> ignore
   defun(q_d_fibtophi, args => { check_arity_range("$fibtophi", args, 1, 2); d_fibtophi(arg(args, 0), lnorecurse?=args.get(1)) })
+  putprop(q_d_fibtophi, t, q_translated) |> ignore
   register_mspec(q_d_numerval, d_numerval)
   defun(q_d_derivdegree, args => { check_arity_range("$derivdegree", args, 3, 3); d_derivdegree(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_derivdegree, t, q_translated) |> ignore
   defun(q_derivdeg1, args => derivdeg1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_dpart, args => { check_arity_range("$dpart", args, 0, -1); d_dpart(rest_args(args, 0)) })
+  putprop(q_d_dpart, t, q_translated) |> ignore
   defun(q_d_lpart, args => { check_arity_range("$lpart", args, 1, -1); d_lpart(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_lpart, t, q_translated) |> ignore
   defun(q_make_mbox, args => { check_arity_range("make-mbox", args, 1, 2); make_mbox(arg(args, 0), l?=args.get(1)) })
+  putprop(q_make_mbox, t, q_translated) |> ignore
   defun(q_box_label, args => box_label(arg(args, 0)))
   defun(q_d_rembox, args => { check_arity_range("$rembox", args, 1, 2); d_rembox(arg(args, 0), l?=args.get(1)) })
+  putprop(q_d_rembox, t, q_translated) |> ignore
   defun(q_rembox1, args => rembox1(arg(args, 0), arg(args, 1)))
   defun(q_scanmap1, args => scanmap1(arg(args, 0), arg(args, 1), flag?=args.get(2)))
   defun(q_subgen, args => subgen(arg(args, 0)))
   defun(q_dsfunc1, args => dsfunc1(arg(args, 0), arg(args, 1)))
   defun(q_d_genmatrix, args => { check_arity_range("$genmatrix", args, 2, 5); d_genmatrix(arg(args, 0), arg(args, 1), j2?=args.get(2), i1?=args.get(3), j1?=args.get(4)) })
+  putprop(q_d_genmatrix, t, q_translated) |> ignore
   defun(q_d_copymatrix, args => { check_arity_range("$copymatrix", args, 1, 1); d_copymatrix(arg(args, 0)) })
+  putprop(q_d_copymatrix, t, q_translated) |> ignore
   defun(q_d_copylist, args => { check_arity_range("$copylist", args, 1, 1); d_copylist(arg(args, 0)) })
+  putprop(q_d_copylist, t, q_translated) |> ignore
   defun(q_d_copy, args => { check_arity_range("$copy", args, 1, 1); d_copy(arg(args, 0)) })
+  putprop(q_d_copy, t, q_translated) |> ignore
   defun(q_d_addrow, args => { check_arity_range("$addrow", args, 1, -1); d_addrow(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_addrow, t, q_translated) |> ignore
   defun(q_d_addcol, args => { check_arity_range("$addcol", args, 1, -1); d_addcol(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_addcol, t, q_translated) |> ignore
   defun(q_ensure_matrix_column, args => ensure_matrix_column(arg(args, 0)))
   defun(q_addrow, args => addrow(arg(args, 0), arg(args, 1)))
   defun(q_my_nonatomic_expr_p, args => my_nonatomic_expr_p(arg(args, 0)))
   defun(q_my_lambda_expr_p, args => my_lambda_expr_p(arg(args, 0)))
   defun(q_d_arraymake, args => { check_arity_range("$arraymake", args, 2, 2); d_arraymake(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_arraymake, t, q_translated) |> ignore
   register_mspec(q_d_arrayinfo, d_arrayinfo)
   defun(q_arrayinfo_aux, args => arrayinfo_aux(arg(args, 0), arg(args, 1)))
   register_mspec(q_d_ordergreat, d_ordergreat)
   register_mspec(q_d_orderless, d_orderless)
   defun(q_makorder, args => makorder(arg(args, 0), arg(args, 1)))
   defun(q_d_unorder, args => { check_arity_range("$unorder", args, 0, 0); d_unorder() })
+  putprop(q_d_unorder, t, q_translated) |> ignore
   defun(q_d_concat, args => { check_arity_range("$concat", args, 0, -1); d_concat(rest_args(args, 0)) })
+  putprop(q_d_concat, t, q_translated) |> ignore
   register_mspec(q_mdefmacro, mdefmacro)
   defun(q_mdefmacro1, args => mdefmacro1(arg(args, 0), arg(args, 1)))
   register_mspec(q_d_macroexpand, d_macroexpand)
@@ -823,6 +934,7 @@ fn register_generated_functions() -> Unit {
   defun(q_mrecord_kill, args => mrecord_kill(arg(args, 0)))
   register_mspec(q_d_op_at, d_op_at)
   defun(q_d__at_function, args => { check_arity_range("$@-function", args, 2, 2); d__at_function(arg(args, 0), arg(args, 1)) })
+  putprop(q_d__at_function, t, q_translated) |> ignore
   defun(q_dimension_defstruct, args => dimension_defstruct(arg(args, 0), arg(args, 1)))
   register_mspec(q_d_defstruct, d_defstruct)
   defun(q_defstruct_translate, args => defstruct_translate(arg(args, 0)))
@@ -840,6 +952,7 @@ fn register_generated_functions() -> Unit {
   defun(q_mquotep, args => mquotep(arg(args, 0)))
   register_mspec(q_mquote, mquote)
   defun(q_d_subvarp, args => { check_arity_range("$subvarp", args, 1, 1); d_subvarp(arg(args, 0)) })
+  putprop(q_d_subvarp, t, q_translated) |> ignore
   defun(q_mseterr, args => mseterr(arg(args, 0), arg(args, 1), reason?=args.get(2)))
   defun(q_numerset, args => numerset(arg(args, 0), arg(args, 1)))
   defun(q_neverset, args => neverset(arg(args, 0), arg(args, 1)))
@@ -849,15 +962,19 @@ fn register_generated_functions() -> Unit {
   defun(q_mmapcar, args => mmapcar(rest_args(args, 0)))
   defun(q_mapatom, args => mapatom(arg(args, 0)))
   defun(q_d_mapatom, args => { check_arity_range("$mapatom", args, 1, 1); d_mapatom(arg(args, 0)) })
+  putprop(q_d_mapatom, t, q_translated) |> ignore
   defun(q_fmap1, args => fmap1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_fmapl1, args => fmapl1(arg(args, 0), rest_args(args, 1)))
   defun(q_d_outermap, args => { check_arity_range("$outermap", args, 2, -1); d_outermap(arg(args, 0), arg(args, 1), rest_args(args, 2)) })
+  putprop(q_d_outermap, t, q_translated) |> ignore
   defun(q_outermap1, args => outermap1(rest_args(args, 0)))
   defun(q_outermap2, args => outermap2(rest_args(args, 0)))
   defun(q_funcer, args => funcer(arg(args, 0), arg(args, 1)))
   register_mspec(q_d_qput, d_qput)
   defun(q_d_rem, args => { check_arity_range("$rem", args, 2, 2); d_rem(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_rem, t, q_translated) |> ignore
   defun(q_d_put, args => { check_arity_range("$put", args, 3, 3); d_put(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_put, t, q_translated) |> ignore
   defun(q_prop1, args => prop1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   register_mspec(q_d_declare, d_declare)
   defun(q_declare1, args => declare1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -882,17 +999,21 @@ fn register_generated_functions() -> Unit {
   register_mspec(q_d_declare_index_properties, d_declare_index_properties)
   defun(q_declare_index_properties_1, args => declare_index_properties_1(arg(args, 0), arg(args, 1)))
   defun(q_d_get_index_properties, args => { check_arity_range("$get_index_properties", args, 1, 1); d_get_index_properties(arg(args, 0)) })
+  putprop(q_d_get_index_properties, t, q_translated) |> ignore
   register_mspec(q_d_remove_index_properties, d_remove_index_properties)
   defun(q_d_matrix, args => { check_arity_range("$matrix", args, 0, -1); d_matrix(rest_args(args, 0)) })
+  putprop(q_d_matrix, t, q_translated) |> ignore
   defun(q_matrixhelper, args => matrixhelper(arg(args, 0)))
   defun(q_matcheck, args => matcheck(arg(args, 0)))
   defun(q_d_has_key, args => { check_arity_range("$has_key", args, 2, 2); d_has_key(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_has_key, t, q_translated) |> ignore
   defun(q_has_key_for_undeclared_array, args => has_key_for_undeclared_array(arg(args, 0), arg(args, 1)))
   defun(q_has_key_for_lisp_hash_table, args => has_key_for_lisp_hash_table(arg(args, 0), arg(args, 1)))
   defun(q_harrfind, args => harrfind(arg(args, 0)))
   defun(q_arrfind, args => arrfind(arg(args, 0)))
   register_mspec(q_d_array, d_array)
   defun(q_d_show_hash_array, args => { check_arity_range("$show_hash_array", args, 1, 1); d_show_hash_array(arg(args, 0)) })
+  putprop(q_d_show_hash_array, t, q_translated) |> ignore
   defun(q_arrstore, args => arrstore(arg(args, 0), arg(args, 1)))
   defun(q_arrfunp, args => arrfunp(arg(args, 0)))
   defun(q_arrfuncall, args => arrfuncall(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -914,12 +1035,14 @@ fn register_generated_functions() -> Unit {
   defun(q_mopp1, args => mopp1(arg(args, 0)))
   defun(q_mapply, args => mapply(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_apply, args => { check_arity_range("$apply", args, 2, 2); d_apply(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_apply, t, q_translated) |> ignore
   defun(q_autoldchk, args => autoldchk(arg(args, 0)))
   register_mspec(q_d_dispfun, d_dispfun)
   defun(q_dispfun1, args => dispfun1(arg(args, 0), arg(args, 1), arg(args, 2)))
   register_mspec(q_d_fundef, d_fundef)
   defun(q_consfundef, args => consfundef(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_funmake, args => { check_arity_range("$funmake", args, 2, 2); d_funmake(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_funmake, t, q_translated) |> ignore
   defun(q_mcons_op_args, args => mcons_op_args(arg(args, 0), arg(args, 1)))
   defun(q_optionp, args => optionp(arg(args, 0)))
   register_mspec(q_mcond, mcond)
@@ -938,6 +1061,7 @@ fn register_generated_functions() -> Unit {
   defun(q_add2lnc, args => add2lnc(arg(args, 0), arg(args, 1)))
   defun(q_bigfloatm_star, args => bigfloatm_star(arg(args, 0)))
   defun(q_d_allbut, args => { check_arity_range("$allbut", args, 0, -1); d_allbut(rest_args(args, 0)) })
+  putprop(q_d_allbut, t, q_translated) |> ignore
   defun(q_dskrat, args => dskrat(arg(args, 0)))
   defun(q_dskrat_subst, args => dskrat_subst(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_displace, args => displace(arg(args, 0), arg(args, 1)))
@@ -1075,36 +1199,63 @@ fn register_generated_functions() -> Unit {
   defun(q_slatec_dqawc, args => slatec_dqawc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8), arg(args, 9), arg(args, 10), arg(args, 11), arg(args, 12), arg(args, 13), arg(args, 14)).0)
   defun(q_float_or_lose, args => float_or_lose(arg(args, 0)))
   defun(q_d_quad_qag, args => { check_arity_range("$quad_qag", args, 5, -1); d_quad_qag(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), limit?=key_arg(args, 5, ":limit"), epsabs?=key_arg(args, 5, ":epsabs")) })
+  putprop(q_d_quad_qag, t, q_translated) |> ignore
   defun(q_d_quad_qags, args => { check_arity_range("$quad_qags", args, 4, -1); d_quad_qags(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), epsrel?=key_arg(args, 4, ":epsrel"), limit?=key_arg(args, 4, ":limit"), epsabs?=key_arg(args, 4, ":epsabs")) })
+  putprop(q_d_quad_qags, t, q_translated) |> ignore
   defun(q_d_quad_qagi, args => { check_arity_range("$quad_qagi", args, 4, -1); d_quad_qagi(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), epsrel?=key_arg(args, 4, ":epsrel"), limit?=key_arg(args, 4, ":limit"), epsabs?=key_arg(args, 4, ":epsabs")) })
+  putprop(q_d_quad_qagi, t, q_translated) |> ignore
   defun(q_d_quad_qawc, args => { check_arity_range("$quad_qawc", args, 5, -1); d_quad_qawc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), limit?=key_arg(args, 5, ":limit"), epsabs?=key_arg(args, 5, ":epsabs")) })
+  putprop(q_d_quad_qawc, t, q_translated) |> ignore
   defun(q_d_quad_qawf, args => { check_arity_range("$quad_qawf", args, 5, -1); d_quad_qawf(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsabs?=key_arg(args, 5, ":epsabs"), limit?=key_arg(args, 5, ":limit"), maxp1?=key_arg(args, 5, ":maxp1"), limlst?=key_arg(args, 5, ":limlst")) })
+  putprop(q_d_quad_qawf, t, q_translated) |> ignore
   defun(q_d_quad_qawo, args => { check_arity_range("$quad_qawo", args, 6, -1); d_quad_qawo(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), epsrel?=key_arg(args, 6, ":epsrel"), limit?=key_arg(args, 6, ":limit"), maxp1?=key_arg(args, 6, ":maxp1"), epsabs?=key_arg(args, 6, ":epsabs")) })
+  putprop(q_d_quad_qawo, t, q_translated) |> ignore
   defun(q_d_quad_qaws, args => { check_arity_range("$quad_qaws", args, 7, -1); d_quad_qaws(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), epsrel?=key_arg(args, 7, ":epsrel"), limit?=key_arg(args, 7, ":limit"), epsabs?=key_arg(args, 7, ":epsabs")) })
+  putprop(q_d_quad_qaws, t, q_translated) |> ignore
   defun(q_d_quad_qagp, args => { check_arity_range("$quad_qagp", args, 5, -1); d_quad_qagp(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), epsrel?=key_arg(args, 5, ":epsrel"), epsabs?=key_arg(args, 5, ":epsabs"), limit?=key_arg(args, 5, ":limit")) })
+  putprop(q_d_quad_qagp, t, q_translated) |> ignore
   defun(q_quad_argument_check, args => quad_argument_check(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_quad_control, args => quad_control(arg(args, 0), new_value?=args.get(1)))
   defun(q_d_quad_control, args => { check_arity_range("$quad_control", args, 1, -1); d_quad_control(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_quad_control, t, q_translated) |> ignore
   defun(q_d_polysign, args => { check_arity_range("$polysign", args, 1, 1); d_polysign(arg(args, 0)) })
+  putprop(q_d_polysign, t, q_translated) |> ignore
   defun(q_d_numfactor, args => { check_arity_range("$numfactor", args, 1, 1); d_numfactor(arg(args, 0)) })
+  putprop(q_d_numfactor, t, q_translated) |> ignore
   defun(q_d_constantp, args => { check_arity_range("$constantp", args, 1, 1); d_constantp(arg(args, 0)) })
+  putprop(q_d_constantp, t, q_translated) |> ignore
   defun(q_d_scalarp, args => { check_arity_range("$scalarp", args, 1, 1); d_scalarp(arg(args, 0)) })
+  putprop(q_d_scalarp, t, q_translated) |> ignore
   defun(q_d_nonscalarp, args => { check_arity_range("$nonscalarp", args, 1, 1); d_nonscalarp(arg(args, 0)) })
+  putprop(q_d_nonscalarp, t, q_translated) |> ignore
   defun(q_d_resimplify, args => { check_arity_range("$resimplify", args, 1, 1); d_resimplify(arg(args, 0)) })
+  putprop(q_d_resimplify, t, q_translated) |> ignore
   defun(q_d_sqrt, args => { check_arity_range("$sqrt", args, 1, 1); d_sqrt(arg(args, 0)) })
+  putprop(q_d_sqrt, t, q_translated) |> ignore
   defun(q_d_abs, args => { check_arity_range("$abs", args, 1, 1); d_abs(arg(args, 0)) })
+  putprop(q_d_abs, t, q_translated) |> ignore
   defun(q_d_exp, args => { check_arity_range("$exp", args, 1, 1); d_exp(arg(args, 0)) })
+  putprop(q_d_exp, t, q_translated) |> ignore
   defun(q_d_exp_form, args => { check_arity_range("$exp-form", args, 1, 1); d_exp_form(arg(args, 0)) })
+  putprop(q_d_exp_form, t, q_translated) |> ignore
   defun(q_d_orderlessp, args => { check_arity_range("$orderlessp", args, 2, 2); d_orderlessp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_orderlessp, t, q_translated) |> ignore
   defun(q_d_ordergreatp, args => { check_arity_range("$ordergreatp", args, 2, 2); d_ordergreatp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ordergreatp, t, q_translated) |> ignore
   defun(q_d_ordermagnitudep, args => { check_arity_range("$ordermagnitudep", args, 2, 2); d_ordermagnitudep(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ordermagnitudep, t, q_translated) |> ignore
   defun(q_d_multthru, args => { check_arity_range("$multthru", args, 1, 2); d_multthru(arg(args, 0), e2?=args.get(1)) })
+  putprop(q_d_multthru, t, q_translated) |> ignore
   defun(q_d_expand, args => { check_arity_range("$expand", args, 1, 3); d_expand(arg(args, 0), expop?=args.get(1), expon?=args.get(2)) })
+  putprop(q_d_expand, t, q_translated) |> ignore
   defun(q_d_integrate, args => { check_arity_range("$integrate", args, 2, 4); d_integrate(arg(args, 0), arg(args, 1), lo?=args.get(2), hi?=args.get(3)) })
+  putprop(q_d_integrate, t, q_translated) |> ignore
   defun(q_d_demoivre, args => { check_arity_range("$demoivre", args, 1, 1); d_demoivre(arg(args, 0)) })
+  putprop(q_d_demoivre, t, q_translated) |> ignore
   defun(q_demoivre, args => demoivre(arg(args, 0)))
   defun(q_islinear, args => islinear(arg(args, 0), arg(args, 1)))
   defun(q_d_partition, args => { check_arity_range("$partition", args, 2, 2); d_partition(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_partition, t, q_translated) |> ignore
   defun(q_partition_by, args => partition_by(arg(args, 0), arg(args, 1)).0)
   defun(q_partition, args => partition(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_numden, args => numden(arg(args, 0)).0)
@@ -1114,7 +1265,9 @@ fn register_generated_functions() -> Unit {
   defun(q_subin, args => subin(arg(args, 0), arg(args, 1)))
   defun(q_subin_var, args => subin_var(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_rhs, args => { check_arity_range("$rhs", args, 1, 1); d_rhs(arg(args, 0)) })
+  putprop(q_d_rhs, t, q_translated) |> ignore
   defun(q_d_lhs, args => { check_arity_range("$lhs", args, 1, 1); d_lhs(arg(args, 0)) })
+  putprop(q_d_lhs, t, q_translated) |> ignore
   defun(q_ratgreaterp, args => ratgreaterp(arg(args, 0), arg(args, 1)))
   defun(q_p_especial, args => p_especial(arg(args, 0)))
   defun(q_trigred, args => trigred(arg(args, 0)))
@@ -1126,17 +1279,23 @@ fn register_generated_functions() -> Unit {
   defun(q_archk, args => archk(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_genfind, args => genfind(arg(args, 0), arg(args, 1)))
   defun(q_d_logarc, args => { check_arity_range("$logarc", args, 1, 1); d_logarc(arg(args, 0)) })
+  putprop(q_d_logarc, t, q_translated) |> ignore
   defun(q_logarc, args => logarc(arg(args, 0), arg(args, 1)))
   defun(q_partial_logarc, args => partial_logarc(arg(args, 0), arg(args, 1)))
   defun(q_odd_root_exponent_p, args => odd_root_exponent_p(arg(args, 0)))
   defun(q_risplit_signum, args => risplit_signum(arg(args, 0)))
   defun(q_d_realpart, args => { check_arity_range("$realpart", args, 1, 1); d_realpart(arg(args, 0)) })
+  putprop(q_d_realpart, t, q_translated) |> ignore
   register_simplifier(q_simp__pctrealpart, args => simp__pctrealpart(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_imagpart, args => { check_arity_range("$imagpart", args, 1, 1); d_imagpart(arg(args, 0)) })
+  putprop(q_d_imagpart, t, q_translated) |> ignore
   register_simplifier(q_simp__pctimagpart, args => simp__pctimagpart(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_rectform, args => { check_arity_range("$rectform", args, 1, 1); d_rectform(arg(args, 0)) })
+  putprop(q_d_rectform, t, q_translated) |> ignore
   defun(q_d_real_imag_part, args => { check_arity_range("$real_imag_part", args, 1, 1); d_real_imag_part(arg(args, 0)) })
+  putprop(q_d_real_imag_part, t, q_translated) |> ignore
   defun(q_d_polarform, args => { check_arity_range("$polarform", args, 1, 1); d_polarform(arg(args, 0)) })
+  putprop(q_d_polarform, t, q_translated) |> ignore
   defun(q_cabs, args => cabs(arg(args, 0)))
   register_simplifier(q_simp__pctcabs, args => simp__pctcabs(arg(args, 0), arg(args, 1), arg(args, 2)))
   register_simplifier(q_simp__pctcarg, args => simp__pctcarg(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -1192,6 +1351,7 @@ fn register_generated_functions() -> Unit {
   defun(q_fixfloat, args => fixfloat(arg(args, 0)))
   defun(q_bcons, args => bcons(arg(args, 0)))
   defun(q_d_bfloat, args => { check_arity_range("$bfloat", args, 1, 1); d_bfloat(arg(args, 0)) })
+  putprop(q_d_bfloat, t, q_translated) |> ignore
   defun(q_addbigfloat, args => addbigfloat(arg(args, 0)))
   defun(q_ratbigfloat, args => ratbigfloat(arg(args, 0)))
   defun(q_float_ratio, args => float_ratio(arg(args, 0)))
@@ -1309,20 +1469,27 @@ fn register_generated_functions() -> Unit {
   defun(q_gamma_lanczos, args => gamma_lanczos(arg(args, 0)))
   defun(q_gammafloat, args => gammafloat(arg(args, 0)))
   defun(q_d_zeromatrix, args => { check_arity_range("$zeromatrix", args, 2, 2); d_zeromatrix(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_zeromatrix, t, q_translated) |> ignore
   defun(q_d_ematrix, args => { check_arity_range("$ematrix", args, 5, 5); d_ematrix(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)) })
+  putprop(q_d_ematrix, t, q_translated) |> ignore
   defun(q_list_of_mlists, args => list_of_mlists(arg(args, 0)))
   defun(q_d_coefmatrix, args => { check_arity_range("$coefmatrix", args, 2, 2); d_coefmatrix(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_coefmatrix, t, q_translated) |> ignore
   defun(q_d_augcoefmatrix, args => { check_arity_range("$augcoefmatrix", args, 2, 2); d_augcoefmatrix(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_augcoefmatrix, t, q_translated) |> ignore
   defun(q_coefmatrix, args => coefmatrix(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_const1, args => const1(arg(args, 0), arg(args, 1)))
   defun(q_d_entermatrix, args => { check_arity_range("$entermatrix", args, 2, 2); d_entermatrix(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_entermatrix, t, q_translated) |> ignore
   defun(q_d_xthru, args => { check_arity_range("$xthru", args, 1, 1); d_xthru(arg(args, 0)) })
+  putprop(q_d_xthru, t, q_translated) |> ignore
   defun(q_comdenom, args => comdenom(arg(args, 0), arg(args, 1)))
   defun(q_prodnumden, args => prodnumden(arg(args, 0)))
   defun(q_prodnd, args => prodnd(arg(args, 0)))
   defun(q_comdenom1, args => comdenom1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_xrutout, args => xrutout(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_d_zeroequiv, args => { check_arity_range("$zeroequiv", args, 2, 2); d_zeroequiv(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_zeroequiv, t, q_translated) |> ignore
   defun(q_zeroequiv1, args => zeroequiv1(arg(args, 0)))
   defun(q_zeroequiv2, args => zeroequiv2(arg(args, 0)))
   defun(q_halfangle, args => halfangle(arg(args, 0), arg(args, 1)))
@@ -1384,12 +1551,14 @@ fn register_generated_functions() -> Unit {
   defun(q_remvalue, args => remvalue(arg(args, 0), arg(args, 1)))
   defun(q_ruleof, args => ruleof(arg(args, 0)))
   defun(q_d_debugmode, args => { check_arity_range("$debugmode", args, 1, 1); d_debugmode(arg(args, 0)) })
+  putprop(q_d_debugmode, t, q_translated) |> ignore
   defun(q_debugmode1, args => debugmode1(arg(args, 0), arg(args, 1)))
   defun(q_errlfun1, args => errlfun1(arg(args, 0)))
   defun(q_makealias, args => makealias(arg(args, 0)))
   defun(q_fexprcheck, args => fexprcheck(arg(args, 0)))
   defun(q_nonsymchk, args => nonsymchk(arg(args, 0), arg(args, 1)))
   defun(q_d_print, args => { check_arity_range("$print", args, 0, -1); d_print(rest_args(args, 0)) })
+  putprop(q_d_print, t, q_translated) |> ignore
   register_mspec(q_d_playback, d_playback)
   defun(q_listargp, args => listargp(arg(args, 0)))
   register_mspec(q_d_alias, d_alias)
@@ -1400,38 +1569,51 @@ fn register_generated_functions() -> Unit {
   defun(q_string_star, args => string_star(arg(args, 0)))
   defun(q_string_star1, args => string_star1(arg(args, 0)))
   defun(q_d_nounify, args => { check_arity_range("$nounify", args, 1, 1); d_nounify(arg(args, 0)) })
+  putprop(q_d_nounify, t, q_translated) |> ignore
   defun(q_d_verbify, args => { check_arity_range("$verbify", args, 1, 1); d_verbify(arg(args, 0)) })
+  putprop(q_d_verbify, t, q_translated) |> ignore
   register_mspec(q_d_string, d_string)
   defun(q_makstring, args => makstring(arg(args, 0)))
   defun(q_strmeval, args => strmeval(arg(args, 0)))
   register_mspec(q_d_stringout, d_stringout)
   defun(q_d_labels, args => { check_arity_range("$labels", args, 1, 1); d_labels(arg(args, 0)) })
+  putprop(q_d_labels, t, q_translated) |> ignore
   defun(q_d__pctth, args => { check_arity_range("$%th", args, 1, 1); d__pctth(arg(args, 0)) })
+  putprop(q_d__pctth, t, q_translated) |> ignore
   defun(q_getlabels, args => getlabels(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_getlabels_star, args => getlabels_star(arg(args, 0), arg(args, 1)))
   defun(q_getlabcharn, args => getlabcharn(arg(args, 0)))
   register_mspec(q_d_errcatch, d_errcatch)
   register_mspec(q_d_catch, d_catch)
   defun(q_d_throw, args => { check_arity_range("$throw", args, 1, 1); d_throw(arg(args, 0)) })
+  putprop(q_d_throw, t, q_translated) |> ignore
   register_mspec(q_d_time, d_time)
   defun(q_timeorg, args => timeorg(arg(args, 0)))
   defun(q_d_quit, args => { check_arity_range("$quit", args, 0, 1); d_quit(exit_code?=args.get(0)) })
+  putprop(q_d_quit, t, q_translated) |> ignore
   defun(q_mterpri, args => mterpri(ostream?=args.get(0)))
   register_mspec(q_d_status, d_status)
   defun(q_d_at_difference, args => { check_arity_range("$at_difference", args, 4, 4); d_at_difference(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_at_difference, t, q_translated) |> ignore
   defun(q_dimension__pctat_difference, args => dimension__pctat_difference(arg(args, 0), arg(args, 1)))
   defun(q_toplevel_macsyma_eval, args => toplevel_macsyma_eval(arg(args, 0)))
   defun(q_used_area, args => used_area(unused?=args.get(0)))
   defun(q_continue, args => continue_(input_stream?=key_arg(args, 0, ":input-stream"), batch_or_demo_flag?=key_arg(args, 0, ":batch-or-demo-flag"), one_shot?=key_arg(args, 0, ":one-shot")))
   defun(q_d_break, args => { check_arity_range("$break", args, 0, -1); d_break(rest_args(args, 0)) })
+  putprop(q_d_break, t, q_translated) |> ignore
   defun(q_mbreak_loop, args => mbreak_loop())
   defun(q_merrbreak, args => merrbreak(arg?=args.get(0)))
   defun(q_retrieve, args => retrieve(arg(args, 0), arg(args, 1)))
   defun(q_d_eval_string_lisp, args => { check_arity_range("$eval_string_lisp", args, 1, 1); d_eval_string_lisp(arg(args, 0)).0 })
+  putprop(q_d_eval_string_lisp, t, q_translated) |> ignore
   defun(q_d_read, args => { check_arity_range("$read", args, 0, -1); d_read(rest_args(args, 0)) })
+  putprop(q_d_read, t, q_translated) |> ignore
   defun(q_d_readonly, args => { check_arity_range("$readonly", args, 0, -1); d_readonly(rest_args(args, 0)) })
+  putprop(q_d_readonly, t, q_translated) |> ignore
   defun(q_d_bug_report, args => { check_arity_range("$bug_report", args, 0, 0); d_bug_report() })
+  putprop(q_d_bug_report, t, q_translated) |> ignore
   defun(q_d_build_info, args => { check_arity_range("$build_info", args, 0, 0); d_build_info() })
+  putprop(q_d_build_info, t, q_translated) |> ignore
   defun(q_ensure_readably_printable_string, args => ensure_readably_printable_string(arg(args, 0)))
   defun(q_dimension_build_info, args => dimension_build_info(arg(args, 0), arg(args, 1)))
   defun(q_macsyma_top_level, args => macsyma_top_level(input_stream?=args.get(0), batch_flag?=args.get(1)))
@@ -1439,46 +1621,71 @@ fn register_generated_functions() -> Unit {
   defun(q_throw_macsyma_top, args => throw_macsyma_top())
   defun(q_start_dribble, args => start_dribble(arg(args, 0)))
   defun(q_d_writefile, args => { check_arity_range("$writefile", args, 1, 1); d_writefile(arg(args, 0)) })
+  putprop(q_d_writefile, t, q_translated) |> ignore
   defun(q_d_appendfile, args => { check_arity_range("$appendfile", args, 1, 1); d_appendfile(arg(args, 0)) })
+  putprop(q_d_appendfile, t, q_translated) |> ignore
   defun(q_d_closefile, args => { check_arity_range("$closefile", args, 0, 0); d_closefile() })
+  putprop(q_d_closefile, t, q_translated) |> ignore
   defun(q_d_ed, args => { check_arity_range("$ed", args, 1, 1); d_ed(arg(args, 0)) })
+  putprop(q_d_ed, t, q_translated) |> ignore
   defun(q_nsubstring, args => nsubstring(arg(args, 0), arg(args, 1)))
   defun(q_filestrip, args => filestrip(arg(args, 0)))
   register_mspec(q_d_with_stdout, d_with_stdout)
   defun(q_d_sconcat, args => { check_arity_range("$sconcat", args, 0, -1); d_sconcat(rest_args(args, 0)) })
+  putprop(q_d_sconcat, t, q_translated) |> ignore
   defun(q_d_system, args => { check_arity_range("$system", args, 0, -1); d_system(rest_args(args, 0)) })
+  putprop(q_d_system, t, q_translated) |> ignore
   defun(q_d_room, args => { check_arity_range("$room", args, 0, 1); d_room(arg?=args.get(0)) })
+  putprop(q_d_room, t, q_translated) |> ignore
   defun(q_maxima_lisp_debugger, args => maxima_lisp_debugger(arg(args, 0), arg(args, 1)))
   defun(q_initialize_real_and_run_time, args => initialize_real_and_run_time())
   defun(q_d_absolute_real_time, args => { check_arity_range("$absolute_real_time", args, 0, 0); d_absolute_real_time() })
+  putprop(q_d_absolute_real_time, t, q_translated) |> ignore
   defun(q_d_elapsed_real_time, args => { check_arity_range("$elapsed_real_time", args, 0, 0); d_elapsed_real_time() })
+  putprop(q_d_elapsed_real_time, t, q_translated) |> ignore
   defun(q_d_elapsed_run_time, args => { check_arity_range("$elapsed_run_time", args, 0, 0); d_elapsed_run_time() })
+  putprop(q_d_elapsed_run_time, t, q_translated) |> ignore
   defun(q_d_garbage_collect, args => { check_arity_range("$garbage_collect", args, 0, 0); d_garbage_collect() })
+  putprop(q_d_garbage_collect, t, q_translated) |> ignore
   defun(q_load_and_tell, args => load_and_tell(arg(args, 0)))
   defun(q_errset_namestring, args => errset_namestring(arg(args, 0)))
   defun(q_get_dirs, args => get_dirs(arg(args, 0)))
   defun(q_unix_like_basename, args => unix_like_basename(arg(args, 0)))
   defun(q_unix_like_dirname, args => unix_like_dirname(arg(args, 0)))
   defun(q_d_filename_merge, args => { check_arity_range("$filename_merge", args, 0, -1); d_filename_merge(rest_args(args, 0)) })
+  putprop(q_d_filename_merge, t, q_translated) |> ignore
   defun(q_macsyma_namestring_sub, args => macsyma_namestring_sub(arg(args, 0)))
   defun(q_get_stream_truename, args => get_stream_truename(arg(args, 0)))
   defun(q_d_batchload, args => { check_arity_range("$batchload", args, 1, 1); d_batchload(arg(args, 0)) })
+  putprop(q_d_batchload, t, q_translated) |> ignore
   defun(q_batchload_stream, args => batchload_stream(arg(args, 0), autoloading_p?=key_arg(args, 1, ":autoloading-p"), truename?=key_arg(args, 1, ":truename")))
   defun(q_d_file_search1, args => { check_arity_range("$file_search1", args, 2, 2); d_file_search1(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_file_search1, t, q_translated) |> ignore
   defun(q_d_load, args => { check_arity_range("$load", args, 1, 1); d_load(arg(args, 0)) })
+  putprop(q_d_load, t, q_translated) |> ignore
   defun(q_d_file_type, args => { check_arity_range("$file_type", args, 1, 1); d_file_type(arg(args, 0)) })
+  putprop(q_d_file_type, t, q_translated) |> ignore
   defun(q_d_pathname_directory, args => { check_arity_range("$pathname_directory", args, 1, 1); d_pathname_directory(arg(args, 0)) })
+  putprop(q_d_pathname_directory, t, q_translated) |> ignore
   defun(q_d_pathname_name, args => { check_arity_range("$pathname_name", args, 1, 1); d_pathname_name(arg(args, 0)) })
+  putprop(q_d_pathname_name, t, q_translated) |> ignore
   defun(q_d_pathname_type, args => { check_arity_range("$pathname_type", args, 1, 1); d_pathname_type(arg(args, 0)) })
+  putprop(q_d_pathname_type, t, q_translated) |> ignore
   defun(q_wxmx_file_p, args => wxmx_file_p(arg(args, 0)))
   defun(q_generic_autoload, args => generic_autoload(arg(args, 0)))
   defun(q_d_directory, args => { check_arity_range("$directory", args, 1, 1); d_directory(arg(args, 0)) })
+  putprop(q_d_directory, t, q_translated) |> ignore
   defun(q_d_setup_autoload, args => { check_arity_range("$setup_autoload", args, 1, -1); d_setup_autoload(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_setup_autoload, t, q_translated) |> ignore
   defun(q_d_batch, args => { check_arity_range("$batch", args, 1, 2); d_batch(arg(args, 0), demo?=args.get(1)) })
+  putprop(q_d_batch, t, q_translated) |> ignore
   defun(q_d_demo, args => { check_arity_range("$demo", args, 1, 1); d_demo(arg(args, 0)) })
+  putprop(q_d_demo, t, q_translated) |> ignore
   defun(q_batch_stream, args => batch_stream(arg(args, 0), arg(args, 1), truename?=key_arg(args, 2, ":truename")))
   defun(q_d_float_approx_equal, args => { check_arity_range("$float_approx_equal", args, 2, 2); d_float_approx_equal(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_float_approx_equal, t, q_translated) |> ignore
   defun(q_d_bfloat_approx_equal, args => { check_arity_range("$bfloat_approx_equal", args, 2, 2); d_bfloat_approx_equal(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_bfloat_approx_equal, t, q_translated) |> ignore
   defun(q_approx_alike, args => approx_alike(arg(args, 0), arg(args, 1)))
   defun(q_approx_alike_list, args => approx_alike_list(arg(args, 0), arg(args, 1)))
   defun(q_simple_equal_p, args => simple_equal_p(arg(args, 0), arg(args, 1)))
@@ -1488,6 +1695,7 @@ fn register_generated_functions() -> Unit {
   defun(q_list_variable_bindings, args => list_variable_bindings(arg(args, 0), str?=args.get(1)))
   defun(q_load_relative_templates, args => load_relative_templates(arg(args, 0)))
   defun(q_d_file_search, args => { check_arity_range("$file_search", args, 1, 2); d_file_search(arg(args, 0), paths?=args.get(1)) })
+  putprop(q_d_file_search, t, q_translated) |> ignore
   defun(q_file_exists_p, args => file_exists_p(arg(args, 0)))
   defun(q_pathname_component_present_p, args => pathname_component_present_p(arg(args, 0)))
   defun(q_apparently_a_directory_p, args => apparently_a_directory_p(arg(args, 0)))
@@ -1510,6 +1718,7 @@ fn register_generated_functions() -> Unit {
   defun(q_directory_cached, args => directory_cached(arg(args, 0), arg(args, 1), filterp?=key_arg(args, 2, ":filterp")))
   defun(q_new_file_search, args => new_file_search(arg(args, 0), arg(args, 1)))
   defun(q_d_printfile, args => { check_arity_range("$printfile", args, 1, 1); d_printfile(arg(args, 0)) })
+  putprop(q_d_printfile, t, q_translated) |> ignore
   defun(q_disable_some_lisp_warnings, args => disable_some_lisp_warnings())
   defun(q_enable_some_lisp_warnings, args => enable_some_lisp_warnings())
   defun(q_simple_remove_dollarsign, args => simple_remove_dollarsign(arg(args, 0)))
@@ -1517,10 +1726,15 @@ fn register_generated_functions() -> Unit {
   defun(q_print_testsuite_summary, args => print_testsuite_summary(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_validate_given_tests, args => validate_given_tests(arg(args, 0), arg(args, 1)))
   defun(q_d_run_testsuite, args => { check_arity_range("$run_testsuite", args, 0, -1); d_run_testsuite(tests?=key_arg(args, 0, ":tests"), display_all?=key_arg(args, 0, ":display_all"), display_known_bugs?=key_arg(args, 0, ":display_known_bugs"), share_tests?=key_arg(args, 0, ":share_tests"), time?=key_arg(args, 0, ":time"), debug_?=key_arg(args, 0, ":debug"), answers_from_file?=key_arg(args, 0, ":answers_from_file")).0 })
+  putprop(q_d_run_testsuite, t, q_translated) |> ignore
   defun(q_d_get_tex_environment_default, args => { check_arity_range("$get_tex_environment_default", args, 0, 0); d_get_tex_environment_default() })
+  putprop(q_d_get_tex_environment_default, t, q_translated) |> ignore
   defun(q_d_get_tex_environment, args => { check_arity_range("$get_tex_environment", args, 1, 1); d_get_tex_environment(arg(args, 0)) })
+  putprop(q_d_get_tex_environment, t, q_translated) |> ignore
   defun(q_d_set_tex_environment_default, args => { check_arity_range("$set_tex_environment_default", args, 2, 2); d_set_tex_environment_default(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_set_tex_environment_default, t, q_translated) |> ignore
   defun(q_d_set_tex_environment, args => { check_arity_range("$set_tex_environment", args, 3, 3); d_set_tex_environment(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_set_tex_environment, t, q_translated) |> ignore
   defun(q_get_tex_environment, args => get_tex_environment(arg(args, 0)))
   register_mspec(q_d_tex, d_tex)
   defun(q_quote_chars, args => quote_chars(arg(args, 0), arg(args, 1)))
@@ -1590,11 +1804,15 @@ fn register_generated_functions() -> Unit {
   defun(q_tex_mlabel, args => tex_mlabel(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_tex_spaceout, args => tex_spaceout(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_texinit, args => { check_arity_range("$texinit", args, 1, 1); d_texinit(arg(args, 0)) })
+  putprop(q_d_texinit, t, q_translated) |> ignore
   defun(q_d_texend, args => { check_arity_range("$texend", args, 1, 1); d_texend(arg(args, 0)) })
+  putprop(q_d_texend, t, q_translated) |> ignore
   defun(q_make_maxima_tex_glue, args => make_maxima_tex_glue(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_tex1, args => { check_arity_range("$tex1", args, 1, 1); d_tex1(arg(args, 0)) })
+  putprop(q_d_tex1, t, q_translated) |> ignore
   defun(q_tex_space_after_control_word, args => tex_space_after_control_word(arg(args, 0)))
   defun(q_d_texput, args => { check_arity_range("$texput", args, 2, 3); d_texput(arg(args, 0), arg(args, 1), tx?=args.get(2)) })
+  putprop(q_d_texput, t, q_translated) |> ignore
   defun(q_infolstchk, args => infolstchk(arg(args, 0)))
   register_mspec(q_d_save, d_save)
   defun(q_dsksetup, args => dsksetup(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -1750,13 +1968,16 @@ fn register_generated_functions() -> Unit {
   defun(q_ufact_strip_zeroes, args => ufact_strip_zeroes(arg(args, 0)))
   defun(q_cpres1, args => cpres1(arg(args, 0), arg(args, 1)))
   defun(q_d_poly_discriminant, args => { check_arity_range("$poly_discriminant", args, 2, 2); d_poly_discriminant(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_discriminant, t, q_translated) |> ignore
   defun(q_d_resultant, args => { check_arity_range("$resultant", args, 3, 3); d_resultant(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_resultant, t, q_translated) |> ignore
   defun(q_result1, args => result1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_resultant, args => resultant(arg(args, 0), arg(args, 1)))
   defun(q_presign, args => presign(arg(args, 0), arg(args, 1)))
   defun(q_subresult, args => subresult(arg(args, 0), arg(args, 1)))
   defun(q_redresult, args => redresult(arg(args, 0), arg(args, 1)))
   defun(q_d_bezout, args => { check_arity_range("$bezout", args, 3, 3); d_bezout(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_bezout, t, q_translated) |> ignore
   defun(q_vmake, args => vmake(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_bezout, args => bezout(arg(args, 0), arg(args, 1)))
   defun(q_rot_star, args => rot_star(arg(args, 0)))
@@ -1799,14 +2020,18 @@ fn register_generated_functions() -> Unit {
   defun(q_algtrace_star, args => algtrace_star(arg(args, 0), arg(args, 1)))
   defun(q_algtrace, args => algtrace(arg(args, 0), arg(args, 1)))
   defun(q_d_algtrace, args => { check_arity_range("$algtrace", args, 3, 3); d_algtrace(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_algtrace, t, q_translated) |> ignore
   defun(q_good_form, args => good_form(arg(args, 0)))
   defun(q_bad_form, args => bad_form(arg(args, 0)))
   defun(q_d_algfac, args => { check_arity_range("$algfac", args, 1, 3); d_algfac(arg(args, 0), a2?=args.get(1), a3?=args.get(2)) })
+  putprop(q_d_algfac, t, q_translated) |> ignore
   defun(q_d_pfactoralg, args => { check_arity_range("$pfactoralg", args, 3, 3); d_pfactoralg(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_pfactoralg, t, q_translated) |> ignore
   defun(q_nalgfac, args => nalgfac(arg(args, 0), arg(args, 1)))
   defun(q_pfactoralg1, args => pfactoralg1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_pshift, args => pshift(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_splitfield, args => { check_arity_range("$splitfield", args, 2, 2); d_splitfield(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_splitfield, t, q_translated) |> ignore
   defun(q_psplit_field, args => psplit_field(arg(args, 0)))
   defun(q_plsolve, args => plsolve(arg(args, 0)))
   defun(q_psplit_field1, args => psplit_field1(arg(args, 0)))
@@ -1815,14 +2040,18 @@ fn register_generated_functions() -> Unit {
   defun(q_ratgsubst, args => ratgsubst(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_algnorm, args => algnorm(arg(args, 0), arg(args, 1)))
   defun(q_d_algnorm, args => { check_arity_range("$algnorm", args, 3, 3); d_algnorm(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_algnorm, t, q_translated) |> ignore
   defun(q_sqfrnorm, args => sqfrnorm(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_primelmt, args => primelmt(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_primelmt, args => { check_arity_range("$primelmt", args, 3, 3); d_primelmt(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_primelmt, t, q_translated) |> ignore
   defun(q_d_bdiscr, args => { check_arity_range("$bdiscr", args, 0, -1); d_bdiscr(rest_args(args, 0)) })
+  putprop(q_d_bdiscr, t, q_translated) |> ignore
   defun(q_bdiscr, args => bdiscr(arg(args, 0), arg(args, 1)))
   defun(q_number_of_digits, args => number_of_digits(arg(args, 0)))
   defun(q_get_factor_list, args => get_factor_list(arg(args, 0)))
   defun(q_d_ifactors, args => { check_arity_range("$ifactors", args, 1, 1); d_ifactors(arg(args, 0)) })
+  putprop(q_d_ifactors, t, q_translated) |> ignore
   defun(q_cfactor, args => cfactor(arg(args, 0)))
   defun(q_get_small_factors, args => get_small_factors(arg(args, 0)).0)
   defun(q_get_large_factors, args => get_large_factors(arg(args, 0)))
@@ -1835,6 +2064,7 @@ fn register_generated_functions() -> Unit {
   defun(q_init_prime_diffs, args => init_prime_diffs(arg(args, 0)))
   defun(q_inv_mod, args => inv_mod(arg(args, 0), arg(args, 1)))
   defun(q_d_inv_mod, args => { check_arity_range("$inv_mod", args, 2, 2); d_inv_mod(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_inv_mod, t, q_translated) |> ignore
   defun(q_ecm_product, args => ecm_product(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_ecm_square, args => ecm_square(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_ecm_power, args => ecm_power(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -1842,22 +2072,27 @@ fn register_generated_functions() -> Unit {
   defun(q_get_one_factor_ecm, args => get_one_factor_ecm(arg(args, 0)))
   defun(q_convert_list, args => convert_list(arg(args, 0)))
   defun(q_d_primep, args => { check_arity_range("$primep", args, 1, 1); d_primep(arg(args, 0)) })
+  putprop(q_d_primep, t, q_translated) |> ignore
   defun(q_primep, args => primep(arg(args, 0)))
   defun(q_primep_small, args => primep_small(arg(args, 0), arg(args, 1)))
   defun(q_primep_prob, args => primep_prob(arg(args, 0)))
   defun(q_miller_rabin_decomposition, args => miller_rabin_decomposition(arg(args, 0)).0)
   defun(q_miller_rabin_kernel, args => miller_rabin_kernel(arg(args, 0), arg(args, 1), arg(args, 2), x?=args.get(3)))
   defun(q_d_power_mod, args => { check_arity_range("$power_mod", args, 3, 3); d_power_mod(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_power_mod, t, q_translated) |> ignore
   defun(q_power_mod, args => power_mod(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_power_mod_tab, args => power_mod_tab(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_primep_lucas, args => primep_lucas(arg(args, 0)))
   defun(q_lucas_sequence, args => lucas_sequence(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_next_prime, args => { check_arity_range("$next_prime", args, 1, 1); d_next_prime(arg(args, 0)) })
+  putprop(q_d_next_prime, t, q_translated) |> ignore
   defun(q_d_prev_prime, args => { check_arity_range("$prev_prime", args, 1, 1); d_prev_prime(arg(args, 0)) })
+  putprop(q_d_prev_prime, t, q_translated) |> ignore
   defun(q_next_prime_det, args => next_prime_det(arg(args, 0), arg(args, 1)))
   defun(q_next_prime_prob, args => next_prime_prob(arg(args, 0), arg(args, 1)))
   defun(q_next_prime, args => next_prime(arg(args, 0), arg(args, 1)))
   defun(q_d_primes, args => { check_arity_range("$primes", args, 2, 2); d_primes(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_primes, t, q_translated) |> ignore
   defun(q_cquotient, args => cquotient(arg(args, 0), arg(args, 1)))
   defun(q_alg, args => alg(arg(args, 0)))
   defun(q_pacoefp, args => pacoefp(arg(args, 0)))
@@ -1961,9 +2196,12 @@ fn register_generated_functions() -> Unit {
   defun(q_heurtrial, args => heurtrial(arg(args, 0), arg(args, 1)))
   defun(q_pfactorquad, args => pfactorquad(arg(args, 0)))
   defun(q_d_isqrt, args => { check_arity_range("$isqrt", args, 1, 1); d_isqrt(arg(args, 0)) })
+  putprop(q_d_isqrt, t, q_translated) |> ignore
   defun(q_d_inrt, args => { check_arity_range("$inrt", args, 2, 2); d_inrt(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_inrt, t, q_translated) |> ignore
   defun(q_iroot, args => iroot(arg(args, 0), arg(args, 1)))
   defun(q_d_nthroot, args => { check_arity_range("$nthroot", args, 2, 2); d_nthroot(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_nthroot, t, q_translated) |> ignore
   defun(q_pnthrootp, args => pnthrootp(arg(args, 0), arg(args, 1)))
   defun(q_pnthroot, args => pnthroot(arg(args, 0), arg(args, 1)))
   defun(q_cnthroot, args => cnthroot(arg(args, 0), arg(args, 1)))
@@ -2036,41 +2274,61 @@ fn register_generated_functions() -> Unit {
   defun(q_lagrange33, args => lagrange33(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_mrateval, args => mrateval(arg(args, 0)))
   defun(q_d_ratnumer, args => { check_arity_range("$ratnumer", args, 1, 1); d_ratnumer(arg(args, 0)) })
+  putprop(q_d_ratnumer, t, q_translated) |> ignore
   defun(q_d_ratdenom, args => { check_arity_range("$ratdenom", args, 1, 1); d_ratdenom(arg(args, 0)) })
+  putprop(q_d_ratdenom, t, q_translated) |> ignore
   defun(q_taychk2rat, args => taychk2rat(arg(args, 0)))
   defun(q_tellratdisp, args => tellratdisp(arg(args, 0)))
   defun(q_trdisp1, args => trdisp1(arg(args, 0), arg(args, 1)))
   defun(q_d_untellrat, args => { check_arity_range("$untellrat", args, 0, -1); d_untellrat(rest_args(args, 0)) })
+  putprop(q_d_untellrat, t, q_translated) |> ignore
   defun(q_d_tellrat, args => { check_arity_range("$tellrat", args, 0, -1); d_tellrat(rest_args(args, 0)) })
+  putprop(q_d_tellrat, t, q_translated) |> ignore
   defun(q_tellrat1, args => tellrat1(arg(args, 0)))
   defun(q_d_printvarlist, args => { check_arity_range("$printvarlist", args, 0, 0); d_printvarlist() })
+  putprop(q_d_printvarlist, t, q_translated) |> ignore
   defun(q_d_showratvars, args => { check_arity_range("$showratvars", args, 1, 1); d_showratvars(arg(args, 0)) })
+  putprop(q_d_showratvars, t, q_translated) |> ignore
   defun(q_d_ratvars, args => { check_arity_range("$ratvars", args, 0, -1); d_ratvars(rest_args(args, 0)) })
+  putprop(q_d_ratvars, t, q_translated) |> ignore
   defun(q_mapfr1, args => mapfr1(arg(args, 0), arg(args, 1)))
   defun(q_d_fullratsimp, args => { check_arity_range("$fullratsimp", args, 1, -1); d_fullratsimp(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_fullratsimp, t, q_translated) |> ignore
   defun(q_fullratsimp, args => fullratsimp(arg(args, 0)))
   defun(q_d_totaldisrep, args => { check_arity_range("$totaldisrep", args, 1, 1); d_totaldisrep(arg(args, 0)) })
+  putprop(q_d_totaldisrep, t, q_translated) |> ignore
   defun(q_joinvarlist, args => joinvarlist(arg(args, 0)))
   defun(q_d_rat, args => { check_arity_range("$rat", args, 1, -1); d_rat(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_rat, t, q_translated) |> ignore
   defun(q_rat0, args => rat0(arg(args, 0)))
   defun(q_d_ratsimp, args => { check_arity_range("$ratsimp", args, 1, -1); d_ratsimp(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_ratsimp, t, q_translated) |> ignore
   defun(q_d_sqfr, args => { check_arity_range("$sqfr", args, 1, 1); d_sqfr(arg(args, 0)) })
+  putprop(q_d_sqfr, t, q_translated) |> ignore
   defun(q_whichfn, args => whichfn(arg(args, 0)))
   defun(q_factoralg, args => factoralg(arg(args, 0)))
   defun(q_albk, args => albk(arg(args, 0)))
   defun(q_d_gfactor, args => { check_arity_range("$gfactor", args, 1, 1); d_gfactor(arg(args, 0)) })
+  putprop(q_d_gfactor, t, q_translated) |> ignore
   defun(q_d_factor, args => { check_arity_range("$factor", args, 1, 2); d_factor(arg(args, 0), mp?=args.get(1)) })
+  putprop(q_d_factor, t, q_translated) |> ignore
   defun(q_factor, args => factor(arg(args, 0), mp?=args.get(1)))
   defun(q_factornumber, args => factornumber(arg(args, 0)))
   defun(q_nratfact, args => nratfact(arg(args, 0)))
   defun(q_nretfactor1, args => nretfactor1(arg(args, 0)))
   defun(q_d_polymod, args => { check_arity_range("$polymod", args, 1, 2); d_polymod(arg(args, 0), m?=args.get(1)) })
+  putprop(q_d_polymod, t, q_translated) |> ignore
   defun(q_mod1, args => mod1(arg(args, 0)))
   defun(q_d_divide, args => { check_arity_range("$divide", args, 2, -1); d_divide(arg(args, 0), arg(args, 1), rest_args(args, 2)) })
+  putprop(q_d_divide, t, q_translated) |> ignore
   defun(q_d_quotient, args => { check_arity_range("$quotient", args, 0, -1); d_quotient(rest_args(args, 0)) })
+  putprop(q_d_quotient, t, q_translated) |> ignore
   defun(q_d_remainder, args => { check_arity_range("$remainder", args, 0, -1); d_remainder(rest_args(args, 0)) })
+  putprop(q_d_remainder, t, q_translated) |> ignore
   defun(q_d_gcd, args => { check_arity_range("$gcd", args, 2, -1); d_gcd(arg(args, 0), arg(args, 1), rest_args(args, 2)) })
+  putprop(q_d_gcd, t, q_translated) |> ignore
   defun(q_d_content, args => { check_arity_range("$content", args, 1, -1); d_content(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_content, t, q_translated) |> ignore
   defun(q_pget, args => pget(arg(args, 0)))
   defun(q_m_dolexp_q, args => m_dolexp_q(arg(args, 0)))
   defun(q_algp, args => algp(arg(args, 0)))
@@ -2112,9 +2370,11 @@ fn register_generated_functions() -> Unit {
   defun(q_pdisrep_starchk, args => pdisrep_starchk(arg(args, 0)))
   defun(q_pdisrep2, args => pdisrep2(arg(args, 0), arg(args, 1)))
   defun(q_d_ratexpand, args => { check_arity_range("$ratexpand", args, 1, 1); d_ratexpand(arg(args, 0)) })
+  putprop(q_d_ratexpand, t, q_translated) |> ignore
   defun(q_pdisrep_starexpand, args => pdisrep_starexpand(arg(args, 0), arg(args, 1)))
   defun(q_pdisrep2expand, args => pdisrep2expand(arg(args, 0), arg(args, 1)))
   defun(q_d_ratdisrep, args => { check_arity_range("$ratdisrep", args, 1, 1); d_ratdisrep(arg(args, 0)) })
+  putprop(q_d_ratdisrep, t, q_translated) |> ignore
   defun(q_ratdisrepd, args => ratdisrepd(arg(args, 0)))
   defun(q_cdisrep, args => cdisrep(arg(args, 0)))
   defun(q_fancydis, args => fancydis(arg(args, 0), arg(args, 1)))
@@ -2130,6 +2390,7 @@ fn register_generated_functions() -> Unit {
   defun(q_rdis_star, args => rdis_star(arg(args, 0)))
   defun(q_rform, args => rform(arg(args, 0)))
   defun(q_d_ratcoef, args => { check_arity_range("$ratcoef", args, 2, 3); d_ratcoef(arg(args, 0), arg(args, 1), n?=args.get(2)) })
+  putprop(q_d_ratcoef, t, q_translated) |> ignore
   defun(q_ratcoeff, args => ratcoeff(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_minimize_varlist, args => minimize_varlist(arg(args, 0)))
   defun(q_minvarlist_mrat, args => minvarlist_mrat(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -2137,6 +2398,7 @@ fn register_generated_functions() -> Unit {
   defun(q_ratcoef1, args => ratcoef1(arg(args, 0), arg(args, 1)))
   defun(q_constcoef, args => constcoef(arg(args, 0)))
   defun(q_d_ratsubst, args => { check_arity_range("$ratsubst", args, 3, 3); d_ratsubst(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_ratsubst, t, q_translated) |> ignore
   defun(q_xptimes, args => xptimes(arg(args, 0), arg(args, 1)))
   defun(q_allsubst00, args => allsubst00(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_everysubst00, args => everysubst00(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -2153,14 +2415,18 @@ fn register_generated_functions() -> Unit {
   defun(q_prodcoef1, args => prodcoef1(arg(args, 0), arg(args, 1)))
   defun(q_pureprod, args => pureprod(arg(args, 0)))
   defun(q_d_bothcoef, args => { check_arity_range("$bothcoef", args, 2, 2); d_bothcoef(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_bothcoef, t, q_translated) |> ignore
   defun(q_bothprodcoef, args => bothprodcoef(arg(args, 0), arg(args, 1)))
   defun(q_argsfreeof, args => argsfreeof(arg(args, 0), arg(args, 1)))
   defun(q_d_lfreeof, args => { check_arity_range("$lfreeof", args, 2, 2); d_lfreeof(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_lfreeof, t, q_translated) |> ignore
   defun(q_d_freeof, args => { check_arity_range("$freeof", args, 0, -1); d_freeof(rest_args(args, 0)) })
+  putprop(q_d_freeof, t, q_translated) |> ignore
   defun(q_freeof, args => freeof(arg(args, 0), arg(args, 1)))
   defun(q_freeofl, args => freeofl(arg(args, 0), arg(args, 1)))
   defun(q_hand_side, args => hand_side(arg(args, 0), arg(args, 1)))
   defun(q_d_radcan, args => { check_arity_range("$radcan", args, 1, 1); d_radcan(arg(args, 0)) })
+  putprop(q_d_radcan, t, q_translated) |> ignore
   defun(q_radcan1, args => radcan1(arg(args, 0), arg(args, 1)))
   defun(q_spc0, args => spc0(arg(args, 0)))
   defun(q_allatoms, args => allatoms(arg(args, 0)))
@@ -2214,11 +2480,13 @@ fn register_generated_functions() -> Unit {
   defun(q_pinterpolate5, args => pinterpolate5(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_pinterpolate6, args => pinterpolate6(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_fasttimes, args => { check_arity_range("$fasttimes", args, 2, 2); d_fasttimes(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_fasttimes, t, q_translated) |> ignore
   defun(q_fptimes, args => fptimes(arg(args, 0), arg(args, 1)))
   defun(q_fptimes1, args => fptimes1(arg(args, 0), arg(args, 1)))
   defun(q_halfsplit, args => halfsplit(arg(args, 0), arg(args, 1)))
   defun(q_lsft, args => lsft(arg(args, 0), arg(args, 1)))
   defun(q_d_ratweight, args => { check_arity_range("$ratweight", args, 0, -1); d_ratweight(rest_args(args, 0)) })
+  putprop(q_d_ratweight, t, q_translated) |> ignore
   defun(q_pweight, args => pweight(arg(args, 0)))
   defun(q_wtptimes, args => wtptimes(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_wtptimes1, args => wtptimes1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -2226,19 +2494,25 @@ fn register_generated_functions() -> Unit {
   defun(q_wtpctimes1, args => wtpctimes1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_wtpexpt, args => wtpexpt(arg(args, 0), arg(args, 1)))
   defun(q_d_horner, args => { check_arity_range("$horner", args, 1, -1); d_horner(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_horner, t, q_translated) |> ignore
   defun(q_hornrep, args => hornrep(arg(args, 0)))
   defun(q_horn_plus, args => horn_plus(arg(args, 0), arg(args, 1)))
   defun(q_d_partfrac, args => { check_arity_range("$partfrac", args, 2, 2); d_partfrac(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_partfrac, t, q_translated) |> ignore
   defun(q_partfraca, args => partfraca(arg(args, 0)))
   defun(q_coprime_factors, args => coprime_factors(arg(args, 0), arg(args, 1)))
   defun(q_partfrac, args => partfrac(arg(args, 0), arg(args, 1)))
   defun(q_d_ratdiff, args => { check_arity_range("$ratdiff", args, 2, 2); d_ratdiff(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ratdiff, t, q_translated) |> ignore
   defun(q_d_pfet, args => { check_arity_range("$pfet", args, 1, 1); d_pfet(arg(args, 0)) })
+  putprop(q_d_pfet, t, q_translated) |> ignore
   defun(q_interval_error, args => interval_error(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_mfuncall, args => mfuncall(arg(args, 0), rest_args(args, 1)))
   defun(q_marrayref, args => marrayref(arg(args, 0), arg(args, 1), rest_args(args, 2)))
   defun(q_d_arrayapply, args => { check_arity_range("$arrayapply", args, 2, 2); d_arrayapply(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_arrayapply, t, q_translated) |> ignore
   defun(q_d_arraysetapply, args => { check_arity_range("$arraysetapply", args, 3, 3); d_arraysetapply(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_arraysetapply, t, q_translated) |> ignore
   defun(q_marrayset, args => marrayset(arg(args, 0), arg(args, 1), rest_args(args, 2)))
   defun(q_list_ref, args => list_ref(arg(args, 0), arg(args, 1), set_flag?=args.get(2), val?=args.get(3)))
   defun(q_display_for_tr, args => display_for_tr(arg(args, 0), arg(args, 1), rest_args(args, 2)))
@@ -2262,6 +2536,7 @@ fn register_generated_functions() -> Unit {
   defun(q_n_starmminus, args => n_starmminus(arg(args, 0)))
   defun(q_retlist_tr, args => retlist_tr(rest_args(args, 0)))
   defun(q_d_tr_warnings_get, args => { check_arity_range("$tr_warnings_get", args, 0, 0); d_tr_warnings_get() })
+  putprop(q_d_tr_warnings_get, t, q_translated) |> ignore
   defun(q_mfunction_call_warn, args => mfunction_call_warn(arg(args, 0), arg(args, 1)))
   defun(q_mapcar_eval, args => mapcar_eval(arg(args, 0)))
   defun(q_mfunction_call_aux, args => mfunction_call_aux(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -2314,8 +2589,11 @@ fn register_generated_functions() -> Unit {
   defun(q_risplit_bessel_j_or_i, args => risplit_bessel_j_or_i(arg(args, 0)))
   defun(q_risplit_bessel_k_or_y, args => risplit_bessel_k_or_y(arg(args, 0)))
   defun(q_d_scaled_bessel_i0, args => { check_arity_range("$scaled_bessel_i0", args, 1, 1); d_scaled_bessel_i0(arg(args, 0)) })
+  putprop(q_d_scaled_bessel_i0, t, q_translated) |> ignore
   defun(q_d_scaled_bessel_i1, args => { check_arity_range("$scaled_bessel_i1", args, 1, 1); d_scaled_bessel_i1(arg(args, 0)) })
+  putprop(q_d_scaled_bessel_i1, t, q_translated) |> ignore
   defun(q_d_scaled_bessel_i, args => { check_arity_range("$scaled_bessel_i", args, 2, 2); d_scaled_bessel_i(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_scaled_bessel_i, t, q_translated) |> ignore
   register_simplifier(q_simp__pcthankel_1, args => simp__pcthankel_1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_hankel_1, args => hankel_1(arg(args, 0), arg(args, 1)))
   register_simplifier(q_simp__pcthankel_2, args => simp__pcthankel_2(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -2419,8 +2697,10 @@ fn register_generated_functions() -> Unit {
   register_simplifier(q_simp__pctinverse_jacobi_dc, args => simp__pctinverse_jacobi_dc(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_make_elliptic_f, args => make_elliptic_f(arg(args, 0)))
   defun(q_d_make_elliptic_f, args => { check_arity_range("$make_elliptic_f", args, 1, 1); d_make_elliptic_f(arg(args, 0)) })
+  putprop(q_d_make_elliptic_f, t, q_translated) |> ignore
   defun(q_make_elliptic_e, args => make_elliptic_e(arg(args, 0)))
   defun(q_d_make_elliptic_e, args => { check_arity_range("$make_elliptic_e", args, 1, 1); d_make_elliptic_e(arg(args, 0)) })
+  putprop(q_d_make_elliptic_e, t, q_translated) |> ignore
   defun(q_elliptic_eu, args => elliptic_eu(arg(args, 0), arg(args, 1)))
   register_simplifier(q_simp__pctelliptic_eu, args => simp__pctelliptic_eu(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_risplit_sn_cn_dn, args => risplit_sn_cn_dn(arg(args, 0)))
@@ -2430,7 +2710,9 @@ fn register_generated_functions() -> Unit {
   defun(q_bf_interpolate_check, args => bf_interpolate_check(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
   defun(q_p_find_root, args => p_find_root(arg(args, 0), arg(args, 1), arg(args, 2)).0)
   defun(q_d_find_root, args => { check_arity_range("$find_root", args, 1, -1); d_find_root(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_find_root, t, q_translated) |> ignore
   defun(q_d_bf_find_root, args => { check_arity_range("$bf_find_root", args, 1, -1); d_bf_find_root(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_bf_find_root, t, q_translated) |> ignore
   defun(q_chrct_star, args => chrct_star())
   defun(q_mtyotbsp, args => mtyotbsp(arg(args, 0), arg(args, 1)))
   defun(q_strmdo, args => strmdo(arg(args, 0)))
@@ -2612,14 +2894,17 @@ fn register_generated_functions() -> Unit {
   defun(q_ezgcd, args => ezgcd(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_listovarsl, args => listovarsl(arg(args, 0)))
   defun(q_d_ezgcd, args => { check_arity_range("$ezgcd", args, 0, -1); d_ezgcd(rest_args(args, 0)) })
+  putprop(q_d_ezgcd, t, q_translated) |> ignore
   defun(q_insrt, args => insrt(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_nonsqfrcase, args => nonsqfrcase(arg(args, 0), arg(args, 1)))
   defun(q_eztestdivide, args => eztestdivide(arg(args, 0), arg(args, 1)))
   defun(q_noterms, args => noterms(arg(args, 0)))
   defun(q_fastcont, args => fastcont(arg(args, 0)))
   defun(q_d_unknown, args => { check_arity_range("$unknown", args, 1, 1); d_unknown(arg(args, 0)) })
+  putprop(q_d_unknown, t, q_translated) |> ignore
   defun(q_unknown, args => unknown(arg(args, 0)))
   defun(q_d_listofvars, args => { check_arity_range("$listofvars", args, 1, 1); d_listofvars(arg(args, 0)) })
+  putprop(q_d_listofvars, t, q_translated) |> ignore
   defun(q_atomvars, args => atomvars(arg(args, 0)))
   defun(q_myadd2lnc, args => myadd2lnc(arg(args, 0), arg(args, 1)))
   defun(q_maybe_reset, args => maybe_reset(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -2719,15 +3004,21 @@ fn register_generated_functions() -> Unit {
   defun(q_lmul, args => lmul(arg(args, 0)))
   defun(q_conssize, args => conssize(arg(args, 0)))
   defun(q_d_activate, args => { check_arity_range("$activate", args, 0, -1); d_activate(rest_args(args, 0)) })
+  putprop(q_d_activate, t, q_translated) |> ignore
   defun(q_d_deactivate, args => { check_arity_range("$deactivate", args, 0, -1); d_deactivate(rest_args(args, 0)) })
+  putprop(q_d_deactivate, t, q_translated) |> ignore
   defun(q_d_facts, args => { check_arity_range("$facts", args, 0, 1); d_facts(ctxt?=args.get(0)) })
+  putprop(q_d_facts, t, q_translated) |> ignore
   defun(q_facts1, args => facts1(arg(args, 0)))
   defun(q_facts2, args => facts2(arg(args, 0)))
   defun(q_intext, args => intext(arg(args, 0), arg(args, 1)))
   defun(q_asscontext, args => asscontext(arg(args, 0), arg(args, 1)))
   defun(q_d_newcontext, args => { check_arity_range("$newcontext", args, 0, -1); d_newcontext(rest_args(args, 0)) })
+  putprop(q_d_newcontext, t, q_translated) |> ignore
   defun(q_d_supcontext, args => { check_arity_range("$supcontext", args, 0, -1); d_supcontext(rest_args(args, 0)) })
+  putprop(q_d_supcontext, t, q_translated) |> ignore
   defun(q_d_killcontext, args => { check_arity_range("$killcontext", args, 0, -1); d_killcontext(rest_args(args, 0)) })
+  putprop(q_d_killcontext, t, q_translated) |> ignore
   defun(q_killallcontexts, args => killallcontexts())
   defun(q_killcontext, args => killcontext(arg(args, 0)))
   defun(q_nc_err, args => nc_err(arg(args, 0), arg(args, 1)))
@@ -2765,13 +3056,17 @@ fn register_generated_functions() -> Unit {
   register_mspec(q_mor, mor)
   register_mspec(q_mnot, mnot)
   defun(q_d_askequal, args => { check_arity_range("$askequal", args, 2, 2); d_askequal(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_askequal, t, q_translated) |> ignore
   defun(q_d_asksign, args => { check_arity_range("$asksign", args, 1, 1); d_asksign(arg(args, 0)) })
+  putprop(q_d_asksign, t, q_translated) |> ignore
   defun(q_asksign_p_or_n, args => asksign_p_or_n(arg(args, 0)))
   defun(q_asksign01, args => asksign01(arg(args, 0)))
   defun(q_p_i_outside_abs_p, args => p_i_outside_abs_p(arg(args, 0)))
   defun(q_csign, args => csign(arg(args, 0)))
   defun(q_d_csign, args => { check_arity_range("$csign", args, 1, 1); d_csign(arg(args, 0)) })
+  putprop(q_d_csign, t, q_translated) |> ignore
   defun(q_d_sign, args => { check_arity_range("$sign", args, 1, 1); d_sign(arg(args, 0)) })
+  putprop(q_d_sign, t, q_translated) |> ignore
   defun(q_sign01, args => sign01(arg(args, 0)))
   defun(q_sign_prep, args => sign_prep(arg(args, 0)))
   defun(q_has_int_symbols, args => has_int_symbols(arg(args, 0)))
@@ -2858,6 +3153,7 @@ fn register_generated_functions() -> Unit {
   defun(q_op_equalp, args => op_equalp(arg(args, 0), rest_args(args, 1)))
   defun(q_mrelationp, args => mrelationp(arg(args, 0)))
   defun(q_d_featurep, args => { check_arity_range("$featurep", args, 2, 2); d_featurep(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_featurep, t, q_translated) |> ignore
   defun(q_maxima_integerp, args => maxima_integerp(arg(args, 0)))
   defun(q_check_integer_facts, args => check_integer_facts(arg(args, 0), mode?=args.get(1)))
   defun(q_nonintegerp, args => nonintegerp(arg(args, 0)))
@@ -2919,6 +3215,7 @@ fn register_generated_functions() -> Unit {
   defun(q_initialize_numeric_constant, args => initialize_numeric_constant(arg(args, 0)))
   defun(q_initialize_zeroab, args => initialize_zeroab(arg(args, 0)))
   defun(q_d_askinteger, args => { check_arity_range("$askinteger", args, 1, 2); d_askinteger(arg(args, 0), mode?=args.get(1)) })
+  putprop(q_d_askinteger, t, q_translated) |> ignore
   defun(q_ask_integer, args => ask_integer(arg(args, 0), arg(args, 1)))
   defun(q_ask_evod, args => ask_evod(arg(args, 0), arg(args, 1)))
   defun(q_ask_integerp, args => ask_integerp(arg(args, 0)))
@@ -2934,6 +3231,7 @@ fn register_generated_functions() -> Unit {
   defun(q_nump, args => nump(arg(args, 0)))
   defun(q_hyp_integerp, args => hyp_integerp(arg(args, 0)))
   defun(q_d_hgfred, args => { check_arity_range("$hgfred", args, 3, 3); d_hgfred(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_hgfred, t, q_translated) |> ignore
   defun(q_hgfsimp_exec, args => hgfsimp_exec(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_hgfsimp, args => hgfsimp(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_macsimp, args => macsimp(arg(args, 0)))
@@ -2954,6 +3252,7 @@ fn register_generated_functions() -> Unit {
   defun(q_legenpol, args => legenpol(arg(args, 0), arg(args, 1)))
   defun(q_tchebypol, args => tchebypol(arg(args, 0), arg(args, 1)))
   defun(q_d_hgfpoly, args => { check_arity_range("$hgfpoly", args, 3, 3); d_hgfpoly(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_hgfpoly, t, q_translated) |> ignore
   defun(q_create_any_poly, args => create_any_poly(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_mull, args => mull(arg(args, 0)))
   defun(q_incr1, args => incr1(arg(args, 0)))
@@ -3139,6 +3438,7 @@ fn register_generated_functions() -> Unit {
   defun(q_risch_constp, args => risch_constp(arg(args, 0), arg(args, 1)))
   defun(q_rischadd, args => rischadd(arg(args, 0), arg(args, 1)))
   defun(q_d_risch, args => { check_arity_range("$risch", args, 2, 2); d_risch(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_risch, t, q_translated) |> ignore
   defun(q_spderivative, args => spderivative(arg(args, 0), arg(args, 1)))
   defun(q_spderivative1, args => spderivative1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_polylogp, args => polylogp(arg(args, 0), sub?=args.get(1)))
@@ -3487,6 +3787,7 @@ fn register_generated_functions() -> Unit {
   defun(q_known_ps, args => known_ps(arg(args, 0)))
   defun(q_srf, args => srf(arg(args, 0)))
   defun(q_d_taylor, args => { check_arity_range("$taylor", args, 1, -1); d_taylor(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_taylor, t, q_translated) |> ignore
   defun(q_taylor_star, args => taylor_star(arg(args, 0), arg(args, 1)))
   defun(q_tay_order, args => tay_order(arg(args, 0)))
   defun(q_re_erat, args => re_erat(arg(args, 0), arg(args, 1)))
@@ -3582,6 +3883,7 @@ fn register_generated_functions() -> Unit {
   defun(q_taylor_trunc, args => taylor_trunc(arg(args, 0)))
   defun(q_taylor_info, args => taylor_info(arg(args, 0)))
   defun(q_d_taylorinfo, args => { check_arity_range("$taylorinfo", args, 1, 1); d_taylorinfo(arg(args, 0)) })
+  putprop(q_d_taylorinfo, t, q_translated) |> ignore
   defun(q_polelist, args => polelist(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_polelist_var, args => polelist_var(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_solvecase, args => solvecase(arg(args, 0)))
@@ -3602,9 +3904,11 @@ fn register_generated_functions() -> Unit {
   defun(q_snumden, args => snumden(arg(args, 0)))
   defun(q_snumden_var, args => snumden_var(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)).0)
   defun(q_d_residue, args => { check_arity_range("$residue", args, 3, 3); d_residue(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_residue, t, q_translated) |> ignore
   defun(q_resm1, args => resm1(arg(args, 0), arg(args, 1)))
   defun(q_resm1_var, args => resm1_var(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_defint, args => { check_arity_range("$defint", args, 4, 4); d_defint(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_defint, t, q_translated) |> ignore
   defun(q_eezz, args => eezz(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_sinintp, args => sinintp(arg(args, 0), arg(args, 1)))
   defun(q_deg_lessp, args => deg_lessp(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -3872,6 +4176,7 @@ fn register_generated_functions() -> Unit {
   defun(q_m2_ltep, args => m2_ltep(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_m2_defltep, args => m2_defltep(arg(args, 0), arg(args, 1)))
   defun(q_d_specint, args => { check_arity_range("$specint", args, 2, 2); d_specint(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_specint, t, q_translated) |> ignore
   defun(q_defint_sqrt_subst, args => defint_sqrt_subst(arg(args, 0), arg(args, 1)))
   defun(q_defintegrate, args => defintegrate(arg(args, 0), arg(args, 1)))
   defun(q_m2_sum_with_exp_case1, args => m2_sum_with_exp_case1(arg(args, 0), arg(args, 1)))
@@ -4017,6 +4322,7 @@ fn register_generated_functions() -> Unit {
   defun(q_fixuprest, args => fixuprest(arg(args, 0)))
   defun(q_isquadraticp, args => isquadraticp(arg(args, 0), arg(args, 1)))
   defun(q_d_laplace, args => { check_arity_range("$laplace", args, 3, 3); d_laplace(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_laplace, t, q_translated) |> ignore
   defun(q_remlaplace, args => remlaplace(arg(args, 0)))
   defun(q_laplace, args => laplace(arg(args, 0), arg(args, 1), arg(args, 2), dvar?=args.get(3)))
   defun(q_check_call_to__dolspecint, args => check_call_to__dolspecint(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -4041,6 +4347,7 @@ fn register_generated_functions() -> Unit {
   defun(q_lapdiff, args => lapdiff(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_lapint, args => lapint(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_ilt, args => { check_arity_range("$ilt", args, 3, 3); d_ilt(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_ilt, t, q_translated) |> ignore
   defun(q_maxima_rationalp, args => maxima_rationalp(arg(args, 0), arg(args, 1)))
   defun(q_ilt0, args => ilt0(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_ilt1, args => ilt1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)))
@@ -4097,6 +4404,7 @@ fn register_generated_functions() -> Unit {
   defun(q_rtimes, args => rtimes(arg(args, 0), arg(args, 1)))
   defun(q_rremainder, args => rremainder(arg(args, 0), arg(args, 1)))
   defun(q_d_exponentialize, args => { check_arity_range("$exponentialize", args, 1, 1); d_exponentialize(arg(args, 0)) })
+  putprop(q_d_exponentialize, t, q_translated) |> ignore
   defun(q_exponentialize, args => exponentialize(arg(args, 0), arg(args, 1)))
   defun(q_coefficient, args => coefficient(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_mmod, args => mmod(arg(args, 0), arg(args, 1)))
@@ -4129,6 +4437,7 @@ fn register_generated_functions() -> Unit {
   register_simplifier(q_simp__pctacsch, args => simp__pctacsch(arg(args, 0), arg(args, 1), arg(args, 2)))
   register_simplifier(q_simp__pctasech, args => simp__pctasech(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_trigexpand, args => { check_arity_range("$trigexpand", args, 1, 1); d_trigexpand(arg(args, 0)) })
+  putprop(q_d_trigexpand, t, q_translated) |> ignore
   defun(q_trigexpand, args => trigexpand(arg(args, 0), arg(args, 1)))
   defun(q_sin_slcos_plus, args => sin_slcos_plus(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_tan_plus, args => tan_plus(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -4141,6 +4450,7 @@ fn register_generated_functions() -> Unit {
   defun(q_mpc, args => mpc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)))
   defun(q_mpc1, args => mpc1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
   defun(q_d_trigreduce, args => { check_arity_range("$trigreduce", args, 1, 2); d_trigreduce(arg(args, 0), var_?=args.get(1)) })
+  putprop(q_d_trigreduce, t, q_translated) |> ignore
   defun(q_sp1, args => sp1(arg(args, 0)))
   defun(q_trigfp, args => trigfp(arg(args, 0)))
   defun(q_gcdred, args => gcdred(arg(args, 0)))
@@ -4249,7 +4559,9 @@ fn register_generated_functions() -> Unit {
   defun(q_check, args => check(arg(args, 0)))
   defun(q_check1, args => check1(arg(args, 0)))
   defun(q_d_matrixp, args => { check_arity_range("$matrixp", args, 1, 1); d_matrixp(arg(args, 0)) })
+  putprop(q_d_matrixp, t, q_translated) |> ignore
   defun(q_d_charpoly, args => { check_arity_range("$charpoly", args, 2, 2); d_charpoly(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_charpoly, t, q_translated) |> ignore
   defun(q_disreplist1, args => disreplist1(arg(args, 0)))
   defun(q_disreplist, args => disreplist(arg(args, 0)))
   defun(q_replist1, args => replist1(arg(args, 0)))
@@ -4263,6 +4575,7 @@ fn register_generated_functions() -> Unit {
   defun(q_addmatrix1, args => addmatrix1(arg(args, 0), arg(args, 1)))
   defun(q_addrows, args => addrows(arg(args, 0), arg(args, 1)))
   defun(q_d_determinant, args => { check_arity_range("$determinant", args, 1, 1); d_determinant(arg(args, 0)) })
+  putprop(q_d_determinant, t, q_translated) |> ignore
   defun(q_det, args => det(arg(args, 0)))
   defun(q_determinant1, args => determinant1(arg(args, 0)))
   defun(q_treedet, args => treedet(arg(args, 0)))
@@ -4272,10 +4585,13 @@ fn register_generated_functions() -> Unit {
   defun(q_nextlevel, args => nextlevel(arg(args, 0), arg(args, 1)))
   defun(q_det1, args => det1(arg(args, 0)))
   defun(q_d_ident, args => { check_arity_range("$ident", args, 1, 1); d_ident(arg(args, 0)) })
+  putprop(q_d_ident, t, q_translated) |> ignore
   defun(q_d_diagmatrix, args => { check_arity_range("$diagmatrix", args, 2, 2); d_diagmatrix(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_diagmatrix, t, q_translated) |> ignore
   defun(q_diagmatrix, args => diagmatrix(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_atomat, args => atomat(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_invert_by_gausselim, args => { check_arity_range("$invert_by_gausselim", args, 1, 1); d_invert_by_gausselim(arg(args, 0)) })
+  putprop(q_d_invert_by_gausselim, t, q_translated) |> ignore
   defun(q_diaginv, args => diaginv(arg(args, 0), arg(args, 1)))
   defun(q_invert1, args => invert1(arg(args, 0)))
   defun(q_diagp, args => diagp(arg(args, 0), arg(args, 1)))
@@ -4284,6 +4600,7 @@ fn register_generated_functions() -> Unit {
   defun(q_diaglize1, args => diaglize1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_mtoa, args => mtoa(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_echelon, args => { check_arity_range("$echelon", args, 1, 1); d_echelon(arg(args, 0)) })
+  putprop(q_d_echelon, t, q_translated) |> ignore
   defun(q_echelon1, args => echelon1(arg(args, 0)))
   defun(q_echelon2, args => echelon2(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_triang, args => triang(arg(args, 0)))
@@ -4298,20 +4615,29 @@ fn register_generated_functions() -> Unit {
   defun(q_bbsort, args => bbsort(arg(args, 0), arg(args, 1)))
   defun(q_powerx, args => powerx(arg(args, 0), arg(args, 1)))
   defun(q_d_rank, args => { check_arity_range("$rank", args, 1, 1); d_rank(arg(args, 0)) })
+  putprop(q_d_rank, t, q_translated) |> ignore
   defun(q_replacerow, args => replacerow(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_timesrow, args => timesrow(arg(args, 0), arg(args, 1)))
   defun(q_d_triangularize, args => { check_arity_range("$triangularize", args, 1, 1); d_triangularize(arg(args, 0)) })
+  putprop(q_d_triangularize, t, q_translated) |> ignore
   defun(q_d_col, args => { check_arity_range("$col", args, 2, 2); d_col(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_col, t, q_translated) |> ignore
   defun(q_deletecol, args => deletecol(arg(args, 0), arg(args, 1)))
   defun(q_deleterow, args => deleterow(arg(args, 0), arg(args, 1)))
   defun(q_d_minor, args => { check_arity_range("$minor", args, 3, 3); d_minor(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_minor, t, q_translated) |> ignore
   defun(q_minor, args => minor(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_row, args => { check_arity_range("$row", args, 2, 2); d_row(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_row, t, q_translated) |> ignore
   defun(q_d_setelmx, args => { check_arity_range("$setelmx", args, 4, 4); d_setelmx(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_setelmx, t, q_translated) |> ignore
   defun(q_d_transpose, args => { check_arity_range("$transpose", args, 1, 1); d_transpose(arg(args, 0)) })
+  putprop(q_d_transpose, t, q_translated) |> ignore
   defun(q_transpose_els, args => transpose_els(arg(args, 0)))
   defun(q_d_submatrix, args => { check_arity_range("$submatrix", args, 0, -1); d_submatrix(rest_args(args, 0)) })
+  putprop(q_d_submatrix, t, q_translated) |> ignore
   defun(q_d_list_matrix_entries, args => { check_arity_range("$list_matrix_entries", args, 1, 1); d_list_matrix_entries(arg(args, 0)) })
+  putprop(q_d_list_matrix_entries, t, q_translated) |> ignore
   defun(q_tminitialflag, args => tminitialflag())
   defun(q_tmdet, args => tmdet(arg(args, 0), arg(args, 1)))
   defun(q_tmlin, args => tmlin(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -4319,9 +4645,12 @@ fn register_generated_functions() -> Unit {
   defun(q_extract, args => extract(arg(args, 0), arg(args, 1)))
   defun(q_tmratconv, args => tmratconv(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_tmnewdet, args => { check_arity_range("$tmnewdet", args, 1, 2); d_tmnewdet(arg(args, 0), dim?=args.get(1)) })
+  putprop(q_d_tmnewdet, t, q_translated) |> ignore
   defun(q_d_tmlinsolve, args => { check_arity_range("$tmlinsolve", args, 0, -1); d_tmlinsolve(rest_args(args, 0)) })
+  putprop(q_d_tmlinsolve, t, q_translated) |> ignore
   defun(q_tmerge, args => tmerge(arg(args, 0), arg(args, 1)))
   defun(q_d_tmlin, args => { check_arity_range("$tmlin", args, 4, 4); d_tmlin(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_tmlin, t, q_translated) |> ignore
   defun(q_tmkill, args => tmkill(arg(args, 0), arg(args, 1)))
   defun(q_tmnomoreuse, args => tmnomoreuse(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_tmdefarray, args => tmdefarray(arg(args, 0)))
@@ -4334,6 +4663,7 @@ fn register_generated_functions() -> Unit {
   defun(q_tmeval, args => tmeval(arg(args, 0)))
   defun(q_tm_dolkill, args => tm_dolkill(arg(args, 0)))
   defun(q_d_tminverse, args => { check_arity_range("$tminverse", args, 1, 1); d_tminverse(arg(args, 0)) })
+  putprop(q_d_tminverse, t, q_translated) |> ignore
   defun(q_tmpivot_isolate, args => tmpivot_isolate(arg(args, 0)))
   defun(q_tmexchange, args => tmexchange(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_tmpermute, args => tmpermute(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7)))
@@ -4377,7 +4707,9 @@ fn register_generated_functions() -> Unit {
   defun(q_bmhk, args => bmhk(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)))
   defun(q_newinv, args => newinv(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_newdet, args => { check_arity_range("$newdet", args, 1, 1); d_newdet(arg(args, 0)) })
+  putprop(q_d_newdet, t, q_translated) |> ignore
   defun(q_d_permanent, args => { check_arity_range("$permanent", args, 1, 1); d_permanent(arg(args, 0)) })
+  putprop(q_d_permanent, t, q_translated) |> ignore
   defun(q_newdet, args => newdet(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_pascal, args => pascal(arg(args, 0)))
   register_mspec(q_d_matchdeclare, d_matchdeclare)
@@ -4395,6 +4727,7 @@ fn register_generated_functions() -> Unit {
   defun(q_proc__doldefmatch, args => proc__doldefmatch(arg(args, 0)))
   register_mspec(q_d_tellsimp, d_tellsimp)
   defun(q_d_clear_rules, args => { check_arity_range("$clear_rules", args, 0, 0); d_clear_rules() })
+  putprop(q_d_clear_rules, t, q_translated) |> ignore
   defun(q_proc__doltellsimp, args => proc__doltellsimp(arg(args, 0)))
   defun(q_p_to_dol, args => p_to_dol(arg(args, 0)))
   register_mspec(q_d_tellsimpafter, d_tellsimpafter)
@@ -4413,6 +4746,7 @@ fn register_generated_functions() -> Unit {
   defun(q_disprule1, args => disprule1(arg(args, 0)))
   defun(q_consrule, args => consrule(arg(args, 0)))
   defun(q_d_remrule, args => { check_arity_range("$remrule", args, 2, 2); d_remrule(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_remrule, t, q_translated) |> ignore
   defun(q_removerule, args => removerule(arg(args, 0), arg(args, 1)))
   defun(q_putprop_or_remprop, args => putprop_or_remprop(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_findbe, args => findbe(arg(args, 0)))
@@ -4465,7 +4799,9 @@ fn register_generated_functions() -> Unit {
   defun(q_nisbuild, args => nisbuild(arg(args, 0), arg(args, 1)))
   defun(q_nisreplace, args => nisreplace(arg(args, 0), arg(args, 1)))
   defun(q_d_tlimit, args => { check_arity_range("$tlimit", args, 0, -1); d_tlimit(rest_args(args, 0)) })
+  putprop(q_d_tlimit, t, q_translated) |> ignore
   defun(q_d_tldefint, args => { check_arity_range("$tldefint", args, 4, 4); d_tldefint(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_tldefint, t, q_translated) |> ignore
   defun(q_tlimp, args => tlimp(arg(args, 0), arg(args, 1)))
   defun(q_logarc_atan2, args => logarc_atan2(arg(args, 0)))
   defun(q_atan2_to_atan, args => atan2_to_atan(arg(args, 0)))
@@ -4483,6 +4819,7 @@ fn register_generated_functions() -> Unit {
   defun(q_putlimval, args => putlimval(arg(args, 0), arg(args, 1)))
   defun(q_getlimval, args => getlimval(arg(args, 0)))
   defun(q_d_limit, args => { check_arity_range("$limit", args, 0, -1); d_limit(rest_args(args, 0)) })
+  putprop(q_d_limit, t, q_translated) |> ignore
   defun(q_indefinite_integral_p, args => indefinite_integral_p(arg(args, 0), arg(args, 1)))
   defun(q_toplevel__dollimit, args => toplevel__dollimit(rest_args(args, 0)))
   defun(q_clean_limit_exp, args => clean_limit_exp(arg(args, 0)))
@@ -4685,6 +5022,7 @@ fn register_generated_functions() -> Unit {
   defun(q_simplim_pctsignum, args => simplim_pctsignum(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_lfibtophi, args => lfibtophi(arg(args, 0)))
   defun(q_d_ldefint, args => { check_arity_range("$ldefint", args, 4, 4); d_ldefint(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_ldefint, t, q_translated) |> ignore
   defun(q_nounlimit, args => nounlimit(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_derivative_subst, args => derivative_subst(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_oscip, args => oscip(arg(args, 0)))
@@ -4716,15 +5054,18 @@ fn register_generated_functions() -> Unit {
   defun(q_mrv_sign_helper, args => mrv_sign_helper(arg(args, 0), arg(args, 1)))
   defun(q_limitinf, args => limitinf(arg(args, 0), arg(args, 1)))
   defun(q_d_gruntz, args => { check_arity_range("$gruntz", args, 3, -1); d_gruntz(arg(args, 0), arg(args, 1), arg(args, 2), rest_args(args, 3)) })
+  putprop(q_d_gruntz, t, q_translated) |> ignore
   defun(q_extra_simp, args => extra_simp(arg(args, 0)))
   defun(q_resimp_extra_simp, args => resimp_extra_simp(arg(args, 0)))
   defun(q_gruntz1, args => gruntz1(arg(args, 0), arg(args, 1), arg(args, 2), rest_args(args, 3)))
   defun(q_syntactic_substitute, args => syntactic_substitute(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_simplify_log_of_exp, args => simplify_log_of_exp(arg(args, 0)))
   defun(q_d_sqrtdenest, args => { check_arity_range("$sqrtdenest", args, 1, 1); d_sqrtdenest(arg(args, 0)) })
+  putprop(q_d_sqrtdenest, t, q_translated) |> ignore
   defun(q_sqrtdenest1, args => sqrtdenest1(arg(args, 0)))
   defun(q_sqrtdenest2, args => sqrtdenest2(arg(args, 0)))
   defun(q_d_realroots, args => { check_arity_range("$realroots", args, 1, 2); d_realroots(arg(args, 0), eps?=args.get(1)) })
+  putprop(q_d_realroots, t, q_translated) |> ignore
   defun(q_unipoly, args => unipoly(arg(args, 0), arg(args, 1)))
   defun(q_makrat, args => makrat(arg(args, 0)))
   defun(q_sturmseq, args => sturmseq(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -4743,6 +5084,7 @@ fn register_generated_functions() -> Unit {
   defun(q_reval, args => reval(arg(args, 0), arg(args, 1)))
   defun(q_makpoint, args => makpoint(arg(args, 0)))
   defun(q_d_nroots, args => { check_arity_range("$nroots", args, 1, 3); d_nroots(arg(args, 0), l?=args.get(1), r?=args.get(2)) })
+  putprop(q_d_nroots, t, q_translated) |> ignore
   defun(q_nroots, args => nroots(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_rootaddup, args => rootaddup(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_nroot1, args => nroot1(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -4755,6 +5097,7 @@ fn register_generated_functions() -> Unit {
   defun(q_rlessp, args => rlessp(arg(args, 0), arg(args, 1)))
   defun(q_multout, args => multout(arg(args, 0)))
   defun(q_d_allroots, args => { check_arity_range("$allroots", args, 1, 1); d_allroots(arg(args, 0)) })
+  putprop(q_d_allroots, t, q_translated) |> ignore
   defun(q_cpoly_err, args => cpoly_err(arg(args, 0)))
   defun(q_cpoly_sl, args => cpoly_sl(arg(args, 0)))
   defun(q_noshft_sl, args => noshft_sl(arg(args, 0)))
@@ -4794,6 +5137,7 @@ fn register_generated_functions() -> Unit {
   defun(q_bf__fxshft_sl, args => bf__fxshft_sl(arg(args, 0)))
   defun(q_bf__cpoly_sl, args => bf__cpoly_sl(arg(args, 0)))
   defun(q_d_bfallroots, args => { check_arity_range("$bfallroots", args, 1, 1); d_bfallroots(arg(args, 0)) })
+  putprop(q_d_bfallroots, t, q_translated) |> ignore
   defun(q_bf__rpoly_sl, args => bf__rpoly_sl(arg(args, 0)))
   defun(q_bf__fxshfr_sl, args => bf__fxshfr_sl(arg(args, 0)))
   defun(q_bf__quadit_sl, args => bf__quadit_sl())
@@ -4804,6 +5148,7 @@ fn register_generated_functions() -> Unit {
   defun(q_bf__quadsd_sl, args => bf__quadsd_sl())
   defun(q_bf__quad_sl, args => bf__quad_sl(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_solve, args => { check_arity_range("$solve", args, 1, 2); d_solve(arg(args, 0), varl?=args.get(1)) })
+  putprop(q_d_solve, t, q_translated) |> ignore
   defun(q_remc, args => remc(arg(args, 0)))
   defun(q_ssolve, args => ssolve(arg(args, 0), arg(args, 1)))
   defun(q_solve, args => solve(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -4845,12 +5190,14 @@ fn register_generated_functions() -> Unit {
   defun(q_complicated, args => complicated(arg(args, 0)))
   defun(q_rootsort, args => rootsort(arg(args, 0)))
   defun(q_d_linsolve, args => { check_arity_range("$linsolve", args, 2, 2); d_linsolve(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_linsolve, t, q_translated) |> ignore
   defun(q_solvex, args => solvex(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_linsort, args => linsort(arg(args, 0), arg(args, 1)))
   defun(q_solvecubic, args => solvecubic(arg(args, 0)))
   defun(q_solvequartic, args => solvequartic(arg(args, 0)))
   defun(q_resolvent, args => resolvent(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_algsys, args => { check_arity_range("$algsys", args, 2, 2); d_algsys(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_algsys, t, q_translated) |> ignore
   defun(q_condensesolnl, args => condensesolnl(arg(args, 0)))
   defun(q_subsetl, args => subsetl(arg(args, 0), arg(args, 1)))
   defun(q_algsys, args => algsys(arg(args, 0)))
@@ -4915,8 +5262,10 @@ fn register_generated_functions() -> Unit {
   defun(q_mlistcan__dolall, args => mlistcan__dolall(arg(args, 0), arg(args, 1), arg(args, 2)))
   register_mspec(q_d_trace, d_trace)
   defun(q_d_trace_it, args => { check_arity_range("$trace_it", args, 1, 1); d_trace_it(arg(args, 0)) })
+  putprop(q_d_trace_it, t, q_translated) |> ignore
   register_mspec(q_d_untrace, d_untrace)
   defun(q_d_untrace_it, args => { check_arity_range("$untrace_it", args, 1, 1); d_untrace_it(arg(args, 0)) })
+  putprop(q_d_untrace_it, t, q_translated) |> ignore
   register_mspec(q_d_trace_options, d_trace_options)
   defun(q_macsyma_trace, args => macsyma_trace(arg(args, 0)))
   defun(q_macsyma_trace_sub, args => macsyma_trace_sub(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -4998,6 +5347,7 @@ fn register_generated_functions() -> Unit {
   defun(q_expintegral_chi, args => expintegral_chi(arg(args, 0)))
   defun(q_bfloat_expintegral_chi, args => bfloat_expintegral_chi(arg(args, 0)))
   defun(q_d_expint, args => { check_arity_range("$expint", args, 1, 1); d_expint(arg(args, 0)) })
+  putprop(q_d_expint, t, q_translated) |> ignore
   register_simplifier(q_simp__pctdouble_factorial, args => simp__pctdouble_factorial(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_double_factorial, args => double_factorial(arg(args, 0)))
   defun(q_bfloat_double_factorial, args => bfloat_double_factorial(arg(args, 0)))
@@ -5015,6 +5365,7 @@ fn register_generated_functions() -> Unit {
   defun(q_conjugate_gamma_incomplete_regularized, args => conjugate_gamma_incomplete_regularized(arg(args, 0)))
   register_simplifier(q_simp__pctgamma_incomplete_regularized, args => simp__pctgamma_incomplete_regularized(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_log_gamma, args => { check_arity_range("$log_gamma", args, 1, 1); d_log_gamma(arg(args, 0)) })
+  putprop(q_d_log_gamma, t, q_translated) |> ignore
   defun(q_log_gamma_integral, args => log_gamma_integral(arg(args, 0)))
   defun(q_simp_log_gamma, args => simp_log_gamma(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_log_gamma_lanczos, args => log_gamma_lanczos(arg(args, 0)))
@@ -5060,8 +5411,11 @@ fn register_generated_functions() -> Unit {
   register_simplifier(q_simp__pctbeta_incomplete_regularized, args => simp__pctbeta_incomplete_regularized(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_z_function, args => z_function(arg(args, 0), arg(args, 1)))
   defun(q_d_nzeta, args => { check_arity_range("$nzeta", args, 1, 1); d_nzeta(arg(args, 0)) })
+  putprop(q_d_nzeta, t, q_translated) |> ignore
   defun(q_d_nzetar, args => { check_arity_range("$nzetar", args, 1, 1); d_nzetar(arg(args, 0)) })
+  putprop(q_d_nzetar, t, q_translated) |> ignore
   defun(q_d_nzetai, args => { check_arity_range("$nzetai", args, 1, 1); d_nzetai(arg(args, 0)) })
+  putprop(q_d_nzetai, t, q_translated) |> ignore
   defun(q_mt_generate_seed, args => mt_generate_seed())
   defun(q_mt_int_init_random_state, args => mt_int_init_random_state(seed?=args.get(0), state?=args.get(1)))
   defun(q_mt_vec_init_random_state, args => mt_vec_init_random_state(arg(args, 0), state?=args.get(1)))
@@ -5074,15 +5428,21 @@ fn register_generated_functions() -> Unit {
   defun(q_mt_p_random_integer, args => mt_p_random_integer(arg(args, 0), arg(args, 1)))
   defun(q_mt_random, args => mt_random(arg(args, 0), state?=args.get(1)))
   defun(q_d_set_random_state, args => { check_arity_range("$set_random_state", args, 1, 1); d_set_random_state(arg(args, 0)) })
+  putprop(q_d_set_random_state, t, q_translated) |> ignore
   defun(q_d_make_random_state, args => { check_arity_range("$make_random_state", args, 1, 1); d_make_random_state(arg(args, 0)) })
+  putprop(q_d_make_random_state, t, q_translated) |> ignore
   defun(q_d_random, args => { check_arity_range("$random", args, 1, 1); d_random(arg(args, 0)) })
+  putprop(q_d_random, t, q_translated) |> ignore
   defun(q_d_scsimp, args => { check_arity_range("$scsimp", args, 1, -1); d_scsimp(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_scsimp, t, q_translated) |> ignore
   defun(q_scs, args => scs(arg(args, 0), arg(args, 1)))
   defun(q_subscs, args => subscs(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_subsc, args => subsc(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_dstrb, args => dstrb(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_distrib, args => { check_arity_range("$distrib", args, 1, 1); d_distrib(arg(args, 0)) })
+  putprop(q_d_distrib, t, q_translated) |> ignore
   defun(q_d_facout, args => { check_arity_range("$facout", args, 2, 2); d_facout(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_facout, t, q_translated) |> ignore
   defun(q_poly_q, args => poly_q(arg(args, 0), arg(args, 1)))
   defun(q_smono, args => smono(arg(args, 0), arg(args, 1)))
   defun(q_smonop, args => smonop(arg(args, 0), arg(args, 1)))
@@ -5112,6 +5472,7 @@ fn register_generated_functions() -> Unit {
   defun(q_freesum, args => freesum(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_oper_apply, args => oper_apply(arg(args, 0), arg(args, 1)))
   defun(q_d_define_opproperty, args => { check_arity_range("$define_opproperty", args, 2, 2); d_define_opproperty(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_define_opproperty, t, q_translated) |> ignore
   defun(q_linearize1, args => linearize1(arg(args, 0), arg(args, 1)))
   defun(q_opident, args => opident(arg(args, 0)))
   defun(q_rem_const, args => rem_const(arg(args, 0)))
@@ -5139,17 +5500,22 @@ fn register_generated_functions() -> Unit {
   defun(q_fortscan, args => fortscan(arg(args, 0)))
   defun(q_fortscan_mtimes, args => fortscan_mtimes(arg(args, 0)))
   defun(q_d_fortmx, args => { check_arity_range("$fortmx", args, 2, 3); d_fortmx(arg(args, 0), arg(args, 1), stream?=args.get(2)) })
+  putprop(q_d_fortmx, t, q_translated) |> ignore
   defun(q_d_optimize, args => { check_arity_range("$optimize", args, 1, 1); d_optimize(arg(args, 0)) })
+  putprop(q_d_optimize, t, q_translated) |> ignore
   defun(q_opformat, args => opformat(arg(args, 0)))
   defun(q_opmexpt, args => opmexpt(arg(args, 0)))
   defun(q_d_collapse, args => { check_arity_range("$collapse", args, 1, 1); d_collapse(arg(args, 0)) })
+  putprop(q_d_collapse, t, q_translated) |> ignore
   defun(q_collapse, args => collapse(arg(args, 0)))
   defun(q_comexp, args => comexp(arg(args, 0)))
   defun(q_optim, args => optim(arg(args, 0)))
   defun(q_opt_hash, args => opt_hash(arg(args, 0)))
   defun(q_getoptimvar, args => getoptimvar())
   defun(q_d_listarray, args => { check_arity_range("$listarray", args, 1, 1); d_listarray(arg(args, 0)) })
+  putprop(q_d_listarray, t, q_translated) |> ignore
   defun(q_d_fillarray, args => { check_arity_range("$fillarray", args, 2, 2); d_fillarray(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_fillarray, t, q_translated) |> ignore
   defun(q_getvalue, args => getvalue(arg(args, 0)))
   register_mspec(q_d_rearray, d_rearray)
   defun(q_rearray_aux, args => rearray_aux(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -5176,6 +5542,7 @@ fn register_generated_functions() -> Unit {
   defun(q_simpnct_merge_product, args => simpnct_merge_product(arg(args, 0), arg(args, 1)))
   defun(q_simpnct_antisym_check, args => simpnct_antisym_check(arg(args, 0), arg(args, 1)))
   defun(q_d_powerseries, args => { check_arity_range("$powerseries", args, 3, 3); d_powerseries(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_powerseries, t, q_translated) |> ignore
   defun(q_powerseries_expansion_error, args => powerseries_expansion_error(message?=args.get(0), rest_args(args, 1)))
   defun(q_powerseries, args => powerseries(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_intdiff_vars_in_expr, args => intdiff_vars_in_expr(arg(args, 0)))
@@ -5223,12 +5590,16 @@ fn register_generated_functions() -> Unit {
   defun(q_sp3form, args => sp3form(arg(args, 0), arg(args, 1)))
   defun(q_sp3form1, args => sp3form1(arg(args, 0)))
   defun(q_d_divsum, args => { check_arity_range("$divsum", args, 1, 2); d_divsum(arg(args, 0), k?=args.get(1)) })
+  putprop(q_d_divsum, t, q_translated) |> ignore
   defun(q_divsum, args => divsum(arg(args, 0), arg(args, 1)))
   defun(q_d_totient, args => { check_arity_range("$totient", args, 1, 1); d_totient(arg(args, 0)) })
+  putprop(q_d_totient, t, q_translated) |> ignore
   defun(q_totient, args => totient(arg(args, 0)))
   defun(q_d_jacobi, args => { check_arity_range("$jacobi", args, 2, 2); d_jacobi(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_jacobi, t, q_translated) |> ignore
   defun(q_jacobi, args => jacobi(arg(args, 0), arg(args, 1)))
   defun(q_d_gcfactor, args => { check_arity_range("$gcfactor", args, 1, 1); d_gcfactor(arg(args, 0)) })
+  putprop(q_d_gcfactor, t, q_translated) |> ignore
   defun(q_imodp, args => imodp(arg(args, 0)))
   defun(q_psumsq, args => psumsq(arg(args, 0)))
   defun(q_gctimes, args => gctimes(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -5239,33 +5610,43 @@ fn register_generated_functions() -> Unit {
   defun(q_gcexpt, args => gcexpt(arg(args, 0), arg(args, 1)))
   defun(q_zn_quo, args => zn_quo(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_zn_order, args => { check_arity_range("$zn_order", args, 2, 3); d_zn_order(arg(args, 0), arg(args, 1), fs_phi?=args.get(2)) })
+  putprop(q_d_zn_order, t, q_translated) |> ignore
   defun(q_zn_u_order, args => zn_u_order(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_zn_order, args => zn_order(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_totient_with_factors, args => totient_with_factors(arg(args, 0)))
   defun(q_totient_from_factors, args => totient_from_factors(arg(args, 0)))
   defun(q_d_zn_primroot_p, args => { check_arity_range("$zn_primroot_p", args, 2, 3); d_zn_primroot_p(arg(args, 0), arg(args, 1), fs_phi?=args.get(2)) })
+  putprop(q_d_zn_primroot_p, t, q_translated) |> ignore
   defun(q_zn_primroot_p, args => zn_primroot_p(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_zn_primroot, args => { check_arity_range("$zn_primroot", args, 1, 2); d_zn_primroot(arg(args, 0), fs_phi?=args.get(1)) })
+  putprop(q_d_zn_primroot, t, q_translated) |> ignore
   defun(q_cyclic_p, args => cyclic_p(arg(args, 0)))
   defun(q_zn_primroot, args => zn_primroot(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_chinese, args => { check_arity_range("$chinese", args, 0, -1); d_chinese(rest_args(args, 0)) })
+  putprop(q_d_chinese, t, q_translated) |> ignore
   defun(q_d_solve_congruences, args => { check_arity_range("$solve_congruences", args, 2, 3); d_solve_congruences(arg(args, 0), arg(args, 1), return_lcm_q?=args.get(2)) })
+  putprop(q_d_solve_congruences, t, q_translated) |> ignore
   defun(q_solve_congruences, args => solve_congruences(arg(args, 0), arg(args, 1)))
   defun(q_zn_gcdex2, args => zn_gcdex2(arg(args, 0), arg(args, 1)))
   defun(q_d_zn_log, args => { check_arity_range("$zn_log", args, 3, 4); d_zn_log(arg(args, 0), arg(args, 1), arg(args, 2), fs_ord?=args.get(3)) })
+  putprop(q_d_zn_log, t, q_translated) |> ignore
   defun(q_zn_dlog, args => zn_dlog(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_dlog_baby_giant, args => dlog_baby_giant(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_dlog_naive, args => dlog_naive(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_dlog_rho, args => dlog_rho(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_dlog_f, args => dlog_f(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)).0)
   defun(q_d_zn_characteristic_factors, args => { check_arity_range("$zn_characteristic_factors", args, 1, 1); d_zn_characteristic_factors(arg(args, 0)) })
+  putprop(q_d_zn_characteristic_factors, t, q_translated) |> ignore
   defun(q_d_zn_carmichael_lambda, args => { check_arity_range("$zn_carmichael_lambda", args, 1, 1); d_zn_carmichael_lambda(arg(args, 0)) })
+  putprop(q_d_zn_carmichael_lambda, t, q_translated) |> ignore
   defun(q_zn_characteristic_factors, args => zn_characteristic_factors(arg(args, 0), lambda_only?=args.get(1)))
   defun(q_zn_shanks_phi_step_bc, args => zn_shanks_phi_step_bc(arg(args, 0)))
   defun(q_zn_pe_gt, args => zn_pe_gt(arg(args, 0), arg(args, 1)))
   defun(q_d_zn_factor_generators, args => { check_arity_range("$zn_factor_generators", args, 1, 1); d_zn_factor_generators(arg(args, 0)) })
+  putprop(q_d_zn_factor_generators, t, q_translated) |> ignore
   defun(q_zn_factor_generators, args => zn_factor_generators(arg(args, 0)))
   defun(q_d_zn_nth_root, args => { check_arity_range("$zn_nth_root", args, 3, 4); d_zn_nth_root(arg(args, 0), arg(args, 1), arg(args, 2), fs_n?=args.get(3)) })
+  putprop(q_d_zn_nth_root, t, q_translated) |> ignore
   defun(q_zn_nrt, args => zn_nrt(arg(args, 0), arg(args, 1), arg(args, 2), fs_n?=args.get(3)))
   defun(q_zn_distrib_lists, args => zn_distrib_lists(arg(args, 0)))
   defun(q_zq_nrt, args => zq_nrt(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -5274,8 +5655,11 @@ fn register_generated_functions() -> Unit {
   defun(q_zn_gcdex, args => zn_gcdex(rest_args(args, 0)))
   defun(q_zn_table_errchk, args => zn_table_errchk(arg(args, 0), arg(args, 1)))
   defun(q_d_zn_add_table, args => { check_arity_range("$zn_add_table", args, 1, 1); d_zn_add_table(arg(args, 0)) })
+  putprop(q_d_zn_add_table, t, q_translated) |> ignore
   defun(q_d_zn_mult_table, args => { check_arity_range("$zn_mult_table", args, 1, 2); d_zn_mult_table(arg(args, 0), g?=args.get(1)) })
+  putprop(q_d_zn_mult_table, t, q_translated) |> ignore
   defun(q_d_zn_power_table, args => { check_arity_range("$zn_power_table", args, 1, 3); d_zn_power_table(arg(args, 0), g?=args.get(1), e?=args.get(2)) })
+  putprop(q_d_zn_power_table, t, q_translated) |> ignore
   defun(q_gf_balanced_info, args => gf_balanced_info(arg(args, 0), arg(args, 1)))
   defun(q_gf_coeff_check, args => gf_coeff_check(arg(args, 0), arg(args, 1)))
   defun(q_gf_merror, args => gf_merror(arg(args, 0), rest_args(args, 1)))
@@ -5311,34 +5695,58 @@ fn register_generated_functions() -> Unit {
   defun(q_f2_inv, args => f2_inv(arg(args, 0)))
   defun(q_f2_divide, args => f2_divide(arg(args, 0), arg(args, 1)).0)
   defun(q_d_gf_set, args => { check_arity_range("$gf_set", args, 1, 4); d_gf_set(arg(args, 0), a1?=args.get(1), a2?=args.get(2), a3?=args.get(3)) })
+  putprop(q_d_gf_set, t, q_translated) |> ignore
   defun(q_d_gf_set_data, args => { check_arity_range("$gf_set_data", args, 1, 4); d_gf_set_data(arg(args, 0), a1?=args.get(1), a2?=args.get(2), a3?=args.get(3)) })
+  putprop(q_d_gf_set_data, t, q_translated) |> ignore
   defun(q_gf_set_rat_header, args => gf_set_rat_header())
   defun(q_gf_p2x_red, args => gf_p2x_red(arg(args, 0), arg(args, 1)))
   defun(q_d_ef_set_data, args => { check_arity_range("$ef_set_data", args, 1, 1); d_ef_set_data(arg(args, 0)) })
+  putprop(q_d_ef_set_data, t, q_translated) |> ignore
   defun(q_gf_data_short_print, args => gf_data_short_print(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_get_data, args => { check_arity_range("$gf_get_data", args, 0, 0); d_gf_get_data() })
+  putprop(q_d_gf_get_data, t, q_translated) |> ignore
   defun(q_ef_data_short_print, args => ef_data_short_print(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_ef_get_data, args => { check_arity_range("$ef_get_data", args, 0, 0); d_ef_get_data() })
+  putprop(q_d_ef_get_data, t, q_translated) |> ignore
   defun(q_d_gf_info, args => { check_arity_range("$gf_info", args, 0, 1); d_gf_info(t_q?=args.get(0)) })
+  putprop(q_d_gf_info, t, q_translated) |> ignore
   defun(q_totient_by_fs_n, args => totient_by_fs_n(arg(args, 0)))
   defun(q_d_gf_infolist, args => { check_arity_range("$gf_infolist", args, 0, 0); d_gf_infolist() })
+  putprop(q_d_gf_infolist, t, q_translated) |> ignore
   defun(q_d_ef_info, args => { check_arity_range("$ef_info", args, 0, 1); d_ef_info(t_q?=args.get(0)) })
+  putprop(q_d_ef_info, t, q_translated) |> ignore
   defun(q_d_ef_infolist, args => { check_arity_range("$ef_infolist", args, 0, 0); d_ef_infolist() })
+  putprop(q_d_ef_infolist, t, q_translated) |> ignore
   defun(q_d_gf_unset, args => { check_arity_range("$gf_unset", args, 0, 0); d_gf_unset() })
+  putprop(q_d_gf_unset, t, q_translated) |> ignore
   defun(q_d_ef_unset, args => { check_arity_range("$ef_unset", args, 0, 0); d_ef_unset() })
+  putprop(q_d_ef_unset, t, q_translated) |> ignore
   defun(q_d_gf_minimal_set, args => { check_arity_range("$gf_minimal_set", args, 1, 2); d_gf_minimal_set(arg(args, 0), red?=args.get(1)) })
+  putprop(q_d_gf_minimal_set, t, q_translated) |> ignore
   defun(q_d_ef_minimal_set, args => { check_arity_range("$ef_minimal_set", args, 1, 1); d_ef_minimal_set(arg(args, 0)) })
+  putprop(q_d_ef_minimal_set, t, q_translated) |> ignore
   defun(q_d_gf_characteristic, args => { check_arity_range("$gf_characteristic", args, 0, 0); d_gf_characteristic() })
+  putprop(q_d_gf_characteristic, t, q_translated) |> ignore
   defun(q_d_gf_exponent, args => { check_arity_range("$gf_exponent", args, 0, 0); d_gf_exponent() })
+  putprop(q_d_gf_exponent, t, q_translated) |> ignore
   defun(q_d_gf_reduction, args => { check_arity_range("$gf_reduction", args, 0, 0); d_gf_reduction() })
+  putprop(q_d_gf_reduction, t, q_translated) |> ignore
   defun(q_d_gf_cardinality, args => { check_arity_range("$gf_cardinality", args, 0, 0); d_gf_cardinality() })
+  putprop(q_d_gf_cardinality, t, q_translated) |> ignore
   defun(q_d_ef_exponent, args => { check_arity_range("$ef_exponent", args, 0, 0); d_ef_exponent() })
+  putprop(q_d_ef_exponent, t, q_translated) |> ignore
   defun(q_d_ef_reduction, args => { check_arity_range("$ef_reduction", args, 0, 0); d_ef_reduction() })
+  putprop(q_d_ef_reduction, t, q_translated) |> ignore
   defun(q_d_ef_cardinality, args => { check_arity_range("$ef_cardinality", args, 0, 0); d_ef_cardinality() })
+  putprop(q_d_ef_cardinality, t, q_translated) |> ignore
   defun(q_d_gf_set_again, args => { check_arity_range("$gf_set_again", args, 1, 1); d_gf_set_again(arg(args, 0)) })
+  putprop(q_d_gf_set_again, t, q_translated) |> ignore
   defun(q_d_ef_set_again, args => { check_arity_range("$ef_set_again", args, 1, 1); d_ef_set_again(arg(args, 0)) })
+  putprop(q_d_ef_set_again, t, q_translated) |> ignore
   defun(q_d_gf_make_arrays, args => { check_arity_range("$gf_make_arrays", args, 0, 0); d_gf_make_arrays() })
+  putprop(q_d_gf_make_arrays, t, q_translated) |> ignore
   defun(q_d_gf_make_logs, args => { check_arity_range("$gf_make_logs", args, 0, 0); d_gf_make_logs() })
+  putprop(q_d_gf_make_logs, t, q_translated) |> ignore
   defun(q_gf_make_logs, args => gf_make_logs())
   defun(q_gf_clear_tables, args => gf_clear_tables())
   defun(q_gf_p2x, args => gf_p2x(arg(args, 0)))
@@ -5347,28 +5755,46 @@ fn register_generated_functions() -> Unit {
   defun(q_gf_x2cre, args => gf_x2cre(arg(args, 0)))
   defun(q_gf_disrep, args => gf_disrep(arg(args, 0), var_?=args.get(1)))
   defun(q_d_gf_eval, args => { check_arity_range("$gf_eval", args, 1, 1); d_gf_eval(arg(args, 0)) })
+  putprop(q_d_gf_eval, t, q_translated) |> ignore
   defun(q_d_ef_eval, args => { check_arity_range("$ef_eval", args, 1, 1); d_ef_eval(arg(args, 0)) })
+  putprop(q_d_ef_eval, t, q_translated) |> ignore
   defun(q_gf_eval, args => gf_eval(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_mod, args => gf_mod(arg(args, 0)))
   defun(q_gf_np2smod, args => gf_np2smod(arg(args, 0)))
   defun(q_n_starf_np2smod, args => n_starf_np2smod(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_cp2smod, args => gf_cp2smod(arg(args, 0)))
   defun(q_d_gf_neg, args => { check_arity_range("$gf_neg", args, 1, 1); d_gf_neg(arg(args, 0)) })
+  putprop(q_d_gf_neg, t, q_translated) |> ignore
   defun(q_d_gf_add, args => { check_arity_range("$gf_add", args, 0, -1); d_gf_add(rest_args(args, 0)) })
+  putprop(q_d_gf_add, t, q_translated) |> ignore
   defun(q_d_gf_sub, args => { check_arity_range("$gf_sub", args, 0, -1); d_gf_sub(rest_args(args, 0)) })
+  putprop(q_d_gf_sub, t, q_translated) |> ignore
   defun(q_d_gf_mult, args => { check_arity_range("$gf_mult", args, 0, -1); d_gf_mult(rest_args(args, 0)) })
+  putprop(q_d_gf_mult, t, q_translated) |> ignore
   defun(q_d_gf_reduce, args => { check_arity_range("$gf_reduce", args, 2, 2); d_gf_reduce(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_reduce, t, q_translated) |> ignore
   defun(q_d_gf_inv, args => { check_arity_range("$gf_inv", args, 1, 1); d_gf_inv(arg(args, 0)) })
+  putprop(q_d_gf_inv, t, q_translated) |> ignore
   defun(q_d_gf_div, args => { check_arity_range("$gf_div", args, 0, -1); d_gf_div(rest_args(args, 0)) })
+  putprop(q_d_gf_div, t, q_translated) |> ignore
   defun(q_d_gf_exp, args => { check_arity_range("$gf_exp", args, 2, 2); d_gf_exp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_exp, t, q_translated) |> ignore
   defun(q_d_ef_neg, args => { check_arity_range("$ef_neg", args, 1, 1); d_ef_neg(arg(args, 0)) })
+  putprop(q_d_ef_neg, t, q_translated) |> ignore
   defun(q_d_ef_add, args => { check_arity_range("$ef_add", args, 0, -1); d_ef_add(rest_args(args, 0)) })
+  putprop(q_d_ef_add, t, q_translated) |> ignore
   defun(q_d_ef_sub, args => { check_arity_range("$ef_sub", args, 0, -1); d_ef_sub(rest_args(args, 0)) })
+  putprop(q_d_ef_sub, t, q_translated) |> ignore
   defun(q_d_ef_mult, args => { check_arity_range("$ef_mult", args, 0, -1); d_ef_mult(rest_args(args, 0)) })
+  putprop(q_d_ef_mult, t, q_translated) |> ignore
   defun(q_d_ef_reduce, args => { check_arity_range("$ef_reduce", args, 2, 2); d_ef_reduce(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_reduce, t, q_translated) |> ignore
   defun(q_d_ef_inv, args => { check_arity_range("$ef_inv", args, 1, 1); d_ef_inv(arg(args, 0)) })
+  putprop(q_d_ef_inv, t, q_translated) |> ignore
   defun(q_d_ef_div, args => { check_arity_range("$ef_div", args, 0, -1); d_ef_div(rest_args(args, 0)) })
+  putprop(q_d_ef_div, t, q_translated) |> ignore
   defun(q_d_ef_exp, args => { check_arity_range("$ef_exp", args, 2, 2); d_ef_exp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_exp, t, q_translated) |> ignore
   defun(q_gf_xctimes, args => gf_xctimes(arg(args, 0), arg(args, 1)))
   defun(q_gf_nxctimes, args => gf_nxctimes(arg(args, 0), arg(args, 1)))
   defun(q_gf_xectimes, args => gf_xectimes(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -5392,53 +5818,79 @@ fn register_generated_functions() -> Unit {
   defun(q_gf_inv, args => gf_inv(arg(args, 0), arg(args, 1)))
   defun(q_gf_divide, args => gf_divide(arg(args, 0), arg(args, 1)).0)
   defun(q_d_ef_p2n, args => { check_arity_range("$ef_p2n", args, 1, 1); d_ef_p2n(arg(args, 0)) })
+  putprop(q_d_ef_p2n, t, q_translated) |> ignore
   defun(q_d_gf_p2n, args => { check_arity_range("$gf_p2n", args, 1, 2); d_gf_p2n(arg(args, 0), gf_char?=args.get(1)) })
+  putprop(q_d_gf_p2n, t, q_translated) |> ignore
   defun(q_gf_x2n, args => gf_x2n(arg(args, 0)))
   defun(q_gf_n2p_errchk, args => gf_n2p_errchk(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_n2p, args => { check_arity_range("$gf_n2p", args, 1, 2); d_gf_n2p(arg(args, 0), gf_char?=args.get(1)) })
+  putprop(q_d_gf_n2p, t, q_translated) |> ignore
   defun(q_d_ef_n2p, args => { check_arity_range("$ef_n2p", args, 1, 1); d_ef_n2p(arg(args, 0)) })
+  putprop(q_d_ef_n2p, t, q_translated) |> ignore
   defun(q_gf_n2x, args => gf_n2x(arg(args, 0)))
   defun(q_d_ef_p2l, args => { check_arity_range("$ef_p2l", args, 1, 2); d_ef_p2l(arg(args, 0), len?=args.get(1)) })
+  putprop(q_d_ef_p2l, t, q_translated) |> ignore
   defun(q_d_gf_p2l, args => { check_arity_range("$gf_p2l", args, 1, 2); d_gf_p2l(arg(args, 0), len?=args.get(1)) })
+  putprop(q_d_gf_p2l, t, q_translated) |> ignore
   defun(q_gf_x2l, args => gf_x2l(arg(args, 0), arg(args, 1)))
   defun(q_d_ef_l2p, args => { check_arity_range("$ef_l2p", args, 1, 1); d_ef_l2p(arg(args, 0)) })
+  putprop(q_d_ef_l2p, t, q_translated) |> ignore
   defun(q_d_gf_l2p, args => { check_arity_range("$gf_l2p", args, 1, 1); d_gf_l2p(arg(args, 0)) })
+  putprop(q_d_gf_l2p, t, q_translated) |> ignore
   defun(q_gf_l2p_errchk, args => gf_l2p_errchk(arg(args, 0), arg(args, 1)))
   defun(q_gf_l2x, args => gf_l2x(arg(args, 0)))
   defun(q_d_gf_l2n, args => { check_arity_range("$gf_l2n", args, 1, 1); d_gf_l2n(arg(args, 0)) })
+  putprop(q_d_gf_l2n, t, q_translated) |> ignore
   defun(q_d_ef_l2n, args => { check_arity_range("$ef_l2n", args, 1, 1); d_ef_l2n(arg(args, 0)) })
+  putprop(q_d_ef_l2n, t, q_translated) |> ignore
   defun(q_gf_l2n, args => gf_l2n(arg(args, 0)))
   defun(q_d_gf_n2l, args => { check_arity_range("$gf_n2l", args, 1, 2); d_gf_n2l(arg(args, 0), len?=args.get(1)) })
+  putprop(q_d_gf_n2l, t, q_translated) |> ignore
   defun(q_d_ef_n2l, args => { check_arity_range("$ef_n2l", args, 1, 2); d_ef_n2l(arg(args, 0), len?=args.get(1)) })
+  putprop(q_d_ef_n2l, t, q_translated) |> ignore
   defun(q_gf_n2l, args => gf_n2l(arg(args, 0)))
   defun(q_gf_n2l_twoargs, args => gf_n2l_twoargs(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_irreducible_p, args => { check_arity_range("$gf_irreducible_p", args, 1, 2); d_gf_irreducible_p(arg(args, 0), p?=args.get(1)) })
+  putprop(q_d_gf_irreducible_p, t, q_translated) |> ignore
   defun(q_d_ef_irreducible_p, args => { check_arity_range("$ef_irreducible_p", args, 1, 1); d_ef_irreducible_p(arg(args, 0)) })
+  putprop(q_d_ef_irreducible_p, t, q_translated) |> ignore
   defun(q_gf_irr_p, args => gf_irr_p(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_irreducible, args => { check_arity_range("$gf_irreducible", args, 2, 2); d_gf_irreducible(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_irreducible, t, q_translated) |> ignore
   defun(q_d_ef_irreducible, args => { check_arity_range("$ef_irreducible", args, 1, 1); d_ef_irreducible(arg(args, 0)) })
+  putprop(q_d_ef_irreducible, t, q_translated) |> ignore
   defun(q_gf_irr, args => gf_irr(arg(args, 0), arg(args, 1)))
   defun(q_ef_irr, args => ef_irr(arg(args, 0)))
   defun(q_n_starf_irr, args => n_starf_irr(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_primitive_p, args => { check_arity_range("$gf_primitive_p", args, 1, 1); d_gf_primitive_p(arg(args, 0)) })
+  putprop(q_d_gf_primitive_p, t, q_translated) |> ignore
   defun(q_d_ef_primitive_p, args => { check_arity_range("$ef_primitive_p", args, 1, 1); d_ef_primitive_p(arg(args, 0)) })
+  putprop(q_d_ef_primitive_p, t, q_translated) |> ignore
   defun(q_gf_prim_p, args => gf_prim_p(arg(args, 0)))
   defun(q_ef_prim_p, args => ef_prim_p(arg(args, 0)))
   defun(q_n_starf_prim_p_1, args => n_starf_prim_p_1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_n_starf_prim_p_2, args => n_starf_prim_p_2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
   defun(q_d_gf_jacobi, args => { check_arity_range("$gf_jacobi", args, 2, 2); d_gf_jacobi(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_jacobi, t, q_translated) |> ignore
   defun(q_d_ef_jacobi, args => { check_arity_range("$ef_jacobi", args, 2, 2); d_ef_jacobi(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_jacobi, t, q_translated) |> ignore
   defun(q_gf_jacobi, args => gf_jacobi(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_cjacobi, args => gf_cjacobi(arg(args, 0)))
   defun(q_d_gf_compose, args => { check_arity_range("$gf_compose", args, 2, 2); d_gf_compose(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_compose, t, q_translated) |> ignore
   defun(q_d_ef_compose, args => { check_arity_range("$ef_compose", args, 2, 2); d_ef_compose(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_compose, t, q_translated) |> ignore
   defun(q_gf_compose, args => gf_compose(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_at_errchk, args => gf_at_errchk(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_at, args => { check_arity_range("$gf_at", args, 2, 2); d_gf_at(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_at, t, q_translated) |> ignore
   defun(q_d_ef_at, args => { check_arity_range("$ef_at", args, 2, 2); d_ef_at(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_at, t, q_translated) |> ignore
   defun(q_gf_at, args => gf_at(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_primitive, args => { check_arity_range("$gf_primitive", args, 0, 0); d_gf_primitive() })
+  putprop(q_d_gf_primitive, t, q_translated) |> ignore
   defun(q_d_ef_primitive, args => { check_arity_range("$ef_primitive", args, 0, 0); d_ef_primitive() })
+  putprop(q_d_ef_primitive, t, q_translated) |> ignore
   defun(q_gf_prim, args => gf_prim())
   defun(q_ef_prim, args => ef_prim())
   defun(q_n_starf_prim, args => n_starf_prim(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -5447,21 +5899,29 @@ fn register_generated_functions() -> Unit {
   defun(q_n_starf_precomp, args => n_starf_precomp(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_x_hatp_powers, args => gf_x_hatp_powers(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_primitive_poly_p, args => { check_arity_range("$gf_primitive_poly_p", args, 1, 2); d_gf_primitive_poly_p(arg(args, 0), p?=args.get(1)) })
+  putprop(q_d_gf_primitive_poly_p, t, q_translated) |> ignore
   defun(q_d_ef_primitive_poly_p, args => { check_arity_range("$ef_primitive_poly_p", args, 1, 1); d_ef_primitive_poly_p(arg(args, 0)) })
+  putprop(q_d_ef_primitive_poly_p, t, q_translated) |> ignore
   defun(q_gf_primpoly_p, args => gf_primpoly_p(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_primpoly_p_exit, args => gf_primpoly_p_exit(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_primitive_poly, args => { check_arity_range("$gf_primitive_poly", args, 2, 2); d_gf_primitive_poly(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_primitive_poly, t, q_translated) |> ignore
   defun(q_d_ef_primitive_poly, args => { check_arity_range("$ef_primitive_poly", args, 1, 1); d_ef_primitive_poly(arg(args, 0)) })
+  putprop(q_d_ef_primitive_poly, t, q_translated) |> ignore
   defun(q_gf_primpoly, args => gf_primpoly(arg(args, 0), arg(args, 1)))
   defun(q_gf_primpoly_p2, args => gf_primpoly_p2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)))
   defun(q_d_gf_random, args => { check_arity_range("$gf_random", args, 0, 2); d_gf_random(p?=args.get(0), n?=args.get(1)) })
+  putprop(q_d_gf_random, t, q_translated) |> ignore
   defun(q_d_ef_random, args => { check_arity_range("$ef_random", args, 0, 2); d_ef_random(q?=args.get(0), n?=args.get(1)) })
+  putprop(q_d_ef_random, t, q_translated) |> ignore
   defun(q_gf_random, args => gf_random(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_factor, args => { check_arity_range("$gf_factor", args, 1, 2); d_gf_factor(arg(args, 0), p?=args.get(1)) })
+  putprop(q_d_gf_factor, t, q_translated) |> ignore
   defun(q_gf_ns2pmod_factors, args => gf_ns2pmod_factors(arg(args, 0)))
   defun(q_gf_ns2pmod_factor, args => gf_ns2pmod_factor(arg(args, 0), arg(args, 1)))
   defun(q_gf_disrep_factors, args => gf_disrep_factors(arg(args, 0)))
   defun(q_d_ef_factor, args => { check_arity_range("$ef_factor", args, 1, 1); d_ef_factor(arg(args, 0)) })
+  putprop(q_d_ef_factor, t, q_translated) |> ignore
   defun(q_gf_factor, args => gf_factor(arg(args, 0), arg(args, 1)))
   defun(q_gf_diff, args => gf_diff(arg(args, 0)))
   defun(q_ef_pth_croot, args => ef_pth_croot(arg(args, 0)))
@@ -5473,64 +5933,96 @@ fn register_generated_functions() -> Unit {
   defun(q_gf_trace_poly_f2, args => gf_trace_poly_f2(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_equal_degree_factors, args => gf_equal_degree_factors(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_ef_gcd, args => { check_arity_range("$ef_gcd", args, 2, 2); d_ef_gcd(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_gcd, t, q_translated) |> ignore
   defun(q_d_gf_gcd, args => { check_arity_range("$gf_gcd", args, 2, 3); d_gf_gcd(arg(args, 0), arg(args, 1), p?=args.get(2)) })
+  putprop(q_d_gf_gcd, t, q_translated) |> ignore
   defun(q_d_gf_gcdex, args => { check_arity_range("$gf_gcdex", args, 2, 2); d_gf_gcdex(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_gcdex, t, q_translated) |> ignore
   defun(q_d_ef_gcdex, args => { check_arity_range("$ef_gcdex", args, 2, 2); d_ef_gcdex(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_gcdex, t, q_translated) |> ignore
   defun(q_d_gf_unit_p, args => { check_arity_range("$gf_unit_p", args, 1, 1); d_gf_unit_p(arg(args, 0)) })
+  putprop(q_d_gf_unit_p, t, q_translated) |> ignore
   defun(q_d_ef_unit_p, args => { check_arity_range("$ef_unit_p", args, 1, 1); d_ef_unit_p(arg(args, 0)) })
+  putprop(q_d_ef_unit_p, t, q_translated) |> ignore
   defun(q_gf_unit_p, args => gf_unit_p(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_order, args => { check_arity_range("$gf_order", args, 0, 1); d_gf_order(a?=args.get(0)) })
+  putprop(q_d_gf_order, t, q_translated) |> ignore
   defun(q_d_ef_order, args => { check_arity_range("$ef_order", args, 0, 1); d_ef_order(a?=args.get(0)) })
+  putprop(q_d_ef_order, t, q_translated) |> ignore
   defun(q_gf_ord, args => gf_ord(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_gf_ord_by_table, args => gf_ord_by_table(arg(args, 0)))
   defun(q_gf_group_order, args => gf_group_order(arg(args, 0), arg(args, 1)))
   defun(q_gf_degree_errchk, args => gf_degree_errchk(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_degree, args => { check_arity_range("$gf_degree", args, 1, 1); d_gf_degree(arg(args, 0)) })
+  putprop(q_d_gf_degree, t, q_translated) |> ignore
   defun(q_d_ef_degree, args => { check_arity_range("$ef_degree", args, 1, 1); d_ef_degree(arg(args, 0)) })
+  putprop(q_d_ef_degree, t, q_translated) |> ignore
   defun(q_n_starf_deg, args => n_starf_deg(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_gf_minimal_poly, args => { check_arity_range("$gf_minimal_poly", args, 1, 1); d_gf_minimal_poly(arg(args, 0)) })
+  putprop(q_d_gf_minimal_poly, t, q_translated) |> ignore
   defun(q_d_ef_minimal_poly, args => { check_arity_range("$ef_minimal_poly", args, 1, 1); d_ef_minimal_poly(arg(args, 0)) })
+  putprop(q_d_ef_minimal_poly, t, q_translated) |> ignore
   defun(q_gf_minpoly, args => gf_minpoly(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_zx, args => gf_zx(arg(args, 0)))
   defun(q_gf_ncx, args => gf_ncx(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_nzx_pluscx, args => gf_nzx_pluscx(arg(args, 0), arg(args, 1)))
   defun(q_gf_nxx2x, args => gf_nxx2x(arg(args, 0)))
   defun(q_d_gf_trace, args => { check_arity_range("$gf_trace", args, 1, 1); d_gf_trace(arg(args, 0)) })
+  putprop(q_d_gf_trace, t, q_translated) |> ignore
   defun(q_d_ef_trace, args => { check_arity_range("$ef_trace", args, 1, 1); d_ef_trace(arg(args, 0)) })
+  putprop(q_d_ef_trace, t, q_translated) |> ignore
   defun(q_gf_trace, args => gf_trace(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_norm, args => { check_arity_range("$gf_norm", args, 1, 1); d_gf_norm(arg(args, 0)) })
+  putprop(q_d_gf_norm, t, q_translated) |> ignore
   defun(q_d_ef_norm, args => { check_arity_range("$ef_norm", args, 1, 1); d_ef_norm(arg(args, 0)) })
+  putprop(q_d_ef_norm, t, q_translated) |> ignore
   defun(q_gf_norm, args => gf_norm(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_normal_p, args => { check_arity_range("$gf_normal_p", args, 1, 1); d_gf_normal_p(arg(args, 0)) })
+  putprop(q_d_gf_normal_p, t, q_translated) |> ignore
   defun(q_gf_normal_p, args => gf_normal_p(arg(args, 0)))
   defun(q_d_ef_normal_p, args => { check_arity_range("$ef_normal_p", args, 1, 1); d_ef_normal_p(arg(args, 0)) })
+  putprop(q_d_ef_normal_p, t, q_translated) |> ignore
   defun(q_ef_normal_p, args => ef_normal_p(arg(args, 0)))
   defun(q_d_gf_normal, args => { check_arity_range("$gf_normal", args, 0, 0); d_gf_normal() })
+  putprop(q_d_gf_normal, t, q_translated) |> ignore
   defun(q_d_ef_normal, args => { check_arity_range("$ef_normal", args, 0, 0); d_ef_normal() })
+  putprop(q_d_ef_normal, t, q_translated) |> ignore
   defun(q_gf_normal, args => gf_normal(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_random_normal, args => { check_arity_range("$gf_random_normal", args, 0, 0); d_gf_random_normal() })
+  putprop(q_d_gf_random_normal, t, q_translated) |> ignore
   defun(q_gf_random_normal, args => gf_random_normal())
   defun(q_d_ef_random_normal, args => { check_arity_range("$ef_random_normal", args, 0, 0); d_ef_random_normal() })
+  putprop(q_d_ef_random_normal, t, q_translated) |> ignore
   defun(q_ef_random_normal, args => ef_random_normal())
   defun(q_d_gf_normal_basis, args => { check_arity_range("$gf_normal_basis", args, 1, 1); d_gf_normal_basis(arg(args, 0)) })
+  putprop(q_d_gf_normal_basis, t, q_translated) |> ignore
   defun(q_d_ef_normal_basis, args => { check_arity_range("$ef_normal_basis", args, 1, 1); d_ef_normal_basis(arg(args, 0)) })
+  putprop(q_d_ef_normal_basis, t, q_translated) |> ignore
   defun(q_gf_maybe_normal_basis, args => gf_maybe_normal_basis(arg(args, 0)))
   defun(q_ef_maybe_normal_basis, args => ef_maybe_normal_basis(arg(args, 0)))
   defun(q_n_starf_maybe_normal_basis, args => n_starf_maybe_normal_basis(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_gf_x2array, args => gf_x2array(arg(args, 0), arg(args, 1)))
   defun(q_d_gf_normal_basis_rep, args => { check_arity_range("$gf_normal_basis_rep", args, 2, 2); d_gf_normal_basis_rep(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_normal_basis_rep, t, q_translated) |> ignore
   defun(q_d_ef_normal_basis_rep, args => { check_arity_range("$ef_normal_basis_rep", args, 2, 2); d_ef_normal_basis_rep(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_normal_basis_rep, t, q_translated) |> ignore
   defun(q_gf_normal_basis_rep, args => gf_normal_basis_rep(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_gf_matneg, args => { check_arity_range("$gf_matneg", args, 1, 1); d_gf_matneg(arg(args, 0)) })
+  putprop(q_d_gf_matneg, t, q_translated) |> ignore
   defun(q_d_ef_matneg, args => { check_arity_range("$ef_matneg", args, 1, 1); d_ef_matneg(arg(args, 0)) })
+  putprop(q_d_ef_matneg, t, q_translated) |> ignore
   defun(q_d_gf_matadd, args => { check_arity_range("$gf_matadd", args, 0, -1); d_gf_matadd(rest_args(args, 0)) })
+  putprop(q_d_gf_matadd, t, q_translated) |> ignore
   defun(q_d_ef_matadd, args => { check_arity_range("$ef_matadd", args, 0, -1); d_ef_matadd(rest_args(args, 0)) })
+  putprop(q_d_ef_matadd, t, q_translated) |> ignore
   defun(q_gf_matadd, args => gf_matadd(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_matadd1, args => gf_matadd1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_matadd2_error, args => gf_matadd2_error())
   defun(q_gf_matadd2, args => gf_matadd2(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_gf_matmult, args => { check_arity_range("$gf_matmult", args, 0, -1); d_gf_matmult(rest_args(args, 0)) })
+  putprop(q_d_gf_matmult, t, q_translated) |> ignore
   defun(q_d_ef_matmult, args => { check_arity_range("$ef_matmult", args, 0, -1); d_ef_matmult(rest_args(args, 0)) })
+  putprop(q_d_ef_matmult, t, q_translated) |> ignore
   defun(q_n_starf_matmult, args => n_starf_matmult(arg(args, 0), rest_args(args, 1)))
   defun(q_gf_matmult, args => gf_matmult(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gf_matmult1, args => gf_matmult1(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -5538,18 +6030,29 @@ fn register_generated_functions() -> Unit {
   defun(q_zn_p_errchk, args => zn_p_errchk(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_try_lu_and_call, args => try_lu_and_call(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_zn_invert_by_lu, args => { check_arity_range("$zn_invert_by_lu", args, 2, 2); d_zn_invert_by_lu(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_zn_invert_by_lu, t, q_translated) |> ignore
   defun(q_d_gf_matinv, args => { check_arity_range("$gf_matinv", args, 1, 1); d_gf_matinv(arg(args, 0)) })
+  putprop(q_d_gf_matinv, t, q_translated) |> ignore
   defun(q_d_gf_invert_by_lu, args => { check_arity_range("$gf_invert_by_lu", args, 1, 1); d_gf_invert_by_lu(arg(args, 0)) })
+  putprop(q_d_gf_invert_by_lu, t, q_translated) |> ignore
   defun(q_d_ef_invert_by_lu, args => { check_arity_range("$ef_invert_by_lu", args, 1, 1); d_ef_invert_by_lu(arg(args, 0)) })
+  putprop(q_d_ef_invert_by_lu, t, q_translated) |> ignore
   defun(q_d_zn_determinant, args => { check_arity_range("$zn_determinant", args, 2, 2); d_zn_determinant(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_zn_determinant, t, q_translated) |> ignore
   defun(q_d_gf_determinant, args => { check_arity_range("$gf_determinant", args, 1, 1); d_gf_determinant(arg(args, 0)) })
+  putprop(q_d_gf_determinant, t, q_translated) |> ignore
   defun(q_d_ef_determinant, args => { check_arity_range("$ef_determinant", args, 1, 1); d_ef_determinant(arg(args, 0)) })
+  putprop(q_d_ef_determinant, t, q_translated) |> ignore
   defun(q_d_gf_index, args => { check_arity_range("$gf_index", args, 1, 1); d_gf_index(arg(args, 0)) })
+  putprop(q_d_gf_index, t, q_translated) |> ignore
   defun(q_d_ef_index, args => { check_arity_range("$ef_index", args, 1, 1); d_ef_index(arg(args, 0)) })
+  putprop(q_d_ef_index, t, q_translated) |> ignore
   defun(q_d_gf_log, args => { check_arity_range("$gf_log", args, 1, 2); d_gf_log(arg(args, 0), b?=args.get(1)) })
+  putprop(q_d_gf_log, t, q_translated) |> ignore
   defun(q_gf_log_errchk1, args => gf_log_errchk1(arg(args, 0), arg(args, 1)))
   defun(q_gf_log_errchk2, args => gf_log_errchk2(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_ef_log, args => { check_arity_range("$ef_log", args, 1, 2); d_ef_log(arg(args, 0), b?=args.get(1)) })
+  putprop(q_d_ef_log, t, q_translated) |> ignore
   defun(q_gf_dlogb, args => gf_dlogb(arg(args, 0), arg(args, 1)))
   defun(q_ef_dlogb, args => ef_dlogb(arg(args, 0), arg(args, 1)))
   defun(q_n_starf_dlogb, args => n_starf_dlogb(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -5561,22 +6064,31 @@ fn register_generated_functions() -> Unit {
   defun(q_gf_dlog_baby_giant, args => gf_dlog_baby_giant(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_gf_dlog_rho_brent, args => gf_dlog_rho_brent(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_ef_nth_root, args => { check_arity_range("$ef_nth_root", args, 2, 2); d_ef_nth_root(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_ef_nth_root, t, q_translated) |> ignore
   defun(q_d_gf_nth_root, args => { check_arity_range("$gf_nth_root", args, 2, 2); d_gf_nth_root(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_gf_nth_root, t, q_translated) |> ignore
   defun(q_gf_nrt_exit, args => gf_nrt_exit(arg(args, 0)))
   defun(q_gf_nrt, args => gf_nrt(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_gf_amm, args => gf_amm(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_gf_add_table, args => { check_arity_range("$gf_add_table", args, 0, 0); d_gf_add_table() })
+  putprop(q_d_gf_add_table, t, q_translated) |> ignore
   defun(q_d_ef_add_table, args => { check_arity_range("$ef_add_table", args, 0, 0); d_ef_add_table() })
+  putprop(q_d_ef_add_table, t, q_translated) |> ignore
   defun(q_gf_add_table, args => gf_add_table(arg(args, 0)))
   defun(q_d_gf_mult_table, args => { check_arity_range("$gf_mult_table", args, 0, 1); d_gf_mult_table(all_q?=args.get(0)) })
+  putprop(q_d_gf_mult_table, t, q_translated) |> ignore
   defun(q_d_ef_mult_table, args => { check_arity_range("$ef_mult_table", args, 0, 1); d_ef_mult_table(all_q?=args.get(0)) })
+  putprop(q_d_ef_mult_table, t, q_translated) |> ignore
   defun(q_gf_mult_table, args => gf_mult_table(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_d_gf_power_table, args => { check_arity_range("$gf_power_table", args, 0, -1); d_gf_power_table(rest_args(args, 0)) })
+  putprop(q_d_gf_power_table, t, q_translated) |> ignore
   defun(q_d_ef_power_table, args => { check_arity_range("$ef_power_table", args, 0, -1); d_ef_power_table(rest_args(args, 0)) })
+  putprop(q_d_ef_power_table, t, q_translated) |> ignore
   defun(q_gf_power_table_args, args => gf_power_table_args(rest_args(args, 0)).0)
   defun(q_gf_power_table, args => gf_power_table(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_eshift, args => eshift(arg(args, 0), arg(args, 1)))
   defun(q_d_pade, args => { check_arity_range("$pade", args, 3, 3); d_pade(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_pade, t, q_translated) |> ignore
   defun(q_pade, args => pade(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_pade1, args => pade1(arg(args, 0), arg(args, 1)))
   defun(q_term_star, args => term_star(arg(args, 0), arg(args, 1)))
@@ -5593,10 +6105,14 @@ fn register_generated_functions() -> Unit {
   defun(q_hsimp, args => hsimp(arg(args, 0), arg(args, 1)))
   defun(q_hsimp1, args => hsimp1(arg(args, 0), arg(args, 1)))
   defun(q_d_makefact, args => { check_arity_range("$makefact", args, 1, 1); d_makefact(arg(args, 0)) })
+  putprop(q_d_makefact, t, q_translated) |> ignore
   defun(q_makefact1, args => makefact1(arg(args, 0)))
   defun(q_d_makegamma, args => { check_arity_range("$makegamma", args, 1, 1); d_makegamma(arg(args, 0)) })
+  putprop(q_d_makegamma, t, q_translated) |> ignore
   defun(q_d_minfactorial, args => { check_arity_range("$minfactorial", args, 1, 1); d_minfactorial(arg(args, 0)) })
+  putprop(q_d_minfactorial, t, q_translated) |> ignore
   defun(q_d_factcomb, args => { check_arity_range("$factcomb", args, 1, 1); d_factcomb(arg(args, 0)) })
+  putprop(q_d_factcomb, t, q_translated) |> ignore
   defun(q_factcomb1, args => factcomb1(arg(args, 0)))
   defun(q_factcomb, args => factcomb(arg(args, 0)))
   defun(q_factrat, args => factrat(arg(args, 0)))
@@ -5620,15 +6136,20 @@ fn register_generated_functions() -> Unit {
   defun(q_bern, args => bern(arg(args, 0)))
   register_simplifier(q_simp__pctbern, args => simp__pctbern(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_bernpoly, args => { check_arity_range("$bernpoly", args, 2, 2); d_bernpoly(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_bernpoly, t, q_translated) |> ignore
   defun(q_d_eulerpoly, args => { check_arity_range("$eulerpoly", args, 2, 2); d_eulerpoly(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_eulerpoly, t, q_translated) |> ignore
   defun(q_simplim_pctzeta, args => simplim_pctzeta(arg(args, 0), arg(args, 1), arg(args, 2)))
   register_simplifier(q_simp__pctzeta, args => simp__pctzeta(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_float_zeta, args => float_zeta(arg(args, 0)))
   defun(q_d_fib, args => { check_arity_range("$fib", args, 1, 1); d_fib(arg(args, 0)) })
+  putprop(q_d_fib, t, q_translated) |> ignore
   defun(q_ffib, args => ffib(arg(args, 0)))
   defun(q_d_lucas, args => { check_arity_range("$lucas", args, 1, 1); d_lucas(arg(args, 0)) })
+  putprop(q_d_lucas, t, q_translated) |> ignore
   defun(q_lucas, args => lucas(arg(args, 0)))
   defun(q_d_cfdisrep, args => { check_arity_range("$cfdisrep", args, 1, 1); d_cfdisrep(arg(args, 0)) })
+  putprop(q_d_cfdisrep, t, q_translated) |> ignore
   defun(q_cfdisrep1, args => cfdisrep1(arg(args, 0)))
   defun(q_cfmak, args => cfmak(arg(args, 0)))
   defun(q_makcf, args => makcf(arg(args, 0)))
@@ -5656,10 +6177,12 @@ fn register_generated_functions() -> Unit {
   defun(q_conf7, args => conf7(arg(args, 0), arg(args, 1)))
   defun(q_cfsqrt, args => cfsqrt(arg(args, 0)))
   defun(q_d_qunit, args => { check_arity_range("$qunit", args, 1, 1); d_qunit(arg(args, 0)) })
+  putprop(q_d_qunit, t, q_translated) |> ignore
   defun(q_pelso1, args => pelso1(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_sqcont, args => sqcont(arg(args, 0)))
   defun(q_ratcf, args => ratcf(arg(args, 0), arg(args, 1)))
   defun(q_d_cfexpand, args => { check_arity_range("$cfexpand", args, 1, 1); d_cfexpand(arg(args, 0)) })
+  putprop(q_d_cfexpand, t, q_translated) |> ignore
   defun(q_cfexpand, args => cfexpand(arg(args, 0)))
   defun(q_simpsum2, args => simpsum2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_adsum, args => adsum(arg(args, 0)))
@@ -5671,6 +6194,7 @@ fn register_generated_functions() -> Unit {
   register_mspec(q_d_product, d_product)
   defun(q_simpprod, args => simpprod(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_taytorat, args => { check_arity_range("$taytorat", args, 1, 1); d_taytorat(arg(args, 0)) })
+  putprop(q_d_taytorat, t, q_translated) |> ignore
   defun(q_srrat, args => srrat(arg(args, 0)))
   defun(q_srrat2, args => srrat2(arg(args, 0)))
   defun(q_srrat3, args => srrat3(arg(args, 0), arg(args, 1)))
@@ -5678,6 +6202,7 @@ fn register_generated_functions() -> Unit {
   defun(q_subsum, args => subsum(arg(args, 0), arg(args, 1)))
   defun(q_susum1, args => susum1(arg(args, 0), arg(args, 1)))
   defun(q_d_polydecomp, args => { check_arity_range("$polydecomp", args, 2, 2); d_polydecomp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_polydecomp, t, q_translated) |> ignore
   defun(q_polydecomp, args => polydecomp(arg(args, 0), arg(args, 1)))
   defun(q_pdecred, args => pdecred(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_pdecomp, args => pdecomp(arg(args, 0), arg(args, 1)))
@@ -5688,38 +6213,64 @@ fn register_generated_functions() -> Unit {
   defun(q_require_list, args => require_list(arg(args, 0), arg(args, 1)))
   defun(q_require_list_or_set, args => require_list_or_set(arg(args, 0), arg(args, 1)))
   defun(q_d_unique, args => { check_arity_range("$unique", args, 1, 1); d_unique(arg(args, 0)) })
+  putprop(q_d_unique, t, q_translated) |> ignore
   defun(q_d_setify, args => { check_arity_range("$setify", args, 1, 1); d_setify(arg(args, 0)) })
+  putprop(q_d_setify, t, q_translated) |> ignore
   defun(q_d_fullsetify, args => { check_arity_range("$fullsetify", args, 1, 1); d_fullsetify(arg(args, 0)) })
+  putprop(q_d_fullsetify, t, q_translated) |> ignore
   defun(q_d_listify, args => { check_arity_range("$listify", args, 1, 1); d_listify(arg(args, 0)) })
+  putprop(q_d_listify, t, q_translated) |> ignore
   defun(q_d_full_listify, args => { check_arity_range("$full_listify", args, 1, 1); d_full_listify(arg(args, 0)) })
+  putprop(q_d_full_listify, t, q_translated) |> ignore
   defun(q_simp_set, args => simp_set(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_emptyp, args => { check_arity_range("$emptyp", args, 1, 1); d_emptyp(arg(args, 0)) })
+  putprop(q_d_emptyp, t, q_translated) |> ignore
   defun(q_d_setp, args => { check_arity_range("$setp", args, 1, 1); d_setp(arg(args, 0)) })
+  putprop(q_d_setp, t, q_translated) |> ignore
   defun(q_d_cardinality, args => { check_arity_range("$cardinality", args, 1, 1); d_cardinality(arg(args, 0)) })
+  putprop(q_d_cardinality, t, q_translated) |> ignore
   defun(q_d_subsetp, args => { check_arity_range("$subsetp", args, 2, 2); d_subsetp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_subsetp, t, q_translated) |> ignore
   defun(q_d_setequalp, args => { check_arity_range("$setequalp", args, 2, 2); d_setequalp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_setequalp, t, q_translated) |> ignore
   defun(q_d_adjoin, args => { check_arity_range("$adjoin", args, 2, 2); d_adjoin(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_adjoin, t, q_translated) |> ignore
   defun(q_d_disjoin, args => { check_arity_range("$disjoin", args, 2, 2); d_disjoin(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_disjoin, t, q_translated) |> ignore
   defun(q_prefixconc, args => prefixconc(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_union, args => { check_arity_range("$union", args, 0, -1); d_union(rest_args(args, 0)) })
+  putprop(q_d_union, t, q_translated) |> ignore
   defun(q_d_setdifference, args => { check_arity_range("$setdifference", args, 2, 2); d_setdifference(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_setdifference, t, q_translated) |> ignore
   defun(q_d_intersection, args => { check_arity_range("$intersection", args, 1, -1); d_intersection(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_intersection, t, q_translated) |> ignore
   defun(q_d_intersect, args => { check_arity_range("$intersect", args, 1, -1); d_intersect(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_intersect, t, q_translated) |> ignore
   defun(q_d_elementp, args => { check_arity_range("$elementp", args, 2, 2); d_elementp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_elementp, t, q_translated) |> ignore
   defun(q_d_disjointp, args => { check_arity_range("$disjointp", args, 2, 2); d_disjointp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_disjointp, t, q_translated) |> ignore
   defun(q_d_subset, args => { check_arity_range("$subset", args, 2, 2); d_subset(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_subset, t, q_translated) |> ignore
   defun(q_d_partition_set, args => { check_arity_range("$partition_set", args, 2, 2); d_partition_set(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_partition_set, t, q_translated) |> ignore
   defun(q_d_symmdifference, args => { check_arity_range("$symmdifference", args, 0, -1); d_symmdifference(rest_args(args, 0)) })
+  putprop(q_d_symmdifference, t, q_translated) |> ignore
   defun(q_d_in_exactly_one, args => { check_arity_range("$in_exactly_one", args, 0, -1); d_in_exactly_one(rest_args(args, 0)) })
+  putprop(q_d_in_exactly_one, t, q_translated) |> ignore
   defun(q_d_powerset, args => { check_arity_range("$powerset", args, 1, 2); d_powerset(arg(args, 0), k?=args.get(1)) })
+  putprop(q_d_powerset, t, q_translated) |> ignore
   defun(q_power_set, args => power_set(arg(args, 0)))
   defun(q_powerset_subset, args => powerset_subset(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_ksubset_lex_successor, args => ksubset_lex_successor(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_permutations, args => { check_arity_range("$permutations", args, 1, 1); d_permutations(arg(args, 0)) })
+  putprop(q_d_permutations, t, q_translated) |> ignore
   defun(q_permutation_lex_successor, args => permutation_lex_successor(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_random_permutation, args => { check_arity_range("$random_permutation", args, 1, 1); d_random_permutation(arg(args, 0)) })
+  putprop(q_d_random_permutation, t, q_translated) |> ignore
   defun(q_b_search_expr, args => b_search_expr(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)).0)
   defun(q_d_flatten, args => { check_arity_range("$flatten", args, 1, 1); d_flatten(arg(args, 0)) })
+  putprop(q_d_flatten, t, q_translated) |> ignore
   defun(q_flattenl_op, args => flattenl_op(arg(args, 0), arg(args, 1)))
   defun(q_sorted_remove_duplicates, args => sorted_remove_duplicates(arg(args, 0)))
   defun(q_set_intersect, args => set_intersect(arg(args, 0), arg(args, 1)))
@@ -5729,19 +6280,28 @@ fn register_generated_functions() -> Unit {
   defun(q_set_symmetric_difference, args => set_symmetric_difference(arg(args, 0), arg(args, 1)))
   defun(q_set_disjointp, args => set_disjointp(arg(args, 0), arg(args, 1)))
   defun(q_d_extremal_subset, args => { check_arity_range("$extremal_subset", args, 3, 3); d_extremal_subset(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_extremal_subset, t, q_translated) |> ignore
   defun(q_bool_checked_mfuncall, args => bool_checked_mfuncall(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_equiv_classes, args => { check_arity_range("$equiv_classes", args, 2, 2); d_equiv_classes(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_equiv_classes, t, q_translated) |> ignore
   defun(q_d_cartesian_product, args => { check_arity_range("$cartesian_product", args, 0, -1); d_cartesian_product(rest_args(args, 0)) })
+  putprop(q_d_cartesian_product, t, q_translated) |> ignore
   defun(q_d_cartesian_product_list, args => { check_arity_range("$cartesian_product_list", args, 0, -1); d_cartesian_product_list(rest_args(args, 0)) })
+  putprop(q_d_cartesian_product_list, t, q_translated) |> ignore
   defun(q_cartesian_product, args => cartesian_product(rest_args(args, 0)))
   defun(q_d_set_partitions, args => { check_arity_range("$set_partitions", args, 1, 2); d_set_partitions(arg(args, 0), n__sub?=args.get(1)) })
+  putprop(q_d_set_partitions, t, q_translated) |> ignore
   defun(q_set_partitions, args => set_partitions(arg(args, 0), arg(args, 1)))
   defun(q_d_integer_partitions, args => { check_arity_range("$integer_partitions", args, 1, 2); d_integer_partitions(arg(args, 0), len?=args.get(1)) })
+  putprop(q_d_integer_partitions, t, q_translated) |> ignore
   defun(q_integer_partitions, args => integer_partitions(arg(args, 0)))
   defun(q_fixed_length_partitions, args => fixed_length_partitions(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_num_partitions, args => { check_arity_range("$num_partitions", args, 1, 2); d_num_partitions(arg(args, 0), lst?=args.get(1)) })
+  putprop(q_d_num_partitions, t, q_translated) |> ignore
   defun(q_d_num_distinct_partitions, args => { check_arity_range("$num_distinct_partitions", args, 1, 2); d_num_distinct_partitions(arg(args, 0), lst?=args.get(1)) })
+  putprop(q_d_num_distinct_partitions, t, q_translated) |> ignore
   defun(q_d_kron_delta, args => { check_arity_range("$kron_delta", args, 0, -1); d_kron_delta(rest_args(args, 0)) })
+  putprop(q_d_kron_delta, t, q_translated) |> ignore
   defun(q_simp_kron_delta, args => simp_kron_delta(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_tex_kron_delta, args => tex_kron_delta(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_simp_stirling1, args => simp_stirling1(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -5752,23 +6312,32 @@ fn register_generated_functions() -> Unit {
   defun(q_simp_belln, args => simp_belln(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_integer_belln, args => integer_belln(arg(args, 0)))
   defun(q_d_multinomial_coeff, args => { check_arity_range("$multinomial_coeff", args, 0, -1); d_multinomial_coeff(rest_args(args, 0)) })
+  putprop(q_d_multinomial_coeff, t, q_translated) |> ignore
   defun(q_d_rreduce, args => { check_arity_range("$rreduce", args, 2, 3); d_rreduce(arg(args, 0), arg(args, 1), init_?=args.get(2)) })
+  putprop(q_d_rreduce, t, q_translated) |> ignore
   defun(q_d_lreduce, args => { check_arity_range("$lreduce", args, 2, 3); d_lreduce(arg(args, 0), arg(args, 1), init_?=args.get(2)) })
+  putprop(q_d_lreduce, t, q_translated) |> ignore
   defun(q_rl_reduce, args => rl_reduce(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_xappend, args => xappend(arg(args, 0)))
   defun(q_d_xreduce, args => { check_arity_range("$xreduce", args, 2, 3); d_xreduce(arg(args, 0), arg(args, 1), init_?=args.get(2)) })
+  putprop(q_d_xreduce, t, q_translated) |> ignore
   defun(q_d_tree_reduce, args => { check_arity_range("$tree_reduce", args, 2, 3); d_tree_reduce(arg(args, 0), arg(args, 1), init_?=args.get(2)) })
+  putprop(q_d_tree_reduce, t, q_translated) |> ignore
   defun(q_d_identity, args => { check_arity_range("$identity", args, 1, 1); d_identity(arg(args, 0)) })
+  putprop(q_d_identity, t, q_translated) |> ignore
   defun(q_checked_and, args => checked_and(arg(args, 0)))
   defun(q_checked_or, args => checked_or(arg(args, 0)))
   defun(q_ignore_errors_mfuncall, args => ignore_errors_mfuncall(arg(args, 0), arg(args, 1)))
   defun(q_d_every, args => { check_arity_range("$every", args, 1, -1); d_every(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_every, t, q_translated) |> ignore
   defun(q_d_some, args => { check_arity_range("$some", args, 1, -1); d_some(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_some, t, q_translated) |> ignore
   register_mspec(q_d_makeset, d_makeset)
   defun(q_thread, args => thread(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_simp_divisors, args => simp_divisors(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_simp_moebius, args => simp_moebius(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_sublist_indices, args => { check_arity_range("$sublist_indices", args, 2, 2); d_sublist_indices(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_sublist_indices, t, q_translated) |> ignore
   defun(q_maxmin_effort_assign, args => maxmin_effort_assign(arg(args, 0), arg(args, 1)))
   defun(q_betweenp, args => betweenp(arg(args, 0), arg(args, 1)))
   defun(q_simplim_dolmax, args => simplim_dolmax(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -5780,11 +6349,15 @@ fn register_generated_functions() -> Unit {
   defun(q_simp_min, args => simp_min(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_maximin, args => maximin(arg(args, 0), arg(args, 1)))
   defun(q_d_lmax, args => { check_arity_range("$lmax", args, 1, 1); d_lmax(arg(args, 0)) })
+  putprop(q_d_lmax, t, q_translated) |> ignore
   defun(q_d_lmin, args => { check_arity_range("$lmin", args, 1, 1); d_lmin(arg(args, 0)) })
+  putprop(q_d_lmin, t, q_translated) |> ignore
   defun(q_d_compare, args => { check_arity_range("$compare", args, 2, 2); d_compare(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_compare, t, q_translated) |> ignore
   defun(q_lenient_extended_realp, args => lenient_extended_realp(arg(args, 0)))
   defun(q_lenient_realp, args => lenient_realp(arg(args, 0)))
   defun(q_d_rationalize, args => { check_arity_range("$rationalize", args, 1, 1); d_rationalize(arg(args, 0)) })
+  putprop(q_d_rationalize, t, q_translated) |> ignore
   defun(q_tex_conjugate, args => tex_conjugate(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_off_negative_real_axisp, args => off_negative_real_axisp(arg(args, 0)))
   defun(q_on_negative_real_axisp, args => on_negative_real_axisp(arg(args, 0)))
@@ -5837,14 +6410,18 @@ fn register_generated_functions() -> Unit {
   defun(q_risplit_sinc, args => risplit_sinc(arg(args, 0)))
   defun(q_sign_sinc, args => sign_sinc(arg(args, 0)))
   defun(q_d_sort, args => { check_arity_range("$sort", args, 1, 2); d_sort(arg(args, 0), f?=args.get(1)) })
+  putprop(q_d_sort, t, q_translated) |> ignore
   defun(q_mfunction1, args => mfunction1(arg(args, 0)))
   defun(q_lessthan, args => lessthan(arg(args, 0), arg(args, 1)))
   register_mspec(q_d_makelist, d_makelist)
   defun(q_interval2, args => interval2(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_interval, args => interval(arg(args, 0), arg(args, 1)))
   defun(q_d_sublist, args => { check_arity_range("$sublist", args, 2, 2); d_sublist(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_sublist, t, q_translated) |> ignore
   defun(q_d_nonnegintegerp, args => { check_arity_range("$nonnegintegerp", args, 1, 1); d_nonnegintegerp(arg(args, 0)) })
+  putprop(q_d_nonnegintegerp, t, q_translated) |> ignore
   defun(q_d_polynomialp, args => { check_arity_range("$polynomialp", args, 2, 4); d_polynomialp(arg(args, 0), arg(args, 1), coeffp?=args.get(2), exponp?=args.get(3)) })
+  putprop(q_d_polynomialp, t, q_translated) |> ignore
   defun(q_polynomialp, args => polynomialp(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_poislim1, args => poislim1(arg(args, 0), arg(args, 1)))
   defun(q_nonperiod, args => nonperiod(arg(args, 0)))
@@ -5860,14 +6437,18 @@ fn register_generated_functions() -> Unit {
   defun(q_fumcheck, args => fumcheck(arg(args, 0)))
   defun(q_checkencode, args => checkencode(arg(args, 0)))
   defun(q_d_poissimp, args => { check_arity_range("$poissimp", args, 1, 1); d_poissimp(arg(args, 0)) })
+  putprop(q_d_poissimp, t, q_translated) |> ignore
   register_mspec(q_mpois, mpois)
   defun(q_d_poisplus, args => { check_arity_range("$poisplus", args, 2, 2); d_poisplus(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poisplus, t, q_translated) |> ignore
   defun(q_d_poismap, args => { check_arity_range("$poismap", args, 3, 3); d_poismap(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poismap, t, q_translated) |> ignore
   defun(q_poismap, args => poismap(arg(args, 0)))
   defun(q_poismerge22, args => poismerge22(arg(args, 0), arg(args, 1)))
   defun(q_poiscosine, args => poiscosine(arg(args, 0)))
   defun(q_poissine, args => poissine(arg(args, 0)))
   defun(q_d_intopois, args => { check_arity_range("$intopois", args, 1, 1); d_intopois(arg(args, 0)) })
+  putprop(q_d_intopois, t, q_translated) |> ignore
   defun(q_intopois, args => intopois(arg(args, 0)))
   defun(q_tcons, args => tcons(arg(args, 0), arg(args, 1)))
   defun(q_poisnegpred, args => poisnegpred(arg(args, 0)))
@@ -5875,9 +6456,13 @@ fn register_generated_functions() -> Unit {
   defun(q_poisencode, args => poisencode(arg(args, 0)))
   defun(q_poisdecodec, args => poisdecodec(arg(args, 0)))
   defun(q_d_poisctimes, args => { check_arity_range("$poisctimes", args, 2, 2); d_poisctimes(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poisctimes, t, q_translated) |> ignore
   defun(q_d_outofpois, args => { check_arity_range("$outofpois", args, 1, 1); d_outofpois(arg(args, 0)) })
+  putprop(q_d_outofpois, t, q_translated) |> ignore
   defun(q_d_printpois, args => { check_arity_range("$printpois", args, 1, 1); d_printpois(arg(args, 0)) })
+  putprop(q_d_printpois, t, q_translated) |> ignore
   defun(q_d_poisdiff, args => { check_arity_range("$poisdiff", args, 2, 2); d_poisdiff(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poisdiff, t, q_translated) |> ignore
   defun(q_poisdif4, args => poisdif4(arg(args, 0)))
   defun(q_cosdif, args => cosdif(arg(args, 0), arg(args, 1)))
   defun(q_sindif, args => sindif(arg(args, 0), arg(args, 1)))
@@ -5898,9 +6483,13 @@ fn register_generated_functions() -> Unit {
   defun(q_poisctimes1, args => poisctimes1(arg(args, 0), arg(args, 1)))
   defun(q_trimf, args => trimf(arg(args, 0)))
   defun(q_d_poistimes, args => { check_arity_range("$poistimes", args, 2, 2); d_poistimes(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poistimes, t, q_translated) |> ignore
   defun(q_d_poisexpt, args => { check_arity_range("$poisexpt", args, 2, 2); d_poisexpt(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poisexpt, t, q_translated) |> ignore
   defun(q_d_poissquare, args => { check_arity_range("$poissquare", args, 1, 1); d_poissquare(arg(args, 0)) })
+  putprop(q_d_poissquare, t, q_translated) |> ignore
   defun(q_d_poisint, args => { check_arity_range("$poisint", args, 2, 2); d_poisint(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poisint, t, q_translated) |> ignore
   defun(q_poisint4, args => poisint4(arg(args, 0)))
   defun(q_cosint_star, args => cosint_star(arg(args, 0), arg(args, 1)))
   defun(q_sinint_star, args => sinint_star(arg(args, 0), arg(args, 1)))
@@ -5909,6 +6498,7 @@ fn register_generated_functions() -> Unit {
   defun(q_poissubst1c, args => poissubst1c(arg(args, 0)))
   defun(q_argsubst, args => argsubst(arg(args, 0)))
   defun(q_d_poissubst, args => { check_arity_range("$poissubst", args, 3, 5); d_poissubst(arg(args, 0), arg(args, 1), arg(args, 2), dd?=args.get(3), nn?=args.get(4)) })
+  putprop(q_d_poissubst, t, q_translated) |> ignore
   defun(q_poissubstco1, args => poissubstco1(arg(args, 0)))
   defun(q_fancypoissubst, args => fancypoissubst(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_fancypois1s, args => fancypois1s(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
@@ -5916,10 +6506,15 @@ fn register_generated_functions() -> Unit {
   defun(q_fancypac, args => fancypac(arg(args, 0)))
   defun(q_fancypas, args => fancypas(arg(args, 0)))
   defun(q_d_desolve, args => { check_arity_range("$desolve", args, 2, 2); d_desolve(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_desolve, t, q_translated) |> ignore
   defun(q_d_eliminate, args => { check_arity_range("$eliminate", args, 2, 2); d_eliminate(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_eliminate, t, q_translated) |> ignore
   defun(q_d_adjoint, args => { check_arity_range("$adjoint", args, 1, 1); d_adjoint(arg(args, 0)) })
+  putprop(q_d_adjoint, t, q_translated) |> ignore
   defun(q_d_invert_by_adjoint, args => { check_arity_range("$invert_by_adjoint", args, 1, 1); d_invert_by_adjoint(arg(args, 0)) })
+  putprop(q_d_invert_by_adjoint, t, q_translated) |> ignore
   defun(q_d_invert, args => { check_arity_range("$invert", args, 0, -1); d_invert(rest_args(args, 0)) })
+  putprop(q_d_invert, t, q_translated) |> ignore
   defun(q_invert_via__dolinvert_by_lu, args => invert_via__dolinvert_by_lu(arg(args, 0), field_name?=args.get(1)))
   defun(q_multiply_matrix_elements, args => multiply_matrix_elements(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_todd_coxeter, args => todd_coxeter(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -5929,6 +6524,7 @@ fn register_generated_functions() -> Unit {
   defun(q_replace_coset_in_multiply_table, args => replace_coset_in_multiply_table())
   defun(q_next_coset, args => next_coset())
   defun(q_d_todd_coxeter, args => { check_arity_range("$todd_coxeter", args, 1, 2); d_todd_coxeter(arg(args, 0), subgp?=args.get(1)) })
+  putprop(q_d_todd_coxeter, t, q_translated) |> ignore
   defun(q_coerce_rel, args => coerce_rel(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_my_print, args => my_print(arg(args, 0), arg(args, 1)))
   defun(q_has_repeat, args => has_repeat(arg(args, 0)))
@@ -5936,11 +6532,13 @@ fn register_generated_functions() -> Unit {
   defun(q_dprint_state, args => dprint_state())
   defun(q_aload, args => aload(arg(args, 0)))
   defun(q_d_aload_mac, args => { check_arity_range("$aload_mac", args, 1, 1); d_aload_mac(arg(args, 0)) })
+  putprop(q_d_aload_mac, t, q_translated) |> ignore
   defun(q_autof, args => autof(arg(args, 0), arg(args, 1)))
   defun(q_autom, args => autom(arg(args, 0), arg(args, 1)))
   defun(q_auto_mspec, args => auto_mspec(arg(args, 0), arg(args, 1)))
   defun(q_auto_mexpr, args => auto_mexpr(arg(args, 0), arg(args, 1)))
   defun(q_d_auto_mexpr, args => { check_arity_range("$auto_mexpr", args, 2, 2); d_auto_mexpr(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_auto_mexpr, t, q_translated) |> ignore
   defun(q_shadow_string_assignment, args => shadow_string_assignment(arg(args, 0), arg(args, 1)))
   defun(q_print_directories, args => print_directories())
   defun(q_maxima_parse_dirstring, args => maxima_parse_dirstring(arg(args, 0)))
@@ -5959,11 +6557,13 @@ fn register_generated_functions() -> Unit {
   defun(q_initialize_runtime_globals, args => initialize_runtime_globals())
   defun(q_adjust_character_encoding, args => adjust_character_encoding())
   defun(q_d_to_lisp, args => { check_arity_range("$to_lisp", args, 0, 0); d_to_lisp() })
+  putprop(q_d_to_lisp, t, q_translated) |> ignore
   defun(q_to_maxima, args => to_maxima())
   defun(q_interactive_eval, args => interactive_eval(arg(args, 0)))
   defun(q_maxima_read_eval_print_loop, args => maxima_read_eval_print_loop())
   defun(q_maxima_lisp_debugger_repl, args => maxima_lisp_debugger_repl(arg(args, 0), arg(args, 1)))
   defun(q_d_help, args => { check_arity_range("$help", args, 0, -1); d_help(rest_args(args, 0)) })
+  putprop(q_d_help, t, q_translated) |> ignore
   defun(q_optimized_plist, args => optimized_plist(arg(args, 0)))
   defun(q_optimize_symbol_plist, args => optimize_symbol_plist(arg(args, 0)))
   defun(q_maxima_objdir, args => maxima_objdir(rest_args(args, 0)))
