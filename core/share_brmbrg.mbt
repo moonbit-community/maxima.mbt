@@ -64,13 +64,11 @@ fn d_bromberg(l1 : Value) -> Value raise {
         )
         |> ignore
       }
-      let f = intpol__coerce_float_fun(q_d_bfloat, car(l1), [
-        list([list1(q_mlist), cadr(l1)]),
-      ])
+      let f = coerce_bfloat_fun(car(l1), list([list([list1(q_mlist), cadr(l1)])]))
       l1 = cdr(l1)
       f
     } else {
-      intpol__coerce_float_fun(q_d_bfloat, car(l1), [])
+      coerce_bfloat_fun(car(l1), Nil)
     }
     let a = bfmeval3(cadr(l1))
     let b = bfmeval3(caddr(l1))

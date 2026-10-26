@@ -9,7 +9,7 @@ fn d_nelder_mead(
   options : Value,
 ) -> Value raise {
   // COERCE-FLOAT-FUN of plot.lisp (its port lives in intpol.mbt)
-  let fun = intpol__coerce_float_fun(q_d_float, expr, [vars])
+  let fun = coerce_float_fun(expr, list([vars]))
   let maxima_options = cons(list1(q_mlist), options)
   let verbose = d_assoc(q_d_nm_verbose, maxima_options)
   let maxfuncalls = d_assoc(q_d_maxfuncalls, maxima_options)

@@ -939,8 +939,7 @@ fn init_cl__parse_integer(s : Value) -> Value raise {
 }
 
 ///|
-/// Delete all files *temp-files-list* contains. The port's runtime cannot
-/// delete files, so the entries are only checked.
+/// Delete all files *temp-files-list* contains.
 fn delete_temp_files() -> Value raise {
   let tbl = symval(q_ear_temp_files_list)
   if hash_table_p(tbl) {
@@ -948,8 +947,9 @@ fn delete_temp_files() -> Value raise {
       (filename, _param) => {
         let name = init_cl__str(filename)
         if probe_file(name) && !apparently_a_directory_p(filename).truthy() {
-          // (delete-file file): not available in the port's runtime.
-          ()
+          @fs.remove_file(name) catch {
+            _ => ()
+          }
         }
       },
       tbl,

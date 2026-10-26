@@ -90,9 +90,9 @@ fn romberg_subr(
 fn d_romberg(args : Value) -> Value raise {
   if length(args) == 3 {
     let (result, left, right) = with_specials(
-      [(q_d_numer, t), (q_d__pctenumer, t)],
+      [(q_d_numer, t), (q_d__pctenumer, t), (q_ear_plot_realpart, Nil)],
       () => romberg_subr(
-        quadpack__coerce_float_fun(first(args), Nil, Str("coerce-float-fun")),
+        coerce_float_fun(first(args), Nil),
         second(args),
         third(args),
       ),
@@ -111,13 +111,9 @@ fn d_romberg(args : Value) -> Value raise {
       |> ignore
     }
     let (result, left, right) = with_specials(
-      [(q_d_numer, t), (q_d__pctenumer, t)],
+      [(q_d_numer, t), (q_d__pctenumer, t), (q_ear_plot_realpart, Nil)],
       () => romberg_subr(
-        quadpack__coerce_float_fun(
-          first(args),
-          list2(list1(q_mlist), second(args)),
-          Str("coerce-float-fun"),
-        ),
+        coerce_float_fun(first(args), list1(list2(list1(q_mlist), second(args)))),
         third(args),
         fourth(args),
       ),

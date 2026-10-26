@@ -251,8 +251,8 @@ fn d_bf_fmin_cobyla(
   )
   // Integer work array for cobyla.
   let iact : FixedArray[Int] = FixedArray::make(m + 1, 0)
-  let fv = intpol__coerce_float_fun(q_d_bfloat, f, [vars])
-  let cv = intpol__coerce_float_fun(q_d_bfloat, normalized_constraints, [vars])
+  let fv = coerce_bfloat_fun(f, list([vars]))
+  let cv = coerce_bfloat_fun(normalized_constraints, list([vars]))
   // Compute the function and the constraints at the given xval.  The
   // function value is returned, and the constraint values are stored in
   // cval.

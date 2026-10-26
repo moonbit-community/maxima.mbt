@@ -52,10 +52,9 @@ fn write_font_type() -> Value raise {
 }
 
 ///|
-/// gnuplot_def.lisp's SEND-GNUPLOT-COMMAND: the port cannot run Gnuplot,
-/// so commands for an interactive Gnuplot process are dropped.
-fn share_draw__send_gnuplot_command(_command : Value) -> Unit {
-
+/// gnuplot_def.lisp's SEND-GNUPLOT-COMMAND.
+fn share_draw__send_gnuplot_command(command : Value) -> Unit raise {
+  send_gnuplot_command(command) |> ignore
 }
 
 ///|

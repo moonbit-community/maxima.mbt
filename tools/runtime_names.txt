@@ -73,6 +73,7 @@ characterp
 chars_to_string
 cis
 clog
+close_output_pipe
 clrhash
 code_char
 complex
@@ -308,12 +309,14 @@ one_minus
 one_plus
 open_input_file
 open_output_file
+open_output_pipe
 out_stream
 parse_integer
 parse_number_token
 peek_char
 phase
 physical_equal_value
+pipe_write_string
 plusp
 pop_ref
 pop_special

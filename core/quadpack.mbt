@@ -4,227 +4,6 @@
 // routines themselves are the package dii/maxima/slatec (@slatec).
 
 // ---------------------------------------------------------------------------
-// Private translation of the parts of plot.lisp's COERCE-FLOAT-FUN used by
-// GET-INTEGRAND (plot.lisp is not part of the port).  The integrand is
-// always coerced with $float, and it is always called while quadpack.lisp
-// binds *PLOT-REALPART* to NIL.
-
-///|
-/// plot.lisp's MAYBE-REALPART with *PLOT-REALPART* = NIL: the real part of
-/// X when its imaginary part is zero, else NIL.
-fn quadpack__maybe_realpart(x : Value) -> Value raise {
-  let ri = trisplit(x)
-  if zerop1(cdr(ri)).truthy() {
-    car(ri)
-  } else {
-    Nil
-  }
-}
-
-///|
-/// The Lisp ERRCATCH macro: `Some(value)` on success, None when a Maxima
-/// or Lisp error (or a throw to an errcatch tag) occurred.
-fn quadpack__errcatch(f : () -> Value raise) -> Value? raise {
-  let ec = cons(symval(q_bindlist), symval(q_loclist))
-  with_specials([(q_errcatch, ec), (q_ear_mdebug, Nil)], () => {
-    let r = f() catch {
-      LispError::Throw(tag, _) as e =>
-        if eq(tag, q_macsyma_quit) || eq(tag, q_errorsw) || eq(tag, q_rat_err) {
-          errlfun1(ec) |> ignore
-          return None
-        } else {
-          raise e
-        }
-      LispError::ReturnFrom(_, _) as e => raise e
-      LispError::Go(_) as e => raise e
-      e => {
-        if !is_maxima_error(e) {
-          // We store the error report message in the error variable and
-          // print the message if errormsg is true.
-          let msg = match e {
-            LispError::SimpleError(m) => m
-            LispError::Condition(_, m, _) => m
-            _ => e.to_string()
-          }
-          set(q_d_error, mk_simp(q_mlist, [Str(msg)])) |> ignore
-          if symval(q_d_errormsg).truthy() {
-            d_errormsg() |> ignore
-          }
-        }
-        errlfun1(ec) |> ignore
-        return None
-      }
-    }
-    Some(r)
-  })
-}
-
-///|
-/// The check a compiled `(lambda (g1 ... gn) ...)` makes on its argument
-/// count (a CL program error, not a Maxima error).
-fn quadpack__check_nargs(actuals : Array[Value], nargs : Int) -> Unit raise {
-  if actuals.length() != nargs {
-    raise LispError::SimpleError(
-      "invalid number of arguments: " + actuals.length().to_string(),
-    )
-  }
-}
-
-///|
-/// COERCE-MAXIMA-FUNCTION-OR-MAXIMA-LAMBDA with :float-fun '$float.
-fn quadpack__coerce_maxima_function(nargs : Int, expr : Value) -> Value {
-  lfunc("coerce-maxima-function", actuals => {
-    quadpack__check_nargs(actuals, nargs)
-    with_specials(
-      [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-      () => {
-        // Just always try to convert the result with float-fun, which
-        // handles things like $%pi.
-        let result = quadpack__errcatch(() => d_float(
-          quadpack__maybe_realpart(mapply(expr, list(actuals), t)),
-        ))
-        match result {
-          Some(v) => v
-          None => t
-        }
-      },
-    )
-  })
-}
-
-///|
-/// COERCE-LISP-FUNCTION-OR-LISP-LAMBDA with :float-fun '$float.
-fn quadpack__coerce_lisp_function(nargs : Int, expr : Value) -> Value {
-  lfunc("coerce-lisp-function", actuals => {
-    quadpack__check_nargs(actuals, nargs)
-    with_specials(
-      [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-      () => {
-        let result = quadpack__maybe_realpart(apply(expr, list(actuals)))
-        // Always use float-fun.
-        d_float(result)
-      },
-    )
-  })
-}
-
-///|
-/// %COERCE-FLOAT-FUN with FLOAT-FUN = '$float: a Lisp function which
-/// evaluates EXPR, a function name, lambda expression or general Maxima
-/// expression in the variables LVARS, to a float (T when the evaluation
-/// fails).
-fn quadpack__coerce_float_fun(
-  expr : Value,
-  lvars : Value,
-  fname : Value,
-) -> Value raise {
-  let nargs_of = (lv : Value) => if lv.truthy() { length(cdr(lv)) } else { 1 }
-  let apply_form = () => {
-    let a = if lvars.truthy() { lvars } else { mk(q_mlist, [gensym()]) }
-    quadpack__coerce_float_fun(mk(q_d_apply, [expr, a]), a, fname)
-  }
-  // (A cons is never a CL function, so the first case of the Lisp code,
-  // (and (consp expr) (functionp expr)), cannot occur.)
-  if expr is Str(_) && getopr0(expr).truthy() {
-    // expr is a string which names an operator (e.g. "!" "+" or a
-    // user-defined operator)
-    let a = if lvars.truthy() { lvars } else { mk(q_mlist, [gensym()]) }
-    return quadpack__coerce_float_fun(
-      mk(q_d_apply, [getopr0(expr), a]),
-      a,
-      fname,
-    )
-  }
-  if symbolp(expr) &&
-    !memq(expr, lvars).truthy() &&
-    !d_constantp(expr).truthy() {
-    if fboundp(expr) {
-      return quadpack__coerce_lisp_function(nargs_of(lvars), expr)
-    }
-    let mexpr = mget(expr, q_mexpr)
-    if mexpr.truthy() {
-      // expr is name of a Maxima function defined by := or define
-      let args = cdr(second(mexpr))
-      return quadpack__coerce_maxima_function(length(args), expr)
-    }
-    if get(expr, q_mfexpr_star).truthy() ||
-      mget(expr, q_mmacro).truthy() ||
-      get(d_nounify(expr), q_operators).truthy() ||
-      get(d_verbify(expr), q_operators).truthy() {
-      return apply_form()
-    }
-    return merror(Str("~a: unknown function: ~M"), list2(fname, expr))
-  }
-  if expr is Cons(_) && eq(caar(expr), q_lambda) {
-    let args = cdr(second(expr))
-    return quadpack__coerce_maxima_function(length(args), expr)
-  }
-  // A general expression.
-  let vars = cdr(
-    if lvars.truthy() {
-      lvars
-    } else {
-      d_sort(with_special(q_d_listconstvars, Nil, () => d_listofvars(expr)))
-    },
-  )
-  let subscripted = remove_if(v => atom(v), vars)
-  let symbols = remove_if(v => !atom(v), vars)
-  let nargs = length(vars)
-  // Catch any errors from evaluating the function.  We're assuming that if
-  // an error is caught, the result is not a number.
-  let evaluate = () => with_specials(
-    [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-    () => match
-      quadpack__errcatch(() => d_float(quadpack__maybe_realpart(meval(expr)))) {
-      Some(v) => v
-      None => t
-    },
-  )
-  if subscripted is Nil {
-    lfunc("coerce-float-fun", actuals => {
-      quadpack__check_nargs(actuals, nargs)
-      progv(vars, list(actuals), evaluate)
-    })
-  } else {
-    // A subscripted variable is not a symbol and cannot be bound, so it is
-    // MSET around the call and its old value put back.
-    lfunc("coerce-float-fun", actuals => {
-      quadpack__check_nargs(actuals, nargs)
-      let saved = mapcar(v => meval(v), subscripted)
-      let vals = Collector::new()
-      let mut i = 0
-      for v in vars.iter() {
-        if i >= actuals.length() {
-          break
-        }
-        if atom(v) {
-          vals.add(actuals[i])
-        } else {
-          mset(v, actuals[i]) |> ignore
-        }
-        i = i + 1
-      }
-      // The restore has to run even when the evaluation exits non-locally.
-      let restore = () => {
-        let mut s = saved
-        for v in subscripted.iter() {
-          mset(v, car(s)) |> ignore
-          s = cdr(s)
-        }
-      }
-      let r = progv(symbols, vals.result(), evaluate) catch {
-        e => {
-          restore()
-          raise e
-        }
-      }
-      restore()
-      r
-    })
-  }
-}
-
-// ---------------------------------------------------------------------------
 // quadpack.lisp
 
 ///|
@@ -235,7 +14,7 @@ fn get_integrand(fun : Value, var_ : Value) -> Value raise {
     merr("coerce-float-fun: expecting a Maxima list, found: ~M", [lvars])
     |> ignore
   }
-  quadpack__coerce_float_fun(fun, lvars, Str("coerce-float-fun"))
+  coerce_float_fun(fun, list1(lvars))
 }
 
 ///|
@@ -263,7 +42,9 @@ fn float_integrand_or_lose(
   let f = get_integrand(fun, var_)
   lfunc("float-integrand", args => {
     let x = arg(args, 0)
-    let result = funcall(f, [x])
+    // The quad_* functions bind *PLOT-REALPART* to NIL around the
+    // integration.
+    let result = with_special(q_ear_plot_realpart, Nil, () => funcall(f, [x]))
     if !floatp(result) {
       merr(
         "~M: Numerical evaluation of ~M at ~M is not a float or is not defined",

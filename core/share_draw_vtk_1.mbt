@@ -1,7 +1,6 @@
 // Port of share/draw/vtk.lisp: the VTK renderer of the draw package. It
-// writes a Python script that builds the scene with the VTK library.  The
-// port cannot run programs, so the script is written but never executed
-// (draw_vtk skips the ($system "python ...") call).
+// writes a Python script that builds the scene with the VTK library and
+// runs it with python.
 
 // ---------------------------------------------------------------------------
 // Private helpers

@@ -34,9 +34,9 @@ fn share_f2cl__install_output() -> Unit {
 let share_f2cl__lun6 : Ref[Value] = { val: Nil }
 
 ///|
-/// COERCE-FLOAT-FUN of plot.lisp (ported in intpol.mbt).
+/// (coerce-float-fun expr lvars)
 fn share_f2cl__coerce_float_fun(expr : Value, lvars : Value) -> Value raise {
-  intpol__coerce_float_fun(q_d_float, expr, [lvars])
+  coerce_float_fun(expr, list1(lvars))
 }
 
 ///|

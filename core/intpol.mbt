@@ -3,9 +3,6 @@
 //
 // FIND-ROOT-SUBR and INTERPOLATE-CHECK live in the BIGFLOAT package and
 // use its generic arithmetic (bf_add, bf_lt, ...; see docs/BIGFLOAT.md).
-//
-// plot.lisp is not ported, so COERCE-FLOAT-FUN / COERCE-BFLOAT-FUN (and
-// the helpers they need) are translated here as private functions.
 
 ///|
 /// defmspec $interpolate: the old name of find_root.
@@ -249,7 +246,7 @@ fn p_find_root(
   match length(non_keyword) {
     2 => {
       // function case: f, lo, hi
-      let ff = intpol__coerce_float_fun(float_fun, fun_or_expr, [])
+      let ff = intpol__coerce(float_fun, fun_or_expr, Nil)
       let lo = fl(first(non_keyword))
       let hi = fl(second(non_keyword))
       let (result, left, right) = bf_find_root_subr_mv(
@@ -270,10 +267,10 @@ fn p_find_root(
     }
     3 => {
       // expr case: expr, var, lo, hi
-      let ff = intpol__coerce_float_fun(
+      let ff = intpol__coerce(
         float_fun,
         sub(intpol__lhs(fun_or_expr), intpol__rhs(fun_or_expr)),
-        [mk(q_mlist, [first(non_keyword)])],
+        list1(mk(q_mlist, [first(non_keyword)])),
       )
       let lo = fl(second(non_keyword))
       let hi = fl(third(non_keyword))
@@ -371,9 +368,6 @@ fn intpol__rhs(rel : Value) -> Value raise {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Private translation of plot.lisp's COERCE-FLOAT-FUN machinery.
-
 ///|
 /// `(funcall float-fun x)` for '$float or '$bfloat.
 fn intpol__float_fun(float_fun : Value, x : Value) -> Value raise {
@@ -385,266 +379,12 @@ fn intpol__float_fun(float_fun : Value, x : Value) -> Value raise {
 }
 
 ///|
-/// plot.lisp's MAYBE-REALPART with *PLOT-REALPART* at its default (true).
-fn intpol__maybe_realpart(x : Value) -> Value raise {
-  d_realpart(x)
-}
-
-///|
-/// The Lisp ERRCATCH macro: `Some(value)` on success, None when a Maxima
-/// or Lisp error (or a throw to an errcatch tag) occurred.
-fn intpol__errcatch(f : () -> Value raise) -> Value? raise {
-  let ec = cons(symval(q_bindlist), symval(q_loclist))
-  with_specials([(q_errcatch, ec), (q_ear_mdebug, Nil)], () => {
-    let r = f() catch {
-      LispError::Throw(tag, _) as e =>
-        if eq(tag, q_macsyma_quit) || eq(tag, q_errorsw) || eq(tag, q_rat_err) {
-          errlfun1(ec) |> ignore
-          return None
-        } else {
-          raise e
-        }
-      LispError::ReturnFrom(_, _) as e => raise e
-      LispError::Go(_) as e => raise e
-      e => {
-        if !is_maxima_error(e) {
-          // We store the error report message in the error variable and
-          // print the message if errormsg is true.
-          let msg = match e {
-            LispError::SimpleError(m) => m
-            LispError::Condition(_, m, _) => m
-            _ => e.to_string()
-          }
-          set(q_d_error, mk_simp(q_mlist, [Str(msg)])) |> ignore
-          if symval(q_d_errormsg).truthy() {
-            d_errormsg() |> ignore
-          }
-        }
-        errlfun1(ec) |> ignore
-        return None
-      }
-    }
-    Some(r)
-  })
-}
-
-///|
-/// COERCE-MAXIMA-FUNCTION-OR-MAXIMA-LAMBDA: a Lisp function applying the
-/// Maxima function or lambda `expr` and converting the result with
-/// `float_fun`; it returns T when the evaluation fails.
-fn intpol__coerce_maxima_function(
-  nargs : Int,
-  expr : Value,
-  float_fun : Value,
-) -> Value {
-  ignore(nargs)
-  lfunc("coerce-maxima-function", actuals => with_specials(
-    [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-    () => {
-      // Just always try to convert the result with float-fun, which
-      // handles things like $%pi.
-      let result = intpol__errcatch(() => intpol__float_fun(
-        float_fun,
-        intpol__maybe_realpart(mapply(expr, list(actuals), t)),
-      ))
-      match result {
-        Some(v) => v
-        None => t
-      }
-    },
-  ))
-}
-
-///|
-/// COERCE-LISP-FUNCTION-OR-LISP-LAMBDA: same as above, but call APPLY
-/// instead of MAPPLY.
-fn intpol__coerce_lisp_function(
-  nargs : Int,
-  expr : Value,
-  float_fun : Value,
-) -> Value {
-  ignore(nargs)
-  lfunc("coerce-lisp-function", actuals => with_specials(
-    [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-    () => {
-      let result = intpol__maybe_realpart(apply(expr, list(actuals)))
-      // Always use float-fun.
-      intpol__float_fun(float_fun, result)
-    },
-  ))
-}
-
-///|
-/// COERCE-FLOAT-FUN / COERCE-BFLOAT-FUN (selected by `float_fun`): `rest`
-/// holds the optional variable list and/or function name.
-fn intpol__coerce_float_fun(
-  float_fun : Value,
-  expr : Value,
-  rest : Array[Value],
-) -> Value raise {
-  let who = if eq(float_fun, q_d_bfloat) {
-    "coerce-bfloat-fun"
+/// (funcall coerce-float expr . rest): COERCE-FLOAT-FUN or
+/// COERCE-BFLOAT-FUN, according to FLOAT-FUN.
+fn intpol__coerce(float_fun : Value, expr : Value, rest_ : Value) -> Value raise {
+  if eq(float_fun, q_d_bfloat) {
+    coerce_bfloat_fun(expr, rest_)
   } else {
-    "coerce-float-fun"
-  }
-  let mut lvars : Value = Nil
-  let mut fname : Value = Str(who)
-  match rest.length() {
-    0 => ()
-    1 =>
-      if rest[0] is Str(_) {
-        fname = rest[0]
-      } else if d_listp(rest[0]).truthy() {
-        lvars = rest[0]
-        fname = Str("coerce-float-fun")
-      } else {
-        merr(who + ": expecting a Maxima list, found: ~M", [rest[0]]) |> ignore
-      }
-    2 => {
-      if d_listp(rest[0]).truthy() {
-        lvars = rest[0]
-      } else {
-        merr(who + ": expecting a Maxima list, found: ~M", [rest[0]]) |> ignore
-      }
-      if rest[1] is Str(_) {
-        fname = rest[1]
-      } else {
-        merr(who + ": expecting a string, found: ~M", [rest[1]]) |> ignore
-      }
-    }
-    _ => merr(who + ": two many arguments given.", []) |> ignore
-  }
-  intpol__p_coerce_float_fun(float_fun, expr, lvars, fname)
-}
-
-///|
-/// %COERCE-FLOAT-FUN: return a Lisp function which evaluates EXPR to a
-/// float (or bfloat).  EXPR may name a Lisp function, a Maxima function, a
-/// DEFMSPEC function, a Maxima macro, an operator (as a string), or a
-/// simplifying function; or be a Maxima lambda expression or a general
-/// Maxima expression.
-fn intpol__p_coerce_float_fun(
-  float_fun : Value,
-  expr : Value,
-  lvars : Value,
-  fname : Value,
-) -> Value raise {
-  let nargs_of = (lv : Value) => if lv.truthy() { length(cdr(lv)) } else { 1 }
-  let apply_form = () => {
-    let a = if lvars.truthy() { lvars } else { mk(q_mlist, [gensym()]) }
-    intpol__p_coerce_float_fun(float_fun, mk(q_d_apply, [expr, a]), a, fname)
-  }
-  // (A cons is never a CL function, so the first case of the Lisp code,
-  // (and (consp expr) (functionp expr)), cannot occur.)
-  if expr is Str(s) && getopr0(expr).truthy() {
-    // expr is a string which names an operator (e.g. "!" "+" or a
-    // user-defined operator)
-    ignore(s)
-    let a = if lvars.truthy() { lvars } else { mk(q_mlist, [gensym()]) }
-    return intpol__p_coerce_float_fun(
-      float_fun,
-      mk(q_d_apply, [getopr0(expr), a]),
-      a,
-      fname,
-    )
-  }
-  if symbolp(expr) &&
-    !memq(expr, lvars).truthy() &&
-    !d_constantp(expr).truthy() {
-    if fboundp(expr) {
-      return intpol__coerce_lisp_function(nargs_of(lvars), expr, float_fun)
-    }
-    let mexpr = mget(expr, q_mexpr)
-    if mexpr.truthy() {
-      // expr is name of a Maxima function defined by := or define
-      let args = cdr(second(mexpr))
-      return intpol__coerce_maxima_function(length(args), expr, float_fun)
-    }
-    if get(expr, q_mfexpr_star).truthy() ||
-      mget(expr, q_mmacro).truthy() ||
-      get(d_nounify(expr), q_operators).truthy() ||
-      get(d_verbify(expr), q_operators).truthy() {
-      return apply_form()
-    }
-    return merror(Str("~a: unknown function: ~M"), list2(fname, expr))
-  }
-  if expr is Cons(_) && eq(caar(expr), q_lambda) {
-    let args = cdr(second(expr))
-    return intpol__coerce_maxima_function(length(args), expr, float_fun)
-  }
-  // A general expression.
-  let vars = cdr(
-    if lvars.truthy() {
-      lvars
-    } else {
-      d_sort(with_special(q_d_listconstvars, Nil, () => d_listofvars(expr)))
-    },
-  )
-  let subscripted = remove_if(v => atom(v), vars)
-  let symbols = remove_if(v => !atom(v), vars)
-  let nargs = length(vars)
-  // We don't want to set $numer to T when coercing to a bigfloat.  By
-  // doing so, things like log(400)^400 get converted to double-floats,
-  // which causes a double-float overflow.
-  let numer = lbool(!eq(float_fun, q_d_bfloat))
-  // Catch any errors from evaluating the function.  We're assuming that if
-  // an error is caught, the result is not a number.
-  let evaluate = () => with_specials(
-    [(q_d_ratprint, Nil), (q_d_numer, numer), (q_ear_nounsflag, t)],
-    () => match
-      intpol__errcatch(() => intpol__float_fun(
-        float_fun,
-        intpol__maybe_realpart(meval(expr)),
-      )) {
-      Some(v) => v
-      None => t
-    },
-  )
-  let check_args = (actuals : Array[Value]) => if actuals.length() != nargs {
-    raise LispError::SimpleError(
-      "invalid number of arguments: " + actuals.length().to_string(),
-    )
-  }
-  if subscripted is Nil {
-    lfunc("coerce-float-fun", actuals => {
-      check_args(actuals)
-      progv(vars, list(actuals), evaluate)
-    })
-  } else {
-    // A subscripted variable is not a symbol and cannot be bound, so it is
-    // MSET around the call and its old value put back.
-    lfunc("coerce-float-fun", actuals => {
-      check_args(actuals)
-      let saved = mapcar(v => meval(v), subscripted)
-      let vals = Collector::new()
-      let mut i = 0
-      for v in vars.iter() {
-        if i >= actuals.length() {
-          break
-        }
-        if atom(v) {
-          vals.add(actuals[i])
-        } else {
-          mset(v, actuals[i]) |> ignore
-        }
-        i = i + 1
-      }
-      // The restore has to run even when the evaluation exits non-locally.
-      let restore = () => {
-        let mut s = saved
-        for v in subscripted.iter() {
-          mset(v, car(s)) |> ignore
-          s = cdr(s)
-        }
-      }
-      let r = progv(symbols, vals.result(), evaluate) catch {
-        e => {
-          restore()
-          raise e
-        }
-      }
-      restore()
-      r
-    })
+    coerce_float_fun(expr, rest_)
   }
 }

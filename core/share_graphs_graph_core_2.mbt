@@ -1395,16 +1395,7 @@ fn d_temp_filename(file : Value) -> Value raise {
     share_graphs__error([Str("Argument to `temp_filename' is not a string")])
     |> ignore
   }
-  // (plot-temp-file file): plot.lisp is not part of this port; this is its
-  // expansion without plot options, i.e. (plot-temp-file0 file).
-  let tempdir = symval(q_ear_maxima_tempdir)
-  let filename = if tempdir.truthy() {
-    format(Nil, "~a/~a", [tempdir, file])
-  } else {
-    file
-  }
-  sethash(filename, symval(q_ear_temp_files_list), t) |> ignore
-  format(Nil, "~a", [filename])
+  plot_temp_file(file)
 }
 
 ///|

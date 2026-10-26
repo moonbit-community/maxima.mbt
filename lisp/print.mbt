@@ -2,38 +2,10 @@
 /// Decompose a finite nonzero double into its shortest round-trip decimal
 /// digits and exponent: value = 0.d1d2d3... * 10^exp.
 pub fn float_digits(d : Double) -> (String, Int) {
-  let s0 = d.abs().to_string()
-  // forms: "123.456", "1e+100", "2.5e-300", "15000000000", "0.001"
-  let (mant, e) = match s0.find("e") {
-    Some(i) => {
-      let m = s0.substring(end=i)
-      let es = s0.substring(start=i + 1)
-      let ev = es.replace(old="+", new="")
-      (m, @string.parse_int(ev) catch { _ => 0 })
-    }
-    None => (s0, 0)
-  }
-  // mant is like "1.25" or "125" or "0.00125"
-  let (ip, fp) = match mant.find(".") {
-    Some(i) => (mant.substring(end=i), mant.substring(start=i + 1))
-    None => (mant, "")
-  }
-  let mut digits = ip + fp
-  let mut exp10 = ip.length() + e
-  // strip leading zeros
-  let mut lead = 0
-  while lead < digits.length() - 1 && digits[lead] == '0' {
-    lead += 1
-  }
-  digits = digits.substring(start=lead)
-  exp10 -= lead
-  // strip trailing zeros
-  let mut end = digits.length()
-  while end > 1 && digits[end - 1] == '0' {
-    end -= 1
-  }
-  digits = digits.substring(end~)
-  (digits, exp10)
+  // SBCL's FLONUM-TO-DIGITS: on a tie between two shortest digit strings
+  // it rounds the last digit up.
+  let (k, digits) = ffloat_to_digits(ffloat_of_double(d.abs()))
+  (digits, k)
 }
 
 ///|

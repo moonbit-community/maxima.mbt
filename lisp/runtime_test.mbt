@@ -681,3 +681,43 @@ test "princ of a keyword omits the colon" {
   inspect(princ_to_string(Sym(intern(":rational"))), content="rational")
   inspect(prin1_to_string(Sym(intern(":rational"))), content=":rational")
 }
+test "output pipes" {
+  let (_, tmp) = shell_command_output("mktemp")
+  let file = tmp.trim_end(chars="\n").to_string()
+  let h = open_output_pipe("cat > '" + file + "'")
+  assert_true(h >= 0)
+  assert_true(pipe_write_string(h, "line 1\n"))
+  assert_true(pipe_write_string(h, "line 2\n"))
+  inspect(close_output_pipe(h), content="0")
+  inspect(
+    shell_command_output("cat '" + file + "'; rm -f '" + file + "'"),
+    content="(0, line 1\nline 2\n)",
+  )
+  // writing to a process that has exited fails instead of raising SIGPIPE
+  let h2 = open_output_pipe("exit 0")
+  assert_true(h2 >= 0)
+  let mut ok = true
+  for _ in 0..<100 {
+    ok = ok && pipe_write_string(h2, "x".repeat(4096))
+  }
+  assert_false(ok)
+  close_output_pipe(h2) |> ignore
+  inspect(close_output_pipe(h2), content="-1")
+  inspect(close_output_pipe(-1), content="-1")
+}
+
+///|
+test "format ~F ~E ~G of rationals print single-floats like sbcl" {
+  inspect(
+    try! format_to_string("~f|~,,,,,,'eg|~e|~,3f", [
+      Ratio(1N, 3N), Ratio(-29N, 15N), Ratio(1N, 2N), int(7),
+    ]),
+    content="0.33333334|-1.9333333    |5.0f-1|7.000",
+  )
+  inspect(
+    try! format_to_string("~,,,,,,'eg|~,,,,,,'eg|~,,,,,,'eg|~,,,,,,'eg|~,,,,,,'eg", [
+      Value::Flo(123456789.0), Value::Flo(-2.0e-10), Value::Flo(0.0), Value::Flo(1.0e20), Value::Flo(1.0e-5),
+    ]),
+    content="123456789.    |-2.0000000000e-10|0.    |100000000000000000000.    |1.00000e-5",
+  )
+}

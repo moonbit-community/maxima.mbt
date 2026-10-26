@@ -1,8 +1,6 @@
 // Port of share/draw/gnuplot.lisp (part 2): the 3d graphic objects, image,
 // the scene builders and draw_gnuplot, which writes the Gnuplot command
-// and data files.  The port cannot run Gnuplot: where the Lisp code sends
-// commands to a Gnuplot process or calls ($system $gnuplot_command ...),
-// that step is skipped; the files are written exactly as by the Lisp code.
+// and data files and runs Gnuplot on them.
 
 // ---------------------------------------------------------------------------
 // Object: 'implicit3d'
@@ -2415,8 +2413,13 @@ fn draw_gnuplot(args : Value) -> Value raise {
       f("~%set term dumb~%~%", [])
     }
     write_file(lstring(gfn), get_output_stream_string(cmdstorage))
-    // ($system $gnuplot_command (format nil $gnuplot_file_args gfn)):
-    // Gnuplot is not run by the port.
+    d_system(
+      list2(
+        symval(q_d_gnuplot_command),
+        format(Nil, lstring(symval(q_d_gnuplot_file_args)), [gfn]),
+      ),
+    )
+    |> ignore
   } else {
     // non animated gif: command file maxout.gnuplot is now ready
     f("~%", [])
@@ -2437,20 +2440,35 @@ fn draw_gnuplot(args : Value) -> Value raise {
       f("unset output~%", [])
     }
     write_file(lstring(gfn), get_output_stream_string(cmdstorage))
-    // get the plot: the Lisp code either sends "load 'gfn'" to the Gnuplot
-    // process (screen-like terminals with gnuplot_pipes) or runs
-    // $gnuplot_command on gfn. The port cannot run Gnuplot; that step is
-    // skipped.
-    if member(
-        get_option(q_d_terminal),
-        list([q_d_screen, q_d_aquaterm, q_d_wxt, q_d_x11, q_d_qt, q_d_windows]),
-      ).truthy() &&
-      equal(symval(q_d_draw_renderer), q_d_gnuplot_pipes) {
+    // get the plot
+    let screen = member(
+      get_option(q_d_terminal),
+      list([q_d_screen, q_d_aquaterm, q_d_wxt, q_d_x11, q_d_qt, q_d_windows]),
+    ).truthy()
+    if screen && equal(symval(q_d_draw_renderer), q_d_gnuplot_pipes) {
+      // connect to gnuplot via pipes
+      check_gnuplot_process() |> ignore
       if !symval(q_ear_multiplot_is_active).truthy() {
         share_draw__send_gnuplot_command(Str("unset output"))
       }
       share_draw__send_gnuplot_command(Str("reset"))
       share_draw__send_gnuplot_command(format(Nil, "load '~a'", [gfn]))
+    } else {
+      // call gnuplot via system command
+      let args = if screen {
+        symval(q_d_gnuplot_view_args)
+      } else {
+        symval(q_d_gnuplot_file_args)
+      }
+      d_system(
+        list1(
+          format(Nil, "~a ~a", [
+            symval(q_d_gnuplot_command),
+            format(Nil, lstring(args), [gfn]),
+          ]),
+        ),
+      )
+      |> ignore
     }
   }
   ignore(counter)
@@ -2595,7 +2613,6 @@ fn d_draw_file(opts : Value) -> Value raise {
   } else {
     merr("draw: not a file format", []) |> ignore
   }
-  // The command goes to the Gnuplot process, which the port cannot run.
   share_draw__send_gnuplot_command(
     format(Nil, "~a~%replot~%unset output~%", [str]),
   )
@@ -2621,7 +2638,6 @@ fn d_activate_window(term : Value, num : Value) -> Value raise {
   } else {
     "GNUTERM"
   }
-  // The command goes to the Gnuplot process, which the port cannot run.
   share_draw__send_gnuplot_command(
     format(Nil, "set terminal ~a ~a~%", [Str(str), num]),
   )

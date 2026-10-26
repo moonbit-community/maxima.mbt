@@ -97,3 +97,36 @@ pub fn fd_read_string(fd : Int, max? : Int = 4096) -> String {
 pub fn fd_close(fd : Int) -> Unit {
   c_fd_close(fd) |> ignore
 }
+
+///|
+#borrow(cmd)
+extern "c" fn c_pipe_open(cmd : Bytes) -> Int = "maxima_pipe_open"
+
+///|
+#borrow(b)
+extern "c" fn c_pipe_write(h : Int, b : Bytes, len : Int) -> Int = "maxima_pipe_write"
+
+///|
+extern "c" fn c_pipe_close(h : Int) -> Int = "maxima_pipe_close"
+
+///|
+/// Start a shell command (`/bin/sh -c`) with a pipe to its standard input;
+/// returns a pipe handle, or -1.
+pub fn open_output_pipe(cmd : String) -> Int {
+  flush_stdout()
+  c_pipe_open(cstr(cmd))
+}
+
+///|
+/// Write a string to the pipe and flush it; false if that failed (e.g. the
+/// process has exited).
+pub fn pipe_write_string(h : Int, s : String) -> Bool {
+  let b = @utf8.encode(s)
+  c_pipe_write(h, b, b.length()) == b.length()
+}
+
+///|
+/// Close the pipe and wait for the process; returns its exit status, or -1.
+pub fn close_output_pipe(h : Int) -> Int {
+  c_pipe_close(h)
+}

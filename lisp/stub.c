@@ -150,3 +150,47 @@ int32_t maxima_append_file(moonbit_bytes_t path, moonbit_bytes_t b, int32_t len)
   int r = fclose(f);
   return (w == (size_t)len && r == 0) ? 0 : -1;
 }
+
+/* Write pipes to child processes (popen "w"), addressed by a small handle.
+   SIGPIPE is ignored so that writing to a process that has exited fails
+   with an error instead of killing Maxima. */
+#include <signal.h>
+#define MAXIMA_MAX_PIPES 64
+static FILE *maxima_pipes[MAXIMA_MAX_PIPES];
+
+MOONBIT_FFI_EXPORT
+int32_t maxima_pipe_open(moonbit_bytes_t cmd) {
+  signal(SIGPIPE, SIG_IGN);
+  fflush(stdout);
+  fflush(stderr);
+  for (int i = 0; i < MAXIMA_MAX_PIPES; i++) {
+    if (!maxima_pipes[i]) {
+      FILE *p = popen((const char *)cmd, "w");
+      if (!p) return -1;
+      maxima_pipes[i] = p;
+      return i;
+    }
+  }
+  return -1;
+}
+
+/* Write and flush; returns the number of bytes written or -1. */
+MOONBIT_FFI_EXPORT
+int32_t maxima_pipe_write(int32_t h, moonbit_bytes_t b, int32_t len) {
+  if (h < 0 || h >= MAXIMA_MAX_PIPES || !maxima_pipes[h]) return -1;
+  FILE *p = maxima_pipes[h];
+  size_t n = fwrite(b, 1, (size_t)len, p);
+  if (n < (size_t)len) return -1;
+  if (fflush(p) != 0) return -1;
+  return (int32_t)n;
+}
+
+/* Close the pipe and wait for the process; returns its exit status or -1. */
+MOONBIT_FFI_EXPORT
+int32_t maxima_pipe_close(int32_t h) {
+  if (h < 0 || h >= MAXIMA_MAX_PIPES || !maxima_pipes[h]) return -1;
+  int r = pclose(maxima_pipes[h]);
+  maxima_pipes[h] = 0;
+  if (r != -1 && WIFEXITED(r)) return WEXITSTATUS(r);
+  return -1;
+}

@@ -545,7 +545,7 @@ fn d_hompack_fixpdf(
   let ipar : FixedArray[Int] = FixedArray::make(1, 0)
   let arclen = 0.0
   let nfe = 0
-  let fvs = intpol__coerce_float_fun(q_d_float, fcns, [symval(q_varlist)])
+  let fvs = coerce_float_fun(fcns, list([symval(q_varlist)]))
   let fj = {
     let fj = meval(list3(list1(q_d_jacobian), fcns, symval(q_varlist)))
     // The Fortran code wants the k-th column, so transpose the Jacobian
@@ -553,7 +553,7 @@ fn d_hompack_fixpdf(
     // simpler.  Then we can just extract the k-th row of the transpose to
     // get what's needed.
     mapcar(
-      fjf => intpol__coerce_float_fun(q_d_float, fjf, [symval(q_varlist)]),
+      fjf => coerce_float_fun(fjf, list([symval(q_varlist)])),
       cdr(d_transpose(fj)),
     )
   }
