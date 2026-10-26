@@ -42,6 +42,22 @@ fn share_try_load(path : String) -> Bool raise {
       f()
       true
     }
-    None => false
+    None => share_loader__core_source_p(path)
   }
+}
+
+///|
+/// True when `path` is one of Maxima's own src/*.lisp files (as found by
+/// e.g. load("hypergeometric")). Those are all compiled into the port and
+/// were initialized at startup; reloading the source in CL Maxima only
+/// re-runs idempotent top-level forms, so it is a no-op here.
+fn share_loader__core_source_p(path : String) -> Bool raise {
+  let srcdir = match symval(q_ear_maxima_srcdir) {
+    Str(s) => s
+    _ => return false
+  }
+  let dir = if srcdir.has_suffix("/") { srcdir } else { srcdir + "/" }
+  path.has_prefix(dir) &&
+  path.has_suffix(".lisp") &&
+  !path.substring(start=dir.length()).contains("/")
 }

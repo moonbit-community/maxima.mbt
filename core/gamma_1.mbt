@@ -223,7 +223,7 @@ fn conjugate_gamma_incomplete(args : Value) -> Value raise {
 ///|
 /// The derivative of gamma_incomplete wrt a.  The Lisp lambda returns a
 /// second value of T (the result is built from the actual arguments and
-/// is final); only the primary value survives the port's funcall.
+/// is final), passed to SDIFFGRAD through `comm__grad_final`.
 fn gamma1__gamma_incomplete_grad_a(a : Value, z : Value) -> Value raise {
   let s = d_sign(a)
   if eq(s, q_d_pos) || eq(s, q_d_pz) {
@@ -231,7 +231,7 @@ fn gamma1__gamma_incomplete_grad_a(a : Value, z : Value) -> Value raise {
     // function and the Generalized Incomplete Gamma function
     // (functions.wolfram.com), only for a>0.
     let g = ftake(q_p_gamma, [a])
-    addn_([
+    let d = addn_([
       mul2(
         sub(ftake(q_p_gamma_incomplete, [a, z]), g),
         ftake(q_p_log, [z]),
@@ -253,6 +253,8 @@ fn gamma1__gamma_incomplete_grad_a(a : Value, z : Value) -> Value raise {
         g,
       ),
     ])
+    comm__grad_final.val = true
+    d
   } else {
     // No derivative. Maxima generates a noun form.
     Nil

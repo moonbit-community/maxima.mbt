@@ -1467,6 +1467,7 @@ fn init_expintegral() -> Unit raise {
     ]),
   )
   // (defmvar $expintexpand nil ... :setting-list (t nil %erf))
+  defmvar(q_d_expintexpand, val=Nil, Nil) |> ignore
   let possible_values = list([t, Nil, q_p_erf])
   putprop(
     q_d_expintexpand,
@@ -1491,6 +1492,7 @@ fn init_expintegral() -> Unit raise {
   )
   |> ignore
   // (defmvar $expintrep nil ... :setting-predicate ...)
+  defmvar(q_d_expintrep, val=Nil, Nil) |> ignore
   putprop(
     q_d_expintrep,
     lfunc("expintrep-assign", args => {

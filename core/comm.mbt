@@ -583,9 +583,9 @@ fn sdiffgrad(e : Value, x : Value) -> Value raise {
   // DEFGRAD and gets the arguments substituted for them, in parallel, as an
   // argument may itself be a placeholder name.  A derivative given as a
   // function gets the arguments; its result is substituted into the same
-  // way. (A Lisp function cannot return the second value T, which says
-  // that the result was built from the arguments and is final, through the
-  // port's function values.)
+  // way, unless it is returned with a second value of T, which says that
+  // it was built from the arguments and is final (the port's function
+  // values return one value: the function sets `comm__grad_final`).
   let subst = cons(
     list1(q_mlist),
     mapcar2((a, b) => list3(list1(q_mequal), a, b), car(grad), cdr(e)),
@@ -598,8 +598,15 @@ fn sdiffgrad(e : Value, x : Value) -> Value raise {
       if equal(car(as_), Fix(0L)) {
         Fix(0L)
       } else if functionp_(car(l1)).truthy() {
+        comm__grad_final.val = false
         let d = apply(car(l1), cdr(e))
-        d_psubstitute(subst, d)
+        let final = comm__grad_final.val
+        comm__grad_final.val = false
+        if final {
+          d
+        } else {
+          d_psubstitute(subst, d)
+        }
       } else {
         d_psubstitute(subst, car(l1))
       },
@@ -620,6 +627,11 @@ fn sdiffgrad(e : Value, x : Value) -> Value raise {
     result
   }
 }
+
+///|
+/// Second value of a DEFGRAD derivative function (see SDIFFGRAD): set to
+/// true by a derivative function whose result is final.
+let comm__grad_final : Ref[Bool] = Ref(false)
 
 ///|
 fn sdiffmap(e : Value, x : Value) -> Value raise {

@@ -426,7 +426,8 @@ fn cheby_prime(x : Value, chebarr : Value) -> Value raise {
 ///|
 /// The local LI2 of LI2NUMER (CL arithmetic).
 fn specfn__li2(x : Value) -> Value raise {
-  let pi2 = expt(Flo(@math.PI), int(2))
+  // SBCL compiles (expt x 2), with a constant 2, to (* x x).
+  let pi2 = num_mul(Flo(@math.PI), Flo(@math.PI))
   if num_lt(x, int(0)) {
     num_add(
       num_add(
@@ -448,7 +449,7 @@ fn specfn__li2(x : Value) -> Value raise {
       num_add(
         num_add(
           specfn__li2(num_inv(x)),
-          num_div(expt(llog(num_neg(x)), int(2)), int(2)),
+          { let l = llog(num_neg(x)); num_div(num_mul(l, l), int(2)) },
         ),
         num_div(pi2, int(6)),
       ),
@@ -494,7 +495,7 @@ fn chebyli3(x : Value) -> Value raise {
 ///|
 fn chebys12(x : Value) -> Value raise {
   num_mul(
-    num_div(expt(x, int(2)), int(4)),
+    num_div(num_mul(x, x), int(4)),
     cheby_prime(
       num_div(one_plus(num_mul(int(4), x)), int(3)),
       symval(q_ear_s12),
