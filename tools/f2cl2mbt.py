@@ -12,7 +12,7 @@ the original Lisp under SBCL (see gen_reference_test).  SRC_DIR defaults to
 .repos/maxima/src/numerical/slatec, OUT_DIR to slatec/.
 
 --lib=NAME translates the f2cl code of a share package into the package
-NAME/ (lbfgs: share/lbfgs; odepack: the DLSODE subset of share/odepack/src;
+NAME/ (lbfgs: share/lbfgs; odepack: share/odepack/src;
 lapack: share/lapack/blas and share/lapack/lapack), which uses the runtime
 package f2cl/ (complex arithmetic as SBCL does it, Fortran strings, FFORMAT
 output).  With --reference-test it writes NAME/sbcl_reference_wbtest.mbt
@@ -20,6 +20,14 @@ from the SHARE_REF cases (see gen_share_reference_test).  Beyond what
 SLATEC needs, these libraries use COMMON blocks (DEFSTRUCT + SYMBOL-MACROLET,
 displaced arrays), BLOCK DATA, statement functions (LABELS), CHARACTER
 variables, COMPLEX*16 and formatted WRITEs.
+
+--lib=hompack (share/hompack/lisp with the BLAS it uses) and --lib=colnew
+(share/colnew/lisp) add Fortran ENTRY points (multi-entry LABELS), user
+routines called by name (HOMPACK's F, FJAC, ...: settable hooks, see
+emit_hooks) and single-float arrays; all of ODEPACK adds ASSIGNed GOTOs,
+EQUIVALENCEd locals, routines generic in the type of a function parameter
+they only pass on (TVARS), and arrays passed with the wrong element type
+(a TYPE-ERROR in the Lisp, a raised error here).
 
 The input files are the machine-generated output of f2cl (Fortran -> Common
 Lisp).  Each file holds one DEFUN, optionally wrapped in a LET that holds the
@@ -157,7 +165,8 @@ def parse_atom(tok):
     if name.startswith("f2cl-lib::"):
         name = "f2cl-lib:" + name[len("f2cl-lib::"):]
     for pre in ("cl:", "common-lisp:", "slatec::", "slatec:", "odepack::", "odepack:",
-                "lapack::", "lapack:", "blas::", "blas:", "common-lisp-user::"):
+                "lapack::", "lapack:", "blas::", "blas:", "common-lisp-user::",
+                "hompack::", "hompack:", "colnew::", "colnew:"):
         if name.startswith(pre):
             name = name[len(pre):]
     return Sym(name)
@@ -290,6 +299,8 @@ def mbt_type(t):
         return t[1].mbt()
     if isinstance(t, tuple) and t[0] == "FNP":
         return mbt_type(resolve_t(t))
+    if isinstance(t, tuple) and t[0] == "TV":
+        return t[1]
     raise ValueError("type %r" % (t,))
 
 
@@ -332,6 +343,8 @@ def parse_type(spec):
             return ("A", "C")
         if is_sym(el, "f2cl-lib:logical"):
             return ("A", "B")
+        if is_sym(el, "single-float"):
+            return ("A", "F")
         raise ValueError("array type %r" % (spec,))
     if isinstance(s, list):
         if head(s) == "simple-string" or head(s) == "string":
@@ -421,6 +434,8 @@ class FnDef:
         self.labels = []        # statement functions
         self.label_types = {}   # statement function -> (arg types, result type)
         self.blockdata = False  # BLOCK DATA: body is a statement list
+        self.vshift = 0         # 1 for a multi-entry routine (%NAME% first)
+        self.entry_of = None    # ENTRY point: name of its multi-entry routine
 
     def slots(self):
         """Returned values-slots: list of (index, type)."""
@@ -431,15 +446,15 @@ class FnDef:
             if self.is_function and i == 0:
                 out.append((0, self.result_type))
             else:
-                p = self.params[i - 1 if self.is_function else i]
+                p = self.param_index(i)
                 out.append((i, self.ptypes[p]))
         return out
 
     def param_index(self, i):
         """Map a values-index to a parameter name (None for result)."""
         if self.is_function:
-            return None if i == 0 else self.params[i - 1]
-        return self.params[i]
+            return None if i == 0 else self.params[i - 1 + self.vshift]
+        return self.params[i + self.vshift]
 
 
 def collect_decls(forms, types):
@@ -461,6 +476,10 @@ def parse_defun(form, fname, statics, static_inits):
     fd = FnDef(name, fname)
     fd.params = [p.name for p in form[2]]
     body = collect_decls(form[3:], fd.ptypes)
+    if fd.params and fd.params[0] == "%name%":
+        # multi-entry routine (Fortran ENTRY): %NAME% is the entry's name
+        fd.ptypes["%name%"] = "S"
+        fd.vshift = 1
     for p in fd.params:
         if p not in fd.ptypes:
             fd.ptypes[p] = ("FN", None)   # resolved later
@@ -541,17 +560,75 @@ def parse_defun(form, fname, statics, static_inits):
     vals = rets[0][1]
     assert head(vals) == "values", name
     fd.values = [None if is_sym(v, "nil") else v for v in vals[1:]]
-    if len(fd.values) == len(fd.params) + 1:
+    if len(fd.values) == len(fd.params) + 1 - fd.vshift:
         fd.is_function = True
         assert fd.values[0].name == name
         fd.result_type = fd.ltypes[name]
     else:
-        assert len(fd.values) == len(fd.params), name
+        assert len(fd.values) == len(fd.params) - fd.vshift, name
     for i, v in enumerate(fd.values):
         if v is not None:
             p = fd.param_index(i)
             assert p is None or v.name == p, (name, i, v)
     return fd
+
+
+def parse_entry(form, fname, multis):
+    """An ENTRY point of a multi-entry routine: a forwarding function."""
+    name = form[1].name
+    call = None
+
+    def find(x):
+        nonlocal call
+        if isinstance(x, list) and x and isinstance(x[0], Sym) and x[0].name in multis:
+            call = x
+        elif isinstance(x, list):
+            for y in x:
+                find(y)
+    find(form[3:])
+    if call is None or head(call[1]) != "quote" or call[1][1].name != name:
+        raise TransError("entry %s" % name)
+    m = multis[call[0].name]
+    fd = FnDef(name, fname)
+    fd.params = [p.name for p in form[2]]
+    if fd.params != m.params[1:]:
+        raise TransError("entry %s parameters" % name)
+    fd.ptypes = {p: m.ptypes[p] for p in fd.params}
+    fd.values = list(m.values)
+    fd.is_function = m.is_function
+    fd.result_type = m.result_type
+    fd.entry_of = m.name
+    fd.body = [[S(m.name), [S("quote"), S(name)]] + [S(p) for p in fd.params]]
+    return fd
+
+
+def gen_entry(fd):
+    """An ENTRY point: calls its multi-entry routine with its name."""
+    m = FNS[fd.entry_of]
+    used_names = set(FNS_MB) | {"i_abs", "d_abs"}
+    sig_parts = []
+    args = ['"%s"' % fd.name]
+    for p in fd.params:
+        t = fd.ptypes[p]
+        mb = mb_ident(p)
+        if mb in used_names:
+            mb += "_v"
+        sig_parts.append("%s : %s" % (mb, mbt_type(t)))
+        args.append(mb)
+        if isinstance(t, tuple) and t[0] == "A":
+            if fd.needs_off.get(p):
+                sig_parts.append("%s_off : Int" % mb)
+            if m.needs_off.get(p):
+                args.append("%s_off" % mb if fd.needs_off.get(p) else "0")
+    rt = ret_type([t for _, t in fd.slots()])
+    return "\n".join([
+        "///|",
+        "/// Translated from %s %s (ENTRY of %s, %s/%s.lisp)." % (
+            LIB["what"], fd.name.upper(), fd.entry_of.upper(), LIB["srcrel"], fd.file),
+        "pub fn %s(%s) -> %s%s {" % (mb_fn_name(fd.name), ", ".join(sig_parts), rt,
+                                     " raise" if fd.raises else ""),
+        "  %s(%s)" % (mb_fn_name(m.name), ", ".join(args)),
+        "}", ""])
 
 
 def common_part_name(form):
@@ -603,6 +680,22 @@ def parse_top(form, fname, statics, static_inits):
         return []
     if h == "defparameter" and form[1].name.endswith("-common-block*"):
         return []
+    if h == "labels" and all(b[0].name.startswith("multi-entry-") for b in form[1]):
+        # Fortran ENTRY: (labels ((multi-entry-x (%name% args...) ...))
+        #                  (defun x (args...) (m-v-b (...) (multi-entry-x 'x args...) ...)) ...)
+        out = []
+        multis = {}
+        for b in form[1]:
+            fd = parse_defun([S("defun")] + b, fname, statics, static_inits)
+            multis[fd.name] = fd
+            out.append(fd)
+        for e in form[2:]:
+            if head(e) == "declare":
+                continue
+            if head(e) != "defun":
+                raise TransError("multi-entry form %r" % (head(e),))
+            out.append(parse_entry(e, fname, multis))
+        return out
     if h in ("let", "let*"):
         types = {}
         body = collect_decls(form[2:], types)
@@ -730,7 +823,7 @@ def compute_offsets():
         for p in fd.params:
             t = fd.ptypes[p]
             if isinstance(t, tuple) and t[0] == "A":
-                fd.needs_off[p] = False
+                fd.needs_off[p] = (fd.name, p) in FORCED_OFF
     changed = True
     while changed:
         changed = False
@@ -765,12 +858,127 @@ def compute_offsets():
                         changed = True
 
 
+# Function parameters that only pass a function through (never FUNCALLed in
+# their routine) and receive functions of different types from different
+# callers (ODEPACK's DSTODE gets DLSODE's and DLSODES's JAC): the routine is
+# generic in their type.  (routine, param) pairs.
+TVARS = set()
+# Array parameters given an offset parameter because another routine bound to
+# the same function parameter needs one (so the closure types agree).
+FORCED_OFF = set()
+
+
+class Restart(Exception):
+    pass
+
+
+def tvar_name(p):
+    return "T" + "".join(w.capitalize() for w in mb_ident(p).split("_"))
+
+
+def funcall_arg_override(cd, p, sig):
+    """Where the FUNCALLs of CD's function parameter P pass one of CD's own
+    function parameters, the closure type has that parameter's type."""
+    over = {}
+
+    def visit(x):
+        if head(x) == "funcall" and is_sym(x[1], p):
+            for k, a in enumerate(x[2:]):
+                if isinstance(a, Sym) and a.name in cd.params and \
+                        isinstance(cd.ptypes[a.name], tuple) and cd.ptypes[a.name][0] in ("FN", "TV"):
+                    over[k] = ("TV", tvar_name(a.name)) if (cd.name, a.name) in TVARS \
+                        else ("FNP", cd, a.name)
+    walk(cd.body, visit)
+    if not over:
+        return sig
+    args = list(sig.args)
+    for k, t in over.items():
+        if k < len(args):
+            args[k] = t
+    return Sig(args, list(sig.slots), sig.raises)
+
+
+def resolve_conflict(cd, p, old, sig, bindings):
+    """Make the two closure types of CD's parameter P agree, or fail."""
+    if not uses_funcall(cd, p) and (cd.name, p) not in LIB["user_sigs"] and \
+            p not in LIB["user_sigs"]:
+        TVARS.add((cd.name, p))
+        raise Restart()
+    if len(old.args) == len(sig.args):
+        diff = [k for k in range(len(old.args)) if str(old.args[k]) != str(sig.args[k])]
+        if diff and all({old.args[k][0], sig.args[k][0]} == {"A", "AO"} and
+                        old.args[k][1] == sig.args[k][1] for k in diff):
+            for gname in bindings.get((cd.name, p), ()):
+                g = FNS[gname]
+                for k in diff:
+                    FORCED_OFF.add((g.name, g.params[k]))
+            raise Restart()
+    raise TransError("conflicting fn sigs for %s.%s" % (cd.name, p))
+
+
+def arg_fn_sig(fd, a):
+    """The closure type of a function argument of a call in FD (None when
+    not known yet)."""
+    if head(a) == "function":
+        g = FNS[a[1].name]
+        return Sig([("FNP", g, q) if g.ptypes[q] == ("FN", None) else
+                    ("AO", g.ptypes[q][1]) if g.needs_off.get(q) else g.ptypes[q]
+                    for q in g.params], g.slots(), g.raises)
+    if isinstance(a, Sym) and a.name in fd.fnsigs:
+        return fd.fnsigs[a.name]
+    if isinstance(a, Sym) and (fd.name, a.name) in TVARS:
+        return None
+    raise TransError("bad function arg %r" % (a,))
+
+
+def merge_fn_sig(cd, p, sig, bindings):
+    """Record that CD's function parameter P receives closures of type SIG;
+    True if that changed anything."""
+    sig = funcall_arg_override(cd, p, sig)
+    old = cd.fnsigs[p]
+    if old is None:
+        cd.fnsigs[p] = sig
+        return True
+    if old.key() == sig.key():
+        return False
+    if old.args != sig.args:
+        resolve_conflict(cd, p, old, sig, bindings)
+    changed = False
+    if sig.raises and not old.raises:
+        old.raises = True
+        changed = True
+    merged = dict(old.slots)
+    for k, t in sig.slots:
+        merged[k] = t
+    if len(merged) != len(old.slots):
+        old.slots = sorted(merged.items())
+        changed = True
+    return changed
+
+
+def funcall_generic_args(cd, p):
+    """(position, parameter) for CD's function parameters passed by CD's
+    FUNCALLs of P."""
+    out = set()
+
+    def visit(x):
+        if head(x) == "funcall" and is_sym(x[1], p):
+            for k, a in enumerate(x[2:]):
+                if isinstance(a, Sym) and ((cd.name, a.name) in TVARS or a.name in cd.fnsigs):
+                    out.add((k, a.name))
+    walk(cd.body, visit)
+    return sorted(out)
+
+
 def compute_fnsigs():
     # Function-typed parameters: find what callers pass.
+    bindings = fn_bindings()
     for fd in FNS.values():
         for p in fd.params:
+            if fd.ptypes[p] == ("FN", None) and (fd.name, p) in TVARS:
+                fd.ptypes[p] = ("TV", tvar_name(p))
             if fd.ptypes[p] == ("FN", None):
-                fd.fnsigs[p] = LIB["user_sigs"].get(p)
+                fd.fnsigs[p] = LIB["user_sigs"].get((fd.name, p), LIB["user_sigs"].get(p))
     changed = True
     while changed:
         changed = False
@@ -783,35 +991,26 @@ def compute_fnsigs():
                     p = cd.params[i]
                     if p not in cd.fnsigs:
                         continue
-                    sig = None
-                    if head(a) == "function":
-                        g = FNS[a[1].name]
-                        sig = Sig([("FNP", g, q) if g.ptypes[q] == ("FN", None) else
-                                   ("AO", g.ptypes[q][1]) if g.needs_off.get(q) else g.ptypes[q]
-                                   for q in g.params], g.slots(), g.raises)
-                    elif isinstance(a, Sym) and a.name in fd.fnsigs:
-                        sig = fd.fnsigs[a.name]
-                    else:
-                        raise TransError("bad function arg %r" % (a,))
+                    sig = arg_fn_sig(fd, a)
                     if sig is None:
                         continue
-                    old = cd.fnsigs[p]
-                    if old is None:
-                        cd.fnsigs[p] = sig
+                    if merge_fn_sig(cd, p, sig, bindings):
                         changed = True
-                    elif old.key() != sig.key():
-                        if old.args == sig.args:
-                            if sig.raises and not old.raises:
-                                old.raises = True
-                                changed = True
-                            merged = dict(old.slots)
-                            for k, t in sig.slots:
-                                merged[k] = t
-                            if len(merged) != len(old.slots):
-                                old.slots = sorted(merged.items())
-                                changed = True
+                    # A routine passed for P gets, at the positions where CD's
+                    # FUNCALLs of P pass one of CD's generic parameters, the
+                    # function this call passes for that parameter.
+                    if head(a) != "function":
+                        continue
+                    g = FNS[a[1].name]
+                    for k, q in funcall_generic_args(cd, p):
+                        if k >= len(g.params) or g.params[k] not in g.fnsigs:
+                            continue
+                        if (cd.name, q) in TVARS:
+                            s2 = arg_fn_sig(fd, args[cd.params.index(q)])
                         else:
-                            raise TransError("conflicting fn sigs for %s.%s" % (callee, p))
+                            s2 = cd.fnsigs.get(q)
+                        if s2 is not None and merge_fn_sig(g, g.params[k], s2, bindings):
+                            changed = True
         # raising
         for fd in FNS.values():
             if fd.hand or fd.raises:
@@ -831,6 +1030,21 @@ def compute_fnsigs():
             if fd.fnsigs[p] is None:
                 fd.fnsigs[p] = USER_FN
             fd.ptypes[p] = ("FN", fd.fnsigs[p])
+
+
+def unbound_format_unit(fd):
+    """Whether FD has a formatted WRITE to a unit variable that does not exist
+    (see fformat_stmt); such routines raise."""
+    known = set(fd.params) | {nm for nm, _ in fd.locals} | {nm for nm, _, _ in fd.statics} | \
+        set(fd.smacros) | set(fd.displaced)
+    found = []
+
+    def visit(x):
+        if head(x) == "f2cl-lib:fformat" and isinstance(x[1], Sym) and \
+                not is_sym(x[1], "t") and x[1].name not in known:
+            found.append(x)
+    walk(fd.body, visit)
+    return bool(found)
 
 
 def uses_funcall(fd, p):
@@ -858,6 +1072,48 @@ def fmt_double(v):
     elif "." not in s:
         s += ".0"
     return s
+
+
+def f32_exact(text):
+    """The single-float the Lisp reader makes of TEXT (round to nearest even),
+    as a Python float."""
+    import struct
+    from fractions import Fraction
+    m = _flt_re.match(text)
+    mant, _, ex = m.groups()
+    q = Fraction(mant) * Fraction(10) ** int(ex or 0)
+    if q == 0:
+        return 0.0
+    neg = q < 0
+    q = abs(q)
+    e = q.numerator.bit_length() - q.denominator.bit_length()
+    while Fraction(2) ** e > q:
+        e -= 1
+    while Fraction(2) ** (e + 1) <= q:
+        e += 1
+    e = max(e, -126)
+    scale = Fraction(2) ** (e - 23)
+    n = q / scale
+    r = int(n)
+    frac = n - r
+    if frac > Fraction(1, 2) or (frac == Fraction(1, 2) and r % 2 == 1):
+        r += 1
+    v = float(r * scale)
+    assert struct.unpack("f", struct.pack("f", v))[0] == v
+    return -v if neg else v
+
+
+def f32_lit(x):
+    """Double literal for single-float Num X such that Float::from_double of it
+    is the single-float the Lisp reads (the plain decimal unless double
+    rounding would differ)."""
+    import struct
+    if isinstance(x, (int, float)):
+        return fmt_double(float(x))
+    ex = f32_exact(x.text)
+    if struct.unpack("f", struct.pack("f", x.value))[0] == ex:
+        return fmt_double(x.value)
+    return fmt_double(ex)
 
 
 def paren(code):
@@ -961,7 +1217,7 @@ MATH1 = {
     "exp": "f_exp", "sin": "f_sin", "cos": "f_cos", "tan": "f_tan",
     "f2cl-lib:flog": "f_log", "f2cl-lib:dlog": "f_log", "log": "f_log",
     "f2cl-lib:fsqrt": "f_sqrt", "sqrt": "f_sqrt", "f2cl-lib:datan": "f_atan",
-    "f2cl-lib:dsqrt": "f_sqrt",
+    "f2cl-lib:dsqrt": "f_sqrt", "acos": "f_acos",
     "cosh": "f_cosh", "sinh": "f_sinh", "tanh": "f_tanh",
 }
 
@@ -987,7 +1243,7 @@ def expr(ctx, x):
         return (str(x) if x >= 0 else "(%d)" % x, "I")
     if isinstance(x, Num):
         if x.kind == "f":
-            return ("Float::from_double(%s)" % fmt_double(x.value), "F")
+            return ("Float::from_double(%s)" % f32_lit(x), "F")
         c = fmt_double(x.value)
         return (c if x.value >= 0 and not c.startswith("-") else paren(c), "D")
     if isinstance(x, Str):
@@ -1024,6 +1280,15 @@ def expr(ctx, x):
         return ("!" + wrap(cond_code(ctx, args[0])), "B")
     if h == "the":
         return expr(ctx, args[1])
+    if h == "quote" and isinstance(args[0], Sym):
+        # a routine name (the %NAME% of a multi-entry routine)
+        return (mb_string_lit(args[0].name), "S")
+    if h == "eq":
+        c1, t1 = expr(ctx, args[0])
+        c2, t2 = expr(ctx, args[1])
+        if t1 != "S" or t2 != "S":
+            raise TransError("eq on %s %s" % (t1, t2))
+        return (paren("%s == %s" % (c1, c2)), "B")
     if h == "coerce":
         c, t = expr(ctx, args[0])
         target = args[1][1]
@@ -1075,6 +1340,12 @@ def expr(ctx, x):
         return ("cplx(%s, %s)" % (strip_paren(conv(c1, t1, "D")), strip_paren(c2)), "C")
     if h == "f2cl-lib:fref":
         return array_ref(ctx, x)
+    if h == "aref" and isinstance(args[0], Sym) and len(args) == 2:
+        v = array_base(ctx, args[0])
+        ic, it = expr(ctx, args[1])
+        if it != "I":
+            raise TransError("aref index")
+        return ("%s[%s]" % (v.code, strip_paren(add_off(v.off, ic))), v.typ[1])
     if h in ("abs", "f2cl-lib:dabs", "f2cl-lib:iabs", "f2cl-lib:cdabs"):
         c, t = expr(ctx, args[0])
         if t == "I":
@@ -1129,9 +1400,12 @@ def expr(ctx, x):
         if t == "F":
             return ("Float::from_double(%s(%s))" % (fn, c + ".to_double()" if is_simple(c) else paren(c) + ".to_double()"), "F")
         return ("%s(%s)" % (fn, conv(c, t, "D")), "D")
-    if h == "atan":
+    if h in ("atan", "f2cl-lib:atan2", "f2cl-lib:datan2"):
         if len(args) == 1:
             c, t = expr(ctx, args[0])
+            if t == "F":
+                # single-float ATAN: computed in double, rounded to single
+                return ("Float::from_double(f_atan(%s))" % conv(c, t, "D"), "F")
             return ("f_atan(%s)" % conv(c, t, "D"), "D")
         c1, t1 = expr(ctx, args[0])
         c2, t2 = expr(ctx, args[1])
@@ -1392,6 +1666,11 @@ def strip_paren(c):
 def array_arg(ctx, a):
     """Return (base code, offset code) for an array argument."""
     if isinstance(a, Sym):
+        v = lookup(ctx, a)
+        if v.kind != "array" and v.typ in ("I", "D"):
+            # a scalar where the callee declares an array (DAINVGS's NEQ):
+            # the callee gets a fresh one-element array
+            return "FixedArray::make(1, %s)" % var_read(v), "0", ("A", v.typ)
         v = array_base(ctx, a)
         return v.code, (v.off or "0"), v.typ
     if head(a) == "f2cl-lib:array-slice":
@@ -1426,7 +1705,7 @@ def call_code(ctx, fsym, args, funcall=False):
         if isinstance(pt, tuple) and pt[0] == "A":
             base, off, at = array_arg(ctx, a)
             if at != pt:
-                raise TransError("array type mismatch")
+                return array_type_error(ctx, at, pt, i, name), slots
             out.append(base)
             if cd is not None and cd.needs_off.get(pnames[i]):
                 out.append(off)
@@ -1435,7 +1714,7 @@ def call_code(ctx, fsym, args, funcall=False):
         elif isinstance(pt, tuple) and pt[0] == "AO":
             base, off, at = array_arg(ctx, a)
             if at != ("A", pt[1]):
-                raise TransError("array type mismatch")
+                return array_type_error(ctx, at, pt, i, name), slots
             out.append(base)
             out.append(off)
         elif isinstance(pt, tuple) and pt[0] == "FN":
@@ -1444,10 +1723,30 @@ def call_code(ctx, fsym, args, funcall=False):
             else:
                 v = lookup(ctx, a)
                 out.append(v.code)
+        elif isinstance(pt, tuple) and pt[0] == "TV":
+            if head(a) == "function":
+                out.append(mb_fn_name(a[1].name))
+            else:
+                out.append(lookup(ctx, a).code)
         else:
             c, t = expr(ctx, a)
             out.append(conv(c, t, pt))
     return "%s(%s)" % (name, ", ".join(out)), slots
+
+
+LISP_ELEM = {"D": "DOUBLE-FLOAT", "I": "(SIGNED-BYTE 32)", "C": "(COMPLEX DOUBLE-FLOAT)",
+             "B": "T", "F": "SINGLE-FLOAT"}
+
+
+def array_type_error(ctx, at, pt, i, name):
+    """A call passing an array of the wrong element type (Fortran storage
+    association, e.g. DLSODES passing part of RWORK as DSTODE's IWM): SBCL
+    signals a TYPE-ERROR on entry to the callee."""
+    if not ctx.fd.raises:
+        raise TransError("array type mismatch %s %s arg %d of %s in non-raising %s" % (
+            at, pt, i, name, ctx.fd.name))
+    return 'fail("TYPE-ERROR: argument %d of %s: an array of %s is not of type (ARRAY %s)")' % (
+        i + 1, name.upper(), LISP_ELEM[at[1]], LISP_ELEM[pt[1]])
 
 
 def fn_value(name, sig):
@@ -1479,9 +1778,11 @@ def fn_value(name, sig):
     else:
         body = "let (%s) = %s; " % (", ".join(tmp), call)
     ret = res[0] if len(res) == 1 else "(" + ", ".join(res) + ")"
+    argts = [g.ptypes[g.params[k]] if isinstance(resolve_t(t), tuple) and resolve_t(t)[0] == "TV"
+             else t for k, t in enumerate(sig.args)]
     params = ", ".join("%s : FixedArray[%s], %s_off : Int" % (pn, ELEM_MBT[t[1]], pn)
                        if isinstance(t, tuple) and t[0] == "AO" else "%s : %s" % (pn, mbt_type(t))
-                       for pn, t in zip(ps, sig.args))
+                       for pn, t in zip(ps, argts))
     return "fn(%s) { %s%s }" % (params, body, ret)
 
 
@@ -1670,6 +1971,19 @@ def stmt(ctx, x):
         block(ctx, [args[3]])
         ctx.emit("}")
         return
+    if h == "f2cl-lib:assigned-goto":
+        # (case var (30 (go label30)) ... (t (error ...)))
+        c, t = expr(ctx, args[0])
+        ctx.emit("match %s {" % strip_paren(c))
+        for tag in args[1]:
+            ctx.emit("  %d => {" % tag)
+            ctx.ind += 2
+            go(ctx, "label%d" % tag)
+            ctx.ind -= 2
+            ctx.emit("  }")
+        ctx.emit('  _ => abort("Unknown label for assigned goto")')
+        ctx.emit("}")
+        return
     if h == "f2cl-lib:computed-goto":
         c, t = expr(ctx, args[1])
         ctx.emit("match %s {" % strip_paren(c))
@@ -1729,6 +2043,11 @@ def fformat_stmt(ctx, x):
     unit = x[1]
     if is_sym(unit, "t"):
         uc = "-1"
+    elif isinstance(unit, Sym) and unit.name not in ctx.env:
+        # f2cl renamed the variable (TRACE -> TRACE$) but not the unit of
+        # the WRITE: an UNBOUND-VARIABLE error in the Lisp.
+        ctx.emit('fail("The variable %s is unbound.")' % unit.name.upper())
+        return
     else:
         uc, ut = expr(ctx, unit)
         if ut != "I":
@@ -1885,6 +2204,9 @@ def collect_gos(forms):
     def visit(y):
         if head(y) == "go":
             out.add(y[1].name)
+        elif head(y) == "f2cl-lib:assigned-goto":
+            for t in y[2]:
+                out.add("label%d" % t)
         elif head(y) == "f2cl-lib:computed-goto":
             for t in y[1]:
                 out.add(t.name)
@@ -2067,6 +2389,13 @@ def const_eval(form, consts):
     h = head(form)
     if h == "the":
         return const_eval(form[2], consts)
+    if h == "coerce" and head(form[2]) == "quote" and is_sym(form[2][1], "double-float"):
+        x = form[1]
+        if isinstance(x, Num) and x.kind == "f":
+            import struct
+            return struct.unpack("f", struct.pack("f", x.value))[0]
+        v = const_eval(x, consts)
+        return None if v is None else float(v)
     if h in ("+", "*", "-", "/", "f2cl-lib:f2cl/", "f2cl-lib:int-add", "f2cl-lib:int-mul",
              "f2cl-lib:int-sub"):
         vals = [const_eval(a, consts) for a in form[1:]]
@@ -2109,6 +2438,8 @@ def elem_type_of(et):
         return "C"
     if is_sym(et, "f2cl-lib:logical"):
         return "B"
+    if is_sym(et, "single-float"):
+        return "F"
     if is_sym(et, "character"):
         return "CH"
     if is_sym(et, "t"):
@@ -2153,6 +2484,8 @@ def init_value(form, typ, consts=None):
                 items = [str(v) for v in vals]
             elif elem == "B":
                 items = ["true" if is_sym(v, "t") else "false" for v in vals]
+            elif elem == "F":
+                items = ["Float::from_double(%s)" % f32_lit(v) for v in vals]
             else:
                 raise TransError("initial-contents of %s" % elem)
             return ("A", elem), "[%s]" % ", ".join(items)
@@ -2176,7 +2509,7 @@ def init_value(form, typ, consts=None):
         return "I", str(form)
     if isinstance(form, Num):
         if form.kind == "f":
-            return "F", "Float::from_double(%s)" % fmt_double(form.value)
+            return "F", "Float::from_double(%s)" % f32_lit(form)
         return "D", fmt_double(form.value)
     v = const_eval(form, consts)
     if isinstance(v, int):
@@ -2310,7 +2643,7 @@ def gen_labels(fd, base_env):
         argts, rt = fd.label_types[lname]
         ctx = Ctx(fd)
         ctx.env = dict(base_env)
-        ctx.labels = {}
+        ctx.labels = {l[0].name: label_fn_name(fd, l[0].name) for l in fd.labels}
         parts = []
         for p, t in zip(params, argts):
             mb = mb_ident(p)
@@ -2328,8 +2661,12 @@ def gen_labels(fd, base_env):
 
 
 def gen_function(fd):
+    if fd.entry_of is not None:
+        return gen_entry(fd)
     ctx = Ctx(fd)
     assigned = assigned_vars(fd.body)
+    # a variable assigned through its EQUIVALENCE alias (MD's VK for EK)
+    assigned |= {f.name for nm, f in fd.smacros.items() if isinstance(f, Sym) and nm in assigned}
     consts = static_consts(fd)
     # statics
     for nm, typ, init in fd.statics:
@@ -2362,7 +2699,7 @@ def gen_function(fd):
                 off = mb + "_off"
                 sig_parts.append("%s : Int" % off)
             ctx.env[p] = Var("array", mb, t, off=off)
-        elif isinstance(t, tuple) and t[0] == "FN":
+        elif isinstance(t, tuple) and t[0] in ("FN", "TV"):
             sig_parts.append("%s : %s" % (mb, mbt_type(t)))
             ctx.env[p] = Var("fn", mb, t)
         else:
@@ -2373,9 +2710,13 @@ def gen_function(fd):
     # common blocks
     for nm, (part, off, t) in fd.displaced.items():
         ctx.env[nm] = Var("array", mb_ident(part), t, off=(str(off) if off else None))
+    late_smacros = []
     for nm, form in fd.smacros.items():
         if isinstance(form, Sym):
-            ctx.env[nm] = ctx.env[form.name]
+            if form.name in ctx.env:
+                ctx.env[nm] = ctx.env[form.name]
+            else:
+                late_smacros.append((nm, form.name))
         else:
             ctx.env[nm] = common_var(form)
     # with-multi-array-data aliases
@@ -2408,6 +2749,8 @@ def gen_function(fd):
         else:
             pre.append("let %s : %s = %s" % (mb, mbt_type(t), code))
         ctx.env[nm] = Var("local", mb, t)
+    for nm, target in late_smacros:
+        ctx.env[nm] = ctx.env[target]
     slots = fd.slots()
     rt = ret_type([t for _, t in slots])
     lines = []
@@ -2415,8 +2758,12 @@ def gen_function(fd):
         lines.append(label_code)
     lines.append("///|")
     lines.append("/// Translated from %s %s (%s/%s.lisp)." % (LIB["what"], fd.name.upper(), LIB["srcrel"], fd.file))
-    sigline = "pub fn %s(%s) -> %s%s {" % (mb_fn_name(fd.name), ", ".join(sig_parts), rt,
-                                           " raise" if fd.raises else "")
+    tvs = [fd.ptypes[p][1] for p in fd.params
+           if isinstance(fd.ptypes[p], tuple) and fd.ptypes[p][0] == "TV"]
+    sigline = "pub fn %s%s(%s) -> %s%s {" % ("[%s] " % ", ".join(tvs) if tvs else "",
+                                             mb_fn_name(fd.name),
+                                             ", ".join(sig_parts), rt,
+                                             " raise" if fd.raises else "")
     lines.append(sigline)
     for p in pre:
         lines.append("  " + p)
@@ -3104,11 +3451,21 @@ def share_ref_config(lib):
         d = os.path.join(SHARE_DIR, "odepack")
         return dict(src="share/odepack", pre=[os.path.join(d, "package.lisp")],
                     lisp=ODEPACK_REF_LISP, mbt=ODEPACK_REF_MBT, cases=ODEPACK_CASES,
-                    files=LIB["files"])
+                    files=LIB["files"], type_errors=True)
     if lib == "lapack":
         d = os.path.join(SHARE_DIR, "lapack")
         return dict(src="share/lapack", pre=[os.path.join(d, "lapack-package.lisp")],
                     lisp=LAPACK_REF_LISP, mbt=LAPACK_REF_MBT, cases=LAPACK_CASES,
+                    files=LIB["files"])
+    if lib == "hompack":
+        return dict(src="share/hompack", pre=[
+            os.path.join(SHARE_DIR, "lapack", "blas", "blas-package.lisp"),
+            os.path.join(SHARE_DIR, "hompack", "lisp", "hompack-package.lisp")],
+            lisp=HOMPACK_REF_LISP, mbt=HOMPACK_REF_MBT, cases=HOMPACK_CASES,
+            files=LIB["files"])
+    if lib == "colnew":
+        return dict(src="share/colnew", pre=[os.path.join(SHARE_DIR, "colnew", "colnew-package.lisp")],
+                    lisp=COLNEW_REF_LISP, mbt=COLNEW_REF_MBT, cases=COLNEW_CASES,
                     files=LIB["files"])
     raise SystemExit("no reference test for %s" % lib)
 
@@ -3148,6 +3505,27 @@ def gen_share_reference_test(lib, out_dir):
     nerr = 0
     for k, (name, _, mcode) in enumerate(cfg["cases"]):
         exp = res.get(k)
+        if exp is not None and exp.endswith(" ERROR TYPE-ERROR") and cfg.get("type_errors"):
+            # The Lisp signals a TYPE-ERROR (ODEPACK's DLSODES/DLSODIS pass
+            # part of RWORK as an integer array): so must the translation.
+            nerr += 1
+            print("case %d (%s): %s (checked to raise)" % (k, name, exp), file=sys.stderr)
+            mb.append("///|")
+            mb.append('test "sbcl reference %d: %s (TYPE-ERROR in the Lisp)" {' % (k, name))
+            mb.append("  let raised = try {")
+            mb.append("    ref_case(s => {")
+            for l in mcode.split("\n"):
+                mb.append("      " + l)
+            mb.append("    })")
+            mb.append("    |> ignore")
+            mb.append("    false")
+            mb.append("  } catch {")
+            mb.append("    _ => true")
+            mb.append("  }")
+            mb.append("  assert_true(raised)")
+            mb.append("}")
+            mb.append("")
+            continue
         if exp is None or not exp.endswith("\"") or " s\"" not in exp:
             nerr += 1
             print("case %d (%s): %s" % (k, name, exp), file=sys.stderr)
@@ -3378,6 +3756,661 @@ _ode_case("illegal input (negative rtol)", "osc_f", "osc_jac", 22, 1, -1e-6, [1e
           [1.0, 0.0], 0.0, 0.5, 2, 0, True)
 _ode_case("tout = t", "osc_f", "osc_jac", 10, 1, 1e-6, [1e-8],
           [1.0, 0.0], 0.0, 0.0, 1, 0, True)
+
+
+# The other ODEPACK solvers: DLSODA, DLSODAR (roots of G), DLSODES (sparse),
+# DLSODPK and DLSODKR (Krylov, with an identity preconditioner), and the
+# implicit DLSODI, DLSOIBT (block tridiagonal) and DLSODIS (sparse), on the
+# Robertson problem (written as A*y' = g with A = I for the implicit ones), the
+# damped oscillator and a discretized heat equation.
+
+ODEPACK_REF_LISP += r"""
+(defun ode-loop (step y tpos ipos t0 tout0 nout factor istate0 &optional extra)
+  (let ((tt t0) (tout tout0) (istate istate0))
+    (dotimes (k nout)
+      (let ((vals (funcall step tt tout istate)))
+        (setf tt (nth tpos vals) istate (nth ipos vals)))
+      (rd tt) (ri istate) (ra y)
+      (when extra (funcall extra))
+      (when (< istate 0) (return))
+      (unless (= istate 3)
+        (if (= factor 0) (setf tout (+ tout tout0)) (setf tout (* tout factor)))))))
+(defun rob-g (neq tt y ng gout)
+  (declare (ignore tt ng))
+  (setf (aref gout 0) (- (aref y 0) 1d-4)
+        (aref gout 1) (- (aref y (1- (aref neq 0))) 1d-2))
+  nil)
+(defun rob-jacs (neq tt y j ian jan pdj)
+  (declare (ignore neq tt ian jan))
+  (case j
+    (1 (setf (aref pdj 0) -0.04d0 (aref pdj 1) 0.04d0 (aref pdj 2) 0d0))
+    (2 (setf (aref pdj 0) (* 1d4 (aref y 2))
+             (aref pdj 1) (- (* -1d4 (aref y 2)) (* 6d7 (aref y 1)))
+             (aref pdj 2) (* 6d7 (aref y 1))))
+    (t (setf (aref pdj 0) (* 1d4 (aref y 1)) (aref pdj 1) (* -1d4 (aref y 1)) (aref pdj 2) 0d0)))
+  nil)
+(defun rob-res (neq tt y s r ires)
+  (declare (ignore neq tt ires))
+  (let* ((y0 (aref y 0)) (y1 (aref y 1)) (y2 (aref y 2))
+         (f0 (+ (* -0.04d0 y0) (* 1d4 y1 y2))) (f2 (* 3d7 y1 y1)) (f1 (- (- f0) f2)))
+    (setf (aref r 0) (- f0 (aref s 0)) (aref r 1) (- f1 (aref s 1)) (aref r 2) (- f2 (aref s 2))))
+  nil)
+(defun rob-adda (neq tt y ml mu p nrowp)
+  (declare (ignore neq tt y ml mu))
+  (dotimes (i 3) (incf (aref p (+ i (* i nrowp))) 1d0))
+  nil)
+(defun rob-jaci (neq tt y s ml mu p nrowp)
+  (declare (ignore s))
+  (rob-jac neq tt y ml mu p nrowp))
+(defun rob-addas (neq tt y j ian jan p)
+  (declare (ignore neq tt y ian jan))
+  (incf (aref p (1- j)) 1d0)
+  nil)
+(defun rob-jacis (neq tt y s j ian jan p)
+  (declare (ignore s))
+  (rob-jacs neq tt y j ian jan p))
+(defun heat-res (neq tt y s r ires)
+  (declare (ignore tt ires))
+  (let ((n (aref neq 0)))
+    (dotimes (i n)
+      (let ((yl (if (> i 0) (aref y (1- i)) 0d0))
+            (yr (if (< i (1- n)) (aref y (1+ i)) 0d0)))
+        (setf (aref r i) (- (+ (- yl (* 2d0 (aref y i))) yr) (aref s i))))))
+  nil)
+(defun heat-adda (neq tt y mb nb pa pb pc)
+  (declare (ignore neq tt y mb pb pc))
+  (dotimes (k nb) (incf (aref pa k) 1d0))
+  nil)
+(defun heat-jac (neq tt y s mb nb pa pb pc)
+  (declare (ignore neq tt y s mb))
+  (dotimes (k nb)
+    (setf (aref pa k) -2d0
+          (aref pb k) (if (< k (1- nb)) 1d0 0d0)
+          (aref pc k) (if (> k 0) 1d0 0d0)))
+  nil)
+(defun id-jac (f neq tt y ysv rewt fty v hl0 wp iwp ier)
+  (declare (ignore f neq tt y ysv rewt fty v hl0 wp iwp ier))
+  (values nil nil nil nil nil nil nil nil nil nil nil 0))
+(defun id-jack (f neq tt y ysv rewt fty v hl0 jok wp iwp ier)
+  (declare (ignore f neq tt y ysv rewt fty v hl0 jok wp iwp ier))
+  (values nil nil nil nil nil nil nil nil nil nil nil nil 0))
+(defun id-psol (neq tt y fty wk hl0 wp iwp b lr ier)
+  (declare (ignore neq tt y fty wk hl0 wp iwp b lr ier))
+  (values nil nil nil nil nil nil nil nil nil nil 0))
+(defun neq1 (n) (make-array 1 :element-type 'f2cl-lib:integer4 :initial-element n))
+;; DLSODA / DLSODES / DLSODAR / DLSODPK / DLSODKR: (f neq y t tout itol rtol atol itask
+;; istate iopt rwork lrw iwork liw ...)
+(defun ode-explicit (solver f jac mf y0 rtol atol t0 tout0 nout factor lrw liw iopt iw extra)
+  (let* ((neq (length y0)) (y (apply #'dvec y0))
+         (rwork (dzeros lrw)) (iwork (ivec liw)) (jroot (ivec 2)))
+    (loop for (k v) in iw do (setf (aref iwork k) v))
+    (ode-loop
+     (lambda (tt tout istate)
+       (multiple-value-list
+        (ecase solver
+          (:dlsoda (odepack::dlsoda f (neq1 neq) y tt tout 1 (dvec rtol) (dvec atol) 1 istate iopt
+                                    rwork lrw iwork liw jac mf))
+          (:dlsodes (odepack::dlsodes f (neq1 neq) y tt tout 1 (dvec rtol) (dvec atol) 1 istate
+                                      iopt rwork lrw iwork liw jac mf))
+          (:dlsodar (odepack::dlsodar f (neq1 neq) y tt tout 1 (dvec rtol) (dvec atol) 1 istate
+                                      iopt rwork lrw iwork liw jac mf #'rob-g 2 jroot))
+          (:dlsodpk (odepack::dlsodpk f (neq1 neq) y tt tout 1 (dvec rtol) (dvec atol) 1 istate
+                                      iopt rwork lrw iwork liw jac #'id-psol mf))
+          (:dlsodkr (odepack::dlsodkr f (neq1 neq) y tt tout 1 (dvec rtol) (dvec atol) 1 istate
+                                      iopt rwork lrw iwork liw jac #'id-psol mf #'rob-g 2
+                                      jroot)))))
+     y 3 9 t0 tout0 nout factor 1
+     (when extra (lambda () (ra jroot))))
+    (ra iwork) (ra rwork)))
+;; DLSODI / DLSOIBT / DLSODIS: (res adda jac neq y ydoti t tout itol rtol atol itask
+;; istate iopt rwork lrw iwork liw mf)
+(defun ode-implicit (solver res adda jac mf y0 yd0 istate0 rtol atol t0 tout0 nout factor lrw liw iw)
+  (let* ((neq (length y0)) (y (apply #'dvec y0)) (ydoti (apply #'dvec yd0))
+         (rwork (dzeros lrw)) (iwork (ivec liw)))
+    (loop for (k v) in iw do (setf (aref iwork k) v))
+    (ode-loop
+     (lambda (tt tout istate)
+       (multiple-value-list
+        (funcall (ecase solver (:dlsodi #'odepack::dlsodi) (:dlsoibt #'odepack::dlsoibt)
+                   (:dlsodis #'odepack::dlsodis))
+                 res adda jac (neq1 neq) y ydoti tt tout 1 (dvec rtol) (dvec atol) 1 istate 0
+                 rwork lrw iwork liw mf)))
+     y 6 12 t0 tout0 nout factor istate0)
+    (ra ydoti) (ra iwork) (ra rwork)))
+"""
+
+ODEPACK_REF_MBT += """
+///|
+fn ode_loop(
+  s : StringBuilder,
+  step : (Double, Double, Int) -> (Double, Int) raise,
+  y : FixedArray[Double],
+  t0 : Double,
+  tout0 : Double,
+  nout : Int,
+  factor : Double,
+  istate0 : Int,
+  extra : (() -> Unit)?,
+) -> Unit raise {
+  let mut tt = t0
+  let mut tout = tout0
+  let mut istate = istate0
+  for _k in 0..<nout {
+    let (rt, ri_) = step(tt, tout, istate)
+    tt = rt
+    istate = ri_
+    rd(s, tt)
+    ri(s, istate)
+    rad(s, y)
+    if extra is Some(e) {
+      e()
+    }
+    if istate < 0 {
+      break
+    }
+    if istate != 3 {
+      if factor == 0.0 {
+        tout = tout + tout0
+      } else {
+        tout = tout * factor
+      }
+    }
+  }
+}
+
+///|
+fn rob_g(
+  neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  _ng : Int,
+  gout : FixedArray[Double],
+  go : Int,
+) -> Unit raise {
+  gout[go] = y[yo] - 1.0e-4
+  gout[go + 1] = y[yo + neq[0] - 1] - 1.0e-2
+}
+
+///|
+fn rob_jacs(
+  _neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  j : Int,
+  _ian : FixedArray[Int],
+  _iano : Int,
+  _jan : FixedArray[Int],
+  _jano : Int,
+  pdj : FixedArray[Double],
+  po : Int,
+) -> Unit raise {
+  match j {
+    1 => {
+      pdj[po] = -0.04
+      pdj[po + 1] = 0.04
+      pdj[po + 2] = 0.0
+    }
+    2 => {
+      pdj[po] = 1.0e4 * y[yo + 2]
+      pdj[po + 1] = -1.0e4 * y[yo + 2] - 6.0e7 * y[yo + 1]
+      pdj[po + 2] = 6.0e7 * y[yo + 1]
+    }
+    _ => {
+      pdj[po] = 1.0e4 * y[yo + 1]
+      pdj[po + 1] = -1.0e4 * y[yo + 1]
+      pdj[po + 2] = 0.0
+    }
+  }
+}
+
+///|
+fn rob_res(
+  _neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  s : FixedArray[Double],
+  so : Int,
+  r : FixedArray[Double],
+  ro : Int,
+  ires : Int,
+) -> Int raise {
+  let y0 = y[yo]
+  let y1 = y[yo + 1]
+  let y2 = y[yo + 2]
+  let f0 = -0.04 * y0 + 1.0e4 * y1 * y2
+  let f2 = 3.0e7 * y1 * y1
+  let f1 = -f0 - f2
+  r[ro] = f0 - s[so]
+  r[ro + 1] = f1 - s[so + 1]
+  r[ro + 2] = f2 - s[so + 2]
+  ires
+}
+
+///|
+fn rob_adda(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _ml : Int,
+  _mu : Int,
+  p : FixedArray[Double],
+  po : Int,
+  nrowp : Int,
+) -> Unit raise {
+  for i in 0..<3 {
+    p[po + i + i * nrowp] = p[po + i + i * nrowp] + 1.0
+  }
+}
+
+///|
+fn rob_jaci(
+  neq : FixedArray[Int],
+  t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  _s : FixedArray[Double],
+  _so : Int,
+  ml : Int,
+  mu : Int,
+  p : FixedArray[Double],
+  po : Int,
+  nrowp : Int,
+) -> Unit raise {
+  // rob_jac reads y from its start
+  let yy = FixedArray::make(3, 0.0)
+  for i in 0..<3 {
+    yy[i] = y[yo + i]
+  }
+  rob_jac(neq, t, yy, ml, mu, p, po, nrowp)
+}
+
+///|
+fn rob_addas(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  j : Int,
+  _ian : FixedArray[Int],
+  _iano : Int,
+  _jan : FixedArray[Int],
+  _jano : Int,
+  p : FixedArray[Double],
+  po : Int,
+) -> Unit raise {
+  p[po + j - 1] = p[po + j - 1] + 1.0
+}
+
+///|
+fn rob_jacis(
+  neq : FixedArray[Int],
+  t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  _s : FixedArray[Double],
+  _so : Int,
+  j : Int,
+  ian : FixedArray[Int],
+  iano : Int,
+  jan : FixedArray[Int],
+  jano : Int,
+  p : FixedArray[Double],
+  po : Int,
+) -> Unit raise {
+  rob_jacs(neq, t, y, yo, j, ian, iano, jan, jano, p, po)
+}
+
+///|
+fn heat_res(
+  neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  s : FixedArray[Double],
+  so : Int,
+  r : FixedArray[Double],
+  ro : Int,
+  ires : Int,
+) -> Int raise {
+  let n = neq[0]
+  for i in 0..<n {
+    let yl = if i > 0 { y[yo + i - 1] } else { 0.0 }
+    let yr = if i < n - 1 { y[yo + i + 1] } else { 0.0 }
+    r[ro + i] = yl - 2.0 * y[yo + i] + yr - s[so + i]
+  }
+  ires
+}
+
+///|
+fn heat_adda(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _mb : Int,
+  nb : Int,
+  pa : FixedArray[Double],
+  pao : Int,
+  _pb : FixedArray[Double],
+  _pbo : Int,
+  _pc : FixedArray[Double],
+  _pco : Int,
+) -> Unit raise {
+  for k in 0..<nb {
+    pa[pao + k] = pa[pao + k] + 1.0
+  }
+}
+
+///|
+fn heat_jac(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _s : FixedArray[Double],
+  _so : Int,
+  _mb : Int,
+  nb : Int,
+  pa : FixedArray[Double],
+  pao : Int,
+  pb : FixedArray[Double],
+  pbo : Int,
+  pc : FixedArray[Double],
+  pco : Int,
+) -> Unit raise {
+  for k in 0..<nb {
+    pa[pao + k] = -2.0
+    pb[pbo + k] = if k < nb - 1 { 1.0 } else { 0.0 }
+    pc[pco + k] = if k > 0 { 1.0 } else { 0.0 }
+  }
+}
+
+///|
+fn id_jac(
+  _f : (FixedArray[Int], Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _ysv : FixedArray[Double],
+  _ysvo : Int,
+  _rewt : FixedArray[Double],
+  _rewto : Int,
+  _fty : FixedArray[Double],
+  _ftyo : Int,
+  _v : FixedArray[Double],
+  _vo : Int,
+  _hl0 : Double,
+  _wp : FixedArray[Double],
+  _wpo : Int,
+  _iwp : FixedArray[Int],
+  _iwpo : Int,
+  _ier : Int,
+) -> Int raise {
+  0
+}
+
+///|
+fn id_jack(
+  _f : (FixedArray[Int], Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _ysv : FixedArray[Double],
+  _ysvo : Int,
+  _rewt : FixedArray[Double],
+  _rewto : Int,
+  _fty : FixedArray[Double],
+  _ftyo : Int,
+  _v : FixedArray[Double],
+  _vo : Int,
+  _hl0 : Double,
+  _jok : Int,
+  _wp : FixedArray[Double],
+  _wpo : Int,
+  _iwp : FixedArray[Int],
+  _iwpo : Int,
+  _ier : Int,
+) -> Int raise {
+  0
+}
+
+///|
+fn id_psol(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _fty : FixedArray[Double],
+  _ftyo : Int,
+  _wk : FixedArray[Double],
+  _wko : Int,
+  _hl0 : Double,
+  _wp : FixedArray[Double],
+  _wpo : Int,
+  _iwp : FixedArray[Int],
+  _iwpo : Int,
+  _b : FixedArray[Double],
+  _bo : Int,
+  _lr : Int,
+  _ier : Int,
+) -> Int raise {
+  0
+}
+
+///|
+fn set_iwork(iwork : FixedArray[Int], iw : Array[(Int, Int)]) -> Unit {
+  for p in iw {
+    iwork[p.0] = p.1
+  }
+}
+
+///|
+fn ode_explicit(
+  s : StringBuilder,
+  solver : String,
+  f : (FixedArray[Int], Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  jac : (FixedArray[Int], Double, FixedArray[Double], Int, Int, FixedArray[Double], Int, Int) -> Unit raise,
+  mf : Int,
+  y0 : Array[Double],
+  rtol : Double,
+  atol : Double,
+  t0 : Double,
+  tout0 : Double,
+  nout : Int,
+  factor : Double,
+  lrw : Int,
+  liw : Int,
+  iopt : Int,
+  iw : Array[(Int, Int)],
+  extra : Bool,
+) -> Unit raise {
+  let neq = y0.length()
+  let y = dvec(y0)
+  let rwork = FixedArray::make(lrw, 0.0)
+  let iwork = FixedArray::make(liw, 0)
+  let jroot = FixedArray::make(2, 0)
+  set_iwork(iwork, iw)
+  let step = fn(tt : Double, tout : Double, istate : Int) -> (Double, Int) raise {
+    match solver {
+      "dlsoda" =>
+        dlsoda(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          jac, mf,
+        )
+      "dlsodes" =>
+        dlsodes(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          rob_jacs, mf,
+        )
+      "dlsodar" =>
+        dlsodar(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          jac, mf, rob_g, 2, jroot,
+        )
+      "dlsodpk" =>
+        dlsodpk(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          id_jac, id_psol, mf,
+        )
+      _ =>
+        dlsodkr(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          id_jack, id_psol, mf, rob_g, 2, jroot,
+        )
+    }
+  }
+  ode_loop(
+    s,
+    step,
+    y,
+    t0,
+    tout0,
+    nout,
+    factor,
+    1,
+    if extra {
+      Some(() => rai(s, jroot))
+    } else {
+      None
+    },
+  )
+  rai(s, iwork)
+  rad(s, rwork)
+}
+
+///|
+fn ode_implicit(
+  s : StringBuilder,
+  solver : String,
+  mf : Int,
+  y0 : Array[Double],
+  yd0 : Array[Double],
+  istate0 : Int,
+  rtol : Double,
+  atol : Double,
+  t0 : Double,
+  tout0 : Double,
+  nout : Int,
+  factor : Double,
+  lrw : Int,
+  liw : Int,
+  iw : Array[(Int, Int)],
+) -> Unit raise {
+  let neq = y0.length()
+  let y = dvec(y0)
+  let ydoti = dvec(yd0)
+  let rwork = FixedArray::make(lrw, 0.0)
+  let iwork = FixedArray::make(liw, 0)
+  set_iwork(iwork, iw)
+  let step = fn(tt : Double, tout : Double, istate : Int) -> (Double, Int) raise {
+    match solver {
+      "dlsodi" =>
+        dlsodi(
+          rob_res, rob_adda, rob_jaci, [neq], y, ydoti, tt, tout, 1, [rtol], [atol], 1, istate,
+          0, rwork, lrw, iwork, liw, mf,
+        )
+      "dlsoibt" =>
+        dlsoibt(
+          heat_res, heat_adda, heat_jac, [neq], y, ydoti, tt, tout, 1, [rtol], [atol], 1, istate,
+          0, rwork, lrw, iwork, liw, mf,
+        )
+      _ =>
+        dlsodis(
+          rob_res, rob_addas, rob_jacis, [neq], y, ydoti, tt, tout, 1, [rtol], [atol], 1, istate,
+          0, rwork, lrw, iwork, liw, mf,
+        )
+    }
+  }
+  ode_loop(s, step, y, t0, tout0, nout, factor, istate0, None)
+  rad(s, ydoti)
+  rai(s, iwork)
+  rad(s, rwork)
+}
+"""
+
+
+def _ode_explicit(name, solver, f, mf, y0, rtol, atol, t0, tout0, nout, factor, lrw, liw,
+                  iopt=0, iw=(), extra=False):
+    lisp_f = {"rob_f": "#'rob-f", "osc_f": "#'osc-f"}[f]
+    lisp_jac = {"dlsodes": "#'rob-jacs", "dlsodpk": "#'id-jac", "dlsodkr": "#'id-jack"}.get(
+        solver, "#'osc-jac" if f == "osc_f" else "#'rob-jac")
+    ODEPACK_CASES.append((
+        name,
+        "(ode-explicit :%s %s %s %d (list %s) %s %s %s %s %d %s %d %d %d '(%s) %s)" % (
+            solver, lisp_f, lisp_jac, mf, " ".join(lf(v) for v in y0), lf(rtol), lf(atol), lf(t0),
+            lf(tout0), nout, lf(factor) if factor else "0", lrw, liw, iopt,
+            " ".join("(%d %d)" % kv for kv in iw), "t" if extra else "nil"),
+        'ode_explicit(s, "%s", %s, %s, %d, [%s], %s, %s, %s, %s, %d, %s, %d, %d, %d, [%s], %s)' % (
+            solver, f, "osc_jac" if f == "osc_f" else "rob_jac", mf, ", ".join(mf_(v) for v in y0), mf_(rtol), mf_(atol), mf_(t0),
+            mf_(tout0), nout, mf_(factor), lrw, liw, iopt,
+            ", ".join("(%d, %d)" % kv for kv in iw), "true" if extra else "false")))
+
+
+def _ode_implicit(name, solver, mf, y0, yd0, istate0, rtol, atol, t0, tout0, nout, factor,
+                  lrw, liw, iw=()):
+    fns = {"dlsodi": "#'rob-res #'rob-adda #'rob-jaci",
+           "dlsoibt": "#'heat-res #'heat-adda #'heat-jac",
+           "dlsodis": "#'rob-res #'rob-addas #'rob-jacis"}[solver]
+    ODEPACK_CASES.append((
+        name,
+        "(ode-implicit :%s %s %d (list %s) (list %s) %d %s %s %s %s %d %s %d %d '(%s))" % (
+            solver, fns, mf, " ".join(lf(v) for v in y0), " ".join(lf(v) for v in yd0), istate0,
+            lf(rtol), lf(atol), lf(t0), lf(tout0), nout, lf(factor) if factor else "0", lrw, liw,
+            " ".join("(%d %d)" % kv for kv in iw)),
+        'ode_implicit(s, "%s", %d, [%s], [%s], %d, %s, %s, %s, %s, %d, %s, %d, %d, [%s])' % (
+            solver, mf, ", ".join(mf_(v) for v in y0), ", ".join(mf_(v) for v in yd0), istate0,
+            mf_(rtol), mf_(atol), mf_(t0), mf_(tout0), nout, mf_(factor), lrw, liw,
+            ", ".join("(%d, %d)" % kv for kv in iw))))
+
+
+_ROB = [1.0, 0.0, 0.0]
+_ode_explicit("dlsoda robertson jt=1", "dlsoda", "rob_f", 1, _ROB, 1e-4, 1e-8, 0.0, 0.4, 10, 10.0,
+              100, 40)
+_ode_explicit("dlsoda robertson jt=2", "dlsoda", "rob_f", 2, _ROB, 1e-6, 1e-10, 0.0, 0.4, 10, 10.0,
+              100, 40)
+_ode_explicit("dlsoda oscillator jt=2 (stays nonstiff)", "dlsoda", "osc_f", 2, [1.0, 0.0], 1e-8,
+              1e-10, 0.0, 0.5, 20, 0, 100, 40)
+_ode_explicit("dlsodar robertson roots", "dlsodar", "rob_f", 1, _ROB, 1e-4, 1e-8, 0.0, 0.4, 14,
+              10.0, 100, 40, extra=True)
+_ode_explicit("dlsodar oscillator jt=2 roots", "dlsodar", "osc_f", 2, [1.0, 0.0], 1e-6, 1e-8, 0.0,
+              1.0, 12, 0, 100, 40, extra=True)
+_ode_explicit("dlsodes robertson mf=121", "dlsodes", "rob_f", 121, _ROB, 1e-4, 1e-8, 0.0, 0.4, 8,
+              10.0, 600, 60)
+_ode_explicit("dlsodes robertson mf=222", "dlsodes", "rob_f", 222, _ROB, 1e-4, 1e-8, 0.0, 0.4, 8,
+              10.0, 600, 60)
+_ode_explicit("dlsodes oscillator mf=10", "dlsodes", "osc_f", 10, [1.0, 0.0], 1e-6, 1e-8, 0.0, 0.5,
+              10, 0, 600, 60)
+_ode_explicit("dlsodpk robertson mf=21", "dlsodpk", "rob_f", 21, _ROB, 1e-4, 1e-8, 0.0, 0.4, 6,
+              10.0, 600, 60)
+_ode_explicit("dlsodpk oscillator mf=22 jpre=1", "dlsodpk", "osc_f", 22, [1.0, 0.0], 1e-6, 1e-8,
+              0.0, 0.5, 10, 0, 600, 60, iopt=1, iw=[(2, 1), (3, 1)])
+_ode_explicit("dlsodpk oscillator mf=10", "dlsodpk", "osc_f", 10, [1.0, 0.0], 1e-6, 1e-8, 0.0,
+              0.5, 10, 0, 600, 60)
+for _mf in (23, 24, 29):
+    _ode_explicit("dlsodpk robertson mf=%d" % _mf, "dlsodpk", "rob_f", _mf, _ROB, 1e-4, 1e-8, 0.0,
+                  0.4, 5, 10.0, 600, 60)
+_ode_explicit("dlsodkr robertson mf=21 roots", "dlsodkr", "rob_f", 21, _ROB, 1e-4, 1e-8, 0.0, 0.4,
+              8, 10.0, 600, 60, extra=True)
+_ode_explicit("dlsodkr oscillator mf=22 jpre=2 roots", "dlsodkr", "osc_f", 22, [1.0, 0.0], 1e-6,
+              1e-8, 0.0, 1.0, 10, 0, 600, 60, iopt=1, iw=[(2, 2), (3, 1)], extra=True)
+_ode_implicit("dlsodi robertson mf=21 istate=0", "dlsodi", 21, _ROB, [0.0, 0.0, 0.0], 0, 1e-4,
+              1e-8, 0.0, 0.4, 8, 10.0, 100, 40)
+_ode_implicit("dlsodi robertson mf=22 istate=1", "dlsodi", 22, _ROB, [-0.04, 0.04, 0.0], 1, 1e-4,
+              1e-8, 0.0, 0.4, 8, 10.0, 100, 40)
+_ode_implicit("dlsoibt heat mf=21", "dlsoibt", 21, [1.0, 2.0, 3.0, 2.0, 1.0],
+              [0.0] * 5, 0, 1e-6, 1e-8, 0.0, 0.1, 8, 0, 300, 60, iw=[(0, 1), (1, 5)])
+_ode_implicit("dlsoibt heat mf=22", "dlsoibt", 22, [1.0, 2.0, 3.0, 2.0, 1.0],
+              [0.0] * 5, 0, 1e-6, 1e-8, 0.0, 0.1, 8, 0, 300, 60, iw=[(0, 1), (1, 5)])
+_ode_implicit("dlsodis robertson mf=121", "dlsodis", 121, _ROB, [0.0, 0.0, 0.0], 0, 1e-4, 1e-8,
+              0.0, 0.4, 8, 10.0, 1000, 100)
+_ode_implicit("dlsodis robertson mf=222", "dlsodis", 222, _ROB, [0.0, 0.0, 0.0], 0, 1e-4, 1e-8,
+              0.0, 0.4, 8, 10.0, 1000, 100)
 LAPACK_REF_LISP = r"""
 (defun cm (rows)
   (let* ((m (length rows)) (n (length (first rows))) (a (dzeros (* m n))))
@@ -3781,6 +4814,955 @@ for name, A, jz, up in [("3x3 V U", H3, "V", "U"), ("3x3 N U", H3, "N", "U"), ("
           't_zheev(s, %d, %s, "%s", "%s")' % (n, _mzmat(A), jz, up))
 
 
+# --- hompack ------------------------------------------------------------------
+#
+# POLSYS (hompack_polsys) on polynomial systems given as lists of terms
+# (coefficient, [powers]), with the coefficient and degree arrays built as
+# hompack-interface.lisp does, and FIXPDF (hompack_fixpdf), FIXPNF and FIXPQF
+# on two systems whose F and FJAC are installed as the user routines.
+
+HOMPACK_REF_LISP = r"""
+(defun ivals (&rest xs) (make-array (length xs) :element-type 'f2cl-lib:integer4 :initial-contents xs))
+(defvar *hf* nil)
+(defvar *hfjac* nil)
+(defun hompack::f (x v) (funcall *hf* x v) (values nil nil))
+(defun hompack::fjac (x v k) (funcall *hfjac* x v k) (values nil nil nil))
+(defun ex2-f (x v)
+  (let* ((x1 (aref x 0)) (x2 (aref x 1)) (x3 (aref x 2)) (x4 (aref x 3)) (x5 (aref x 4))
+         (s (- (+ x1 x2 x3 x4 x5) 6d0)))
+    (setf (aref v 0) (- (* x1 x2 x3 x4 x5) 1d0)
+          (aref v 1) (+ s x2) (aref v 2) (+ s x3) (aref v 3) (+ s x4) (aref v 4) (+ s x5))))
+(defun ex2-fjac (x v k)
+  (let ((p 1d0))
+    (dotimes (j 5) (unless (= j (1- k)) (setf p (* p (aref x j)))))
+    (setf (aref v 0) p)
+    (loop for i from 1 below 5 do (setf (aref v i) (if (= i (1- k)) 2d0 1d0)))))
+(defun circ-f (x v)
+  (let ((x1 (aref x 0)) (x2 (aref x 1)))
+    (setf (aref v 0) (- (+ (* x1 x1) (* x2 x2)) 4d0)
+          (aref v 1) (- (* x1 x2) 1d0))))
+(defun circ-fjac (x v k)
+  (let ((x1 (aref x 0)) (x2 (aref x 1)))
+    (if (= k 1)
+        (setf (aref v 0) (* 2d0 x1) (aref v 1) x2)
+        (setf (aref v 0) (* 2d0 x2) (aref v 1) x1))))
+(defun hp-polsys (n numt coef kdeg iflg1 iflg2 epsbig epssml sspar numrr)
+  (let* ((mmaxt (reduce #'max numt))
+         (total-deg (length iflg2))
+         (lenwk (+ 21 (* 61 n) (* 10 n n) (* 7 n mmaxt) (* 4 n n mmaxt)))
+         (leniwk (+ 43 (* 7 n) (* n (1+ n) mmaxt)))
+         (wk (dzeros lenwk)) (iwk (ivec lenwk))
+         (lamda (dzeros total-deg)) (arclen (dzeros total-deg)) (nfe (ivec total-deg))
+         (roots (dzeros (* 2 (1+ n) total-deg))))
+    (multiple-value-bind (v0 v1 v2 v3 r-iflg1 v5 v6 v7 v8 r-numrr)
+        (hompack::polsys n numt coef kdeg iflg1 iflg2 epsbig epssml sspar numrr n mmaxt
+                         total-deg lenwk leniwk lamda roots arclen nfe wk iwk)
+      (declare (ignore v0 v1 v2 v3 v5 v6 v7 v8))
+      (ri r-iflg1) (ri r-numrr) (ra iflg2) (ra lamda) (ra roots) (ra arclen) (ra nfe))))
+(defun hp-fixpdf (f fjac n iflag arctol eps a0)
+  (setf *hf* f *hfjac* fjac)
+  (let* ((y (dzeros (1+ n))) (a (dzeros n)) (yp (dzeros (1+ n))) (ypold (dzeros (1+ n)))
+         (qr (dzeros (* n (1+ n)))) (alpha (dzeros n)) (tz (dzeros (1+ n))) (pivot (ivec (1+ n)))
+         (wt (dzeros (1+ n))) (phi (dzeros (* 16 (1+ n)))) (p (dzeros (1+ n)))
+         (par (dzeros 1)) (ipar (ivec 1)))
+    (loop for v in a0 for k from 0 do (setf (aref a k) v (aref y (1+ k)) v))
+    (multiple-value-bind (v0 v1 r-iflag r-arctol r-eps v5 v6 v7 r-nfe r-arclen)
+        (hompack::fixpdf n y iflag arctol eps 0 a n 0 0d0 yp ypold qr alpha tz pivot wt phi p par ipar)
+      (declare (ignore v0 v1 v5 v6 v7))
+      (ri r-iflag) (rd r-arctol) (rd r-eps) (ri r-nfe) (rd r-arclen) (ra y))))
+(defun hp-fixpnf (f fjac n iflag arcre ansre a0)
+  (setf *hf* f *hfjac* fjac)
+  (let* ((n1 (1+ n)) (y (dzeros n1)) (a (dzeros n)) (sspar (dvec -1 -1 -1 -1 -1 -1 -1 -1)))
+    (loop for v in a0 for k from 0 do (setf (aref a k) v (aref y (1+ k)) v))
+    (multiple-value-bind (v0 v1 r-iflag r-arcre r-arcae r-ansre r-ansae v7 v8 r-nfe r-arclen)
+        (hompack::fixpnf n y iflag arcre arcre ansre ansre 0 a 0 0d0 (dzeros n1) (dzeros n1)
+                         (dzeros n1) (dzeros (* n (+ n 2))) (dzeros (* 3 n1)) (dzeros n1) (ivec n1)
+                         (dzeros n1) (dzeros n1) (dzeros n1) (dzeros n1) sspar (dzeros 1) (ivec 1))
+      (declare (ignore v0 v1 v7 v8))
+      (ri r-iflag) (rd r-arcre) (rd r-arcae) (rd r-ansre) (rd r-ansae) (ri r-nfe) (rd r-arclen)
+      (ra y))))
+(defun hp-fixpqf (f fjac n iflag arcre ansre a0)
+  (setf *hf* f *hfjac* fjac)
+  (let* ((n1 (1+ n)) (y (dzeros n1)) (a (dzeros n)) (sspar (dvec -1 -1 -1 -1 -1 -1 -1 -1)))
+    (loop for v in a0 for k from 0 do (setf (aref a k) v (aref y (1+ k)) v))
+    (multiple-value-bind (v0 v1 r-iflag r-arcre r-arcae r-ansre r-ansae v7 v8 r-nfe r-arclen)
+        (hompack::fixpqf n y iflag arcre arcre ansre ansre 0 a 0 0d0 (dzeros n1) (dzeros n1)
+                         (dzeros n1) (dzeros (* n1 n1)) (dzeros (/ (* n1 (1+ n1)) 2)) (dzeros n1)
+                         (dzeros n1) (dzeros n1) (dzeros n1) (dzeros n1) (dzeros n1) (dzeros n1)
+                         sspar (dzeros 1) (ivec 1))
+      (declare (ignore v0 v1 v7 v8 r-ansae))
+      (ri r-iflag) (rd r-arcre) (rd r-arcae) (rd r-ansre) (ri r-nfe) (rd r-arclen)
+      (ra y))))
+"""
+
+HOMPACK_REF_MBT = """
+///|
+fn ex2_f(x : FixedArray[Double], xo : Int, v : FixedArray[Double], vo : Int) -> Unit raise {
+  let x1 = x[xo]
+  let x2 = x[xo + 1]
+  let x3 = x[xo + 2]
+  let x4 = x[xo + 3]
+  let x5 = x[xo + 4]
+  let s = x1 + x2 + x3 + x4 + x5 - 6.0
+  v[vo] = x1 * x2 * x3 * x4 * x5 - 1.0
+  v[vo + 1] = s + x2
+  v[vo + 2] = s + x3
+  v[vo + 3] = s + x4
+  v[vo + 4] = s + x5
+}
+
+///|
+fn ex2_fjac(
+  x : FixedArray[Double],
+  xo : Int,
+  v : FixedArray[Double],
+  vo : Int,
+  k : Int,
+) -> Unit raise {
+  let mut p = 1.0
+  for j in 0..<5 {
+    if j != k - 1 {
+      p = p * x[xo + j]
+    }
+  }
+  v[vo] = p
+  for i in 1..<5 {
+    v[vo + i] = if i == k - 1 { 2.0 } else { 1.0 }
+  }
+}
+
+///|
+fn circ_f(x : FixedArray[Double], xo : Int, v : FixedArray[Double], vo : Int) -> Unit raise {
+  let x1 = x[xo]
+  let x2 = x[xo + 1]
+  v[vo] = x1 * x1 + x2 * x2 - 4.0
+  v[vo + 1] = x1 * x2 - 1.0
+}
+
+///|
+fn circ_fjac(
+  x : FixedArray[Double],
+  xo : Int,
+  v : FixedArray[Double],
+  vo : Int,
+  k : Int,
+) -> Unit raise {
+  let x1 = x[xo]
+  let x2 = x[xo + 1]
+  if k == 1 {
+    v[vo] = 2.0 * x1
+    v[vo + 1] = x2
+  } else {
+    v[vo] = 2.0 * x2
+    v[vo + 1] = x1
+  }
+}
+
+///|
+fn hp_polsys(
+  s : StringBuilder,
+  n : Int,
+  numt : Array[Int],
+  coef : Array[Double],
+  kdeg : Array[Int],
+  iflg1 : Int,
+  iflg2 : Array[Int],
+  epsbig : Double,
+  epssml : Double,
+  sspar : Array[Double],
+  numrr : Int,
+) -> Unit raise {
+  let mut mmaxt = numt[0]
+  for t in numt {
+    if t > mmaxt {
+      mmaxt = t
+    }
+  }
+  let total_deg = iflg2.length()
+  let lenwk = 21 + 61 * n + 10 * n * n + 7 * n * mmaxt + 4 * n * n * mmaxt
+  let leniwk = 43 + 7 * n + n * (n + 1) * mmaxt
+  let wk = FixedArray::make(lenwk, 0.0)
+  let iwk = FixedArray::make(lenwk, 0)
+  let lamda = FixedArray::make(total_deg, 0.0)
+  let arclen = FixedArray::make(total_deg, 0.0)
+  let nfe = FixedArray::make(total_deg, 0)
+  let roots = FixedArray::make(2 * (n + 1) * total_deg, 0.0)
+  let iflg2a = FixedArray::from_array(iflg2)
+  let (r_iflg1, r_numrr) = polsys(
+    n,
+    FixedArray::from_array(numt),
+    dvec(coef),
+    FixedArray::from_array(kdeg),
+    iflg1,
+    iflg2a,
+    epsbig,
+    epssml,
+    dvec(sspar),
+    numrr,
+    n,
+    mmaxt,
+    total_deg,
+    lenwk,
+    leniwk,
+    lamda,
+    roots,
+    arclen,
+    nfe,
+    wk,
+    iwk,
+  )
+  ri(s, r_iflg1)
+  ri(s, r_numrr)
+  rai(s, iflg2a)
+  rad(s, lamda)
+  rad(s, roots)
+  rad(s, arclen)
+  rai(s, nfe)
+}
+
+///|
+fn zeros(n : Int) -> FixedArray[Double] {
+  FixedArray::make(n, 0.0)
+}
+
+///|
+fn izeros(n : Int) -> FixedArray[Int] {
+  FixedArray::make(n, 0)
+}
+
+///|
+fn hp_set(
+  f : (FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  fj : (FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Unit raise,
+) -> Unit {
+  f_hook.val = f
+  fjac_hook.val = fj
+}
+
+///|
+fn hp_fixpdf(
+  s : StringBuilder,
+  f : (FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  fj : (FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Unit raise,
+  n : Int,
+  iflag : Int,
+  arctol : Double,
+  eps : Double,
+  a0 : Array[Double],
+) -> Unit raise {
+  hp_set(f, fj)
+  let y = zeros(n + 1)
+  let a = zeros(n)
+  for k, v in a0 {
+    a[k] = v
+    y[k + 1] = v
+  }
+  let (r_iflag, r_arctol, r_eps, r_nfe, r_arclen) = fixpdf(
+    n,
+    y,
+    iflag,
+    arctol,
+    eps,
+    0,
+    a,
+    n,
+    0,
+    0.0,
+    zeros(n + 1),
+    zeros(n + 1),
+    zeros(n * (n + 1)),
+    zeros(n),
+    zeros(n + 1),
+    izeros(n + 1),
+    zeros(n + 1),
+    zeros(16 * (n + 1)),
+    zeros(n + 1),
+    zeros(1),
+    izeros(1),
+  )
+  ri(s, r_iflag)
+  rd(s, r_arctol)
+  rd(s, r_eps)
+  ri(s, r_nfe)
+  rd(s, r_arclen)
+  rad(s, y)
+}
+
+///|
+fn hp_fixpnf(
+  s : StringBuilder,
+  f : (FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  fj : (FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Unit raise,
+  n : Int,
+  iflag : Int,
+  arcre : Double,
+  ansre : Double,
+  a0 : Array[Double],
+) -> Unit raise {
+  hp_set(f, fj)
+  let n1 = n + 1
+  let y = zeros(n1)
+  let a = zeros(n)
+  for k, v in a0 {
+    a[k] = v
+    y[k + 1] = v
+  }
+  let sspar = FixedArray::make(8, -1.0)
+  let (r_iflag, r_arcre, r_arcae, r_ansre, r_ansae, r_nfe, r_arclen) = fixpnf(
+    n,
+    y,
+    iflag,
+    arcre,
+    arcre,
+    ansre,
+    ansre,
+    0,
+    a,
+    0,
+    0.0,
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n * (n + 2)),
+    zeros(3 * n1),
+    zeros(n1),
+    izeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    sspar,
+    zeros(1),
+    izeros(1),
+  )
+  ri(s, r_iflag)
+  rd(s, r_arcre)
+  rd(s, r_arcae)
+  rd(s, r_ansre)
+  rd(s, r_ansae)
+  ri(s, r_nfe)
+  rd(s, r_arclen)
+  rad(s, y)
+}
+
+///|
+fn hp_fixpqf(
+  s : StringBuilder,
+  f : (FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  fj : (FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Unit raise,
+  n : Int,
+  iflag : Int,
+  arcre : Double,
+  ansre : Double,
+  a0 : Array[Double],
+) -> Unit raise {
+  hp_set(f, fj)
+  let n1 = n + 1
+  let y = zeros(n1)
+  let a = zeros(n)
+  for k, v in a0 {
+    a[k] = v
+    y[k + 1] = v
+  }
+  let sspar = FixedArray::make(8, -1.0)
+  let (r_iflag, r_arcre, r_arcae, r_ansre, r_nfe, r_arclen) = fixpqf(
+    n,
+    y,
+    iflag,
+    arcre,
+    arcre,
+    ansre,
+    ansre,
+    0,
+    a,
+    0,
+    0.0,
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1 * n1),
+    zeros(n1 * (n1 + 1) / 2),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    zeros(n1),
+    sspar,
+    zeros(1),
+    izeros(1),
+  )
+  ri(s, r_iflag)
+  rd(s, r_arcre)
+  rd(s, r_arcae)
+  rd(s, r_ansre)
+  ri(s, r_nfe)
+  rd(s, r_arclen)
+  rad(s, y)
+}
+"""
+
+HOMPACK_CASES = []
+
+
+def _polsys_arrays(eqs):
+    """numt, coef, kdeg and the total degree of a system, as
+    hompack-interface.lisp's parse-equations/convert-coef/convert-kdeg."""
+    n = len(eqs)
+    numt = [len(e) for e in eqs]
+    mmaxt = max(numt)
+    coef = [0.0] * (n * mmaxt)
+    kdeg = [0] * (n * (n + 1) * mmaxt)
+    total = 1
+    for j, e in enumerate(eqs):
+        total *= max(sum(p) for _, p in e)
+        for l, (c, pw) in enumerate(e):
+            coef[j + n * l] = float(c)
+            for k, p in enumerate(pw):
+                kdeg[j + n * (k + (n + 1) * l)] = p
+    return n, numt, coef, kdeg, total
+
+
+def _hp_polsys(name, eqs, iflg1, epsbig, epssml, sspar, numrr, iflg2=None):
+    n, numt, coef, kdeg, total = _polsys_arrays(eqs)
+    iflg2 = iflg2 or [-2] * total
+    HOMPACK_CASES.append((
+        name,
+        "(hp-polsys %d (ivals %s) (dvec %s) (ivals %s) %d (ivals %s) %s %s (dvec %s) %d)" % (
+            n, " ".join(map(str, numt)), " ".join(lf(c) for c in coef),
+            " ".join(map(str, kdeg)), iflg1, " ".join(map(str, iflg2)), lf(epsbig), lf(epssml),
+            " ".join(lf(x) for x in sspar), numrr),
+        "hp_polsys(s, %d, [%s], [%s], [%s], %d, [%s], %s, %s, [%s], %d)" % (
+            n, ", ".join(map(str, numt)), ", ".join(mf_(c) for c in coef),
+            ", ".join(map(str, kdeg)), iflg1, ", ".join(map(str, iflg2)), mf_(epsbig),
+            mf_(epssml), ", ".join(mf_(x) for x in sspar), numrr)))
+
+
+def _hp_fix(kind, name, fn, n, iflag, t1, t2, a0):
+    HOMPACK_CASES.append((
+        name,
+        "(hp-%s #'%s-f #'%s-fjac %d %d %s %s (list %s))" % (
+            kind, fn, fn, n, iflag, lf(t1), lf(t2), " ".join(lf(v) for v in a0)),
+        "hp_%s(s, %s_f, %s_fjac, %d, %d, %s, %s, [%s])" % (
+            kind, fn, fn, n, iflag, mf_(t1), mf_(t2), ", ".join(mf_(v) for v in a0))))
+
+
+# hompack_ex1.mac (the Fortran mainp.f/innhp.dat example)
+_EX1 = [[(-0.98e-3, [2, 0]), (0.978e6, [0, 2]), (-0.98e1, [1, 1]), (-0.235e3, [1, 0]),
+         (0.889e5, [0, 1]), (-1, [0, 0])],
+        [(-0.1e-1, [2, 0]), (-0.984, [0, 2]), (-0.297e2, [1, 1]), (0.987e-2, [1, 0]),
+         (-0.124, [0, 1]), (-0.25, [0, 0])]]
+_hp_polsys("polsys hompack_ex1 iflg1=11", _EX1, 11, 1e-4, 1e-14, [0, 0, 0, 0, 1, 0, 0, 0], 10)
+_hp_polsys("polsys hompack_ex1 iflg1=0", _EX1, 0, 1e-4, 1e-14, [-1] * 8, 10)
+_hp_polsys("polsys hompack_ex1 iflg1=10 paths 1,3", _EX1, 10, 1e-4, 1e-14, [-1] * 8, 10,
+           [-2, 0, -2, 0])
+_CIRC = [[(1, [2, 0]), (1, [0, 2]), (-4, [0, 0])], [(1, [1, 1]), (-1, [0, 0])]]
+_hp_polsys("polsys circle/hyperbola iflg1=0", _CIRC, 0, 1e-4, 1e-14, [-1] * 8, 10)
+_hp_polsys("polsys circle/hyperbola iflg1=1", _CIRC, 1, 1e-6, 1e-12, [-1] * 8, 10)
+_hp_polsys("polsys cubic", [[(1, [3]), (-2, [1]), (1, [0])]], 0, 1e-4, 1e-14, [-1] * 8, 10)
+_hp_polsys("polsys 3 variables", [[(1, [1, 1, 0]), (-1, [0, 0, 1]), (2, [0, 0, 0])],
+                                  [(1, [2, 0, 0]), (1, [0, 1, 0]), (-3, [0, 0, 0])],
+                                  [(1, [1, 0, 0]), (1, [0, 1, 0]), (1, [0, 0, 1]), (-1, [0, 0, 0])]],
+           0, 1e-4, 1e-14, [-1] * 8, 10)
+_hp_polsys("polsys numrr=1 (step limit)", _EX1, 0, 1e-4, 1e-14, [-1] * 8, 1)
+# hompack_ex2.mac and variants
+_hp_fix("fixpdf", "fixpdf hompack_ex2", "ex2", 5, -1, 0.5e-4, 0.5e-4, [])
+_hp_fix("fixpdf", "fixpdf ex2 default tolerances", "ex2", 5, -1, -1.0, 1e-5, [])
+_hp_fix("fixpdf", "fixpdf ex2 zero finding", "ex2", 5, 0, -1.0, 1e-5, [0.5, 0.5, 0.5, 0.5, 0.5])
+_hp_fix("fixpdf", "fixpdf circle zero finding", "circ", 2, 0, 1e-5, 1e-8, [0.1, 0.3])
+_hp_fix("fixpdf", "fixpdf circle fixed point", "circ", 2, -1, 1e-5, 1e-8, [0.2, 0.1])
+_hp_fix("fixpnf", "fixpnf ex2", "ex2", 5, -1, 1e-4, 1e-8, [])
+_hp_fix("fixpnf", "fixpnf circle zero finding", "circ", 2, 0, 1e-5, 1e-10, [0.1, 0.3])
+_hp_fix("fixpqf", "fixpqf ex2", "ex2", 5, -1, 1e-4, 1e-8, [])
+_hp_fix("fixpqf", "fixpqf circle zero finding", "circ", 2, 0, 1e-5, 1e-10, [0.1, 0.3])
+
+
+# --- colnew -------------------------------------------------------------------
+#
+# COLNEW on the problems of share/colnew/prob1.mac, prob2.mac and prob3.mac
+# (with the user functions following colnew-if.lisp's conventions: GSUB
+# returns g as its third value), then APPSLN at a few points.
+
+COLNEW_REF_LISP = r"""
+(defun ivals (&rest xs) (make-array (length xs) :element-type 'f2cl-lib:integer4 :initial-contents xs))
+(defun nzeros (n) (make-array n :element-type 'f2cl-lib:integer4 :initial-element 0))
+;; problem 1
+(defun p1-fsub (x z f)
+  (setf (aref f 0) (/ (- (- 1d0 (* 6d0 x x (aref z 3))) (* 6d0 x (aref z 2))) (* x x x)))
+  (values nil nil f))
+(defun p1-dfsub (x z df)
+  (declare (ignore z))
+  (setf (aref df 0) 0d0 (aref df 1) 0d0
+        (aref df 2) (/ (* -6d0 x) (* x x x)) (aref df 3) (/ (* -6d0 x x) (* x x x)))
+  (values nil nil df))
+(defun p1-gsub (i z dummy)
+  (declare (ignore dummy))
+  (values nil nil (aref z (if (oddp i) 0 2))))
+(defun p1-dgsub (i z dg)
+  (declare (ignore z))
+  (dotimes (k 4) (setf (aref dg k) 0d0))
+  (setf (aref dg (if (oddp i) 0 2)) 1d0)
+  (values nil nil dg))
+;; problem 2
+(defvar *gamma* 1.1d0)
+(defvar *eps* 0.01d0)
+(defvar *dmu* 0.01d0)
+(defvar *eps4mu* (/ (* *eps* *eps* *eps* *eps*) *dmu*))
+(defvar *xt* (sqrt (/ (* 2d0 (- *gamma* 1d0)) *gamma*)))
+(defun p2-fsub (x z f)
+  (let ((z1 (aref z 0)) (z2 (aref z 1)) (z3 (aref z 2)) (z4 (aref z 3)))
+    (setf (aref f 0) (+ (- (/ (/ z1 x) x) (/ z2 x))
+                        (/ (- (- z1 (* z3 (- 1d0 (/ z1 x))))
+                              (* *gamma* x (- 1d0 (/ (* x x) 2d0))))
+                           *eps4mu*))
+          (aref f 1) (+ (- (/ (/ z3 x) x) (/ z4 x))
+                        (/ (* z1 (- 1d0 (/ (/ z1 2d0) x))) *dmu*))))
+  (values nil nil f))
+(defun p2-dfsub (x z df)
+  (let ((z1 (aref z 0)) (z3 (aref z 2)))
+    ;; df(row, col), dimensions (2, 4)
+    (setf (aref df 0) (+ (/ 1d0 (* x x)) (/ (+ 1d0 (/ z3 x)) *eps4mu*))
+          (aref df 2) (/ -1d0 x)
+          (aref df 4) (- (/ (- 1d0 (/ z1 x)) *eps4mu*))
+          (aref df 6) 0d0
+          (aref df 1) (/ (- 1d0 (/ z1 x)) *dmu*)
+          (aref df 3) 0d0
+          (aref df 5) (/ 1d0 (* x x))
+          (aref df 7) (/ -1d0 x)))
+  (values nil nil df))
+(defun p2-gsub (i z dummy)
+  (declare (ignore dummy))
+  (values nil nil (case i (1 (aref z 0)) (2 (aref z 2)) (3 (aref z 0))
+                    (t (+ (- (aref z 3) (* 0.3d0 (aref z 2))) 0.7d0)))))
+(defun p2-dgsub (i z dg)
+  (declare (ignore z))
+  (dotimes (k 4) (setf (aref dg k) 0d0))
+  (case i (1 (setf (aref dg 0) 1d0)) (2 (setf (aref dg 2) 1d0)) (3 (setf (aref dg 0) 1d0))
+    (t (setf (aref dg 2) -0.3d0 (aref dg 3) 1d0)))
+  (values nil nil dg))
+(defun p2-guess (x z dmval)
+  (let ((cons (* *gamma* x (- 1d0 (* 0.5d0 x x))))
+        (dcons (* *gamma* (- 1d0 (* 1.5d0 x x))))
+        (d2cons (* -3d0 *gamma* x)))
+    (if (> x *xt*)
+        (setf (aref z 0) 0d0 (aref z 1) 0d0 (aref z 2) (- cons) (aref z 3) (- dcons)
+              (aref dmval 0) 0d0 (aref dmval 1) (- d2cons))
+        (setf (aref z 0) (* 2d0 x) (aref z 1) 2d0 (aref z 2) (+ (* -2d0 x) cons)
+              (aref z 3) (+ -2d0 dcons) (aref dmval 0) 0d0 (aref dmval 1) d2cons)))
+  (values nil z dmval))
+;; problem 3 (rotating disk)
+(defvar *n* 0.2d0)
+(defvar *cons* (* 0.5d0 (- 3d0 0.2d0)))
+(defvar *s* 0.2d0)
+(defvar *l* 60d0)
+(defun p3-fsub (x z f)
+  (declare (ignore x))
+  (let ((z1 (aref z 0)) (z2 (aref z 1)) (z3 (aref z 2)) (z4 (aref z 3)) (z5 (aref z 4))
+        (l *l*) (s *s*) (n *n*) (c *cons*))
+    (setf (aref f 0) (- (- (* l l s (- z1 1d0)) (* l c z3 z2)) (* l (- n 1d0) z4 z1))
+          (aref f 1) (- (- (+ (* l l l (- 1d0 (* z1 z1))) (* l l s z4)) (* l c z3 z5))
+                        (* l n z4 z4))))
+  (values nil nil f))
+(defun p3-dfsub (x z df)
+  (declare (ignore x))
+  (let ((z1 (aref z 0)) (z2 (aref z 1)) (z3 (aref z 2)) (z4 (aref z 3)) (z5 (aref z 4))
+        (l *l*) (s *s*) (n *n*) (c *cons*))
+    (setf (aref df 0) (- (* l l s) (* l (- n 1d0) z4))
+          (aref df 2) (- (* l c z3))
+          (aref df 4) (- (* l c z2))
+          (aref df 6) (- (* l (- n 1d0) z1))
+          (aref df 8) 0d0
+          (aref df 1) (* -2d0 l l l z1)
+          (aref df 3) 0d0
+          (aref df 5) (- (* l c z5))
+          (aref df 7) (- (* l l s) (* 2d0 l n z4))
+          (aref df 9) (- (* l c z3))))
+  (values nil nil df))
+(defun p3-gsub (i z dummy)
+  (declare (ignore dummy))
+  (values nil nil (case i (1 (aref z 0)) (2 (aref z 2)) (3 (aref z 3)) (4 (- (aref z 0) 1d0))
+                    (t (aref z 3)))))
+(defun p3-dgsub (i z dg)
+  (declare (ignore z))
+  (dotimes (k 5) (setf (aref dg k) 0d0))
+  (setf (aref dg (case i (1 0) (2 2) (3 3) (4 0) (t 3))) 1d0)
+  (values nil nil dg))
+(defun p3-guess (x z dmval)
+  (let* ((l *l*) (e (exp (- (* l x)))))
+    (setf (aref z 0) (- 1d0 e)
+          (aref z 1) (* l e)
+          (aref z 2) (* (- (* l l x x)) e)
+          (aref z 3) (* (- (* l l l x x) (* 2d0 l l x)) e)
+          (aref z 4) (* (+ (- (* (- (* l l l l)) x x) 0d0) (* 4d0 l l l x) (* -2d0 l l)) e)
+          (aref dmval 0) (* (- (* l l)) e)
+          (aref dmval 1) (* (+ (- (* l l l l l x x) (* 6d0 l l l l x)) (* 6d0 l l l)) e)))
+  (values nil z dmval))
+(defun cn-run (p ncomp m aleft aright zeta ipar ltol tol nfs nis xs nz)
+  (let ((fspace (dzeros nfs)) (ispace (nzeros nis)) (fixpnt (dzeros 1)))
+    (multiple-value-bind (v0 v1 v2 v3 v4 v5 v6 v7 v8 v9 v10 iflag)
+        (colnew::colnew ncomp m aleft aright zeta ipar ltol tol fixpnt ispace fspace 0
+                        (symbol-function (intern (format nil "P~D-FSUB" p)))
+                        (symbol-function (intern (format nil "P~D-DFSUB" p)))
+                        (symbol-function (intern (format nil "P~D-GSUB" p)))
+                        (symbol-function (intern (format nil "P~D-DGSUB" p)))
+                        (if (= p 1) #'p1-fsub (symbol-function (intern (format nil "P~D-GUESS" p)))))
+      (declare (ignore v0 v1 v2 v3 v4 v5 v6 v7 v8 v9 v10))
+      (ri iflag) (ra fspace) (ra ispace)
+      (let ((z (dzeros nz)))
+        (dolist (x xs) (colnew::appsln x z fspace ispace) (ra z)))
+      (values fspace ispace))))
+(defun cn-p3 ()
+  (setf *s* 0.2d0 *l* 60d0)
+  (let ((ipar (ivals 1 4 10 2 40000 2500 1 0 1 0 0)))
+    (multiple-value-bind (fspace ispace)
+        (cn-run 3 2 (ivals 2 3) 0d0 1d0 (dvec 0 0 0 1 1) ipar (ivals 1 3) (dvec 1d-7 1d-7)
+                40000 2500 (list 0d0 0.1d0 0.5d0) 5)
+      (setf *s* 0.1d0 *l* 120d0)
+      (setf (aref ipar 8) 3 (aref ipar 2) (aref ispace 0))
+      (multiple-value-bind (v0 v1 v2 v3 v4 v5 v6 v7 v8 v9 v10 iflag)
+          (colnew::colnew 2 (ivals 2 3) 0d0 1d0 (dvec 0 0 0 1 1) ipar (ivals 1 3) (dvec 1d-7 1d-7)
+                          (dzeros 1) ispace fspace 0 #'p3-fsub #'p3-dfsub #'p3-gsub #'p3-dgsub
+                          #'p3-guess)
+        (declare (ignore v0 v1 v2 v3 v4 v5 v6 v7 v8 v9 v10))
+        (ri iflag) (ra fspace) (ra ispace)
+        (let ((z (dzeros 5)))
+          (dolist (x (list 0d0 0.05d0 0.3d0 1d0)) (colnew::appsln x z fspace ispace) (ra z)))))))
+"""
+
+COLNEW_REF_MBT = """
+///|
+fn p1_fsub(x : Double, z : FixedArray[Double], zo : Int, f : FixedArray[Double], fo : Int) -> Unit raise {
+  f[fo] = (1.0 - 6.0 * x * x * z[zo + 3] - 6.0 * x * z[zo + 2]) / (x * x * x)
+}
+
+///|
+fn p1_dfsub(x : Double, _z : FixedArray[Double], _zo : Int, df : FixedArray[Double], o : Int) -> Unit raise {
+  df[o] = 0.0
+  df[o + 1] = 0.0
+  df[o + 2] = -6.0 * x / (x * x * x)
+  df[o + 3] = -6.0 * x * x / (x * x * x)
+}
+
+///|
+fn p1_gsub(i : Int, z : FixedArray[Double], zo : Int, _d : Double) -> Double raise {
+  z[zo + (if i % 2 == 1 { 0 } else { 2 })]
+}
+
+///|
+fn p1_dgsub(i : Int, _z : FixedArray[Double], _zo : Int, dg : FixedArray[Double], o : Int) -> Unit raise {
+  for k in 0..<4 {
+    dg[o + k] = 0.0
+  }
+  dg[o + (if i % 2 == 1 { 0 } else { 2 })] = 1.0
+}
+
+///|
+let p2_gamma : Double = 1.1
+
+///|
+let p2_eps : Double = 0.01
+
+///|
+let p2_dmu : Double = 0.01
+
+///|
+let p2_eps4mu : Double = p2_eps * p2_eps * p2_eps * p2_eps / p2_dmu
+
+///|
+let p2_xt : Double = (2.0 * (p2_gamma - 1.0) / p2_gamma).sqrt()
+
+///|
+fn p2_fsub(x : Double, z : FixedArray[Double], zo : Int, f : FixedArray[Double], fo : Int) -> Unit raise {
+  let z1 = z[zo]
+  let z2 = z[zo + 1]
+  let z3 = z[zo + 2]
+  let z4 = z[zo + 3]
+  f[fo] = z1 / x / x - z2 / x +
+    (z1 - z3 * (1.0 - z1 / x) - p2_gamma * x * (1.0 - x * x / 2.0)) / p2_eps4mu
+  f[fo + 1] = z3 / x / x - z4 / x + z1 * (1.0 - z1 / 2.0 / x) / p2_dmu
+}
+
+///|
+fn p2_dfsub(x : Double, z : FixedArray[Double], zo : Int, df : FixedArray[Double], o : Int) -> Unit raise {
+  let z1 = z[zo]
+  let z3 = z[zo + 2]
+  df[o] = 1.0 / (x * x) + (1.0 + z3 / x) / p2_eps4mu
+  df[o + 2] = -1.0 / x
+  df[o + 4] = -((1.0 - z1 / x) / p2_eps4mu)
+  df[o + 6] = 0.0
+  df[o + 1] = (1.0 - z1 / x) / p2_dmu
+  df[o + 3] = 0.0
+  df[o + 5] = 1.0 / (x * x)
+  df[o + 7] = -1.0 / x
+}
+
+///|
+fn p2_gsub(i : Int, z : FixedArray[Double], zo : Int, _d : Double) -> Double raise {
+  match i {
+    1 => z[zo]
+    2 => z[zo + 2]
+    3 => z[zo]
+    _ => z[zo + 3] - 0.3 * z[zo + 2] + 0.7
+  }
+}
+
+///|
+fn p2_dgsub(i : Int, _z : FixedArray[Double], _zo : Int, dg : FixedArray[Double], o : Int) -> Unit raise {
+  for k in 0..<4 {
+    dg[o + k] = 0.0
+  }
+  match i {
+    1 => dg[o] = 1.0
+    2 => dg[o + 2] = 1.0
+    3 => dg[o] = 1.0
+    _ => {
+      dg[o + 2] = -0.3
+      dg[o + 3] = 1.0
+    }
+  }
+}
+
+///|
+fn p2_guess(x : Double, z : FixedArray[Double], zo : Int, dm : FixedArray[Double], o : Int) -> Unit raise {
+  let cons = p2_gamma * x * (1.0 - 0.5 * x * x)
+  let dcons = p2_gamma * (1.0 - 1.5 * x * x)
+  let d2cons = -3.0 * p2_gamma * x
+  if x > p2_xt {
+    z[zo] = 0.0
+    z[zo + 1] = 0.0
+    z[zo + 2] = -cons
+    z[zo + 3] = -dcons
+    dm[o] = 0.0
+    dm[o + 1] = -d2cons
+  } else {
+    z[zo] = 2.0 * x
+    z[zo + 1] = 2.0
+    z[zo + 2] = -2.0 * x + cons
+    z[zo + 3] = -2.0 + dcons
+    dm[o] = 0.0
+    dm[o + 1] = d2cons
+  }
+}
+
+///|
+let p3_n : Double = 0.2
+
+///|
+let p3_cons : Double = 0.5 * (3.0 - 0.2)
+
+///|
+let p3_s : Ref[Double] = { val: 0.2 }
+
+///|
+let p3_l : Ref[Double] = { val: 60.0 }
+
+///|
+fn p3_fsub(_x : Double, z : FixedArray[Double], zo : Int, f : FixedArray[Double], fo : Int) -> Unit raise {
+  let z1 = z[zo]
+  let z2 = z[zo + 1]
+  let z3 = z[zo + 2]
+  let z4 = z[zo + 3]
+  let z5 = z[zo + 4]
+  let l = p3_l.val
+  let s = p3_s.val
+  let n = p3_n
+  let c = p3_cons
+  f[fo] = l * l * s * (z1 - 1.0) - l * c * z3 * z2 - l * (n - 1.0) * z4 * z1
+  f[fo + 1] = l * l * l * (1.0 - z1 * z1) + l * l * s * z4 - l * c * z3 * z5 -
+    l * n * z4 * z4
+}
+
+///|
+fn p3_dfsub(_x : Double, z : FixedArray[Double], zo : Int, df : FixedArray[Double], o : Int) -> Unit raise {
+  let z1 = z[zo]
+  let z2 = z[zo + 1]
+  let z3 = z[zo + 2]
+  let z4 = z[zo + 3]
+  let z5 = z[zo + 4]
+  let l = p3_l.val
+  let s = p3_s.val
+  let n = p3_n
+  let c = p3_cons
+  df[o] = l * l * s - l * (n - 1.0) * z4
+  df[o + 2] = -(l * c * z3)
+  df[o + 4] = -(l * c * z2)
+  df[o + 6] = -(l * (n - 1.0) * z1)
+  df[o + 8] = 0.0
+  df[o + 1] = -2.0 * l * l * l * z1
+  df[o + 3] = 0.0
+  df[o + 5] = -(l * c * z5)
+  df[o + 7] = l * l * s - 2.0 * l * n * z4
+  df[o + 9] = -(l * c * z3)
+}
+
+///|
+fn p3_gsub(i : Int, z : FixedArray[Double], zo : Int, _d : Double) -> Double raise {
+  match i {
+    1 => z[zo]
+    2 => z[zo + 2]
+    3 => z[zo + 3]
+    4 => z[zo] - 1.0
+    _ => z[zo + 3]
+  }
+}
+
+///|
+fn p3_dgsub(i : Int, _z : FixedArray[Double], _zo : Int, dg : FixedArray[Double], o : Int) -> Unit raise {
+  for k in 0..<5 {
+    dg[o + k] = 0.0
+  }
+  dg[o + (match i {
+      1 => 0
+      2 => 2
+      3 => 3
+      4 => 0
+      _ => 3
+    })] = 1.0
+}
+
+///|
+fn p3_guess(x : Double, z : FixedArray[Double], zo : Int, dm : FixedArray[Double], o : Int) -> Unit raise {
+  let l = p3_l.val
+  let e = @f2cl.f_exp(-(l * x))
+  z[zo] = 1.0 - e
+  z[zo + 1] = l * e
+  z[zo + 2] = -(l * l * x * x) * e
+  z[zo + 3] = (l * l * l * x * x - 2.0 * l * l * x) * e
+  z[zo + 4] = (-(l * l * l * l) * x * x - 0.0 + 4.0 * l * l * l * x + -2.0 * l * l) * e
+  dm[o] = -(l * l) * e
+  dm[o + 1] = (l * l * l * l * l * x * x - 6.0 * l * l * l * l * x + 6.0 * l * l * l) * e
+}
+
+///|
+fn cn_run(
+  s : StringBuilder,
+  fs : (
+    (Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+    (Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+    (Int, FixedArray[Double], Int, Double) -> Double raise,
+    (Int, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+    (Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  ),
+  ncomp : Int,
+  m : Array[Int],
+  aleft : Double,
+  aright : Double,
+  zeta : Array[Double],
+  ipar : FixedArray[Int],
+  ltol : Array[Int],
+  tol : Array[Double],
+  nfs : Int,
+  nis : Int,
+  xs : Array[Double],
+  nz : Int,
+) -> (FixedArray[Double], FixedArray[Int]) raise {
+  let fspace = FixedArray::make(nfs, 0.0)
+  let ispace = FixedArray::make(nis, 0)
+  let iflag = colnew(
+    ncomp,
+    FixedArray::from_array(m),
+    aleft,
+    aright,
+    dvec(zeta),
+    ipar,
+    FixedArray::from_array(ltol),
+    dvec(tol),
+    FixedArray::make(1, 0.0),
+    ispace,
+    fspace,
+    0,
+    fs.0,
+    fs.1,
+    fs.2,
+    fs.3,
+    fs.4,
+  )
+  ri(s, iflag)
+  rad(s, fspace)
+  rai(s, ispace)
+  let z = FixedArray::make(nz, 0.0)
+  for x in xs {
+    appsln(x, z, fspace, ispace) |> ignore
+    rad(s, z)
+  }
+  (fspace, ispace)
+}
+
+///|
+fn cn_p3(s : StringBuilder) -> Unit raise {
+  p3_s.val = 0.2
+  p3_l.val = 60.0
+  let ipar = FixedArray::from_array([1, 4, 10, 2, 40000, 2500, 1, 0, 1, 0, 0])
+  let fs = (p3_fsub, p3_dfsub, p3_gsub, p3_dgsub, p3_guess)
+  let (fspace, ispace) = cn_run(
+    s, fs, 2, [2, 3], 0.0, 1.0, [0.0, 0.0, 0.0, 1.0, 1.0], ipar, [1, 3], [1.0e-7, 1.0e-7],
+    40000, 2500, [0.0, 0.1, 0.5], 5,
+  )
+  p3_s.val = 0.1
+  p3_l.val = 120.0
+  ipar[8] = 3
+  ipar[2] = ispace[0]
+  let iflag = colnew(
+    2,
+    [2, 3],
+    0.0,
+    1.0,
+    [0.0, 0.0, 0.0, 1.0, 1.0],
+    ipar,
+    [1, 3],
+    [1.0e-7, 1.0e-7],
+    FixedArray::make(1, 0.0),
+    ispace,
+    fspace,
+    0,
+    p3_fsub,
+    p3_dfsub,
+    p3_gsub,
+    p3_dgsub,
+    p3_guess,
+  )
+  ri(s, iflag)
+  rad(s, fspace)
+  rai(s, ispace)
+  let z = FixedArray::make(5, 0.0)
+  for x in [0.0, 0.05, 0.3, 1.0] {
+    appsln(x, z, fspace, ispace) |> ignore
+    rad(s, z)
+  }
+}
+"""
+
+COLNEW_CASES = []
+
+
+def _cn(name, p, ncomp, m, aleft, aright, zeta, ipar, ltol, tol, nfs, nis, xs, nz):
+    COLNEW_CASES.append((
+        name,
+        "(cn-run %d %d (ivals %s) %s %s (dvec %s) (ivals %s) (ivals %s) (dvec %s) %d %d (list %s) %d)" % (
+            p, ncomp, " ".join(map(str, m)), lf(aleft), lf(aright), " ".join(lf(z) for z in zeta),
+            " ".join(map(str, ipar)), " ".join(map(str, ltol)), " ".join(lf(t) for t in tol),
+            nfs, nis, " ".join(lf(x) for x in xs), nz),
+        "cn_run(s, (p%d_fsub, p%d_dfsub, p%d_gsub, p%d_dgsub, %s), %d, [%s], %s, %s, [%s], [%s], [%s], [%s], %d, %d, [%s], %d) |> ignore" % (
+            p, p, p, p, "p1_fsub" if p == 1 else "p%d_guess" % p, ncomp,
+            ", ".join(map(str, m)), mf_(aleft), mf_(aright), ", ".join(mf_(z) for z in zeta),
+            ", ".join(map(str, ipar)), ", ".join(map(str, ltol)), ", ".join(mf_(t) for t in tol),
+            nfs, nis, ", ".join(mf_(x) for x in xs), nz)))
+
+
+_cn("prob1 (selected output)", 1, 1, [4], 1.0, 2.0, [1, 1, 2, 2], [0, 0, 1, 2, 2000, 200, 0, 0, 0, 0, 0],
+    [1, 3], [1e-7, 1e-7], 2000, 200, [1.0, 1.25, 1.5, 1.75, 2.0], 4)
+_cn("prob1 k=5 no output", 1, 1, [4], 1.0, 2.0, [1, 1, 2, 2], [0, 5, 4, 2, 2000, 200, 1, 0, 0, 0, 0],
+    [1, 3], [1e-9, 1e-9], 2000, 200, [1.1, 1.9], 4)
+_cn("prob1 workspace too small", 1, 1, [4], 1.0, 2.0, [1, 1, 2, 2], [0, 0, 1, 2, 300, 50, 0, 0, 0, 0, 0],
+    [1, 3], [1e-7, 1e-7], 300, 50, [], 4)
+_cn("prob2 (full output)", 2, 2, [2, 2], 0.0, 1.0, [0, 0, 1, 1], [1, 4, 10, 4, 40000, 2500, -1, 0, 1, 0, 0],
+    [1, 2, 3, 4], [1e-5] * 4, 40000, 2500, [0.0, 0.05, 0.5, 1.0], 4)
+_cn("prob2 no initial guess", 2, 2, [2, 2], 0.0, 1.0, [0, 0, 1, 1], [1, 4, 10, 4, 40000, 2500, 1, 0, 0, 0, 0],
+    [1, 2, 3, 4], [1e-5] * 4, 40000, 2500, [0.3], 4)
+COLNEW_CASES.append(("prob3 (rotating disk, continuation)", "(cn-p3)", "cn_p3(s)"))
+
+
 # ---------------------------------------------------------------------------
 # Driver
 
@@ -3810,10 +5792,54 @@ def lisp_files(d, exclude=()):
 # right-hand side F(NEQ, T, Y, YDOT) and Jacobian JAC(NEQ, T, Y, ML, MU, PD,
 # NROWPD).  Array arguments that DLSODE passes as sections of its work array
 # come with their offsets.
+ODEPACK_F = Sig([("A", "I"), "D", ("AO", "D"), ("AO", "D")], [], True)
 ODEPACK_SIGS = {
-    "f": Sig([("A", "I"), "D", ("AO", "D"), ("AO", "D")], [], True),
-    "jac": Sig([("A", "I"), "D", ("A", "D"), "I", "I", ("AO", "D"), "I"], [], True),
+    ("dlsode", "f"): ODEPACK_F,
+    ("dlsode", "jac"): Sig([("A", "I"), "D", ("A", "D"), "I", "I", ("AO", "D"), "I"], [], True),
 }
+for _drv in ("dlsoda", "dlsodar", "dlsodes", "dlsodpk", "dlsodkr"):
+    ODEPACK_SIGS[(_drv, "f")] = ODEPACK_F
+# The user routines of the other ODEPACK solvers (see the comments at the top
+# of each solver in share/odepack/fortran/opkdmain.f), by (solver, parameter):
+# G(NEQ, T, Y, NG, GOUT); DLSODES's JAC(NEQ, T, Y, J, IAN, JAN, PDJ);
+# DLSODPK's JAC(F, NEQ, T, Y, YSV, REWT, FTY, V, HL0, WP, IWP, IER) (DLSODKR's with JOK after HL0)
+# and PSOL(NEQ, T, Y, FTY, WK, HL0, WP, IWP, B, LR, IER), both returning IER;
+# RES(NEQ, T, Y, S, R, IRES) returning IRES, and ADDA/JAC of DLSODI (banded
+# or full: ML, MU, P, NROWP), DLSOIBT (block tridiagonal: MB, NB, PA, PB, PC)
+# and DLSODIS (sparse: J, IAN, JAN, P).
+_OG = Sig([("A", "I"), "D", ("AO", "D"), "I", ("AO", "D")], [], True)
+_OPKJ = Sig([("FN", ODEPACK_F), ("A", "I"), "D", ("AO", "D"), ("AO", "D"), ("AO", "D"),
+             ("AO", "D"), ("AO", "D"), "D", ("AO", "D"), ("AO", "I"), "I"], [(11, "I")], True)
+_OPSOL = Sig([("A", "I"), "D", ("AO", "D"), ("AO", "D"), ("AO", "D"), "D", ("AO", "D"),
+              ("AO", "I"), ("AO", "D"), "I", "I"], [(10, "I")], True)
+_ORES = Sig([("A", "I"), "D", ("AO", "D"), ("AO", "D"), ("AO", "D"), "I"], [(5, "I")], True)
+for _drv in ("dlsoda", "dlsodar"):
+    ODEPACK_SIGS[(_drv, "jac")] = ODEPACK_SIGS[("dlsode", "jac")]
+ODEPACK_SIGS.update({
+    ("dlsodar", "g"): _OG,
+    ("dlsodkr", "g"): _OG,
+    ("dlsodes", "jac"): Sig([("A", "I"), "D", ("AO", "D"), "I", ("AO", "I"), ("AO", "I"),
+                             ("AO", "D")], [], True),
+    ("dlsodpk", "jac"): _OPKJ,
+    # DLSODKR's JAC has JOK after HL0
+    ("dlsodkr", "jac"): Sig(_OPKJ.args[:9] + ["I"] + _OPKJ.args[9:], [(12, "I")], True),
+    ("dlsodpk", "psol"): _OPSOL,
+    ("dlsodkr", "psol"): _OPSOL,
+    ("dlsodi", "res"): _ORES,
+    ("dlsoibt", "res"): _ORES,
+    ("dlsodis", "res"): _ORES,
+    ("dlsodi", "adda"): Sig([("A", "I"), "D", ("AO", "D"), "I", "I", ("AO", "D"), "I"], [], True),
+    ("dlsodi", "jac"): Sig([("A", "I"), "D", ("AO", "D"), ("AO", "D"), "I", "I", ("AO", "D"), "I"],
+                           [], True),
+    ("dlsoibt", "adda"): Sig([("A", "I"), "D", ("AO", "D"), "I", "I", ("AO", "D"), ("AO", "D"),
+                              ("AO", "D")], [], True),
+    ("dlsoibt", "jac"): Sig([("A", "I"), "D", ("AO", "D"), ("AO", "D"), "I", "I", ("AO", "D"),
+                             ("AO", "D"), ("AO", "D")], [], True),
+    ("dlsodis", "adda"): Sig([("A", "I"), "D", ("AO", "D"), "I", ("AO", "I"), ("AO", "I"),
+                              ("AO", "D")], [], True),
+    ("dlsodis", "jac"): Sig([("A", "I"), "D", ("AO", "D"), ("AO", "D"), "I", ("AO", "I"),
+                             ("AO", "I"), ("AO", "D")], [], True),
+})
 
 
 def lib_config(name):
@@ -3831,13 +5857,16 @@ def lib_config(name):
                     header=share_header("share/lbfgs", "L-BFGS (Nocedal's LBFGS.F and MCSRCH.F)"))
     if name == "odepack":
         d = os.path.join(SHARE_DIR, "odepack", "src")
-        files = [os.path.join(d, "dls001.cmn")] + [os.path.join(d, f + ".lisp") for f in [
-            "dlsode", "dintdy", "dstode", "dgbfa", "dcfode", "dprepj", "dsolsy", "dewset",
-            "dvnorm", "dsrcom", "dgefa", "dgesl", "dgbsl", "dscal", "ddot", "idamax", "dumach",
-            "xerrwd", "xsetun", "xsetf", "ixsav", "iumach", "daxpy", "dumsum"]]
+        # all of ODEPACK (DLSODE first: its routines own the shared COMMON
+        # blocks, as in the DLSODE-only translation)
+        first = ["dlsode", "dintdy", "dstode", "dgbfa", "dcfode", "dprepj", "dsolsy", "dewset",
+                 "dvnorm", "dsrcom", "dgefa", "dgesl", "dgbsl", "dscal", "ddot", "idamax", "dumach",
+                 "xerrwd", "xsetun", "xsetf", "ixsav", "iumach", "daxpy", "dumsum"]
+        files = [os.path.join(d, "dls001.cmn")] + [os.path.join(d, f + ".lisp") for f in first] + \
+            lisp_files(d, ["package"] + first)
         return dict(name="odepack", out=os.path.join(ROOT, "odepack"), what="ODEPACK routine",
                     srcrel="share/odepack/src", hand=[], user_sigs=ODEPACK_SIGS, files=files,
-                    header=share_header("share/odepack/src", "ODEPACK's DLSODE"))
+                    header=share_header("share/odepack/src", "ODEPACK"))
     if name == "lapack":
         d = os.path.join(SHARE_DIR, "lapack")
         files = lisp_files(os.path.join(d, "blas"), ("blas-package", "icamax", "isamax")) + \
@@ -3845,7 +5874,82 @@ def lib_config(name):
         return dict(name="lapack", out=os.path.join(ROOT, "lapack"), what="BLAS/LAPACK routine",
                     srcrel="share/lapack/{blas,lapack}", hand=[], user_sigs={}, files=files,
                     header=share_header("share/lapack/{blas,lapack}", "BLAS and LAPACK"))
+    if name == "hompack":
+        d = os.path.join(SHARE_DIR, "hompack", "lisp")
+        blas = os.path.join(SHARE_DIR, "lapack", "blas")
+        files = [os.path.join(blas, f + ".lisp") for f in
+                 ["daxpy", "dcopy", "ddot", "dnrm2", "dscal", "idamax"]] + \
+            lisp_files(d, ("hompack-package",))
+        return dict(name="hompack", out=os.path.join(ROOT, "hompack"), what="HOMPACK routine",
+                    srcrel="share/{hompack/lisp,lapack/blas}", hand=[], user_sigs={}, files=files,
+                    hooks=HOMPACK_HOOKS,
+                    header=share_header("share/{hompack/lisp,lapack/blas}", "HOMPACK"))
+    if name == "colnew":
+        d = os.path.join(SHARE_DIR, "colnew", "lisp")
+        return dict(name="colnew", out=os.path.join(ROOT, "colnew"), what="COLNEW routine",
+                    srcrel="share/colnew/lisp", hand=[], user_sigs=COLNEW_SIGS,
+                    files=lisp_files(d), header=share_header("share/colnew/lisp", "COLNEW"))
     raise SystemExit("unknown library %s" % name)
+
+
+# The user-supplied functions of COLNEW (colnew-if.lisp's FSUB, DFSUB, GSUB,
+# DGSUB and GUESS): every array argument comes with its offset.  GSUB returns
+# the value of g as its third value (colnew-if.lisp's gsub returns
+# (values nil nil res)); the others return nothing the callers use.
+COLNEW_SIGS = {
+    "fsub": Sig(["D", ("AO", "D"), ("AO", "D")], [], True),
+    "dfsub": Sig(["D", ("AO", "D"), ("AO", "D")], [], True),
+    "gsub": Sig(["I", ("AO", "D"), "D"], [(2, "D")], True),
+    "dgsub": Sig(["I", ("AO", "D"), ("AO", "D")], [], True),
+    "guess": Sig(["D", ("AO", "D"), ("AO", "D")], [], True),
+}
+
+
+# User-supplied routines that HOMPACK calls by name (F, FJAC, ... are
+# skeletons in share/hompack/lisp; Maxima's hompack-interface.lisp defines F
+# and FJAC, the others stay undefined).  Their skeleton files give the
+# signature; the translation is a forwarding function to a settable hook
+# `<name>_hook`, and every array argument comes with its offset.
+HOMPACK_HOOKS = ["f", "fjac", "fjacs", "rhoa", "rhojs"]
+
+
+def emit_hooks(names):
+    out = ["// Generated by tools/f2cl2mbt.py (--lib=%s). Do not edit by hand; regenerate instead.\n" % LIB["name"], "// User routines called by name: each forwards to the closure in its hook,",
+           "// which the client sets (the default raises, like an undefined function in",
+           "// the Lisp).", ""]
+    for name in names:
+        fd = FNS[name]
+        params = []
+        args = []
+        types = []
+        for p in fd.params:
+            t = fd.ptypes[p]
+            mb = mb_ident(p)
+            if isinstance(t, tuple) and t[0] == "A":
+                params.append("%s : %s, %s_off : Int" % (mb, mbt_type(t), mb))
+                args.append("%s, %s_off" % (mb, mb))
+                types.append("%s, Int" % mbt_type(t))
+            else:
+                params.append("%s : %s" % (mb, mbt_type(t)))
+                args.append(mb)
+                types.append(mbt_type(t))
+        rt = ret_type([t for _, t in fd.slots()])
+        ft = "(%s) -> %s raise" % (", ".join(types), rt)
+        hk = mb_fn_name(name) + "_hook"
+        out.append("///|")
+        out.append("/// The closure %s calls (%s.lisp is only a skeleton)." % (name.upper(), fd.file))
+        out.append("pub let %s : Ref[%s] = {" % (hk, ft))
+        out.append("  val: (%s) => fail(\"%s: undefined user routine %s\"),"
+                   % (", ".join("_" for t in types for _ in t.split(", ")), LIB["name"].upper(), name.upper()))
+        out.append("}")
+        out.append("")
+        out.append("///|")
+        out.append("/// Fortran %s: calls `%s`." % (name.upper(), hk))
+        out.append("pub fn %s(%s) -> %s raise {" % (mb_fn_name(name), ", ".join(params), rt))
+        out.append("  (%s.val)(%s)" % (hk, ", ".join(args)))
+        out.append("}")
+        out.append("")
+    return "\n".join(out)
 
 
 def share_header(srcrel, what):
@@ -3889,14 +5993,35 @@ def main():
                 COMMON_SRC.setdefault(sname, stem)
     for h in LIB["hand"]:
         FNS[h.name] = h
+    hooks = LIB.get("hooks", [])
     for d in defs:
+        if d.name in hooks:
+            d.hand = True
+            d.raises = True
+            for p in d.params:
+                if is_array_type(d.ptypes[p]):
+                    d.needs_off[p] = True
+    defs_all = defs
+    defs = [d for d in defs if d.name not in hooks]
+    for d in defs_all:
         if d.name in FNS:
             raise SystemExit("duplicate routine %s" % d.name)
         FNS[d.name] = d
     for name in FNS:
         FNS_MB.add(mb_fn_name(name))
-    compute_offsets()
-    compute_fnsigs()
+    for d in defs:
+        if unbound_format_unit(d):
+            d.raises = True
+    saved = {d.name: dict(d.ptypes) for d in FNS.values()}
+    while True:
+        compute_offsets()
+        try:
+            compute_fnsigs()
+            break
+        except Restart:
+            for d in FNS.values():
+                d.ptypes = dict(saved[d.name])
+                d.fnsigs = {}
     errors = 0
     os.makedirs(out, exist_ok=True)
     byfile = {}
@@ -3921,6 +6046,9 @@ def main():
             continue
         with open(os.path.join(out, fname.replace("-", "_") + ".mbt"), "w") as f:
             f.write("\n".join(p for p in parts if p))
+    if hooks:
+        with open(os.path.join(out, "hooks.mbt"), "w") as f:
+            f.write(emit_hooks(hooks))
     print("translated %d routines from %d files, %d errors" % (len(defs), len(byfile), errors),
           file=sys.stderr)
     return 1 if errors else 0

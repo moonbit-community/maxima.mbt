@@ -100,3 +100,12 @@ extern "C" fn c_hypot(x : Double, y : Double) -> Double = "hypot"
 pub fn f_hypot(x : Double, y : Double) -> Double {
   c_hypot(x, y)
 }
+
+///|
+extern "C" fn c_acos(x : Double) -> Double = "acos"
+
+///|
+/// ACOS of a double-float in [-1, 1] (SBCL calls libm acos).
+pub fn f_acos(x : Double) -> Double {
+  c_acos(x)
+}
