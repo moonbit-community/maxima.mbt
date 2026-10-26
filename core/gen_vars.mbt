@@ -300,18 +300,6 @@ fn init_vars_globals() -> Unit raise {
 }
 
 ///|
-fn init_vars_pregexp() -> Unit raise {
-  defvar_init(q_ear_pregexp_version, Fix(20200129L))
-  defvar_init(q_ear_pregexp_comment_char, Char(';'))
-  defvar_init(q_ear_pregexp_space_sensitive_p, t)
-}
-
-///|
-fn init_vars_cl_info() -> Unit raise {
-  defvar_init(q_n_plusselect_by_keyword_alist_plus, lread("((noop \"\") (all \"a\" \"al\" \"all\") (none \"n\" \"no\" \"non\" \"none\"))"))
-}
-
-///|
 fn init_vars_lmdcls() -> Unit raise {
   defvar_init(q_ear_macro_file, Nil)
 }
@@ -339,11 +327,6 @@ fn init_vars_commac() -> Unit raise {
   defvar_init(q_ear_exploden_strip_float_zeros, t)
   defvar_init(q_ear_prompt_on_read_hang, Nil)
   defvar_init(q_ear_read_hang_prompt, Str(""))
-}
-
-///|
-fn init_vars_command_line() -> Unit raise {
-  defvar_init(q_ear_wrap_help_string, t)
 }
 
 ///|
@@ -461,15 +444,6 @@ fn init_vars_mlisp() -> Unit raise {
 }
 
 ///|
-fn init_vars_numerical_f2cl_lib() -> Unit raise {
-  defvar_init(q_ear_f2cl_macros_version, Str("$Id: f2cl-lib.lisp d70f1e6 | 2025-04-12 15:05:59 +0000 | Raymond Toy  $"))
-  defvar_init(q_ear_check_array_bounds, Nil)
-  defvar_init(q_p_false_pct, Nil)
-  defvar_init(q_p_true_pct, t)
-  defvar_init(q_ear_stop_signals_error_p, Nil)
-}
-
-///|
 fn init_vars_numerical_slatec_quadpack() -> Unit raise {
   defvar_init(q_ear_debug_quadpack, Nil)
 }
@@ -498,12 +472,6 @@ fn init_vars_numeric() -> Unit raise {
   defvar_init(q_ear_use_accurate_complex_div, t)
   defvar_init(q_ear_debug_cf_eval, Nil)
   defvar_init(q_ear_max_cf_iterations, Fix(10000L))
-}
-
-///|
-fn init_vars_server() -> Unit raise {
-  defvar_init(q_d_in_netmath, Nil)
-  defvar_init(q_d_show_openplot, t)
 }
 
 ///|
@@ -550,12 +518,6 @@ fn init_vars_macsys() -> Unit raise {
 ///|
 fn init_vars_testsuite() -> Unit raise {
   defvar_init(q_d_share_testsuite_files, lread("((mlist simp) ((mlist simp) \"rtest_facexp\") \"rtest_orthopoly\" \"rtest_pslq\" \"rtestflatten\" \"rtest_z_transform\" \"rtest_zeilberger_extreme\" \"rtest_zeilberger\" \"rtest_boolsimp\" \"rtest_eigen\" \"rtest_lsquares\" \"rtest_pytranslate\" \"rtest_odelin\" \"rtestezunits\" \"rtest_numericalio\" \"rtest_simplify_sum\" \"rtest_solve_rec\" ((mlist simp) \"rtest_stringproc\") ((mlist simp) \"rtest_md5sum\") \"rtest_opproperties\" \"rtest_stats\" \"rtest_distrib\" ((mlist simp) \"rtest_descriptive\") \"rtest_interpol\" ((mlist simp) \"rtest_levin\") \"rtest_fractals\" \"rtest_bernstein\" \"rtest_atensor\" \"rtest_ctensor\" \"rtest_itensor\" \"rtest_dlsode\" ((mlist simp) \"rtest_fourier_elim\" ((mlist simp) 146 147 148 149)) ((mlist simp) \"rtest_sequence\" ((mlist simp) 55)) \"rtest_cholesky\" \"rtest_eigens_by_jacobi\" \"rtest_lu\" \"rtest_linalg\" \"rtest_matrixexp\" ((mlist simp) \"rtest_romberg\" ((mlist simp) 18 20)) \"rtest_wilcoxon\" \"rtest_accumulate\" \"rtest_list_operations\" \"rtest_bitwise\" \"rtest_gf\" \"rtest_arag\" ((mlist simp) \"rtest_pdiff\") ((mlist simp) \"rtest_to_poly\") ((mlist simp) \"rtestprintf\" ((mlist simp) 61 63 65 69)) \"rtest_simplex\" ((mlist simp) \"rtest_graphs\") ((mlist simp) \"rtest_abs_integrate\" ((mlist) 173 249)) \"rtest_pochhammer\" ((mlist simp) \"rtest_to_poly_solve\" ((mlist simp) 64 74 80 116 140 141 168 184 245 322)) ((mlist simp) \"rtest_sym\" ((mlist simp))) \"rtest_mnewton\" \"rtest_solve_rat_ineq\" ((mlist simp) \"rtest_vect\" ((mlist simp) 4 9 10 13 16 20 21 24 25)) \"rtest_antid\" \"rtest_bffac\" \"rtest_diff_form\" \"rtest_grobner\" ((mlist simp) \"rtest_finance\") \"rtest_fft\" \"rtest_rfft\" \"rtest_rk_adaptive\" \"rtest_wrstcse\" \"rtest_draw\" ((mlist simp) \"rtest_engineering_format\") ((mlist simp) \"rtest_raddenest\" ((mlist simp) 123)) \"rtest_decfp\")"))
-}
-
-///|
-fn init_vars_wxmx() -> Unit raise {
-  defvar_init(q_n_pluswxmx_local_file_header_plus, Fix(67324752L))
-  defvar_init(q_n_pluswxmx_reference_length_plus, Fix(12L))
 }
 
 ///|
@@ -642,113 +604,9 @@ fn init_vars_nrat4() -> Unit raise {
 }
 
 ///|
-fn init_vars_transl() -> Unit raise {
-  defvar_init(q_ear_untranslated_functions_called, Nil)
-  defvar_init(q_ear_declared_translated_functions, Nil)
-  defvar_init(q_tstack, Nil)
-  defvar_init(q_ear_local, Nil)
-  defvar_init(q_tr_progret, t)
-  defvar_init(q_inside_mprog, Nil)
-  defvar_init(q_ear_go_forms, Nil)
-  defvar_init(q_ear_returns, Nil)
-  defvar_init(q_return_mode, Nil)
-  defvar_init(q_need_prog_q, Nil)
-  defvar_init(q_assigns, Nil)
-  defvar_init(q_translate_time_evalables, lread("($modedeclare $alias $declare $infix $nofix $declare_translated $matchfix $prefix $postfix $compfile)"))
-  defvar_init(q_ear_transl_backtrace, Nil)
-  defvar_init(q_ear_transl_debug, Nil)
-  defvar_init(q_tr_abort, Nil)
-  defvar_init(q_d_tr_warn_undeclared, q_d_compile)
-  defvar_init(q_d_tr_warn_meval, q_d_compfile)
-  defvar_init(q_d_tr_warn_fexpr, q_d_compfile)
-  defvar_init(q_d_tr_warn_mode, q_d_all)
-  defvar_init(q_d_tr_warn_undefined_variable, q_d_all)
-  defvar_init(q_ear_warned_un_declared_vars, Nil)
-  defvar_init(q_ear_warned_fexprs, Nil)
-  defvar_init(q_ear_warned_mode_vars, Nil)
-  defvar_init(q_d_tr_function_call_default, q_d_general)
-  defvar_init(q_d_tr_array_as_ref, t)
-  defvar_init(q_d_tr_numer, Nil)
-  defvar_init(q_ear_tr_free_vars_to_capture, lread("()"))
-  defvar_init(q_boolean_object_table, lread("(($true . ($boolean . t)) ($false . ($boolean . nil)) (t . ($boolean . t)) (nil . ($boolean . nil)))"))
-  defvar_init(q_mode_init_value_table, lread("(($float . 0.0) ($fixnum . 0) ($number . 0) ($list . '((mlist))) ($boolean . nil))"))
-  defvar_init(q_tr_lambda_punt_assigns, Nil)
-  defvar_init(q_ear_in_compile, Nil)
-  defvar_init(q_ear_tr_warn_break, t)
-  defvar_init(q_warned_undefined_variables, Nil)
-  defvar_init(q_ear__dolany_modes, lread("($any $list)"))
-  defvar_init(q_ear_macexpr_top_level_form_p, Nil)
-  defvar_init(q_d_tr_optimize_max_loop, Fix(100L))
-  defvar_init(q_d_tr_bound_function_applyp, t)
-  defvar_init(q_d_tr_bind_mode_hook, Nil)
-}
-
-///|
-fn init_vars_transs() -> Unit raise {
-  defvar_init(q_d_tr_file_tty_messagesp, Nil)
-  defvar_init(q_ear_translation_msgs_files, Nil)
-  defvar_init(q_transl_file, Nil)
-  defvar_init(q_d_compgrind, t)
-  defvar_init(q_d_tr_true_name_of_file_being_translated, Nil)
-  defvar_init(q_d_tr_state_vars, lread("((mlist) $translate_fast_arrays $tr_function_call_default $tr_bound_function_applyp $tr_array_as_ref $tr_numer $tr_float_can_branch_complex $define_variable)"))
-  defvar_init(q_ear_pretty_print_translation, t)
-  defvar_init(q_trf_start_hook, Nil)
-}
-
-///|
-fn init_vars_trans2() -> Unit raise {
-  defvar_init(q_d_translate_fast_arrays, Nil)
-}
-
-///|
-fn init_vars_trans4() -> Unit raise {
-  defvar_init(q_lisp__gtlisp_tr_lambda, t)
-  defvar_init(q_unbound_meval_kludge_fix, t)
-}
-
-///|
-fn init_vars_trans5() -> Unit raise {
-  defvar_init(q_value_alist, Nil)
-}
-
-///|
-fn init_vars_transf() -> Unit raise {
-  defvar_init(q_d_tr_float_can_branch_complex, t)
-}
-
-///|
-fn init_vars_troper() -> Unit raise {
-  defvar_init(q_d_tr_exponent, Nil)
-}
-
-///|
-fn init_vars_trmode() -> Unit raise {
-  defvar_init(q_d_mode_checkp, t)
-  defvar_init(q_d_mode_check_warnp, t)
-  defvar_init(q_d_mode_check_errorp, Nil)
-}
-
-///|
-fn init_vars_trpred() -> Unit raise {
-  defvar_init(q_wrap_a_pred, q_d_is)
-  defvar_init(q_ear_number_types, lread("($float $number $fixnum)"))
-}
-
-///|
-fn init_vars_transq() -> Unit raise {
-  defvar_init(q_ear_infile_name_key, lread("||"))
-}
-
-///|
 fn init_vars_fcall() -> Unit raise {
   defvar_init(q_d_tr_warn_bad_function_calls, t)
   defvar_init(q_ear_tr_runtime_warned, Nil)
-}
-
-///|
-fn init_vars_trprop() -> Unit raise {
-  defvar_init(q_meta_prop_p, Nil)
-  defvar_init(q_meta_prop_l, Nil)
 }
 
 ///|
@@ -796,20 +654,6 @@ fn init_vars_displa() -> Unit raise {
   defvar_init(q_d__vbar_char_ascii, Char('|'))
   defvar_init(q_d__prodsign_ascii_dmstr, lread("((0 2 (d-hbar 5 #\\_)) (-5 0) (d-vbar 2 1 #\\|) #\\Space #\\Space #\\Space (d-vbar 2 1 #\\|) (0 0))"))
   defvar_init(q_d__sumsign_ascii_dmstr, lread("((0 2 (d-hbar 4 #\\_)) (-4 1 #\\\\) #\\> (-2 -1 #\\/) (-1 -2 (d-hbar 4 #\\-)))"))
-}
-
-///|
-fn init_vars_verify_html_index() -> Unit raise {
-  defvar_init(q_ear_html_topics, Nil)
-  defvar_init(q_ear_extra_html_entries, Nil)
-  defvar_init(q_ear_missing_html_entries, Nil)
-}
-
-///|
-fn init_vars_macdes() -> Unit raise {
-  defvar_init(q_d_manual_demo, Str("manual.demo"))
-  defvar_init(q_ear_debug_display_html_help, Nil)
-  defvar_init(q_ear_verify_html_index_on_output_format, t)
 }
 
 ///|
@@ -1041,25 +885,6 @@ fn init_vars_mtrace() -> Unit raise {
 }
 
 ///|
-fn init_vars_mdebug() -> Unit raise {
-  defvar_init(q_ear_current_frame, Fix(0L))
-  defvar_init(q_d_mdebug_print_length, Fix(100L))
-  defvar_init(q_ear_lisp_quiet_suppressed_prompt, Str(""))
-  defvar_init(q_ear_break_points, Nil)
-  defvar_init(q_ear_break_step, Nil)
-  defvar_init(q_ear_step_next, Nil)
-  defvar_init(q_ear_lineinfo_array_internal, Nil)
-  defvar_init(q_ear_last_dbm_command, Nil)
-  defvar_init(q_ear_need_prompt, t)
-  defvar_init(q_ear_break_level, Nil)
-  defvar_init(q_ear_break_env, Nil)
-  defvar_init(q_ear_quit_tag, q_macsyma_quit)
-  defvar_init(q_ear_quit_tags, Nil)
-  defvar_init(q_ear_diff_mspeclist, Nil)
-  defvar_init(q_ear_diff_bindlist, Nil)
-}
-
-///|
 fn init_vars_expintegral() -> Unit raise {
   defvar_init(q_ear_debug_expintegral, Nil)
   defvar_init(q_ear_debug_expint_maxit, Fix(0L))
@@ -1205,31 +1030,6 @@ fn init_vars_todd_coxeter() -> Unit raise {
 }
 
 ///|
-fn init_vars_plotcolors() -> Unit raise {
-  defvar_init(q_ear_plot_palettes, lread("($default ((mlist) \"greenyellow\" \"deepskyblue\" \"magenta\") $rainbow ((mlist) \"indigo\" \"royalblue\" \"mediumseagreen\" \"yellow\" \"orange\" \"crimson\") $tomato ((mlist) \"yellow\" \"turquoise\" \"orangered\") $ubuntu ((mlist) \"orange\" \"indigo\") $beach ((mlist) \"wheat\" \"dodgerblue\") $black_and_white ((mlist) \"black\" \"white\"))"))
-}
-
-///|
-fn init_vars_plot() -> Unit raise {
-  defvar_init(q_d_geomview_command, Str("geomview"))
-  defvar_init(q_d_xmaxima_plot_command, Str("xmaxima"))
-  defvar_init(q_ear_plot_options, Str("Default options for the plotting programs"))
-  defvar_init(q_d_plot_options, lread("((mlist) ((mlist) $plot_format $gnuplot_pipes))"))
-  defvar_init(q_ear_plot_realpart, t)
-  defvar_init(q_ear_missing_data_indicator, Str("NaN"))
-  defvar_init(q_d_pstream, Nil)
-  defvar_init(q_d_gnuplot_view_args, Str("-persist ~a"))
-  defvar_init(q_d_gnuplot_file_args, Str("~a"))
-}
-
-///|
-fn init_vars_gnuplot_def() -> Unit raise {
-  defvar_init(q_d_gnuplot_command, Str("gnuplot"))
-  defvar_init(q_ear_gnuplot_stream, Nil)
-  defvar_init(q_ear_gnuplot_command, Str(""))
-}
-
-///|
 fn init_vars_init_cl() -> Unit raise {
   defvar_init(q_ear_verify_html_index, Nil)
   defvar_init(q_ear_quit_on_error, Nil)
@@ -1247,14 +1047,11 @@ fn init_generated_vars() -> Unit raise {
   init_vars_float_format()
   init_vars_intl()
   init_vars_globals()
-  init_vars_pregexp()
-  init_vars_cl_info()
   init_vars_lmdcls()
   init_vars_letmac()
   init_vars_errset()
   init_vars_generr()
   init_vars_commac()
-  init_vars_command_line()
   init_vars_mforma()
   init_vars_mopers()
   init_vars_simp()
@@ -1268,18 +1065,15 @@ fn init_generated_vars() -> Unit raise {
   init_vars_comm()
   init_vars_comm2()
   init_vars_mlisp()
-  init_vars_numerical_f2cl_lib()
   init_vars_numerical_slatec_quadpack()
   init_vars_rpart()
   init_vars_float()
   init_vars_csimp2()
   init_vars_numeric()
-  init_vars_server()
   init_vars_prompt_util()
   init_vars_suprv1()
   init_vars_macsys()
   init_vars_testsuite()
-  init_vars_wxmx()
   init_vars_mload()
   init_vars_mactex()
   init_vars_dskfn()
@@ -1289,24 +1083,11 @@ fn init_generated_vars() -> Unit raise {
   init_vars_rat3d()
   init_vars_rat3e()
   init_vars_nrat4()
-  init_vars_transl()
-  init_vars_transs()
-  init_vars_trans2()
-  init_vars_trans4()
-  init_vars_trans5()
-  init_vars_transf()
-  init_vars_troper()
-  init_vars_trmode()
-  init_vars_trpred()
-  init_vars_transq()
   init_vars_fcall()
-  init_vars_trprop()
   init_vars_bessel()
   init_vars_intpol()
   init_vars_mgrind()
   init_vars_displa()
-  init_vars_verify_html_index()
-  init_vars_macdes()
   init_vars_inmis()
   init_vars_db()
   init_vars_compar()
@@ -1333,7 +1114,6 @@ fn init_generated_vars() -> Unit raise {
   init_vars_psolve()
   init_vars_algsys()
   init_vars_mtrace()
-  init_vars_mdebug()
   init_vars_expintegral()
   init_vars_gamma()
   init_vars_rand_mt19937()
@@ -1346,8 +1126,5 @@ fn init_generated_vars() -> Unit raise {
   init_vars_pois3()
   init_vars_invert()
   init_vars_todd_coxeter()
-  init_vars_plotcolors()
-  init_vars_plot()
-  init_vars_gnuplot_def()
   init_vars_init_cl()
 }

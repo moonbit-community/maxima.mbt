@@ -315,3 +315,8 @@ fn errset(f : () -> Value raise) -> Value? raise {
     v => Some(v)
   }
 }
+
+///|
+/// `#$expr$`: parse Maxima syntax once (cached) and return the expression.
+/// Implemented by the port of nparse.lisp.
+declare fn maxima_lit(s : String) -> Value raise

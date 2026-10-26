@@ -96,6 +96,28 @@ def parse_lambda_list(ll):
     return res
 
 
+def simple_macro_ll(ll):
+    """A macro lambda list usable as a function signature: plain symbols,
+    &optional/&rest/&key, no &body/&whole/destructuring."""
+    if isinstance(ll, DottedList):
+        return False
+    if isinstance(ll, Sym):
+        return ll.name == "nil"
+    if not isinstance(ll, list):
+        return False
+    mode = "req"
+    for it in ll:
+        s = sym(it)
+        if s in ("&body", "&whole", "&environment"):
+            return False
+        if s in LAMBDA_KEYS:
+            mode = s
+            continue
+        if mode == "req" and not s:
+            return False
+    return True
+
+
 def lit_repr(x):
     """A JSON-able description of a default/init form for literal emission."""
     if x is None:
@@ -314,7 +336,10 @@ def analyze_file(module, rel):
             add_fn("simplifier", "simp-%" + b, LList([Sym("form"), Sym("y"), Sym("%%simpflag")]),
                    f[3:], line, dict(opts, base=b, args=[sym(a) for a in f[2]]))
         elif h == "defmacro":
-            info["macros"].append({"name": (sym(f[1]) if pkg[0] == "maxima" else pkg[0] + "::" + sym(f[1])), "ll": to_text(f[2]), "line": line})
+            mname = (sym(f[1]) if pkg[0] == "maxima" else pkg[0] + "::" + sym(f[1]))
+            info["macros"].append({"name": mname, "ll": to_text(f[2]), "line": line,
+                                   "simple": simple_macro_ll(f[2]),
+                                   "pll": parse_lambda_list(f[2]) if simple_macro_ll(f[2]) else None})
         elif h == "define-compiler-macro":
             pass
         elif h in ("defvar", "defparameter", "defconstant", "defmvar"):

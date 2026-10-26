@@ -655,17 +655,52 @@ null
 {
 "name": "intl::textdomain",
 "ll": "(domain)",
-"line": 509
+"line": 509,
+"simple": true,
+"pll": {
+"req": [
+"domain"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "intl::gettext",
 "ll": "(string)",
-"line": 513
+"line": 513,
+"simple": true,
+"pll": {
+"req": [
+"string"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "intl::ngettext",
 "ll": "(singular plural n)",
-"line": 517
+"line": 517,
+"simple": true,
+"pll": {
+"req": [
+"singular",
+"plural",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -1166,7 +1201,29 @@ null
 {
 "name": "defmvar",
 "ll": "(var &optional val doc &rest options)",
-"line": 46
+"line": 46,
+"simple": true,
+"pll": {
+"req": [
+"var"
+],
+"opt": [
+[
+"val",
+null,
+null
+],
+[
+"doc",
+null,
+null
+]
+],
+"rest": "options",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -5405,7 +5462,19 @@ null
 {
 "name": "pregexp::pregexp-recur",
 "ll": "(name varvals &rest body)",
-"line": 12
+"line": 12,
+"simple": true,
+"pll": {
+"req": [
+"name",
+"varvals"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -6300,7 +6369,16 @@ null
 {
 "name": "declare-top",
 "ll": "(&rest decl-specs)",
-"line": 43
+"line": 43,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "decl-specs",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -6415,17 +6493,30 @@ null
 {
 "name": "destructuring-let",
 "ll": "(pairs &body body)",
-"line": 18
+"line": 18,
+"simple": false,
+"pll": null
 },
 {
 "name": "desetq",
 "ll": "(&rest p)",
-"line": 56
+"line": 56,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "p",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "destructuring-let*",
 "ll": "(pairs &body body)",
-"line": 107
+"line": 107,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -6503,22 +6594,48 @@ null
 {
 "name": "with-$error",
 "ll": "(&body body)",
-"line": 32
+"line": 32,
+"simple": false,
+"pll": null
 },
 {
 "name": "rat-error-to-merror",
 "ll": "(&body body)",
-"line": 38
+"line": 38,
+"simple": false,
+"pll": null
 },
 {
 "name": "with-errcatch-tag-$errors",
 "ll": "(form)",
-"line": 55
+"line": 55,
+"simple": true,
+"pll": {
+"req": [
+"form"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "errcatch",
 "ll": "(form)",
-"line": 73
+"line": 73,
+"simple": true,
+"pll": {
+"req": [
+"form"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -6611,7 +6728,16 @@ null
 {
 "name": "errset",
 "ll": "(&rest l)",
-"line": 22
+"line": 22,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -7081,62 +7207,224 @@ null
 {
 "name": "def-op",
 "ll": "(name arg-type op &optional return-type)",
-"line": 12
+"line": 12,
+"simple": true,
+"pll": {
+"req": [
+"name",
+"arg-type",
+"op"
+],
+"opt": [
+[
+"return-type",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "status",
 "ll": "(option &optional item)",
-"line": 65
+"line": 65,
+"simple": true,
+"pll": {
+"req": [
+"option"
+],
+"opt": [
+[
+"item",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "symbol-array",
 "ll": "(sym)",
-"line": 225
+"line": 225,
+"simple": true,
+"pll": {
+"req": [
+"sym"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "defprop",
 "ll": "(sym val indic)",
-"line": 266
+"line": 266,
+"simple": true,
+"pll": {
+"req": [
+"sym",
+"val",
+"indic"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ncons",
 "ll": "(x)",
-"line": 331
+"line": 331,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "check-arg",
 "ll": "(place pred &rest res)",
-"line": 393
+"line": 393,
+"simple": true,
+"pll": {
+"req": [
+"place",
+"pred"
+],
+"opt": [],
+"rest": "res",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "deff",
 "ll": "(fun val)",
-"line": 398
+"line": 398,
+"simple": true,
+"pll": {
+"req": [
+"fun",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "xcons",
 "ll": "(x y)",
-"line": 401
+"line": 401,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "float",
 "ll": "(x &optional (y 1.0))",
-"line": 416
+"line": 416,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [
+[
+"y",
+{
+"k": "float",
+"v": "1.0"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "with-collector",
 "ll": "(collector-sym &body forms)",
-"line": 419
+"line": 419,
+"simple": false,
+"pll": null
 },
 {
 "name": "do-merge-symm",
 "ll": "(list1 list2 eqfun lessfun bothfun onefun)",
-"line": 428
+"line": 428,
+"simple": true,
+"pll": {
+"req": [
+"list1",
+"list2",
+"eqfun",
+"lessfun",
+"bothfun",
+"onefun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "do-merge-asym",
 "ll": "(list1 list2 eqfun lessfun bothfun only1fun only2fun)",
-"line": 433
+"line": 433,
+"simple": true,
+"pll": {
+"req": [
+"list1",
+"list2",
+"eqfun",
+"lessfun",
+"bothfun",
+"only1fun",
+"only2fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -7636,27 +7924,37 @@ null
 {
 "name": "collect",
 "ll": "(collections &body body)",
-"line": 14
+"line": 14,
+"simple": false,
+"pll": null
 },
 {
 "name": "defun-checked-form",
 "ll": "((name impl-name &key deprecated-p inline-impl) lambda-list &body body)",
-"line": 283
+"line": 283,
+"simple": false,
+"pll": null
 },
 {
 "name": "defun-checked",
 "ll": "(name lambda-list &body body)",
-"line": 458
+"line": 458,
+"simple": false,
+"pll": null
 },
 {
 "name": "defmfun",
 "ll": "(name-maybe-prop lambda-list &body body)",
-"line": 479
+"line": 479,
+"simple": false,
+"pll": null
 },
 {
 "name": "def-simplifier",
 "ll": "(base-name-and-options lambda-list &body body)",
-"line": 731
+"line": 731,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [],
@@ -9269,52 +9567,135 @@ null
 {
 "name": "defun-prop",
 "ll": "(f arg &body body)",
-"line": 10
+"line": 10,
+"simple": false,
+"pll": null
 },
 {
 "name": "maxima-error",
 "ll": "(datum &rest args)",
-"line": 122
+"line": 122,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "show",
 "ll": "(&rest l)",
-"line": 125
+"line": 125,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "defquote",
 "ll": "(fn (aa . oth) &body rest &aux help ans)",
-"line": 130
+"line": 130,
+"simple": false,
+"pll": null
 },
 {
 "name": "arg",
 "ll": "(x)",
-"line": 178
+"line": 178,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "listify",
 "ll": "(x)",
-"line": 187
+"line": 187,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "setarg",
 "ll": "(i val)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"i",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "defun-maclisp",
 "ll": "(function &body body &aux .n.)",
-"line": 221
+"line": 221,
+"simple": false,
+"pll": null
 },
 {
 "name": "safe-zerop",
 "ll": "(x)",
-"line": 523
+"line": 523,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "signp",
 "ll": "(sym x)",
-"line": 529
+"line": 529,
+"simple": true,
+"pll": {
+"req": [
+"sym",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -9777,7 +10158,18 @@ null
 {
 "name": "macsyma-module",
 "ll": "(module &rest options)",
-"line": 13
+"line": 13,
+"simple": true,
+"pll": {
+"req": [
+"module"
+],
+"opt": [],
+"rest": "options",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -9876,32 +10268,89 @@ null
 {
 "name": "def%tr",
 "ll": "(name lambda-list &body body &aux definition)",
-"line": 17
+"line": 17,
+"simple": false,
+"pll": null
 },
 {
 "name": "def-same%tr",
 "ll": "(name same-as)",
-"line": 26
+"line": 26,
+"simple": true,
+"pll": {
+"req": [
+"name",
+"same-as"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "bind-transl-state",
 "ll": "(&rest forms)",
-"line": 53
+"line": 53,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "forms",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "tr",
 "ll": "(u)",
-"line": 84
+"line": 84,
+"simple": true,
+"pll": {
+"req": [
+"u"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "maset",
 "ll": "(val ar &rest inds)",
-"line": 91
+"line": 91,
+"simple": true,
+"pll": {
+"req": [
+"val",
+"ar"
+],
+"opt": [],
+"rest": "inds",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "maref",
 "ll": "(ar &rest inds)",
-"line": 100
+"line": 100,
+"simple": true,
+"pll": {
+"req": [
+"ar"
+],
+"opt": [],
+"rest": "inds",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -10582,7 +11031,16 @@ null
 {
 "name": "define-initial-symbols",
 "ll": "(&rest l)",
-"line": 61
+"line": 61,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -10783,87 +11241,269 @@ null
 {
 "name": "tuchus",
 "ll": "(list object)",
-"line": 22
+"line": 22,
+"simple": true,
+"pll": {
+"req": [
+"list",
+"object"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "load-macsyma-macros",
 "ll": "(&rest macro-files)",
-"line": 38
+"line": 38,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "macro-files",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "with-new-context",
 "ll": "(sub-context &rest forms)",
-"line": 42
+"line": 42,
+"simple": true,
+"pll": {
+"req": [
+"sub-context"
+],
+"opt": [],
+"rest": "forms",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "with-default-quotient-dispflags",
 "ll": "(&body body)",
-"line": 50
+"line": 50,
+"simple": false,
+"pll": null
 },
 {
 "name": "mbinding",
 "ll": "(variable-specification &rest body &aux (temp (gensym)))",
-"line": 61
+"line": 61,
+"simple": true,
+"pll": {
+"req": [
+"variable-specification"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mbinding-sub",
 "ll": "(variables values function-name &rest body &aux (win (gensym)))",
-"line": 77
+"line": 77,
+"simple": true,
+"pll": {
+"req": [
+"variables",
+"values",
+"function-name"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "matanp",
 "ll": "(x)",
-"line": 89
+"line": 89,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "real-infinityp",
 "ll": "(x)",
-"line": 97
+"line": 97,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "real-epsilonp",
 "ll": "(x)",
-"line": 103
+"line": 103,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "free-epsilonp",
 "ll": "(x)",
-"line": 106
+"line": 106,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "free-infp",
 "ll": "(x)",
-"line": 109
+"line": 109,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "inf-typep",
 "ll": "(x)",
-"line": 112
+"line": 112,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "epsilon-typep",
 "ll": "(x)",
-"line": 115
+"line": 115,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "hot-coef",
 "ll": "(p)",
-"line": 118
+"line": 118,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "defmspec",
 "ll": "(name-or-list &rest rest)",
-"line": 121
+"line": 121,
+"simple": true,
+"pll": {
+"req": [
+"name-or-list"
+],
+"opt": [],
+"rest": "rest",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "old-get",
 "ll": "(plist tag)",
-"line": 148
+"line": 148,
+"simple": true,
+"pll": {
+"req": [
+"plist",
+"tag"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdefprop",
 "ll": "(sym val indicator)",
-"line": 157
+"line": 157,
+"simple": true,
+"pll": {
+"req": [
+"sym",
+"val",
+"indicator"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -11034,97 +11674,297 @@ null
 {
 "name": "+def-mformat-var",
 "ll": "(type var val init-condition)",
-"line": 49
+"line": 49,
+"simple": true,
+"pll": {
+"req": [
+"type",
+"var",
+"val",
+"init-condition"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "+def-mformat-op",
 "ll": "(type char &rest body)",
-"line": 56
+"line": 56,
+"simple": true,
+"pll": {
+"req": [
+"type",
+"char"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pop-mformat-arg",
 "ll": "()",
-"line": 62
+"line": 62,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "leftover-mformat-args?",
 "ll": "()",
-"line": 69
+"line": 69,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "bind-mformat-state-vars",
 "ll": "(type &rest body)",
-"line": 73
+"line": 73,
+"simple": true,
+"pll": {
+"req": [
+"type"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pop-mformat-string",
 "ll": "()",
-"line": 82
+"line": 82,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "null-mformat-string",
 "ll": "()",
-"line": 87
+"line": 87,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "top-mformat-string",
 "ll": "()",
-"line": 90
+"line": 90,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "cdr-mformat-string",
 "ll": "()",
-"line": 95
+"line": 95,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mformat-dispatch-on-char",
 "ll": "(type)",
-"line": 98
+"line": 98,
+"simple": true,
+"pll": {
+"req": [
+"type"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "white-space-p",
 "ll": "(x)",
-"line": 117
+"line": 117,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "+mformat-loop",
 "ll": "(type &rest end-code)",
-"line": 124
+"line": 124,
+"simple": true,
+"pll": {
+"req": [
+"type"
+],
+"opt": [],
+"rest": "end-code",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-mformat-op-c",
 "ll": "(char &rest body)",
-"line": 166
+"line": 166,
+"simple": true,
+"pll": {
+"req": [
+"char"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-mformat-var-c",
 "ll": "(var val init)",
-"line": 169
+"line": 169,
+"simple": true,
+"pll": {
+"req": [
+"var",
+"val",
+"init"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mformat-loop-c",
 "ll": "(&rest endcode)",
-"line": 172
+"line": 172,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "endcode",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "emitc",
 "ll": "(x)",
-"line": 181
+"line": 181,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "push-text-temp-c",
 "ll": "()",
-"line": 184
+"line": 184,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mformat-open",
 "ll": "(stream sstring &rest other-shit)",
-"line": 247
+"line": 247,
+"simple": true,
+"pll": {
+"req": [
+"stream",
+"sstring"
+],
+"opt": [],
+"rest": "other-shit",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mtell-open",
 "ll": "(message &rest other-shit)",
-"line": 252
+"line": 252,
+"simple": true,
+"pll": {
+"req": [
+"message"
+],
+"opt": [],
+"rest": "other-shit",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -11458,107 +12298,327 @@ null
 {
 "name": "=0",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "=1",
 "ll": "(x)",
-"line": 33
+"line": 33,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "inv",
 "ll": "(x)",
-"line": 81
+"line": 81,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "inv*",
 "ll": "(x)",
-"line": 84
+"line": 84,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ncmul",
 "ll": "(&rest factors)",
-"line": 87
+"line": 87,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "factors",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "take",
 "ll": "(operator &rest args)",
-"line": 105
+"line": 105,
+"simple": true,
+"pll": {
+"req": [
+"operator"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "take*",
 "ll": "(operator &rest args)",
-"line": 109
+"line": 109,
+"simple": true,
+"pll": {
+"req": [
+"operator"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ftake",
 "ll": "(name &rest args)",
-"line": 117
+"line": 117,
+"simple": true,
+"pll": {
+"req": [
+"name"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ftake*",
 "ll": "(name &rest args)",
-"line": 121
+"line": 121,
+"simple": true,
+"pll": {
+"req": [
+"name"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "fapply",
 "ll": "(f args)",
-"line": 127
+"line": 127,
+"simple": true,
+"pll": {
+"req": [
+"f",
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "fapply*",
 "ll": "(f args)",
-"line": 131
+"line": 131,
+"simple": true,
+"pll": {
+"req": [
+"f",
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mdo",
 "ll": "()",
-"line": 141
+"line": 141,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-op",
 "ll": "(x)",
-"line": 143
+"line": 143,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-for",
 "ll": "(x)",
-"line": 145
+"line": 145,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-from",
 "ll": "(x)",
-"line": 146
+"line": 146,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-step",
 "ll": "(x)",
-"line": 147
+"line": 147,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-next",
 "ll": "(x)",
-"line": 148
+"line": 148,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-thru",
 "ll": "(x)",
-"line": 149
+"line": 149,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-unless",
 "ll": "(x)",
-"line": 150
+"line": 150,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mdo-body",
 "ll": "(x)",
-"line": 151
+"line": 151,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "defgrad",
 "ll": "(name arguments &body body)",
-"line": 207
+"line": 207,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -12369,7 +13429,18 @@ null
 {
 "name": "memqarr",
 "ll": "(l)",
-"line": 59
+"line": 59,
+"simple": true,
+"pll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -15853,7 +16924,18 @@ null
 {
 "name": "while",
 "ll": "(cond &rest body)",
-"line": 53
+"line": 53,
+"simple": true,
+"pll": {
+"req": [
+"cond"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -18209,37 +19291,93 @@ null
 {
 "name": "push-context",
 "ll": "()",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "push-loop-context",
 "ll": "()",
-"line": 35
+"line": 35,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "preserve",
 "ll": "(z)",
-"line": 38
+"line": 38,
+"simple": true,
+"pll": {
+"req": [
+"z"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "add-to",
 "ll": "(var val)",
-"line": 41
+"line": 41,
+"simple": true,
+"pll": {
+"req": [
+"var",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "var-pat",
 "ll": "(x)",
-"line": 44
+"line": 44,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "alist-bind",
 "ll": "(vars alist &body body)",
-"line": 635
+"line": 635,
+"simple": false,
+"pll": null
 },
 {
 "name": "schatchen-cond",
 "ll": "(w &body clauses)",
-"line": 667
+"line": 667,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -20294,102 +21432,283 @@ null
 {
 "name": "first-c",
 "ll": "()",
-"line": 680
+"line": 680,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pop-c",
 "ll": "()",
-"line": 681
+"line": 681,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-nud-equiv",
 "ll": "(op equiv)",
-"line": 702
+"line": 702,
+"simple": true,
+"pll": {
+"req": [
+"op",
+"equiv"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "nud-propl",
 "ll": "()",
-"line": 702
+"line": 702,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-nud-fun",
 "ll": "(op-name op-l . body)",
-"line": 702
+"line": 702,
+"simple": false,
+"pll": null
 },
 {
 "name": "def-led-equiv",
 "ll": "(op equiv)",
-"line": 702
+"line": 702,
+"simple": true,
+"pll": {
+"req": [
+"op",
+"equiv"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "led-propl",
 "ll": "()",
-"line": 702
+"line": 702,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-led-fun",
 "ll": "(op-name op-l . body)",
-"line": 702
+"line": 702,
+"simple": false,
+"pll": null
 },
 {
 "name": "def-nud",
 "ll": "((op . lbp-rbp) bvl . body)",
-"line": 752
+"line": 752,
+"simple": false,
+"pll": null
 },
 {
 "name": "def-led",
 "ll": "((op . lbp-rbp) bvl . body)",
-"line": 791
+"line": 791,
+"simple": false,
+"pll": null
 },
 {
 "name": "def-collisions",
 "ll": "(op &rest alist)",
-"line": 797
+"line": 797,
+"simple": true,
+"pll": {
+"req": [
+"op"
+],
+"opt": [],
+"rest": "alist",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-lbp",
 "ll": "(sym val)",
-"line": 848
+"line": 848,
+"simple": true,
+"pll": {
+"req": [
+"sym",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-rbp",
 "ll": "(sym val)",
-"line": 857
+"line": 857,
+"simple": true,
+"pll": {
+"req": [
+"sym",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-match",
 "ll": "(x m)",
-"line": 859
+"line": 859,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-pos",
 "ll": "(op pos)",
-"line": 872
+"line": 872,
+"simple": true,
+"pll": {
+"req": [
+"op",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-rpos",
 "ll": "(op pos)",
-"line": 873
+"line": 873,
+"simple": true,
+"pll": {
+"req": [
+"op",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-lpos",
 "ll": "(op pos)",
-"line": 874
+"line": 874,
+"simple": true,
+"pll": {
+"req": [
+"op",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-mheader",
 "ll": "(op header)",
-"line": 880
+"line": 880,
+"simple": true,
+"pll": {
+"req": [
+"op",
+"header"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-operatorp",
 "ll": "()",
-"line": 884
+"line": 884,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-operatorp1",
 "ll": "()",
-"line": 890
+"line": 890,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -22546,42 +23865,114 @@ null
 {
 "name": "c-mode",
 "ll": "(&rest l)",
-"line": 26
+"line": 26,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "s-mode",
 "ll": "(&rest x)",
-"line": 29
+"line": 29,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "a-mode",
 "ll": "(&rest x)",
-"line": 35
+"line": 35,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "defmode",
 "ll": "(&rest x)",
-"line": 41
+"line": 41,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "modedeclare",
 "ll": "(&rest l)",
-"line": 148
+"line": 148,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "sel",
 "ll": "(&rest x)",
-"line": 157
+"line": 157,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "push+sto",
 "ll": "(&rest x)",
-"line": 189
+"line": 189,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "sto",
 "ll": "(&rest x)",
-"line": 193
+"line": 193,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -22738,107 +24129,359 @@ null
 {
 "name": "*bind*",
 "ll": "(bindings &body body)",
-"line": 19
+"line": 19,
+"simple": false,
+"pll": null
 },
 {
 "name": "negate-if",
 "ll": "(predicate value &aux (temp (gensym)))",
-"line": 37
+"line": 37,
+"simple": true,
+"pll": {
+"req": [
+"predicate",
+"value"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "set-either",
 "ll": "(first-var second-var switch value &aux (temp (gensym)))",
-"line": 46
+"line": 46,
+"simple": true,
+"pll": {
+"req": [
+"first-var",
+"second-var",
+"switch",
+"value"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m+",
 "ll": "(&rest body)",
-"line": 54
+"line": 54,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m*",
 "ll": "(&rest body)",
-"line": 56
+"line": 56,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m1+",
 "ll": "(x)",
-"line": 58
+"line": 58,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m1-",
 "ll": "(x)",
-"line": 60
+"line": 60,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m//",
 "ll": "(a1 &optional (a2 nil 2args))",
-"line": 62
+"line": 62,
+"simple": true,
+"pll": {
+"req": [
+"a1"
+],
+"opt": [
+[
+"a2",
+{
+"k": "nil"
+},
+"2args"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m-",
 "ll": "(a1 &optional (a2 nil 2args))",
-"line": 67
+"line": 67,
+"simple": true,
+"pll": {
+"req": [
+"a1"
+],
+"opt": [
+[
+"a2",
+{
+"k": "nil"
+},
+"2args"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m^",
 "ll": "(b e)",
-"line": 72
+"line": 72,
+"simple": true,
+"pll": {
+"req": [
+"b",
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m+l",
 "ll": "(l)",
-"line": 74
+"line": 74,
+"simple": true,
+"pll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m*l",
 "ll": "(l)",
-"line": 76
+"line": 76,
+"simple": true,
+"pll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m+t",
 "ll": "(&rest body)",
-"line": 78
+"line": 78,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m*t",
 "ll": "(&rest body)",
-"line": 80
+"line": 80,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m1+t",
 "ll": "(x)",
-"line": 82
+"line": 82,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m1-t",
 "ll": "(x)",
-"line": 84
+"line": 84,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m//t",
 "ll": "(a1 &optional (a2 nil 2args))",
-"line": 86
+"line": 86,
+"simple": true,
+"pll": {
+"req": [
+"a1"
+],
+"opt": [
+[
+"a2",
+{
+"k": "nil"
+},
+"2args"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m-t",
 "ll": "(a1 &optional (a2 nil 2args))",
-"line": 91
+"line": 91,
+"simple": true,
+"pll": {
+"req": [
+"a1"
+],
+"opt": [
+[
+"a2",
+{
+"k": "nil"
+},
+"2args"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m^t",
 "ll": "(b e)",
-"line": 96
+"line": 96,
+"simple": true,
+"pll": {
+"req": [
+"b",
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m+lt",
 "ll": "(l)",
-"line": 98
+"line": 98,
+"simple": true,
+"pll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m*lt",
 "ll": "(l)",
-"line": 100
+"line": 100,
+"simple": true,
+"pll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -22913,227 +24556,698 @@ null
 {
 "name": "make-g-rep",
 "ll": "(operator . operands)",
-"line": 22
+"line": 22,
+"simple": false,
+"pll": null
 },
 {
 "name": "make-g-rep-simp",
 "ll": "(operator . operands)",
-"line": 24
+"line": 24,
+"simple": false,
+"pll": null
 },
 {
 "name": "g-rep-operator",
 "ll": "(exp)",
-"line": 27
+"line": 27,
+"simple": true,
+"pll": {
+"req": [
+"exp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "g-rep-operands",
 "ll": "(exp)",
-"line": 28
+"line": 28,
+"simple": true,
+"pll": {
+"req": [
+"exp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "g-rep-first-operand",
 "ll": "(exp)",
-"line": 29
+"line": 29,
+"simple": true,
+"pll": {
+"req": [
+"exp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mplus",
 "ll": "(&rest args)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mplus-l",
 "ll": "(llist)",
-"line": 33
+"line": 33,
+"simple": true,
+"pll": {
+"req": [
+"llist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mplus-simp",
 "ll": "(&rest args)",
-"line": 34
+"line": 34,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mtimes",
 "ll": "(&rest args)",
-"line": 38
+"line": 38,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mtimes-l",
 "ll": "(llist)",
-"line": 39
+"line": 39,
+"simple": true,
+"pll": {
+"req": [
+"llist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mtimes-simp",
 "ll": "(&rest args)",
-"line": 40
+"line": 40,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mexpt",
 "ll": "(thing-being-raised-to-power expt)",
-"line": 43
+"line": 43,
+"simple": true,
+"pll": {
+"req": [
+"thing-being-raised-to-power",
+"expt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mexpt-l",
 "ll": "(llist)",
-"line": 45
+"line": 45,
+"simple": true,
+"pll": {
+"req": [
+"llist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mexpt-simp",
 "ll": "(thing-being-raised-to-power expt)",
-"line": 46
+"line": 46,
+"simple": true,
+"pll": {
+"req": [
+"thing-being-raised-to-power",
+"expt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mexpt-base",
 "ll": "(mexpt)",
-"line": 49
+"line": 49,
+"simple": true,
+"pll": {
+"req": [
+"mexpt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mexpt-expt",
 "ll": "(mexpt)",
-"line": 50
+"line": 50,
+"simple": true,
+"pll": {
+"req": [
+"mexpt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mequal",
 "ll": "(lhs rhs)",
-"line": 52
+"line": 52,
+"simple": true,
+"pll": {
+"req": [
+"lhs",
+"rhs"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mequal-l",
 "ll": "(llist)",
-"line": 53
+"line": 53,
+"simple": true,
+"pll": {
+"req": [
+"llist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mequal-simp",
 "ll": "(lhs rhs)",
-"line": 54
+"line": 54,
+"simple": true,
+"pll": {
+"req": [
+"lhs",
+"rhs"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mequal-lhs",
 "ll": "(mequal)",
-"line": 56
+"line": 56,
+"simple": true,
+"pll": {
+"req": [
+"mequal"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mequal-rhs",
 "ll": "(mequal)",
-"line": 57
+"line": 57,
+"simple": true,
+"pll": {
+"req": [
+"mequal"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mlist",
 "ll": "(&rest args)",
-"line": 59
+"line": 59,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mlist-l",
 "ll": "(llist)",
-"line": 60
+"line": 60,
+"simple": true,
+"pll": {
+"req": [
+"llist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mlist-simp",
 "ll": "(&rest args)",
-"line": 61
+"line": 61,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mtext",
 "ll": "(&rest args)",
-"line": 63
+"line": 63,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-rat",
 "ll": "(&rest args)",
-"line": 65
+"line": 65,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-rat-simp",
 "ll": "(&rest args)",
-"line": 66
+"line": 66,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-rat-body",
 "ll": "(numer denom)",
-"line": 67
+"line": 67,
+"simple": true,
+"pll": {
+"req": [
+"numer",
+"denom"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rat-numer",
 "ll": "(rat)",
-"line": 68
+"line": 68,
+"simple": true,
+"pll": {
+"req": [
+"rat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rat-denom",
 "ll": "(rat)",
-"line": 69
+"line": 69,
+"simple": true,
+"pll": {
+"req": [
+"rat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-body",
 "ll": "(mrat)",
-"line": 83
+"line": 83,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-numer",
 "ll": "(mrat)",
-"line": 84
+"line": 84,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-denom",
 "ll": "(mrat)",
-"line": 85
+"line": 85,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mrat",
 "ll": "(varlist genvars numer denom)",
-"line": 87
+"line": 87,
+"simple": true,
+"pll": {
+"req": [
+"varlist",
+"genvars",
+"numer",
+"denom"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mrat-body",
 "ll": "(numer denom)",
-"line": 90
+"line": 90,
+"simple": true,
+"pll": {
+"req": [
+"numer",
+"denom"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trig-cannon",
 "ll": "(operator)",
-"line": 94
+"line": 94,
+"simple": true,
+"pll": {
+"req": [
+"operator"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-lineq",
 "ll": "(linear constant)",
-"line": 98
+"line": 98,
+"simple": true,
+"pll": {
+"req": [
+"linear",
+"constant"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "lineq-linear",
 "ll": "(lineq)",
-"line": 99
+"line": 99,
+"simple": true,
+"pll": {
+"req": [
+"lineq"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "lineq-constant",
 "ll": "(lineq)",
-"line": 100
+"line": 100,
+"simple": true,
+"pll": {
+"req": [
+"lineq"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-solution",
 "ll": "(wins losses)",
-"line": 104
+"line": 104,
+"simple": true,
+"pll": {
+"req": [
+"wins",
+"losses"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "solution-wins",
 "ll": "(solution)",
-"line": 105
+"line": 105,
+"simple": true,
+"pll": {
+"req": [
+"solution"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "solution-losses",
 "ll": "(solution)",
-"line": 106
+"line": 106,
+"simple": true,
+"pll": {
+"req": [
+"solution"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-mrat-poly",
 "ll": "(var terms)",
-"line": 112
+"line": 112,
+"simple": true,
+"pll": {
+"req": [
+"var",
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "poly-var",
 "ll": "(poly)",
-"line": 113
+"line": 113,
+"simple": true,
+"pll": {
+"req": [
+"poly"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "poly-terms",
 "ll": "(poly)",
-"line": 114
+"line": 114,
+"simple": true,
+"pll": {
+"req": [
+"poly"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -23193,12 +25307,36 @@ null
 {
 "name": "push-string",
 "ll": "(string symbol)",
-"line": 28
+"line": 28,
+"simple": true,
+"pll": {
+"req": [
+"string",
+"symbol"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "displa-def",
 "ll": "(operator dim-function &rest rest &aux l-dissym r-dissym lbp rbp)",
-"line": 44
+"line": 44,
+"simple": true,
+"pll": {
+"req": [
+"operator",
+"dim-function"
+],
+"opt": [],
+"rest": "rest",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -23291,7 +25429,9 @@ null
 {
 "name": "with-safe-recursion",
 "ll": "(name arg &body body)",
-"line": 52
+"line": 52,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [],
@@ -23387,122 +25527,376 @@ null
 {
 "name": "pcoefp",
 "ll": "(e)",
-"line": 78
+"line": 78,
+"simple": true,
+"pll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pzero",
 "ll": "()",
-"line": 95
+"line": 95,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ptzerop",
 "ll": "(terms)",
-"line": 101
+"line": 101,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ptzero",
 "ll": "()",
-"line": 107
+"line": 107,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "cminus",
 "ll": "(c)",
-"line": 112
+"line": 112,
+"simple": true,
+"pll": {
+"req": [
+"c"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "cminusp",
 "ll": "(c)",
-"line": 117
+"line": 117,
+"simple": true,
+"pll": {
+"req": [
+"c"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "valget",
 "ll": "(item)",
-"line": 133
+"line": 133,
+"simple": true,
+"pll": {
+"req": [
+"item"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "valput",
 "ll": "(item val)",
-"line": 140
+"line": 140,
+"simple": true,
+"pll": {
+"req": [
+"item",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "algv",
 "ll": "(v)",
-"line": 172
+"line": 172,
+"simple": true,
+"pll": {
+"req": [
+"v"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rzero",
 "ll": "()",
-"line": 178
+"line": 178,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rzerop",
 "ll": "(a)",
-"line": 184
+"line": 184,
+"simple": true,
+"pll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "primpart",
 "ll": "(p)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-poly",
 "ll": "(var &optional (terms-or-e nil options?) (c nil e-c?) (terms nil terms?))",
-"line": 211
+"line": 211,
+"simple": true,
+"pll": {
+"req": [
+"var"
+],
+"opt": [
+[
+"terms-or-e",
+{
+"k": "nil"
+},
+"options?"
+],
+[
+"c",
+{
+"k": "nil"
+},
+"e-c?"
+],
+[
+"terms",
+{
+"k": "nil"
+},
+"terms?"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "p-var",
 "ll": "(p)",
-"line": 221
+"line": 221,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "p-terms",
 "ll": "(p)",
-"line": 227
+"line": 227,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "p-lc",
 "ll": "(p)",
-"line": 233
+"line": 233,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "p-le",
 "ll": "(p)",
-"line": 239
+"line": 239,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "p-red",
 "ll": "(p)",
-"line": 244
+"line": 244,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pt-lc",
 "ll": "(terms)",
-"line": 249
+"line": 249,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pt-le",
 "ll": "(terms)",
-"line": 255
+"line": 255,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pt-red",
 "ll": "(terms)",
-"line": 260
+"line": 260,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "r+",
 "ll": "(r . l)",
-"line": 265
+"line": 265,
+"simple": false,
+"pll": null
 },
 {
 "name": "r*",
 "ll": "(r . l)",
-"line": 272
+"line": 272,
+"simple": false,
+"pll": null
 },
 {
 "name": "r-",
 "ll": "(r . l)",
-"line": 280
+"line": 280,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [],
@@ -23574,547 +25968,1816 @@ null
 {
 "name": "pszero",
 "ll": "(var pw)",
-"line": 55
+"line": 55,
+"simple": true,
+"pll": {
+"req": [
+"var",
+"pw"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "psp",
 "ll": "(e)",
-"line": 59
+"line": 59,
+"simple": true,
+"pll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pscoefp",
 "ll": "(e)",
-"line": 61
+"line": 61,
+"simple": true,
+"pll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "psquo",
 "ll": "(ps1 &optional ps2)",
-"line": 63
+"line": 63,
+"simple": true,
+"pll": {
+"req": [
+"ps1"
+],
+"opt": [
+[
+"ps2",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pslog-gvar",
 "ll": "(gvar)",
-"line": 67
+"line": 67,
+"simple": true,
+"pll": {
+"req": [
+"gvar"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "gvar-o",
 "ll": "(e)",
-"line": 70
+"line": 70,
+"simple": true,
+"pll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "gvar",
 "ll": "(e)",
-"line": 72
+"line": 72,
+"simple": true,
+"pll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "eqgvar",
 "ll": "(x y)",
-"line": 74
+"line": 74,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pointerp",
 "ll": "(x y)",
-"line": 76
+"line": 76,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "poly-data",
 "ll": "(p)",
-"line": 78
+"line": 78,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trunc-lvl",
 "ll": "(p)",
-"line": 80
+"line": 80,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "terms",
 "ll": "(p)",
-"line": 82
+"line": 82,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "lt",
 "ll": "(terms)",
-"line": 84
+"line": 84,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "le",
 "ll": "(terms)",
-"line": 86
+"line": 86,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "lc",
 "ll": "(terms)",
-"line": 88
+"line": 88,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "e",
 "ll": "(term)",
-"line": 90
+"line": 90,
+"simple": true,
+"pll": {
+"req": [
+"term"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "c",
 "ll": "(term)",
-"line": 92
+"line": 92,
+"simple": true,
+"pll": {
+"req": [
+"term"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "n-term",
 "ll": "(terms)",
-"line": 94
+"line": 94,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mono-term?",
 "ll": "(terms)",
-"line": 96
+"line": 96,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "nconc-terms",
 "ll": "(oldterms newterms)",
-"line": 98
+"line": 98,
+"simple": true,
+"pll": {
+"req": [
+"oldterms",
+"newterms"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "term",
 "ll": "(e c)",
-"line": 100
+"line": 100,
+"simple": true,
+"pll": {
+"req": [
+"e",
+"c"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-ps",
 "ll": "(var-or-data-poly pdata-or-terms &optional (terms () var-pdata-case?))",
-"line": 102
+"line": 102,
+"simple": true,
+"pll": {
+"req": [
+"var-or-data-poly",
+"pdata-or-terms"
+],
+"opt": [
+[
+"terms",
+{
+"k": "expr",
+"v": "()"
+},
+"var-pdata-case?"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "del-lt",
 "ll": "(ps)",
-"line": 112
+"line": 112,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "add-term",
 "ll": "(terms &optional (term-or-e nil adding?) (c nil e-c?))",
-"line": 114
+"line": 114,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [
+[
+"term-or-e",
+{
+"k": "nil"
+},
+"adding?"
+],
+[
+"c",
+{
+"k": "nil"
+},
+"e-c?"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "add-term-&-pop",
 "ll": "(terms &rest args)",
-"line": 120
+"line": 120,
+"simple": true,
+"pll": {
+"req": [
+"terms"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "change-coef",
 "ll": "(terms coef)",
-"line": 125
+"line": 125,
+"simple": true,
+"pll": {
+"req": [
+"terms",
+"coef"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "change-lc",
 "ll": "(terms coef)",
-"line": 127
+"line": 127,
+"simple": true,
+"pll": {
+"req": [
+"terms",
+"coef"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "getdisrep",
 "ll": "(var)",
-"line": 129
+"line": 129,
+"simple": true,
+"pll": {
+"req": [
+"var"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "getdiff",
 "ll": "(var)",
-"line": 131
+"line": 131,
+"simple": true,
+"pll": {
+"req": [
+"var"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "lt-poly",
 "ll": "(p)",
-"line": 133
+"line": 133,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "oper-name",
 "ll": "(func)",
-"line": 137
+"line": 137,
+"simple": true,
+"pll": {
+"req": [
+"func"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "oper-namep",
 "ll": "(oper-form)",
-"line": 139
+"line": 139,
+"simple": true,
+"pll": {
+"req": [
+"oper-form"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "integer-subscriptp",
 "ll": "(subscr-fun)",
-"line": 141
+"line": 141,
+"simple": true,
+"pll": {
+"req": [
+"subscr-fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mlet",
 "ll": "(varl vals comp)",
-"line": 144
+"line": 144,
+"simple": true,
+"pll": {
+"req": [
+"varl",
+"vals",
+"comp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-header",
 "ll": "(mrat)",
-"line": 166
+"line": 166,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-varlist",
 "ll": "(mrat)",
-"line": 167
+"line": 167,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-genvar",
 "ll": "(mrat)",
-"line": 168
+"line": 168,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-tlist",
 "ll": "(mrat)",
-"line": 169
+"line": 169,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mrat-ps",
 "ll": "(mrat)",
-"line": 170
+"line": 170,
+"simple": true,
+"pll": {
+"req": [
+"mrat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "datum-var",
 "ll": "(datum)",
-"line": 180
+"line": 180,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trunc-stack",
 "ll": "(datum)",
-"line": 182
+"line": 182,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "current-trunc",
 "ll": "(datum)",
-"line": 184
+"line": 184,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "orig-trunc",
 "ll": "(datum)",
-"line": 186
+"line": 186,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "exp-pt",
 "ll": "(datum)",
-"line": 188
+"line": 188,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "switches",
 "ll": "(datum)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "switch",
 "ll": "(sw datum)",
-"line": 192
+"line": 192,
+"simple": true,
+"pll": {
+"req": [
+"sw",
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "int-var",
 "ll": "(datum)",
-"line": 195
+"line": 195,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "data-gvar-o",
 "ll": "(data)",
-"line": 197
+"line": 197,
+"simple": true,
+"pll": {
+"req": [
+"data"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "int-gvar",
 "ll": "(datum)",
-"line": 199
+"line": 199,
+"simple": true,
+"pll": {
+"req": [
+"datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "data-gvar",
 "ll": "(data)",
-"line": 201
+"line": 201,
+"simple": true,
+"pll": {
+"req": [
+"data"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "get-inverse",
 "ll": "(gensym)",
-"line": 203
+"line": 203,
+"simple": true,
+"pll": {
+"req": [
+"gensym"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "get-key-var",
 "ll": "(gensym)",
-"line": 206
+"line": 206,
+"simple": true,
+"pll": {
+"req": [
+"gensym"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "gvar->var",
 "ll": "(gvar)",
-"line": 209
+"line": 209,
+"simple": true,
+"pll": {
+"req": [
+"gvar"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "dummy-var",
 "ll": "()",
-"line": 212
+"line": 212,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "first-datum",
 "ll": "()",
-"line": 214
+"line": 214,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "get-datum",
 "ll": "(expr &optional not-canonicalized?)",
-"line": 216
+"line": 216,
+"simple": true,
+"pll": {
+"req": [
+"expr"
+],
+"opt": [
+[
+"not-canonicalized?",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "var-data",
 "ll": "(var)",
-"line": 221
+"line": 221,
+"simple": true,
+"pll": {
+"req": [
+"var"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "gvar-data",
 "ll": "(gvar)",
-"line": 224
+"line": 224,
+"simple": true,
+"pll": {
+"req": [
+"gvar"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ps-data",
 "ll": "(ps)",
-"line": 226
+"line": 226,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "t-o-var",
 "ll": "(gensym)",
-"line": 228
+"line": 228,
+"simple": true,
+"pll": {
+"req": [
+"gensym"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "gvar-trunc",
 "ll": "(gvar)",
-"line": 230
+"line": 230,
+"simple": true,
+"pll": {
+"req": [
+"gvar"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ps-arg-trunc",
 "ll": "(ps)",
-"line": 232
+"line": 232,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ps-le",
 "ll": "(ps)",
-"line": 234
+"line": 234,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ps-le*",
 "ll": "(ps)",
-"line": 236
+"line": 236,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ps-lc",
 "ll": "(ps)",
-"line": 238
+"line": 238,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ps-lc*",
 "ll": "(ps)",
-"line": 240
+"line": 240,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ps-lt",
 "ll": "(ps)",
-"line": 242
+"line": 242,
+"simple": true,
+"pll": {
+"req": [
+"ps"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "getexp-le",
 "ll": "(fun)",
-"line": 244
+"line": 244,
+"simple": true,
+"pll": {
+"req": [
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "getexp-lc",
 "ll": "(fun)",
-"line": 246
+"line": 246,
+"simple": true,
+"pll": {
+"req": [
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "let-pw",
 "ll": "(datum pw comp)",
-"line": 248
+"line": 248,
+"simple": true,
+"pll": {
+"req": [
+"datum",
+"pw",
+"comp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "tlist-mapc",
 "ll": "(datum-var &rest comp)",
-"line": 254
+"line": 254,
+"simple": true,
+"pll": {
+"req": [
+"datum-var"
+],
+"opt": [],
+"rest": "comp",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "find-lexp",
 "ll": "(exp &optional e-start errflag accum-vars)",
-"line": 257
+"line": 257,
+"simple": true,
+"pll": {
+"req": [
+"exp"
+],
+"opt": [
+[
+"e-start",
+null,
+null
+],
+[
+"errflag",
+null,
+null
+],
+[
+"accum-vars",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "tay-err",
 "ll": "(msg)",
-"line": 260
+"line": 260,
+"simple": true,
+"pll": {
+"req": [
+"msg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "zero-warn",
 "ll": "(exp)",
-"line": 262
+"line": 262,
+"simple": true,
+"pll": {
+"req": [
+"exp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "exp-datum-lt",
 "ll": "(fun exp-datum)",
-"line": 271
+"line": 271,
+"simple": true,
+"pll": {
+"req": [
+"fun",
+"exp-datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "exp-datum-le",
 "ll": "(fun exp-datum)",
-"line": 276
+"line": 276,
+"simple": true,
+"pll": {
+"req": [
+"fun",
+"exp-datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "exp-fun",
 "ll": "(exp-datum)",
-"line": 278
+"line": 278,
+"simple": true,
+"pll": {
+"req": [
+"exp-datum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ext-fun",
 "ll": "(p)",
-"line": 284
+"line": 284,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ext-args",
 "ll": "(p)",
-"line": 286
+"line": 286,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "extendablep",
 "ll": "(p)",
-"line": 288
+"line": 288,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "exactp",
 "ll": "(p)",
-"line": 294
+"line": 294,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "nexactp",
 "ll": "(p)",
-"line": 296
+"line": 296,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "get-ps-form",
 "ll": "(fun)",
-"line": 300
+"line": 300,
+"simple": true,
+"pll": {
+"req": [
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "term-disrep",
 "ll": "(term p)",
-"line": 302
+"line": 302,
+"simple": true,
+"pll": {
+"req": [
+"term",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rczero",
 "ll": "()",
-"line": 309
+"line": 309,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcone",
 "ll": "()",
-"line": 311
+"line": 311,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcfone",
 "ll": "()",
-"line": 313
+"line": 313,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rctwo",
 "ll": "()",
-"line": 315
+"line": 315,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcmone",
 "ll": "()",
-"line": 317
+"line": 317,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rczerop",
 "ll": "(r)",
-"line": 319
+"line": 319,
+"simple": true,
+"pll": {
+"req": [
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcintegerp",
 "ll": "(c)",
-"line": 322
+"line": 322,
+"simple": true,
+"pll": {
+"req": [
+"c"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcpintegerp",
 "ll": "(c)",
-"line": 324
+"line": 324,
+"simple": true,
+"pll": {
+"req": [
+"c"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcmintegerp",
 "ll": "(c)",
-"line": 332
+"line": 332,
+"simple": true,
+"pll": {
+"req": [
+"c"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcplus",
 "ll": "(x y)",
-"line": 338
+"line": 338,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcdiff",
 "ll": "(x y)",
-"line": 340
+"line": 340,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcminus",
 "ll": "(x)",
-"line": 342
+"line": 342,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rctimes",
 "ll": "(x y)",
-"line": 344
+"line": 344,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcquo",
 "ll": "(x y)",
-"line": 346
+"line": 346,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcdisrep",
 "ll": "(x)",
-"line": 348
+"line": 348,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcderiv",
 "ll": "(x v)",
-"line": 350
+"line": 350,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"v"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcderivx",
 "ll": "(x)",
-"line": 352
+"line": 352,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "infp",
 "ll": "(x)",
-"line": 358
+"line": 358,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "inf",
 "ll": "nil",
-"line": 360
+"line": 360,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "e-",
 "ll": "(e1 &optional (e2 nil 2e?))",
-"line": 362
+"line": 362,
+"simple": true,
+"pll": {
+"req": [
+"e1"
+],
+"opt": [
+[
+"e2",
+{
+"k": "nil"
+},
+"2e?"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "e//",
 "ll": "(e1 &optional (e2 nil 2e?))",
-"line": 366
+"line": 366,
+"simple": true,
+"pll": {
+"req": [
+"e1"
+],
+"opt": [
+[
+"e2",
+{
+"k": "nil"
+},
+"2e?"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "e>=",
 "ll": "(e1 e2)",
-"line": 370
+"line": 370,
+"simple": true,
+"pll": {
+"req": [
+"e1",
+"e2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ezero",
 "ll": "()",
-"line": 372
+"line": 372,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "eone",
 "ll": "()",
-"line": 374
+"line": 374,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rcinv",
 "ll": "(r)",
-"line": 376
+"line": 376,
+"simple": true,
+"pll": {
+"req": [
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -25197,7 +28860,9 @@ null
 {
 "name": "ignore-rat-err",
 "ll": "(&body body)",
-"line": 183
+"line": 183,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -25457,27 +29122,78 @@ null
 {
 "name": "def-mformat-op",
 "ll": "(char &rest body)",
-"line": 20
+"line": 20,
+"simple": true,
+"pll": {
+"req": [
+"char"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "def-mformat-var",
 "ll": "(var val init)",
-"line": 23
+"line": 23,
+"simple": true,
+"pll": {
+"req": [
+"var",
+"val",
+"init"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mformat-loop",
 "ll": "(&rest endcode)",
-"line": 26
+"line": 26,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "endcode",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "push-text-temp",
 "ll": "()",
-"line": 38
+"line": 38,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "output-text",
 "ll": "()",
-"line": 43
+"line": 43,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -30978,7 +34694,18 @@ null
 {
 "name": "copy1cons",
 "ll": "(name)",
-"line": 37
+"line": 37,
+"simple": true,
+"pll": {
+"req": [
+"name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -33952,7 +37679,19 @@ null
 {
 "name": "msetq",
 "ll": "(a b)",
-"line": 672
+"line": 672,
+"simple": true,
+"pll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -37420,142 +41159,535 @@ null
 {
 "name": "f2cl-lib::fref",
 "ll": "(arr indices bounds &optional offset)",
-"line": 113
+"line": 113,
+"simple": true,
+"pll": {
+"req": [
+"arr",
+"indices",
+"bounds"
+],
+"opt": [
+[
+"offset",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::fset",
 "ll": "(a b)",
-"line": 121
+"line": 121,
+"simple": true,
+"pll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::fref-string",
 "ll": "(s range)",
-"line": 124
+"line": 124,
+"simple": true,
+"pll": {
+"req": [
+"s",
+"range"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::fset-string",
 "ll": "(a b)",
-"line": 127
+"line": 127,
+"simple": true,
+"pll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::f2cl-//",
 "ll": "(a b)",
-"line": 130
+"line": 130,
+"simple": true,
+"pll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::with-array-data",
 "ll": "((data-var offset-var array) &rest body)",
-"line": 150
+"line": 150,
+"simple": false,
+"pll": null
 },
 {
 "name": "f2cl-lib::with-multi-array-data",
 "ll": "(array-info &rest body)",
-"line": 172
+"line": 172,
+"simple": true,
+"pll": {
+"req": [
+"array-info"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::array-slice",
 "ll": "(vname type indices bounds &optional offset)",
-"line": 181
+"line": 181,
+"simple": true,
+"pll": {
+"req": [
+"vname",
+"type",
+"indices",
+"bounds"
+],
+"opt": [
+[
+"offset",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::array-initialize",
 "ll": "(type dims data)",
-"line": 217
+"line": 217,
+"simple": true,
+"pll": {
+"req": [
+"type",
+"dims",
+"data"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::while",
 "ll": "(con &rest body)",
-"line": 235
+"line": 235,
+"simple": true,
+"pll": {
+"req": [
+"con"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::fortran_comment",
 "ll": "(&rest args)",
-"line": 239
+"line": 239,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::fdo",
 "ll": "(do_vble_clause predicate_clause &rest body)",
-"line": 245
+"line": 245,
+"simple": true,
+"pll": {
+"req": [
+"do_vble_clause",
+"predicate_clause"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::f2cl/",
 "ll": "(x y)",
-"line": 279
+"line": 279,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::int-add",
 "ll": "(arg &rest more-args)",
-"line": 289
+"line": 289,
+"simple": true,
+"pll": {
+"req": [
+"arg"
+],
+"opt": [],
+"rest": "more-args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::int-sub",
 "ll": "(&rest args)",
-"line": 309
+"line": 309,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::int-mul",
 "ll": "(arg &rest more-args)",
-"line": 312
+"line": 312,
+"simple": true,
+"pll": {
+"req": [
+"arg"
+],
+"opt": [],
+"rest": "more-args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::arithmetic-if",
 "ll": "(pred s1 s2 s3)",
-"line": 321
+"line": 321,
+"simple": true,
+"pll": {
+"req": [
+"pred",
+"s1",
+"s2",
+"s3"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::computed-goto",
 "ll": "(tag-lst i)",
-"line": 336
+"line": 336,
+"simple": true,
+"pll": {
+"req": [
+"tag-lst",
+"i"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::assigned-goto",
 "ll": "(var tag-list)",
-"line": 358
+"line": 358,
+"simple": true,
+"pll": {
+"req": [
+"var",
+"tag-list"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::data-implied-do",
 "ll": "(implied-do array-bnds var-types vals)",
-"line": 965
+"line": 965,
+"simple": true,
+"pll": {
+"req": [
+"implied-do",
+"array-bnds",
+"var-types",
+"vals"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::open-file",
 "ll": "(&key unit iostat err file status access form recl blank)",
-"line": 1042
+"line": 1042,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [
+[
+"unit",
+null
+],
+[
+"iostat",
+null
+],
+[
+"err",
+null
+],
+[
+"file",
+null
+],
+[
+"status",
+null
+],
+[
+"access",
+null
+],
+[
+"form",
+null
+],
+[
+"recl",
+null
+],
+[
+"blank",
+null
+]
+],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::rewind",
 "ll": "(&key unit iostat err)",
-"line": 1054
+"line": 1054,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [
+[
+"unit",
+null
+],
+[
+"iostat",
+null
+],
+[
+"err",
+null
+]
+],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::close$",
 "ll": "(&key unit iostat err status)",
-"line": 1067
+"line": 1067,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [
+[
+"unit",
+null
+],
+[
+"iostat",
+null
+],
+[
+"err",
+null
+],
+[
+"status",
+null
+]
+],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::fformat",
 "ll": "(dest-lun format-cilist &rest args)",
-"line": 1074
+"line": 1074,
+"simple": true,
+"pll": {
+"req": [
+"dest-lun",
+"format-cilist"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::f2cl-init-string",
 "ll": "(dims len &optional inits)",
-"line": 1301
+"line": 1301,
+"simple": true,
+"pll": {
+"req": [
+"dims",
+"len"
+],
+"opt": [
+[
+"inits",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::f2cl-set-string",
 "ll": "(lhs rhs (string len))",
-"line": 1328
+"line": 1328,
+"simple": false,
+"pll": null
 },
 {
 "name": "f2cl-lib::f2cl-copy-seq",
 "ll": "(dst src dst-type src-type)",
-"line": 1507
+"line": 1507,
+"simple": true,
+"pll": {
+"req": [
+"dst",
+"src",
+"dst-type",
+"src-type"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "f2cl-lib::make-compatible-seq",
 "ll": "(type array array-type)",
-"line": 1545
+"line": 1545,
+"simple": true,
+"pll": {
+"req": [
+"type",
+"array",
+"array-type"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -51384,12 +55516,37 @@ null
 {
 "name": "get-integrand",
 "ll": "(fun var)",
-"line": 16
+"line": 16,
+"simple": true,
+"pll": {
+"req": [
+"fun",
+"var"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "float-integrand-or-lose",
 "ll": "(name fun var)",
-"line": 29
+"line": 29,
+"simple": true,
+"pll": {
+"req": [
+"name",
+"fun",
+"var"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -53631,7 +57788,16 @@ null
 {
 "name": "half",
 "ll": "()",
-"line": 788
+"line": 788,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -56241,7 +60407,9 @@ null
 {
 "name": "bind-fpprec",
 "ll": "(val &body exprs)",
-"line": 2720
+"line": 2720,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -58680,17 +62848,23 @@ null
 {
 "name": "bigfloat::with-extra-precision",
 "ll": "((extra (&rest varlist)) &body body)",
-"line": 203
+"line": 203,
+"simple": false,
+"pll": null
 },
 {
 "name": "bigfloat::incf",
 "ll": "(place &optional (delta 1) &environment env)",
-"line": 1299
+"line": 1299,
+"simple": false,
+"pll": null
 },
 {
 "name": "bigfloat::decf",
 "ll": "(place &optional (delta 1) &environment env)",
-"line": 1310
+"line": 1310,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -61874,12 +66048,32 @@ null
 {
 "name": "with-top-level-environment",
 "ll": "(&rest body)",
-"line": 74
+"line": 74,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mcatch",
 "ll": "(form)",
-"line": 722
+"line": 722,
+"simple": true,
+"pll": {
+"req": [
+"form"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -68981,7 +73175,16 @@ null
 {
 "name": "with-maxima-io-syntax",
 "ll": "(&rest forms)",
-"line": 39
+"line": 39,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "forms",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -71973,7 +76176,20 @@ null
 {
 "name": "setcall",
 "ll": "(fn a b &rest args)",
-"line": 23
+"line": 23,
+"simple": true,
+"pll": {
+"req": [
+"fn",
+"a",
+"b"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -73300,17 +77516,51 @@ null
 {
 "name": "a",
 "ll": "(row col)",
-"line": 298
+"line": 298,
+"simple": true,
+"pll": {
+"req": [
+"row",
+"col"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "invc",
 "ll": "(ind)",
-"line": 301
+"line": 301,
+"simple": true,
+"pll": {
+"req": [
+"ind"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "fctc",
 "ll": "(ind)",
-"line": 304
+"line": 304,
+"simple": true,
+"pll": {
+"req": [
+"ind"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -85948,7 +90198,16 @@ null
 {
 "name": "tr-warnbreak",
 "ll": "()",
-"line": 245
+"line": 245,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -90992,17 +95251,46 @@ null
 {
 "name": "mnot_tr",
 "ll": "(operand)",
-"line": 97
+"line": 97,
+"simple": true,
+"pll": {
+"req": [
+"operand"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mand_tr",
 "ll": "(&rest operands)",
-"line": 136
+"line": 136,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "operands",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mor_tr",
 "ll": "(&rest operands)",
-"line": 139
+"line": 139,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "operands",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -91337,32 +95625,91 @@ null
 {
 "name": "def-mtrvar",
 "ll": "(v a &optional (priority 1))",
-"line": 21
+"line": 21,
+"simple": true,
+"pll": {
+"req": [
+"v",
+"a"
+],
+"opt": [
+[
+"priority",
+{
+"k": "int",
+"v": "1"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m-tlambda",
 "ll": "(bvl &rest body)",
-"line": 98
+"line": 98,
+"simple": true,
+"pll": {
+"req": [
+"bvl"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m-tlambda&",
 "ll": "(bvl &rest body)",
-"line": 102
+"line": 102,
+"simple": true,
+"pll": {
+"req": [
+"bvl"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "m-tlambda&env",
 "ll": "((bvl fvl cfvl) &rest body)",
-"line": 111
+"line": 111,
+"simple": false,
+"pll": null
 },
 {
 "name": "m-tlambda&env&",
 "ll": "((bvl fvl cfvl) &rest body)",
-"line": 115
+"line": 115,
+"simple": false,
+"pll": null
 },
 {
 "name": "set-vals-into-list",
 "ll": "(argl var)",
-"line": 132
+"line": 132,
+"simple": true,
+"pll": {
+"req": [
+"argl",
+"var"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -92241,7 +96588,18 @@ null
 {
 "name": "mfunction-call",
 "ll": "(f &rest argl)",
-"line": 71
+"line": 71,
+"simple": true,
+"pll": {
+"req": [
+"f"
+],
+"opt": [],
+"rest": "argl",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -92576,7 +96934,9 @@ null
 {
 "name": "defmtrfun",
 "ll": "((name mode prop restp . array-flag) argl . body)",
-"line": 29
+"line": 29,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [],
@@ -102707,27 +107067,82 @@ null
 {
 "name": "len",
 "ll": "(lobj)",
-"line": 25
+"line": 25,
+"simple": true,
+"pll": {
+"req": [
+"lobj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "skel",
 "ll": "(lobj)",
-"line": 27
+"line": 27,
+"simple": true,
+"pll": {
+"req": [
+"lobj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "matrix",
 "ll": "(lobj)",
-"line": 29
+"line": 29,
+"simple": true,
+"pll": {
+"req": [
+"lobj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "currow",
 "ll": "(lobj)",
-"line": 31
+"line": 31,
+"simple": true,
+"pll": {
+"req": [
+"lobj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "badrows",
 "ll": "(lobj)",
-"line": 33
+"line": 33,
+"simple": true,
+"pll": {
+"req": [
+"lobj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -106147,52 +110562,162 @@ null
 {
 "name": "unlab",
 "ll": "(cell)",
-"line": 70
+"line": 70,
+"simple": true,
+"pll": {
+"req": [
+"cell"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "copyn",
 "ll": "(n)",
-"line": 73
+"line": 73,
+"simple": true,
+"pll": {
+"req": [
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "iorm",
 "ll": "(cell n)",
-"line": 76
+"line": 76,
+"simple": true,
+"pll": {
+"req": [
+"cell",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "xorm",
 "ll": "(cell n)",
-"line": 79
+"line": 79,
+"simple": true,
+"pll": {
+"req": [
+"cell",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "+labz",
 "ll": "(x)",
-"line": 125
+"line": 125,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "-labz",
 "ll": "(x)",
-"line": 129
+"line": 129,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "=labz",
 "ll": "(x)",
-"line": 133
+"line": 133,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "nlabz",
 "ll": "(x)",
-"line": 137
+"line": 137,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "ulabz",
 "ll": "(x)",
-"line": 141
+"line": 141,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "subp",
 "ll": "(&rest x)",
-"line": 145
+"line": 145,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -110325,27 +114850,63 @@ null
 {
 "name": "compare",
 "ll": "(a b)",
-"line": 759
+"line": 759,
+"simple": true,
+"pll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "with-compsplt-eq",
 "ll": "((lhs rhs x) &body forms)",
-"line": 1386
+"line": 1386,
+"simple": false,
+"pll": null
 },
 {
 "name": "with-compsplt",
 "ll": "((lhs rhs expr) &body forms)",
-"line": 1391
+"line": 1391,
+"simple": false,
+"pll": null
 },
 {
 "name": "minmaxforms",
 "ll": "(op &rest body)",
-"line": 2542
+"line": 2542,
+"simple": true,
+"pll": {
+"req": [
+"op"
+],
+"opt": [],
+"rest": "body",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "c-dobj",
 "ll": "(&rest x)",
-"line": 2907
+"line": 2907,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "x",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -114077,67 +118638,211 @@ null
 {
 "name": "simp",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "hyp-mabs",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "msqrt",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mexpt",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mlog",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "msin",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mcos",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "masin",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "matan",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mgamma",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "mbinom",
 "ll": "(x y)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "merf",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "=1//2",
 "ll": "(x)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -114925,7 +119630,18 @@ null
 {
 "name": "opcons",
 "ll": "(op &rest args)",
-"line": 41
+"line": 41,
+"simple": true,
+"pll": {
+"req": [
+"op"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -118602,12 +123318,33 @@ null
 {
 "name": "pair",
 "ll": "(al bl)",
-"line": 25
+"line": 25,
+"simple": true,
+"pll": {
+"req": [
+"al",
+"bl"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rischzero",
 "ll": "()",
-"line": 30
+"line": 30,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -127279,7 +132016,18 @@ null
 {
 "name": "next-series",
 "ll": "(l)",
-"line": 2755
+"line": 2755,
+"simple": true,
+"pll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -143296,7 +148044,18 @@ null
 {
 "name": "mnumericalp",
 "ll": "(arg)",
-"line": 24
+"line": 24,
+"simple": true,
+"pll": {
+"req": [
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -155134,7 +159893,20 @@ null
 {
 "name": "limit-catch",
 "ll": "(exp var val)",
-"line": 85
+"line": 85,
+"simple": true,
+"pll": {
+"req": [
+"exp",
+"var",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -159129,7 +163901,18 @@ null
 {
 "name": "allroot",
 "ll": "(exp)",
-"line": 56
+"line": 56,
+"simple": true,
+"pll": {
+"req": [
+"exp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -160885,17 +165668,39 @@ null
 {
 "name": "merrset",
 "ll": "(l)",
-"line": 58
+"line": 58,
+"simple": true,
+"pll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "what-the-$ev",
 "ll": "(&rest l)",
-"line": 157
+"line": 157,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "do-poly-terms",
 "ll": "((le lc poly &optional result) &body body)",
-"line": 273
+"line": 273,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -162142,42 +166947,121 @@ null
 {
 "name": "trace-p",
 "ll": "(x)",
-"line": 173
+"line": 173,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trace-type",
 "ll": "(x)",
-"line": 173
+"line": 173,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trace-level",
 "ll": "(x)",
-"line": 173
+"line": 173,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trace-options",
 "ll": "(x)",
-"line": 173
+"line": 173,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trace-oldfun",
 "ll": "(x)",
-"line": 173
+"line": 173,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "trace-hook",
 "ll": "(x)",
-"line": 173
+"line": 173,
+"simple": true,
+"pll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "bind-sym",
 "ll": "(symbol value . body)",
-"line": 424
+"line": 424,
+"simple": false,
+"pll": null
 },
 {
 "name": "macsyma-errset",
 "ll": "(form &aux (ret (gensym)))",
-"line": 434
+"line": 434,
+"simple": true,
+"pll": {
+"req": [
+"form"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -163408,27 +168292,82 @@ null
 {
 "name": "f",
 "ll": "(op &rest args)",
-"line": 9
+"line": 9,
+"simple": true,
+"pll": {
+"req": [
+"op"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "fb",
 "ll": "(op &rest args)",
-"line": 9
+"line": 9,
+"simple": true,
+"pll": {
+"req": [
+"op"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "lisp-quiet",
 "ll": "(&rest l-lisp-quiet)",
-"line": 654
+"line": 654,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l-lisp-quiet",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "lisp-eval",
 "ll": "(&rest l-lisp-eval)",
-"line": 667
+"line": 667,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l-lisp-eval",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "do-break",
 "ll": "(&optional name &rest l)",
-"line": 706
+"line": 706,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [
+[
+"name",
+null,
+null
+]
+],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -169344,22 +174283,66 @@ null
 {
 "name": "sum-arg",
 "ll": "(sum)",
-"line": 389
+"line": 389,
+"simple": true,
+"pll": {
+"req": [
+"sum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "sum-index",
 "ll": "(sum)",
-"line": 392
+"line": 392,
+"simple": true,
+"pll": {
+"req": [
+"sum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "sum-lower",
 "ll": "(sum)",
-"line": 395
+"line": 395,
+"simple": true,
+"pll": {
+"req": [
+"sum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "sum-upper",
 "ll": "(sum)",
-"line": 398
+"line": 398,
+"simple": true,
+"pll": {
+"req": [
+"sum"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -179018,7 +184001,9 @@ null
 {
 "name": "maybe-char-is-fixnum-let",
 "ll": "(binds &body body)",
-"line": 1348
+"line": 1348,
+"simple": false,
+"pll": null
 }
 ],
 "vars": [
@@ -180534,52 +185519,163 @@ null
 {
 "name": "red",
 "ll": "(p)",
-"line": 19
+"line": 19,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "p0?",
 "ll": "(p)",
-"line": 21
+"line": 21,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "e0?",
 "ll": "(expon)",
-"line": 23
+"line": 23,
+"simple": true,
+"pll": {
+"req": [
+"expon"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "epos?",
 "ll": "(expon)",
-"line": 25
+"line": 25,
+"simple": true,
+"pll": {
+"req": [
+"expon"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "eneg?",
 "ll": "(expon)",
-"line": 27
+"line": 27,
+"simple": true,
+"pll": {
+"req": [
+"expon"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "num",
 "ll": "(r)",
-"line": 29
+"line": 29,
+"simple": true,
+"pll": {
+"req": [
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "denom",
 "ll": "(r)",
-"line": 31
+"line": 31,
+"simple": true,
+"pll": {
+"req": [
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "eneg",
 "ll": "(exp)",
-"line": 33
+"line": 33,
+"simple": true,
+"pll": {
+"req": [
+"exp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "pade-lexp",
 "ll": "(poly)",
-"line": 35
+"line": 35,
+"simple": true,
+"pll": {
+"req": [
+"poly"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "psmake",
 "ll": "(p tpf)",
-"line": 43
+"line": 43,
+"simple": true,
+"pll": {
+"req": [
+"p",
+"tpf"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -184715,7 +189811,21 @@ null
 {
 "name": "def-nary",
 "ll": "(fn arg f-body id)",
-"line": 1133
+"line": 1133,
+"simple": true,
+"pll": {
+"req": [
+"fn",
+"arg",
+"f-body",
+"id"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [],
@@ -189345,57 +194455,156 @@ null
 {
 "name": "key",
 "ll": "(&rest l)",
-"line": 341
+"line": 341,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "llink",
 "ll": "(&rest l)",
-"line": 343
+"line": 343,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rlink",
 "ll": "(&rest l)",
-"line": 345
+"line": 345,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "bp",
 "ll": "(&rest l)",
-"line": 347
+"line": 347,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rec",
 "ll": "(&rest l)",
-"line": 349
+"line": 349,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "order<",
 "ll": "(&rest l)",
-"line": 354
+"line": 354,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "order=",
 "ll": "(&rest l)",
-"line": 355
+"line": 355,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "setrlink",
 "ll": "(&rest l)",
-"line": 359
+"line": 359,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "setllink",
 "ll": "(&rest l)",
-"line": 362
+"line": 362,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "setbp",
 "ll": "(&rest l)",
-"line": 365
+"line": 365,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "setrec",
 "ll": "(&rest l)",
-"line": 368
+"line": 368,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "l",
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -190316,32 +195525,93 @@ null
 {
 "name": "with-multiply-table",
 "ll": "(&body body)",
-"line": 26
+"line": 26,
+"simple": false,
+"pll": null
 },
 {
 "name": "undef",
 "ll": "(s)",
-"line": 32
+"line": 32,
+"simple": true,
+"pll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "tc-mult",
 "ll": "(k r)",
-"line": 36
+"line": 36,
+"simple": true,
+"pll": {
+"req": [
+"k",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "define-tc-mult",
 "ll": "(k r s)",
-"line": 40
+"line": 40,
+"simple": true,
+"pll": {
+"req": [
+"k",
+"r",
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "push-todo",
 "ll": "(m n)",
-"line": 46
+"line": 46,
+"simple": true,
+"pll": {
+"req": [
+"m",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "table",
 "ll": "(i)",
-"line": 53
+"line": 53,
+"simple": true,
+"pll": {
+"req": [
+"i"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [
@@ -192262,37 +197532,122 @@ null
 {
 "name": "z-pt",
 "ll": "(ar i)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"ar",
+"i"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "y-pt",
 "ll": "(ar i)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"ar",
+"i"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "x-pt",
 "ll": "(ar i)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"ar",
+"i"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "rot",
 "ll": "(m i j)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"m",
+"i",
+"j"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "print-pt",
 "ll": "(f)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "make-polygon",
 "ll": "(a b)",
-"line": 190
+"line": 190,
+"simple": true,
+"pll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 },
 {
 "name": "zval",
 "ll": "(points verts i)",
-"line": 647
+"line": 647,
+"simple": true,
+"pll": {
+"req": [
+"points",
+"verts",
+"i"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
 }
 ],
 "vars": [

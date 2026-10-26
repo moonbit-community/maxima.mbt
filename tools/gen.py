@@ -342,6 +342,39 @@ def main():
             reg_lines.append("  defun(%s, args => %s)" % (q, call))
     reg_lines.append("}")
     reg_lines.append("")
+    # function-like macros: declared so their port can be shared
+    decl_lines.append("// ---- Function-like macros (implemented as functions by the porter of the defining file)")
+    decl_lines.append("")
+    for d in db:
+        if d["file"] in excluded:
+            continue
+        for m in d["macros"]:
+            name = m["name"]
+            if not m.get("simple") or not name:
+                continue
+            mn = fn_name(name)
+            if mn in seen:
+                continue
+            seen[mn] = (name, d["file"])
+            f = {"ll": m["pll"], "nvalues": 0}
+            params, info = signature(f, symbols)
+            src = "%s.lisp:%d" % (d["file"], m["line"])
+            decl_lines.append("///|")
+            decl_lines.append("/// macro %s %s -- %s" % (name, m["ll"], src))
+            decl_lines.append("declare fn %s(%s) -> Value raise" % (mn, ", ".join(params)))
+            decl_lines.append("")
+            index_lines.append("%s\tmacro\t%s\t%s(%s) -> Value" % (name, src, mn, ", ".join(params)))
+    # per-file init functions
+    decl_lines.append("// ---- Per-file initialization (top-level forms of each Lisp file)")
+    decl_lines.append("")
+    for d in db:
+        if d["file"] in excluded:
+            continue
+        nm = "init_" + mangle(d["file"].split("/")[-1])
+        decl_lines.append("///|")
+        decl_lines.append("/// top-level forms of %s.lisp" % d["file"])
+        decl_lines.append("declare fn %s() -> Unit raise" % nm)
+        decl_lines.append("")
     # def-simplifier verb functions and properties
     reg_lines.append("///|")
     reg_lines.append("fn register_generated_simplifiers() -> Unit {")
