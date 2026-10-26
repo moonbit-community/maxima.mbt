@@ -452,6 +452,7 @@ using @lisp {
   with_specials,
   write_char,
   write_file,
+  write_file_bytes,
   write_stderr,
   write_stdout,
   write_string,

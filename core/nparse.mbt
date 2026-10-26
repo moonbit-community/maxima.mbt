@@ -66,7 +66,16 @@ fn nparse__fn(f : Value) -> Value raise {
 }
 
 ///|
+/// Port: share/contrib/unicodedata/unicodedata.lisp redefines ALPHABETP
+/// when loaded; in CL every caller then reaches the new definition through
+/// the function cell. That package installs its definition here.
+let nparse__alphabetp_redefined : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
 fn alphabetp(n : Value) -> Value raise {
+  if nparse__alphabetp_redefined.val is Some(f) {
+    return f(n)
+  }
   match n {
     Char(c) =>
       if alpha_char_p(c) {

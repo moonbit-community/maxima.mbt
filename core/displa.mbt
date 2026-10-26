@@ -100,7 +100,17 @@ fn maxima_display(form : Value, stream? : Value) -> Value raise {
 }
 
 ///|
+/// Port: share packages redefine DISPLA when loaded
+/// (share/contrib/maximaMathML/mathmldisplay.lisp); in CL every caller then
+/// reaches the new definition through the function cell. Such a package
+/// installs its definition here.
+let displa__redefined : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
 fn displa(form : Value) -> Value raise {
+  if displa__redefined.val is Some(f) {
+    return f(form)
+  }
   if symval(q_d_ttyoff).truthy() {
     return Nil
   }

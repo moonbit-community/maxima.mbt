@@ -238,7 +238,8 @@ fn fmt_run(st : FmtState, end : Int) -> Bool raise {
         }
         let s = if integerp(arg) {
           let b = to_big(arg)
-          let mut s = b.to_string(radix~)
+          // CL prints digits above 9 in upper case
+          let mut s = string_upcase(b.to_string(radix~))
           if colon {
             s = group_digits(s)
           }
@@ -267,7 +268,9 @@ fn fmt_run(st : FmtState, end : Int) -> Bool raise {
         let arg = st.next_arg()
         match p0 {
           Some(Fix(radix)) =>
-            st.out.write_string(to_big(arg).to_string(radix=radix.to_int()))
+            st.out.write_string(
+              string_upcase(to_big(arg).to_string(radix=radix.to_int())),
+            )
           _ =>
             if at {
               st.out.write_string(roman(to_int(arg)))

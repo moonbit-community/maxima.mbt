@@ -810,6 +810,7 @@ fn share_load_topoly() -> Unit raise {
 fn share_load_logic() -> Unit raise {
   init_vars_n_dot_dot_share_logic_logic()
   register_share_logic()
+  init_share_logic()
 }
 
 ///|
@@ -825,6 +826,7 @@ fn share_load_colnew_package() -> Unit raise {
 ///|
 fn share_load_mactex_utilities() -> Unit raise {
   register_share_mactex_utilities()
+  init_share_mactex_utilities()
 }
 
 ///|
@@ -856,6 +858,7 @@ fn share_load_f90() -> Unit raise {
 ///|
 fn share_load_tex2ooo() -> Unit raise {
   register_share_tex2ooo()
+  init_share_tex2ooo()
 }
 
 ///|
@@ -962,33 +965,39 @@ fn share_load_noninteractive() -> Unit raise {
 ///|
 fn share_load_n_cc_t_cm_ath_cm__cl_() -> Unit raise {
   register_share_n_cc_t_cm_ath_cm__cl_()
+  init_share_n_cc_t_cm_ath_cm__cl_()
 }
 
 ///|
 fn share_load_mathml_maxima() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_maxima_cm_ath_cm__cl__mathml_maxima()
   register_share_mathml_maxima()
+  init_share_mathml_maxima()
 }
 
 ///|
 fn share_load_maxima_cm_ath_cm__cl_() -> Unit raise {
   register_share_maxima_cm_ath_cm__cl_()
+  init_share_maxima_cm_ath_cm__cl_()
 }
 
 ///|
 fn share_load_mathmldisplay() -> Unit raise {
   register_share_mathmldisplay()
+  init_share_mathmldisplay()
 }
 
 ///|
 fn share_load_n_cp_r_cm_ath_cm__cl_() -> Unit raise {
   register_share_n_cp_r_cm_ath_cm__cl_()
+  init_share_n_cp_r_cm_ath_cm__cl_()
 }
 
 ///|
 fn share_load_mathml() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_lurkmathml_mathml()
   register_share_mathml()
+  init_share_mathml()
 }
 
 ///|
@@ -1045,16 +1054,19 @@ fn share_load_alt_display() -> Unit raise {
 ///|
 fn share_load_unicodedata() -> Unit raise {
   register_share_unicodedata()
+  init_share_unicodedata()
 }
 
 ///|
 fn share_load_unicodedata_txt() -> Unit raise {
   register_share_unicodedata_txt()
+  init_share_unicodedata_txt()
 }
 
 ///|
 fn share_load_grind_patch() -> Unit raise {
   register_share_grind_patch()
+  init_share_grind_patch()
 }
 
 ///|
@@ -1278,6 +1290,7 @@ fn share_load_cartan() -> Unit raise {
 fn share_load_sound() -> Unit raise {
   init_vars_n_dot_dot_share_sound_sound()
   register_share_sound()
+  init_share_sound()
 }
 
 ///|
@@ -1467,6 +1480,8 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "minpack/minpack-package" => Some(share_load_minpack_package)
     "cobyla/cobyla-package" => Some(share_load_cobyla_package)
     "to_poly_solve/topoly" => Some(share_load_topoly)
+    "logic/logic" => Some(share_load_logic)
+    "logic/Ksimplifier" => Some(share_load_n_ck_simplifier)
     "colnew/colnew-package" => Some(share_load_colnew_package)
     "utils/mactex-utilities" => Some(share_load_mactex_utilities)
     "utils/sloop" => Some(share_load_sloop)
@@ -1480,8 +1495,12 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "unit/unit-functions" => Some(share_load_unit_functions)
     "noninteractive/asksign1" => Some(share_load_asksign1)
     "noninteractive/noninteractive" => Some(share_load_noninteractive)
+    "maximaMathML/CtMathML" => Some(share_load_n_cc_t_cm_ath_cm__cl_)
+    "maximaMathML/mathml-maxima" => Some(share_load_mathml_maxima)
     "maximaMathML/maximaMathML" => Some(share_load_maxima_cm_ath_cm__cl_)
     "maximaMathML/mathmldisplay" => Some(share_load_mathmldisplay)
+    "maximaMathML/PrMathML" => Some(share_load_n_cp_r_cm_ath_cm__cl_)
+    "lurkmathml/mathml" => Some(share_load_mathml)
     "gentran/allgentran" => Some(share_load_allgentran)
     "elliptic_curves/modular_polynomials" => Some(share_load_modular_polynomials)
     "altsimp/altsimp" => Some(share_load_altsimp)
@@ -1507,6 +1526,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "odepack/package" => Some(share_load_odepack_package)
     "odepack/maxima-odepack" => Some(share_load_maxima_odepack)
     "src/package" => Some(share_load_odepack_src_package)
+    "sound/sound" => Some(share_load_sound)
     "diff_form/cartan_new" => Some(share_load_cartan_new)
     "algebra/grob1" => Some(share_load_grob1)
     "hompack/hompack-interface" => Some(share_load_hompack_interface)

@@ -588,3 +588,39 @@ test "output file streams" {
   append_file(path, "x")
   inspect(read_file(path), content="x")
 }
+
+///|
+test "input designator t reads the terminal, not *standard-input*" {
+  let saved = console_reader.val
+  console_reader.val = () => Some("ab")
+  let got = with_special(
+    standard_input,
+    make_string_input_stream("xy"),
+    () => list([read_char(stream=t), read_char(), read_char(stream=t)]),
+  ) catch {
+    _ => Nil
+  }
+  console_reader.val = saved
+  inspect(prin1_to_string(got), content="(#\\a #\\x #\\b)")
+}
+
+///|
+test "binary file output round trip" {
+  let path = "_build/runtime_test_bytes.bin"
+  let data = Bytes::from_array([b'R', b'I', b'F', b'F', b'\x00', b'\xff', b'\x80'])
+  write_file_bytes(path, data) catch {
+    _ => fail("write_file_bytes failed")
+  }
+  let back = read_file_bytes(path) catch { _ => b"" }
+  inspect(back.length(), content="7")
+  inspect(back[5].to_int(), content="255")
+  assert_true(back == data)
+}
+
+///|
+test "format radix directives print upper-case digits" {
+  inspect(
+    try! format_to_string("&#x~x;|~16r|~b", [int(60), int(255), int(5)]),
+    content="&#x3C;|FF|101",
+  )
+}

@@ -13,6 +13,10 @@ pub fn initialize() -> Unit raise
 // Types and methods
 type CombinMinfact
 
+type ShareSoundIn
+
+type ShareUnicodedataReader
+
 // Type aliases
 
 // Traits
