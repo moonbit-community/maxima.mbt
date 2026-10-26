@@ -119,6 +119,20 @@ fn macsys__now_decoded() -> (Int, Int, Int, Int, Int, Int) {
 
 ///|
 fn toplevel_macsyma_eval(x : Value) -> Value raise {
+  match macsys__toplevel_macsyma_eval_cell.val {
+    Some(f) => f(x)
+    None => macsys__toplevel_macsyma_eval_base(x)
+  }
+}
+
+///|
+/// The function cell of TOPLEVEL-MACSYMA-EVAL. Share packages (share/contrib/unit/unit-functions.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let macsys__toplevel_macsyma_eval_cell : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
+fn macsys__toplevel_macsyma_eval_base(x : Value) -> Value raise {
   // Catch rat-err's here.
   suprv1__rat_error_to_merror(() => meval_star(x))
 }
