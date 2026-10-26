@@ -928,7 +928,8 @@ fn le__elt_type_name(ty : Value) -> String {
     Sym(s) =>
       match s.name {
         "character" | "base-char" | "standard-char" => "character"
-        "fixnum" => "fixnum"
+        // f2cl-lib:integer4 is (signed-byte 32)
+        "fixnum" | "integer4" => "fixnum"
         "bit" => "bit"
         "double-float" | "flonum" | "float" | "single-float" => "double-float"
         _ => "t"

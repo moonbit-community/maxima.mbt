@@ -7210,28 +7210,11 @@ def share_header(srcrel, what):
 LIB = None
 
 
-def main():
-    global LIB
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    libname = "slatec"
-    for a in sys.argv[1:]:
-        if a.startswith("--lib="):
-            libname = a[len("--lib="):]
-    LIB = lib_config(libname)
-    if libname == "slatec":
-        src = args[0] if len(args) > 0 else DEFAULT_SRC
-        out = args[1] if len(args) > 1 else DEFAULT_OUT
-        if src != DEFAULT_SRC:
-            LIB["files"] = [os.path.join(src, f) for f in sorted(os.listdir(src))
-                            if f.endswith(".lisp") and f not in SKIP_FILES]
-    else:
-        out = LIB["out"]
-    if "--reference-test" in sys.argv:
-        if libname == "slatec":
-            gen_reference_test(src, out)
-        else:
-            gen_share_reference_test(libname, out)
-        return 0
+def analyze():
+    """Parse LIB's files and run the global analyses (array offsets,
+    closure types, raising): the translated routines (FNS holds them all,
+    with the hand-written ones) and the names of the skeleton hooks.
+    Also used by tools/gen_slatec_values.py."""
     defs = []
     for path in LIB["files"]:
         n0 = len(COMMON_FILES)
@@ -7272,6 +7255,32 @@ def main():
             for d in FNS.values():
                 d.ptypes = dict(saved[d.name])
                 d.fnsigs = {}
+    return defs, hooks
+
+
+def main():
+    global LIB
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    libname = "slatec"
+    for a in sys.argv[1:]:
+        if a.startswith("--lib="):
+            libname = a[len("--lib="):]
+    LIB = lib_config(libname)
+    if libname == "slatec":
+        src = args[0] if len(args) > 0 else DEFAULT_SRC
+        out = args[1] if len(args) > 1 else DEFAULT_OUT
+        if src != DEFAULT_SRC:
+            LIB["files"] = [os.path.join(src, f) for f in sorted(os.listdir(src))
+                            if f.endswith(".lisp") and f not in SKIP_FILES]
+    else:
+        out = LIB["out"]
+    if "--reference-test" in sys.argv:
+        if libname == "slatec":
+            gen_reference_test(src, out)
+        else:
+            gen_share_reference_test(libname, out)
+        return 0
+    defs, hooks = analyze()
     errors = 0
     os.makedirs(out, exist_ok=True)
     emit_hooks(out)

@@ -73,6 +73,27 @@ translates the f2cl constructs (`fref`, `fdo`, `with-multi-array-data`,
   `ntj0`/`xsml` in `dbesj0`, the `j4save` parameters, the `xersve` message
   table) are package-level, like the Lisp `let` around each `defun`.
 
+## Value-level entry points (`core/slatec_values.mbt`)
+
+The contract declares a Value-level `slatec_<name>` for each routine (one
+`Value` per Fortran argument, returning the Lisp's multiple values: the
+function value first for a FUNCTION, NIL in the slots the Lisp returns as
+NIL). Ported Maxima code calls the native functions above directly; the
+Value-level ones serve interpreted Lisp (`:lisp (slatec::dqags ...)`) and the
+symbols' function cells. They are **generated** adapters
+(`python3 tools/gen_slatec_values.py`, which reuses `tools/f2cl2mbt.py`'s
+analysis): scalars are type-checked as SBCL does when binding the
+parameter (double-float, `(signed-byte 32)`, logical, string; TYPE-ERROR
+otherwise), Lisp vectors of the declared element type are copied to native
+arrays and back after the call (also when it raises; one native copy per
+distinct Lisp array, so aliasing is kept), and function arguments are Lisp
+function designators. Differences from the Lisp: `initds`'s single-float
+`eta` accepts a double (the port has no single-floats); an integrand's
+second value (which f2cl would store back into the argument) is ignored, as
+in the native translation; an integer returned by an integrand is a
+TYPE-ERROR everywhere (the Lisp accepts it at the few call sites that only
+multiply it).
+
 ## Error handling
 
 `xermsg` behaves exactly like the Lisp: it consults `j4save(2)` (control,
