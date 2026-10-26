@@ -90,5 +90,11 @@
  ],
  "fftpack5/load-fftpack5": [
   "fftpack5/fftpack5-interface"
+ ],
+ "nelder_mead/load-neldermead": [
+  "nelder_mead/defpackage",
+  "nelder_mead/la",
+  "nelder_mead/neldermead",
+  "nelder_mead/nm-maxima"
  ]
 }
