@@ -7860,6 +7860,81 @@ read-color-spec-for-type	defun	../share/draw/picture.lisp:348	read_color_spec_fo
 read-color-spec	defun	../share/draw/picture.lisp:361	read_color_spec(str : Value, cnt : Value, hash : Value) -> Value
 $read_xpm	defun	../share/draw/picture.lisp:367	d_read_xpm(mfspec : Value) -> Value
 read-xpm-from-stream	defun	../share/draw/picture.lisp:376	read_xpm_from_stream(image : Value) -> Value
+$unique_in_sorted_array	defun	../share/descriptive/descriptive_util.lisp:3	d_unique_in_sorted_array(a : Value) -> Value
+$vector_min_max	defun	../share/descriptive/descriptive_util.lisp:7	d_vector_min_max(a : Value) -> Value
+longitude_latitude_projection_2d	defun	../share/draw/wbd.lisp:29357	longitude_latitude_projection_2d(lis : Value) -> Value
+mercator_projection_2d	defun	../share/draw/wbd.lisp:29387	mercator_projection_2d(lis : Value) -> Value
+miller_projection_2d	defun	../share/draw/wbd.lisp:29420	miller_projection_2d(lis : Value) -> Value
+kavrayskiy_projection_2d	defun	../share/draw/wbd.lisp:29452	kavrayskiy_projection_2d(lis : Value) -> Value
+geomap	defun	../share/draw/wbd.lisp:29485	geomap(lis : Value, proj? : Value = Nil) -> Value
+spherical_projection_3d	defun	../share/draw/wbd.lisp:29543	spherical_projection_3d(lis : Value, cx : Value, cy : Value, cz : Value, r : Value) -> Value
+cylindrical_projection_3d	defun	../share/draw/wbd.lisp:29585	cylindrical_projection_3d(lis : Value, cx : Value, cy : Value, cz : Value, r : Value, rc : Value) -> Value
+conic_projection_3d	defun	../share/draw/wbd.lisp:29625	conic_projection_3d(lis : Value, cx : Value, cy : Value, cz : Value, r : Value, a : Value) -> Value
+geomap3d	defun	../share/draw/wbd.lisp:29670	geomap3d(lis : Value, proj? : Value = Nil) -> Value
+lngamma	defun	../share/distrib/numdistrib.lisp:36	lngamma(p : Value) -> Value
+lnbeta	defun	../share/distrib/numdistrib.lisp:42	lnbeta(p : Value, q : Value) -> Value
+igamma	defun	../share/distrib/numdistrib.lisp:48	igamma(x : Value, p : Value) -> Value
+ibeta	defun	../share/distrib/numdistrib.lisp:54	ibeta(x : Value, a : Value, b : Value) -> Value
+iibeta	defun	../share/distrib/numdistrib.lisp:64	iibeta(x : Value, p : Value, q : Value) -> Value
+iigamma	defun	../share/distrib/numdistrib.lisp:157	iigamma(x : Value, p : Value) -> Value
+cdfnchi2	defun	../share/distrib/numdistrib.lisp:193	cdfnchi2(x : Value, f : Value, theta : Value, errmax : Value, reltol : Value, itrmax : Value) -> Value
+qnchi2	defun	../share/distrib/numdistrib.lisp:317	qnchi2(p : Value, df : Value, lambda : Value) -> Value
+cdfnt	defun	../share/distrib/numdistrib.lisp:383	cdfnt(x : Value, df : Value, delta : Value) -> Value
+qnct	defun	../share/distrib/numdistrib.lisp:449	qnct(p : Value, df : Value, ncp : Value) -> Value
+rndnormal-box	defun	../share/distrib/numdistrib.lisp:500	rndnormal_box() -> Value
+rndnormal	defun	../share/distrib/numdistrib.lisp:518	rndnormal(ss : Value) -> Value
+rndexp-inverse	defun	../share/distrib/numdistrib.lisp:535	rndexp_inverse(m : Value) -> Value
+rndexp	defun	../share/distrib/numdistrib.lisp:546	rndexp(m : Value, ss : Value) -> Value
+rndgamma-ahrens-cheng	defun	../share/distrib/numdistrib.lisp:573	rndgamma_ahrens_cheng(aa : Value, bb : Value) -> Value
+rndgamma	defun	../share/distrib/numdistrib.lisp:615	rndgamma(a : Value, b : Value, ss : Value) -> Value
+rndchi2	defun	../share/distrib/numdistrib.lisp:633	rndchi2(n : Value, ss : Value) -> Value
+rndnchi2-chi2-poisson	defun	../share/distrib/numdistrib.lisp:654	rndnchi2_chi2_poisson(df : Value, lambda : Value) -> Value
+rndnchi2	defun	../share/distrib/numdistrib.lisp:672	rndnchi2(df : Value, lambda : Value, ss : Value) -> Value
+rndstudent-ratio	defun	../share/distrib/numdistrib.lisp:691	rndstudent_ratio(n : Value) -> Value
+rndstudent	defun	../share/distrib/numdistrib.lisp:702	rndstudent(n : Value, ss : Value) -> Value
+rndncstudent-ratio	defun	../share/distrib/numdistrib.lisp:722	rndncstudent_ratio(n : Value, k : Value) -> Value
+rndncstudent	defun	../share/distrib/numdistrib.lisp:733	rndncstudent(n : Value, k : Value, ss : Value) -> Value
+rndf-ratio	defun	../share/distrib/numdistrib.lisp:753	rndf_ratio(m : Value, n : Value) -> Value
+rndf	defun	../share/distrib/numdistrib.lisp:764	rndf(m : Value, n : Value, ss : Value) -> Value
+rndbeta-cheng0	defun	../share/distrib/numdistrib.lisp:802	rndbeta_cheng0(aa : Value, bb : Value) -> Value
+rndbeta-cheng	defun	../share/distrib/numdistrib.lisp:918	rndbeta_cheng(aa : Value, bb : Value) -> Value
+rndbeta	defun	../share/distrib/numdistrib.lisp:927	rndbeta(a : Value, b : Value, ss : Value) -> Value
+rndbinomial-kachit	defun	../share/distrib/numdistrib.lisp:978	rndbinomial_kachit(n : Value, pp : Value) -> Value
+rndbinomial	defun	../share/distrib/numdistrib.lisp:1143	rndbinomial(n : Value, p : Value, ss : Value) -> Value
+rndpoisson-ahrens	defun	../share/distrib/numdistrib.lisp:1191	rndpoisson_ahrens(mu : Value) -> Value
+rndpoisson	defun	../share/distrib/numdistrib.lisp:1375	rndpoisson(m : Value, ss : Value) -> Value
+rndgeo-trials	defun	../share/distrib/numdistrib.lisp:1394	rndgeo_trials(p : Value) -> Value
+rndgeo	defun	../share/distrib/numdistrib.lisp:1405	rndgeo(p : Value, ss : Value) -> Value
+afc	defun	../share/distrib/numdistrib.lisp:1425	afc(i : Value) -> Value
+rndhypergeo-kachit	defun	../share/distrib/numdistrib.lisp:1487	rndhypergeo_kachit(nn1 : Value, nn2 : Value, kk : Value) -> Value
+rndhypergeo	defun	../share/distrib/numdistrib.lisp:1685	rndhypergeo(n1 : Value, n2 : Value, n : Value, ss : Value) -> Value
+rndnegbinom-devroye	defun	../share/distrib/numdistrib.lisp:1710	rndnegbinom_devroye(n : Value, p : Value) -> Value
+rndnegbinom	defun	../share/distrib/numdistrib.lisp:1718	rndnegbinom(n : Value, p : Value, ss : Value) -> Value
+$simp_inequality	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:17	d_simp_inequality(e : Value) -> Value
+simp-%and	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:43	simp__pctand(e : Value, yy : Value, z : Value) -> Value
+$disjunction_p	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:88	d_disjunction_p(e : Value) -> Value
+$conjunction_p	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:91	d_conjunction_p(e : Value) -> Value
+simp-%or	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:98	simp__pctor(e : Value, yy : Value, z : Value) -> Value
+simp-%union	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:130	simp__pctunion(e : Value, yy : Value, z : Value) -> Value
+simp-%if	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:148	simp__pctif(e : Value, yy : Value, z : Value) -> Value
+simp-%integerp	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:167	simp__pctintegerp(e : Value, yy : Value, z : Value) -> Value
+simp-isnonnegative-p	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:180	simp_isnonnegative_p(e : Value, yy : Value, z : Value) -> Value
+$subst_parallel	defun	../share/to_poly_solve/to_poly_solve_extra.lisp:196	d_subst_parallel(l : Value, e : Value) -> Value
+$format	defun	../share/contrib/format/miller-format.lisp:26	d_format(expr : Value, templates : Value) -> Value
+format-from-chain	defun	../share/contrib/format/miller-format.lisp:29	format_from_chain(expr : Value, ear_templates? : Value) -> Value
+format-one	defun	../share/contrib/format/miller-format.lisp:34	format_one(expr : Value, tmp : Value) -> Value
+$format_piece	defun	../share/contrib/format/miller-format.lisp:45	d_format_piece(piece : Value, nth_? : Value = Nil) -> Value
+format-w/o-subtemplates	defun	../share/contrib/format/miller-format.lisp:57	format_w_slo_subtemplates(expr : Value) -> Value
+parse-template	defun	../share/contrib/format/miller-format.lisp:65	parse_template(template : Value) -> Value
+template-p	defun	../share/contrib/format/miller-format.lisp:109	template_p(expr : Value) -> Value
+partition-arithmetic-template	defun	../share/contrib/format/miller-format.lisp:114	partition_arithmetic_template(op : Value, args : Value) -> (Value, Value)
+$coerce_bag	defun	../share/contrib/format/miller-format.lisp:163	d_coerce_bag(oper : Value, expr : Value) -> Value
+format-bag	defun	../share/contrib/format/miller-format.lisp:178	format_bag(expr : Value, op : Value) -> Value
+format-nth	defun	../share/contrib/format/miller-format.lisp:191	format_nth(expr : Value, n : Value) -> Value
+format-clist	defun	../share/contrib/format/miller-format.lisp:232	format_clist(clist : Value, function? : Value) -> Value
+format-sum	defun	../share/contrib/format/miller-format.lisp:269	format_sum(sum : Value) -> Value
+format-product	defun	../share/contrib/format/miller-format.lisp:283	format_product(prod : Value) -> Value
+format-fraction	defun	../share/contrib/format/miller-format.lisp:303	format_fraction(frac : Value) -> Value
 intl::textdomain	macro	intl.lisp:509	intl_textdomain(domain : Value) -> Value
 intl::gettext	macro	intl.lisp:513	intl_gettext(string_ : Value) -> Value
 intl::ngettext	macro	intl.lisp:517	intl_ngettext(singular : Value, plural : Value, n : Value) -> Value

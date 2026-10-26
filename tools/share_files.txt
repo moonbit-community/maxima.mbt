@@ -78,3 +78,8 @@ share/draw/grcommon
 share/draw/gnuplot
 share/draw/vtk
 share/draw/picture
+share/descriptive/descriptive_util
+share/draw/wbd
+share/distrib/numdistrib
+share/to_poly_solve/to_poly_solve_extra
+share/contrib/format/miller-format

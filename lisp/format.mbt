@@ -248,7 +248,9 @@ fn fmt_run(st : FmtState, end : Int) -> Bool raise {
             s
           }
         } else {
-          princ_to_string(arg)
+          // As SBCL: a non-integer argument is printed as by ~A, unpadded.
+          st.out.write_string(princ_to_string(arg))
+          continue
         }
         let w = match p0 {
           Some(Fix(n)) => n.to_int()

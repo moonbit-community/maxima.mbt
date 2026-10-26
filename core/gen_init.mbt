@@ -588,24 +588,56 @@ fn share_load_charsets_flatten() -> Unit raise {
 fn share_load_grcommon() -> Unit raise {
   init_vars_n_dot_dot_share_draw_grcommon()
   register_share_grcommon()
+  init_share_grcommon()
 }
 
 ///|
 fn share_load_gnuplot() -> Unit raise {
   init_vars_n_dot_dot_share_draw_gnuplot()
   register_share_gnuplot()
+  init_share_gnuplot()
 }
 
 ///|
 fn share_load_vtk() -> Unit raise {
   init_vars_n_dot_dot_share_draw_vtk()
   register_share_vtk()
+  init_share_vtk()
 }
 
 ///|
 fn share_load_picture() -> Unit raise {
   init_vars_n_dot_dot_share_draw_picture()
   register_share_picture()
+  init_share_picture()
+}
+
+///|
+fn share_load_descriptive_util() -> Unit raise {
+  register_share_descriptive_util()
+}
+
+///|
+fn share_load_wbd() -> Unit raise {
+  init_vars_n_dot_dot_share_draw_wbd()
+  register_share_wbd()
+}
+
+///|
+fn share_load_numdistrib() -> Unit raise {
+  init_vars_n_dot_dot_share_distrib_numdistrib()
+  register_share_numdistrib()
+}
+
+///|
+fn share_load_to_poly_solve_extra() -> Unit raise {
+  register_share_to_poly_solve_extra()
+}
+
+///|
+fn share_load_miller_format() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_format_miller_format()
+  register_share_miller_format()
 }
 
 ///|
@@ -688,6 +720,11 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "bernstein/bernstein" => Some(share_load_bernstein)
     "amatrix/amatrix" => Some(share_load_amatrix)
     "charsets/charsets_flatten" => Some(share_load_charsets_flatten)
+    "draw/grcommon" => Some(share_load_grcommon)
+    "draw/gnuplot" => Some(share_load_gnuplot)
+    "draw/vtk" => Some(share_load_vtk)
+    "draw/picture" => Some(share_load_picture)
+    "format/miller-format" => Some(share_load_miller_format)
     _ => None
   }
 }

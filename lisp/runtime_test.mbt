@@ -512,3 +512,10 @@ test "expt double negative integer is pow" {
   inspect(try! expt(Value::Flo(2.0), Fix(-1075L)), content="0.0")
   inspect(try! expt(Value::Flo(2.0), Fix(-1074L)), content="4.9406564584124654e-324")
 }
+
+///|
+test "format ~d non-integer like sbcl" {
+  inspect(try! format_to_string("~10,'0d|", [Value::Str("42")]), content="42|")
+  inspect(try! format_to_string("~5d|", [Value::Flo(1.5)]), content="1.5|")
+  inspect(try! format_to_string("~5d|", [int(42)]), content="   42|")
+}

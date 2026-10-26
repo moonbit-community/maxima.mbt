@@ -9759,3 +9759,98 @@ fn register_share_picture() -> Unit {
   defun(q_d_read_xpm, args => d_read_xpm(arg(args, 0)))
   defun(q_read_xpm_from_stream, args => read_xpm_from_stream(arg(args, 0)))
 }
+
+///|
+fn register_share_descriptive_util() -> Unit {
+  defun(q_d_unique_in_sorted_array, args => d_unique_in_sorted_array(arg(args, 0)))
+  defun(q_d_vector_min_max, args => d_vector_min_max(arg(args, 0)))
+}
+
+///|
+fn register_share_wbd() -> Unit {
+  defun(q_longitude_latitude_projection_2d, args => longitude_latitude_projection_2d(arg(args, 0)))
+  defun(q_mercator_projection_2d, args => mercator_projection_2d(arg(args, 0)))
+  defun(q_miller_projection_2d, args => miller_projection_2d(arg(args, 0)))
+  defun(q_kavrayskiy_projection_2d, args => kavrayskiy_projection_2d(arg(args, 0)))
+  defun(q_geomap, args => geomap(arg(args, 0), proj?=args.get(1)))
+  defun(q_spherical_projection_3d, args => spherical_projection_3d(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_cylindrical_projection_3d, args => cylindrical_projection_3d(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_conic_projection_3d, args => conic_projection_3d(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_geomap3d, args => geomap3d(arg(args, 0), proj?=args.get(1)))
+}
+
+///|
+fn register_share_numdistrib() -> Unit {
+  defun(q_lngamma, args => lngamma(arg(args, 0)))
+  defun(q_lnbeta, args => lnbeta(arg(args, 0), arg(args, 1)))
+  defun(q_igamma, args => igamma(arg(args, 0), arg(args, 1)))
+  defun(q_ibeta, args => ibeta(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_iibeta, args => iibeta(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_iigamma, args => iigamma(arg(args, 0), arg(args, 1)))
+  defun(q_cdfnchi2, args => cdfnchi2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_qnchi2, args => qnchi2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_cdfnt, args => cdfnt(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_qnct, args => qnct(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndnormal_box, args => rndnormal_box())
+  defun(q_rndnormal, args => rndnormal(arg(args, 0)))
+  defun(q_rndexp_inverse, args => rndexp_inverse(arg(args, 0)))
+  defun(q_rndexp, args => rndexp(arg(args, 0), arg(args, 1)))
+  defun(q_rndgamma_ahrens_cheng, args => rndgamma_ahrens_cheng(arg(args, 0), arg(args, 1)))
+  defun(q_rndgamma, args => rndgamma(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndchi2, args => rndchi2(arg(args, 0), arg(args, 1)))
+  defun(q_rndnchi2_chi2_poisson, args => rndnchi2_chi2_poisson(arg(args, 0), arg(args, 1)))
+  defun(q_rndnchi2, args => rndnchi2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndstudent_ratio, args => rndstudent_ratio(arg(args, 0)))
+  defun(q_rndstudent, args => rndstudent(arg(args, 0), arg(args, 1)))
+  defun(q_rndncstudent_ratio, args => rndncstudent_ratio(arg(args, 0), arg(args, 1)))
+  defun(q_rndncstudent, args => rndncstudent(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndf_ratio, args => rndf_ratio(arg(args, 0), arg(args, 1)))
+  defun(q_rndf, args => rndf(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndbeta_cheng0, args => rndbeta_cheng0(arg(args, 0), arg(args, 1)))
+  defun(q_rndbeta_cheng, args => rndbeta_cheng(arg(args, 0), arg(args, 1)))
+  defun(q_rndbeta, args => rndbeta(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndbinomial_kachit, args => rndbinomial_kachit(arg(args, 0), arg(args, 1)))
+  defun(q_rndbinomial, args => rndbinomial(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndpoisson_ahrens, args => rndpoisson_ahrens(arg(args, 0)))
+  defun(q_rndpoisson, args => rndpoisson(arg(args, 0), arg(args, 1)))
+  defun(q_rndgeo_trials, args => rndgeo_trials(arg(args, 0)))
+  defun(q_rndgeo, args => rndgeo(arg(args, 0), arg(args, 1)))
+  defun(q_afc, args => afc(arg(args, 0)))
+  defun(q_rndhypergeo_kachit, args => rndhypergeo_kachit(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rndhypergeo, args => rndhypergeo(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_rndnegbinom_devroye, args => rndnegbinom_devroye(arg(args, 0), arg(args, 1)))
+  defun(q_rndnegbinom, args => rndnegbinom(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_to_poly_solve_extra() -> Unit {
+  defun(q_d_simp_inequality, args => d_simp_inequality(arg(args, 0)))
+  defun(q_simp__pctand, args => simp__pctand(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_disjunction_p, args => d_disjunction_p(arg(args, 0)))
+  defun(q_d_conjunction_p, args => d_conjunction_p(arg(args, 0)))
+  defun(q_simp__pctor, args => simp__pctor(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp__pctunion, args => simp__pctunion(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp__pctif, args => simp__pctif(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp__pctintegerp, args => simp__pctintegerp(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_isnonnegative_p, args => simp_isnonnegative_p(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_subst_parallel, args => d_subst_parallel(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_miller_format() -> Unit {
+  defun(q_d_format, args => d_format(arg(args, 0), rest_args(args, 1)))
+  defun(q_format_from_chain, args => format_from_chain(arg(args, 0), ear_templates?=args.get(1)))
+  defun(q_format_one, args => format_one(arg(args, 0), arg(args, 1)))
+  defun(q_d_format_piece, args => d_format_piece(arg(args, 0), nth_?=args.get(1)))
+  defun(q_format_w_slo_subtemplates, args => format_w_slo_subtemplates(arg(args, 0)))
+  defun(q_parse_template, args => parse_template(arg(args, 0)))
+  defun(q_template_p, args => template_p(arg(args, 0)))
+  defun(q_partition_arithmetic_template, args => partition_arithmetic_template(arg(args, 0), arg(args, 1)).0)
+  defun(q_d_coerce_bag, args => d_coerce_bag(arg(args, 0), arg(args, 1)))
+  defun(q_format_bag, args => format_bag(arg(args, 0), arg(args, 1)))
+  defun(q_format_nth, args => format_nth(arg(args, 0), arg(args, 1)))
+  defun(q_format_clist, args => format_clist(arg(args, 0), function?=args.get(1)))
+  defun(q_format_sum, args => format_sum(arg(args, 0)))
+  defun(q_format_product, args => format_product(arg(args, 0)))
+  defun(q_format_fraction, args => format_fraction(arg(args, 0)))
+}
