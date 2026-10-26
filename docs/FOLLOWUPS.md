@@ -26,3 +26,5 @@
 - PERF: port ~30-45x slower than SBCL on grobner (coefficient arithmetic in sratsimp/m*); profile later
 - Struct values hash to constant in hash tables (no identity hash) — add id field to LStruct
 - PERF profile: ~50% time in moonbit_incref/decref (RC on Value boxes), then eq, plist_get, car/cdr, alike. Startup 0.18s. expand/ratsimp benchmark ~17x slower than SBCL.
+- LHash iteration order after remhash+reinsert differs from SBCL's free-list reuse (graphs works around with share_graphs__remhash); SBCL behaviour is intricate (high-water mark + free list)
+- format ~a on non-$ Lisp symbols prints lowercase (SBCL prints upcase) — only error messages
