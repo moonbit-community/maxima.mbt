@@ -198,6 +198,11 @@ fn register_cl_functions() -> Unit {
   cl__def("remove", a => remove(arg(a, 0), arg(a, 1)))
   cl__def("delete", a => delete(arg(a, 0), arg(a, 1)))
   cl__def("subst", a => subst(arg(a, 0), arg(a, 1), arg(a, 2)))
+  cl__def("subseq", a => if a.length() > 2 && arg(a, 2).truthy() {
+    subseq(arg(a, 0), to_int(arg(a, 1)), end=to_int(arg(a, 2)))
+  } else {
+    subseq(arg(a, 0), to_int(arg(a, 1)))
+  })
   cl__def("lisp-implementation-type", _ => Str("MoonBit"))
   cl__def("lisp-implementation-version", _ => Str("0.1"))
 }

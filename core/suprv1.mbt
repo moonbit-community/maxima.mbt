@@ -1844,6 +1844,6 @@ fn init_suprv1() -> Unit raise {
   d_nounify(q_d_limit) |> ignore
   putprop(q_d_diff, q_p_derivative, q_verb) |> ignore
   putprop(q_p_derivative, q_d_diff, q_noun) |> ignore
-  setf_get(q_p_at_difference, q_dimension__pctat_difference, q_dimension)
+  setf_get(q_p_at_difference, q_dimension, q_dimension__pctat_difference)
   |> ignore
 }

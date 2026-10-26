@@ -11,6 +11,7 @@ pub fn initialize() -> Unit raise {
     init_cl_specials()
     init_generated()
     init_macdes()
+    globals__record_other_defmvars()
     register_cl_functions()
     init_cl__setup_paths()
   }

@@ -164,6 +164,46 @@ fn LReader::read(self : LReader) -> Value raise LispError {
           let tok = self.token()
           make_symbol(tok.0)
         }
+        '0'..='9' => {
+          // #nA(...): a rank-n array given as nested lists.
+          let mut rank = d.to_int() - '0'.to_int()
+          while self.i < self.cs.length() && self.cs[self.i] >= '0' &&
+                self.cs[self.i] <= '9' {
+            rank = rank * 10 + (self.cs[self.i].to_int() - '0'.to_int())
+            self.i += 1
+          }
+          if self.i >= self.cs.length() ||
+            (self.cs[self.i] != 'A' && self.cs[self.i] != 'a') {
+            raise SimpleError("lread: unsupported dispatch #\{rank}")
+          }
+          self.i += 1
+          let contents = self.read()
+          let dims : Array[Int] = []
+          let mut level = contents
+          for _ in 0..<rank {
+            dims.push(length(level))
+            level = car(level)
+          }
+          let data : Array[Value] = []
+          fn flat(x : Value, k : Int) -> Unit {
+            if k == rank {
+              data.push(x)
+            } else {
+              let mut l = x
+              while l is Cons(c) {
+                flat(c.car, k + 1)
+                l = c.cdr
+              }
+            }
+          }
+          flat(contents, 0)
+          let arr = make_array(dims)
+          match arr {
+            Vec(a) => a.data = data
+            _ => ()
+          }
+          arr
+        }
         _ => raise SimpleError("lread: unsupported dispatch #\{d}")
       }
     }

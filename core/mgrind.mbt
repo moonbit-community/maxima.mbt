@@ -810,7 +810,7 @@ fn init_mgrind() -> Unit raise {
   defprop(q_mprogn, q_msize_matchfix, q_grind)
   defprop(q_mprogn, list([list1(Char('(')), Char(')')]), q_strsym)
   defprop(q_mlist, q_msize_matchfix, q_grind)
-  setf_get(q_p_mlist, get(q_mlist, q_grind), q_grind) |> ignore
+  setf_get(q_p_mlist, q_grind, get(q_mlist, q_grind)) |> ignore
   defprop(q_mlabel, q_msize_mlabel, q_grind)
   defprop(q_mtext, q_msize_mtext, q_grind)
   defprop(q_spaceout, q_msize_spaceout, q_grind)
@@ -826,14 +826,14 @@ fn init_mgrind() -> Unit raise {
   defprop(q_mdefine, int(180), q_lbp)
   defprop(q_mdefine, int(20), q_rbp)
   // copy binding powers to nounified operator
-  setf_get(q_p_mdefine, get(q_mdefine, q_lbp), q_lbp) |> ignore
-  setf_get(q_p_mdefine, get(q_mdefine, q_rbp), q_rbp) |> ignore
+  setf_get(q_p_mdefine, q_lbp, get(q_mdefine, q_lbp)) |> ignore
+  setf_get(q_p_mdefine, q_rbp, get(q_mdefine, q_rbp)) |> ignore
   defprop(q_mdefmacro, q_msz_mdef, q_grind)
   defprop(q_mdefmacro, chars("::="), q_strsym)
   defprop(q_mdefmacro, int(180), q_lbp)
   defprop(q_mdefmacro, int(20), q_rbp)
-  setf_get(q_p_mdefmacro, get(q_mdefmacro, q_lbp), q_lbp) |> ignore
-  setf_get(q_p_mdefmacro, get(q_mdefmacro, q_rbp), q_rbp) |> ignore
+  setf_get(q_p_mdefmacro, q_lbp, get(q_mdefmacro, q_lbp)) |> ignore
+  setf_get(q_p_mdefmacro, q_rbp, get(q_mdefmacro, q_rbp)) |> ignore
   defprop(q_mexpt, q_msz_mexpt, q_grind)
   defprop(q_mexpt, int(140), q_lbp)
   defprop(q_mexpt, int(139), q_rbp)
