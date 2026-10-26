@@ -9,6 +9,9 @@ import {
   "dii/maxima/lapack",
   "dii/maxima/hompack",
   "dii/maxima/colnew",
+  "dii/maxima/fftpack5",
+  "dii/maxima/minpack",
+  "dii/maxima/cobyla",
   "moonbitlang/x/fs",
 }
 

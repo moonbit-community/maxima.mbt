@@ -23,6 +23,9 @@ pub(all) enum FArg {
   AS(String)
   AB(Bool)
   AC(Complex)
+  /// A value that formats itself: called with the directive it meets
+  /// (e.g. ~/bigfloat:format-e/ of the bigfloat-package COBYLA).
+  AFn((String) -> String)
 }
 
 ///|
@@ -107,11 +110,16 @@ fn execute_format(
             break
           }
         }
-      Forever(grp) =>
+      Forever(grp) => {
         while cur.pos < cur.args.length() {
           execute_format(false, sb, grp, cur)
           sb.write_char('\n')
         }
+        // The Lisp steps past the T but not past its group, so the text
+        // that follows the group is never printed: the data is used up and
+        // the trailing strings it would print start at the group.
+        return
+      }
       Lit(s) => format_text(sb, s)
     }
     i = i + 1
@@ -257,6 +265,10 @@ fn format_text(sb : StringBuilder, s : String) -> Unit {
 
 ///|
 fn format_directive(sb : StringBuilder, s : String, a : FArg) -> Unit {
+  if a is AFn(f) {
+    sb.write_string(f(s))
+    return
+  }
   let cs = s.to_array()
   let d = parse_directive(cs, 0)
   match d.ch {
@@ -325,6 +337,7 @@ fn farg_princ(a : FArg) -> String {
     AS(s) => s
     AB(b) => if b { "T" } else { "F" }
     AC(c) => "#C(" + c.re.to_string() + " " + c.im.to_string() + ")"
+    AFn(f) => f("~A")
   }
 }
 

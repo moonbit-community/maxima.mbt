@@ -1,0 +1,5 @@
+import {
+  "dii/maxima/f2cl",
+}
+
+warnings = "-unused_value-unused_mut-unreachable_code-unused_block_label-unused_loop_variable-unused_package-unused_type_declaration"

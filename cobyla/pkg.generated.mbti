@@ -1,0 +1,51 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/cobyla"
+
+import {
+  "moonbitlang/core/ref",
+}
+
+// Values
+pub fn[T : BfReal] bf_cobyla(Int32, Int32, Array[T], T, T, Int32, Int32, Array[T], FixedArray[Int32], Int32) -> (Int32, Int32) raise
+
+pub fn[T : BfReal] bf_cobylb(Int32, Int32, Int32, Array[T], T, T, Int32, Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, FixedArray[Int32], Int32) -> (Int32, Int32) raise
+
+pub fn[T : BfReal] bf_trstlp(Int32, Int32, Array[T], Int32, Array[T], Int32, T, Array[T], Int32, Int32, FixedArray[Int32], Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32, Array[T], Int32) -> Int32 raise
+
+pub let calcfc_hook : @ref.Ref[(Int32, Int32, FixedArray[Double], Double, FixedArray[Double], Int32) -> Double raise]
+
+pub fn cobyla(Int32, Int32, FixedArray[Double], Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Int32], Int32) -> (Int32, Int32) raise
+
+pub fn cobylb(Int32, Int32, Int32, FixedArray[Double], Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> (Int32, Int32) raise
+
+pub fn trstlp(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+pub(open) trait BfReal {
+  fn from_double(Double) -> Self
+  fn from_int(Int32) -> Self
+  fn add(Self, Self) -> Self raise
+  fn sub(Self, Self) -> Self raise
+  fn mul(Self, Self) -> Self raise
+  fn div(Self, Self) -> Self raise
+  fn neg(Self) -> Self raise
+  fn expt(Self, Self) -> Self raise
+  fn lt(Self, Self) -> Bool raise
+  fn gt(Self, Self) -> Bool raise
+  fn le(Self, Self) -> Bool raise
+  fn ge(Self, Self) -> Bool raise
+  fn eq(Self, Self) -> Bool raise
+  fn max(Self, Self) -> Self raise
+  fn min(Self, Self) -> Self raise
+  fn abs(Self) -> Self raise
+  fn sqrt(Self) -> Self raise
+  fn coerce_bigfloat(Self) -> Self raise
+  fn format_directive(Self, String) -> String
+  fn calcfc(Int32, Int32, Array[Self], Self, Array[Self], Int32) -> Self raise
+}

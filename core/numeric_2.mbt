@@ -1817,4 +1817,20 @@ fn init_numeric() -> Unit raise {
     arg(args, 0),
     state?=numeric__opt(args, 1),
   ))
+  // (defmethod print-object ((x bigfloat) stream) ...)
+  @lisp.struct_print_functions["bigfloat"] = lfunc("print-object", args => {
+    let r = cdr(bf_real_value(args[0]))
+    let (sign, output_list) = if minusp(car(r)) {
+      ("-", fpformat(bcons(list([num_neg(car(r)), cadr(r)]))))
+    } else {
+      ("+", fpformat(bcons(r)))
+    }
+    format(args[1], "~A~{~D~}", [Str(sign), output_list])
+  })
+  // (defmethod print-object ((x complex-bigfloat) stream) ...)
+  @lisp.struct_print_functions["complex-bigfloat"] = lfunc("print-object", args => format(
+    args[1],
+    "~A~A*%i",
+    [bf_realpart(args[0]), bf_imagpart(args[0])],
+  ))
 }

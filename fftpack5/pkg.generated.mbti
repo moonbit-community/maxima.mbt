@@ -1,0 +1,221 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/fftpack5"
+
+import {
+  "dii/maxima/f2cl",
+}
+
+// Values
+pub fn c1f2kb(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1f2kf(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1f3kb(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1f3kf(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1f4kb(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1f4kf(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1f5kb(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1f5kf(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1fgkb(Int32, Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1fgkf(Int32, Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn c1fm1b(Int32, Int32, FixedArray[@f2cl.Complex], FixedArray[Double], FixedArray[Double], Double, FixedArray[Double], Int32) -> Unit
+
+pub fn c1fm1f(Int32, Int32, FixedArray[@f2cl.Complex], FixedArray[Double], FixedArray[Double], Double, FixedArray[Double], Int32) -> Unit
+
+pub fn cfft1b(Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfft1f(Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfft1i(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfft2b(Int32, Int32, Int32, FixedArray[@f2cl.Complex], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfft2f(Int32, Int32, Int32, FixedArray[@f2cl.Complex], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfft2i(Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfftmb(Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfftmf(Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cfftmi(Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn cmf2kb(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmf2kf(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmf3kb(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmf3kf(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmf4kb(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmf4kf(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmf5kb(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmf5kf(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmfgkb(Int32, Int32, Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmfgkf(Int32, Int32, Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn cmfm1b(Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], FixedArray[Double], FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn cmfm1f(Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], FixedArray[Double], FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn cosq1b(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cosq1f(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cosq1i(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cosqb1(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32) -> Int32
+
+pub fn cosqf1(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32) -> Int32
+
+pub fn cosqmb(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cosqmf(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cosqmi(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cost1b(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cost1f(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn cost1i(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn costb1(Int32, Int32, FixedArray[Double], FixedArray[Double], Double, Int32) -> Int32
+
+pub fn costf1(Int32, Int32, FixedArray[Double], FixedArray[Double], Double, Int32) -> Int32
+
+pub fn costmi(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn factor(Int32, Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn mcfti1(Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Double
+
+pub fn mcsqb1(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32) -> Int32
+
+pub fn mcsqf1(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32) -> Int32
+
+pub fn mradb2(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradb3(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradb4(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradb5(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradbg(Int32, Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradf2(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradf3(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradf4(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradf5(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mradfg(Int32, Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mrftb1(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mrftf1(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn mrfti1(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn msntb1(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], FixedArray[Double], Double, Int32) -> Int32
+
+pub fn msntf1(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], FixedArray[Double], Double, Int32) -> Int32
+
+pub fn r1f2kb(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1f2kf(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1f3kb(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1f3kf(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1f4kb(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1f4kf(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1f5kb(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1f5kf(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1fgkb(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1fgkf(Int32, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn rfft1b(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn rfft1f(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn rfft1i(Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn rfft2b(Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn rfft2f(Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn rfft2i(Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn rfftb1(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn rfftf1(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn rffti1(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn rfftmb(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn rfftmf(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn rfftmi(Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn sinq1b(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sinq1f(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sinq1i(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sinqmb(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sinqmf(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sinqmi(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sint1b(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sint1f(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sint1i(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn sintb1(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Double, Int32) -> Int32
+
+pub fn sintf1(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Double, Int32) -> Int32
+
+pub fn sintmi(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn tables(Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn xercon(Int32, Int32, Int32, Int32) -> Bool
+
+pub fn xerfft(String, Int32) -> Unit
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

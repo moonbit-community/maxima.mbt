@@ -89,6 +89,7 @@
   "colnew/colnew-if"
  ],
  "fftpack5/load-fftpack5": [
+  "fftpack5/fftpack5",
   "fftpack5/fftpack5-interface"
  ],
  "gentran/gentran": [
