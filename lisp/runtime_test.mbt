@@ -569,3 +569,11 @@ test "process primitives" {
   inspect(shell_command_output("printf hello"), content="(0, hello)")
   assert_true(current_directory().length() > 0)
 }
+
+///|
+test "format radix directives print upper-case digits" {
+  inspect(
+    try! format_to_string("&#x~x;|~16r|~b", [int(60), int(255), int(5)]),
+    content="&#x3C;|FF|101",
+  )
+}
