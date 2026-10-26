@@ -720,7 +720,7 @@ fn fmap1(fn_ : Value, argl : Value, fmapcaarl : Value) -> Value raise {
         if !done {
           done = cdar(eleml) is Nil
         }
-        carargl = nconc(carargl, list1(caareleml))
+        carargl = cons(caareleml, carargl)
         cdrargl = nconc(cdrargl, list1(cdar(eleml)))
         eleml = cdr(eleml)
       }
