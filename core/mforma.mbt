@@ -449,8 +449,69 @@ fn mformat_open(
       list1(sstring),
     )
   } else {
-    mformat_translate_open(cons(stream, cons(sstring, other_shit)))
+    // The Lisp macro expands into the printing code built by
+    // MFORMAT-TRANSLATE-OPEN; the port runs that code.
+    mforma__run_open_code(
+      mformat_translate_open(cons(stream, cons(sstring, other_shit))),
+    )
   }
+}
+
+///|
+/// Execute the `(progn ...)` printing code produced by
+/// OPTIMIZE-PRINT-INST.  Its forms are `(princ x [stream])`,
+/// `(prin1 x [stream])`, `(terpri [stream])`, `(fresh-line stream)`,
+/// `(displa arg)`, `(displaf arg stream)` and `(mgrind arg stream)`, where a
+/// text argument is `(quote text)`, a ~M argument is `(progn x)` or
+/// `(getop x)`, and the other arguments are the mformat argument values.
+fn mforma__run_open_code(code : Value) -> Value raise {
+  let marg = (x : Value) => if consp(x) && eq(car(x), q_getop) {
+    getop(cadr(x))
+  } else if consp(x) && eq(car(x), q_progn) {
+    cadr(x)
+  } else {
+    x
+  }
+  let text = (x : Value) => if consp(x) && eq(car(x), q_quote) {
+    cadr(x)
+  } else {
+    x
+  }
+  let mut result : Value = Nil
+  for f in cdr(code).iter() {
+    let op = car(f)
+    let st = caddr(f)
+    result = if eq(op, q_princ) || eq(op, q_prin1) {
+      let x = text(cadr(f))
+      let p = eq(op, q_princ)
+      match st {
+        Nil => if p { princ(x) } else { prin1(x) }
+        _ => if p { princ(x, stream=st) } else { prin1(x, stream=st) }
+      }
+    } else if eq(op, q_terpri) {
+      match cadr(f) {
+        Nil => terpri()
+        s => terpri(stream=s)
+      }
+      Nil
+    } else if eq(op, q_fresh_line) {
+      match cadr(f) {
+        Nil => lbool(fresh_line())
+        s => lbool(fresh_line(stream=s))
+      }
+    } else if eq(op, q_displa) {
+      displa(marg(cadr(f)))
+    } else if eq(op, q_displaf) {
+      displaf(marg(cadr(f)), st)
+    } else if eq(op, q_mgrind) {
+      mgrind(marg(cadr(f)), st)
+    } else {
+      raise LispError::SimpleError(
+        "mformat-open: unexpected code " + prin1_to_string(f),
+      )
+    }
+  }
+  result
 }
 
 ///|
