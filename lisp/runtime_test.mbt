@@ -466,3 +466,10 @@ test "expt like sbcl" {
   inspect(try! num_sub(Value::Cplx(Value::Flo(2.0), Value::Flo(-0.0)), Value::Fix(1L)), content="#C(1.0 -0.0)")
   inspect(try! num_sub(Value::Fix(1L), Value::Cplx(Value::Flo(2.0), Value::Flo(-0.0))), content="#C(-1.0 0.0)")
 }
+
+///|
+test "eq on bignums is identity" {
+  let b = try! expt(Fix(10L), Fix(30L))
+  inspect(eq(b, b), content="true")
+  inspect(eq(b, try! expt(Fix(10L), Fix(30L))), content="false")
+}

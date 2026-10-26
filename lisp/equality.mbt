@@ -16,6 +16,10 @@ pub fn eq(a : Value, b : Value) -> Bool {
     (Stream(x), Stream(y)) => physical_equal(x, y)
     (Box(x), Box(y)) => physical_equal(x, y)
     (Flo(x), Flo(y)) => x == y && dsignbit(x) == dsignbit(y)
+    // Bignums, ratios and complexes are heap objects in CL: EQ is identity.
+    (Big(_), Big(_)) => physical_equal(a, b)
+    (Ratio(_, _), Ratio(_, _)) => physical_equal(a, b)
+    (Cplx(_, _), Cplx(_, _)) => physical_equal(a, b)
     _ => false
   }
 }
