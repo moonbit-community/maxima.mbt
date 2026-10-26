@@ -8,6 +8,11 @@ fn nforma__type_of(form : Value) -> Value {
   match form {
     Ratio(_, _) => q_ratio
     Cplx(_, _) => q_complex
+    // The numeric.lisp classes are BIGFLOAT::BIGFLOAT and
+    // BIGFLOAT::COMPLEX-BIGFLOAT, not Maxima's BIGFLOAT (which has a
+    // formatter for ((bigfloat) m e) forms).
+    Struct(s) if s.stype.name == "bigfloat" || s.stype.name == "complex-bigfloat" =>
+      sym("bigfloat::" + s.stype.name)
     Struct(s) => Sym(s.stype)
     _ => Nil
   }

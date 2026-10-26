@@ -158,7 +158,8 @@ def parse_atom(tok):
         name = "f2cl-lib:" + name[len("f2cl-lib::"):]
     for pre in ("cl:", "common-lisp:", "slatec::", "slatec:", "odepack::", "odepack:",
                 "lapack::", "lapack:", "blas::", "blas:", "common-lisp-user::",
-                "fftpack5::", "fftpack5:", "minpack::", "minpack:", "cobyla::", "cobyla:"):
+                "fftpack5::", "fftpack5:", "minpack::", "minpack:", "cobyla::", "cobyla:",
+                "bigfloat::", "bigfloat:"):
         if name.startswith(pre):
             name = name[len(pre):]
     return Sym(name)
@@ -270,6 +271,10 @@ USER_FN = Sig(["D"], [(0, "D")], True)
 
 
 def mbt_type(t):
+    if t == "V":
+        return "T"
+    if t == ("A", "V"):
+        return "Array[T]"
     if t == "I":
         return "Int"
     if t == "D":
@@ -302,8 +307,9 @@ def resolve_t(t):
     return t
 
 
-ELEM_MBT = {"D": "Double", "I": "Int", "C": "Complex", "B": "Bool", "F": "Float"}
-ELEM_ZERO = {"D": "0.0", "I": "0", "C": "c_zero", "B": "false", "F": "Float::from_double(0.0)"}
+ELEM_MBT = {"D": "Double", "I": "Int", "C": "Complex", "B": "Bool", "F": "Float", "V": "T"}
+ELEM_ZERO = {"D": "0.0", "I": "0", "C": "c_zero", "B": "false", "F": "Float::from_double(0.0)",
+             "V": "T::from_double(0.0)"}
 
 
 def is_array_type(t):
@@ -321,6 +327,9 @@ def ret_type(ts):
 def parse_type(spec):
     """Parse a type spec from a DECLARE (type <spec> vars...)."""
     s = spec
+    bt = bf_parse_type(s)
+    if bt is not None:
+        return bt
     if isinstance(s, list) and len(s) >= 1 and head(s) in ("array", "simple-array"):
         el = s[1]
         if isinstance(el, list) and len(el) == 1:
@@ -845,6 +854,10 @@ def mark_hook_callers():
     for fd in FNS.values():
         if fd.hand:
             continue
+        if LIB.get("bf"):
+            # the generic arithmetic raises
+            fd.raises = True
+            continue
         found = []
 
         def visit(x):
@@ -858,7 +871,7 @@ def mark_hook_callers():
 
 def emit_hooks(out_dir):
     hooks = LIB.get("hooks", {})
-    if not hooks:
+    if not hooks or LIB.get("bf"):
         return
     lines = [LIB["header"] % "hooks"]
     for name, sig in sorted(hooks.items()):
@@ -931,6 +944,8 @@ def wrap(code):
 def conv(code, frm, to):
     if frm == to:
         return code
+    if to == "V":
+        return bf_to_v(code, frm)
     if to == "D":
         if frm == "I":
             if re.match(r"^-?\d+$", code.strip("()")):
@@ -951,6 +966,10 @@ def conv(code, frm, to):
 
 
 def contagion(a, b):
+    if a == "V" or b == "V":
+        if a in ("V", "D", "F", "I") and b in ("V", "D", "F", "I"):
+            return "V"
+        raise TransError("contagion %s %s" % (a, b))
     if a == "C" or b == "C":
         if a in ("C", "D", "I") and b in ("C", "D", "I"):
             return "C"
@@ -1069,6 +1088,8 @@ def expr(ctx, x):
     if h == "coerce":
         c, t = expr(ctx, args[0])
         target = args[1][1]
+        if is_sym(target, "bigfloat"):
+            return ("T::coerce_bigfloat(%s)" % strip_paren(conv(c, t, "V")), "V")
         if is_sym(target, "double-float"):
             return (conv(c, t, "D"), "D")
         if is_sym(target, "f2cl-lib:integer4"):
@@ -1130,6 +1151,11 @@ def expr(ctx, x):
         return ("cplx(%s, %s)" % (strip_paren(conv(c1, t1, "D")), strip_paren(c2)), "C")
     if h == "f2cl-lib:fref":
         return array_ref(ctx, x)
+    if h in ("abs", "sqrt") and LIB.get("bf"):
+        # the generic ABS and SQRT of the BIGFLOAT package
+        c, t = expr(ctx, args[0])
+        if t in ("V", "D", "F"):
+            return ("T::%s(%s)" % (h, strip_paren(conv(c, t, "V"))), "V")
     if h in ("abs", "f2cl-lib:dabs", "f2cl-lib:iabs", "f2cl-lib:cdabs"):
         c, t = expr(ctx, args[0])
         if t == "I":
@@ -1194,6 +1220,9 @@ def expr(ctx, x):
     if h == "expt":
         c1, t1 = expr(ctx, args[0])
         c2, t2 = expr(ctx, args[1])
+        if LIB.get("bf") and "V" in (t1, t2):
+            # the generic EXPT of the BIGFLOAT package
+            return ("T::expt(%s, %s)" % (strip_paren(conv(c1, t1, "V")), strip_paren(conv(c2, t2, "V"))), "V")
         if t1 == "F" and t2 == "F":
             return ("Float::from_double(f_pow(%s, %s))" % (conv(c1, t1, "D"), conv(c2, t2, "D")), "F")
         if t1 == "I" and t2 == "I":
@@ -1297,6 +1326,9 @@ def complex_op(op, c, t, c2, t2):
 def arith(ctx, op, args, int_only=False):
     if len(args) == 1:
         c, t = expr(ctx, args[0])
+        if t == "V" and op in "-/":
+            return ("T::neg(%s)" % strip_paren(c) if op == "-" else
+                    "T::div(T::from_double(1.0), %s)" % strip_paren(c), t)
         if op == "-":
             if t == "C":
                 return ("c_neg(%s)" % strip_paren(c), t)
@@ -1315,6 +1347,10 @@ def arith(ctx, op, args, int_only=False):
         rt = contagion(t, t2)
         if rt == "C":
             c = complex_op(op, c, t, c2, t2)
+            t = rt
+            continue
+        if rt == "V":
+            c = "T::%s(%s, %s)" % (BF_OPS[op], strip_paren(conv(c, t, rt)), strip_paren(conv(c2, t2, rt)))
             t = rt
             continue
         if op == "/" and rt == "I":
@@ -1341,6 +1377,10 @@ def compare(ctx, op, args):
         if t1 == "B" or t2 == "B":
             raise TransError("compare booleans")
         rt = contagion(t1, t2)
+        if rt == "V":
+            cmp_ = "T::%s(%s, %s)" % (BF_CMP[op], strip_paren(conv(c1, t1, rt)), strip_paren(conv(c2, t2, rt)))
+            parts.append("!" + cmp_ if op == "!=" else cmp_)
+            continue
         if rt == "C":
             if op not in ("==", "!="):
                 raise TransError("complex ordering")
@@ -1356,6 +1396,11 @@ def minmax(ctx, h, args):
     t = cs[0][1]
     for _, t2 in cs[1:]:
         t = contagion(t, t2)
+    if t == "V":
+        c = conv(cs[0][0], cs[0][1], t)
+        for c2, t2 in cs[1:]:
+            c = "T::%s(%s, %s)" % (h, strip_paren(c), strip_paren(conv(c2, t2, t)))
+        return (c, t)
     pre = {"I": "i_", "D": "d_", "F": "s_"}[t]
     c = conv(cs[0][0], cs[0][1], t)
     for c2, t2 in cs[1:]:
@@ -1476,6 +1521,9 @@ def callee_info(ctx, fsym, funcall):
         return v.code, [resolve_t(t) for t in sig.args], [None] * len(sig.args), sig.slots, None
     if fsym.name in LIB.get("hooks", {}):
         sig = LIB["hooks"][fsym.name]
+        if LIB.get("bf"):
+            # a method of the BfReal trait
+            return "T::" + mb_ident(fsym.name), list(sig.args), [None] * len(sig.args), sig.slots, None
         return "(" + hook_name(fsym.name) + ".val)", list(sig.args), [None] * len(sig.args), sig.slots, None
     cd = FNS[fsym.name]
     return mb_fn_name(cd.name), [cd.ptypes[p] for p in cd.params], cd.params, cd.slots(), cd
@@ -1559,7 +1607,7 @@ def call_expr(ctx, fsym, args, funcall=False):
 
 
 def mb_fn_name(name):
-    return mb_ident(name)
+    return LIB.get("fn_prefix", "") + mb_ident(name)
 
 
 def mvb_expr(ctx, x):
@@ -1838,6 +1886,54 @@ def copy_seq(ctx, x):
         raise TransError("f2cl-copy-seq %r" % (x,))
 
 
+# ---------------------------------------------------------------------------
+# Code in the BIGFLOAT package (bf-cobyla: f2cl output edited to use
+# Maxima's generic bigfloat arithmetic).  Its (or real bigfloat) values have
+# type 'V', translated to a type parameter T : BfReal whose methods are that
+# arithmetic (the instance in core wraps a Lisp value and calls numeric.lisp's
+# generic functions); arrays of them are Array[T].
+
+BF_OPS = {"+": "add", "-": "sub", "*": "mul", "/": "div"}
+BF_CMP = {"<": "lt", ">": "gt", "<=": "le", ">=": "ge", "==": "eq", "!=": "eq"}
+
+
+def bf_parse_type(s):
+    if not LIB or not LIB.get("bf"):
+        return None
+    if is_sym(s, "bigfloat"):
+        return "V"
+    if isinstance(s, list) and head(s) == "or" and any(is_sym(x, "bigfloat") for x in s[1:]):
+        return "V"
+    if isinstance(s, list) and len(s) >= 2 and head(s) in ("array", "simple-array"):
+        el = s[1]
+        if isinstance(el, list) and len(el) == 1:
+            el = el[0]
+        if is_sym(el, "bigfloat"):
+            return ("A", "V")
+    return None
+
+
+def bf_to_v(code, frm):
+    """A CL number of type FRM as a T (the Lisp value is the same number)."""
+    if frm == "I":
+        return "T::from_int(%s)" % strip_paren(code)
+    if frm == "D":
+        return "T::from_double(%s)" % strip_paren(code)
+    if frm == "F":
+        return "T::from_double(%s.to_double())" % wrap(code)
+    raise TransError("cannot convert %s -> V (%s)" % (frm, code))
+
+
+def farg_code(ctx, c, t):
+    """An FFORMAT argument.  A T value is formatted by the directive it meets
+    (~w,d,e,k,'o,,'E/bigfloat:format-e/), which the callback receives."""
+    if t == "V":
+        v = ctx.fresh("fv")
+        ctx.emit("let %s = %s" % (v, strip_paren(c)))
+        return "AFn(fn(d) { T::format_directive(%s, d) })" % v
+    return "%s(%s)" % (FARG[t], strip_paren(c))
+
+
 def fmt_items(items):
     """MoonBit FmtItem array for an f2cl format list (see EXECUTE-FORMAT)."""
     out = []
@@ -1860,7 +1956,7 @@ def fmt_items(items):
     return "[" + ", ".join(out) + "]"
 
 
-FARG = {"I": "AI", "D": "AD", "S": "AS", "B": "AB", "C": "AC"}
+FARG = {"I": "AI", "D": "AD", "S": "AS", "B": "AB", "C": "AC", "V": "AFn"}
 
 
 def fformat_stmt(ctx, x):
@@ -1881,7 +1977,7 @@ def fformat_stmt(ctx, x):
             implied_do(ctx, a, fa)
             continue
         c, t = expr(ctx, a)
-        ctx.emit("%s.push(%s(%s))" % (fa, FARG[t], strip_paren(c)))
+        ctx.emit("%s.push(%s)" % (fa, farg_code(ctx, c, t)))
     ctx.emit("fformat(%s, %s, %s)" % (uc, items, fa))
 
 
@@ -1902,7 +1998,7 @@ def implied_do(ctx, a, fa):
     ec, _ = expr(ctx, test[2])
     ctx.emit("while %s <= %s {" % (iv, wrap(ec)))
     c, t = expr(ctx, body[0][1])
-    ctx.emit("  %s.push(%s(%s))" % (fa, FARG[t], strip_paren(c)))
+    ctx.emit("  %s.push(%s)" % (fa, farg_code(ctx, c, t)))
     nc, _ = expr(ctx, step)
     ctx.emit("  %s = %s" % (iv, strip_paren(nc)))
     ctx.emit("}")
@@ -2329,6 +2425,8 @@ def init_value(form, typ, consts=None):
 def literal_conv(code, frm, to):
     if frm == to:
         return code
+    if to == "V":
+        return bf_to_v(code, frm)
     if frm == "I" and to == "D":
         return fmt_double(float(int(code)))
     if frm == "D" and to == "F":
@@ -2555,8 +2653,9 @@ def gen_function(fd):
         lines.append(label_code)
     lines.append("///|")
     lines.append("/// Translated from %s %s (%s/%s.lisp)." % (LIB["what"], fd.name.upper(), LIB["srcrel"], fd.file))
-    sigline = "pub fn %s(%s) -> %s%s {" % (mb_fn_name(fd.name), ", ".join(sig_parts), rt,
-                                           " raise" if fd.raises else "")
+    sigline = "pub fn %s%s(%s) -> %s%s {" % (LIB.get("generic", ""), mb_fn_name(fd.name),
+                                             ", ".join(sig_parts), rt,
+                                             " raise" if fd.raises else "")
     lines.append(sigline)
     for p in pre:
         lines.append("  " + p)
@@ -4917,6 +5016,9 @@ MINPACK_SIGS = {
 # Routines called by name that the user supplies (Maxima's interface defines
 # them): a package-level hook holding a closure.  COBYLA's
 # CALCFC(N, M, X, F, CON) returns F; CON is a section of COBYLA's work array.
+BF_COBYLA_HOOKS = {
+    "calcfc": Sig(["I", "I", ("A", "V"), "V", ("AO", "V")], [(3, "V")], True),
+}
 COBYLA_HOOKS = {
     "calcfc": Sig(["I", "I", ("A", "D"), "D", ("AO", "D")], [(3, "D")], True),
 }
@@ -4971,6 +5073,14 @@ def lib_config(name):
                     srcrel="share/cobyla/lisp", hand=[], user_sigs={}, files=files,
                     hooks=COBYLA_HOOKS,
                     header=share_header("share/cobyla/lisp", "Powell's COBYLA"))
+    if name == "bf-cobyla":
+        d = os.path.join(SHARE_DIR, "cobyla", "lisp")
+        files = [os.path.join(d, f + ".lisp") for f in ["bf-cobyla", "bf-cobylb", "bf-trstlp"]]
+        return dict(name="bf-cobyla", out=os.path.join(ROOT, "cobyla"), what="COBYLA routine",
+                    srcrel="share/cobyla/lisp", hand=[], user_sigs={}, files=files,
+                    hooks=BF_COBYLA_HOOKS, bf=True, fn_prefix="bf_", generic="[T : BfReal]",
+                    header=share_header("share/cobyla/lisp",
+                                        "Powell's COBYLA, edited for bigfloat arithmetic"))
     raise SystemExit("unknown library %s" % name)
 
 

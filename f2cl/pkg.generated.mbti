@@ -126,6 +126,7 @@ pub(all) enum FArg {
   AS(String)
   AB(Bool)
   AC(Complex)
+  AFn((String) -> String)
 }
 
 pub(all) enum FmtItem {

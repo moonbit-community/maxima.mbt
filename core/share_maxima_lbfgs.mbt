@@ -17,10 +17,21 @@ fn share_f2cl__double(v : Value) -> Double raise {
 
 ///|
 /// Formatted output of the f2cl routines (Fortran unit 6) goes to Maxima's
-/// standard output.
+/// standard output: f2cl-lib's LUN->STREAM caches the *STANDARD-OUTPUT* of
+/// the first write in *LUN-HASH* (shared by all f2cl code) and uses that
+/// stream from then on.
 fn share_f2cl__install_output() -> Unit {
-  @f2cl.output_hook.val = s => write_string(s)
+  @f2cl.output_hook.val = s => {
+    if share_f2cl__lun6.val is Nil {
+      share_f2cl__lun6.val = symval(standard_output)
+    }
+    write_string(s, stream=share_f2cl__lun6.val)
+  }
 }
+
+///|
+/// The stream cached for Fortran unit 6 (NIL until the first write).
+let share_f2cl__lun6 : Ref[Value] = { val: Nil }
 
 ///|
 /// COERCE-FLOAT-FUN of plot.lisp (ported in intpol.mbt).
