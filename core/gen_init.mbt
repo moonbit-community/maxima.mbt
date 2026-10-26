@@ -260,91 +260,109 @@ fn share_load_numericalio() -> Unit raise {
 ///|
 fn share_load_macros() -> Unit raise {
   register_share_macros()
+  init_share_macros()
 }
 
 ///|
 fn share_load_operations() -> Unit raise {
   register_share_operations()
+  init_share_operations()
 }
 
 ///|
 fn share_load_chbase() -> Unit raise {
   register_share_chbase()
+  init_share_chbase()
 }
 
 ///|
 fn share_load_util() -> Unit raise {
   register_share_util()
+  init_share_util()
 }
 
 ///|
 fn share_load_lecteur() -> Unit raise {
   register_share_lecteur()
+  init_share_lecteur()
 }
 
 ///|
 fn share_load_ecrivain() -> Unit raise {
   register_share_ecrivain()
+  init_share_ecrivain()
 }
 
 ///|
 fn share_load_arite() -> Unit raise {
   register_share_arite()
+  init_share_arite()
 }
 
 ///|
 fn share_load_elem() -> Unit raise {
   register_share_elem()
+  init_share_elem()
 }
 
 ///|
 fn share_load_pui() -> Unit raise {
   register_share_pui()
+  init_share_pui()
 }
 
 ///|
 fn share_load_schur() -> Unit raise {
   register_share_schur()
+  init_share_schur()
 }
 
 ///|
 fn share_load_direct() -> Unit raise {
   register_share_direct()
+  init_share_direct()
 }
 
 ///|
 fn share_load_kak() -> Unit raise {
   register_share_kak()
+  init_share_kak()
 }
 
 ///|
 fn share_load_partpol() -> Unit raise {
   register_share_partpol()
+  init_share_partpol()
 }
 
 ///|
 fn share_load_multmon() -> Unit raise {
   register_share_multmon()
+  init_share_multmon()
 }
 
 ///|
 fn share_load_permut() -> Unit raise {
   register_share_permut()
+  init_share_permut()
 }
 
 ///|
 fn share_load_treillis() -> Unit raise {
   register_share_treillis()
+  init_share_treillis()
 }
 
 ///|
 fn share_load_resolv1() -> Unit raise {
   register_share_resolv1()
+  init_share_resolv1()
 }
 
 ///|
 fn share_load_resolcayley() -> Unit raise {
   register_share_resolcayley()
+  init_share_resolcayley()
 }
 
 ///|
@@ -594,6 +612,22 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "numericalio/encode-decode-float" => Some(share_load_encode_decode_float)
     "numericalio/numericalio" => Some(share_load_numericalio)
     "sym/macros" => Some(share_load_macros)
+    "sym/operations" => Some(share_load_operations)
+    "sym/chbase" => Some(share_load_chbase)
+    "sym/util" => Some(share_load_util)
+    "sym/lecteur" => Some(share_load_lecteur)
+    "sym/ecrivain" => Some(share_load_ecrivain)
+    "sym/arite" => Some(share_load_arite)
+    "sym/elem" => Some(share_load_elem)
+    "sym/pui" => Some(share_load_pui)
+    "sym/schur" => Some(share_load_schur)
+    "sym/direct" => Some(share_load_direct)
+    "sym/kak" => Some(share_load_kak)
+    "sym/partpol" => Some(share_load_partpol)
+    "sym/multmon" => Some(share_load_multmon)
+    "sym/permut" => Some(share_load_permut)
+    "sym/treillis" => Some(share_load_treillis)
+    "sym/resolv1" => Some(share_load_resolv1)
     "sym/resolcayley" => Some(share_load_resolcayley)
     "graphs/graph_core" => Some(share_load_graph_core)
     "graphs/spring_embedding" => Some(share_load_spring_embedding)
