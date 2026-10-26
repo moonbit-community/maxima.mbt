@@ -3,6 +3,10 @@ import {
   "moonbitlang/core/bigint",
   "moonbitlang/core/math",
   "dii/maxima/slatec",
+  "dii/maxima/f2cl",
+  "dii/maxima/lbfgs",
+  "dii/maxima/odepack",
+  "dii/maxima/lapack",
   "moonbitlang/x/fs",
 }
 

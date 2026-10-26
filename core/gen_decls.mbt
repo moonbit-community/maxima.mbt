@@ -31711,6 +31711,103 @@ declare fn d_read_xpm(mfspec : Value) -> Value raise
 /// defun read-xpm-from-stream -- ../share/draw/picture.lisp:376
 declare fn read_xpm_from_stream(image : Value) -> Value raise
 
+///|
+/// defmfun $lbfgs -- ../share/lbfgs/maxima-lbfgs.lisp:75
+declare fn d_lbfgs(fom_expr : Value, x_list : Value, x_initial : Value, eps : Value, iprint_list : Value) -> Value raise
+
+///|
+/// defmfun $dlsode_init -- ../share/odepack/dlsode-interface.lisp:26
+declare fn d_dlsode_init(f : Value, vars : Value, mf : Value) -> Value raise
+
+///|
+/// defmfun $dlsode_step -- ../share/odepack/dlsode-interface.lisp:110
+declare fn d_dlsode_step(init_y : Value, tt : Value, tout : Value, rtol : Value, atol : Value, istate : Value, state : Value) -> Value raise
+
+///|
+/// defmfun $dlsode -- ../share/odepack/dlsode-interface.lisp:220
+declare fn d_dlsode(f : Value, yvars : Value, inity : Value, trange : Value, rtol : Value, atol : Value, mf : Value) -> Value raise
+
+///|
+/// defun maxima-matrix-dims -- ../share/lapack/eigensys.lisp:3
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn maxima_matrix_dims(a : Value) -> (Value, Value) raise
+
+///|
+/// defun complex-maxima-matrix-p -- ../share/lapack/eigensys.lisp:8
+declare fn complex_maxima_matrix_p(a : Value) -> Value raise
+
+///|
+/// defun lapack-lispify-matrix -- ../share/lapack/eigensys.lisp:15
+declare fn lapack_lispify_matrix(a : Value, nrow : Value, ncol : Value, assume_complex_maxima_matrix_p? : Value = Nil) -> Value raise
+
+///|
+/// defun lapack-maxify-matrix -- ../share/lapack/eigensys.lisp:41
+declare fn lapack_maxify_matrix(nrow : Value, ncol : Value, a : Value) -> Value raise
+
+///|
+/// defun $dgeev -- ../share/lapack/eigensys.lisp:56
+declare fn d_dgeev(a : Value, right_vec_p? : Value = Nil, left_vec_p? : Value = Nil) -> Value raise
+
+///|
+/// defun $dgesvd -- ../share/lapack/eigensys.lisp:162
+declare fn d_dgesvd(a : Value, jobu? : Value = Nil, jobvt? : Value = Nil) -> Value raise
+
+///|
+/// defun $dlange -- ../share/lapack/eigensys.lisp:246
+declare fn d_dlange(norm : Value, a : Value) -> Value raise
+
+///|
+/// defun $zlange -- ../share/lapack/eigensys.lisp:277
+declare fn d_zlange(norm : Value, a : Value) -> Value raise
+
+///|
+/// defun $zgeev -- ../share/lapack/eigensys.lisp:307
+declare fn d_zgeev(a : Value, right_vec_p? : Value = Nil, left_vec_p? : Value = Nil) -> Value raise
+
+///|
+/// defun $zheev -- ../share/lapack/eigensys.lisp:373
+declare fn d_zheev(a : Value, eigen_vector_p? : Value = Nil) -> Value raise
+
+///|
+/// defun $dgesv -- ../share/lapack/dgesv.lisp:12
+declare fn d_dgesv(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $dgeqrf -- ../share/lapack/dgeqrf.lisp:10
+declare fn d_dgeqrf(a : Value) -> Value raise
+
+///|
+/// defun dgeqrf-unpack -- ../share/lapack/dgeqrf.lisp:40
+declare fn dgeqrf_unpack(a_nrow : Value, a_ncol : Value, a_mat : Value, tau : Value) -> Value raise
+
+///|
+/// defun dgeqrf-unpack-r -- ../share/lapack/dgeqrf.lisp:46
+declare fn dgeqrf_unpack_r(a_nrow : Value, a_ncol : Value, a_mat : Value) -> Value raise
+
+///|
+/// defun dgeqrf-unpack-q -- ../share/lapack/dgeqrf.lisp:61
+declare fn dgeqrf_unpack_q(a_nrow : Value, a_ncol : Value, a_mat : Value, tau : Value) -> Value raise
+
+///|
+/// defun dgeqrf-h -- ../share/lapack/dgeqrf.lisp:71
+declare fn dgeqrf_h(i : Value, tau : Value, a_nrow : Value, a_mat : Value) -> Value raise
+
+///|
+/// defun dgeqrf-v -- ../share/lapack/dgeqrf.lisp:83
+declare fn dgeqrf_v(i : Value, j : Value, a_nrow : Value, a_mat : Value) -> Value raise
+
+///|
+/// defun dgeqrf-multiply-into -- ../share/lapack/dgeqrf.lisp:89
+declare fn dgeqrf_multiply_into(n : Value, mat_1 : Value, mat_2 : Value) -> Value raise
+
+///|
+/// defun dgeqrf-inner-product -- ../share/lapack/dgeqrf.lisp:97
+declare fn dgeqrf_inner_product(n : Value, mat_1 : Value, mat_2 : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defmfun $dgemm -- ../share/lapack/dgemm.lisp:5
+declare fn d_dgemm(a : Value, b : Value, c? : Value = Nil, transpose_a? : Value = Nil, transpose_b? : Value = Nil, alpha? : Value = Flo(1.0), beta? : Value = Flo(0.0)) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -34966,4 +35063,28 @@ declare fn init_share_vtk() -> Unit raise
 ///|
 /// top-level forms of ../share/draw/picture.lisp
 declare fn init_share_picture() -> Unit raise
+
+///|
+/// top-level forms of ../share/lbfgs/maxima-lbfgs.lisp
+declare fn init_share_maxima_lbfgs() -> Unit raise
+
+///|
+/// top-level forms of ../share/odepack/dlsode-interface.lisp
+declare fn init_share_dlsode_interface() -> Unit raise
+
+///|
+/// top-level forms of ../share/lapack/eigensys.lisp
+declare fn init_share_eigensys() -> Unit raise
+
+///|
+/// top-level forms of ../share/lapack/dgesv.lisp
+declare fn init_share_dgesv() -> Unit raise
+
+///|
+/// top-level forms of ../share/lapack/dgeqrf.lisp
+declare fn init_share_dgeqrf() -> Unit raise
+
+///|
+/// top-level forms of ../share/lapack/dgemm.lisp
+declare fn init_share_dgemm() -> Unit raise
 

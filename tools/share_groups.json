@@ -56,5 +56,21 @@
   "draw/gnuplot",
   "draw/vtk",
   "draw/picture"
- ]
+ ],
+ "lapack/load-lapack": [
+  "lapack/eigensys",
+  "lapack/dgesv",
+  "lapack/dgeqrf",
+  "lapack/dgemm"
+ ],
+ "odepack/load-dlsode": [
+  "odepack/dlsode-interface"
+ ],
+ "lbfgs/lbfgs-daxpy": [],
+ "lbfgs/lbfgs-ddot": [],
+ "lbfgs/lb2": [],
+ "lbfgs/lb1": [],
+ "lbfgs/mcstep": [],
+ "lbfgs/mcsrch": [],
+ "lbfgs/lbfgs": []
 }

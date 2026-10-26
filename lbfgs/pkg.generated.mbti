@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/lbfgs"
+
+// Values
+pub fn blockdata_lb2() -> Unit
+
+pub fn daxpy(Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn ddot(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Double
+
+pub fn lb1(FixedArray[Int32], Int32, Int32, Double, Int32, Int32, FixedArray[Double], Double, FixedArray[Double], Double, Bool) -> Unit
+
+pub fn lbfgs(Int32, Int32, FixedArray[Double], Double, FixedArray[Double], Bool, FixedArray[Double], FixedArray[Int32], Double, Double, FixedArray[Double], Int32, FixedArray[Double]) -> (Int32, Int32)
+
+pub fn mcsrch(Int32, FixedArray[Double], Double, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double, Int32, Int32, Int32, FixedArray[Double]) -> (Double, Int32, Int32)
+
+pub fn mcstep(Double, Double, Double, Double, Double, Double, Double, Double, Double, Bool, Double, Double, Int32) -> (Double, Double, Double, Double, Double, Double, Double, Bool, Int32)
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -306,7 +306,7 @@ pub fn dbsynu(x : Double, fnu : Double, n : Int, y : FixedArray[Double]) -> Unit
         fks = ((fks + fk) + fk) + 1.0
         fhs = (fhs + fk) + fk
         pt = d_max(d_abs(rp1), d_abs(cp1))
-        fc = (f_pow((rp1 / pt), 2.0)) + (f_pow((cp1 / pt), 2.0))
+        fc = (d_sq(rp1 / pt)) + (d_sq(cp1 / pt))
         pt = (pt * (f_sqrt(fc))) * fk
         if etest > pt {
           pc2 = 12
@@ -335,7 +335,7 @@ pub fn dbsynu(x : Double, fnu : Double, n : Int, y : FixedArray[Double]) -> Unit
           cnt4 = cnt4 - 1
         }
         pt = d_max(d_abs(rs), d_abs(cs))
-        fc = (f_pow((rs / pt), 2.0)) + (f_pow((cs / pt), 2.0))
+        fc = (d_sq(rs / pt)) + (d_sq(cs / pt))
         pt = pt * (f_sqrt(fc))
         rs1 = ((rp2 * (rs / pt)) + (cp2 * (cs / pt))) / pt
         cs1 = ((cp2 * (rs / pt)) - (rp2 * (cs / pt))) / pt
@@ -352,7 +352,7 @@ pub fn dbsynu(x : Double, fnu : Double, n : Int, y : FixedArray[Double]) -> Unit
       }
       13 => {
         pt = d_max(d_abs(rp2), d_abs(cp2))
-        fc = (f_pow((rp2 / pt), 2.0)) + (f_pow((cp2 / pt), 2.0))
+        fc = (d_sq(rp2 / pt)) + (d_sq(cp2 / pt))
         pt = pt * (f_sqrt(fc))
         rpt = (dnu + 0.5) + ((-((rp1 * (rp2 / pt)) + (cp1 * (cp2 / pt)))) / pt)
         cpt = x + ((-((cp1 * (rp2 / pt)) + (((-1.0) * rp1) * (cp2 / pt)))) / pt)

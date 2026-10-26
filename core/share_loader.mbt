@@ -27,8 +27,7 @@ fn share_loader__key(path : String) -> String {
 /// of them), run it and return true.
 fn share_try_load(path : String) -> Bool raise {
   let key = share_loader__key(path)
-  let group = share_module_group(key)
-  if group.length() > 0 {
+  if share_module_group(key) is Some(group) {
     for g in group {
       match share_module_loader(g) {
         Some(f) => f()

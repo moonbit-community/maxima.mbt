@@ -1,0 +1,59 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/odepack"
+
+// Values
+pub fn daxpy(Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dcfode(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn ddot(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Double
+
+pub fn dewset(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dgbfa(FixedArray[Double], Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn dgbsl(FixedArray[Double], Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dgefa(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn dgesl(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dintdy(Double, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn dlsode((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, Int32) -> (Double, Int32) raise
+
+pub fn dprepj(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise) -> Unit raise
+
+pub fn dscal(Int32, Double, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dsolsy(FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], FixedArray[Double], Int32) -> Unit
+
+pub fn dsrcom(FixedArray[Double], FixedArray[Int32], Int32) -> Unit
+
+pub fn dstode(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, (FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise) -> Unit raise, (FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], FixedArray[Double], Int32) -> Unit) -> Int32 raise
+
+pub fn dumach() -> Double
+
+pub fn dumsum(Double, Double, Double) -> Double
+
+pub fn dvnorm(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Double
+
+pub fn idamax(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn iumach() -> Int32
+
+pub fn ixsav(Int32, Int32, Bool) -> Int32
+
+pub fn xerrwd(String, Int32, Int32, Int32, Int32, Int32, Int32, Int32, Double, Double) -> Unit
+
+pub fn xsetf(Int32) -> Unit
+
+pub fn xsetun(Int32) -> Unit
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

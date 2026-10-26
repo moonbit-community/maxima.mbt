@@ -29,8 +29,12 @@ fn key_arg(args : Array[Value], start : Int, name : String) -> Value? {
   for i in start..<args.length() {
     let a = args[i]
     if is_op(a, q_mequal) {
+      // defmfun-keywords compares ($verbify opt): `beta` reads as the noun
+      // %beta
       match cadr(a) {
         Sym(s) if s.name == mname => return Some(caddr(a))
+        Sym(s) if s.name.has_prefix("%") &&
+          "$" + s.name.substring(start=1) == mname => return Some(caddr(a))
         _ => ()
       }
     }

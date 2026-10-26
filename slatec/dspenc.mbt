@@ -62,7 +62,7 @@ pub fn dspenc(x : Double) -> Double {
         return dspenc_v
       }
       2 => {
-        dspenc_v = ((-0.5) * (f_pow(f_log((1.0 - x)), 2.0))) + (((-x) * (1.0 + (dcsevl((((4.0 * x) / (x - 1.0)) - 1.0), dspenc_spencs, dspenc_nspenc.val)))) / (x - 1.0))
+        dspenc_v = ((-0.5) * (d_sq(f_log((1.0 - x))))) + (((-x) * (1.0 + (dcsevl((((4.0 * x) / (x - 1.0)) - 1.0), dspenc_spencs, dspenc_nspenc.val)))) / (x - 1.0))
         return dspenc_v
       }
       3 => {
@@ -77,11 +77,11 @@ pub fn dspenc(x : Double) -> Double {
         return dspenc_v
       }
       5 => {
-        dspenc_v = (dspenc_pi26 + (((-0.5) * (f_log(x))) * (f_log(((f_pow((x - 1.0), 2.0)) / x))))) + (((x - 1.0) * (1.0 + (dcsevl((((4.0 * (x - 1.0)) / x) - 1.0), dspenc_spencs, dspenc_nspenc.val)))) / x)
+        dspenc_v = (dspenc_pi26 + (((-0.5) * (f_log(x))) * (f_log(((d_sq(x - 1.0)) / x))))) + (((x - 1.0) * (1.0 + (dcsevl((((4.0 * (x - 1.0)) / x) - 1.0), dspenc_spencs, dspenc_nspenc.val)))) / x)
         return dspenc_v
       }
       6 => {
-        dspenc_v = (2.0 * dspenc_pi26) - (0.5 * (f_pow(f_log(x), 2.0)))
+        dspenc_v = (2.0 * dspenc_pi26) - (0.5 * (d_sq(f_log(x))))
         if x < dspenc_xbig.val {
           dspenc_v = dspenc_v + ((-(1.0 + (dcsevl(((4.0 / x) - 1.0), dspenc_spencs, dspenc_nspenc.val)))) / x)
         }

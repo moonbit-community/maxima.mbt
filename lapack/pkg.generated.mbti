@@ -1,0 +1,455 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/lapack"
+
+import {
+  "dii/maxima/f2cl",
+}
+
+// Values
+pub fn dasum(Int32, FixedArray[Double], Int32, Int32) -> Double
+
+pub fn daxpy(Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dbdsdc(String, String, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], FixedArray[Int32], FixedArray[Double], Int32, FixedArray[Int32], Int32) -> Int32
+
+pub fn dbdsqr(String, Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dcabs1(@f2cl.Complex) -> Double
+
+pub fn dcopy(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn ddisna(String, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32) -> Int32
+
+pub fn ddot(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Double
+
+pub fn dgbmv(String, Int32, Int32, Int32, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn dgebak(String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgebal(String, Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32, Int32)
+
+pub fn dgebd2(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgebrd(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dgeev(String, String, Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgeevx(String, String, String, String, Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Double, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Int32], Int32) -> (Int32, Int32, Double, Int32)
+
+pub fn dgehd2(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgehrd(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dgelq2(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgelqf(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dgemm(String, String, Int32, Int32, Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Double, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dgemv(String, Int32, Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Double, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dgeqr2(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgeqrf(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dger(Int32, Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dgesdd(String, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> Int32
+
+pub fn dgesv(Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgesvd(String, String, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dgetf2(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn dgetrf(Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> Int32
+
+pub fn dgetrs(String, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dhseqr(String, String, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn disnan(Double) -> Bool
+
+pub fn dlabad(Double, Double) -> (Double, Double)
+
+pub fn dlabrd(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dlacon(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Double, Int32) -> (Double, Int32)
+
+pub fn dlacpy(String, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dladiv(Double, Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn dlae2(Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn dlaed6(Int32, Bool, Double, FixedArray[Double], FixedArray[Double], Double, Double, Int32) -> (Double, Int32)
+
+pub fn dlaev2(Double, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn dlaexc(Bool, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlahqr(Bool, Bool, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlahrd(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dlaisnan(Double, Double) -> Bool
+
+pub fn dlaln2(Bool, Int32, Int32, Double, Double, FixedArray[Double], Int32, Int32, Double, Double, FixedArray[Double], Int32, Int32, Double, Double, FixedArray[Double], Int32, Double, Double, Int32) -> (Double, Double, Int32)
+
+pub fn dlamc1(Int32, Int32, Bool, Bool) -> (Int32, Int32, Bool, Bool)
+
+pub fn dlamc2(Int32, Int32, Bool, Double, Int32, Double, Int32, Double) -> (Int32, Int32, Bool, Double, Int32, Double, Int32, Double)
+
+pub fn dlamc3(Double, Double) -> Double
+
+pub fn dlamc4(Int32, Double, Int32) -> Int32
+
+pub fn dlamc5(Int32, Int32, Int32, Bool, Int32, Double) -> (Int32, Double)
+
+pub fn dlamch(String) -> Double
+
+pub fn dlamrg(Int32, Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32) -> Unit
+
+pub fn dlange(String, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Double
+
+pub fn dlanhs(String, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Double
+
+pub fn dlanst(String, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Double
+
+pub fn dlanv2(Double, Double, Double, Double, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double, Double, Double, Double, Double, Double, Double)
+
+pub fn dlapy2(Double, Double) -> Double
+
+pub fn dlapy3(Double, Double, Double) -> Double
+
+pub fn dlaqtr(Bool, Bool, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Double, Int32)
+
+pub fn dlarf(String, Int32, Int32, FixedArray[Double], Int32, Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dlarfb(String, String, String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dlarfg(Int32, Double, FixedArray[Double], Int32, Int32, Double) -> (Double, Double)
+
+pub fn dlarft(String, String, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dlarfx(String, Int32, Int32, FixedArray[Double], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dlartg(Double, Double, Double, Double, Double) -> (Double, Double, Double)
+
+pub fn dlas2(Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn dlascl(String, Int32, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dlasd0(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlasd1(Int32, Int32, Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> (Double, Double, Int32)
+
+pub fn dlasd2(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> (Int32, Int32)
+
+pub fn dlasd3(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlasd4(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Double], Int32, Int32) -> (Double, Int32)
+
+pub fn dlasd5(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Double], Int32) -> Double
+
+pub fn dlasd6(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Double, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Double, Int32, Int32, Double, Double, Int32)
+
+pub fn dlasd7(Int32, Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, Int32, FixedArray[Double], Int32, Int32, Double, Double, Int32) -> (Int32, Int32, Double, Double, Int32)
+
+pub fn dlasd8(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlasda(Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> Int32
+
+pub fn dlasdq(String, Int32, Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlasdt(Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> (Int32, Int32)
+
+pub fn dlaset(String, Int32, Int32, Double, Double, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dlasq1(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlasq2(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlasq3(Int32, Int32, FixedArray[Double], Int32, Int32, Double, Double, Double, Double, Int32, Int32, Int32, Bool) -> (Int32, Double, Double, Double, Double, Int32, Int32, Int32)
+
+pub fn dlasq4(Int32, Int32, FixedArray[Double], Int32, Int32, Int32, Double, Double, Double, Double, Double, Double, Double, Int32) -> (Double, Int32)
+
+pub fn dlasq5(Int32, Int32, FixedArray[Double], Int32, Int32, Double, Double, Double, Double, Double, Double, Double, Bool) -> (Double, Double, Double, Double, Double, Double)
+
+pub fn dlasq6(Int32, Int32, FixedArray[Double], Int32, Int32, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double, Double, Double)
+
+pub fn dlasr(String, String, String, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dlasrt(String, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dlassq(Int32, FixedArray[Double], Int32, Int32, Double, Double) -> (Double, Double)
+
+pub fn dlasv2(Double, Double, Double, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double, Double, Double)
+
+pub fn dlaswp(Int32, FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Int32], Int32) -> Unit
+
+pub fn dlasy2(Bool, Bool, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Double, FixedArray[Double], Int32, Double, Int32) -> (Double, Double, Int32)
+
+pub fn dnrm2(Int32, FixedArray[Double], Int32, Int32) -> Double
+
+pub fn dorg2r(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dorgbr(String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dorghr(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dorgl2(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dorglq(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dorgqr(Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dorm2r(String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dormbr(String, String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dorml2(String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dormlq(String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dormqr(String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn drot(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Double, Double) -> Unit
+
+pub fn drotg(Double, Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn dsbmv(String, Int32, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn dscal(Int32, Double, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dspmv(String, Int32, Double, FixedArray[Double], FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn dspr(String, Int32, Double, FixedArray[Double], Int32, FixedArray[Double]) -> Unit
+
+pub fn dspr2(String, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double]) -> Unit
+
+pub fn dsterf(Int32, FixedArray[Double], FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn dswap(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dsymm(String, String, Int32, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn dsymv(String, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn dsyr(String, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dsyr2(String, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dsyr2k(String, String, Int32, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn dsyrk(String, String, Int32, Int32, Double, FixedArray[Double], Int32, Double, FixedArray[Double], Int32) -> Unit
+
+pub fn dtbmv(String, String, String, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dtbsv(String, String, String, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dtpmv(String, String, String, Int32, FixedArray[Double], FixedArray[Double], Int32) -> Unit
+
+pub fn dtpsv(String, String, String, Int32, FixedArray[Double], FixedArray[Double], Int32) -> Unit
+
+pub fn dtrevc(String, String, FixedArray[Bool], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32)
+
+pub fn dtrexc(String, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32, Int32)
+
+pub fn dtrmm(String, String, String, String, Int32, Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dtrmv(String, String, String, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dtrsm(String, String, String, String, Int32, Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dtrsna(String, String, FixedArray[Bool], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32) -> (Int32, Int32)
+
+pub fn dtrsv(String, String, String, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dzasum(Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Double
+
+pub fn dznrm2(Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Double
+
+pub fn idamax(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn ieeeck(Int32, Float, Float) -> Int32
+
+pub fn ilaenv(Int32, String, String, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn ilazlc(Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn ilazlr(Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn izamax(Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn lsame(String, String) -> Bool
+
+pub fn xerbla(String, Int32) -> Unit
+
+pub fn zaxpy(Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zcopy(Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zdotc(Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> @f2cl.Complex
+
+pub fn zdotu(Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> @f2cl.Complex
+
+pub fn zdscal(Int32, Double, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zgbmv(String, Int32, Int32, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zgebak(String, String, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn zgebal(String, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32, Int32)
+
+pub fn zgeev(String, String, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn zgehd2(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn zgehrd(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zgemm(String, String, Int32, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zgemv(String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zgerc(Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zgeru(Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zhbmv(String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zheev(String, String, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32) -> (Int32, Int32)
+
+pub fn zhemm(String, String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zhemv(String, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zher(String, Int32, Double, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zher2(String, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zher2k(String, String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Double, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zherk(String, String, Int32, Int32, Double, FixedArray[@f2cl.Complex], Int32, Double, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zhetd2(String, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn zhetrd(String, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zhpmv(String, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], FixedArray[@f2cl.Complex], Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zhpr(String, Int32, Double, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex]) -> Unit
+
+pub fn zhpr2(String, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex]) -> Unit
+
+pub fn zhseqr(String, String, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zlacgv(Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlacpy(String, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zladiv(@f2cl.Complex, @f2cl.Complex) -> @f2cl.Complex
+
+pub fn zlahqr(Bool, Bool, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zlahr2(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlange(String, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double]) -> Double
+
+pub fn zlanhe(String, String, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double]) -> Double
+
+pub fn zlaqr0(Bool, Bool, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zlaqr1(Int32, FixedArray[@f2cl.Complex], Int32, Int32, @f2cl.Complex, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zlaqr2(Bool, Bool, Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> (Int32, Int32)
+
+pub fn zlaqr3(Bool, Bool, Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> (Int32, Int32)
+
+pub fn zlaqr4(Bool, Bool, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zlaqr5(Bool, Bool, Int32, Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlarf(String, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32) -> (Int32, Int32, Int32)
+
+pub fn zlarfb(String, String, String, String, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlarfg(Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, @f2cl.Complex) -> (@f2cl.Complex, @f2cl.Complex)
+
+pub fn zlarft(String, String, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlartg(@f2cl.Complex, @f2cl.Complex, Double, @f2cl.Complex, @f2cl.Complex) -> (Double, @f2cl.Complex, @f2cl.Complex)
+
+pub fn zlascl(String, Int32, Int32, Double, Double, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zlaset(String, Int32, Int32, @f2cl.Complex, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlasr(String, String, String, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlassq(Int32, FixedArray[@f2cl.Complex], Int32, Int32, Double, Double) -> (Double, Double)
+
+pub fn zlatrd(String, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[Double], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zlatrs(String, String, String, String, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Double, FixedArray[Double], Int32, Int32) -> (Double, Int32)
+
+pub fn zrot(Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Double, @f2cl.Complex) -> Unit
+
+pub fn zrotg(@f2cl.Complex, @f2cl.Complex, Double, @f2cl.Complex) -> (@f2cl.Complex, Double, @f2cl.Complex)
+
+pub fn zscal(Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zsteqr(String, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn zswap(Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zsymm(String, String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zsyr2k(String, String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn zsyrk(String, String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn ztbmv(String, String, String, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn ztbsv(String, String, String, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn ztpmv(String, String, String, Int32, FixedArray[@f2cl.Complex], FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn ztpsv(String, String, String, Int32, FixedArray[@f2cl.Complex], FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn ztrevc(String, String, FixedArray[Bool], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32)
+
+pub fn ztrexc(String, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn ztrmm(String, String, String, String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn ztrmv(String, String, String, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn ztrsm(String, String, String, String, Int32, Int32, @f2cl.Complex, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32) -> Unit
+
+pub fn ztrsv(String, String, String, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Unit
+
+pub fn zung2l(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> (Int32, Int32)
+
+pub fn zung2r(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn zunghr(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zungql(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> (Int32, Int32)
+
+pub fn zungqr(Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zungtr(String, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> (Int32, Int32)
+
+pub fn zunm2r(String, String, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32) -> Int32
+
+pub fn zunmhr(String, String, Int32, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+pub fn zunmqr(String, String, Int32, Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, FixedArray[@f2cl.Complex], Int32, Int32, FixedArray[@f2cl.Complex], Int32, Int32, Int32) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

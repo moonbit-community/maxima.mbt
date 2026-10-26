@@ -78,3 +78,9 @@ share/draw/grcommon
 share/draw/gnuplot
 share/draw/vtk
 share/draw/picture
+share/lbfgs/maxima-lbfgs
+share/odepack/dlsode-interface
+share/lapack/eigensys
+share/lapack/dgesv
+share/lapack/dgeqrf
+share/lapack/dgemm

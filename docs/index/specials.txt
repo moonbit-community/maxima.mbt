@@ -205,6 +205,8 @@ $known_index_properties
 $labels
 $largest_float
 $largest_negative_float
+$lbfgs_ncorrections
+$lbfgs_nfeval_max
 $least_negative_float
 $least_negative_normalized_float
 $least_positive_float

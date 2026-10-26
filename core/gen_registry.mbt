@@ -9759,3 +9759,56 @@ fn register_share_picture() -> Unit {
   defun(q_d_read_xpm, args => d_read_xpm(arg(args, 0)))
   defun(q_read_xpm_from_stream, args => read_xpm_from_stream(arg(args, 0)))
 }
+
+///|
+fn register_share_maxima_lbfgs() -> Unit {
+  defun(q_d_lbfgs, args => { check_arity_range("$lbfgs", args, 5, 5); d_lbfgs(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)) })
+  putprop(q_d_lbfgs, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_dlsode_interface() -> Unit {
+  defun(q_d_dlsode_init, args => { check_arity_range("$dlsode_init", args, 3, 3); d_dlsode_init(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_dlsode_init, t, q_translated) |> ignore
+  defun(q_d_dlsode_step, args => { check_arity_range("$dlsode_step", args, 7, 7); d_dlsode_step(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)) })
+  putprop(q_d_dlsode_step, t, q_translated) |> ignore
+  defun(q_d_dlsode, args => { check_arity_range("$dlsode", args, 7, 7); d_dlsode(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)) })
+  putprop(q_d_dlsode, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_eigensys() -> Unit {
+  defun(q_maxima_matrix_dims, args => maxima_matrix_dims(arg(args, 0)).0)
+  defun(q_complex_maxima_matrix_p, args => complex_maxima_matrix_p(arg(args, 0)))
+  defun(q_lapack_lispify_matrix, args => lapack_lispify_matrix(arg(args, 0), arg(args, 1), arg(args, 2), assume_complex_maxima_matrix_p?=args.get(3)))
+  defun(q_lapack_maxify_matrix, args => lapack_maxify_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_dgeev, args => d_dgeev(arg(args, 0), right_vec_p?=args.get(1), left_vec_p?=args.get(2)))
+  defun(q_d_dgesvd, args => d_dgesvd(arg(args, 0), jobu?=args.get(1), jobvt?=args.get(2)))
+  defun(q_d_dlange, args => d_dlange(arg(args, 0), arg(args, 1)))
+  defun(q_d_zlange, args => d_zlange(arg(args, 0), arg(args, 1)))
+  defun(q_d_zgeev, args => d_zgeev(arg(args, 0), right_vec_p?=args.get(1), left_vec_p?=args.get(2)))
+  defun(q_d_zheev, args => d_zheev(arg(args, 0), eigen_vector_p?=args.get(1)))
+}
+
+///|
+fn register_share_dgesv() -> Unit {
+  defun(q_d_dgesv, args => d_dgesv(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_dgeqrf() -> Unit {
+  defun(q_d_dgeqrf, args => d_dgeqrf(arg(args, 0)))
+  defun(q_dgeqrf_unpack, args => dgeqrf_unpack(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_dgeqrf_unpack_r, args => dgeqrf_unpack_r(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dgeqrf_unpack_q, args => dgeqrf_unpack_q(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_dgeqrf_h, args => dgeqrf_h(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_dgeqrf_v, args => dgeqrf_v(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_dgeqrf_multiply_into, args => dgeqrf_multiply_into(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dgeqrf_inner_product, args => dgeqrf_inner_product(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+}
+
+///|
+fn register_share_dgemm() -> Unit {
+  defun(q_d_dgemm, args => { check_arity_range("$dgemm", args, 2, -1); d_dgemm(arg(args, 0), arg(args, 1), c?=key_arg(args, 2, ":c"), transpose_a?=key_arg(args, 2, ":transpose_a"), transpose_b?=key_arg(args, 2, ":transpose_b"), alpha?=key_arg(args, 2, ":alpha"), beta?=key_arg(args, 2, ":beta")) })
+  putprop(q_d_dgemm, t, q_translated) |> ignore
+}

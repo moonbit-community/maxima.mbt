@@ -559,6 +559,43 @@ fn share_load_picture() -> Unit raise {
 }
 
 ///|
+fn share_load_maxima_lbfgs() -> Unit raise {
+  init_vars_n_dot_dot_share_lbfgs_maxima_lbfgs()
+  register_share_maxima_lbfgs()
+  init_share_maxima_lbfgs()
+}
+
+///|
+fn share_load_dlsode_interface() -> Unit raise {
+  register_share_dlsode_interface()
+  init_share_dlsode_interface()
+}
+
+///|
+fn share_load_eigensys() -> Unit raise {
+  register_share_eigensys()
+  init_share_eigensys()
+}
+
+///|
+fn share_load_dgesv() -> Unit raise {
+  register_share_dgesv()
+  init_share_dgesv()
+}
+
+///|
+fn share_load_dgeqrf() -> Unit raise {
+  register_share_dgeqrf()
+  init_share_dgeqrf()
+}
+
+///|
+fn share_load_dgemm() -> Unit raise {
+  register_share_dgemm()
+  init_share_dgemm()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
@@ -594,22 +631,38 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "contrib/engineering-format" => Some(share_load_engineering_format)
     "diffequations/odelin" => Some(share_load_odelin)
     "boolsimp/boolsimp" => Some(share_load_boolsimp)
+    "lbfgs/maxima-lbfgs" => Some(share_load_maxima_lbfgs)
+    "odepack/dlsode-interface" => Some(share_load_dlsode_interface)
+    "lapack/eigensys" => Some(share_load_eigensys)
+    "lapack/dgesv" => Some(share_load_dgesv)
+    "lapack/dgeqrf" => Some(share_load_dgeqrf)
+    "lapack/dgemm" => Some(share_load_dgemm)
     _ => None
   }
 }
 
 ///|
 /// Share loader files that only load (via defsystem or $load) a group of
-/// other Lisp files, keyed like share_module_loader.
-fn share_module_group(key : String) -> Array[String] {
+/// other Lisp files, keyed like share_module_loader (an empty group: the
+/// file's contents are compiled into the port, loading it does nothing).
+fn share_module_group(key : String) -> Array[String]? {
   match key {
-    "draw/draw" => ["draw/grcommon", "draw/gnuplot", "draw/vtk", "draw/picture"]
-    "graphs/load-graphs" => ["graphs/graph_core", "graphs/spring_embedding", "graphs/isomorphism", "graphs/matching", "graphs/graph6", "graphs/demoucron", "graphs/dijkstra", "graphs/wiener_index"]
-    "linearalgebra/load-linearalgebra-lisp-files" => ["linearalgebra/mring", "linearalgebra/lu", "linearalgebra/linalgcholesky", "linearalgebra/eigens-by-jacobi", "linearalgebra/linalg-extra", "linearalgebra/matrixexp", "linearalgebra/linalg-utilities"]
-    "numeric/decfp" => ["numeric/decfp-core"]
-    "numeric/fft" => ["numeric/fft-package", "numeric/fft-core", "numeric/fft-interface"]
-    "numericalio/load-numericalio" => ["numericalio/encode-decode-float", "numericalio/numericalio"]
-    "sym/load-sym-lisp-files" => ["sym/macros", "sym/operations", "sym/chbase", "sym/util", "sym/lecteur", "sym/ecrivain", "sym/arite", "sym/elem", "sym/pui", "sym/schur", "sym/direct", "sym/kak", "sym/partpol", "sym/multmon", "sym/permut", "sym/treillis", "sym/resolv1", "sym/resolvante", "sym/resolcayley"]
-    _ => []
+    "draw/draw" => Some(["draw/grcommon", "draw/gnuplot", "draw/vtk", "draw/picture"])
+    "graphs/load-graphs" => Some(["graphs/graph_core", "graphs/spring_embedding", "graphs/isomorphism", "graphs/matching", "graphs/graph6", "graphs/demoucron", "graphs/dijkstra", "graphs/wiener_index"])
+    "lapack/load-lapack" => Some(["lapack/eigensys", "lapack/dgesv", "lapack/dgeqrf", "lapack/dgemm"])
+    "lbfgs/lb1" => Some([])
+    "lbfgs/lb2" => Some([])
+    "lbfgs/lbfgs" => Some([])
+    "lbfgs/lbfgs-daxpy" => Some([])
+    "lbfgs/lbfgs-ddot" => Some([])
+    "lbfgs/mcsrch" => Some([])
+    "lbfgs/mcstep" => Some([])
+    "linearalgebra/load-linearalgebra-lisp-files" => Some(["linearalgebra/mring", "linearalgebra/lu", "linearalgebra/linalgcholesky", "linearalgebra/eigens-by-jacobi", "linearalgebra/linalg-extra", "linearalgebra/matrixexp", "linearalgebra/linalg-utilities"])
+    "numeric/decfp" => Some(["numeric/decfp-core"])
+    "numeric/fft" => Some(["numeric/fft-package", "numeric/fft-core", "numeric/fft-interface"])
+    "numericalio/load-numericalio" => Some(["numericalio/encode-decode-float", "numericalio/numericalio"])
+    "odepack/load-dlsode" => Some(["odepack/dlsode-interface"])
+    "sym/load-sym-lisp-files" => Some(["sym/macros", "sym/operations", "sym/chbase", "sym/util", "sym/lecteur", "sym/ecrivain", "sym/arite", "sym/elem", "sym/pui", "sym/schur", "sym/direct", "sym/kak", "sym/partpol", "sym/multmon", "sym/permut", "sym/treillis", "sym/resolv1", "sym/resolvante", "sym/resolcayley"])
+    _ => None
   }
 }
