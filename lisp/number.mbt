@@ -1245,7 +1245,7 @@ fn real_expt(base : Value, power : Value) -> Value raise LispError {
     ftrap(r, x, y)
   } else {
     let y_pi = y * @math.PI
-    let pow = libm_pow(-x, y)
+    let pow = lm(libm_pow(-x, y), x)
     Cplx(Flo(pow * libm_cos(y_pi)), Flo(pow * libm_sin(y_pi)))
   }
 }
@@ -1268,7 +1268,13 @@ fn expt_int(base : Value, power : Value) -> Value raise LispError {
     return num_div(Fix(1L), expt_int(base, num_neg(power)))
   }
   match base {
-    Flo(d) => Flo(libm_pow(d, to_double(power)))
+    Flo(d) => {
+      let r = libm_pow(d, to_double(power))
+      if d == 0.0 && r.is_inf() {
+        raise division_by_zero()
+      }
+      Flo(lm(r, d))
+    }
     Fix(1L) => base
     Fix(0L) => if zerop(power) { Fix(1L) } else { base }
     Fix(-1L) => if oddp(power) { base } else { Fix(1L) }
@@ -1358,10 +1364,10 @@ pub fn cexp(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      let m = libm_exp(a)
+      let m = lm(libm_exp(a), a)
       Cplx(Flo(m * libm_cos(b)), Flo(m * libm_sin(b)))
     }
-    _ => Flo(libm_exp(to_double(x)))
+    _ => real_fn(x, libm_exp)
   }
 }
 
@@ -1632,7 +1638,23 @@ fn cplx_of(p : (Double, Double)) -> Value {
 
 ///|
 fn real_fn(x : Value, f : (Double) -> Double) -> Value raise LispError {
-  Flo(f(to_double(x)))
+  let d = to_double(x)
+  Flo(lm(f(d), d))
+}
+
+///|
+/// SBCL runs with the overflow trap enabled, so a libm result that
+/// overflows (infinite from a finite argument) signals
+/// FLOATING-POINT-OVERFLOW.
+fn lm(r : Double, x : Double) -> Double raise LispError {
+  if r.is_inf() && !x.is_inf() && !x.is_nan() {
+    raise Condition(
+      intern("floating-point-overflow"),
+      "arithmetic error FLOATING-POINT-OVERFLOW signalled",
+      Nil,
+    )
+  }
+  r
 }
 
 ///|
@@ -1640,7 +1662,10 @@ pub fn lsin(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(libm_sin(a) * libm_cosh(b)), Flo(libm_cos(a) * libm_sinh(b)))
+      Cplx(
+        Flo(libm_sin(a) * lm(libm_cosh(b), b)),
+        Flo(libm_cos(a) * lm(libm_sinh(b), b)),
+      )
     }
     _ => real_fn(x, libm_sin)
   }
@@ -1651,7 +1676,10 @@ pub fn lcos(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(libm_cos(a) * libm_cosh(b)), Flo(-libm_sin(a) * libm_sinh(b)))
+      Cplx(
+        Flo(libm_cos(a) * lm(libm_cosh(b), b)),
+        Flo(-libm_sin(a) * lm(libm_sinh(b), b)),
+      )
     }
     _ => real_fn(x, libm_cos)
   }
@@ -1675,7 +1703,10 @@ pub fn lsinh(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(libm_sinh(a) * libm_cos(b)), Flo(libm_cosh(a) * libm_sin(b)))
+      Cplx(
+        Flo(lm(libm_sinh(a), a) * libm_cos(b)),
+        Flo(lm(libm_cosh(a), a) * libm_sin(b)),
+      )
     }
     _ => real_fn(x, libm_sinh)
   }
@@ -1686,7 +1717,10 @@ pub fn lcosh(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(libm_cosh(a) * libm_cos(b)), Flo(libm_sinh(a) * libm_sin(b)))
+      Cplx(
+        Flo(lm(libm_cosh(a), a) * libm_cos(b)),
+        Flo(lm(libm_sinh(a), a) * libm_sin(b)),
+      )
     }
     _ => real_fn(x, libm_cosh)
   }
@@ -1780,7 +1814,10 @@ pub fn latanh(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => cplx_of(complex_atanh_d(a, b))
     _ =>
-      if a.abs() <= 1.0 {
+      if a.abs() == 1.0 {
+        // The pole: SBCL signals DIVISION-BY-ZERO.
+        raise division_by_zero()
+      } else if a.abs() <= 1.0 {
         Flo(libm_atanh(a))
       } else {
         cplx_of(complex_atanh_d(a, 0.0))

@@ -493,3 +493,16 @@ test "real / complex like sbcl two-arg-/" {
   inspect(try! num_div(Value::Flo(0.0), Value::Cplx(Value::Flo(3.0), Value::Flo(-7.0))), content="#C(-0.0 0.0)")
   inspect(try! num_div(Value::Flo(-0.0), Value::Cplx(Value::Flo(3.0), Value::Flo(7.0))), content="#C(0.0 0.0)")
 }
+
+///|
+test "libm overflow traps like sbcl" {
+  let f = (thunk : () -> Value raise LispError) => {
+    let r = try thunk() catch { e => Value::Str("\{e}") } noraise { v => v }
+    r
+  }
+  inspect(f(() => lexp(Value::Flo(1000.0))), content="\"floating-point-overflow: arithmetic error FLOATING-POINT-OVERFLOW signalled\"")
+  inspect(f(() => lexp(Value::Cplx(Value::Flo(1000.0), Value::Flo(1.0)))), content="\"floating-point-overflow: arithmetic error FLOATING-POINT-OVERFLOW signalled\"")
+  inspect(f(() => lsin(Value::Cplx(Value::Flo(1.0), Value::Flo(1000.0)))), content="\"floating-point-overflow: arithmetic error FLOATING-POINT-OVERFLOW signalled\"")
+  inspect(f(() => lexp(Value::Flo(-1000.0))), content="0.0")
+  inspect(f(() => latanh(Value::Flo(1.0))), content="\"division-by-zero: arithmetic error DIVISION-BY-ZERO signalled\"")
+}
