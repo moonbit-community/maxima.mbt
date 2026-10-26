@@ -831,6 +831,7 @@ fn register_generated_functions() -> Unit {
   defun(q_atfind, args => atfind(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_logcontract, args => { check_arity_range("$logcontract", args, 1, 1); d_logcontract(arg(args, 0)) })
   putprop(q_d_logcontract, t, q_translated) |> ignore
+  putprop(q_d_logcontract, t, q_evfun) |> ignore
   defun(q_logcon, args => logcon(arg(args, 0)))
   defun(q_lgcplus, args => lgcplus(arg(args, 0)))
   defun(q_lgctimes, args => lgctimes(arg(args, 0)))
@@ -841,6 +842,7 @@ fn register_generated_functions() -> Unit {
   defun(q_logconcoeffp, args => logconcoeffp(arg(args, 0)))
   defun(q_d_rootscontract, args => { check_arity_range("$rootscontract", args, 1, 1); d_rootscontract(arg(args, 0)) })
   putprop(q_d_rootscontract, t, q_translated) |> ignore
+  putprop(q_d_rootscontract, t, q_evfun) |> ignore
   defun(q_rtcon, args => rtcon(arg(args, 0), arg(args, 1)))
   defun(q_rt_separ, args => rt_separ(arg(args, 0), arg(args, 1)))
   defun(q_simp_roots, args => simp_roots(arg(args, 0), arg(args, 1)))
@@ -967,6 +969,7 @@ fn register_generated_functions() -> Unit {
   defun(q_fmapl1, args => fmapl1(arg(args, 0), rest_args(args, 1)))
   defun(q_d_outermap, args => { check_arity_range("$outermap", args, 2, -1); d_outermap(arg(args, 0), arg(args, 1), rest_args(args, 2)) })
   putprop(q_d_outermap, t, q_translated) |> ignore
+  putprop(q_d_outermap, t, q_evok) |> ignore
   defun(q_outermap1, args => outermap1(rest_args(args, 0)))
   defun(q_outermap2, args => outermap2(rest_args(args, 0)))
   defun(q_funcer, args => funcer(arg(args, 0), arg(args, 1)))
@@ -1036,6 +1039,7 @@ fn register_generated_functions() -> Unit {
   defun(q_mapply, args => mapply(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_apply, args => { check_arity_range("$apply", args, 2, 2); d_apply(arg(args, 0), arg(args, 1)) })
   putprop(q_d_apply, t, q_translated) |> ignore
+  putprop(q_d_apply, t, q_evok) |> ignore
   defun(q_autoldchk, args => autoldchk(arg(args, 0)))
   register_mspec(q_d_dispfun, d_dispfun)
   defun(q_dispfun1, args => dispfun1(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -1292,10 +1296,12 @@ fn register_generated_functions() -> Unit {
   register_simplifier(q_simp__pctimagpart, args => simp__pctimagpart(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_rectform, args => { check_arity_range("$rectform", args, 1, 1); d_rectform(arg(args, 0)) })
   putprop(q_d_rectform, t, q_translated) |> ignore
+  putprop(q_d_rectform, t, q_evfun) |> ignore
   defun(q_d_real_imag_part, args => { check_arity_range("$real_imag_part", args, 1, 1); d_real_imag_part(arg(args, 0)) })
   putprop(q_d_real_imag_part, t, q_translated) |> ignore
   defun(q_d_polarform, args => { check_arity_range("$polarform", args, 1, 1); d_polarform(arg(args, 0)) })
   putprop(q_d_polarform, t, q_translated) |> ignore
+  putprop(q_d_polarform, t, q_evfun) |> ignore
   defun(q_cabs, args => cabs(arg(args, 0)))
   register_simplifier(q_simp__pctcabs, args => simp__pctcabs(arg(args, 0), arg(args, 1), arg(args, 2)))
   register_simplifier(q_simp__pctcarg, args => simp__pctcarg(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -1352,6 +1358,7 @@ fn register_generated_functions() -> Unit {
   defun(q_bcons, args => bcons(arg(args, 0)))
   defun(q_d_bfloat, args => { check_arity_range("$bfloat", args, 1, 1); d_bfloat(arg(args, 0)) })
   putprop(q_d_bfloat, t, q_translated) |> ignore
+  putprop(q_d_bfloat, t, q_evfun) |> ignore
   defun(q_addbigfloat, args => addbigfloat(arg(args, 0)))
   defun(q_ratbigfloat, args => ratbigfloat(arg(args, 0)))
   defun(q_float_ratio, args => float_ratio(arg(args, 0)))
@@ -2294,6 +2301,7 @@ fn register_generated_functions() -> Unit {
   defun(q_mapfr1, args => mapfr1(arg(args, 0), arg(args, 1)))
   defun(q_d_fullratsimp, args => { check_arity_range("$fullratsimp", args, 1, -1); d_fullratsimp(arg(args, 0), rest_args(args, 1)) })
   putprop(q_d_fullratsimp, t, q_translated) |> ignore
+  putprop(q_d_fullratsimp, t, q_evfun) |> ignore
   defun(q_fullratsimp, args => fullratsimp(arg(args, 0)))
   defun(q_d_totaldisrep, args => { check_arity_range("$totaldisrep", args, 1, 1); d_totaldisrep(arg(args, 0)) })
   putprop(q_d_totaldisrep, t, q_translated) |> ignore
@@ -2303,6 +2311,7 @@ fn register_generated_functions() -> Unit {
   defun(q_rat0, args => rat0(arg(args, 0)))
   defun(q_d_ratsimp, args => { check_arity_range("$ratsimp", args, 1, -1); d_ratsimp(arg(args, 0), rest_args(args, 1)) })
   putprop(q_d_ratsimp, t, q_translated) |> ignore
+  putprop(q_d_ratsimp, t, q_evfun) |> ignore
   defun(q_d_sqfr, args => { check_arity_range("$sqfr", args, 1, 1); d_sqfr(arg(args, 0)) })
   putprop(q_d_sqfr, t, q_translated) |> ignore
   defun(q_whichfn, args => whichfn(arg(args, 0)))
@@ -2312,6 +2321,7 @@ fn register_generated_functions() -> Unit {
   putprop(q_d_gfactor, t, q_translated) |> ignore
   defun(q_d_factor, args => { check_arity_range("$factor", args, 1, 2); d_factor(arg(args, 0), mp?=args.get(1)) })
   putprop(q_d_factor, t, q_translated) |> ignore
+  putprop(q_d_factor, t, q_evfun) |> ignore
   defun(q_factor, args => factor(arg(args, 0), mp?=args.get(1)))
   defun(q_factornumber, args => factornumber(arg(args, 0)))
   defun(q_nratfact, args => nratfact(arg(args, 0)))
@@ -2371,6 +2381,7 @@ fn register_generated_functions() -> Unit {
   defun(q_pdisrep2, args => pdisrep2(arg(args, 0), arg(args, 1)))
   defun(q_d_ratexpand, args => { check_arity_range("$ratexpand", args, 1, 1); d_ratexpand(arg(args, 0)) })
   putprop(q_d_ratexpand, t, q_translated) |> ignore
+  putprop(q_d_ratexpand, t, q_evfun) |> ignore
   defun(q_pdisrep_starexpand, args => pdisrep_starexpand(arg(args, 0), arg(args, 1)))
   defun(q_pdisrep2expand, args => pdisrep2expand(arg(args, 0), arg(args, 1)))
   defun(q_d_ratdisrep, args => { check_arity_range("$ratdisrep", args, 1, 1); d_ratdisrep(arg(args, 0)) })
@@ -2427,6 +2438,7 @@ fn register_generated_functions() -> Unit {
   defun(q_hand_side, args => hand_side(arg(args, 0), arg(args, 1)))
   defun(q_d_radcan, args => { check_arity_range("$radcan", args, 1, 1); d_radcan(arg(args, 0)) })
   putprop(q_d_radcan, t, q_translated) |> ignore
+  putprop(q_d_radcan, t, q_evfun) |> ignore
   defun(q_radcan1, args => radcan1(arg(args, 0), arg(args, 1)))
   defun(q_spc0, args => spc0(arg(args, 0)))
   defun(q_allatoms, args => allatoms(arg(args, 0)))
@@ -4438,6 +4450,7 @@ fn register_generated_functions() -> Unit {
   register_simplifier(q_simp__pctasech, args => simp__pctasech(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_trigexpand, args => { check_arity_range("$trigexpand", args, 1, 1); d_trigexpand(arg(args, 0)) })
   putprop(q_d_trigexpand, t, q_translated) |> ignore
+  putprop(q_d_trigexpand, t, q_evfun) |> ignore
   defun(q_trigexpand, args => trigexpand(arg(args, 0), arg(args, 1)))
   defun(q_sin_slcos_plus, args => sin_slcos_plus(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
   defun(q_tan_plus, args => tan_plus(arg(args, 0), arg(args, 1), arg(args, 2)))
@@ -4451,6 +4464,7 @@ fn register_generated_functions() -> Unit {
   defun(q_mpc1, args => mpc1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
   defun(q_d_trigreduce, args => { check_arity_range("$trigreduce", args, 1, 2); d_trigreduce(arg(args, 0), var_?=args.get(1)) })
   putprop(q_d_trigreduce, t, q_translated) |> ignore
+  putprop(q_d_trigreduce, t, q_evfun) |> ignore
   defun(q_sp1, args => sp1(arg(args, 0)))
   defun(q_trigfp, args => trigfp(arg(args, 0)))
   defun(q_gcdred, args => gcdred(arg(args, 0)))

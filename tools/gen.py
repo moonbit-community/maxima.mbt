@@ -343,6 +343,11 @@ def main():
             if kind == "defmfun":
                 symbols.add("translated")
                 reg_lines.append("  putprop(%s, t, q_translated) |> ignore" % q)
+                m = re.search(r":properties \(((?:\([a-z-]+ t\) ?)+)\)", f.get("opts", ""))
+                if m:
+                    for pname in re.findall(r"\(([a-z-]+) t\)", m.group(1)):
+                        symbols.add(pname)
+                        reg_lines.append("  putprop(%s, t, %s) |> ignore" % (q, sym_const(pname)))
     reg_lines.append("}")
     reg_lines.append("")
     # function-like macros: declared so their port can be shared
