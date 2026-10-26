@@ -1264,17 +1264,15 @@ fn complex_expt(base : Value, power : Value) -> Value raise LispError {
 
 ///|
 fn expt_int(base : Value, power : Value) -> Value raise LispError {
+  // (expt double integer) is %pow, also for negative powers.
+  if base is Flo(_) {
+    return expt_flo_int(base, power)
+  }
   if minusp(power) {
     return num_div(Fix(1L), expt_int(base, num_neg(power)))
   }
   match base {
-    Flo(d) => {
-      let r = libm_pow(d, to_double(power))
-      if d == 0.0 && r.is_inf() {
-        raise division_by_zero()
-      }
-      Flo(lm(r, d))
-    }
+    Flo(_) => expt_flo_int(base, power)
     Fix(1L) => base
     Fix(0L) => if zerop(power) { Fix(1L) } else { base }
     Fix(-1L) => if oddp(power) { base } else { Fix(1L) }
@@ -1867,3 +1865,13 @@ pub let most_positive_fixnum : Value = Fix(4611686018427387903L)
 
 ///|
 pub let most_negative_fixnum : Value = Fix(-4611686018427387904L)
+
+///|
+fn expt_flo_int(base : Value, power : Value) -> Value raise LispError {
+  let d = to_double(base)
+  let r = libm_pow(d, to_double(power))
+  if d == 0.0 && r.is_inf() {
+    raise division_by_zero()
+  }
+  Flo(lm(r, d))
+}

@@ -506,3 +506,9 @@ test "libm overflow traps like sbcl" {
   inspect(f(() => lexp(Value::Flo(-1000.0))), content="0.0")
   inspect(f(() => latanh(Value::Flo(1.0))), content="\"division-by-zero: arithmetic error DIVISION-BY-ZERO signalled\"")
 }
+
+///|
+test "expt double negative integer is pow" {
+  inspect(try! expt(Value::Flo(2.0), Fix(-1075L)), content="0.0")
+  inspect(try! expt(Value::Flo(2.0), Fix(-1074L)), content="4.9406564584124654e-324")
+}
