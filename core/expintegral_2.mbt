@@ -1424,11 +1424,10 @@ fn bfloat_expintegral_chi(z : Value) -> Value raise {
 
 ///|
 /// Exponential integral E1(x).  The Cauchy principal value is used for
-/// negative x.  (Moved from bessel.lisp; uses SLATEC DE1, which is not
-/// ported.)
+/// negative x.  (Moved from bessel.lisp; uses SLATEC DE1.)
 fn d_expint(x : Value) -> Value raise {
   if numberp(x) {
-    merr("slatec:de1: not supported in this port", [])
+    Flo(@slatec.de1(to_double(x)))
   } else {
     mk_simp(q_d_expint, [x])
   }
