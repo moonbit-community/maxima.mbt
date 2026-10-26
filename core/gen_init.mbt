@@ -351,6 +351,7 @@ fn share_load_resolcayley() -> Unit raise {
 fn share_load_graph_core() -> Unit raise {
   init_vars_n_dot_dot_share_graphs_graph_core()
   register_share_graph_core()
+  init_share_graph_core()
 }
 
 ///|
@@ -362,32 +363,38 @@ fn share_load_spring_embedding() -> Unit raise {
 ///|
 fn share_load_isomorphism() -> Unit raise {
   register_share_isomorphism()
+  init_share_isomorphism()
 }
 
 ///|
 fn share_load_matching() -> Unit raise {
   register_share_matching()
+  init_share_matching()
 }
 
 ///|
 fn share_load_graph6() -> Unit raise {
   register_share_graph6()
+  init_share_graph6()
 }
 
 ///|
 fn share_load_demoucron() -> Unit raise {
   init_vars_n_dot_dot_share_graphs_demoucron()
   register_share_demoucron()
+  init_share_demoucron()
 }
 
 ///|
 fn share_load_dijkstra() -> Unit raise {
   register_share_dijkstra()
+  init_share_dijkstra()
 }
 
 ///|
 fn share_load_wiener_index() -> Unit raise {
   register_share_wiener_index()
+  init_share_wiener_index()
 }
 
 ///|
@@ -588,6 +595,14 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "numericalio/numericalio" => Some(share_load_numericalio)
     "sym/macros" => Some(share_load_macros)
     "sym/resolcayley" => Some(share_load_resolcayley)
+    "graphs/graph_core" => Some(share_load_graph_core)
+    "graphs/spring_embedding" => Some(share_load_spring_embedding)
+    "graphs/isomorphism" => Some(share_load_isomorphism)
+    "graphs/matching" => Some(share_load_matching)
+    "graphs/graph6" => Some(share_load_graph6)
+    "graphs/demoucron" => Some(share_load_demoucron)
+    "graphs/dijkstra" => Some(share_load_dijkstra)
+    "graphs/wiener_index" => Some(share_load_wiener_index)
     "numeric/fft-package" => Some(share_load_fft_package)
     "numeric/decfp-core" => Some(share_load_decfp_core)
     "tensor/itensor" => Some(share_load_itensor)
