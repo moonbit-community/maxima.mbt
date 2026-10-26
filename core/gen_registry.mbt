@@ -9907,3 +9907,26 @@ fn register_share_dgemm() -> Unit {
   defun(q_d_dgemm, args => { check_arity_range("$dgemm", args, 2, -1); d_dgemm(arg(args, 0), arg(args, 1), c?=key_arg(args, 2, ":c"), transpose_a?=key_arg(args, 2, ":transpose_a"), transpose_b?=key_arg(args, 2, ":transpose_b"), alpha?=key_arg(args, 2, ":alpha"), beta?=key_arg(args, 2, ":beta")) })
   putprop(q_d_dgemm, t, q_translated) |> ignore
 }
+
+///|
+fn register_share_inference_result() -> Unit {
+  defun(q_d_inference_result, args => d_inference_result(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d__matrixz, args => d__matrixz(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_matoutz, args => matoutz(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_coloutz, args => coloutz(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dim__dolinference_result, args => dim__dolinference_result(arg(args, 0), arg(args, 1)))
+  defun(q_dimension_inference, args => dimension_inference(arg(args, 0), arg(args, 1)))
+  defun(q_tex_inference_result, args => tex_inference_result(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_inferencep, args => d_inferencep(arg(args, 0)))
+  defun(q_d_items_inference, args => d_items_inference(arg(args, 0)))
+  defun(q_d_take_inference, args => d_take_inference(arg(args, 0), arg(args, 1)))
+  defun(q_d_title_inference, args => d_title_inference(arg(args, 0)))
+}
+
+///|
+fn register_share_numstats() -> Unit {
+  defun(q_rank_sum_recursion, args => rank_sum_recursion(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_signed_rank_recursion, args => signed_rank_recursion(arg(args, 0), arg(args, 1)))
+  defun(q_swpoly, args => swpoly(arg(args, 0), arg(args, 1)))
+  defun(q_d_test_normality, args => d_test_normality(arg(args, 0), n1?=args.get(1)))
+}

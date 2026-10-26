@@ -7959,6 +7959,21 @@ dgeqrf-v	defun	../share/lapack/dgeqrf.lisp:83	dgeqrf_v(i : Value, j : Value, a_n
 dgeqrf-multiply-into	defun	../share/lapack/dgeqrf.lisp:89	dgeqrf_multiply_into(n : Value, mat_1 : Value, mat_2 : Value) -> Value
 dgeqrf-inner-product	defun	../share/lapack/dgeqrf.lisp:97	dgeqrf_inner_product(n : Value, mat_1 : Value, mat_2 : Value, i : Value, j : Value) -> Value
 $dgemm	defmfun	../share/lapack/dgemm.lisp:5	d_dgemm(a : Value, b : Value, c? : Value = Nil, transpose_a? : Value = Nil, transpose_b? : Value = Nil, alpha? : Value = Flo(1.0), beta? : Value = Flo(0.0)) -> Value
+$inference_result	defun	../share/stats/inference_result.lisp:32	d_inference_result(title : Value, val : Value, selection : Value) -> Value
+d-matrixz	defun	../share/stats/inference_result.lisp:49	d__matrixz(linear_q : Value, direction : Value, h : Value, d : Value) -> Value
+matoutz	defun	../share/stats/inference_result.lisp:53	matoutz(dmstr : Value, cstr : Value, rstr : Value, result : Value) -> Value
+coloutz	defun	../share/stats/inference_result.lisp:70	coloutz(dmstr : Value, cstr : Value, result : Value) -> Value
+dim-$inference_result	defun	../share/stats/inference_result.lisp:98	dim__dolinference_result(form : Value, result : Value) -> Value
+dimension-inference	defun	../share/stats/inference_result.lisp:137	dimension_inference(form : Value, result : Value) -> Value
+tex-inference_result	defun	../share/stats/inference_result.lisp:158	tex_inference_result(x : Value, l : Value, r : Value) -> Value
+$inferencep	defun	../share/stats/inference_result.lisp:181	d_inferencep(obj : Value) -> Value
+$items_inference	defun	../share/stats/inference_result.lisp:188	d_items_inference(obj : Value) -> Value
+$take_inference	defun	../share/stats/inference_result.lisp:196	d_take_inference(n : Value, obj : Value) -> Value
+$title_inference	defun	../share/stats/inference_result.lisp:214	d_title_inference(obj : Value) -> Value
+rank_sum_recursion	defun	../share/stats/numstats.lisp:46	rank_sum_recursion(i : Value, j : Value, k : Value) -> Value
+signed_rank_recursion	defun	../share/stats/numstats.lisp:68	signed_rank_recursion(i : Value, j : Value) -> Value
+swpoly	defun	../share/stats/numstats.lisp:88	swpoly(cc : Value, x : Value) -> Value
+$test_normality	defun	../share/stats/numstats.lisp:109	d_test_normality(x : Value, n1? : Value = Nil) -> Value
 intl::textdomain	macro	intl.lisp:509	intl_textdomain(domain : Value) -> Value
 intl::gettext	macro	intl.lisp:513	intl_gettext(string_ : Value) -> Value
 intl::ngettext	macro	intl.lisp:517	intl_ngettext(singular : Value, plural : Value, n : Value) -> Value

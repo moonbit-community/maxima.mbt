@@ -685,6 +685,16 @@ fn share_load_dgemm() -> Unit raise {
 }
 
 ///|
+fn share_load_inference_result() -> Unit raise {
+  register_share_inference_result()
+}
+
+///|
+fn share_load_numstats() -> Unit raise {
+  register_share_numstats()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {

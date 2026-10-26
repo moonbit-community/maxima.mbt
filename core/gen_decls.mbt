@@ -32109,6 +32109,66 @@ declare fn dgeqrf_inner_product(n : Value, mat_1 : Value, mat_2 : Value, i : Val
 /// defmfun $dgemm -- ../share/lapack/dgemm.lisp:5
 declare fn d_dgemm(a : Value, b : Value, c? : Value = Nil, transpose_a? : Value = Nil, transpose_b? : Value = Nil, alpha? : Value = Flo(1.0), beta? : Value = Flo(0.0)) -> Value raise
 
+///|
+/// defun $inference_result -- ../share/stats/inference_result.lisp:32
+declare fn d_inference_result(title : Value, val : Value, selection : Value) -> Value raise
+
+///|
+/// defun d-matrixz -- ../share/stats/inference_result.lisp:49
+declare fn d__matrixz(linear_q : Value, direction : Value, h : Value, d : Value) -> Value raise
+
+///|
+/// defun matoutz -- ../share/stats/inference_result.lisp:53
+declare fn matoutz(dmstr : Value, cstr : Value, rstr : Value, result : Value) -> Value raise
+
+///|
+/// defun coloutz -- ../share/stats/inference_result.lisp:70
+declare fn coloutz(dmstr : Value, cstr : Value, result : Value) -> Value raise
+
+///|
+/// defun dim-$inference_result -- ../share/stats/inference_result.lisp:98
+declare fn dim__dolinference_result(form : Value, result : Value) -> Value raise
+
+///|
+/// defun dimension-inference -- ../share/stats/inference_result.lisp:137
+declare fn dimension_inference(form : Value, result : Value) -> Value raise
+
+///|
+/// defun tex-inference_result -- ../share/stats/inference_result.lisp:158
+declare fn tex_inference_result(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun $inferencep -- ../share/stats/inference_result.lisp:181
+declare fn d_inferencep(obj : Value) -> Value raise
+
+///|
+/// defun $items_inference -- ../share/stats/inference_result.lisp:188
+declare fn d_items_inference(obj : Value) -> Value raise
+
+///|
+/// defun $take_inference -- ../share/stats/inference_result.lisp:196
+declare fn d_take_inference(n : Value, obj : Value) -> Value raise
+
+///|
+/// defun $title_inference -- ../share/stats/inference_result.lisp:214
+declare fn d_title_inference(obj : Value) -> Value raise
+
+///|
+/// defun rank_sum_recursion -- ../share/stats/numstats.lisp:46
+declare fn rank_sum_recursion(i : Value, j : Value, k : Value) -> Value raise
+
+///|
+/// defun signed_rank_recursion -- ../share/stats/numstats.lisp:68
+declare fn signed_rank_recursion(i : Value, j : Value) -> Value raise
+
+///|
+/// defun swpoly -- ../share/stats/numstats.lisp:88
+declare fn swpoly(cc : Value, x : Value) -> Value raise
+
+///|
+/// defun $test_normality -- ../share/stats/numstats.lisp:109
+declare fn d_test_normality(x : Value, n1? : Value = Nil) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -35408,4 +35468,12 @@ declare fn init_share_dgeqrf() -> Unit raise
 ///|
 /// top-level forms of ../share/lapack/dgemm.lisp
 declare fn init_share_dgemm() -> Unit raise
+
+///|
+/// top-level forms of ../share/stats/inference_result.lisp
+declare fn init_share_inference_result() -> Unit raise
+
+///|
+/// top-level forms of ../share/stats/numstats.lisp
+declare fn init_share_numstats() -> Unit raise
 

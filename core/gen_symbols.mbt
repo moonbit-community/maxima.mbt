@@ -4085,6 +4085,12 @@ let q_d_inf : Value = sym("$inf")
 let q_d_inf_norm : Value = sym("$inf_norm")
 
 ///|
+let q_d_inference_result : Value = sym("$inference_result")
+
+///|
+let q_d_inferencep : Value = sym("$inferencep")
+
+///|
 let q_d_inferred_encoding : Value = sym("$inferred_encoding")
 
 ///|
@@ -4371,6 +4377,9 @@ let q_d_isqrt : Value = sym("$isqrt")
 
 ///|
 let q_d_isreal_p : Value = sym("$isreal_p")
+
+///|
+let q_d_items_inference : Value = sym("$items_inference")
 
 ///|
 let q_d_itensor : Value = sym("$itensor")
@@ -5982,6 +5991,9 @@ let q_d_p_tpartpol : Value = sym("$p_tpartpol")
 
 ///|
 let q_d_p_tpartpol_init : Value = sym("$p_tpartpol_init")
+
+///|
+let q_d_p_value : Value = sym("$p_value")
 
 ///|
 let q_d_packagefile : Value = sym("$packagefile")
@@ -7880,6 +7892,12 @@ let q_d_staircase : Value = sym("$staircase")
 let q_d_stardisp : Value = sym("$stardisp")
 
 ///|
+let q_d_statistic : Value = sym("$statistic")
+
+///|
+let q_d_stats_numer : Value = sym("$stats_numer")
+
+///|
 let q_d_status : Value = sym("$status")
 
 ///|
@@ -8069,6 +8087,9 @@ let q_d_tab : Value = sym("$tab")
 let q_d_take_channel : Value = sym("$take_channel")
 
 ///|
+let q_d_take_inference : Value = sym("$take_inference")
+
+///|
 let q_d_tan : Value = sym("$tan")
 
 ///|
@@ -8139,6 +8160,9 @@ let q_d_terminal : Value = sym("$terminal")
 
 ///|
 let q_d_terminated : Value = sym("$terminated")
+
+///|
+let q_d_test_normality : Value = sym("$test_normality")
 
 ///|
 let q_d_testpartpol : Value = sym("$testpartpol")
@@ -8226,6 +8250,9 @@ let q_d_timestamp : Value = sym("$timestamp")
 
 ///|
 let q_d_title : Value = sym("$title")
+
+///|
+let q_d_title_inference : Value = sym("$title_inference")
 
 ///|
 let q_d_tldefint : Value = sym("$tldefint")
@@ -15614,6 +15641,9 @@ let q_color_transform_function : Value = sym("color-transform-function")
 let q_colout : Value = sym("colout")
 
 ///|
+let q_coloutz : Value = sym("coloutz")
+
+///|
 let q_colrow0 : Value = sym("colrow0")
 
 ///|
@@ -16598,6 +16628,9 @@ let q_d__matrix_char_unicode_vert : Value = sym("d-matrix-char-unicode-vert")
 let q_d__matrix_unicode : Value = sym("d-matrix-unicode")
 
 ///|
+let q_d__matrixz : Value = sym("d-matrixz")
+
+///|
 let q_d__prodsign : Value = sym("d-prodsign")
 
 ///|
@@ -17375,6 +17408,9 @@ let q_dim : Value = sym("dim")
 let q_dim__dolamatrix : Value = sym("dim-$amatrix")
 
 ///|
+let q_dim__dolinference_result : Value = sym("dim-$inference_result")
+
+///|
 let q_dim__dolmatrix : Value = sym("dim-$matrix")
 
 ///|
@@ -17511,6 +17547,9 @@ let q_dimension_hermite : Value = sym("dimension-hermite")
 
 ///|
 let q_dimension_indices : Value = sym("dimension-indices")
+
+///|
+let q_dimension_inference : Value = sym("dimension-inference")
 
 ///|
 let q_dimension_infix : Value = sym("dimension-infix")
@@ -26084,6 +26123,9 @@ let q_mathrm_ify : Value = sym("mathrm-ify")
 let q_matout : Value = sym("matout")
 
 ///|
+let q_matoutz : Value = sym("matoutz")
+
+///|
 let q_matrix : Value = sym("matrix")
 
 ///|
@@ -31676,6 +31718,9 @@ let q_rangpi3 : Value = sym("rangpi3")
 let q_rank : Value = sym("rank")
 
 ///|
+let q_rank_sum_recursion : Value = sym("rank_sum_recursion")
+
+///|
 let q_rassoc : Value = sym("rassoc")
 
 ///|
@@ -33903,6 +33948,9 @@ let q_signdis3 : Value = sym("signdis3")
 
 ///|
 let q_signdiscr : Value = sym("signdiscr")
+
+///|
+let q_signed_rank_recursion : Value = sym("signed_rank_recursion")
 
 ///|
 let q_signfactor : Value = sym("signfactor")
@@ -36515,6 +36563,9 @@ let q_switch : Value = sym("switch")
 let q_switches : Value = sym("switches")
 
 ///|
+let q_swpoly : Value = sym("swpoly")
+
+///|
 let q_syele : Value = sym("syele")
 
 ///|
@@ -36993,6 +37044,9 @@ let q_tex_hermite : Value = sym("tex-hermite")
 
 ///|
 let q_tex_hypergeometric : Value = sym("tex-hypergeometric")
+
+///|
+let q_tex_inference_result : Value = sym("tex-inference_result")
 
 ///|
 let q_tex_infix : Value = sym("tex-infix")
