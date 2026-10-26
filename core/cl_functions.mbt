@@ -192,9 +192,25 @@ fn register_cl_functions() -> Unit {
       _ => x
     }
   })
-  cl__def("sort", a => sort_list(arg(a, 0), (x, y) => funcall(arg(a, 1), [
-    x, y,
-  ]).truthy()))
+  cl__def("sort", a => {
+    let lt = (x : Value, y : Value) => funcall(arg(a, 1), [x, y]).truthy()
+    match arg(a, 0) {
+      // a vector is sorted in place
+      Vec(v) as seq => {
+        let n = match v.fill {
+          Some(f) => f
+          None => v.data.length()
+        }
+        let sorted = sort_array(v.data[0:n].to_array(), lt)
+        for i in 0..<n {
+          v.data[i] = sorted[i]
+        }
+        seq
+      }
+      seq => sort_list(seq, lt)
+    }
+  })
+  cl__def("copy-seq", a => copy_seq(arg(a, 0)))
   cl__def("mapcar", a => mapcar(x => funcall(arg(a, 0), [x]), arg(a, 1)))
   cl__def("remove", a => remove(arg(a, 0), arg(a, 1)))
   cl__def("delete", a => delete(arg(a, 0), arg(a, 1)))
