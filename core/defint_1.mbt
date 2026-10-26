@@ -1440,7 +1440,7 @@ fn complm(ask_or_not : Value, ll : Value, ul : Value) -> Value raise {
 /// example, in
 ///
 /// integrate(x^(2*n)*exp(-(x)^2),x)    ==>
-/// -gamma_h_incomplete((2*n+1)/2,x^2)*x^(2*n+1)*abs(x)^(-2*n-1)/2
+/// -gamma_incomplete((2*n+1)/2,x^2)*x^(2*n+1)*abs(x)^(-2*n-1)/2
 ///
 /// the integral has a discontinuity at x=0.
 fn intsubs(e : Value, a : Value, b : Value, ivar : Value) -> Value raise {
@@ -1572,7 +1572,7 @@ fn discontinuities(expr : Value, ivar : Value) -> Value raise {
       // signum(x) has a discontinuity at x = 0.
       add_unique(first(args))
     } else if eq(op, q_p_gamma_incomplete) {
-      // gamma_h_incomplete(a, z), unless a is a positive integer, has a
+      // gamma_incomplete(a, z), unless a is a positive integer, has a
       // discontinuity at z = 0 and when crossing the negative real axis.
       let a = first(args)
       let z = second(args)

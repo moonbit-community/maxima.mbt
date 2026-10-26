@@ -881,7 +881,7 @@ fn f36p147(c : Value, a : Value) -> Value raise {
 // Table of Integral Transforms, p. 147, formula 36:
 //
 // exp(-a*exp(t))
-//   -> a^(-p)*gamma_h_incomplete(-p,a)
+//   -> a^(-p)*gamma_incomplete(-p,a)
 
 ///|
 fn f37p147(c : Value, a : Value) -> Value raise {
@@ -1669,7 +1669,7 @@ fn lt_sf_log(u : Value) -> Value raise {
   }
 
   // Laplace transform of expintegral_ei.
-  // Maxima uses the build in transformation to the gamma_h_incomplete
+  // Maxima uses the build in transformation to the gamma_incomplete
   // function and simplifies the log functions of the transformation. We do
   // not use the dispatch mechanism of fractest2, but call sendexec directly
   // with the transformed function.

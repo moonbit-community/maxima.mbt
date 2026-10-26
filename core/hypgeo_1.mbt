@@ -766,7 +766,7 @@ fn m2_elliptic_ec(expr : Value, var2 : Value) -> Value raise {
 
 ///|
 let hypgeo__p_m2_onegammaincomplete : Value = try! lread(
-  "((mplus) ((coeffpt) (u nonzerp) ((%gamma_h_incomplete) (w1 free hypgeo-var2) (w2 has hypgeo-var2))) ((coeffpp) (a zerp)))",
+  "((mplus) ((coeffpt) (u nonzerp) ((%gamma_incomplete) (w1 free hypgeo-var2) (w2 has hypgeo-var2))) ((coeffpp) (a zerp)))",
 )
 
 ///|

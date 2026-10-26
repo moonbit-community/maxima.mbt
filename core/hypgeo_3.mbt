@@ -676,7 +676,7 @@ fn wtm(a : Value, i1 : Value, i2 : Value) -> Value raise {
 ///|
 /// Incomplete gamma function in terms of Whittaker W function
 ///
-/// gamma_h_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
+/// gamma_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
 fn gammaincompletetw(a : Value, x : Value) -> Value raise {
   mul3(
     power(x, div(sub(a, int(1)), int(2))),
@@ -690,11 +690,11 @@ fn gammaincompletetw(a : Value, x : Value) -> Value raise {
 ///
 /// Only for a=0 we use the general representation as a Whittaker W function:
 ///
-///   gamma_h_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
+///   gamma_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
 ///
 /// In all other cases we transform to a lower incomplete Gamma function:
 ///
-///   gamma_h_incomplete(a,x) = gamma(a)- gamma_incomplete_lower(a,x)
+///   gamma_incomplete(a,x) = gamma(a)- gamma_incomplete_lower(a,x)
 fn gamma_incomplete_to_gamma_incomplete_lower(
   a : Value,
   x : Value,

@@ -61,7 +61,15 @@ lines.append("/// The ported share Lisp file named `stem` (file name without dir
 lines.append("/// and extension), if any.")
 lines.append("fn share_module_loader(stem : String) -> (() -> Unit raise)? {")
 lines.append("  match stem {")
+# only files with ported code: an unported file keeps Maxima's "cannot load"
+# error instead of panicking on unimplemented declarations
+defined_fns = set(re.findall(r"^fn ([a-z_][a-z0-9_]*)\(", src, re.M))
+def is_ported(d):
+    fs = [gen.fn_name(f["name"]) for f in d["functions"] if f["name"]]
+    return not fs or any(f in defined_fns for f in fs)
 for d in share:
+    if not is_ported(d):
+        continue
     stem = d["file"].split("/")[-1]
     lines.append("    %s => Some(share_load_%s)" % (gen.moon_str(stem), gen.mangle(stem)))
 lines.append("    _ => None")

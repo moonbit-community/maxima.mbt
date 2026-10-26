@@ -1,5 +1,5 @@
 // Port of src/gamma.lisp, part 1: double factorial, the incomplete gamma
-// function family (gamma_h_incomplete, gamma_incomplete_lower,
+// function family (gamma_incomplete, gamma_incomplete_lower,
 // gamma_incomplete_generalized, gamma_incomplete_regularized) and their
 // numerical evaluation.  init_gamma (for the whole of gamma.lisp) is here.
 
@@ -195,7 +195,7 @@ fn bfloat_double_factorial(z : Value) -> Value raise {
 //
 // A&S 6.5.3:
 //
-//   gamma_h_incomplete(a, z) = integrate(t^(a-1)*%e^-t, t, z, inf)
+//   gamma_incomplete(a, z) = integrate(t^(a-1)*%e^-t, t, z, inf)
 
 ///|
 /// Incomplete Gamma function has not mirror symmetry for z on the negative
@@ -221,7 +221,7 @@ fn conjugate_gamma_incomplete(args : Value) -> Value raise {
 }
 
 ///|
-/// The derivative of gamma_h_incomplete wrt a.  The Lisp lambda returns a
+/// The derivative of gamma_incomplete wrt a.  The Lisp lambda returns a
 /// second value of T (the result is built from the actual arguments and
 /// is final); only the primary value survives the port's funcall.
 fn gamma1__gamma_incomplete_grad_a(a : Value, z : Value) -> Value raise {
@@ -275,10 +275,10 @@ fn simplim_pctgamma_incomplete(
     q_d_und
   } else if eq(z, q_d_infinity) || eq(z, q_d_inf) || eq(z, q_d_minf) {
     // z in {minf, inf, infinity}, use http://dlmf.nist.gov/8.11#i
-    // Revert a & z to the arguments of gamma_h_incomplete.
+    // Revert a & z to the arguments of gamma_incomplete.
     a = cadr(expr)
     z = caddr(expr)
-    // Use gamma_h_incomplete(a,z) = z^(a-1)/exp(z) + ... for fixed a and
+    // Use gamma_incomplete(a,z) = z^(a-1)/exp(z) + ... for fixed a and
     // |z| --> inf.  When a isn't fixed, give up.
     if freeof(var_, a).truthy() {
       limit(
@@ -315,11 +315,11 @@ fn simplim_pctgamma_incomplete(
     (eql(z, Fix(0L)) || eq(z, q_d_zeroa) || eq(z, q_d_zerob)) {
     // z in {zerob, 0, zeroa}.
     // Two cases: (i) a <= 0 & integer (ii) a not a negative integer.
-    // Revert a & z to the arguments of gamma_h_incomplete.
+    // Revert a & z to the arguments of gamma_incomplete.
     a = cadr(expr)
     z = caddr(expr)
     if d_featurep(a, q_d_integer).truthy() && eq(t, mgrp(Fix(0L), a)) {
-      // gamma_h_incomplete(a,z) = z^a/(-a) + ... for a negative integer a
+      // gamma_incomplete(a,z) = z^a/(-a) + ... for a negative integer a
       limit(
         div(ftake(q_mexpt, [z, a]), mul2(Fix(-1L), a)),
         var_,
@@ -327,7 +327,7 @@ fn simplim_pctgamma_incomplete(
         q_think,
       )
     } else if d_featurep(a, q_d_integer).truthy() && eq(t, mgqp(Fix(0L), a)) {
-      // gamma_h_incomplete(0,z) = -log(z) + ...
+      // gamma_incomplete(0,z) = -log(z) + ...
       a = sub(Fix(0L), a)
       limit(
         div(
@@ -394,7 +394,7 @@ fn simplim_pctgamma_incomplete(
       Nil
     }
   } else if eq(a, q_d_ind) || eq(z, q_d_ind) {
-    // Revert a & z to the arguments of gamma_h_incomplete. When z is off the
+    // Revert a & z to the arguments of gamma_incomplete. When z is off the
     // negative real axis or a is not a negative integer, return ind.
     a = cadr(expr)
     z = caddr(expr)
@@ -454,9 +454,9 @@ fn simp__pctgamma_incomplete_lower(
       r
     } else if symval(q_d_hypergeometric_representation).truthy() {
       // We make use of the fact that gamma_incomplete_lower(a,z) +
-      // gamma_h_incomplete(a,z) = gamma(a).  Thus,
-      // gamma_incomplete_lower(a,z) = gamma(a)-gamma_h_incomplete(a,z).
-      // And we know the hypergeometric form for gamma_h_incomplete.
+      // gamma_incomplete(a,z) = gamma(a).  Thus,
+      // gamma_incomplete_lower(a,z) = gamma(a)-gamma_incomplete(a,z).
+      // And we know the hypergeometric form for gamma_incomplete.
       sub(ftake(q_p_gamma, [a]), ftake(q_p_gamma_incomplete, [a, z]))
     } else {
       eqtest(cons(list1(q_p_gamma_incomplete_lower), list2(a, z)), form)
@@ -475,7 +475,7 @@ fn gamma_incomplete_lower_expand(a : Value, z : Value) -> Value raise {
   } else if gamma_expand && integerp(a) && plusp(a) {
     // gamma_incomplete_lower(a,z) can be simplified if a is a positive
     // integer.  Since gamma_incomplete_lower(a,z) = gamma(a) -
-    // gamma_h_incomplete(a,z), use gamma_h_incomplete to get the result.
+    // gamma_incomplete(a,z), use gamma_incomplete to get the result.
     sub(
       ftake_star(q_p_gamma, [a]),
       take(list1(q_p_gamma_incomplete), [a, z]),
@@ -568,7 +568,7 @@ fn gamma_incomplete_lower_expand(a : Value, z : Value) -> Value raise {
       // Nothing to do if the order is already between 0 and 1
       mk_simp(q_p_gamma_incomplete_lower, [a, z])
     } else {
-      // Use gamma_h_incomplete(a+n,z) above. and then substitute a=order.
+      // Use gamma_incomplete(a+n,z) above. and then substitute a=order.
       // This works for n positive or negative.
       let ord = gensym()
       let g = simplify(mk(q_p_gamma_incomplete_lower, [add2(ord, n), z]))
@@ -619,14 +619,14 @@ fn gamma1__simp_gamma_incomplete(
   let args = list2(a, z)
   // Check for specific values
   if zerop1(z).truthy() {
-    // gamma_h_incomplete(v,0) is gamma(v) only if the realpart(v) > 0.  If
-    // realpart(v) <= 0, gamma_h_incomplete is undefined.  For all other
+    // gamma_incomplete(v,0) is gamma(v) only if the realpart(v) > 0.  If
+    // realpart(v) <= 0, gamma_incomplete is undefined.  For all other
     // cases, return the noun form.
     let sgn = d_sign(d_realpart(a))
     if gamma1__sign_in(sgn, [q_d_neg, q_d_zero]) {
       simp_domain_error(
         list([
-          Str("gamma_h_incomplete: gamma_h_incomplete(~:M,~:M) is undefined."),
+          Str("gamma_incomplete: gamma_incomplete(~:M,~:M) is undefined."),
           a,
           z,
         ]),
@@ -908,13 +908,13 @@ fn gamma1__simp_gamma_incomplete(
   } else if symval(q_d_gamma_expand).truthy() &&
     mplusp(a).truthy() &&
     integerp(cadr(a)) {
-    // Handle gamma_h_incomplete(a+n, z), where n is a numerical integer
+    // Handle gamma_incomplete(a+n, z), where n is a numerical integer
     let mut n = cadr(a)
     let a = simplify(cons(list1(q_mplus), cddr(a)))
     if num_gt(n, Fix(0L)) {
       // See DLMF 8.8.9: https://dlmf.nist.gov/8.8.E9
       //
-      //   gamma_h_incomplete(a+n,z) = pochhammer(a,n)*gamma_h_incomplete(a,z)
+      //   gamma_incomplete(a+n,z) = pochhammer(a,n)*gamma_incomplete(a,z)
       //     + z^a*exp(-z)*sum(gamma(a+n)/gamma(a+k+1)*z^k,k,0,n-1)
       add2(
         mul2(
@@ -942,8 +942,8 @@ fn gamma1__simp_gamma_incomplete(
       n = num_neg(n)
       // See http://functions.wolfram.com/06.06.17.0004.01
       //
-      //   gamma_h_incomplete(a-n,z) =
-      //     (-1)^n*gamma_h_incomplete(a,z)/pochhammer(1-a,n)
+      //   gamma_incomplete(a-n,z) =
+      //     (-1)^n*gamma_incomplete(a,z)/pochhammer(1-a,n)
       //     -z^(a-n)*sum(z^k/pochhammer(a-n,k+1),k,0,n-1)
       sub(
         div(
@@ -974,7 +974,7 @@ fn gamma1__simp_gamma_incomplete(
     eq(q_rat, caar(a)) &&
     integerp(second(a)) &&
     integerp(third(a)) {
-    // gamma_h_incomplete of (numeric) rational order.  Expand it out so that
+    // gamma_incomplete of (numeric) rational order.  Expand it out so that
     // the resulting order is between 0 and 1.
     let (n, order) = num_floor(num_div(second(a), third(a)))
     // a = n + order where 0 <= order < 1.
@@ -983,7 +983,7 @@ fn gamma1__simp_gamma_incomplete(
       // Nothing to do if the order is already between 0 and 1
       give_up()
     } else {
-      // Use gamma_h_incomplete(a+n,z) above. and then substitute a=order.
+      // Use gamma_incomplete(a+n,z) above. and then substitute a=order.
       // This works for n positive or negative.
       let ord = gensym()
       let g = simplify(mk(q_p_gamma_incomplete, [add2(ord, n), z]))
@@ -992,7 +992,7 @@ fn gamma1__simp_gamma_incomplete(
   } else if symval(q_d_hypergeometric_representation).truthy() {
     // See http://functions.wolfram.com/06.06.26.0002.01
     //
-    //  gamma_h_incomplete(a,z) = gamma(z) - z^a/a*%f[1,1]([a],[a+1},-z)
+    //  gamma_incomplete(a,z) = gamma(z) - z^a/a*%f[1,1]([a],[a+1},-z)
     //
     // However, hypergeomtric simplifies hypergeometric([a],[a+1],-z) to
     // hypergeometric([1],[a+1],z)*exp(-z).
@@ -1144,15 +1144,15 @@ fn p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value) raise {
         num_mul(symval(q_ear_gamma_imag), num_abs(realpart(x))),
       ) {
       // For x near the negative real axis, use the relationship
-      // gamma_h_incomplete(a,z) = gamma(a) - gamma_incomplete_lower(a,z),
+      // gamma_incomplete(a,z) = gamma(a) - gamma_incomplete_lower(a,z),
       // where gamma_incomplete_lower(a,z) is the lower part of the
       // incomplete gamma function.  We can evaluate that using a continued
       // fraction from http://functions.wolfram.com/06.06.10.0009.01.
       //
       // Also note that this appears to be valid for all values of x (real
       // or complex), but we don't want to use this everywhere for
-      // gamma_h_incomplete.  Consider what happens for large real x.
-      // gamma_h_incomplete(a,x) is small, but gamma_h_incomplete(a,x) =
+      // gamma_incomplete.  Consider what happens for large real x.
+      // gamma_incomplete(a,x) is small, but gamma_incomplete(a,x) =
       // gamma(x) - cf will have large roundoff errors.
       if gamma1__debug() {
         format(
@@ -1185,7 +1185,7 @@ fn p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value) raise {
       )
       (v, t)
     } else {
-      // Expansion in continued fractions for gamma_h_incomplete.
+      // Expansion in continued fractions for gamma_incomplete.
       if gamma1__debug() {
         format(t, "~&GAMMA-INCOMPLETE in continued fractions~%", []) |> ignore
       }
@@ -1209,7 +1209,7 @@ fn p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value) raise {
       while true {
         if num_gt(int(i), gm_maxit) {
           merr(
-            "gamma_h_incomplete: continued fractions failed for gamma_h_incomplete(~:M, ~:M).",
+            "gamma_incomplete: continued fractions failed for gamma_incomplete(~:M, ~:M).",
             [a, x],
           )
           |> ignore
@@ -1247,7 +1247,7 @@ fn p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value) raise {
     while true {
       if num_gt(int(i), gm_maxit) {
         merr(
-          "gamma_h_incomplete: series expansion failed for gamma_h_incomplete(~:M, ~:M).",
+          "gamma_incomplete: series expansion failed for gamma_incomplete(~:M, ~:M).",
           [a, x],
         )
         |> ignore
@@ -1348,7 +1348,7 @@ fn bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
       while true {
         if num_gt(int(i), gm_maxit) {
           merr(
-            "gamma_h_incomplete: continued fractions failed for gamma_h_incomplete(~:M, ~:M).",
+            "gamma_incomplete: continued fractions failed for gamma_incomplete(~:M, ~:M).",
             [a, x],
           )
           |> ignore
@@ -1404,7 +1404,7 @@ fn bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
     while true {
       if num_gt(int(i), gm_maxit) {
         merr(
-          "gamma_h_incomplete: series expansion failed for gamma_h_incomplete(~:M, ~:M).",
+          "gamma_incomplete: series expansion failed for gamma_incomplete(~:M, ~:M).",
           [a, x],
         )
         |> ignore
@@ -1505,7 +1505,7 @@ fn complex_bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
       while true {
         if num_gt(int(i), gm_maxit) {
           merr(
-            "gamma_h_incomplete: continued fractions failed for gamma_h_incomplete(~:M, ~:M).",
+            "gamma_incomplete: continued fractions failed for gamma_incomplete(~:M, ~:M).",
             [a, x],
           )
           |> ignore
@@ -1567,7 +1567,7 @@ fn complex_bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
     while true {
       if num_gt(int(i), gm_maxit) {
         merr(
-          "gamma_h_incomplete: series expansion failed for gamma_h_incomplete(~:M, ~:M).",
+          "gamma_incomplete: series expansion failed for gamma_incomplete(~:M, ~:M).",
           [a, x],
         )
         |> ignore
@@ -1799,7 +1799,7 @@ fn simp__pctgamma_incomplete_generalized(
     }
   } else if symval(q_d_hypergeometric_representation).truthy() {
     // Use the fact that gamma_incomplete_generalized(a,z1,z2) =
-    // gamma_h_incomplete(a,z1) - gamma_h_incomplete(a,z2).
+    // gamma_incomplete(a,z1) - gamma_incomplete(a,z2).
     sub(
       ftake(q_p_gamma_incomplete, [a, z1]),
       ftake(q_p_gamma_incomplete, [a, z2]),
@@ -1812,7 +1812,7 @@ fn simp__pctgamma_incomplete_generalized(
 // ---------------------------------------------------------------------------
 // The Regularized Incomplete Gamma function (A&S 6.5.1)
 //
-//   gamma_incomplete_regularized(a, z) = gamma_h_incomplete(a, z)/gamma(a)
+//   gamma_incomplete_regularized(a, z) = gamma_incomplete(a, z)/gamma(a)
 
 ///|
 /// Regularized Incomplete Gamma function has not mirror symmetry for z on
@@ -1889,12 +1889,12 @@ fn simp__pctgamma_incomplete_regularized(
     Fix(0L)
   } else if float_numerical_eval_p(args).truthy() {
     // Check for numerical evaluation in Float or Bigfloat precision
-    // gamma_h_incomplete returns a regularized result
+    // gamma_incomplete returns a regularized result
     complexify(gamma_h_incomplete(d_float(a), d_float(z), regularized=t))
   } else if complex_float_numerical_eval_p(args).truthy() {
     let ca = complex(d_float(d_realpart(a)), i=d_float(d_imagpart(a)))
     let cz = complex(d_float(d_realpart(z)), i=d_float(d_imagpart(z)))
-    // gamma_h_incomplete returns a regularized result
+    // gamma_incomplete returns a regularized result
     complexify(gamma_h_incomplete(ca, cz, regularized=t))
   } else if bigfloat_numerical_eval_p(args).truthy() {
     div(
@@ -2092,7 +2092,7 @@ fn simp__pctgamma_incomplete_regularized(
     }
   } else if symval(q_d_hypergeometric_representation).truthy() {
     // gamma_incomplete_regularized(a,z)
-    //   = gamma_h_incomplete(a,z)/gamma(a)
+    //   = gamma_incomplete(a,z)/gamma(a)
     //   = (gamma(a) - gamma_incomplete_lower(a,z))/gamma(a)
     //   = 1 - gamma_incomplete_lower(a,z)/gamma(a)
     sub(
@@ -2183,7 +2183,7 @@ fn init_gamma() -> Unit raise {
   gamma1__defgrad(q_p_gamma_incomplete, [
     list2(q_d_a, q_d_z),
     // wrt a
-    lfunc("gamma_h_incomplete-grad-a", args => gamma1__gamma_incomplete_grad_a(
+    lfunc("gamma_incomplete-grad-a", args => gamma1__gamma_incomplete_grad_a(
       arg(args, 0),
       arg(args, 1),
     )),
@@ -2194,7 +2194,7 @@ fn init_gamma() -> Unit raise {
   putprop(
     q_p_gamma_incomplete,
     lread(
-      "((a z) nil ((mplus) ((mtimes) -1 ((%gamma_h_incomplete) ((mplus) 1 a) z)) ((mtimes) ((%gamma_h_incomplete) a z) z)))",
+      "((a z) nil ((mplus) ((mtimes) -1 ((%gamma_incomplete) ((mplus) 1 a) z)) ((mtimes) ((%gamma_incomplete) a z) z)))",
     ),
     q_integral,
   )

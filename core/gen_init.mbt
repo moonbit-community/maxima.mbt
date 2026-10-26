@@ -244,15 +244,6 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "sregex" => Some(share_load_sregex)
     "unwind_protect" => Some(share_load_unwind_protect)
     "grobner" => Some(share_load_grobner)
-    "orthopoly" => Some(share_load_orthopoly)
-    "trigrat" => Some(share_load_trigrat)
-    "mring" => Some(share_load_mring)
-    "lu" => Some(share_load_lu)
-    "linalgcholesky" => Some(share_load_linalgcholesky)
-    "eigens-by-jacobi" => Some(share_load_eigens_by_jacobi)
-    "linalg-extra" => Some(share_load_linalg_extra)
-    "matrixexp" => Some(share_load_matrixexp)
-    "linalg-utilities" => Some(share_load_linalg_utilities)
     _ => None
   }
 }

@@ -248,7 +248,7 @@ fn outmis__top_props() -> Value {
       s("nonarray", q_d_nonarray),
       s("grad", q_d_gradef),
       s("integral", q_d_integral),
-      s("distribute_h_over", Str("distributes over bags")),
+      s("distribute_over", Str("distributes over bags")),
       s("simplim%function", Str("limit function")),
       s("conjugate-function", Str("conjugate function")),
       s("commutes-with-conjugate", Str("mirror symmetry")),
