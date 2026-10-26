@@ -2,6 +2,11 @@
 package "dii/maxima/core"
 
 // Values
+pub fn cli_main(Array[String]) -> Int32
+
+pub fn exit(Int32) -> Unit
+
+pub fn initialize() -> Unit raise
 
 // Errors
 

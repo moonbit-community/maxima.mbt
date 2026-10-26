@@ -1,0 +1,8 @@
+import {
+  "dii/maxima/core",
+  "moonbitlang/core/env",
+}
+
+options(
+  "is-main": true,
+)
