@@ -1441,3 +1441,155 @@ fn init_globals() -> Unit raise {
   )
   |> ignore
 }
+
+///|
+/// DEFMVAR variables defined outside globals.lisp whose initial values the
+/// porters of those files did not record in *variable-initial-values*
+/// (the variable options were installed by those files' init functions).
+/// Variables with NO-RESET are omitted.
+let globals__other_defmvars : Array[String] = [
+    // algsys
+    "$algdelta", "$realonly", "realonlyratnum", "$algexact", "algnotexact",
+    // asum
+    "$maxtaydiff",
+    // bessel
+    "$besselexpand", "$bessel_reduce",
+    // comm
+    "$vect_cross",
+    // comm2
+    "$logconcoeffp",
+    // compar
+    "$signbfloat", "$askexp", "$assume_pos", "$assume_pos_pred", "factored",
+    "*local-signs*", "sign", "minus", "odds", "evens",
+    // csimp2
+    "$gammalim", "$beta_args_sum_to_integer",
+    // defint
+    "$intanalysis",
+    // displa
+    "$stardisp", "$leftjust", "$noundisp", "displayp", "$boxchar",
+    "$absboxchar", "$lmxchar", "$rmxchar", "$display2d_unicode",
+    "$display_matrix_brackets", "$display_matrix_padding_vertical",
+    "$display_matrix_padding_horizontal", "$display_determinant_bars",
+    "$display_box_double_lines",
+    // expintegral
+    "$expintexpand", "$expintrep",
+    // fcall
+    "$tr_warn_bad_function_calls",
+    // fortra
+    "$fortspaces", "$fortindent",
+    // hayat
+    "tlist", "$psexpand", "$maxtayorder", "$taylor_truncate_polynomials",
+    "$taylor_logexpand", "$taylor_simplifier", "$taylor_order_coefficients",
+    // hyp
+    "$prefer_whittaker", "$prefer_gamma_incomplete", "$expand_polynomials",
+    // hypergeometric
+    "$max_fpprec", "$expand_hypergeometric", "$multiple_value_return",
+    // hypgeo
+    "$prefer_d",
+    // ifactor
+    "$save_primes", "$primep_number_of_tests", "$pollard_rho_limit",
+    "$pollard_pm1_limit", "$pollard_rho_tests", "$pollard_pm1_tests",
+    "$pollard_rho_limit_step", "$pollard_pm1_limit_step",
+    "$ecm_number_of_curves", "$ecm_limit", "$ecm_max_limit", "$ecm_limit_delta",
+    "$ifactor_verbose", "$factors_only",
+    // init-cl
+    "$batch_answers_from_file",
+    // inmis
+    "$listdummyvars",
+    // intpol
+    "$find_root_abs", "$find_root_rel", "$find_root_error",
+    // invert
+    "$invert_method", "$invert_by_adjoint_size_limit",
+    // limit
+    "simplimplus-problems", "limit-answers", "limit-using-taylor",
+    "extended-reals",
+    // matcom
+    "$announce_rules_firing",
+    // matrix
+    "top*", "$matrix_element_transpose",
+    // matrun
+    "$maxapplydepth", "$maxapplyheight", "matchreverse",
+    // maxmin
+    "$maxmin_effort",
+    // mdot
+    "$dotconstrules", "$dot0simp", "$dot0nscsimp", "$dot1simp", "$domxnctimes",
+    "$dotident",
+    // merror
+    "$error_size", "$error_syms",
+    // mgrind
+    "$display_format_internal",
+    // mlisp
+    "$mapprint", "$refcheck", "$maperror", "$optionset", "$setcheckbreak",
+    "$setval",
+    // mload
+    "$file_type_lisp", "$file_type_maxima", "$file_type_wxmx",
+    "$float_approx_equal_tolerance", "$file_search_cache",
+    "$file_search_ignore_dirs",
+    // mmacro
+    "$macroexpansion",
+    // mtrace
+    "$trace", "$trace_safety", "$trace_break_arg", "$trace_max_indent",
+    "$timer", "$timer_devalue",
+    // nforma
+    "$negsumdispflag",
+    // nisimp
+    "$letvarsimp", "$letrat",
+    // nparse
+    "*whitespace-chars*", "$report_synerr_line", "$report_synerr_info",
+    "$fast_bfloat_conversion", "$fast_bfloat_threshold",
+    // nrat4
+    "$radsubstflag",
+    // numth
+    "$zn_primroot_limit", "$zn_primroot_verbose", "$zn_primroot_pretest",
+    "$gf_rat", "$gf_symmetric", "$gf_balanced", "$gf_coeff_limit",
+    "$gf_cantor_zassenhaus", "$ef_coeff_mult", "$ef_coeff_add", "$ef_coeff_inv",
+    "$ef_coeff_exp", "$gf_powers", "$gf_logs", "$gf_zech_logs",
+    // optim
+    "$optimprefix", "$optimwarn",
+    // outmis
+    "$exptisolate", "$isolate_wrt_times", "$combineflag",
+    // prompt-util
+    "$prompt",
+    // psolve
+    "flag4",
+    // rat3d
+    "*irreds", "$berlefact", "$factor_max_degree_print_warning", "$homog_hack",
+    // rat3e
+    "factorresimp", "inratsimp", "fr-factor", "$ratdenomdivide",
+    // risch
+    "$erfflag",
+    // simp
+    "$doscmxplus", "$domxexpt", "$domxplus", "$domxtimes", "$mx0simp",
+    "derivsimp", "$grindswitch", "$on", "$off", "$limitdomain", "$lognegint",
+    "$distribute_over",
+    // sin
+    "$integration_constant_counter", "$integration_constant",
+    // sinint
+    "$integrate_use_rootsof",
+    // solve
+    "$linsolvewarn", "$solvedecomposes", "$solveexplicit", "$solvenullwarn",
+    // spgcd
+    "$pointbound",
+    // sublis
+    "$sublis_apply_lambda",
+    // suprv1
+    "$strdisp", "$grind", "$backtrace", "$debugmode", "$poislim",
+    "$ratvarswitch",
+    // tlimit
+    "*max-limit-depth*", "*large-positive-number*",
+]
+
+///|
+/// The MAYBE-RESET part of DEFMVAR for `globals__other_defmvars`: record
+/// each variable's value (as set by the initialization) in
+/// *variable-initial-values* unless it is already there, so that `reset`
+/// restores it. Called once every file's init has run.
+fn globals__record_other_defmvars() -> Unit raise {
+  let tbl = globals__initial_values_table()
+  for name in globals__other_defmvars {
+    let s = sym(name)
+    if boundp(s) && !gethash2(s, tbl).1 {
+      sethash(s, tbl, symval(s)) |> ignore
+    }
+  }
+}
