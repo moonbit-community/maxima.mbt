@@ -1054,7 +1054,7 @@ declare fn eqtest(x : Value, check : Value) -> Value raise
 
 ///|
 /// defun distribute-over -- simp.lisp:349
-declare fn distribute_over(expr : Value, args_simped : Value) -> Value raise
+declare fn distribute_h_over(expr : Value, args_simped : Value) -> Value raise
 
 ///|
 /// defun rulechk -- simp.lisp:384
@@ -20227,12 +20227,12 @@ declare fn simp__pctgamma_incomplete(form : Value, y : Value, p__pctsimpflag : V
 
 ///|
 /// defun gamma-incomplete -- gamma.lisp:1014
-declare fn gamma_incomplete(a : Value, x : Value, regularized? : Value = Nil) -> Value raise
+declare fn gamma_h_incomplete(a : Value, x : Value, regularized? : Value = Nil) -> Value raise
 
 ///|
 /// defun %gamma-incomplete -- gamma.lisp:1072
 /// Returns 2 values (CL multiple values) as a tuple.
-declare fn p_gamma_incomplete(a : Value, x : Value) -> (Value, Value) raise
+declare fn p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value) raise
 
 ///|
 /// defun bfloat-gamma-incomplete -- gamma.lisp:1162
@@ -21164,11 +21164,11 @@ declare fn d_zn_order(x : Value, n : Value, fs_phi? : Value = Nil) -> Value rais
 
 ///|
 /// defun zn_order -- numth.lisp:346
-declare fn zn_u_order(x : Value, n : Value, phi : Value, fs_phi : Value) -> Value raise
+declare fn zn_order(x : Value, n : Value, phi : Value, fs_phi : Value) -> Value raise
 
 ///|
 /// defun zn-order -- numth.lisp:352
-declare fn zn_order(x : Value, n : Value, ord : Value, fs_ord : Value) -> Value raise
+declare fn zn_h_order(x : Value, n : Value, ord : Value, fs_ord : Value) -> Value raise
 
 ///|
 /// defun totient-with-factors -- numth.lisp:372

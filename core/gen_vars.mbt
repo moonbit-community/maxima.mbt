@@ -91,7 +91,7 @@ fn init_vars_globals() -> Unit raise {
   defvar_init(q_d_hypergeometric_representation, Nil)
   defvar_init(q_d_listconstvars, Nil)
   defvar_init(q_d_showtime, Nil)
-  defvar_init(q_d_op_u_, q_d_op_u_)
+  defvar_init(q_d_op_, q_d_op_)
   defvar_init(q_d_op__, q_d_op__)
   defvar_init(q_d_globalsolve, Nil)
   defvar_init(q_d_sparse, Nil)
@@ -472,7 +472,7 @@ fn init_vars_numeric() -> Unit raise {
 
 ///|
 fn init_vars_prompt_util() -> Unit raise {
-  defvar_init(q_d_prompt, q_op_u_)
+  defvar_init(q_d_prompt, q_op_)
   defvar_init(q_ear_prompt_prefix, Str(""))
   defvar_init(q_ear_prompt_suffix, Str(""))
   defvar_init(q_ear_general_display_prefix, Str(""))

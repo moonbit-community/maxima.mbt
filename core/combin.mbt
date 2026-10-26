@@ -1205,7 +1205,7 @@ fn init_combin() -> Unit raise {
   putprop(q_ear_eu, int(11), q_lim) |> ignore
   putprop(q_bern, int(16), q_lim) |> ignore
   putprop(q_p_zeta, t, q_commutes_with_conjugate) |> ignore
-  putprop(q_p_zeta, lread("(mlist $matrix mequal)"), q_distribute_u_over)
+  putprop(q_p_zeta, lread("(mlist $matrix mequal)"), q_distribute_over)
   |> ignore
   putprop(q_p_zeta, q_simplim_pctzeta, q_simplim_pctfunction) |> ignore
   init_combin_2()

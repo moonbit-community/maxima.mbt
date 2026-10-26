@@ -359,9 +359,9 @@ fn simplifya(x : Value, y : Value) -> Value raise {
     }
   }
   if symval(q_d_distribute_over).truthy() &&
-    get(op, q_distribute_u_over).truthy() {
-    // A function with the property 'distribute_over.
-    let r = distribute_over(x, y)
+    get(op, q_distribute_over).truthy() {
+    // A function with the property 'distribute_h_over.
+    let r = distribute_h_over(x, y)
     if r.truthy() {
       return r
     }
@@ -456,11 +456,11 @@ fn eqtest(x : Value, check : Value) -> Value raise {
 ///|
 /// A function which distributes over bags like a list, matrix, or equation,
 /// or any other operator.
-fn distribute_over(expr : Value, args_simped : Value) -> Value raise {
+fn distribute_h_over(expr : Value, args_simped : Value) -> Value raise {
   if length(cdr(expr)) == 1 {
     // Distribute over for a function with one argument.
     if !atom(cadr(expr)) &&
-      memq(caaadr(expr), get(caar(expr), q_distribute_u_over)).truthy() {
+      memq(caaadr(expr), get(caar(expr), q_distribute_over)).truthy() {
       simplifya(
         cons(
           caadr(expr),
@@ -477,7 +477,7 @@ fn distribute_over(expr : Value, args_simped : Value) -> Value raise {
     let mut first_args : Value = Nil
     while args is Cons({ car: a, cdr: rest_args }) {
       if !atom(a) &&
-        memq(caar(a), get(caar(expr), q_distribute_u_over)).truthy() {
+        memq(caar(a), get(caar(expr), q_distribute_over)).truthy() {
         // Distribute the function over the arguments and simplify again.
         let fa = first_args
         return simplifya(
@@ -1481,7 +1481,7 @@ fn init_simp() -> Unit raise {
   putprop(q_d_equal, t, q_binary) |> ignore
   putprop(q_d_notequal, t, q_binary) |> ignore
   // The log function distributes over lists, matrices, and equations
-  putprop(q_p_log, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_u_over)
+  putprop(q_p_log, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_over)
   |> ignore
   // def-simplifier log: its properties are installed by the registry.
   // Implementation of the Square root function
@@ -1495,7 +1495,7 @@ fn init_simp() -> Unit raise {
   putprop(q_d_abs, q_mabs, q_verb) |> ignore
   putprop(q_mabs, q_d_abs, q_reversealias) |> ignore
   putprop(q_mabs, q_d_abs, q_noun) |> ignore
-  putprop(q_mabs, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_u_over)
+  putprop(q_mabs, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_over)
   |> ignore
   putprop(q_mabs, q_simpabs, q_operators) |> ignore
   putprop(q_mabs, list2(list1(q_x), q_abs_integral), q_integral) |> ignore
@@ -1505,7 +1505,7 @@ fn init_simp() -> Unit raise {
   putprop(q_p_exp, q_d_exp, q_noun) |> ignore
   putprop(q_p_exp, q_d_exp, q_reversealias) |> ignore
   putprop(q_p_exp, q_simp_exp, q_operators) |> ignore
-  putprop(q_p_signum, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_u_over)
+  putprop(q_p_signum, list([q_mlist, q_d_matrix, q_mequal]), q_distribute_over)
   |> ignore
   // def-simplifier signum (later in simp.lisp) replaces the SIMPSIGNUM
   // operators property set above.

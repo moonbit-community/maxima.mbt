@@ -259,7 +259,7 @@ last-factor	defun	simp.lisp:241	last_factor(x : Value) -> Value
 integer-difference-p	defun	simp.lisp:245	integer_difference_p(x : Value, y : Value) -> Value
 simplifya	defun	simp.lisp:256	simplifya(x : Value, y : Value) -> Value
 eqtest	defun	simp.lisp:318	eqtest(x : Value, check : Value) -> Value
-distribute-over	defun	simp.lisp:349	distribute_over(expr : Value, args_simped : Value) -> Value
+distribute-over	defun	simp.lisp:349	distribute_h_over(expr : Value, args_simped : Value) -> Value
 rulechk	defun	simp.lisp:384	rulechk(x : Value) -> Value
 resimplify	defun	simp.lisp:386	resimplify(x : Value) -> Value
 unsimplify	defun	simp.lisp:388	unsimplify(x : Value) -> Value
@@ -5002,8 +5002,8 @@ simplim%gamma_incomplete	defun	gamma.lisp:369	simplim_pctgamma_incomplete(expr :
 simp-%gamma_incomplete_lower	simplifier	gamma.lisp:499	simp__pctgamma_incomplete_lower(form : Value, y : Value, p__pctsimpflag : Value) -> Value
 gamma-incomplete-lower-expand	defun	gamma.lisp:520	gamma_incomplete_lower_expand(a : Value, z : Value) -> Value
 simp-%gamma_incomplete	simplifier	gamma.lisp:627	simp__pctgamma_incomplete(form : Value, y : Value, p__pctsimpflag : Value) -> Value
-gamma-incomplete	defun	gamma.lisp:1014	gamma_incomplete(a : Value, x : Value, regularized? : Value = Nil) -> Value
-%gamma-incomplete	defun	gamma.lisp:1072	p_gamma_incomplete(a : Value, x : Value) -> (Value, Value)
+gamma-incomplete	defun	gamma.lisp:1014	gamma_h_incomplete(a : Value, x : Value, regularized? : Value = Nil) -> Value
+%gamma-incomplete	defun	gamma.lisp:1072	p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value)
 bfloat-gamma-incomplete	defun	gamma.lisp:1162	bfloat_gamma_incomplete(a : Value, x : Value) -> Value
 complex-bfloat-gamma-incomplete	defun	gamma.lisp:1263	complex_bfloat_gamma_incomplete(a : Value, x : Value) -> Value
 conjugate-gamma-incomplete-generalized	defun	gamma.lisp:1388	conjugate_gamma_incomplete_generalized(args : Value) -> Value
@@ -5235,8 +5235,8 @@ gctime1	defun	numth.lisp:282	gctime1(a : Value, b : Value) -> Value
 gcexpt	defun	numth.lisp:285	gcexpt(a : Value, n : Value) -> Value
 zn-quo	defun	numth.lisp:309	zn_quo(n : Value, d : Value, p : Value) -> Value
 $zn_order	defmfun	numth.lisp:319	d_zn_order(x : Value, n : Value, fs_phi? : Value = Nil) -> Value
-zn_order	defun	numth.lisp:346	zn_u_order(x : Value, n : Value, phi : Value, fs_phi : Value) -> Value
-zn-order	defun	numth.lisp:352	zn_order(x : Value, n : Value, ord : Value, fs_ord : Value) -> Value
+zn_order	defun	numth.lisp:346	zn_order(x : Value, n : Value, phi : Value, fs_phi : Value) -> Value
+zn-order	defun	numth.lisp:352	zn_h_order(x : Value, n : Value, ord : Value, fs_ord : Value) -> Value
 totient-with-factors	defun	numth.lisp:372	totient_with_factors(n : Value) -> Value
 totient-from-factors	defun	numth.lisp:396	totient_from_factors(fs_phi : Value) -> Value
 $zn_primroot_p	defmfun	numth.lisp:410	d_zn_primroot_p(x : Value, n : Value, fs_phi? : Value = Nil) -> Value

@@ -182,7 +182,7 @@ let q_d_op_plus : Value = sym("$+")
 let q_d_op_cm : Value = sym("$,")
 
 ///|
-let q_d_op_ : Value = sym("$-")
+let q_d_op_h_ : Value = sym("$-")
 
 ///|
 let q_d__read_aux : Value = sym("$-read-aux")
@@ -383,7 +383,7 @@ let q_d_op_hat : Value = sym("$^")
 let q_d_op_hat_hat : Value = sym("$^^")
 
 ///|
-let q_d_op_u_ : Value = sym("$_")
+let q_d_op_ : Value = sym("$_")
 
 ///|
 let q_d_op__ : Value = sym("$__")
@@ -6515,10 +6515,10 @@ let q_p_fresnel_s : Value = sym("%fresnel_s")
 let q_p_gamma : Value = sym("%gamma")
 
 ///|
-let q_p_gamma_incomplete : Value = sym("%gamma-incomplete")
+let q_p_gamma_h_incomplete : Value = sym("%gamma-incomplete")
 
 ///|
-let q_p_gamma_u_incomplete : Value = sym("%gamma_incomplete")
+let q_p_gamma_incomplete : Value = sym("%gamma_incomplete")
 
 ///|
 let q_p_gamma_incomplete_generalized : Value = sym("%gamma_incomplete_generalized")
@@ -8810,7 +8810,7 @@ let q_n_plussl : Value = sym("+sl")
 let q_n_plussm : Value = sym("+sm")
 
 ///|
-let q_op_ : Value = sym("-")
+let q_op_h_ : Value = sym("-")
 
 ///|
 let q_n_1_sl_sl2 : Value = sym("-1//2")
@@ -9143,7 +9143,7 @@ let q_op_lb : Value = sym("[")
 let q_n_lbmax_trunc_rb : Value = sym("[max-trunc]")
 
 ///|
-let q_op_u_ : Value = sym("_")
+let q_op_ : Value = sym("_")
 
 ///|
 let q_n__cl_ : Value = sym("_L")
@@ -13289,10 +13289,10 @@ let q_distrexpandroot : Value = sym("distrexpandroot")
 let q_distrfactor : Value = sym("distrfactor")
 
 ///|
-let q_distribute_over : Value = sym("distribute-over")
+let q_distribute_h_over : Value = sym("distribute-over")
 
 ///|
-let q_distribute_u_over : Value = sym("distribute_over")
+let q_distribute_over : Value = sym("distribute_over")
 
 ///|
 let q_distrinplusprev : Value = sym("distrinplusprev")
@@ -16334,7 +16334,7 @@ let q_gam_const : Value = sym("gam-const")
 let q_gamma : Value = sym("gamma")
 
 ///|
-let q_gamma_incomplete : Value = sym("gamma-incomplete")
+let q_gamma_h_incomplete : Value = sym("gamma-incomplete")
 
 ///|
 let q_gamma_incomplete_asymptotic : Value = sym("gamma-incomplete-asymptotic")
@@ -16364,7 +16364,7 @@ let q_gamma_upper_trans : Value = sym("gamma-upper-trans")
 let q_gamma1 : Value = sym("gamma1")
 
 ///|
-let q_gamma_u_incomplete : Value = sym("gamma_incomplete")
+let q_gamma_incomplete : Value = sym("gamma_incomplete")
 
 ///|
 let q_gamma_incomplete_to_gamma_incomplete_lower : Value = sym("gamma_incomplete-to-gamma-incomplete-lower")
@@ -31439,7 +31439,7 @@ let q_zn_gcdex2 : Value = sym("zn-gcdex2")
 let q_zn_nrt : Value = sym("zn-nrt")
 
 ///|
-let q_zn_order : Value = sym("zn-order")
+let q_zn_h_order : Value = sym("zn-order")
 
 ///|
 let q_zn_p_errchk : Value = sym("zn-p-errchk")
@@ -31463,7 +31463,7 @@ let q_zn_shanks_phi_step_bc : Value = sym("zn-shanks-phi-step-bc")
 let q_zn_table_errchk : Value = sym("zn-table-errchk")
 
 ///|
-let q_zn_u_order : Value = sym("zn_order")
+let q_zn_order : Value = sym("zn_order")
 
 ///|
 let q_zp : Value = sym("zp")

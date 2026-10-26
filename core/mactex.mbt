@@ -1746,7 +1746,7 @@ fn init_mactex() -> Unit raise {
     (q_d_gamma, "\\gamma"),
     (q_p_gamma, "\\gamma"),
     (q_d__pctgamma, "\\gamma"),
-    (q_p_gamma_u_incomplete, "\\Gamma"),
+    (q_p_gamma_incomplete, "\\Gamma"),
     (q_p_gamma_incomplete_regularized, "Q"),
     (q_p_gamma_incomplete_generalized, "\\Gamma"),
     (q_d_gamma_incomplete_lower, "\\gamma"),

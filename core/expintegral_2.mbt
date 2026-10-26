@@ -13,7 +13,7 @@ fn expintegral__f(op : Value, x : Value) -> Value raise {
 
 ///|
 fn expintegral__gi0(x : Value) -> Value raise {
-  take(list1(q_p_gamma_u_incomplete), [Fix(0L), x])
+  take(list1(q_p_gamma_incomplete), [Fix(0L), x])
 }
 
 ///|
@@ -128,7 +128,7 @@ fn simp__pctexpintegral_e1(
   }
   if expintegral__rep_other(q_p_expintegral_e1) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_u_incomplete) {
+    return if eq(rep, q_p_gamma_incomplete) {
       expintegral__gi0(arg)
     } else if eq(rep, q_p_expintegral_ei) {
       addn_([
@@ -266,7 +266,7 @@ fn simp__pctexpintegral_ei(
   }
   if expintegral__rep_other(q_p_expintegral_ei) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_u_incomplete) {
+    return if eq(rep, q_p_gamma_incomplete) {
       addn_([
         expintegral__neg1(expintegral__gi0(expintegral__neg1(arg))),
         mul2(
@@ -484,7 +484,7 @@ fn simp__pctexpintegral_li(
   if expintegral__rep_other(q_p_expintegral_li) {
     let logarg = take(list1(q_p_log), [arg])
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_u_incomplete) {
+    return if eq(rep, q_p_gamma_incomplete) {
       addn_([
         expintegral__neg1(expintegral__gi0(expintegral__neg1(logarg))),
         mul2(
@@ -639,7 +639,7 @@ fn simp__pctexpintegral_si(
   if expintegral__rep_other(q_d_expintegral_trig) {
     let rep = symval(q_d_expintrep)
     let iarg = mul2(q_d__pcti, arg)
-    return if eq(rep, q_p_gamma_u_incomplete) {
+    return if eq(rep, q_p_gamma_incomplete) {
       mul2(
         div(q_d__pcti, Fix(2L)),
         addn_([
@@ -847,7 +847,7 @@ fn simp__pctexpintegral_shi(
   }
   if expintegral__rep_other(q_d_expintegral_hyp) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_u_incomplete) {
+    return if eq(rep, q_p_gamma_incomplete) {
       mul2(
         inv(Fix(2L)),
         addn_([
@@ -1065,7 +1065,7 @@ fn simp__pctexpintegral_ci(
   if expintegral__rep_other(q_d_expintegral_trig) {
     let rep = symval(q_d_expintrep)
     let iarg = mul2(q_d__pcti, arg)
-    return if eq(rep, q_p_gamma_u_incomplete) {
+    return if eq(rep, q_p_gamma_incomplete) {
       sub(
         expintegral__log(arg),
         mul2(
@@ -1298,7 +1298,7 @@ fn simp__pctexpintegral_chi(
   }
   if expintegral__rep_other(q_d_expintegral_hyp) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_u_incomplete) {
+    return if eq(rep, q_p_gamma_incomplete) {
       mul2(
         inv(Fix(-2L)),
         addn_([
@@ -1463,7 +1463,7 @@ fn init_expintegral() -> Unit raise {
       q_p_expintegral_li,
       q_d_expintegral_trig,
       q_d_expintegral_hyp,
-      q_p_gamma_u_incomplete,
+      q_p_gamma_incomplete,
     ]),
   )
   // (defmvar $expintexpand nil ... :setting-list (t nil %erf))
@@ -1517,7 +1517,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 1: Exponential Integral E
-  putprop(q_p_expintegral_e, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_e, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_e,
@@ -1552,7 +1552,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 2: Exponential Integral E1
-  putprop(q_p_expintegral_e1, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_e1, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_e1,
@@ -1577,7 +1577,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 3: Exponential Integral Ei
-  putprop(q_p_expintegral_ei, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_ei, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(q_p_expintegral_ei, t, q_commutes_with_conjugate) |> ignore
   expintegral__defgrad(q_p_expintegral_ei, [q_d_x], [maxima_lit(" %e^x/x")])
@@ -1597,7 +1597,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 4: Logarithmic integral li
-  putprop(q_p_expintegral_li, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_li, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_li,
@@ -1622,7 +1622,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 5: Exponential Integral Si
-  putprop(q_p_expintegral_si, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_si, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(q_p_expintegral_si, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_expintegral_si, q_odd_function_reflect, q_reflection_rule)
@@ -1642,7 +1642,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 6: Exponential Integral Shi
-  putprop(q_p_expintegral_shi, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_shi, expintegral__bags(), q_distribute_over)
   |> ignore
   // (The Lisp source puts these two properties on %expintegral_si again.)
   putprop(q_p_expintegral_si, t, q_commutes_with_conjugate) |> ignore
@@ -1667,7 +1667,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 7: Exponential Integral Ci
-  putprop(q_p_expintegral_ci, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_ci, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_ci,
@@ -1692,7 +1692,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 8: Exponential Integral Chi
-  putprop(q_p_expintegral_chi, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_chi, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_chi,

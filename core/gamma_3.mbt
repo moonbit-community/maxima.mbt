@@ -1343,7 +1343,7 @@ fn gamma3__init() -> Unit raise {
   let bags = list3(q_mlist, q_d_matrix, q_mequal)
 
   // fresnel_s
-  putprop(q_p_fresnel_s, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_fresnel_s, bags, q_distribute_over) |> ignore
   putprop(q_p_fresnel_s, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_fresnel_s, q_odd_function_reflect, q_reflection_rule) |> ignore
   gamma3__defgrad(q_p_fresnel_s, [q_d_z], [maxima_lit("sin((%pi*z^2)/2)")])
@@ -1364,7 +1364,7 @@ fn gamma3__init() -> Unit raise {
   )
 
   // fresnel_c
-  putprop(q_p_fresnel_c, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_fresnel_c, bags, q_distribute_over) |> ignore
   putprop(q_p_fresnel_c, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_fresnel_c, q_odd_function_reflect, q_reflection_rule) |> ignore
   gamma3__defgrad(q_p_fresnel_c, [q_d_z], [maxima_lit("cos((%pi*z^2)/2)")])
@@ -1393,7 +1393,7 @@ fn gamma3__init() -> Unit raise {
 
   // beta_incomplete
   // *beta-incomplete-maxit* and *beta-incomplete-eps* are literal defvars.
-  putprop(q_p_beta_incomplete, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_beta_incomplete, bags, q_distribute_over) |> ignore
   gamma3__defgrad(q_p_beta_incomplete, [q_d_a, q_d_b, q_d_z], [
     // Derivative wrt a
     maxima_lit(
@@ -1416,7 +1416,7 @@ fn gamma3__init() -> Unit raise {
   |> ignore
 
   // beta_incomplete_generalized
-  putprop(q_p_beta_incomplete_generalized, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_beta_incomplete_generalized, bags, q_distribute_over) |> ignore
   putprop(
     q_p_beta_incomplete_generalized,
     q_conjugate_beta_incomplete_generalized,
@@ -1451,7 +1451,7 @@ fn gamma3__init() -> Unit raise {
   |> ignore
 
   // beta_incomplete_regularized
-  putprop(q_p_beta_incomplete_regularized, bags, q_distribute_u_over) |> ignore
+  putprop(q_p_beta_incomplete_regularized, bags, q_distribute_over) |> ignore
   gamma3__defgrad(q_p_beta_incomplete_regularized, [q_d_a, q_d_b, q_d_z], [
     // Derivative wrt a
     maxima_lit(

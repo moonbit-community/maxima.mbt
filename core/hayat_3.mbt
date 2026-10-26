@@ -1348,7 +1348,7 @@ fn signum_trans(arg : Value, func : Value) -> Value raise {
 }
 
 ///|
-/// For gamma_incomplete(s,z): translate into gamma_incomplete_lower if s>0
+/// For gamma_h_incomplete(s,z): translate into gamma_incomplete_lower if s>0
 /// and z=0. The call to $limit is surrounded with errcatch (with $errormsg
 /// set to nil) to work around a bug elsewhere.
 fn gamma_upper_trans(arg : Value, func : Value) -> Value raise {

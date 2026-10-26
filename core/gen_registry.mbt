@@ -282,7 +282,7 @@ fn register_generated_functions() -> Unit {
   defun(q_integer_difference_p, args => integer_difference_p(arg(args, 0), arg(args, 1)))
   defun(q_simplifya, args => simplifya(arg(args, 0), arg(args, 1)))
   defun(q_eqtest, args => eqtest(arg(args, 0), arg(args, 1)))
-  defun(q_distribute_over, args => distribute_over(arg(args, 0), arg(args, 1)))
+  defun(q_distribute_h_over, args => distribute_h_over(arg(args, 0), arg(args, 1)))
   defun(q_rulechk, args => rulechk(arg(args, 0)))
   defun(q_resimplify, args => resimplify(arg(args, 0)))
   defun(q_unsimplify, args => unsimplify(arg(args, 0)))
@@ -5370,8 +5370,8 @@ fn register_generated_functions() -> Unit {
   register_simplifier(q_simp__pctgamma_incomplete_lower, args => simp__pctgamma_incomplete_lower(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_gamma_incomplete_lower_expand, args => gamma_incomplete_lower_expand(arg(args, 0), arg(args, 1)))
   register_simplifier(q_simp__pctgamma_incomplete, args => simp__pctgamma_incomplete(arg(args, 0), arg(args, 1), arg(args, 2)))
-  defun(q_gamma_incomplete, args => gamma_incomplete(arg(args, 0), arg(args, 1), regularized?=args.get(2)))
-  defun(q_p_gamma_incomplete, args => p_gamma_incomplete(arg(args, 0), arg(args, 1)).0)
+  defun(q_gamma_h_incomplete, args => gamma_h_incomplete(arg(args, 0), arg(args, 1), regularized?=args.get(2)))
+  defun(q_p_gamma_h_incomplete, args => p_gamma_h_incomplete(arg(args, 0), arg(args, 1)).0)
   defun(q_bfloat_gamma_incomplete, args => bfloat_gamma_incomplete(arg(args, 0), arg(args, 1)))
   defun(q_complex_bfloat_gamma_incomplete, args => complex_bfloat_gamma_incomplete(arg(args, 0), arg(args, 1)))
   defun(q_conjugate_gamma_incomplete_generalized, args => conjugate_gamma_incomplete_generalized(arg(args, 0)))
@@ -5625,8 +5625,8 @@ fn register_generated_functions() -> Unit {
   defun(q_zn_quo, args => zn_quo(arg(args, 0), arg(args, 1), arg(args, 2)))
   defun(q_d_zn_order, args => { check_arity_range("$zn_order", args, 2, 3); d_zn_order(arg(args, 0), arg(args, 1), fs_phi?=args.get(2)) })
   putprop(q_d_zn_order, t, q_translated) |> ignore
-  defun(q_zn_u_order, args => zn_u_order(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_zn_order, args => zn_order(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_zn_h_order, args => zn_h_order(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
   defun(q_totient_with_factors, args => totient_with_factors(arg(args, 0)))
   defun(q_totient_from_factors, args => totient_from_factors(arg(args, 0)))
   defun(q_d_zn_primroot_p, args => { check_arity_range("$zn_primroot_p", args, 2, 3); d_zn_primroot_p(arg(args, 0), arg(args, 1), fs_phi?=args.get(2)) })
@@ -7166,12 +7166,12 @@ fn register_generated_simplifiers() -> Unit {
   putprop(q_p_gamma_incomplete_lower, q_simp__pctgamma_incomplete_lower, q_operators) |> ignore
   putprop(q_p_gamma_incomplete_lower, q_d_gamma_incomplete_lower, q_noun) |> ignore
   putprop(q_d_gamma_incomplete_lower, q_p_gamma_incomplete_lower, q_verb) |> ignore
-  defun(q_d_gamma_incomplete, args => { check_arity("$gamma_incomplete", args, 2); ftake(q_p_gamma_u_incomplete, args) })
-  putprop(q_d_gamma_incomplete, q_p_gamma_u_incomplete, q_alias) |> ignore
-  putprop(q_p_gamma_u_incomplete, q_d_gamma_incomplete, q_reversealias) |> ignore
-  putprop(q_p_gamma_u_incomplete, q_simp__pctgamma_incomplete, q_operators) |> ignore
-  putprop(q_p_gamma_u_incomplete, q_d_gamma_incomplete, q_noun) |> ignore
-  putprop(q_d_gamma_incomplete, q_p_gamma_u_incomplete, q_verb) |> ignore
+  defun(q_d_gamma_incomplete, args => { check_arity("$gamma_incomplete", args, 2); ftake(q_p_gamma_incomplete, args) })
+  putprop(q_d_gamma_incomplete, q_p_gamma_incomplete, q_alias) |> ignore
+  putprop(q_p_gamma_incomplete, q_d_gamma_incomplete, q_reversealias) |> ignore
+  putprop(q_p_gamma_incomplete, q_simp__pctgamma_incomplete, q_operators) |> ignore
+  putprop(q_p_gamma_incomplete, q_d_gamma_incomplete, q_noun) |> ignore
+  putprop(q_d_gamma_incomplete, q_p_gamma_incomplete, q_verb) |> ignore
   defun(q_d_gamma_incomplete_generalized, args => { check_arity("$gamma_incomplete_generalized", args, 3); ftake(q_p_gamma_incomplete_generalized, args) })
   putprop(q_d_gamma_incomplete_generalized, q_p_gamma_incomplete_generalized, q_alias) |> ignore
   putprop(q_p_gamma_incomplete_generalized, q_d_gamma_incomplete_generalized, q_reversealias) |> ignore

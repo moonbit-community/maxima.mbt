@@ -1229,7 +1229,7 @@ fn optimized_plist(plist : Value) -> Value raise {
   }
   let simplifier = getf(plist, q_operators)
   let keys = if simplifier.truthy() {
-    list([q_operators, q_distribute_u_over, q_opers, q_msimpind, q_mprops, q_noun])
+    list([q_operators, q_distribute_over, q_opers, q_msimpind, q_mprops, q_noun])
   } else {
     list([q_mprops, q_mfexpr_star, q_noun, q_translated_mmacro, q_translated])
   }

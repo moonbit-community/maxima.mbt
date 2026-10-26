@@ -406,7 +406,7 @@ fn erf(z : Value) -> Value raise {
 }
 
 ///|
-/// erf(z) = sqrt(z^2)/z*(1 - gamma_incomplete(1/2,z^2)/sqrt(%pi)) for a CL
+/// erf(z) = sqrt(z^2)/z*(1 - gamma_h_incomplete(1/2,z^2)/sqrt(%pi)) for a CL
 /// complex z.
 fn complex_erf(z : Value) -> Value raise {
   let sgn : Value = if num_lt(realpart(z), Flo(0.0)) ||
@@ -421,7 +421,7 @@ fn complex_erf(z : Value) -> Value raise {
       Flo(1.0),
       num_mul(
         num_inv(Flo(@math.PI.sqrt())),
-        gamma_incomplete(Flo(0.5), num_mul(z, z)),
+        gamma_h_incomplete(Flo(0.5), num_mul(z, z)),
       ),
     ),
   )
@@ -532,9 +532,9 @@ fn bf_bf_erf(z : Value) -> Value raise {
 ///|
 fn bf_bf_erfc(z : Value) -> Value raise {
   // erfc(z) = 1/sqrt(pi)*gamma_incomplete_tail(1/2,z^2)       realpart(z) > 0
-  //         = 2 - 1/sqrt(pi)*gamma_incomplete(1/2,z^2)        realpart(z) < 0
+  //         = 2 - 1/sqrt(pi)*gamma_h_incomplete(1/2,z^2)        realpart(z) < 0
   let gamma_inc = (z : Value) => if numberp(z) {
-    gamma_incomplete(Flo(0.5), z)
+    gamma_h_incomplete(Flo(0.5), z)
   } else if bf_is_bigfloat(z) {
     bf_to(
       d_bfloat(
@@ -1222,7 +1222,7 @@ fn gamma2__init() -> Unit raise {
   putprop(q_p_log_gamma, q_d_log_gamma, q_reversealias) |> ignore
   putprop(q_p_log_gamma, q_d_log_gamma, q_noun) |> ignore
   putprop(q_p_log_gamma, q_simp_log_gamma, q_operators) |> ignore
-  putprop(q_p_log_gamma, gamma2__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_log_gamma, gamma2__bags(), q_distribute_over) |> ignore
   gamma2__defgrad(q_p_log_gamma, list1(q_d_z), [maxima_lit("psi[0](z)")])
   putprop(q_p_log_gamma, list2(list1(q_x), q_log_gamma_integral), q_integral)
   |> ignore
@@ -1230,7 +1230,7 @@ fn gamma2__init() -> Unit raise {
   // erf
   putprop(q_p_erf, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_erf, q_odd_function_reflect, q_reflection_rule) |> ignore
-  putprop(q_p_erf, gamma2__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_erf, gamma2__bags(), q_distribute_over) |> ignore
   gamma2__defgrad(q_p_erf, list1(q_d_z), [
     maxima_lit("(2*%e^-z^2)/sqrt(%pi)"),
   ])
@@ -1245,7 +1245,7 @@ fn gamma2__init() -> Unit raise {
 
   // erf_generalized
   putprop(q_p_erf_generalized, t, q_commutes_with_conjugate) |> ignore
-  putprop(q_p_erf_generalized, gamma2__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_erf_generalized, gamma2__bags(), q_distribute_over) |> ignore
   // Generalized Erf is antisymmetric Erf(z1,z2) = - Erf(z2,z1)
   with_specials([(q_d_context, q_d_global), (q_context, q_d_global)], () => {
     meval(mk(q_d_declare, [q_p_erf_generalized, q_d_antisymmetric])) |> ignore
@@ -1271,7 +1271,7 @@ fn gamma2__init() -> Unit raise {
 
   // erfc
   putprop(q_p_erfc, t, q_commutes_with_conjugate) |> ignore
-  putprop(q_p_erfc, gamma2__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_erfc, gamma2__bags(), q_distribute_over) |> ignore
   gamma2__defgrad(q_p_erfc, list1(q_d_z), [
     maxima_lit("-((2*%e^-z^2)/sqrt(%pi))"),
   ])
@@ -1288,7 +1288,7 @@ fn gamma2__init() -> Unit raise {
   // erfi
   putprop(q_p_erfi, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_erfi, q_odd_function_reflect, q_reflection_rule) |> ignore
-  putprop(q_p_erfi, gamma2__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_erfi, gamma2__bags(), q_distribute_over) |> ignore
   gamma2__defgrad(q_p_erfi, list1(q_d_z), [
     maxima_lit("(2*%e^z^2)/sqrt(%pi)"),
   ])
@@ -1303,7 +1303,7 @@ fn gamma2__init() -> Unit raise {
   putprop(q_p_erfi, q_simplim_pcterfi, q_simplim_pctfunction) |> ignore
 
   // inverse_erf
-  putprop(q_p_inverse_erf, gamma2__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_inverse_erf, gamma2__bags(), q_distribute_over) |> ignore
   putprop(q_p_inverse_erf, q_p_erf, q_d_inverse) |> ignore
   putprop(q_p_erf, q_p_inverse_erf, q_d_inverse) |> ignore
   gamma2__defgrad(q_p_inverse_erf, list1(q_d_z), [
@@ -1321,7 +1321,7 @@ fn gamma2__init() -> Unit raise {
   |> ignore
 
   // inverse_erfc
-  putprop(q_p_inverse_erfc, gamma2__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_inverse_erfc, gamma2__bags(), q_distribute_over) |> ignore
   putprop(q_p_inverse_erfc, q_p_erfc, q_d_inverse) |> ignore
   putprop(q_p_erfc, q_p_inverse_erfc, q_d_inverse) |> ignore
   gamma2__defgrad(q_p_inverse_erfc, list1(q_d_z), [

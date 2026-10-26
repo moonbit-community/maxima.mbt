@@ -1452,7 +1452,7 @@ fn d_ordergreat(l : Value) -> Value raise {
   if symval(q_greatorder).truthy() {
     merr("ordergreat: reordering is not allowed.", []) |> ignore
   }
-  makorder(set(q_greatorder, reverse(cdr(l))), q_op_u_)
+  makorder(set(q_greatorder, reverse(cdr(l))), q_op_)
 }
 
 ///|

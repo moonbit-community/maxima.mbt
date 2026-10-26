@@ -513,7 +513,7 @@ fn bessel__defgrad(
 ///|
 fn init_bessel() -> Unit raise {
   // Bessel J
-  putprop(q_p_bessel_j, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_bessel_j, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_bessel_j, [q_d_n, q_d_x], [
     // Derivative wrt to order n. A&S 9.1.64.
     //
@@ -537,7 +537,7 @@ fn init_bessel() -> Unit raise {
   |> ignore
 
   // Bessel Y
-  putprop(q_p_bessel_y, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_bessel_y, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_bessel_y, [q_d_n, q_d_x], [
     // Derivative wrt order n. A&S 9.1.65.
     //
@@ -560,7 +560,7 @@ fn init_bessel() -> Unit raise {
   |> ignore
 
   // Bessel I
-  putprop(q_p_bessel_i, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_bessel_i, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_bessel_i, [q_d_n, q_d_x], [
     // Derivative wrt order n. A&S 9.6.42.
     //
@@ -582,7 +582,7 @@ fn init_bessel() -> Unit raise {
   |> ignore
 
   // Bessel K
-  putprop(q_p_bessel_k, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_bessel_k, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_bessel_k, [q_d_n, q_d_x], [
     // Derivativer wrt order n. A&S 9.6.43.
     //
@@ -610,14 +610,14 @@ fn init_bessel() -> Unit raise {
   putprop(q_p_bessel_y, q_risplit_bessel_k_or_y, q_risplit_function) |> ignore
 
   // Hankel 1 and Hankel 2
-  putprop(q_p_hankel_1, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_hankel_1, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_hankel_1, [q_d_n, q_d_x], [
     // wrt n
     Nil,
     // Derivative wrt arg x. A&S 9.1.27.
     maxima_lit("$ (hankel_1(n-1,x)-hankel_1(n+1,x))/2"),
   ])
-  putprop(q_p_hankel_2, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_hankel_2, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_hankel_2, [q_d_n, q_d_x], [
     // wrt n
     Nil,
@@ -626,7 +626,7 @@ fn init_bessel() -> Unit raise {
   ])
 
   // Struve H and Struve L
-  putprop(q_p_struve_h, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_struve_h, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_struve_h, [q_d_v, q_d_z], [
     // wrt v
     Nil,
@@ -635,7 +635,7 @@ fn init_bessel() -> Unit raise {
       "$ (z^v/(2^v*sqrt(%pi)*gamma(v+3/2))-struve_h(v+1,z)+struve_h(v-1,z))/2",
     ),
   ])
-  putprop(q_p_struve_l, bessel__bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_struve_l, bessel__bags(), q_distribute_over) |> ignore
   bessel__defgrad(q_p_struve_l, [q_d_v, q_d_z], [
     // wrt v
     Nil,

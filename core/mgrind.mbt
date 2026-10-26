@@ -483,7 +483,7 @@ fn mminus_onto_leftmost_factor(x : Value) -> Value raise {
       Nil
     } else if memq(caar(y), list([q_mtimes, q_mquotient, q_rat])).truthy() {
       mminus_onto_leftmost_factor(y)
-    } else if num_gt(lbp(caar(y)), rbp(q_d_op_)) {
+    } else if num_gt(lbp(caar(y)), rbp(q_d_op_h_)) {
       list([list1(q_mminus), y])
     } else {
       Nil

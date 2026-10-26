@@ -1770,7 +1770,7 @@ fn poly_eval(
     let op = car(expr)
     if eq(op, q_op_plus) {
       share_grobner__reduce(p_add, p_eval_list(cdr(expr)))
-    } else if eq(op, q_op_) {
+    } else if eq(op, q_op_h_) {
       match length(expr) {
         1 => share_grobner__make_poly_zero()
         2 => poly_uminus(ring, p_eval(cadr(expr)))
