@@ -6,8 +6,6 @@
 // - The Lisp debugger hook is emulated: a Lisp-level error escaping an
 //   evaluation in CONTINUE prints "Maxima encountered a Lisp error" and
 //   continues with the next input, like MAXIMA-LISP-DEBUGGER.
-// - DBM-READ (mdebug.lisp, not ported) is replaced by MACSYS__DBM-READ;
-//   ":" break commands are not supported.
 // - CL two-way streams do not exist; *QUERY-IO-INPUT* (a port-only special)
 //   names the input side when *QUERY-IO* is used as a two-way stream.
 // - Memory accounting (used-area), dribble transcripts, $system, $room and
@@ -38,15 +36,6 @@ let macsys__t0_run : Ref[Value] = Ref(Fix(0L))
 ///|
 /// The port-only special naming the input side of *QUERY-IO*.
 let macsys__q_query_input : Value = sym("*query-io-input*")
-
-///|
-let macsys__q_describe : Value = sym("$describe")
-
-///|
-let macsys__q_exact : Value = sym("$exact")
-
-///|
-let macsys__q_inexact : Value = sym("$inexact")
 
 ///|
 /// Where RETRIEVE reads its answers from.
@@ -127,134 +116,6 @@ fn toplevel_macsyma_eval(x : Value) -> Value raise {
 fn used_area(unused? : Value = Nil) -> Value raise {
   ignore(unused)
   Fix(0L)
-}
-
-///|
-/// READ-CHAR-NO-HANG: a character if one is already buffered, else NIL.
-fn macsys__read_char_no_hang(stream : Value) -> Value {
-  let st = match stream {
-    Stream(st) => Some(st)
-    _ =>
-      match symval(standard_input) {
-        Stream(st) => Some(st)
-        _ => None
-      }
-  }
-  match st {
-    Some(st) =>
-      if st.unread.length() > 0 || st.pos < st.input.length() {
-        match st.read_char() {
-          Some(c) => Char(c)
-          None => Nil
-        }
-      } else {
-        Nil
-      }
-    None => Nil
-  }
-}
-
-///|
-/// Whether the next DBM-READ prints the prompt (*NEED-PROMPT*).
-let macsys__need_prompt : Ref[Bool] = Ref(true)
-
-///|
-/// DBM-READ (mdebug.lisp): read one Maxima statement from STREAM, printing
-/// *MREAD-PROMPT* first when needed.
-fn macsys__dbm_read(
-  stream : Value,
-  eof_error_p : Value,
-  eof_value : Value,
-) -> Value raise {
-  ignore(eof_error_p)
-  let mprompt = symval(q_ear_mread_prompt)
-  with_special(q_ear_mread_prompt, Str(""), () => {
-    if macsys__need_prompt.val && length(mprompt) > 0 {
-      fresh_line(stream=symval(standard_output)) |> ignore
-      princ(mprompt, stream=symval(standard_output)) |> ignore
-      finish_output(stream=symval(standard_output))
-      set(q_ear_prompt_on_read_hang, Nil) |> ignore
-    } else {
-      set(q_ear_prompt_on_read_hang, t) |> ignore
-      set(q_ear_read_hang_prompt, mprompt) |> ignore
-    }
-    // Read a character to see what we should do.
-    let mut ch : Value = Char(' ')
-    while true {
-      ch = read_char(stream~, eof_value~)
-      if ch is Char('\n') || ch is Char('\r') {
-        continue
-      }
-      if physical_equal_value(ch, eof_value) {
-        return eof_value
-      }
-      break
-    }
-    let c = match ch {
-      Char(c) => c
-      _ => ' '
-    }
-    // Put that character back, so we can reread the line correctly.
-    unread_char(c, stream~)
-    if c == ':' {
-      // A Maxima debugger / break command (":lisp ..." etc.).
-      let line = match read_line(stream~) {
-        Some(l) => l
-        None => ""
-      }
-      suprv1__fmt(
-        t,
-        "~&Break commands are not supported in this port: ~A~%",
-        [Str(line)],
-      )
-      |> ignore
-      macsys__need_prompt.val = true
-      return list1(kw("_none"))
-    }
-    if c == '?' {
-      // Process "?" lines.  This is either a call to describe or a quick
-      // temporary escape to Lisp to call some Lisp function.
-      read_char(stream~) |> ignore
-      let next = peek_char(stream~, eof_value=Nil)
-      if next is Char(' ') || next is Char('\t') || next is Char('!') {
-        let line = match read_line(stream~) {
-          Some(l) => string_trim(" \t;$", l.substring(start=1))
-          None => ""
-        }
-        return list([
-          list1(q_displayinput),
-          Nil,
-          list([list1(macsys__q_describe), Str(line), macsys__q_exact]),
-        ])
-      } else if next is Char('?') {
-        let line = match read_line(stream~) {
-          Some(l) => string_trim(" \t;$", l.substring(start=1))
-          None => ""
-        }
-        return list([
-          list1(q_displayinput),
-          Nil,
-          list([list1(macsys__q_describe), Str(line), macsys__q_inexact]),
-        ])
-      } else {
-        // "?<stuff>" means a call to a Lisp function; mread handles it.
-        unread_char('?', stream~)
-        return mread(list([stream, eof_value]))
-      }
-    }
-    let result = mread(list([stream, eof_value]))
-    let next_char = macsys__read_char_no_hang(stream)
-    match next_char {
-      Nil => macsys__need_prompt.val = true
-      Char('\n') | Char('\r') => macsys__need_prompt.val = true
-      Char(c) => {
-        macsys__need_prompt.val = false
-        unread_char(c, stream~)
-      }
-      _ => macsys__need_prompt.val = true
-    }
-    result
-  })
 }
 
 ///|
@@ -369,9 +230,9 @@ fn macsys__continue_once(
   let prompt : Value = if flag.val.truthy() { Nil } else { main_prompt() }
   let r = with_special(q_ear_mread_prompt, prompt, () => {
     while true {
-      let r = macsys__dbm_read(st.val, Nil, eof)
-      if consp(r) && keywordp(car(r)) {
-        // (break-call (car r) (cdr r) 'break-command) -- not supported.
+      let r = dbm_read(stream=st.val, eof_error_p=Nil, eof_value=eof)
+      if consp(r) && mdebug__keywordp(car(r)) {
+        break_call(car(r), cdr(r), q_break_command) |> ignore
         if !flag.val.truthy() && !physical_equal_value(st.val, symval(standard_input)) {
           st.val = symval(standard_input)
         }

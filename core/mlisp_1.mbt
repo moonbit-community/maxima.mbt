@@ -434,11 +434,12 @@ fn meval1(form : Value) -> (Value, Value) raise {
       eq(caar(form), q_mnctimes)
     ) {
     state = 2
+  } else if symval(q_ear_mdebug).truthy() && mdebug__meval1_check(form) {
+    // (never taken: the breakpoint check only has side effects)
+    ()
   } else if eq(caar(form), q_mqapply) {
     return (mqapply1(form), Nil)
   } else {
-    // (The *MDEBUG* break-point check of the Lisp code belongs to the
-    // Maxima debugger, which is not part of this port.)
     badfunchk(caar(form), caar(form), Nil) |> ignore
   }
   while true {
