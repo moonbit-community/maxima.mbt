@@ -329,7 +329,24 @@ fn fmt_run(st : FmtState, end : Int) -> Bool raise {
           _ => None
         }
         let s = if realp(arg) {
-          format_exp(to_double(arg), dd)
+          let s = format_exp(to_double(arg), dd)
+          // the e parameter: at least that many exponent digits
+          match params.get(2).unwrap_or(None) {
+            Some(Fix(ne)) =>
+              match s.rev_find("e") {
+                Some(i) if i + 2 <= s.length() => {
+                  let ds = s.substring(start=i + 2)
+                  let pad = ne.to_int() - ds.length()
+                  if pad > 0 {
+                    s.substring(end=i + 2) + "0".repeat(pad) + ds
+                  } else {
+                    s
+                  }
+                }
+                _ => s
+              }
+            _ => s
+          }
         } else {
           princ_to_string(arg)
         }
