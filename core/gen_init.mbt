@@ -1509,6 +1509,8 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "src/package" => Some(share_load_odepack_src_package)
     "diff_form/cartan_new" => Some(share_load_cartan_new)
     "algebra/grob1" => Some(share_load_grob1)
+    "hompack/hompack-interface" => Some(share_load_hompack_interface)
+    "colnew/colnew-if" => Some(share_load_colnew_if)
     _ => None
   }
 }
