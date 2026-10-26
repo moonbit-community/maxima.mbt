@@ -169,6 +169,11 @@ fn LReader::read(self : LReader) -> Value raise LispError {
     }
     _ => {
       let (name, escaped) = self.token()
+      if !escaped && name == "" {
+        // A delimiter with no reader support (backquote, comma, ...):
+        // the token is empty and nothing was consumed.
+        raise SimpleError("lread: unsupported character \{c}")
+      }
       if !escaped && name == "nil" {
         return Nil
       }
