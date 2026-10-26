@@ -709,7 +709,7 @@ fn init_globals() -> Unit raise {
     list([globals__q_kw_setting_list, list([Nil, t, q_d_all])]),
   )
   |> ignore
-  defmvar(q_d_op_u_, val=symval(q_d_op_u_), Nil) |> ignore
+  defmvar(q_d_op_, val=symval(q_d_op_), Nil) |> ignore
   defmvar(q_d_op__, val=symval(q_d_op__), Nil) |> ignore
   defmvar(q_d_globalsolve, val=symval(q_d_globalsolve), Nil) |> ignore
   defmvar(q_d_sparse, val=symval(q_d_sparse), Nil) |> ignore

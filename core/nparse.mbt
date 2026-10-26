@@ -1579,8 +1579,8 @@ fn nparse__expt_led(op : Value, left : Value) -> Value raise {
 /// (def-led ((|$+| |$-|) 100.) (op left) ...)
 fn nparse__plus_led(op : Value, left : Value) -> Value raise {
   let left = convert(left, q_d_expr)
-  let first_ = if eq(op, q_d_op_) {
-    let h = mheader(q_d_op_)
+  let first_ = if eq(op, q_d_op_h_) {
+    let h = mheader(q_d_op_h_)
     list2(h, parse(q_d_expr, Fix(100L)))
   } else {
     parse(q_d_expr, Fix(100L))
@@ -1588,7 +1588,7 @@ fn nparse__plus_led(op : Value, left : Value) -> Value raise {
   let mut nl = list2(first_, left)
   while true {
     let fc = first_c()
-    if !(eq(fc, q_d_op_plus) || eq(fc, q_d_op_)) {
+    if !(eq(fc, q_d_op_plus) || eq(fc, q_d_op_h_)) {
       let h = mheader(q_d_op_plus)
       return list_star([q_d_expr, h, nreverse(nl)])
     }
@@ -2503,15 +2503,15 @@ fn init_nparse() -> Unit raise {
   def_mheader(q_d_op_plus, list1(q_mplus)) |> ignore
   putprop(q_d_op_plus, nparse__led_fun("$+-led", nparse__plus_led), q_led)
   |> ignore
-  inherit_propl(q_d_op_, q_d_op_plus, led_propl()) |> ignore
-  set_lbp_and_rbp(list2(q_d_op_plus, q_d_op_), Fix(100L), Nil) |> ignore
+  inherit_propl(q_d_op_h_, q_d_op_plus, led_propl()) |> ignore
+  set_lbp_and_rbp(list2(q_d_op_plus, q_d_op_h_), Fix(100L), Nil) |> ignore
   // -
-  def_nud_equiv(q_d_op_, f_parse_prefix) |> ignore
-  def_lbp(q_d_op_, Fix(100L)) |> ignore
-  def_rbp(q_d_op_, Fix(134L)) |> ignore
-  def_pos(q_d_op_, q_d_expr) |> ignore
-  def_rpos(q_d_op_, q_d_expr) |> ignore
-  def_mheader(q_d_op_, list1(q_mminus)) |> ignore
+  def_nud_equiv(q_d_op_h_, f_parse_prefix) |> ignore
+  def_lbp(q_d_op_h_, Fix(100L)) |> ignore
+  def_rbp(q_d_op_h_, Fix(134L)) |> ignore
+  def_pos(q_d_op_h_, q_d_expr) |> ignore
+  def_rpos(q_d_op_h_, q_d_expr) |> ignore
+  def_mheader(q_d_op_h_, list1(q_mminus)) |> ignore
   // relational operators
   for e in [
     (q_d_op_eq, q_mequal),

@@ -267,65 +267,6 @@ fn macsys__mread_noprompt(stream : Value, eof : Value) -> Value raise {
 }
 
 ///|
-/// `$create_list` (macdes.lisp; macdes is otherwise excluded from the port).
-let macsys__q_create_list : Value = sym("$create_list")
-
-///|
-/// `(defmspec $create_list (l) ...)` (macdes.lisp)
-fn macsys__d_create_list(l : Value) -> Value raise {
-  cons(list1(q_mlist), macsys__create_list1(cadr(l), cddr(l)))
-}
-
-///|
-/// CREATE-LIST1 (macdes.lisp); `l` is the &rest list.
-fn macsys__create_list1(form : Value, l : Value) -> Value raise {
-  if l is Nil {
-    return list1(meval(form))
-  }
-  let var1 = car(l)
-  let mut lis = cadr(l)
-  let mut l = cddr(l)
-  if !symbolp(var1) {
-    merror(Str("create_list: expected a symbol; found: ~A"), list1(var1))
-    |> ignore
-  }
-  lis = meval(lis)
-  // (mbinding ((list var1)) ...)
-  let vars = list1(var1)
-  let mut win = false
-  defer (if win { munbind(vars) |> ignore })
-  mbind(vars, vars, Nil) |> ignore
-  win = true
-  let mut top = Value::Nil
-  let numeric = numberp(lis) &&
-    {
-      top = car(l)
-      l = cdr(l)
-      top = meval(top)
-      numberp(top)
-    }
-  if numeric {
-    let parts = []
-    let mut i = lis
-    while num_le(i, top) {
-      mset(var1, i) |> ignore
-      parts.push(macsys__create_list1(form, l))
-      i = num_add(i, int(1))
-    }
-    append_n(parts)
-  } else if d_listp(lis).truthy() {
-    let parts = []
-    for v in cdr(lis).iter() {
-      mset(var1, v) |> ignore
-      parts.push(macsys__create_list1(form, l))
-    }
-    append_n(parts)
-  } else {
-    merror(Str("create_list: unexpected arguments."), Nil)
-  }
-}
-
-///|
 /// What MERROR does at top level when it is not caught: print the message
 /// and return to the top level.  Used when a Maxima error condition reaches
 /// CONTINUE unhandled.
@@ -477,7 +418,7 @@ fn macsys__continue_once(
   if !symval(q_d_nolabels).truthy() {
     set(d_tag, symval(q_d_op_pct)) |> ignore
   }
-  set(q_d_op_u_, symval(q_d_op__)) |> ignore
+  set(q_d_op_, symval(q_d_op__)) |> ignore
   if symval(q_d_showtime).truthy() {
     // we don't distinguish showtime:all?? /RJF
     suprv1__fmt(t, "Evaluation took ~,4F seconds (~,4F elapsed)", [
@@ -1139,7 +1080,6 @@ fn maxima_interactive(quiet? : Bool = false) -> Unit raise {
 ///|
 fn init_macsys() -> Unit raise {
   defvar_init(macsys__q_query_input, Nil)
-  register_mspec(macsys__q_create_list, macsys__d_create_list)
   trmode__init()
   let (sec, min, hour, day, month, year) = macsys__now_decoded()
   macsys__build_time.val = format_to_string(

@@ -540,7 +540,7 @@ fn init_conjugate() -> Unit raise {
   putprop(
     q_d_conjugate,
     lread("(mlist $matrix mequal $set mnotequal %transpose)"),
-    q_distribute_u_over,
+    q_distribute_over,
   )
   |> ignore
   with_specials([(q_d_context, q_d_global), (q_context, q_d_global)], () => {

@@ -881,14 +881,14 @@ fn f36p147(c : Value, a : Value) -> Value raise {
 // Table of Integral Transforms, p. 147, formula 36:
 //
 // exp(-a*exp(t))
-//   -> a^(-p)*gamma_incomplete(-p,a)
+//   -> a^(-p)*gamma_h_incomplete(-p,a)
 
 ///|
 fn f37p147(c : Value, a : Value) -> Value raise {
   mul3(
     c,
     principal_power(a, hypgeo__par()),
-    hypgeo__take(q_p_gamma_u_incomplete, [mul2(int(-1), hypgeo__par()), a]),
+    hypgeo__take(q_p_gamma_incomplete, [mul2(int(-1), hypgeo__par()), a]),
   )
 }
 
@@ -1298,7 +1298,7 @@ fn lt_sf_log(u : Value) -> Value raise {
     let arg1 = cdras(q_w1, l)
     let arg2 = cdras(q_w2, l)
     let rest_ = cdras(q_u, l)
-    return fractest2(rest_, arg1, arg2, Nil, q_gamma_u_incomplete)
+    return fractest2(rest_, arg1, arg2, Nil, q_gamma_incomplete)
   }
 
   // Laplace transform of Batemann function
@@ -1669,7 +1669,7 @@ fn lt_sf_log(u : Value) -> Value raise {
   }
 
   // Laplace transform of expintegral_ei.
-  // Maxima uses the build in transformation to the gamma_incomplete
+  // Maxima uses the build in transformation to the gamma_h_incomplete
   // function and simplifies the log functions of the transformation. We do
   // not use the dispatch mechanism of fractest2, but call sendexec directly
   // with the transformed function.
@@ -1678,7 +1678,7 @@ fn lt_sf_log(u : Value) -> Value raise {
     let arg1 = cdras(q_w, l)
     let rest_ = cdras(q_u, l)
     return with_specials(
-      [(q_d_expintrep, q_p_gamma_u_incomplete), (q_d_logexpand, q_d_all)],
+      [(q_d_expintrep, q_p_gamma_incomplete), (q_d_logexpand, q_d_all)],
       () => sratsimp(sendexec(rest_, ftake(q_p_expintegral_ei, [arg1]))),
     )
   }
@@ -1689,7 +1689,7 @@ fn lt_sf_log(u : Value) -> Value raise {
     let arg1 = cdras(q_w, l)
     let rest_ = cdras(q_u, l)
     return with_specials(
-      [(q_d_expintrep, q_p_gamma_u_incomplete), (q_d_logexpand, q_d_all)],
+      [(q_d_expintrep, q_p_gamma_incomplete), (q_d_logexpand, q_d_all)],
       () => sratsimp(sendexec(rest_, ftake(q_p_expintegral_e1, [arg1]))),
     )
   }
@@ -1701,7 +1701,7 @@ fn lt_sf_log(u : Value) -> Value raise {
     let arg2 = cdras(q_w, l)
     let rest_ = cdras(q_u, l)
     return with_specials(
-      [(q_d_expintrep, q_p_gamma_u_incomplete), (q_d_logexpand, q_d_all)],
+      [(q_d_expintrep, q_p_gamma_incomplete), (q_d_logexpand, q_d_all)],
       () => sratsimp(sendexec(rest_, ftake(q_p_expintegral_e, [arg1, arg2]))),
     )
   }

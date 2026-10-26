@@ -14,6 +14,24 @@ fn share_try_load(path : String) -> Bool raise {
     Some(i) => base.substring(end=i)
     None => base
   }
+  // Lisp loader files that only compile/load a defsystem of other files.
+  let group = match stem {
+    "load-linearalgebra-lisp-files" =>
+      [
+        "mring", "lu", "linalgcholesky", "eigens-by-jacobi", "linalg-extra", "matrixexp",
+        "linalg-utilities",
+      ]
+    _ => []
+  }
+  if group.length() > 0 {
+    for g in group {
+      match share_module_loader(g) {
+        Some(f) => f()
+        None => ()
+      }
+    }
+    return true
+  }
   match share_module_loader(stem) {
     Some(f) => {
       f()

@@ -7,11 +7,12 @@ Writes logs to _build/rtests/<name>.log and a summary to docs/TESTS.md (with
 import subprocess, sys, os, re, concurrent.futures, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPOS_DIR = os.path.join(ROOT, ".repos") if os.path.isdir(os.path.join(ROOT, ".repos")) else "/Users/dii/git/maxima.mbt/.repos"
 EXE = os.environ.get("MAXIMA_PORT") or os.path.join(ROOT, "_build", "native", "release", "build", "cmd", "main", "main.exe")
 LOGDIR = os.path.join(ROOT, "_build", "rtests")
 
 def testsuite_files():
-    src = open(os.path.join(ROOT, ".repos", "maxima", "src", "testsuite.lisp")).read()
+    src = open(os.path.join(REPOS_DIR, "maxima", "src", "testsuite.lisp")).read()
     i = src.index("$testsuite_files")
     j = src.index("$share_testsuite_files")
     names = re.findall(r'"(rtest[^"]*)"', src[i:j])

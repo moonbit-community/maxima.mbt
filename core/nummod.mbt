@@ -579,7 +579,7 @@ fn init_nummod() -> Unit raise {
   )
   |> ignore
   // $floor distributes over lists, matrices, and equations
-  setf_get(q_d_floor, q_distribute_u_over, nummod__bags()) |> ignore
+  setf_get(q_d_floor, q_distribute_over, nummod__bags()) |> ignore
   putprop(q_d_entier, q_tex_matchfix, q_tex) |> ignore
   putprop(
     q_d_entier,
@@ -588,8 +588,8 @@ fn init_nummod() -> Unit raise {
   )
   |> ignore
   // $entier and $fix distributes over lists, matrices, and equations
-  setf_get(q_d_entier, q_distribute_u_over, nummod__bags()) |> ignore
-  setf_get(q_d_fix, q_distribute_u_over, nummod__bags()) |> ignore
+  setf_get(q_d_entier, q_distribute_over, nummod__bags()) |> ignore
+  setf_get(q_d_fix, q_distribute_over, nummod__bags()) |> ignore
   putprop(q_d_floor, list2(list1(q_x), q_floor_integral), q_integral)
   |> ignore
   putprop(q_d_ceiling, list2(list1(q_x), q_ceiling_integral), q_integral)
@@ -604,7 +604,7 @@ fn init_nummod() -> Unit raise {
   )
   |> ignore
   // $ceiling distributes over lists, matrices, and equations.
-  setf_get(q_d_ceiling, q_distribute_u_over, nummod__bags()) |> ignore
+  setf_get(q_d_ceiling, q_distribute_over, nummod__bags()) |> ignore
   putprop(q_d_ceiling, q_simplim_pctceiling, q_simplim_pctfunction) |> ignore
   putprop(q_d_mod, q_simp_nummod, q_operators) |> ignore
   putprop(q_d_mod, q_tex_infix, q_tex) |> ignore
@@ -612,19 +612,19 @@ fn init_nummod() -> Unit raise {
   putprop(q_d_mod, Fix(180L), q_tex_lbp) |> ignore
   putprop(q_d_mod, Fix(180L), q_tex_rbp) |> ignore
   // $mod distributes over lists, matrices, and equations
-  setf_get(q_d_mod, q_distribute_u_over, nummod__bags()) |> ignore
+  setf_get(q_d_mod, q_distribute_over, nummod__bags()) |> ignore
   // This property is important to get round(round(x)) => round(x).
   setf_get(q_p_round, q_integer_valued, t) |> ignore
   setf_get(q_p_round, q_reflection_rule, q_odd_function_reflect) |> ignore
   // round distributes over lists, matrices, and equations.
-  setf_get(q_p_round, q_distribute_u_over, nummod__bags()) |> ignore
+  setf_get(q_p_round, q_distribute_over, nummod__bags()) |> ignore
   putprop(q_p_round, q_simplim_pctround, q_simplim_pctfunction) |> ignore
   // This property is important to get truncate(truncate(x)) =>
   // truncate(x).
   setf_get(q_p_truncate, q_integer_valued, t) |> ignore
   setf_get(q_p_truncate, q_reflection_rule, q_odd_function_reflect) |> ignore
   // truncate distributes over lists, matrices, and equations.
-  setf_get(q_p_truncate, q_distribute_u_over, nummod__bags()) |> ignore
+  setf_get(q_p_truncate, q_distribute_over, nummod__bags()) |> ignore
   putprop(q_p_signum, list2(list1(q_x), q_signum_integral), q_integral)
   |> ignore
   putprop(q_d_unit_step, list2(list1(q_x), q_unit_step_integral), q_integral)

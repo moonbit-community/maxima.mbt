@@ -115,7 +115,7 @@ fn cput(base : Value, val : Value, sel : Value) -> Value raise {
     zl_remprop(base, sel) |> ignore
     Nil
   } else {
-    putprop(base, val, sel)
+    putprop_(base, val, sel)
   }
 }
 

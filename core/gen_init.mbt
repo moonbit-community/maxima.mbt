@@ -122,17 +122,20 @@ fn share_load_eval_string() -> Unit raise {
 ///|
 fn share_load_unicode_sniffer() -> Unit raise {
   register_share_unicode_sniffer()
+  init_share_unicode_sniffer()
 }
 
 ///|
 fn share_load_stringproc() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_stringproc()
   register_share_stringproc()
+  init_share_stringproc()
 }
 
 ///|
 fn share_load_printf() -> Unit raise {
   register_share_printf()
+  init_share_printf()
 }
 
 ///|
@@ -144,18 +147,21 @@ fn share_load_cryptools() -> Unit raise {
 fn share_load_md5() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_md5()
   register_share_md5()
+  init_share_md5()
 }
 
 ///|
 fn share_load_base64() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_base64()
   register_share_base64()
+  init_share_base64()
 }
 
 ///|
 fn share_load_sha1() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_sha1()
   register_share_sha1()
+  init_share_sha1()
 }
 
 ///|
@@ -172,6 +178,54 @@ fn share_load_unwind_protect() -> Unit raise {
 fn share_load_grobner() -> Unit raise {
   init_vars_n_dot_dot_share_contrib__cg_robner_grobner()
   register_share_grobner()
+  init_share_grobner()
+}
+
+///|
+fn share_load_orthopoly() -> Unit raise {
+  init_vars_n_dot_dot_share_orthopoly_orthopoly()
+  register_share_orthopoly()
+}
+
+///|
+fn share_load_trigrat() -> Unit raise {
+  register_share_trigrat()
+}
+
+///|
+fn share_load_mring() -> Unit raise {
+  init_vars_n_dot_dot_share_linearalgebra_mring()
+  register_share_mring()
+}
+
+///|
+fn share_load_lu() -> Unit raise {
+  register_share_lu()
+}
+
+///|
+fn share_load_linalgcholesky() -> Unit raise {
+  register_share_linalgcholesky()
+}
+
+///|
+fn share_load_eigens_by_jacobi() -> Unit raise {
+  register_share_eigens_by_jacobi()
+}
+
+///|
+fn share_load_linalg_extra() -> Unit raise {
+  register_share_linalg_extra()
+}
+
+///|
+fn share_load_matrixexp() -> Unit raise {
+  register_share_matrixexp()
+}
+
+///|
+fn share_load_linalg_utilities() -> Unit raise {
+  register_share_linalg_utilities()
 }
 
 ///|
@@ -190,6 +244,15 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "sregex" => Some(share_load_sregex)
     "unwind_protect" => Some(share_load_unwind_protect)
     "grobner" => Some(share_load_grobner)
+    "orthopoly" => Some(share_load_orthopoly)
+    "trigrat" => Some(share_load_trigrat)
+    "mring" => Some(share_load_mring)
+    "lu" => Some(share_load_lu)
+    "linalgcholesky" => Some(share_load_linalgcholesky)
+    "eigens-by-jacobi" => Some(share_load_eigens_by_jacobi)
+    "linalg-extra" => Some(share_load_linalg_extra)
+    "matrixexp" => Some(share_load_matrixexp)
+    "linalg-utilities" => Some(share_load_linalg_utilities)
     _ => None
   }
 }
