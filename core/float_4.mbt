@@ -51,7 +51,15 @@ fn fpscan(lft : Value, rt : Value, exp_ : Value) -> Value raise {
 }
 
 ///|
+/// The definition of DIM-BIGFLOAT installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_dim_bigfloat : Ref[((Value, Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn dim_bigfloat(form : Value, result : Value) -> Value raise {
+  if float__redefined_dim_bigfloat.val is Some(redefined) {
+    return redefined(form, result)
+  }
   with_special(q_d_lispdisp, Nil, () => dimension_atom(
     maknam(fpformat(form)),
     result,
@@ -611,7 +619,15 @@ fn bfloat_format_g(
 }
 
 ///|
+/// The definition of BIGFLOAT2RAT installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_bigfloat2rat : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn bigfloat2rat(x0 : Value) -> Value raise {
+  if float__redefined_bigfloat2rat.val is Some(redefined) {
+    return redefined(x0)
+  }
   let x = bigfloatp(x0)
   with_special(q_d_float2bf, t, () => {
     let mut sign = false
@@ -649,7 +665,15 @@ fn bigfloat2rat(x0 : Value) -> Value raise {
 }
 
 ///|
+/// The definition of FPRATION1 installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_fpration1 : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn fpration1(x : Value) -> Value raise {
+  if float__redefined_fpration1.val is Some(redefined) {
+    return redefined(x)
+  }
   let fprateps = cdr(
     d_bfloat(
       if symval(q_d_bftorat).truthy() {

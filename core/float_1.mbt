@@ -115,7 +115,15 @@ fn hipart_zerop(x : Value, nn : Value) -> Value raise {
 }
 
 ///|
+/// The definition of FPPREC1 installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_fpprec1 : Ref[((Value, Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn fpprec1(assign_var : Value, q : Value) -> Value raise {
+  if float__redefined_fpprec1.val is Some(redefined) {
+    return redefined(assign_var, q)
+  }
   ignore(assign_var)
   if !fixnump(q) || num_lt(q, Fix(1L)) {
     merr("fpprec: value must be a positive integer; found: ~M", [q]) |> ignore
@@ -130,10 +138,23 @@ fn fpprec1(assign_var : Value, q : Value) -> Value raise {
 }
 
 ///|
+/// The definition of BIGFLOAT-PREC installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_bigfloat_prec : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 /// Assume that X has the form ((BIGFLOAT ... <prec>) ...).  Return <prec>.
 fn bigfloat_prec(x : Value) -> Value raise {
+  if float__redefined_bigfloat_prec.val is Some(redefined) {
+    return redefined(x)
+  }
   car(last(car(x)))
 }
+
+///|
+/// The definition of BIGFLOATP installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_bigfloatp : Ref[((Value) -> Value raise)?] = Ref::new(None)
 
 ///|
 /// Tells you if you have a bigfloat object.  BUT, if it is a bigfloat, it
@@ -141,6 +162,9 @@ fn bigfloat_prec(x : Value) -> Value raise {
 /// current precision setting in fpprec, and convert bogus zeroes (mantissa
 /// zero, exponent not) to a true zero.
 fn bigfloatp(x0 : Value) -> Value raise {
+  if float__redefined_bigfloatp.val is Some(redefined) {
+    return redefined(x0)
+  }
   let mut x = x0
   if !d_bfloatp(x).truthy() {
     return Nil
@@ -222,8 +246,16 @@ fn floattofp(x : Value) -> Value raise {
 }
 
 ///|
+/// The definition of FP2FLO installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_fp2flo : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 /// Convert a bigfloat into a floating point number.
 fn fp2flo(l : Value) -> Value raise {
+  if float__redefined_fp2flo.val is Some(redefined) {
+    return redefined(l)
+  }
   let precision = bigfloat_prec(l)
   let mantissa0 = cadr(l)
   let exponent = caddr(l)
@@ -269,7 +301,15 @@ fn bcons(s : Value) -> Value raise {
 }
 
 ///|
+/// The definition of $BFLOAT installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_bfloat : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn d_bfloat(x : Value) -> Value raise {
+  if float__redefined_bfloat.val is Some(redefined) {
+    return redefined(x)
+  }
   let r = bigfloatp(x)
   if r.truthy() {
     return r
@@ -1007,7 +1047,15 @@ fn fproot_sqrt(a : Value) -> Value raise {
 }
 
 ///|
+/// The definition of TIMESBIGFLOAT installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_timesbigfloat : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn timesbigfloat(h : Value) -> Value raise {
+  if float__redefined_timesbigfloat.val is Some(redefined) {
+    return redefined(h)
+  }
   let mut fans : Value = Nil
   let mut nfans : Value = Nil
   for e in h.iter() {
@@ -1034,7 +1082,15 @@ fn timesbigfloat(h : Value) -> Value raise {
 }
 
 ///|
+/// The definition of INVERTBIGFLOAT installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let float__redefined_invertbigfloat : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn invertbigfloat(a : Value) -> Value raise {
+  if float__redefined_invertbigfloat.val is Some(redefined) {
+    return redefined(a)
+  }
   // If A is a bigfloat, be sure to round it to the current precision.
   let b = bigfloatp(a)
   if b.truthy() {

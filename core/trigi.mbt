@@ -681,9 +681,17 @@ fn flonum_eval(op : Value, z : Value) -> Value raise {
 }
 
 ///|
+/// The definition of BIG-FLOAT-EVAL installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let trigi__redefined_big_float_eval : Ref[((Value, Value) -> Value raise)?] = Ref::new(None)
+
+///|
 /// Big float evaluation of trig-like functions for complex big floats uses
 /// rectform, unless the *big-float-op* hash table contains a special case.
 fn big_float_eval(op : Value, z : Value) -> Value raise {
+  if trigi__redefined_big_float_eval.val is Some(redefined) {
+    return redefined(op, z)
+  }
   if complex_number_p(z, ntypep=q_bigfloat_or_number_p).truthy() {
     let xy = trisplit(z)
     let x = car(xy)

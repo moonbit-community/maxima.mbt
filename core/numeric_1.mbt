@@ -231,10 +231,18 @@ fn bf_imag_value(b : Value) -> Value raise {
 }
 
 ///|
+/// The definition of BIGFLOAT:BIGFLOAT installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let numeric__redefined_bigfloat : Ref[((Value, Value) -> Value raise)?] = Ref::new(None)
+
+///|
 /// BIGFLOAT converts a number to a BIGFLOAT or COMPLEX-BIGFLOAT.  This is
 /// intended to convert CL numbers or Maxima (internal) numbers to a
 /// bigfloat object.
 fn bf_bigfloat(re : Value, im? : Value = Nil) -> Value raise {
+  if numeric__redefined_bigfloat.val is Some(redefined) {
+    return redefined(re, im)
+  }
   if im.truthy() {
     let r = bf_intofp(re)
     numeric__mkcbf(r, bf_intofp(im))

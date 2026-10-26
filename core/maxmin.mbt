@@ -406,7 +406,15 @@ fn lenient_realp(e : Value) -> Value raise {
 }
 
 ///|
+/// The definition of $RATIONALIZE installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let maxmin__redefined_rationalize : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 fn d_rationalize(e : Value) -> Value raise {
+  if maxmin__redefined_rationalize.val is Some(redefined) {
+    return redefined(e)
+  }
   let e = ratdisrep(e)
   match e {
     Flo(d) => {
