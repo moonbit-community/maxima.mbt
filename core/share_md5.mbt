@@ -202,8 +202,11 @@ fn md5sum_return(rtype : Value) -> Value raise {
 /// elements read. The port has no binary streams: a character read from a
 /// character stream is not an octet.
 fn share_md5__read_sequence(s : Value, bytes : Array[Value]) -> Int raise {
+  // A binary stream (numericalio's openr_binary) carries octets as chars.
+  let binary = share_numericalio__binaryp(s)
   for i in 0..<bytes.length() {
     match read_char(stream=s, eof_value=Nil) {
+      Char(c) if binary => bytes[i] = Fix(c.to_int().to_int64())
       Char(c) =>
         raise LispError::SimpleError(
           "The value " + prin1_to_string(Char(c)) + " is not of type (UNSIGNED-BYTE 8)",
