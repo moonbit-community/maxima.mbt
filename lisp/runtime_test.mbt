@@ -103,3 +103,12 @@ test "libm and complex sqrt like sbcl" {
   inspect(try! llog(Value::Flo(1.6)), content="0.47000362924573563")
   inspect(try! expt(Value::Flo(2.5), Value::Flo(1.3)), content="3.2909555108355937")
 }
+
+///|
+test "subnormal printing like sbcl" {
+  inspect(float_to_string(4.9406564584124654e-324), content="4.9406564584124654e-324")
+  inspect(float_to_string(1.0e-310), content="9.99999999999997e-311")
+  inspect(float_to_string(1.5e-315), content="1.500000000192854e-315")
+  inspect(float_to_string(3.0 * 4.9406564584124654e-324), content="1.4821969375237396e-323")
+  inspect(float_to_string(2.2250738585072014e-308), content="2.2250738585072014e-308")
+}
