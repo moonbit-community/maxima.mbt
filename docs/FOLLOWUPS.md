@@ -14,3 +14,5 @@
 - safe-recursion must raise Condition named unsafe-recursion (compar meqp_by_csign catches it)
 - defmfun :deprecated-p warning not handled by registry (numth handles chinese itself); check others
 - gf-merror throws macsyma-quit; toplevel must catch
+- rat3: fn/var/mult/ans/exp/*y* treated lexical in some functions — revisit if bugs
+- maxlist-in-place/minlist-in-place private in rat3d (rat3d__*); factor's degvector uses them
