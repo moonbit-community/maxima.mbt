@@ -5,6 +5,8 @@ Usage:
     python3 tools/f2cl2mbt.py [SRC_DIR] [OUT_DIR]
     python3 tools/f2cl2mbt.py --reference-test [SRC_DIR] [OUT_DIR]
     python3 tools/f2cl2mbt.py --lib=lbfgs|odepack|lapack [--reference-test]
+    python3 tools/f2cl2mbt.py --lib=fftpack5|minpack|cobyla [--reference-test]
+    python3 tools/f2cl2mbt.py --lib=bf-cobyla
 
 The first two forms translate SLATEC/QUADPACK (src/numerical/slatec) into
 slatec/; the second regenerates slatec/sbcl_reference_wbtest.mbt by running
@@ -20,6 +22,18 @@ from the SHARE_REF cases (see gen_share_reference_test).  Beyond what
 SLATEC needs, these libraries use COMMON blocks (DEFSTRUCT + SYMBOL-MACROLET,
 displaced arrays), BLOCK DATA, statement functions (LABELS), CHARACTER
 variables, COMPLEX*16 and formatted WRITEs.
+
+--lib=fftpack5 (share/fftpack5/lisp), --lib=minpack (share/minpack/lisp) and
+--lib=cobyla (share/cobyla/lisp) add f2cl's comment strings, FFLOAT,
+DCOS/DSIN, AREF, scalars passed as one-element arrays, the complex <->
+double copies of :copy-array-parameter (MAKE-COMPATIBLE-SEQ, F2CL-COPY-SEQ),
+user function arguments with per-routine signatures (MINPACK's FCN, see
+MINPACK_SIGS) and user routines called by name (COBYLA's CALCFC: a hook,
+see COBYLA_HOOKS).  --lib=bf-cobyla translates share/cobyla/lisp/bf-*.lisp,
+the COBYLA f2cl code edited to run in Maxima's BIGFLOAT package, into
+cobyla/bf_*.mbt: routines generic over cobyla/bf_real.mbt's trait BfReal
+(see the "BIGFLOAT package" section); it has no SBCL reference test (the
+code needs Maxima's bigfloat package).
 
 The input files are the machine-generated output of f2cl (Fortran -> Common
 Lisp).  Each file holds one DEFUN, optionally wrapped in a LET that holds the
