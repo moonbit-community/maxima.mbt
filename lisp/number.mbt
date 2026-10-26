@@ -471,11 +471,14 @@ pub fn num_add(a : Value, b : Value) -> Value raise LispError {
           make_ratio(n1 * d2 + n2 * d1, d1 * d2)
         }
         2 => Flo(to_double(a) + to_double(b))
-        _ => {
-          let (r1, i1) = cparts(a)
-          let (r2, i2) = cparts(b)
-          make_complex(num_add(r1, r2), num_add(i1, i2))
-        }
+        _ =>
+          // As SBCL: the real operand is treated as complex with zero
+          // imaginary part (so -0.0 + 0 gives 0.0).
+          {
+            let (r1, i1) = cparts(a)
+            let (r2, i2) = cparts(b)
+            make_complex(num_add(r1, r2), num_add(i1, i2))
+          }
       }
     }
   }
@@ -537,14 +540,17 @@ pub fn num_mul(a : Value, b : Value) -> Value raise LispError {
           make_ratio(n1 * n2, d1 * d2)
         }
         2 => Flo(to_double(a) * to_double(b))
-        _ => {
-          let (r1, i1) = cparts(a)
-          let (r2, i2) = cparts(b)
-          make_complex(
-            num_sub(num_mul(r1, r2), num_mul(i1, i2)),
-            num_add(num_mul(r1, i2), num_mul(i1, r2)),
-          )
-        }
+        _ =>
+          match (a, b) {
+            (Cplx(r1, i1), Cplx(r2, i2)) =>
+              make_complex(
+                num_sub(num_mul(r1, r2), num_mul(i1, i2)),
+                num_add(num_mul(r1, i2), num_mul(i1, r2)),
+              )
+            (Cplx(r1, i1), _) => make_complex(num_mul(r1, b), num_mul(i1, b))
+            (_, Cplx(r2, i2)) => make_complex(num_mul(a, r2), num_mul(a, i2))
+            _ => raise type_error(a, "number")
+          }
       }
     }
   }
@@ -583,18 +589,38 @@ pub fn num_div(a : Value, b : Value) -> Value raise LispError {
           }
           Flo(to_double(a) / y)
         }
-        _ => {
-          let (r1, i1) = cparts(a)
-          let (r2, i2) = cparts(b)
-          let den = num_add(num_mul(r2, r2), num_mul(i2, i2))
-          if zerop(den) {
-            raise division_by_zero()
+        _ =>
+          // SBCL's algorithms (Smith-style scaling for complex divisors).
+          match (a, b) {
+            (Cplx(rx, ix), Cplx(ry, iy)) =>
+              if num_gt(num_abs(ry), num_abs(iy)) {
+                let r = num_div(iy, ry)
+                let dn = num_mul(ry, num_add(Fix(1L), num_mul(r, r)))
+                make_complex(
+                  num_div(num_add(rx, num_mul(ix, r)), dn),
+                  num_div(num_sub(ix, num_mul(rx, r)), dn),
+                )
+              } else {
+                let r = num_div(ry, iy)
+                let dn = num_mul(iy, num_add(Fix(1L), num_mul(r, r)))
+                make_complex(
+                  num_div(num_add(num_mul(rx, r), ix), dn),
+                  num_div(num_sub(num_mul(ix, r), rx), dn),
+                )
+              }
+            (Cplx(rx, ix), _) => make_complex(num_div(rx, b), num_div(ix, b))
+            (_, Cplx(ry, iy)) =>
+              if num_gt(num_abs(ry), num_abs(iy)) {
+                let r = num_div(iy, ry)
+                let dn = num_mul(ry, num_add(Fix(1L), num_mul(r, r)))
+                make_complex(num_div(a, dn), num_div(num_neg(num_mul(a, r)), dn))
+              } else {
+                let r = num_div(ry, iy)
+                let dn = num_mul(iy, num_add(Fix(1L), num_mul(r, r)))
+                make_complex(num_div(num_mul(a, r), dn), num_div(num_neg(a), dn))
+              }
+            _ => raise type_error(a, "number")
           }
-          make_complex(
-            num_div(num_add(num_mul(r1, r2), num_mul(i1, i2)), den),
-            num_div(num_sub(num_mul(i1, r2), num_mul(r1, i2)), den),
-          )
-        }
       }
     }
   }

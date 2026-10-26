@@ -73,3 +73,13 @@ test "sbcl set order" {
   inspect(try! intersection(l([1, 2, 3]), l([3, 2, 1])), content="(3 2 1)")
   inspect(try! set_difference(l([1, 2, 3, 4, 5]), l([2, 9])), content="(5 4 3 1)")
 }
+
+///|
+test "complex arithmetic like sbcl" {
+  let c1 = Value::Cplx(Flo(1.0), Value::Flo(2.0))
+  let c2 = Value::Cplx(Flo(3.0), Value::Flo(-7.0))
+  inspect(try! num_div(c1, c2), content="#C(-0.18965517241379312 0.2241379310344828)")
+  inspect(try! num_div(Value::Flo(2.0), c2), content="#C(0.10344827586206898 0.24137931034482762)")
+  inspect(try! num_add(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(3.0 0.0)")
+  inspect(try! num_mul(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(2.0 -0.0)")
+}
