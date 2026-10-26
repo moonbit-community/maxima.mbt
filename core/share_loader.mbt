@@ -48,7 +48,6 @@ fn share_try_load(path : String) -> Bool raise {
 }
 
 ///|
-<<<<<<< HEAD
 /// True when `path` is one of Maxima's own src/*.lisp files (as found by
 /// e.g. load("hypergeometric")). Those are all compiled into the port and
 /// were initialized at startup; reloading the source in CL Maxima only
@@ -62,7 +61,9 @@ fn share_loader__core_source_p(path : String) -> Bool raise {
   path.has_prefix(dir) &&
   path.has_suffix(".lisp") &&
   !path.substring(start=dir.length()).contains("/")
-=======
+}
+
+///|
 /// A member of a loader group that is a Maxima file rather than a Lisp file
 /// (the loader does `($load "stem")` and Maxima finds `stem.mac` next to
 /// it): load it with $load. Members that are Lisp files without a port are
@@ -94,5 +95,4 @@ fn share_loader__group_forms(key : String, member : String) -> Unit raise {
     ("sym/load-sym-lisp-files", "sym/ecrivain") => d_operation() |> ignore
     _ => ()
   }
->>>>>>> worktree-agent-af50457d7452b07e8
 }
