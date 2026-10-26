@@ -1605,7 +1605,8 @@ fn nparse__plus_led(op : Value, left : Value) -> Value raise {
 fn nparse__if_nud(op : Value) -> Value raise {
   let p = pos(op)
   let h = mheader(op)
-  list_star([p, h, parse_condition(op)])
+  // Through the function cell: boolsimp.lisp redefines PARSE-CONDITION.
+  list_star([p, h, funcall(q_parse_condition, [op])])
 }
 
 ///|
@@ -1620,7 +1621,7 @@ fn parse_condition(op : Value) -> Value raise {
   let else_ = if eq(fc, q_d_else) {
     list2(t, parse(q_d_any, rbp(pop_c())))
   } else if eq(fc, q_d_elseif) {
-    parse_condition(pop_c())
+    funcall(q_parse_condition, [pop_c()])
   } else {
     list2(t, q_d_false)
   }
