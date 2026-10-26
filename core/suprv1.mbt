@@ -738,7 +738,12 @@ fn kill1_atom(x : Value) -> Value raise {
     ),
   )
   |> ignore
-  let y = find_if(e => equal(x, car(e)), cdr(symval(q_d_structures)))
+  // (assoc-if #'(lambda (e) (equal x (car e))) (cdr $structures)): the
+  // predicate sees the car of each element, its header.
+  let y = find_if(
+    e => consp(e) && equal(x, car(car(e))),
+    cdr(symval(q_d_structures)),
+  )
   if y.truthy() {
     remprop(x, q_dimension) |> ignore
     remprop(x, q_defstruct_template) |> ignore
