@@ -27,7 +27,42 @@ pub fn exit(code : Int) -> Unit {
 /// With no batch options, runs the interactive loop.
 pub fn cli_main(args : Array[String]) -> Int {
   (fn() -> Int raise {
+    let mut quiet = false
+    let actions : Array[(String, String)] = []
+    let mut i = 1
+    while i < args.length() {
+      let a = args[i]
+      if a == "-q" || a == "--quiet" || a == "--very-quiet" {
+        quiet = true
+      } else if a == "--no-init" {
+        ()
+      } else if a.has_prefix("--batch-string=") {
+        actions.push(("string", a.substring(start=15)))
+      } else if a == "--batch-string" && i + 1 < args.length() {
+        i += 1
+        actions.push(("string", args[i]))
+      } else if a.has_prefix("--batch=") {
+        actions.push(("file", a.substring(start=8)))
+      } else if (a == "-b" || a == "--batch") && i + 1 < args.length() {
+        i += 1
+        actions.push(("file", args[i]))
+      } else {
+        write_stdout("maxima: unrecognized option \{a}\n")
+        return 1
+      }
+      i += 1
+    }
     initialize()
+    if actions.is_empty() {
+      maxima_interactive(quiet~)
+    } else {
+      for act in actions {
+        match act.0 {
+          "string" => maxima_batch_string(act.1, quiet~)
+          _ => maxima_batch_file(act.1, quiet~)
+        }
+      }
+    }
     0
   })() catch {
     e => {
