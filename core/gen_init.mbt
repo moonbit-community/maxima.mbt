@@ -258,33 +258,333 @@ fn share_load_numericalio() -> Unit raise {
 }
 
 ///|
+fn share_load_macros() -> Unit raise {
+  register_share_macros()
+}
+
+///|
+fn share_load_operations() -> Unit raise {
+  register_share_operations()
+}
+
+///|
+fn share_load_chbase() -> Unit raise {
+  register_share_chbase()
+}
+
+///|
+fn share_load_util() -> Unit raise {
+  register_share_util()
+}
+
+///|
+fn share_load_lecteur() -> Unit raise {
+  register_share_lecteur()
+}
+
+///|
+fn share_load_ecrivain() -> Unit raise {
+  register_share_ecrivain()
+}
+
+///|
+fn share_load_arite() -> Unit raise {
+  register_share_arite()
+}
+
+///|
+fn share_load_elem() -> Unit raise {
+  register_share_elem()
+}
+
+///|
+fn share_load_pui() -> Unit raise {
+  register_share_pui()
+}
+
+///|
+fn share_load_schur() -> Unit raise {
+  register_share_schur()
+}
+
+///|
+fn share_load_direct() -> Unit raise {
+  register_share_direct()
+}
+
+///|
+fn share_load_kak() -> Unit raise {
+  register_share_kak()
+}
+
+///|
+fn share_load_partpol() -> Unit raise {
+  register_share_partpol()
+}
+
+///|
+fn share_load_multmon() -> Unit raise {
+  register_share_multmon()
+}
+
+///|
+fn share_load_permut() -> Unit raise {
+  register_share_permut()
+}
+
+///|
+fn share_load_treillis() -> Unit raise {
+  register_share_treillis()
+}
+
+///|
+fn share_load_resolv1() -> Unit raise {
+  register_share_resolv1()
+}
+
+///|
+fn share_load_resolcayley() -> Unit raise {
+  register_share_resolcayley()
+}
+
+///|
+fn share_load_graph_core() -> Unit raise {
+  init_vars_n_dot_dot_share_graphs_graph_core()
+  register_share_graph_core()
+}
+
+///|
+fn share_load_spring_embedding() -> Unit raise {
+  init_vars_n_dot_dot_share_graphs_spring_embedding()
+  register_share_spring_embedding()
+}
+
+///|
+fn share_load_isomorphism() -> Unit raise {
+  register_share_isomorphism()
+}
+
+///|
+fn share_load_matching() -> Unit raise {
+  register_share_matching()
+}
+
+///|
+fn share_load_graph6() -> Unit raise {
+  register_share_graph6()
+}
+
+///|
+fn share_load_demoucron() -> Unit raise {
+  init_vars_n_dot_dot_share_graphs_demoucron()
+  register_share_demoucron()
+}
+
+///|
+fn share_load_dijkstra() -> Unit raise {
+  register_share_dijkstra()
+}
+
+///|
+fn share_load_wiener_index() -> Unit raise {
+  register_share_wiener_index()
+}
+
+///|
+fn share_load_fft_package() -> Unit raise {
+  register_share_fft_package()
+}
+
+///|
+fn share_load_fft_core() -> Unit raise {
+  register_share_fft_core()
+}
+
+///|
+fn share_load_fft_interface() -> Unit raise {
+  register_share_fft_interface()
+}
+
+///|
+fn share_load_decfp_core() -> Unit raise {
+  init_vars_n_dot_dot_share_numeric_decfp_core()
+  register_share_decfp_core()
+}
+
+///|
+fn share_load_pslq_integer_relation() -> Unit raise {
+  init_vars_n_dot_dot_share_pslq_pslq_integer_relation()
+  register_share_pslq_integer_relation()
+}
+
+///|
+fn share_load_bitwise() -> Unit raise {
+  register_share_bitwise()
+}
+
+///|
+fn share_load_to_poly() -> Unit raise {
+  init_vars_n_dot_dot_share_to_poly_solve_to_poly()
+  register_share_to_poly()
+}
+
+///|
+fn share_load_pdiff() -> Unit raise {
+  init_vars_n_dot_dot_share_pdiff_pdiff()
+  register_share_pdiff()
+}
+
+///|
+fn share_load_romberg() -> Unit raise {
+  init_vars_n_dot_dot_share_numeric_romberg()
+  register_share_romberg()
+}
+
+///|
+fn share_load_simplifying() -> Unit raise {
+  register_share_simplifying()
+}
+
+///|
+fn share_load_combinatorics() -> Unit raise {
+  register_share_combinatorics()
+}
+
+///|
+fn share_load_itensor() -> Unit raise {
+  register_share_itensor()
+}
+
+///|
+fn share_load_simplex_algorithm() -> Unit raise {
+  init_vars_n_dot_dot_share_simplex_simplex_algorithm()
+  register_share_simplex_algorithm()
+}
+
+///|
+fn share_load_pytranslate() -> Unit raise {
+  init_vars_n_dot_dot_share_pytranslate_pytranslate()
+  register_share_pytranslate()
+}
+
+///|
+fn share_load_multiadditive() -> Unit raise {
+  register_share_multiadditive()
+}
+
+///|
+fn share_load_integer_sequence() -> Unit raise {
+  register_share_integer_sequence()
+}
+
+///|
+fn share_load_fourier_elim() -> Unit raise {
+  register_share_fourier_elim()
+}
+
+///|
+fn share_load_ezunits() -> Unit raise {
+  register_share_ezunits()
+}
+
+///|
+fn share_load_opsubst() -> Unit raise {
+  register_share_opsubst()
+}
+
+///|
+fn share_load_operatingsystem() -> Unit raise {
+  register_share_operatingsystem()
+}
+
+///|
+fn share_load_coeflist() -> Unit raise {
+  register_share_coeflist()
+}
+
+///|
+fn share_load_engineering_format() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_engineering_format()
+  register_share_engineering_format()
+}
+
+///|
+fn share_load_odelin() -> Unit raise {
+  register_share_odelin()
+}
+
+///|
+fn share_load_boolsimp() -> Unit raise {
+  register_share_boolsimp()
+}
+
+///|
+fn share_load_bernstein() -> Unit raise {
+  init_vars_n_dot_dot_share_bernstein_bernstein()
+  register_share_bernstein()
+}
+
+///|
+fn share_load_amatrix() -> Unit raise {
+  register_share_amatrix()
+}
+
+///|
+fn share_load_charsets_flatten() -> Unit raise {
+  register_share_charsets_flatten()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
   match stem {
-    "eval_string" => Some(share_load_eval_string)
-    "unicode-sniffer" => Some(share_load_unicode_sniffer)
-    "stringproc" => Some(share_load_stringproc)
-    "printf" => Some(share_load_printf)
-    "cryptools" => Some(share_load_cryptools)
-    "md5" => Some(share_load_md5)
-    "base64" => Some(share_load_base64)
-    "sha1" => Some(share_load_sha1)
-    "sregex" => Some(share_load_sregex)
-    "unwind_protect" => Some(share_load_unwind_protect)
-    "grobner" => Some(share_load_grobner)
-    "orthopoly" => Some(share_load_orthopoly)
-    "trigrat" => Some(share_load_trigrat)
-    "mring" => Some(share_load_mring)
-    "lu" => Some(share_load_lu)
-    "linalgcholesky" => Some(share_load_linalgcholesky)
-    "eigens-by-jacobi" => Some(share_load_eigens_by_jacobi)
-    "linalg-extra" => Some(share_load_linalg_extra)
-    "matrixexp" => Some(share_load_matrixexp)
-    "linalg-utilities" => Some(share_load_linalg_utilities)
-    "pwilt" => Some(share_load_pwilt)
-    "encode-decode-float" => Some(share_load_encode_decode_float)
-    "numericalio" => Some(share_load_numericalio)
+    "stringproc/eval_string" => Some(share_load_eval_string)
+    "stringproc/unicode-sniffer" => Some(share_load_unicode_sniffer)
+    "stringproc/stringproc" => Some(share_load_stringproc)
+    "stringproc/printf" => Some(share_load_printf)
+    "stringproc/cryptools" => Some(share_load_cryptools)
+    "stringproc/md5" => Some(share_load_md5)
+    "stringproc/base64" => Some(share_load_base64)
+    "stringproc/sha1" => Some(share_load_sha1)
+    "stringproc/sregex" => Some(share_load_sregex)
+    "contrib/unwind_protect" => Some(share_load_unwind_protect)
+    "Grobner/grobner" => Some(share_load_grobner)
+    "orthopoly/orthopoly" => Some(share_load_orthopoly)
+    "trigonometry/trigrat" => Some(share_load_trigrat)
+    "linearalgebra/mring" => Some(share_load_mring)
+    "linearalgebra/lu" => Some(share_load_lu)
+    "linearalgebra/linalgcholesky" => Some(share_load_linalgcholesky)
+    "linearalgebra/eigens-by-jacobi" => Some(share_load_eigens_by_jacobi)
+    "linearalgebra/linalg-extra" => Some(share_load_linalg_extra)
+    "linearalgebra/matrixexp" => Some(share_load_matrixexp)
+    "linearalgebra/linalg-utilities" => Some(share_load_linalg_utilities)
+    "diffequations/pwilt" => Some(share_load_pwilt)
+    "numericalio/encode-decode-float" => Some(share_load_encode_decode_float)
+    "numericalio/numericalio" => Some(share_load_numericalio)
+    "sym/macros" => Some(share_load_macros)
+    "sym/resolcayley" => Some(share_load_resolcayley)
+    "numeric/fft-package" => Some(share_load_fft_package)
+    "numeric/decfp-core" => Some(share_load_decfp_core)
+    "tensor/itensor" => Some(share_load_itensor)
+    "contrib/engineering-format" => Some(share_load_engineering_format)
+    "diffequations/odelin" => Some(share_load_odelin)
+    "boolsimp/boolsimp" => Some(share_load_boolsimp)
     _ => None
+  }
+}
+
+///|
+/// Share loader files that only load (via defsystem or $load) a group of
+/// other Lisp files, keyed like share_module_loader.
+fn share_module_group(key : String) -> Array[String] {
+  match key {
+    "graphs/load-graphs" => ["graphs/graph_core", "graphs/spring_embedding", "graphs/isomorphism", "graphs/matching", "graphs/graph6", "graphs/demoucron", "graphs/dijkstra", "graphs/wiener_index"]
+    "linearalgebra/load-linearalgebra-lisp-files" => ["linearalgebra/mring", "linearalgebra/lu", "linearalgebra/linalgcholesky", "linearalgebra/eigens-by-jacobi", "linearalgebra/linalg-extra", "linearalgebra/matrixexp", "linearalgebra/linalg-utilities"]
+    "numeric/decfp" => ["numeric/decfp-core"]
+    "numeric/fft" => ["numeric/fft-package", "numeric/fft-core", "numeric/fft-interface"]
+    "numericalio/load-numericalio" => ["numericalio/encode-decode-float", "numericalio/numericalio"]
+    "sym/load-sym-lisp-files" => ["sym/macros", "sym/operations", "sym/chbase", "sym/util", "sym/lecteur", "sym/ecrivain", "sym/arite", "sym/elem", "sym/pui", "sym/schur", "sym/direct", "sym/kak", "sym/partpol", "sym/multmon", "sym/permut", "sym/treillis", "sym/resolv1", "sym/resolvante", "sym/resolcayley"]
+    _ => []
   }
 }

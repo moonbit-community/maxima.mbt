@@ -8048,3 +8048,1521 @@ fn register_share_numericalio() -> Unit {
   defun(q_get_output_sep_ch, args => get_output_sep_ch(arg(args, 0), arg(args, 1)))
   defun(q_require_string, args => require_string(arg(args, 0)))
 }
+
+///|
+fn register_share_macros() -> Unit {
+}
+
+///|
+fn register_share_operations() -> Unit {
+  defun(q_d_ratmult, args => d_ratmult(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratadd, args => d_ratadd(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratfmult, args => d_ratfmult(arg(args, 0)))
+  defun(q_d_ratfadd, args => d_ratfadd(arg(args, 0)))
+  defun(q_d_ratdivi, args => d_ratdivi(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratexp, args => d_ratexp(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratmoins, args => d_ratmoins(arg(args, 0)))
+  defun(q_d_expandmult, args => d_expandmult(arg(args, 0), arg(args, 1)))
+  defun(q_d_expandadd, args => d_expandadd(arg(args, 0), arg(args, 1)))
+  defun(q_d_expandfmult, args => d_expandfmult(arg(args, 0)))
+  defun(q_d_expandfadd, args => d_expandfadd(arg(args, 0)))
+  defun(q_d_expanddivi, args => d_expanddivi(arg(args, 0), arg(args, 1)))
+  defun(q_d_expandexp, args => d_expandexp(arg(args, 0), arg(args, 1)))
+  defun(q_d_expandmoins, args => d_expandmoins(arg(args, 0)))
+  defun(q_d_ratsimpmult, args => d_ratsimpmult(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratsimpadd, args => d_ratsimpadd(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratsimpfmult, args => d_ratsimpfmult(arg(args, 0)))
+  defun(q_d_ratsimpfadd, args => d_ratsimpfadd(arg(args, 0)))
+  defun(q_d_ratsimpdivi, args => d_ratsimpdivi(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratsimpexp, args => d_ratsimpexp(arg(args, 0), arg(args, 1)))
+  defun(q_d_ratsimpmoins, args => d_ratsimpmoins(arg(args, 0)))
+  defun(q_d_mevalmoins, args => d_mevalmoins(arg(args, 0)))
+  defun(q_d_mevalmult, args => d_mevalmult(arg(args, 0), arg(args, 1)))
+  defun(q_d_mevaladd, args => d_mevaladd(arg(args, 0), arg(args, 1)))
+  defun(q_d_mevalfmult, args => d_mevalfmult(arg(args, 0)))
+  defun(q_d_mevalfadd, args => d_mevalfadd(arg(args, 0)))
+  defun(q_d_mevaldivi, args => d_mevaldivi(arg(args, 0), arg(args, 1)))
+  defun(q_d_mevalexp, args => d_mevalexp(arg(args, 0), arg(args, 1)))
+  defun(q_d_operation, args => d_operation())
+}
+
+///|
+fn register_share_chbase() -> Unit {
+  defun(q_d_ele2pui0, args => d_ele2pui0(arg(args, 0), arg(args, 1)))
+  defun(q_ele2pui, args => ele2pui(arg(args, 0), arg(args, 1)))
+  defun(q_ele2pui_init, args => ele2pui_init(arg(args, 0), arg(args, 1)))
+  defun(q_d_puireduc_init, args => d_puireduc_init(arg(args, 0), arg(args, 1)))
+  defun(q_puireduc_init, args => puireduc_init(arg(args, 0), arg(args, 1)))
+  defun(q_rangpi2, args => rangpi2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rangpi3, args => rangpi3(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_puireduc0, args => d_puireduc0(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_puireduc, args => puireduc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_pm_ei2, args => d_pm_ei2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_e_calbasepui, args => d_e_calbasepui(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_e_calpui, args => d_e_calpui(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_pe_rallonge, args => d_pe_rallonge(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_ele2comp_init, args => d_ele2comp_init(arg(args, 0), arg(args, 1)))
+  defun(q_ele2comp_init, args => ele2comp_init(arg(args, 0), arg(args, 1)))
+  defun(q_ele2comp, args => ele2comp(arg(args, 0), arg(args, 1)))
+  defun(q_e_calbasecomp, args => e_calbasecomp(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_pui2ele0, args => d_pui2ele0(arg(args, 0), arg(args, 1)))
+  defun(q_pui2ele_init, args => pui2ele_init(arg(args, 0), arg(args, 1)))
+  defun(q_pui2ele, args => pui2ele(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_macdonald_pui2ele, args => macdonald_pui2ele(arg(args, 0), arg(args, 1)))
+  defun(q_macdonald2, args => macdonald2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_termine, args => termine(arg(args, 0)))
+  defun(q_chbase_met, args => chbase_met(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_girard_pui2ele, args => girard_pui2ele(arg(args, 0), arg(args, 1)))
+  defun(q_d_elereduc0, args => d_elereduc0(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_elereduc, args => elereduc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_troncelem, args => d_troncelem(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_p_baselem, args => d_p_baselem(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_p_calbaselem, args => d_p_calbaselem(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_p_calelem, args => d_p_calelem(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_ep_rallonge, args => d_ep_rallonge(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_pui2comp_init, args => d_pui2comp_init(arg(args, 0), arg(args, 1)))
+  defun(q_pui2comp_init, args => pui2comp_init(arg(args, 0), arg(args, 1)))
+  defun(q_pui2comp, args => pui2comp(arg(args, 0), arg(args, 1)))
+  defun(q_p__calbasecomp, args => p__calbasecomp(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_comp2ele_init, args => d_comp2ele_init(arg(args, 0), arg(args, 1)))
+  defun(q_comp2ele_init, args => comp2ele_init(arg(args, 0), arg(args, 1)))
+  defun(q_comp2ele, args => comp2ele(arg(args, 0), arg(args, 1)))
+  defun(q_c_calbaselem, args => c_calbaselem(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_comp2pui_init, args => d_comp2pui_init(arg(args, 0), arg(args, 1)))
+  defun(q_comp2pui_init, args => comp2pui_init(arg(args, 0), arg(args, 1)))
+  defun(q_comp2pui, args => comp2pui(arg(args, 0), arg(args, 1)))
+  defun(q_c_calbasepui, args => c_calbasepui(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_complbase, args => d_complbase(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_complbase2, args => d_complbase2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_debut, args => d_debut(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_chsigne, args => chsigne(arg(args, 0)))
+}
+
+///|
+fn register_share_util() -> Unit {
+  defun(q_d_estpartition, args => d_estpartition(arg(args, 0)))
+  defun(q_somme, args => somme(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_somme2, args => somme2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_lvar, args => lvar(arg(args, 0), arg(args, 1)))
+  defun(q_lvar_lettre, args => lvar_lettre(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_degrep, args => d_degrep(arg(args, 0)))
+  defun(q_d_degre, args => d_degre(arg(args, 0)))
+  defun(q_constante, args => constante(arg(args, 0)))
+  defun(q_lconstante, args => lconstante(arg(args, 0)))
+  defun(q_lgparts, args => lgparts(arg(args, 0)))
+  defun(q_longueur, args => longueur(arg(args, 0)))
+  defun(q_d_calculvar, args => d_calculvar(arg(args, 0)))
+  defun(q_d_lex, args => d_lex(arg(args, 0), arg(args, 1)))
+  defun(q_orlongsup, args => orlongsup(arg(args, 0), arg(args, 1)))
+  defun(q_orlong, args => orlong(arg(args, 0), arg(args, 1)))
+  defun(q_d_orlong_cst, args => d_orlong_cst(arg(args, 0), arg(args, 1)))
+  defun(q_d_e_lexinv_cst, args => d_e_lexinv_cst(arg(args, 0), arg(args, 1)))
+  defun(q_d_e_lexinv, args => d_e_lexinv(arg(args, 0), arg(args, 1)))
+  defun(q_d_e_lex_cst, args => d_e_lex_cst(arg(args, 0), arg(args, 1)))
+  defun(q_d_e_lex, args => d_e_lex(arg(args, 0), arg(args, 1)))
+  defun(q_lex_term, args => lex_term(arg(args, 0), arg(args, 1)))
+  defun(q_lex_mon, args => lex_mon(arg(args, 0), arg(args, 1)))
+  defun(q_lect, args => lect(arg(args, 0), arg(args, 1)))
+  defun(q_macsy_list, args => macsy_list(arg(args, 0)))
+  defun(q_mac2lisp, args => mac2lisp(arg(args, 0)))
+  defun(q_ecrit_listpol, args => ecrit_listpol(arg(args, 0), arg(args, 1)))
+  defun(q_multi_ecrit, args => multi_ecrit(arg(args, 0), arg(args, 1)))
+  defun(q_multi_ecrit_mon, args => multi_ecrit_mon(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_ecrit_pol, args => ecrit_pol(arg(args, 0), arg(args, 1)))
+  defun(q_n2ecrit, args => n2ecrit(arg(args, 0), arg(args, 1)))
+  defun(q_ch2rep, args => ch2rep(arg(args, 0)))
+  defun(q_ch2rep2, args => ch2rep2(arg(args, 0), arg(args, 1)))
+  defun(q_ch2repol, args => ch2repol(arg(args, 0)))
+  defun(q_ch1rep, args => ch1rep(arg(args, 0)))
+  defun(q_ch1rep2, args => ch1rep2(arg(args, 0), arg(args, 1)))
+  defun(q_ch1repol, args => ch1repol(arg(args, 0)))
+  defun(q_part, args => part(arg(args, 0)))
+  defun(q_d_part2, args => d_part2(arg(args, 0), arg(args, 1)))
+  defun(q_d_cherchepui, args => d_cherchepui(arg(args, 0)))
+  defun(q_d_card_orbit, args => d_card_orbit(arg(args, 0), arg(args, 1)))
+  defun(q_card_orbit, args => card_orbit(arg(args, 0), arg(args, 1)))
+  defun(q_d_multinomial, args => d_multinomial(arg(args, 0), arg(args, 1)))
+  defun(q_multinomial, args => multinomial(arg(args, 0), arg(args, 1)))
+  defun(q_nbperm0, args => nbperm0(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_nbperm, args => nbperm(arg(args, 0), arg(args, 1)))
+  defun(q_nbperm2, args => nbperm2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_card_stab, args => { check_arity_range("$card_stab", args, 2, 2); d_card_stab(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_card_stab, t, q_translated) |> ignore
+  defun(q_d_card_stab_init, args => d_card_stab_init(arg(args, 0), arg(args, 1)))
+  defun(q_card_stab, args => card_stab(arg(args, 0), arg(args, 1)))
+  defun(q_multiplicites, args => multiplicites(arg(args, 0), arg(args, 1)))
+  defun(q_multiplicites2, args => multiplicites2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_prod_factor, args => prod_factor(arg(args, 0)))
+  defun(q_list_factor, args => list_factor(arg(args, 0), arg(args, 1)))
+  defun(q_fact_recur, args => fact_recur(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_finfact, args => finfact(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_factorielle, args => factorielle(arg(args, 0)))
+  defun(q_d_lpermut, args => d_lpermut(arg(args, 0)))
+  defun(q_d_ele2polynome, args => d_ele2polynome(arg(args, 0), arg(args, 1)))
+  defun(q_ele2polynome, args => ele2polynome(arg(args, 0), arg(args, 1)))
+  defun(q_genpoly2, args => genpoly2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_pui2polynome, args => d_pui2polynome(arg(args, 0), arg(args, 1)))
+  defun(q_pui2polynome, args => pui2polynome(arg(args, 0), arg(args, 1)))
+  defun(q_d_polynome2ele, args => d_polynome2ele(arg(args, 0), arg(args, 1)))
+  defun(q_polynome2ele, args => polynome2ele(arg(args, 0), arg(args, 1)))
+  defun(q_lcoe2, args => lcoe2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_binomial, args => binomial(arg(args, 0), arg(args, 1)))
+  defun(q_maxote, args => maxote(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_lecteur() -> Unit {
+  defun(q_d_distri_lect, args => d_distri_lect(arg(args, 0), arg(args, 1)))
+  defun(q_distri_lect, args => distri_lect(arg(args, 0), arg(args, 1)))
+  defun(q_somme_coef, args => somme_coef(arg(args, 0)))
+  defun(q_somme_coef2, args => somme_coef2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_exposants, args => exposants(arg(args, 0), arg(args, 1)))
+  defun(q_expomon, args => expomon(arg(args, 0)))
+  defun(q_recupcoef, args => recupcoef(arg(args, 0), arg(args, 1)))
+  defun(q_lvarexpo, args => lvarexpo(arg(args, 0)))
+  defun(q_expomon2, args => expomon2(arg(args, 0)))
+  defun(q_chercheexpo, args => chercheexpo(arg(args, 0)))
+}
+
+///|
+fn register_share_ecrivain() -> Unit {
+  defun(q_d_distri_ecrit_init, args => d_distri_ecrit_init(arg(args, 0), arg(args, 1)))
+  defun(q_d_ecrivain_sym, args => d_ecrivain_sym(arg(args, 0), arg(args, 1)))
+  defun(q_ecrit_mon, args => ecrit_mon(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_arite() -> Unit {
+  defun(q_arite_init, args => arite_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_arite_physique_init, args => arite_physique_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_complete_pui_physique, args => complete_pui_physique(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_n__complete_pui, args => n__complete_pui(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_elem() -> Unit {
+  defun(q_d_bidon, args => d_bidon())
+  defun(q_d_multi_elem_init, args => d_multi_elem_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_multi_elem, args => multi_elem(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_elem_init, args => d_elem_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_e_red1, args => e_red1(arg(args, 0), arg(args, 1)))
+  defun(q_e_red2, args => e_red2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rangei, args => rangei(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_rangei2, args => rangei2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_reduit, args => d_reduit(arg(args, 0), arg(args, 1)))
+  defun(q_factpart, args => factpart(arg(args, 0)))
+  defun(q_devel1, args => devel1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_devel2, args => devel2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_devel3, args => devel3(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_ramsol, args => ramsol(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_ramsol2, args => ramsol2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_ramsolfin, args => ramsolfin(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_calcoe, args => calcoe(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_calcoe2, args => calcoe2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_syele, args => syele(arg(args, 0)))
+  defun(q_inferieur, args => inferieur(arg(args, 0), arg(args, 1)))
+  defun(q_e_ecrit, args => e_ecrit(arg(args, 0)))
+  defun(q_e_ecrit2, args => e_ecrit2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+}
+
+///|
+fn register_share_pui() -> Unit {
+  defun(q_d_bidon2, args => d_bidon2())
+  defun(q_d_multi_pui_init, args => d_multi_pui_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_multi_pui, args => multi_pui(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_pui_init, args => d_pui_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_p__red1, args => p__red1(arg(args, 0), arg(args, 1)))
+  defun(q_p__red2, args => p__red2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_p_reduit, args => d_p_reduit(arg(args, 0)))
+  defun(q_d_p_reduit_init, args => d_p_reduit_init(arg(args, 0)))
+  defun(q_longde2, args => longde2(arg(args, 0), arg(args, 1)))
+  defun(q_p__reducpart, args => p__reducpart(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_constsol, args => constsol(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_p__fact, args => p__fact(arg(args, 0), arg(args, 1)))
+  defun(q_multpui, args => multpui(arg(args, 0), arg(args, 1)))
+  defun(q_multpui2, args => multpui2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_restpart, args => restpart(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_p__ecrit, args => p__ecrit(arg(args, 0)))
+  defun(q_p__ecrit2, args => p__ecrit2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+}
+
+///|
+fn register_share_schur() -> Unit {
+  defun(q_d_schur2comp_init, args => d_schur2comp_init(arg(args, 0), arg(args, 1)))
+  defun(q_schur2comp_pol, args => schur2comp_pol(arg(args, 0), arg(args, 1)))
+  defun(q_lexinv_type1, args => lexinv_type1(arg(args, 0), arg(args, 1)))
+  defun(q_n2lexinv_type1, args => n2lexinv_type1(arg(args, 0), arg(args, 1)))
+  defun(q_pol2part, args => pol2part(arg(args, 0), arg(args, 1)))
+  defun(q_chvaretdegre, args => chvaretdegre(arg(args, 0)))
+  defun(q_schur2comp, args => schur2comp(arg(args, 0)))
+  defun(q_d_mon2schur_init, args => d_mon2schur_init(arg(args, 0)))
+  defun(q_duale12, args => duale12(arg(args, 0)))
+  defun(q_duale21, args => duale21(arg(args, 0)))
+  defun(q_n2duale21, args => n2duale21(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_chmultiplicites_parts, args => chmultiplicites_parts(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_kostka_init, args => d_kostka_init(arg(args, 0), arg(args, 1)))
+  defun(q_kostka, args => kostka(arg(args, 0), arg(args, 1)))
+  defun(q_schur_firstn, args => schur_firstn(arg(args, 0), arg(args, 1)))
+  defun(q_lastn, args => lastn(arg(args, 0), arg(args, 1)))
+  defun(q_good_tab0, args => good_tab0(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_insert_tete, args => insert_tete(arg(args, 0), arg(args, 1)))
+  defun(q_new_tas0, args => new_tas0(arg(args, 0), arg(args, 1)))
+  defun(q_good_line, args => good_line(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_good_line0, args => good_line0(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_good_length, args => good_length(arg(args, 0), arg(args, 1)))
+  defun(q_d_treinat_init, args => d_treinat_init(arg(args, 0)))
+  defun(q_treinat, args => treinat(arg(args, 0)))
+  defun(q_soustreillisnat, args => soustreillisnat(arg(args, 0), arg(args, 1)))
+  defun(q_union_sym, args => union_sym(arg(args, 0), arg(args, 1)))
+  defun(q_union2, args => union2(arg(args, 0), arg(args, 1)))
+  defun(q_crefils_init, args => crefils_init(arg(args, 0)))
+  defun(q_crefils, args => crefils(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_tombecube, args => tombecube(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_rmet, args => rmet(arg(args, 0), arg(args, 1)))
+  defun(q_schur_met, args => schur_met(arg(args, 0), arg(args, 1)))
+  defun(q_arrivecube, args => arrivecube(arg(args, 0)))
+}
+
+///|
+fn register_share_direct() -> Unit {
+  defun(q_d_orbit_init, args => d_orbit_init(arg(args, 0), arg(args, 1)))
+  defun(q_orbit, args => orbit(arg(args, 0), arg(args, 1)))
+  defun(q_orbit2, args => orbit2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_permut_circu, args => permut_circu(arg(args, 0), arg(args, 1)))
+  defun(q_contient, args => contient(arg(args, 0), arg(args, 1)))
+  defun(q_d_multi_orbit_init, args => d_multi_orbit_init(arg(args, 0), arg(args, 1)))
+  defun(q_multi_orbit_init, args => multi_orbit_init(arg(args, 0), arg(args, 1)))
+  defun(q_multi_orbit, args => multi_orbit(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_epure, args => epure(arg(args, 0), arg(args, 1)))
+  defun(q_dans, args => dans(arg(args, 0), arg(args, 1)))
+  defun(q_d_pui_direct_init, args => d_pui_direct_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_pui_direct, args => pui_direct(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_pui_contract, args => pui_contract(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_multi_partitions, args => multi_partitions(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_garde_que_partition_init, args => garde_que_partition_init(arg(args, 0), arg(args, 1)))
+  defun(q_garde_que_partition, args => garde_que_partition(arg(args, 0), arg(args, 1)))
+  defun(q_distribu, args => distribu(arg(args, 0), arg(args, 1)))
+  defun(q_d_direct_init, args => d_direct_init(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_direct, args => direct(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_direct_parallele, args => direct_parallele(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_multi_polynome2ele, args => multi_polynome2ele(arg(args, 0), arg(args, 1)))
+  defun(q_multi_decomp_init, args => multi_decomp_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_multi_ele2pui, args => multi_ele2pui(arg(args, 0)))
+}
+
+///|
+fn register_share_kak() -> Unit {
+  defun(q_d_somrac_init, args => d_somrac_init(arg(args, 0), arg(args, 1)))
+  defun(q_d_p_rac, args => d_p_rac(arg(args, 0), arg(args, 1)))
+  defun(q_d_som_pipj, args => d_som_pipj(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_init_pi2mon, args => d_init_pi2mon(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_pi2mon, args => d_pi2mon(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_init_monlgfix, args => d_init_monlgfix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_e_rac, args => d_e_rac(arg(args, 0), arg(args, 1)))
+  defun(q_d_rac2, args => d_rac2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_init_piej, args => d_init_piej(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_piej, args => d_piej(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_piej_lgfix, args => d_piej_lgfix(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_monlgfix, args => d_monlgfix(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_d_met, args => d_met(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_prodkak, args => d_prodkak(arg(args, 0), arg(args, 1)))
+  defun(q_d_listpui, args => d_listpui(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_partpol() -> Unit {
+  defun(q_d_tcontract_init, args => d_tcontract_init(arg(args, 0), arg(args, 1)))
+  defun(q_d_contract_init, args => d_contract_init(arg(args, 0), arg(args, 1)))
+  defun(q_d_p_tpartpol_init, args => d_p_tpartpol_init(arg(args, 0), arg(args, 1)))
+  defun(q_p__tpartpol, args => p__tpartpol(arg(args, 0), arg(args, 1)))
+  defun(q_d_tpartpol_init, args => d_tpartpol_init(arg(args, 0), arg(args, 1)))
+  defun(q_tpartpol, args => tpartpol(arg(args, 0), arg(args, 1)))
+  defun(q_d_lexic, args => d_lexic(arg(args, 0), arg(args, 1)))
+  defun(q_tpartpol2, args => tpartpol2(arg(args, 0), arg(args, 1)))
+  defun(q_tpartpol3, args => tpartpol3(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_partpol_init, args => d_partpol_init(arg(args, 0), arg(args, 1)))
+  defun(q_d_cont2part_init, args => d_cont2part_init(arg(args, 0), arg(args, 1)))
+  defun(q_cont2part_rep1, args => cont2part_rep1(arg(args, 0), arg(args, 1)))
+  defun(q_cont2part, args => cont2part(arg(args, 0), arg(args, 1)))
+  defun(q_d_partipol, args => d_partipol(arg(args, 0)))
+  defun(q_partipol, args => partipol(arg(args, 0)))
+  defun(q_partipol1, args => partipol1(arg(args, 0), arg(args, 1)))
+  defun(q_partipol2, args => partipol2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_part2cont_init, args => d_part2cont_init(arg(args, 0), arg(args, 1)))
+  defun(q_d_explose_init, args => d_explose_init(arg(args, 0), arg(args, 1)))
+  defun(q_ordonne_expo, args => ordonne_expo(arg(args, 0)))
+  defun(q_prep, args => prep(arg(args, 0)))
+}
+
+///|
+fn register_share_multmon() -> Unit {
+  defun(q_d_multsym_init, args => d_multsym_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_multsym, args => multsym(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_mult_term, args => mult_term(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_multmon_init, args => d_multmon_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_fmon2part, args => fmon2part(arg(args, 0)))
+  defun(q_chexpo, args => chexpo(arg(args, 0), arg(args, 1)))
+  defun(q_multmon, args => multmon(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_fini0, args => fini0(arg(args, 0), arg(args, 1)))
+  defun(q_epur0, args => epur0(arg(args, 0)))
+  defun(q_parti_som_init, args => parti_som_init(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_parti_som, args => parti_som(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_somme_coe, args => somme_coe(arg(args, 0), arg(args, 1)))
+  defun(q_coei_plusk, args => coei_plusk(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_permut() -> Unit {
+  defun(q_d_permut, args => d_permut(arg(args, 0)))
+  defun(q_insertion, args => insertion(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_vire_nil, args => vire_nil(arg(args, 0)))
+  defun(q_un_de_chaque, args => un_de_chaque(arg(args, 0)))
+  defun(q_permut, args => permut(arg(args, 0)))
+}
+
+///|
+fn register_share_treillis() -> Unit {
+  defun(q_d_treillis_init, args => d_treillis_init(arg(args, 0)))
+  defun(q_treillis, args => treillis(arg(args, 0)))
+  defun(q_treillis2, args => treillis2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_lgtreillis_init, args => d_lgtreillis_init(arg(args, 0), arg(args, 1)))
+  defun(q_lgtreillis, args => lgtreillis(arg(args, 0), arg(args, 1)))
+  defun(q_lgtreillis2, args => lgtreillis2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_d_ltreillis_init, args => d_ltreillis_init(arg(args, 0), arg(args, 1)))
+  defun(q_ltreillis, args => ltreillis(arg(args, 0), arg(args, 1)))
+  defun(q_ltreillis2, args => ltreillis2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+}
+
+///|
+fn register_share_resolv1() -> Unit {
+  defun(q_resolvante, args => resolvante(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_cree_subs, args => cree_subs(arg(args, 0), arg(args, 1)))
+  defun(q_symetrique_resolvante, args => symetrique_resolvante(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_puissances_symetrique_resolvante, args => puissances_symetrique_resolvante(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_complete_pui, args => complete_pui(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_linear_resolvante_init, args => linear_resolvante_init(arg(args, 0), arg(args, 1), arg(args, 2), alternee?=key_arg(args, 3, ":alternee")))
+  defun(q_linear_resolvante, args => linear_resolvante(arg(args, 0), arg(args, 1), alternee?=key_arg(args, 2, ":alternee")))
+  defun(q_puissances_linear_resolvante, args => puissances_linear_resolvante(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_pui_linear_resolvante, args => pui_linear_resolvante(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_somme_orbitale, args => somme_orbitale(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8), arg(args, 9)))
+  defun(q_ev_forme_monomiale, args => ev_forme_monomiale(arg(args, 0), arg(args, 1)))
+  defun(q_sanszero, args => sanszero(arg(args, 0)))
+  defun(q_retirezero, args => retirezero(arg(args, 0)))
+  defun(q_permut_alterne, args => permut_alterne(arg(args, 0)))
+  defun(q_pas_dans, args => pas_dans(arg(args, 0), arg(args, 1)))
+  defun(q_resol_carre, args => resol_carre(arg(args, 0), arg(args, 1)))
+  defun(q_un_sur_deux, args => un_sur_deux(arg(args, 0)))
+}
+
+///|
+fn register_share_resolcayley() -> Unit {
+}
+
+///|
+fn register_share_graph_core() -> Unit {
+  defun(q_require_graph, args => require_graph(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_require_digraph, args => require_digraph(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_require_graph_or_digraph, args => require_graph_or_digraph(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_print_graph, args => { check_arity_range("$print_graph", args, 1, 1); d_print_graph(arg(args, 0)) })
+  putprop(q_d_print_graph, t, q_translated) |> ignore
+  defun(q_d_is_graph, args => { check_arity_range("$is_graph", args, 1, 1); d_is_graph(arg(args, 0)) })
+  putprop(q_d_is_graph, t, q_translated) |> ignore
+  defun(q_d_is_digraph, args => { check_arity_range("$is_digraph", args, 1, 1); d_is_digraph(arg(args, 0)) })
+  putprop(q_d_is_digraph, t, q_translated) |> ignore
+  defun(q_d_is_graph_or_digraph, args => { check_arity_range("$is_graph_or_digraph", args, 1, 1); d_is_graph_or_digraph(arg(args, 0)) })
+  putprop(q_d_is_graph_or_digraph, t, q_translated) |> ignore
+  defun(q_d_graph_order, args => { check_arity_range("$graph_order", args, 1, 1); d_graph_order(arg(args, 0)) })
+  putprop(q_d_graph_order, t, q_translated) |> ignore
+  defun(q_d_graph_size, args => { check_arity_range("$graph_size", args, 1, 1); d_graph_size(arg(args, 0)) })
+  putprop(q_d_graph_size, t, q_translated) |> ignore
+  defun(q_d_get_positions, args => { check_arity_range("$get_positions", args, 1, 1); d_get_positions(arg(args, 0)) })
+  putprop(q_d_get_positions, t, q_translated) |> ignore
+  defun(q_d_set_positions, args => { check_arity_range("$set_positions", args, 2, 2); d_set_positions(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_set_positions, t, q_translated) |> ignore
+  defun(q_d_copy_graph, args => { check_arity_range("$copy_graph", args, 1, 1); d_copy_graph(arg(args, 0)) })
+  putprop(q_d_copy_graph, t, q_translated) |> ignore
+  defun(q_d_new_graph, args => { check_arity_range("$new_graph", args, 0, 0); d_new_graph() })
+  putprop(q_d_new_graph, t, q_translated) |> ignore
+  defun(q_d_vertices, args => { check_arity_range("$vertices", args, 1, 1); d_vertices(arg(args, 0)) })
+  putprop(q_d_vertices, t, q_translated) |> ignore
+  defun(q_vertices, args => vertices(arg(args, 0)))
+  defun(q_require_vertex, args => require_vertex(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_is_vertex_in_graph, args => is_vertex_in_graph(arg(args, 0), arg(args, 1)))
+  defun(q_require_vertex_in_graph, args => require_vertex_in_graph(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_is_vertex_in_graph, args => { check_arity_range("$is_vertex_in_graph", args, 2, 2); d_is_vertex_in_graph(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_is_vertex_in_graph, t, q_translated) |> ignore
+  defun(q_d_add_vertex, args => { check_arity_range("$add_vertex", args, 1, 2); d_add_vertex(arg(args, 0), gr?=args.get(1)) })
+  putprop(q_d_add_vertex, t, q_translated) |> ignore
+  defun(q_d_add_vertices, args => { check_arity_range("$add_vertices", args, 2, 2); d_add_vertices(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_add_vertices, t, q_translated) |> ignore
+  defun(q_add_h_vertex, args => add_h_vertex(arg(args, 0), arg(args, 1)))
+  defun(q_neighbors, args => neighbors(arg(args, 0), arg(args, 1)))
+  defun(q_in_h_neighbors, args => in_h_neighbors(arg(args, 0), arg(args, 1)))
+  defun(q_out_h_neighbors, args => out_h_neighbors(arg(args, 0), arg(args, 1)))
+  defun(q_d_neighbors, args => { check_arity_range("$neighbors", args, 2, 2); d_neighbors(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_neighbors, t, q_translated) |> ignore
+  defun(q_d_out_neighbors, args => { check_arity_range("$out_neighbors", args, 2, 2); d_out_neighbors(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_out_neighbors, t, q_translated) |> ignore
+  defun(q_d_in_neighbors, args => { check_arity_range("$in_neighbors", args, 2, 2); d_in_neighbors(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_in_neighbors, t, q_translated) |> ignore
+  defun(q_d_degree_sequence, args => { check_arity_range("$degree_sequence", args, 1, 1); d_degree_sequence(arg(args, 0)) })
+  putprop(q_d_degree_sequence, t, q_translated) |> ignore
+  defun(q_d_remove_vertex, args => { check_arity_range("$remove_vertex", args, 2, 2); d_remove_vertex(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_remove_vertex, t, q_translated) |> ignore
+  defun(q_d_remove_vertices, args => { check_arity_range("$remove_vertices", args, 2, 2); d_remove_vertices(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_remove_vertices, t, q_translated) |> ignore
+  defun(q_remove_h_vertex, args => remove_h_vertex(arg(args, 0), arg(args, 1)))
+  defun(q_d_first_vertex, args => { check_arity_range("$first_vertex", args, 1, 1); d_first_vertex(arg(args, 0)) })
+  putprop(q_d_first_vertex, t, q_translated) |> ignore
+  defun(q_d_max_degree, args => { check_arity_range("$max_degree", args, 1, 1); d_max_degree(arg(args, 0)) })
+  putprop(q_d_max_degree, t, q_translated) |> ignore
+  defun(q_d_min_degree, args => { check_arity_range("$min_degree", args, 1, 1); d_min_degree(arg(args, 0)) })
+  putprop(q_d_min_degree, t, q_translated) |> ignore
+  defun(q_d_average_degree, args => { check_arity_range("$average_degree", args, 1, 1); d_average_degree(arg(args, 0)) })
+  putprop(q_d_average_degree, t, q_translated) |> ignore
+  defun(q_d_vertex_degree, args => { check_arity_range("$vertex_degree", args, 2, 2); d_vertex_degree(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_vertex_degree, t, q_translated) |> ignore
+  defun(q_d_vertex_in_degree, args => { check_arity_range("$vertex_in_degree", args, 2, 2); d_vertex_in_degree(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_vertex_in_degree, t, q_translated) |> ignore
+  defun(q_d_vertex_out_degree, args => { check_arity_range("$vertex_out_degree", args, 2, 2); d_vertex_out_degree(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_vertex_out_degree, t, q_translated) |> ignore
+  defun(q_d_get_vertex_label, args => { check_arity_range("$get_vertex_label", args, 2, 3); d_get_vertex_label(arg(args, 0), arg(args, 1), default?=args.get(2)) })
+  putprop(q_d_get_vertex_label, t, q_translated) |> ignore
+  defun(q_get_h_vertex_h_label, args => get_h_vertex_h_label(arg(args, 0), arg(args, 1)))
+  defun(q_d_get_unique_vertex_by_label, args => { check_arity_range("$get_unique_vertex_by_label", args, 2, 2); d_get_unique_vertex_by_label(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_get_unique_vertex_by_label, t, q_translated) |> ignore
+  defun(q_get_h_unique_h_vertex_h_by_h_label, args => get_h_unique_h_vertex_h_by_h_label(arg(args, 0), arg(args, 1)))
+  defun(q_get_h_all_h_vertices_h_by_h_label, args => get_h_all_h_vertices_h_by_h_label(arg(args, 0), arg(args, 1)))
+  defun(q_d_get_all_vertices_by_label, args => { check_arity_range("$get_all_vertices_by_label", args, 2, 2); d_get_all_vertices_by_label(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_get_all_vertices_by_label, t, q_translated) |> ignore
+  defun(q_d_clear_vertex_label, args => { check_arity_range("$clear_vertex_label", args, 2, 2); d_clear_vertex_label(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_clear_vertex_label, t, q_translated) |> ignore
+  defun(q_clear_h_vertex_h_label, args => clear_h_vertex_h_label(arg(args, 0), arg(args, 1)))
+  defun(q_d_set_vertex_label, args => { check_arity_range("$set_vertex_label", args, 3, 3); d_set_vertex_label(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_set_vertex_label, t, q_translated) |> ignore
+  defun(q_set_h_vertex_h_label, args => set_h_vertex_h_label(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_require_medge, args => require_medge(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_require_edge_in_graph, args => require_edge_in_graph(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_m_edge_to_l_edge, args => m_edge_to_l_edge(arg(args, 0)))
+  defun(q_m_edge_to_l_dedge, args => m_edge_to_l_dedge(arg(args, 0)))
+  defun(q_l_edge_to_m_edge, args => l_edge_to_m_edge(arg(args, 0)))
+  defun(q_d_is_edge_in_graph, args => { check_arity_range("$is_edge_in_graph", args, 2, 2); d_is_edge_in_graph(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_is_edge_in_graph, t, q_translated) |> ignore
+  defun(q_is_h_edge_h_in_h_graph, args => is_h_edge_h_in_h_graph(arg(args, 0), arg(args, 1)))
+  defun(q_d_add_edge, args => { check_arity_range("$add_edge", args, 2, 2); d_add_edge(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_add_edge, t, q_translated) |> ignore
+  defun(q_d_add_edges, args => { check_arity_range("$add_edges", args, 2, 2); d_add_edges(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_add_edges, t, q_translated) |> ignore
+  defun(q_add_h_edge, args => add_h_edge(arg(args, 0), arg(args, 1)))
+  defun(q_add_h_edges, args => add_h_edges(arg(args, 0), arg(args, 1)))
+  defun(q_d_edges, args => { check_arity_range("$edges", args, 1, 1); d_edges(arg(args, 0)) })
+  putprop(q_d_edges, t, q_translated) |> ignore
+  defun(q_edges, args => edges(arg(args, 0)))
+  defun(q_d_remove_edge, args => { check_arity_range("$remove_edge", args, 2, 2); d_remove_edge(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_remove_edge, t, q_translated) |> ignore
+  defun(q_d_remove_edges, args => { check_arity_range("$remove_edges", args, 2, 2); d_remove_edges(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_remove_edges, t, q_translated) |> ignore
+  defun(q_remove_h_edge, args => remove_h_edge(arg(args, 0), arg(args, 1)))
+  defun(q_d_contract_edge, args => { check_arity_range("$contract_edge", args, 2, 2); d_contract_edge(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_contract_edge, t, q_translated) |> ignore
+  defun(q_d_contract_edges, args => { check_arity_range("$contract_edges", args, 2, 2); d_contract_edges(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_contract_edges, t, q_translated) |> ignore
+  defun(q_d_get_edge_weight, args => { check_arity_range("$get_edge_weight", args, 2, 4); d_get_edge_weight(arg(args, 0), arg(args, 1), default?=args.get(2), not_present?=args.get(3)) })
+  putprop(q_d_get_edge_weight, t, q_translated) |> ignore
+  defun(q_get_h_edge_h_weight, args => get_h_edge_h_weight(arg(args, 0), arg(args, 1)))
+  defun(q_d_clear_edge_weight, args => { check_arity_range("$clear_edge_weight", args, 2, 2); d_clear_edge_weight(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_clear_edge_weight, t, q_translated) |> ignore
+  defun(q_clear_h_edge_h_weight, args => clear_h_edge_h_weight(arg(args, 0), arg(args, 1)))
+  defun(q_d_set_edge_weight, args => { check_arity_range("$set_edge_weight", args, 3, 3); d_set_edge_weight(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_set_edge_weight, t, q_translated) |> ignore
+  defun(q_set_h_edge_h_weight, args => set_h_edge_h_weight(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_connect_vertices, args => { check_arity_range("$connect_vertices", args, 3, 3); d_connect_vertices(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_connect_vertices, t, q_translated) |> ignore
+  defun(q_d_subdivide_edge, args => { check_arity_range("$subdivide_edge", args, 2, 2); d_subdivide_edge(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_subdivide_edge, t, q_translated) |> ignore
+  defun(q_new_set, args => new_set(rest_args(args, 0)))
+  defun(q_set_member, args => set_member(arg(args, 0), arg(args, 1)))
+  defun(q_set_add, args => set_add(arg(args, 0), arg(args, 1)))
+  defun(q_set_remove, args => set_remove(arg(args, 0), arg(args, 1)))
+  defun(q_set_emptyp, args => set_emptyp(arg(args, 0)))
+  defun(q_set_elements, args => set_elements(arg(args, 0)))
+  defun(q_d_empty_graph, args => { check_arity_range("$empty_graph", args, 1, 1); d_empty_graph(arg(args, 0)) })
+  putprop(q_d_empty_graph, t, q_translated) |> ignore
+  defun(q_d_empty_digraph, args => { check_arity_range("$empty_digraph", args, 1, 1); d_empty_digraph(arg(args, 0)) })
+  putprop(q_d_empty_digraph, t, q_translated) |> ignore
+  defun(q_d_create_graph, args => { check_arity_range("$create_graph", args, 2, 3); d_create_graph(arg(args, 0), arg(args, 1), dir?=args.get(2)) })
+  putprop(q_d_create_graph, t, q_translated) |> ignore
+  defun(q_d_cycle_graph, args => { check_arity_range("$cycle_graph", args, 1, 1); d_cycle_graph(arg(args, 0)) })
+  putprop(q_d_cycle_graph, t, q_translated) |> ignore
+  defun(q_d_cycle_digraph, args => { check_arity_range("$cycle_digraph", args, 1, 1); d_cycle_digraph(arg(args, 0)) })
+  putprop(q_d_cycle_digraph, t, q_translated) |> ignore
+  defun(q_d_path_graph, args => { check_arity_range("$path_graph", args, 1, 1); d_path_graph(arg(args, 0)) })
+  putprop(q_d_path_graph, t, q_translated) |> ignore
+  defun(q_d_path_digraph, args => { check_arity_range("$path_digraph", args, 1, 1); d_path_digraph(arg(args, 0)) })
+  putprop(q_d_path_digraph, t, q_translated) |> ignore
+  defun(q_d_petersen_graph, args => { check_arity_range("$petersen_graph", args, 0, 2); d_petersen_graph(n?=args.get(0), d?=args.get(1)) })
+  putprop(q_d_petersen_graph, t, q_translated) |> ignore
+  defun(q_d_complement_graph, args => { check_arity_range("$complement_graph", args, 1, 1); d_complement_graph(arg(args, 0)) })
+  putprop(q_d_complement_graph, t, q_translated) |> ignore
+  defun(q_d_complete_graph, args => { check_arity_range("$complete_graph", args, 1, 1); d_complete_graph(arg(args, 0)) })
+  putprop(q_d_complete_graph, t, q_translated) |> ignore
+  defun(q_d_from_adjacency_matrix, args => { check_arity_range("$from_adjacency_matrix", args, 1, 1); d_from_adjacency_matrix(arg(args, 0)) })
+  putprop(q_d_from_adjacency_matrix, t, q_translated) |> ignore
+  defun(q_d_graph_union, args => { check_arity_range("$graph_union", args, 0, -1); d_graph_union(rest_args(args, 0)) })
+  putprop(q_d_graph_union, t, q_translated) |> ignore
+  defun(q_graph_h_union, args => graph_h_union(arg(args, 0), arg(args, 1)))
+  defun(q_d_graph_join, args => { check_arity_range("$graph_join", args, 2, 2); d_graph_join(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_graph_join, t, q_translated) |> ignore
+  defun(q_get_canonical_names, args => get_canonical_names(arg(args, 0)))
+  defun(q_d_graph_product, args => { check_arity_range("$graph_product", args, 0, -1); d_graph_product(rest_args(args, 0)) })
+  putprop(q_d_graph_product, t, q_translated) |> ignore
+  defun(q_graph_h_product, args => graph_h_product(arg(args, 0), arg(args, 1)))
+  defun(q_d_line_graph, args => { check_arity_range("$line_graph", args, 1, 1); d_line_graph(arg(args, 0)) })
+  putprop(q_d_line_graph, t, q_translated) |> ignore
+  defun(q_d_random_graph, args => { check_arity_range("$random_graph", args, 2, 2); d_random_graph(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_random_graph, t, q_translated) |> ignore
+  defun(q_d_random_graph1, args => { check_arity_range("$random_graph1", args, 2, 2); d_random_graph1(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_random_graph1, t, q_translated) |> ignore
+  defun(q_d_random_bipartite_graph, args => { check_arity_range("$random_bipartite_graph", args, 3, 3); d_random_bipartite_graph(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_random_bipartite_graph, t, q_translated) |> ignore
+  defun(q_d_random_digraph, args => { check_arity_range("$random_digraph", args, 2, 2); d_random_digraph(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_random_digraph, t, q_translated) |> ignore
+  defun(q_d_random_tournament, args => { check_arity_range("$random_tournament", args, 1, 1); d_random_tournament(arg(args, 0)) })
+  putprop(q_d_random_tournament, t, q_translated) |> ignore
+  defun(q_d_random_tree, args => { check_arity_range("$random_tree", args, 1, 1); d_random_tree(arg(args, 0)) })
+  putprop(q_d_random_tree, t, q_translated) |> ignore
+  defun(q_d_underlying_graph, args => { check_arity_range("$underlying_graph", args, 1, 1); d_underlying_graph(arg(args, 0)) })
+  putprop(q_d_underlying_graph, t, q_translated) |> ignore
+  defun(q_d_induced_subgraph, args => { check_arity_range("$induced_subgraph", args, 2, 2); d_induced_subgraph(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_induced_subgraph, t, q_translated) |> ignore
+  defun(q_d_wheel_graph, args => { check_arity_range("$wheel_graph", args, 1, 1); d_wheel_graph(arg(args, 0)) })
+  putprop(q_d_wheel_graph, t, q_translated) |> ignore
+  defun(q_d_circulant_graph, args => { check_arity_range("$circulant_graph", args, 2, 2); d_circulant_graph(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_circulant_graph, t, q_translated) |> ignore
+  defun(q_d_connected_components, args => { check_arity_range("$connected_components", args, 1, 1); d_connected_components(arg(args, 0)) })
+  putprop(q_d_connected_components, t, q_translated) |> ignore
+  defun(q_d_is_connected, args => { check_arity_range("$is_connected", args, 1, 1); d_is_connected(arg(args, 0)) })
+  putprop(q_d_is_connected, t, q_translated) |> ignore
+  defun(q_d_is_tree, args => { check_arity_range("$is_tree", args, 1, 1); d_is_tree(arg(args, 0)) })
+  putprop(q_d_is_tree, t, q_translated) |> ignore
+  defun(q_d_reachable_vertices, args => { check_arity_range("$reachable_vertices", args, 2, 2); d_reachable_vertices(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_reachable_vertices, t, q_translated) |> ignore
+  defun(q_d_adjacency_matrix, args => { check_arity_range("$adjacency_matrix", args, 1, 1); d_adjacency_matrix(arg(args, 0)) })
+  putprop(q_d_adjacency_matrix, t, q_translated) |> ignore
+  defun(q_d_laplacian_matrix, args => { check_arity_range("$laplacian_matrix", args, 1, 1); d_laplacian_matrix(arg(args, 0)) })
+  putprop(q_d_laplacian_matrix, t, q_translated) |> ignore
+  defun(q_d_graph_charpoly, args => { check_arity_range("$graph_charpoly", args, 2, 2); d_graph_charpoly(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_graph_charpoly, t, q_translated) |> ignore
+  defun(q_d_graph_eigenvalues, args => { check_arity_range("$graph_eigenvalues", args, 1, 1); d_graph_eigenvalues(arg(args, 0)) })
+  putprop(q_d_graph_eigenvalues, t, q_translated) |> ignore
+  defun(q_d_girth, args => { check_arity_range("$girth", args, 1, 1); d_girth(arg(args, 0)) })
+  putprop(q_d_girth, t, q_translated) |> ignore
+  defun(q_d_odd_girth, args => { check_arity_range("$odd_girth", args, 1, 1); d_odd_girth(arg(args, 0)) })
+  putprop(q_d_odd_girth, t, q_translated) |> ignore
+  defun(q_girth, args => girth(arg(args, 0), arg(args, 1)))
+  defun(q_d_vertex_eccentricity, args => { check_arity_range("$vertex_eccentricity", args, 2, 2); d_vertex_eccentricity(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_vertex_eccentricity, t, q_translated) |> ignore
+  defun(q_eccentricity, args => eccentricity(arg(args, 0), arg(args, 1)))
+  defun(q_d_diameter, args => { check_arity_range("$diameter", args, 1, 1); d_diameter(arg(args, 0)) })
+  putprop(q_d_diameter, t, q_translated) |> ignore
+  defun(q_d_radius, args => { check_arity_range("$radius", args, 1, 1); d_radius(arg(args, 0)) })
+  putprop(q_d_radius, t, q_translated) |> ignore
+  defun(q_d_graph_center, args => { check_arity_range("$graph_center", args, 1, 1); d_graph_center(arg(args, 0)) })
+  putprop(q_d_graph_center, t, q_translated) |> ignore
+  defun(q_d_graph_periphery, args => { check_arity_range("$graph_periphery", args, 1, 1); d_graph_periphery(arg(args, 0)) })
+  putprop(q_d_graph_periphery, t, q_translated) |> ignore
+  defun(q_d_bipartition, args => { check_arity_range("$bipartition", args, 1, 1); d_bipartition(arg(args, 0)) })
+  putprop(q_d_bipartition, t, q_translated) |> ignore
+  defun(q_bi_partition, args => bi_partition(arg(args, 0), arg(args, 1)))
+  defun(q_d_is_bipartite, args => { check_arity_range("$is_bipartite", args, 1, 1); d_is_bipartite(arg(args, 0)) })
+  putprop(q_d_is_bipartite, t, q_translated) |> ignore
+  defun(q_d_biconnected_components, args => { check_arity_range("$biconnected_components", args, 1, 1); d_biconnected_components(arg(args, 0)) })
+  putprop(q_d_biconnected_components, t, q_translated) |> ignore
+  defun(q_d_is_biconnected, args => { check_arity_range("$is_biconnected", args, 1, 1); d_is_biconnected(arg(args, 0)) })
+  putprop(q_d_is_biconnected, t, q_translated) |> ignore
+  defun(q_bicomponents, args => bicomponents(arg(args, 0), arg(args, 1)))
+  defun(q_dfs_bicomponents, args => dfs_bicomponents(arg(args, 0), arg(args, 1)))
+  defun(q_d_strong_components, args => { check_arity_range("$strong_components", args, 1, 1); d_strong_components(arg(args, 0)) })
+  putprop(q_d_strong_components, t, q_translated) |> ignore
+  defun(q_d_is_sconnected, args => { check_arity_range("$is_sconnected", args, 1, 1); d_is_sconnected(arg(args, 0)) })
+  putprop(q_d_is_sconnected, t, q_translated) |> ignore
+  defun(q_dfs_strong_components, args => dfs_strong_components(arg(args, 0), arg(args, 1)))
+  defun(q_d_topological_sort, args => { check_arity_range("$topological_sort", args, 1, 1); d_topological_sort(arg(args, 0)) })
+  putprop(q_d_topological_sort, t, q_translated) |> ignore
+  defun(q_d_max_flow, args => { check_arity_range("$max_flow", args, 3, 3); d_max_flow(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_max_flow, t, q_translated) |> ignore
+  defun(q_d_shortest_path, args => { check_arity_range("$shortest_path", args, 3, 3); d_shortest_path(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_shortest_path, t, q_translated) |> ignore
+  defun(q_d_vertex_distance, args => { check_arity_range("$vertex_distance", args, 3, 3); d_vertex_distance(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_vertex_distance, t, q_translated) |> ignore
+  defun(q_edge_weight_1, args => edge_weight_1(arg(args, 0), arg(args, 1)))
+  defun(q_graph_edges_with_weights, args => graph_edges_with_weights(arg(args, 0)))
+  defun(q_edges_by_weights, args => edges_by_weights(arg(args, 0)))
+  defun(q_in_same_part, args => in_same_part(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_join_parts, args => join_parts(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_minimum_spanning_tree, args => { check_arity_range("$minimum_spanning_tree", args, 1, 1); d_minimum_spanning_tree(arg(args, 0)) })
+  putprop(q_d_minimum_spanning_tree, t, q_translated) |> ignore
+  defun(q_d_hamilton_cycle, args => { check_arity_range("$hamilton_cycle", args, 1, 1); d_hamilton_cycle(arg(args, 0)) })
+  putprop(q_d_hamilton_cycle, t, q_translated) |> ignore
+  defun(q_hamilton_h_cycle, args => hamilton_h_cycle(arg(args, 0), arg(args, 1)))
+  defun(q_d_hamilton_path, args => { check_arity_range("$hamilton_path", args, 1, 1); d_hamilton_path(arg(args, 0)) })
+  putprop(q_d_hamilton_path, t, q_translated) |> ignore
+  defun(q_d_vertices_by_degree, args => { check_arity_range("$vertices_by_degree", args, 1, 1); d_vertices_by_degree(arg(args, 0)) })
+  putprop(q_d_vertices_by_degree, t, q_translated) |> ignore
+  defun(q_vertices_h_by_h_degrees, args => vertices_h_by_h_degrees(arg(args, 0)))
+  defun(q_greedy_color, args => greedy_color(arg(args, 0)))
+  defun(q_d_max_clique, args => { check_arity_range("$max_clique", args, 1, 1); d_max_clique(arg(args, 0)) })
+  putprop(q_d_max_clique, t, q_translated) |> ignore
+  defun(q_d_min_vertex_cover, args => { check_arity_range("$min_vertex_cover", args, 1, 1); d_min_vertex_cover(arg(args, 0)) })
+  putprop(q_d_min_vertex_cover, t, q_translated) |> ignore
+  defun(q_d_max_independent_set, args => { check_arity_range("$max_independent_set", args, 1, 1); d_max_independent_set(arg(args, 0)) })
+  putprop(q_d_max_independent_set, t, q_translated) |> ignore
+  defun(q_extend_clique, args => extend_clique(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_vertex_coloring, args => { check_arity_range("$vertex_coloring", args, 1, 1); d_vertex_coloring(arg(args, 0)) })
+  putprop(q_d_vertex_coloring, t, q_translated) |> ignore
+  defun(q_d_chromatic_number, args => { check_arity_range("$chromatic_number", args, 1, 1); d_chromatic_number(arg(args, 0)) })
+  putprop(q_d_chromatic_number, t, q_translated) |> ignore
+  defun(q_d_edge_coloring, args => { check_arity_range("$edge_coloring", args, 1, 1); d_edge_coloring(arg(args, 0)) })
+  putprop(q_d_edge_coloring, t, q_translated) |> ignore
+  defun(q_d_chromatic_index, args => { check_arity_range("$chromatic_index", args, 1, 1); d_chromatic_index(arg(args, 0)) })
+  putprop(q_d_chromatic_index, t, q_translated) |> ignore
+  defun(q_dsatur, args => dsatur(arg(args, 0)))
+  defun(q_greedy_clique, args => greedy_clique(arg(args, 0)))
+  defun(q_extend_greedy_clique, args => extend_greedy_clique(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_hash_table, args => { check_arity_range("$hash_table", args, 0, 0); d_hash_table() })
+  putprop(q_d_hash_table, t, q_translated) |> ignore
+  defun(q_d_get_hash, args => { check_arity_range("$get_hash", args, 2, 3); d_get_hash(arg(args, 0), arg(args, 1), default?=args.get(2)) })
+  putprop(q_d_get_hash, t, q_translated) |> ignore
+  defun(q_d_set_hash, args => { check_arity_range("$set_hash", args, 3, 3); d_set_hash(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_set_hash, t, q_translated) |> ignore
+  defun(q_d_hash_table_data, args => { check_arity_range("$hash_table_data", args, 1, 1); d_hash_table_data(arg(args, 0)) })
+  putprop(q_d_hash_table_data, t, q_translated) |> ignore
+  defun(q_d_temp_filename, args => { check_arity_range("$temp_filename", args, 1, 1); d_temp_filename(arg(args, 0)) })
+  putprop(q_d_temp_filename, t, q_translated) |> ignore
+  defun(q_d_read_string, args => { check_arity_range("$read_string", args, 1, 1); d_read_string(arg(args, 0)) })
+  putprop(q_d_read_string, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_spring_embedding() -> Unit {
+  defun(q_attractive_force, args => attractive_force(arg(args, 0)))
+  defun(q_repulsive_force, args => repulsive_force(arg(args, 0)))
+  defun(q_distance, args => distance(arg(args, 0), arg(args, 1)))
+  defun(q_random_positions, args => random_positions(arg(args, 0), arg(args, 1)))
+  defun(q_d_spring_embedding, args => { check_arity_range("$spring_embedding", args, 5, 5); d_spring_embedding(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)) })
+  putprop(q_d_spring_embedding, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_isomorphism() -> Unit {
+  defun(q_d_is_isomorphic, args => { check_arity_range("$is_isomorphic", args, 2, 2); d_is_isomorphic(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_is_isomorphic, t, q_translated) |> ignore
+  defun(q_d_isomorphism, args => { check_arity_range("$isomorphism", args, 2, 2); d_isomorphism(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_isomorphism, t, q_translated) |> ignore
+  defun(q_isomorphism_graphs, args => isomorphism_graphs(arg(args, 0), arg(args, 1)))
+  defun(q_extend_isomorphism_graphs, args => extend_isomorphism_graphs(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)))
+  defun(q_isomorphism_digraphs, args => isomorphism_digraphs(arg(args, 0), arg(args, 1)))
+  defun(q_extend_isomorphism_digraphs, args => extend_isomorphism_digraphs(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8)))
+}
+
+///|
+fn register_share_matching() -> Unit {
+  defun(q_d_max_matching, args => { check_arity_range("$max_matching", args, 1, 1); d_max_matching(arg(args, 0)) })
+  putprop(q_d_max_matching, t, q_translated) |> ignore
+  defun(q_maximum_matching_bipartite, args => maximum_matching_bipartite(arg(args, 0), arg(args, 1), arg(args, 2), cover?=args.get(3)))
+  defun(q_get_cover_from_matching, args => get_cover_from_matching(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_main_vertex, args => main_vertex(arg(args, 0), arg(args, 1)))
+  defun(q_join_sets, args => join_sets(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_set_main_vertex, args => set_main_vertex(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_maximum_matching_general, args => maximum_matching_general(arg(args, 0)))
+  defun(q_find_augmenting_path, args => find_augmenting_path(arg(args, 0), arg(args, 1)))
+  defun(q_find_augmenting_path_1, args => find_augmenting_path_1(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_graph6() -> Unit {
+  defun(q_get_n, args => get_n(arg(args, 0)))
+  defun(q_get_r, args => get_r(arg(args, 0)))
+  defun(q_d_graph6_encode, args => { check_arity_range("$graph6_encode", args, 1, 1); d_graph6_encode(arg(args, 0)) })
+  putprop(q_d_graph6_encode, t, q_translated) |> ignore
+  defun(q_graph6_string, args => graph6_string(arg(args, 0)))
+  defun(q_d_graph6_export, args => { check_arity_range("$graph6_export", args, 2, 2); d_graph6_export(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_graph6_export, t, q_translated) |> ignore
+  defun(q_d_graph6_decode, args => { check_arity_range("$graph6_decode", args, 1, 1); d_graph6_decode(arg(args, 0)) })
+  putprop(q_d_graph6_decode, t, q_translated) |> ignore
+  defun(q_d_graph6_import, args => { check_arity_range("$graph6_import", args, 1, 1); d_graph6_import(arg(args, 0)) })
+  putprop(q_d_graph6_import, t, q_translated) |> ignore
+  defun(q_d_sparse6_decode, args => { check_arity_range("$sparse6_decode", args, 1, 1); d_sparse6_decode(arg(args, 0)) })
+  putprop(q_d_sparse6_decode, t, q_translated) |> ignore
+  defun(q_d_sparse6_import, args => { check_arity_range("$sparse6_import", args, 1, 1); d_sparse6_import(arg(args, 0)) })
+  putprop(q_d_sparse6_import, t, q_translated) |> ignore
+  defun(q_d_sparse6_encode, args => { check_arity_range("$sparse6_encode", args, 1, 1); d_sparse6_encode(arg(args, 0)) })
+  putprop(q_d_sparse6_encode, t, q_translated) |> ignore
+  defun(q_sparse6_string, args => sparse6_string(arg(args, 0)))
+  defun(q_d_sparse6_export, args => { check_arity_range("$sparse6_export", args, 2, 2); d_sparse6_export(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_sparse6_export, t, q_translated) |> ignore
+  defun(q_d_dig6_encode, args => { check_arity_range("$dig6_encode", args, 1, 1); d_dig6_encode(arg(args, 0)) })
+  putprop(q_d_dig6_encode, t, q_translated) |> ignore
+  defun(q_dig6_string, args => dig6_string(arg(args, 0)))
+  defun(q_d_dig6_export, args => { check_arity_range("$dig6_export", args, 2, 2); d_dig6_export(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_dig6_export, t, q_translated) |> ignore
+  defun(q_d_dig6_decode, args => { check_arity_range("$dig6_decode", args, 1, 1); d_dig6_decode(arg(args, 0)) })
+  putprop(q_d_dig6_decode, t, q_translated) |> ignore
+  defun(q_d_dig6_import, args => { check_arity_range("$dig6_import", args, 1, 1); d_dig6_import(arg(args, 0)) })
+  putprop(q_d_dig6_import, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_demoucron() -> Unit {
+  defun(q_find_h_cycle, args => find_h_cycle(arg(args, 0)))
+  defun(q_dfs_find_cycle, args => dfs_find_cycle(arg(args, 0), arg(args, 1)))
+  defun(q_d_find_cycle, args => { check_arity_range("$find_cycle", args, 1, 1); d_find_cycle(arg(args, 0)) })
+  putprop(q_d_find_cycle, t, q_translated) |> ignore
+  defun(q_find_facial_walks, args => find_facial_walks(arg(args, 0)))
+  defun(q_find_bridges, args => find_bridges(arg(args, 0)))
+  defun(q_dfs_find_bridge, args => dfs_find_bridge(arg(args, 0), arg(args, 1)))
+  defun(q_match_bridges_to_walks, args => match_bridges_to_walks())
+  defun(q_find_path, args => find_path(arg(args, 0), arg(args, 1)))
+  defun(q_dfs_find_path, args => dfs_find_path(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_embedd_path, args => embedd_path(arg(args, 0), arg(args, 1)))
+  defun(q_demoucron, args => demoucron(arg(args, 0), arg(args, 1)))
+  defun(q_d_planar_embedding, args => { check_arity_range("$planar_embedding", args, 1, 1); d_planar_embedding(arg(args, 0)) })
+  putprop(q_d_planar_embedding, t, q_translated) |> ignore
+  defun(q_d_is_planar, args => { check_arity_range("$is_planar", args, 1, 1); d_is_planar(arg(args, 0)) })
+  putprop(q_d_is_planar, t, q_translated) |> ignore
+  defun(q_is_planar_unconnected, args => is_planar_unconnected(arg(args, 0)))
+}
+
+///|
+fn register_share_dijkstra() -> Unit {
+  defun(q_graphs_pqueue_insert, args => graphs_pqueue_insert(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_graphs_pqueue_emptyp, args => graphs_pqueue_emptyp(arg(args, 0)))
+  defun(q_graphs_pqueue_first, args => graphs_pqueue_first(arg(args, 0)))
+  defun(q_graphs_pqueue_get_weight, args => graphs_pqueue_get_weight(arg(args, 0), arg(args, 1)))
+  defun(q_graphs_pqueue_pop, args => graphs_pqueue_pop(arg(args, 0)))
+  defun(q_graphs_pqueue_contains, args => graphs_pqueue_contains(arg(args, 0), arg(args, 1)))
+  defun(q_graphs_pqueue_set_weight, args => graphs_pqueue_set_weight(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dijkstra, args => dijkstra(arg(args, 0), arg(args, 1), arg(args, 2)).0)
+  defun(q_d_shortest_weighted_path, args => { check_arity_range("$shortest_weighted_path", args, 3, 3); d_shortest_weighted_path(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_shortest_weighted_path, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_wiener_index() -> Unit {
+  defun(q_find_option, args => find_option(arg(args, 0), arg(args, 1), default?=args.get(2)))
+  defun(q_d_floyd_warshall, args => { check_arity_range("$floyd_warshall", args, 1, -1); d_floyd_warshall(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_floyd_warshall, t, q_translated) |> ignore
+  defun(q_bellman_ford, args => bellman_ford(arg(args, 0), arg(args, 1)).0)
+  defun(q_d_johnson, args => { check_arity_range("$johnson", args, 1, -1); d_johnson(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_johnson, t, q_translated) |> ignore
+  defun(q_wiener_h_index, args => wiener_h_index(arg(args, 0)))
+  defun(q_d_wiener_index, args => { check_arity_range("$wiener_index", args, 1, -1); d_wiener_index(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_wiener_index, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_fft_package() -> Unit {
+}
+
+///|
+fn register_share_fft_core() -> Unit {
+  defun(q_maxima_fft_mgetarray, args => maxima_fft_mgetarray(arg(args, 0)))
+  defun(q_maxima_fft_fft_arg_check, args => maxima_fft_fft_arg_check(arg(args, 0), arg(args, 1)))
+  defun(q_maxima_fft_make_empty_copy, args => maxima_fft_make_empty_copy(arg(args, 0)))
+  defun(q_maxima_fft_complex_to_polar, args => maxima_fft_complex_to_polar(arg(args, 0), arg(args, 1)))
+  defun(q_maxima_fft_polar_to_complex, args => maxima_fft_polar_to_complex(arg(args, 0), arg(args, 1)))
+  defun(q_maxima_fft_log_base2, args => maxima_fft_log_base2(arg(args, 0)))
+  defun(q_maxima_fft_sincos_table, args => maxima_fft_sincos_table(arg(args, 0)))
+  defun(q_maxima_fft_mlist__gtcomplex_cl_vector, args => maxima_fft_mlist__gtcomplex_cl_vector(arg(args, 0)))
+  defun(q_maxima_fft_complex_cl_vector__gtmlist, args => maxima_fft_complex_cl_vector__gtmlist(arg(args, 0)))
+  defun(q_maxima_fft_array__gtcomplex_cl_vector, args => maxima_fft_array__gtcomplex_cl_vector(arg(args, 0)))
+  defun(q_maxima_fft_complex_cl_vector__gtvector, args => maxima_fft_complex_cl_vector__gtvector(arg(args, 0)))
+  defun(q_maxima_fft_find_complex_fft_converters, args => maxima_fft_find_complex_fft_converters(arg(args, 0), maxima_function_name?=args.get(1)).0)
+  defun(q_maxima_fft_fft_r2_nn, args => maxima_fft_fft_r2_nn(arg(args, 0), inverse_fft_p?=key_arg(args, 1, ":inverse-fft-p")))
+  defun(q_maxima_fft_mlist__gtrfft_vector, args => maxima_fft_mlist__gtrfft_vector(arg(args, 0)))
+  defun(q_maxima_fft_array__gtrfft_vector, args => maxima_fft_array__gtrfft_vector(arg(args, 0)))
+  defun(q_maxima_fft_find_rfft_converters, args => maxima_fft_find_rfft_converters(arg(args, 0)).0)
+  defun(q_maxima_fft_find_irfft_converters, args => maxima_fft_find_irfft_converters(arg(args, 0)).0)
+  defun(q_maxima_fft_seq__gtbfft_vector, args => maxima_fft_seq__gtbfft_vector(arg(args, 0)))
+  defun(q_maxima_fft_mlist__gtbfft_vector, args => maxima_fft_mlist__gtbfft_vector(arg(args, 0)))
+  defun(q_maxima_fft_lisp_array__gtbfft_vector, args => maxima_fft_lisp_array__gtbfft_vector(arg(args, 0)))
+  defun(q_maxima_fft_bfft_vector__gtseq, args => maxima_fft_bfft_vector__gtseq(arg(args, 0), arg(args, 1)))
+  defun(q_maxima_fft_bfft_vector__gtmlist, args => maxima_fft_bfft_vector__gtmlist(arg(args, 0)))
+  defun(q_maxima_fft_bfft_vector__gtlisp_array, args => maxima_fft_bfft_vector__gtlisp_array(arg(args, 0)))
+  defun(q_maxima_fft_bfft_vector__gtmaxima_symbol_array, args => maxima_fft_bfft_vector__gtmaxima_symbol_array(arg(args, 0)))
+  defun(q_maxima_fft_find_bf_fft_converter, args => maxima_fft_find_bf_fft_converter(arg(args, 0), name?=args.get(1)).0)
+  defun(q_maxima_fft_mlist__gtbf_rfft_vector, args => maxima_fft_mlist__gtbf_rfft_vector(arg(args, 0)))
+  defun(q_maxima_fft_lisp_array__gtbf_rfft_vector, args => maxima_fft_lisp_array__gtbf_rfft_vector(arg(args, 0)))
+  defun(q_maxima_fft_find_bf_rfft_converters, args => maxima_fft_find_bf_rfft_converters(arg(args, 0)).0)
+  defun(q_maxima_fft_find_bf_irfft_converters, args => maxima_fft_find_bf_irfft_converters(arg(args, 0)).0)
+  defun(q_bf_sincos_table, args => bf_sincos_table(arg(args, 0)))
+  defun(q_bf_fft_r2_nn, args => bf_fft_r2_nn(arg(args, 0), inverse_fft_p?=key_arg(args, 1, ":inverse-fft-p")))
+}
+
+///|
+fn register_share_fft_interface() -> Unit {
+  defun(q_fft_converted, args => fft_converted(arg(args, 0), arg(args, 1)))
+  defun(q_d_recttopolar, args => d_recttopolar(arg(args, 0), arg(args, 1)))
+  defun(q_d_polartorect, args => d_polartorect(arg(args, 0), arg(args, 1)))
+  defun(q_d_fft, args => d_fft(arg(args, 0)))
+  defun(q_d_inverse_fft, args => d_inverse_fft(arg(args, 0)))
+  defun(q_d_real_fft, args => d_real_fft(arg(args, 0)))
+  defun(q_d_inverse_real_fft, args => d_inverse_real_fft(arg(args, 0)))
+  defun(q_d_bf_fft, args => d_bf_fft(arg(args, 0)))
+  defun(q_d_bf_inverse_fft, args => d_bf_inverse_fft(arg(args, 0)))
+  defun(q_d_bf_real_fft, args => d_bf_real_fft(arg(args, 0)))
+  defun(q_d_bf_inverse_real_fft, args => d_bf_inverse_real_fft(arg(args, 0)))
+}
+
+///|
+fn register_share_decfp_core() -> Unit {
+  defun(q_d_decimalfptrim, args => { check_arity_range("$decimalfptrim", args, 1, 1); d_decimalfptrim(arg(args, 0)) })
+  putprop(q_d_decimalfptrim, t, q_translated) |> ignore
+  defun(q_decimalfptrim, args => decimalfptrim(arg(args, 0), flag?=args.get(1)))
+  defun(q_decimalround, args => decimalround(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_flatsize10, args => flatsize10(arg(args, 0)))
+  defun(q_wxxml_bigfloat, args => wxxml_bigfloat(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_decimalfpp, args => decimalfpp(arg(args, 0)))
+  defun(q_binaryfpp, args => binaryfpp(arg(args, 0)))
+  defun(q_decfpformat, args => decfpformat(arg(args, 0)))
+  defun(q_decfloat_from_fp, args => decfloat_from_fp(arg(args, 0)))
+  defun(q_decfp2flo, args => decfp2flo(arg(args, 0)))
+  defun(q_decbcons, args => decbcons(arg(args, 0)))
+  defun(q_d_decbfloat, args => { check_arity_range("$decbfloat", args, 1, 1); d_decbfloat(arg(args, 0)) })
+  putprop(q_d_decbfloat, t, q_translated) |> ignore
+  defun(q_decfppower, args => decfppower(arg(args, 0), arg(args, 1)))
+  defun(q_d_binarybfloat, args => { check_arity_range("$binarybfloat", args, 1, 1); d_binarybfloat(arg(args, 0)) })
+  putprop(q_d_binarybfloat, t, q_translated) |> ignore
+  defun(q_make_decimalfp_prog, args => make_decimalfp_prog(arg(args, 0)))
+  defun(q_decmabsbigfloat, args => decmabsbigfloat(arg(args, 0)))
+  defun(q_decfp2binfp, args => decfp2binfp(arg(args, 0)))
+  defun(q_decaddbigfloat, args => decaddbigfloat(arg(args, 0)))
+  defun(q_decrat2fp, args => decrat2fp(arg(args, 0)))
+  defun(q_decintofp, args => decintofp(arg(args, 0)))
+  defun(q_decfpquotient, args => decfpquotient(arg(args, 0), arg(args, 1)))
+  defun(q_decfpdifference, args => decfpdifference(arg(args, 0), arg(args, 1)))
+  defun(q_decfpminus, args => decfpminus(arg(args, 0)))
+  defun(q_decfpplus, args => decfpplus(arg(args, 0), arg(args, 1)))
+  defun(q_dectimesbigfloat, args => dectimesbigfloat(arg(args, 0)))
+  defun(q_decfptimes, args => decfptimes(arg(args, 0), arg(args, 1)))
+  defun(q_decfptimes_star, args => decfptimes_star(arg(args, 0), arg(args, 1)))
+  defun(q_decfpintexpt, args => decfpintexpt(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_decfpone, args => decfpone())
+  defun(q_advise_fun_simp, args => advise_fun_simp(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_decimalfpp, args => { check_arity_range("$decimalfpp", args, 1, 1); d_decimalfpp(arg(args, 0)) })
+  putprop(q_d_decimalfpp, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_pslq_integer_relation() -> Unit {
+  defun(q_d_pslq_integer_relation, args => { check_arity_range("$pslq_integer_relation", args, 1, 1); d_pslq_integer_relation(arg(args, 0)) })
+  putprop(q_d_pslq_integer_relation, t, q_translated) |> ignore
+  defun(q_pslq_mabs, args => pslq_mabs(arg(args, 0)))
+  defun(q_pslq_nearest_integer, args => pslq_nearest_integer(arg(args, 0)))
+  defun(q_my_write_lisp_array, args => my_write_lisp_array(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_pslq_integer_relations, args => pslq_integer_relations(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_bitwise() -> Unit {
+  defun(q_badargcheck, args => badargcheck(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_bit_not, args => simp_bit_not(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_bit_and, args => simp_bit_and(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_sorted_remove_pairs, args => sorted_remove_pairs(arg(args, 0)))
+  defun(q_remove_twos_complement, args => remove_twos_complement(arg(args, 0), arg(args, 1)))
+  defun(q_simp_bit_xor, args => simp_bit_xor(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_bit_or, args => simp_bit_or(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_bit_lsh, args => simp_bit_lsh(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_bit_rsh, args => simp_bit_rsh(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_bit_onep, args => simp_bit_onep(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_bit_length, args => simp_bit_length(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_to_poly() -> Unit {
+  defun(q_max_to_abs, args => max_to_abs(arg(args, 0)))
+  defun(q_min_to_abs, args => min_to_abs(arg(args, 0)))
+  defun(q_convert_from_max_min_to_abs, args => convert_from_max_min_to_abs(arg(args, 0)))
+  defun(q_maxima_variable_p, args => maxima_variable_p(arg(args, 0)))
+  defun(q_list_subst, args => list_subst(arg(args, 0), arg(args, 1)))
+  defun(q_d_to_poly, args => d_to_poly(arg(args, 0), vars?=args.get(1)))
+  defun(q_to_polynomial, args => to_polynomial(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_require_maxima_variable, args => require_maxima_variable(arg(args, 0), arg(args, 1)))
+  defun(q_suppress_multiple_zeros, args => suppress_multiple_zeros(arg(args, 0)))
+  defun(q_d_eliminate_using, args => d_eliminate_using(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_eliminate_using, args => eliminate_using(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_degree_upper_bound, args => degree_upper_bound(arg(args, 0), arg(args, 1)))
+  defun(q_unk_eliminate, args => unk_eliminate(arg(args, 0), arg(args, 1), pivots?=args.get(2)))
+  defun(q_d_elim, args => d_elim(arg(args, 0), arg(args, 1)))
+  defun(q_d_elim_allbut, args => d_elim_allbut(arg(args, 0), arg(args, 1)))
+  defun(q_gather_args, args => gather_args(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_gather_nonrational_powers, args => gather_nonrational_powers(arg(args, 0), arg(args, 1)))
+  defun(q_gather_exp_args, args => gather_exp_args(arg(args, 0), arg(args, 1)))
+  defun(q_d_linearly_dependent_p, args => d_linearly_dependent_p(arg(args, 0), arg(args, 1)))
+  defun(q_linearly_dependent_p, args => linearly_dependent_p(arg(args, 0), arg(args, 1)))
+  defun(q_exponentialize_if, args => exponentialize_if(arg(args, 0), arg(args, 1)))
+  defun(q_logarc_if, args => logarc_if(arg(args, 0), arg(args, 1)))
+  defun(q_non_algebraic_subst, args => non_algebraic_subst(arg(args, 0), arg(args, 1)).0)
+  defun(q_non_algebraic_subst_list, args => non_algebraic_subst_list(arg(args, 0), arg(args, 1)).0)
+  defun(q_simp_parg, args => simp_parg(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_isreal_p, args => simp_isreal_p(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_new_variable, args => d_new_variable(arg(args, 0)))
+  defun(q_new_gentemp, args => new_gentemp(arg(args, 0)))
+  defun(q_d_nicedummies, args => d_nicedummies(arg(args, 0)))
+  defun(q_d_complex_number_p, args => d_complex_number_p(arg(args, 0)))
+}
+
+///|
+fn register_share_pdiff() -> Unit {
+  defun(q_get_number_args, args => get_number_args(arg(args, 0)))
+  defun(q_simp_pderivop, args => simp_pderivop(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_mapply_pdiff, args => mapply_pdiff(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_sdiffgrad_pdiff, args => sdiffgrad_pdiff(arg(args, 0), arg(args, 1)))
+  defun(q_dimension_pderiv, args => dimension_pderiv(arg(args, 0), arg(args, 1)))
+  defun(q_tex_pderivop, args => tex_pderivop(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_convert_to_diff, args => d_convert_to_diff(arg(args, 0)))
+}
+
+///|
+fn register_share_romberg() -> Unit {
+  defun(q_romberg_subr, args => romberg_subr(arg(args, 0), arg(args, 1), arg(args, 2)).0)
+  defun(q_d_romberg, args => d_romberg(rest_args(args, 0)))
+}
+
+///|
+fn register_share_simplifying() -> Unit {
+  defun(q_defined_functionp, args => defined_functionp(arg(args, 0)))
+  defun(q_d_simplifying, args => d_simplifying(arg(args, 0), arg(args, 1)))
+  defun(q_d_simpfuncall, args => d_simpfuncall(arg(args, 0), rest_args(args, 1)))
+  defun(q_d_simpfunmake, args => d_simpfunmake(arg(args, 0), arg(args, 1)))
+  defun(q_simpfunmake, args => simpfunmake(arg(args, 0), arg(args, 1)))
+  defun(q_simpcons, args => { check_arity_range("simpcons", args, 2, 2); simpcons(arg(args, 0), arg(args, 1)) })
+  putprop(q_simpcons, t, q_translated) |> ignore
+  defun(q_user_simplifying, args => user_simplifying(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_combinatorics() -> Unit {
+  defun(q_d_cyclep, args => { check_arity_range("$cyclep", args, 2, 2); d_cyclep(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_cyclep, t, q_translated) |> ignore
+  defun(q_d_permp, args => { check_arity_range("$permp", args, 1, 1); d_permp(arg(args, 0)) })
+  putprop(q_d_permp, t, q_translated) |> ignore
+  defun(q_check_perm, args => check_perm(arg(args, 0), arg(args, 1)))
+  defun(q_check_cycle, args => check_cycle(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_check_list_or_set, args => check_list_or_set(arg(args, 0), arg(args, 1)))
+  defun(q_check_list, args => check_list(arg(args, 0), arg(args, 1)))
+  defun(q_check_list_length, args => check_list_length(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_check_pos_integer, args => check_pos_integer(arg(args, 0), arg(args, 1)))
+  defun(q_check_integer_n1_n2, args => check_integer_n1_n2(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_permult, args => { check_arity_range("$permult", args, 1, -1); d_permult(arg(args, 0), rest_args(args, 1)) })
+  putprop(q_d_permult, t, q_translated) |> ignore
+  defun(q_d_perm_inverse, args => { check_arity_range("$perm_inverse", args, 1, 1); d_perm_inverse(arg(args, 0)) })
+  putprop(q_d_perm_inverse, t, q_translated) |> ignore
+  defun(q_d_permute, args => { check_arity_range("$permute", args, 2, 2); d_permute(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_permute, t, q_translated) |> ignore
+  defun(q_d_apply_cycles, args => { check_arity_range("$apply_cycles", args, 2, 2); d_apply_cycles(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_apply_cycles, t, q_translated) |> ignore
+  defun(q_d_perm_undecomp, args => { check_arity_range("$perm_undecomp", args, 2, 2); d_perm_undecomp(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_perm_undecomp, t, q_translated) |> ignore
+  defun(q_d_perm_cycles, args => { check_arity_range("$perm_cycles", args, 1, 1); d_perm_cycles(arg(args, 0)) })
+  putprop(q_d_perm_cycles, t, q_translated) |> ignore
+  defun(q_d_perm_lex_rank, args => { check_arity_range("$perm_lex_rank", args, 1, 1); d_perm_lex_rank(arg(args, 0)) })
+  putprop(q_d_perm_lex_rank, t, q_translated) |> ignore
+  defun(q_d_perm_length, args => { check_arity_range("$perm_length", args, 1, 1); d_perm_length(arg(args, 0)) })
+  putprop(q_d_perm_length, t, q_translated) |> ignore
+  defun(q_d_perm_decomp, args => { check_arity_range("$perm_decomp", args, 1, 1); d_perm_decomp(arg(args, 0)) })
+  putprop(q_d_perm_decomp, t, q_translated) |> ignore
+  defun(q_d_perm_parity, args => { check_arity_range("$perm_parity", args, 1, 1); d_perm_parity(arg(args, 0)) })
+  putprop(q_d_perm_parity, t, q_translated) |> ignore
+  defun(q_perm_parity, args => perm_parity(arg(args, 0), arg(args, 1)))
+  defun(q_d_perms_lex, args => { check_arity_range("$perms_lex", args, 1, 3); d_perms_lex(arg(args, 0), r0?=args.get(1), rf?=args.get(2)) })
+  putprop(q_d_perms_lex, t, q_translated) |> ignore
+  defun(q_d_perm_lex_next, args => { check_arity_range("$perm_lex_next", args, 1, 1); d_perm_lex_next(arg(args, 0)) })
+  putprop(q_d_perm_lex_next, t, q_translated) |> ignore
+  defun(q_d_perm_lex_unrank, args => { check_arity_range("$perm_lex_unrank", args, 2, 2); d_perm_lex_unrank(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_perm_lex_unrank, t, q_translated) |> ignore
+  defun(q_perm_lex_next, args => perm_lex_next(arg(args, 0), arg(args, 1)))
+  defun(q_perm_lex_unrank, args => perm_lex_unrank(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_perms, args => { check_arity_range("$perms", args, 1, 3); d_perms(arg(args, 0), r0?=args.get(1), rf?=args.get(2)) })
+  putprop(q_d_perms, t, q_translated) |> ignore
+  defun(q_d_perm_unrank, args => { check_arity_range("$perm_unrank", args, 2, 2); d_perm_unrank(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_perm_unrank, t, q_translated) |> ignore
+  defun(q_d_perm_rank, args => { check_arity_range("$perm_rank", args, 1, 1); d_perm_rank(arg(args, 0)) })
+  putprop(q_d_perm_rank, t, q_translated) |> ignore
+  defun(q_perm_unrank, args => perm_unrank(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_transposition_next, args => transposition_next(arg(args, 0), arg(args, 1)).0)
+  defun(q_d_perm_next, args => { check_arity_range("$perm_next", args, 1, 1); d_perm_next(arg(args, 0)) })
+  putprop(q_d_perm_next, t, q_translated) |> ignore
+  defun(q_d_random_perm, args => { check_arity_range("$random_perm", args, 1, 1); d_random_perm(arg(args, 0)) })
+  putprop(q_d_random_perm, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_itensor() -> Unit {
+  defun(q_d_idummy, args => { check_arity_range("$idummy", args, 0, 0); d_idummy() })
+  putprop(q_d_idummy, t, q_translated) |> ignore
+  defun(q_isprod, args => isprod(arg(args, 0)))
+  defun(q_derat, args => derat(arg(args, 0)))
+  defun(q_plusi, args => plusi(arg(args, 0)))
+  defun(q_minusi, args => minusi(arg(args, 0)))
+  defun(q_covi, args => covi(arg(args, 0)))
+  defun(q_conti, args => conti(arg(args, 0)))
+  defun(q_deri, args => deri(arg(args, 0)))
+  defun(q_name, args => name(arg(args, 0)))
+  defun(q_d_covi, args => { check_arity_range("$covi", args, 1, 1); d_covi(arg(args, 0)) })
+  putprop(q_d_covi, t, q_translated) |> ignore
+  defun(q_d_conti, args => { check_arity_range("$conti", args, 1, 1); d_conti(arg(args, 0)) })
+  putprop(q_d_conti, t, q_translated) |> ignore
+  defun(q_d_deri, args => { check_arity_range("$deri", args, 1, 1); d_deri(arg(args, 0)) })
+  putprop(q_d_deri, t, q_translated) |> ignore
+  defun(q_d_name, args => { check_arity_range("$name", args, 1, 1); d_name(arg(args, 0)) })
+  putprop(q_d_name, t, q_translated) |> ignore
+  defun(q_d_defcon, args => { check_arity_range("$defcon", args, 0, -1); d_defcon(rest_args(args, 0)) })
+  putprop(q_d_defcon, t, q_translated) |> ignore
+  register_mspec(q_d_dispcon, d_dispcon)
+  register_mspec(q_d_remcon, d_remcon)
+  defun(q_getcon, args => getcon(arg(args, 0)))
+  defun(q_rpobj, args => rpobj(arg(args, 0)))
+  defun(q_d_imetric, args => { check_arity_range("$imetric", args, 1, 1); d_imetric(arg(args, 0)) })
+  putprop(q_d_imetric, t, q_translated) |> ignore
+  defun(q_mysubst0, args => mysubst0(arg(args, 0), arg(args, 1)))
+  defun(q_cov, args => cov(arg(args, 0), arg(args, 1)))
+  defun(q_contr, args => contr(arg(args, 0), arg(args, 1)))
+  defun(q_diffcov, args => diffcov(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_ichr1, args => { check_arity_range("$ichr1", args, 0, -1); d_ichr1(rest_args(args, 0)) })
+  putprop(q_d_ichr1, t, q_translated) |> ignore
+  defun(q_d_ichr2, args => { check_arity_range("$ichr2", args, 0, -1); d_ichr2(rest_args(args, 0)) })
+  putprop(q_d_ichr2, t, q_translated) |> ignore
+  defun(q_d_icurvature, args => { check_arity_range("$icurvature", args, 2, 2); d_icurvature(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_icurvature, t, q_translated) |> ignore
+  defun(q_covsubst, args => covsubst(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_consubst, args => consubst(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dersubst, args => dersubst(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_diffop, args => diffop())
+  defun(q_d_idiff, args => { check_arity_range("$idiff", args, 0, -1); d_idiff(rest_args(args, 0)) })
+  putprop(q_d_idiff, t, q_translated) |> ignore
+  defun(q_d_covdiff, args => { check_arity_range("$covdiff", args, 0, -1); d_covdiff(rest_args(args, 0)) })
+  putprop(q_d_covdiff, t, q_translated) |> ignore
+  defun(q_covdiff, args => covdiff(arg(args, 0)))
+  defun(q_covdifftimes, args => covdifftimes(arg(args, 0), arg(args, 1)))
+  defun(q_vecdiff, args => vecdiff(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_liediff, args => liediff(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_liediff, args => { check_arity_range("$liediff", args, 2, 2); d_liediff(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_liediff, t, q_translated) |> ignore
+  defun(q_d_rediff, args => { check_arity_range("$rediff", args, 1, 1); d_rediff(arg(args, 0)) })
+  putprop(q_d_rediff, t, q_translated) |> ignore
+  defun(q_d_undiff, args => { check_arity_range("$undiff", args, 1, 1); d_undiff(arg(args, 0)) })
+  putprop(q_d_undiff, t, q_translated) |> ignore
+  defun(q_d_evundiff, args => { check_arity_range("$evundiff", args, 1, 1); d_evundiff(arg(args, 0)) })
+  putprop(q_d_evundiff, t, q_translated) |> ignore
+  defun(q_putinones, args => putinones(arg(args, 0)))
+  defun(q_d_lorentz_gauge, args => { check_arity_range("$lorentz_gauge", args, 0, -1); d_lorentz_gauge(rest_args(args, 0)) })
+  putprop(q_d_lorentz_gauge, t, q_translated) |> ignore
+  defun(q_lorentz, args => lorentz(arg(args, 0), arg(args, 1)))
+  defun(q_less, args => less(arg(args, 0), arg(args, 1)))
+  defun(q_d_contract, args => { check_arity_range("$contract", args, 1, 1); d_contract(arg(args, 0)) })
+  putprop(q_d_contract, t, q_translated) |> ignore
+  defun(q_contract4a, args => contract4a(arg(args, 0)))
+  defun(q_contract5, args => contract5(arg(args, 0)))
+  defun(q_head, args => head(arg(args, 0)))
+  defun(q_firstintersect, args => firstintersect(arg(args, 0), arg(args, 1)))
+  defun(q_contract2, args => contract2(arg(args, 0), arg(args, 1)))
+  defun(q_setdiff, args => setdiff(arg(args, 0), arg(args, 1)))
+  defun(q_contract3, args => contract3(arg(args, 0), arg(args, 1)))
+  defun(q_contract4, args => contract4(arg(args, 0)))
+  defun(q_d_renorm, args => { check_arity_range("$renorm", args, 1, 2); d_renorm(arg(args, 0), force?=args.get(1)) })
+  putprop(q_d_renorm, t, q_translated) |> ignore
+  defun(q_neglist, args => neglist(arg(args, 0)))
+  defun(q_abnorm, args => abnorm(arg(args, 0)))
+  defun(q_substlist, args => substlist(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_removenotin, args => removenotin(arg(args, 0), arg(args, 1)))
+  defun(q_removenotinm, args => removenotinm(arg(args, 0), arg(args, 1)))
+  defun(q_contractinside, args => contractinside(arg(args, 0)))
+  defun(q_contract1, args => contract1(arg(args, 0), arg(args, 1)))
+  defun(q_d_kdelta, args => { check_arity_range("$kdelta", args, 2, 2); d_kdelta(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_kdelta, t, q_translated) |> ignore
+  defun(q_d_kdels, args => { check_arity_range("$kdels", args, 2, 2); d_kdels(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_kdels, t, q_translated) |> ignore
+  defun(q_delta, args => delta(arg(args, 0), arg(args, 1), eps?=args.get(2)))
+  defun(q_d_ishow, args => { check_arity_range("$ishow", args, 1, 1); d_ishow(arg(args, 0)) })
+  putprop(q_d_ishow, t, q_translated) |> ignore
+  defun(q_ishow, args => ishow(arg(args, 0)))
+  defun(q_splice, args => splice(arg(args, 0), arg(args, 1)))
+  defun(q_splice1, args => splice1(arg(args, 0)))
+  defun(q_splice2, args => splice2(arg(args, 0)))
+  defun(q_chainrule1, args => chainrule1(arg(args, 0), arg(args, 1)))
+  defun(q_diffexpt1, args => diffexpt1(arg(args, 0), arg(args, 1)))
+  defun(q_sdiff_negindexp, args => sdiff_negindexp(arg(args, 0)))
+  defun(q_sdiff_negindex_base, args => sdiff_negindex_base(arg(args, 0)))
+  defun(q_idiffmap, args => idiffmap(arg(args, 0), arg(args, 1)))
+  defun(q_idifftimes, args => idifftimes(arg(args, 0), arg(args, 1)))
+  defun(q_idiffexpt1, args => idiffexpt1(arg(args, 0), arg(args, 1)))
+  defun(q_idiffexpt, args => idiffexpt(arg(args, 0), arg(args, 1)))
+  defun(q_idiffint, args => { check_arity_range("idiffint", args, 2, 2); idiffint(arg(args, 0), arg(args, 1)) })
+  putprop(q_idiffint, t, q_translated) |> ignore
+  defun(q_idiffint1, args => idiffint1(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_idiff_pctderiv, args => idiff_pctderiv(arg(args, 0)))
+  defun(q_ideriv, args => ideriv(arg(args, 0)))
+  defun(q_idiffncexpt, args => { check_arity_range("idiffncexpt", args, 2, 2); idiffncexpt(arg(args, 0), arg(args, 1)) })
+  putprop(q_idiffncexpt, t, q_translated) |> ignore
+  defun(q_idiffsumprod, args => { check_arity_range("idiffsumprod", args, 2, 2); idiffsumprod(arg(args, 0), arg(args, 1)) })
+  putprop(q_idiffsumprod, t, q_translated) |> ignore
+  defun(q_idiffgrad, args => idiffgrad(arg(args, 0), arg(args, 1)))
+  defun(q_idiff, args => { check_arity_range("idiff", args, 2, 2); idiff(arg(args, 0), arg(args, 1)) })
+  putprop(q_idiff, t, q_translated) |> ignore
+  defun(q_diffrpobj, args => diffrpobj(arg(args, 0), arg(args, 1)))
+  defun(q_d_lc0, args => { check_arity_range("$lc0", args, 1, 1); d_lc0(arg(args, 0)) })
+  putprop(q_d_lc0, t, q_translated) |> ignore
+  defun(q_d_levi_civita, args => { check_arity_range("$levi_civita", args, 1, 2); d_levi_civita(arg(args, 0), l2?=args.get(1)) })
+  putprop(q_d_levi_civita, t, q_translated) |> ignore
+  defun(q_d_lc_l, args => d_lc_l(arg(args, 0)).0)
+  defun(q_d_lc_u, args => d_lc_u(arg(args, 0)).0)
+  defun(q_nonumber, args => nonumber(arg(args, 0)))
+  defun(q_removeindex, args => removeindex(arg(args, 0), arg(args, 1)))
+  defun(q_indices, args => indices(arg(args, 0)))
+  defun(q_d_indices, args => { check_arity_range("$indices", args, 1, 1); d_indices(arg(args, 0)) })
+  putprop(q_d_indices, t, q_translated) |> ignore
+  defun(q_samelists, args => samelists(arg(args, 0), arg(args, 1)))
+  defun(q_d_flush, args => { check_arity_range("$flush", args, 0, -1); d_flush(rest_args(args, 0)) })
+  putprop(q_d_flush, t, q_translated) |> ignore
+  defun(q_d_flushd, args => { check_arity_range("$flushd", args, 0, -1); d_flushd(rest_args(args, 0)) })
+  putprop(q_d_flushd, t, q_translated) |> ignore
+  defun(q_flush, args => flush(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_flushnd, args => { check_arity_range("$flushnd", args, 3, 3); d_flushnd(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_flushnd, t, q_translated) |> ignore
+  defun(q_d_rename, args => { check_arity_range("$rename", args, 0, -1); d_rename(rest_args(args, 0)) })
+  putprop(q_d_rename, t, q_translated) |> ignore
+  defun(q_rename, args => rename(arg(args, 0), arg(args, 1)))
+  defun(q_reorder, args => reorder(arg(args, 0)))
+  defun(q_itensor_cleanup, args => itensor_cleanup(arg(args, 0), arg(args, 1)))
+  defun(q_cleanup1, args => cleanup1(arg(args, 0)))
+  defun(q_itensor_sort, args => itensor_sort(arg(args, 0)))
+  defun(q_d_remcomps, args => { check_arity_range("$remcomps", args, 1, 1); d_remcomps(arg(args, 0)) })
+  putprop(q_d_remcomps, t, q_translated) |> ignore
+  defun(q_d_indexed_tensor, args => { check_arity_range("$indexed_tensor", args, 1, 1); d_indexed_tensor(arg(args, 0)) })
+  putprop(q_d_indexed_tensor, t, q_translated) |> ignore
+  defun(q_allfixed, args => allfixed(arg(args, 0)))
+  defun(q_tensoreval, args => tensoreval(arg(args, 0), arg(args, 1)))
+  defun(q_d_components, args => { check_arity_range("$components", args, 2, 2); d_components(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_components, t, q_translated) |> ignore
+  defun(q_select, args => select(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_entertensor, args => { check_arity_range("$entertensor", args, 0, -1); d_entertensor(rest_args(args, 0)) })
+  putprop(q_d_entertensor, t, q_translated) |> ignore
+  defun(q_checkindex, args => checkindex(arg(args, 0), arg(args, 1)))
+  defun(q_memberl, args => memberl(arg(args, 0), arg(args, 1)))
+  defun(q_consmlist, args => consmlist(arg(args, 0)))
+  defun(q_d_indices2, args => { check_arity_range("$indices2", args, 1, 1); d_indices2(arg(args, 0)) })
+  putprop(q_d_indices2, t, q_translated) |> ignore
+  defun(q_d_changename, args => { check_arity_range("$changename", args, 3, 3); d_changename(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_changename, t, q_translated) |> ignore
+  defun(q_changename, args => changename(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_d_coord, args => { check_arity_range("$coord", args, 0, -1); d_coord(rest_args(args, 0)) })
+  putprop(q_d_coord, t, q_translated) |> ignore
+  defun(q_d_remcoord, args => { check_arity_range("$remcoord", args, 0, -1); d_remcoord(rest_args(args, 0)) })
+  putprop(q_d_remcoord, t, q_translated) |> ignore
+  defun(q_d_listoftens, args => { check_arity_range("$listoftens", args, 1, 1); d_listoftens(arg(args, 0)) })
+  putprop(q_d_listoftens, t, q_translated) |> ignore
+  defun(q_listoftens, args => listoftens(arg(args, 0)))
+  defun(q_numlist, args => numlist(n?=args.get(0)))
+  defun(q_d_showcomps, args => { check_arity_range("$showcomps", args, 1, 1); d_showcomps(arg(args, 0)) })
+  putprop(q_d_showcomps, t, q_translated) |> ignore
+  defun(q_d_hodge, args => { check_arity_range("$hodge", args, 1, 1); d_hodge(arg(args, 0)) })
+  putprop(q_d_hodge, t, q_translated) |> ignore
+  defun(q_remsym, args => remsym(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_idim, args => { check_arity_range("$idim", args, 1, 1); d_idim(arg(args, 0)) })
+  putprop(q_d_idim, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_simplex_algorithm() -> Unit {
+  defun(q_lp_rat_mlist_p, args => lp_rat_mlist_p(arg(args, 0)))
+  defun(q_lp_rat_matrix_p, args => lp_rat_matrix_p(arg(args, 0)))
+  defun(q_lp_mlsp, args => lp_mlsp(arg(args, 0), arg(args, 1)))
+  defun(q_lp_mgqp, args => lp_mgqp(arg(args, 0), arg(args, 1)))
+  defun(q_d_linear_program, args => d_linear_program(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simplex_sx, args => simplex_sx(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_pivot_sx, args => pivot_sx(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_run_out_of_basis_sx, args => run_out_of_basis_sx(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_scale_sx, args => scale_sx(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+}
+
+///|
+fn register_share_pytranslate() -> Unit {
+  defun(q_clast, args => clast(arg(args, 0)))
+  defun(q_mprogn_p, args => mprogn_p(arg(args, 0)))
+  defun(q_symbol_name_to_string, args => symbol_name_to_string(arg(args, 0)))
+  defun(q_symbol_to_ir, args => symbol_to_ir(arg(args, 0)))
+  defun(q_symbol_to_dictionary_ir, args => symbol_to_dictionary_ir(arg(args, 0), dict_name?=args.get(1)))
+  defun(q_plot_to_ir, args => plot_to_ir(arg(args, 0)))
+  defun(q_mfactorial_to_ir, args => mfactorial_to_ir(arg(args, 0)))
+  defun(q_mexpt_to_ir, args => mexpt_to_ir(arg(args, 0)))
+  defun(q_assignment_to_ir, args => assignment_to_ir(arg(args, 0)))
+  defun(q_symbol_to_asterisk_ir, args => symbol_to_asterisk_ir(arg(args, 0)))
+  defun(q_endcons_to_ir, args => endcons_to_ir(arg(args, 0)))
+  defun(q_for_loop_to_ir, args => for_loop_to_ir(arg(args, 0)))
+  defun(q_for_list_to_ir, args => for_list_to_ir(arg(args, 0)))
+  defun(q_func_call_arg_to_ir, args => func_call_arg_to_ir(arg(args, 0)))
+  defun(q_lambda_to_ir, args => lambda_to_ir(arg(args, 0)))
+  defun(q_conditional_auxiliary, args => conditional_auxiliary(arg(args, 0)))
+  defun(q_conditional_to_ir, args => conditional_to_ir(arg(args, 0)))
+  defun(q_if_to_ir, args => if_to_ir(arg(args, 0), case_if?=args.get(1)))
+  defun(q_mcond_to_ir, args => mcond_to_ir(arg(args, 0), is_expr?=args.get(1)))
+  defun(q_mprog_variable_names_list, args => mprog_variable_names_list(arg(args, 0)))
+  defun(q_mprog_arg_list, args => mprog_arg_list(arg(args, 0)))
+  defun(q_mprog_assign_to_dict, args => mprog_assign_to_dict(arg(args, 0)))
+  defun(q_mlist_p, args => mlist_p(arg(args, 0)))
+  defun(q_first_list_mprog, args => first_list_mprog(arg(args, 0)))
+  defun(q_but_first_mlist, args => but_first_mlist(arg(args, 0)))
+  defun(q_mprog_to_ir, args => mprog_to_ir(arg(args, 0), context?=key_arg(args, 1, ":context")))
+  defun(q_mprogn_to_ir, args => mprogn_to_ir(arg(args, 0), func_args?=args.get(1)))
+  defun(q_array_gen_ir, args => array_gen_ir(arg(args, 0)))
+  defun(q_auxillary_array_to_ir, args => auxillary_array_to_ir(arg(args, 0), arg(args, 1)))
+  defun(q_array_def_to_ir, args => array_def_to_ir(arg(args, 0)))
+  defun(q_array_ref_to_ir, args => array_ref_to_ir(arg(args, 0), arg(args, 1)))
+  defun(q_func_arg_to_ir, args => func_arg_to_ir(arg(args, 0)))
+  defun(q_func_def_to_ir, args => func_def_to_ir(arg(args, 0)))
+  defun(q_atom_to_ir, args => atom_to_ir(arg(args, 0)))
+  defun(q_cons_to_ir, args => cons_to_ir(arg(args, 0)))
+  defun(q_maxima_to_ir, args => maxima_to_ir(arg(args, 0), is_stmt?=args.get(1)))
+  defun(q_d_pytranslate, args => d_pytranslate(arg(args, 0), print_ir?=args.get(1)))
+  defun(q_ir_to_python, args => ir_to_python(arg(args, 0), indentation_level?=args.get(1), is_stmt?=args.get(2)))
+  defun(q_dictionary_to_python, args => dictionary_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_obj_funcall_to_python, args => obj_funcall_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_while_loop_to_python, args => while_loop_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_for_list_to_python, args => for_list_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_lambda_to_python, args => lambda_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_conditional_to_python, args => conditional_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_cond_if_to_python, args => cond_if_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_cond_else_to_python, args => cond_else_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_cond_elif_to_python, args => cond_elif_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_element_array_to_python, args => element_array_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_func_def_to_python, args => func_def_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_struct_list_to_python, args => struct_list_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_unary_op_to_python, args => unary_op_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_del_to_python, args => del_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_funcall_to_python, args => funcall_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_string_to_python, args => string_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_assign_to_python, args => assign_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_asterisk_to_python, args => asterisk_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_symbol_to_python, args => symbol_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_op_no_bracket_template, args => op_no_bracket_template(arg(args, 0)))
+  defun(q_op_no_bracket_to_python, args => op_no_bracket_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_op_template, args => op_template(arg(args, 0)))
+  defun(q_op_to_python, args => op_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_body_to_python, args => body_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_body_indented_to_python, args => body_indented_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_num_to_python, args => num_to_python(arg(args, 0), arg(args, 1)))
+  defun(q_d_show_form, args => d_show_form(arg(args, 0)))
+}
+
+///|
+fn register_share_multiadditive() -> Unit {
+  defun(q_protected_oper_apply, args => protected_oper_apply(arg(args, 0), arg(args, 1)))
+  defun(q_multiadditive, args => multiadditive(arg(args, 0)))
+  defun(q_threadable, args => threadable(arg(args, 0)))
+  defun(q_idempotent, args => idempotent(arg(args, 0)))
+  defun(q_involution, args => involution(arg(args, 0)))
+}
+
+///|
+fn register_share_integer_sequence() -> Unit {
+  defun(q_simp_integer_sequence, args => simp_integer_sequence(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_fourier_elim() -> Unit {
+  defun(q_number_sign, args => number_sign(arg(args, 0)))
+  defun(q_constant_expression_sign, args => constant_expression_sign(arg(args, 0)))
+  defun(q_fourier_elim_cartesian_product, args => fourier_elim_cartesian_product(arg(args, 0)))
+  defun(q_expand_and_over_or, args => expand_and_over_or(arg(args, 0)))
+  defun(q_make_positive_product, args => make_positive_product(arg(args, 0)))
+  defun(q_in_real_domain, args => in_real_domain(arg(args, 0)))
+  defun(q_freeof_floats, args => freeof_floats(arg(args, 0)))
+  defun(q_d_splitify, args => d_splitify(arg(args, 0)))
+  defun(q_splitify, args => splitify(arg(args, 0)))
+  defun(q_fe_gt, args => fe_gt(arg(args, 0), arg(args, 1), expand?=args.get(2), use_splitify?=args.get(3)))
+  defun(q_m_eq, args => m_eq(arg(args, 0), arg(args, 1), use_splitify?=args.get(2)))
+  defun(q_m_neq, args => m_neq(arg(args, 0), arg(args, 1)))
+  defun(q_fe_gt_eq, args => fe_gt_eq(arg(args, 0), arg(args, 1)))
+  defun(q_standardize_inequality, args => standardize_inequality(arg(args, 0)))
+  defun(q_d_affine_p, args => d_affine_p(arg(args, 0), arg(args, 1)))
+  defun(q_linear_elimination, args => linear_elimination(arg(args, 0), arg(args, 1)))
+  defun(q_d_fourier_elim, args => d_fourier_elim(arg(args, 0), arg(args, 1)))
+  defun(q_post_fourier_elim_simp, args => post_fourier_elim_simp(arg(args, 0)))
+  defun(q_fourier_elim, args => fourier_elim(arg(args, 0), arg(args, 1)))
+  defun(q_simplify_fe_args, args => simplify_fe_args(arg(args, 0)))
+  defun(q_fourier_elim_one_variable, args => fourier_elim_one_variable(arg(args, 0), arg(args, 1), need_simp?=args.get(2)))
+  defun(q_apply_max, args => apply_max(arg(args, 0)))
+  defun(q_apply_min, args => apply_min(arg(args, 0)))
+  defun(q_compare_using_empty_context, args => compare_using_empty_context(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_ezunits() -> Unit {
+  defun(q_tex_ezunits, args => tex_ezunits(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_mathrm_ify, args => mathrm_ify(arg(args, 0)))
+  defun(q_d_odds, args => d_odds(arg(args, 0)))
+  defun(q_d_evens, args => d_evens(arg(args, 0)))
+  defun(q_mathml_presentation_ezunits, args => mathml_presentation_ezunits(arg(args, 0)))
+  defun(q_ezunits_setup_mathml, args => ezunits_setup_mathml())
+}
+
+///|
+fn register_share_opsubst() -> Unit {
+  defun(q_my_take, args => my_take(arg(args, 0), arg(args, 1)))
+  defun(q_d_opsubst, args => d_opsubst(rest_args(args, 0)))
+  defun(q_verbify_string, args => verbify_string(arg(args, 0)))
+  defun(q_safe_verbify, args => safe_verbify(arg(args, 0)))
+  defun(q_op_subst, args => op_subst(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_opsubstif, args => d_opsubstif(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_op_subst_if, args => op_subst_if(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_gatherargs, args => d_gatherargs(arg(args, 0), arg(args, 1)))
+  defun(q_gatherargs, args => gatherargs(arg(args, 0), arg(args, 1)))
+  defun(q_d_gatherops, args => d_gatherops(arg(args, 0)))
+  defun(q_gatherops, args => gatherops(arg(args, 0)))
+}
+
+///|
+fn register_share_operatingsystem() -> Unit {
+  defun(q_os_chdir, args => os_chdir(arg(args, 0)))
+  defun(q_os_mkdir, args => os_mkdir(arg(args, 0)))
+  defun(q_os_rmdir, args => os_rmdir(arg(args, 0)))
+  defun(q_os_getcurrentdirectory, args => os_getcurrentdirectory())
+  defun(q_os_copy_file, args => os_copy_file(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_coeflist() -> Unit {
+  defun(q_d_matching_parts, args => d_matching_parts(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_d_function_calls, args => d_function_calls(arg(args, 0), rest_args(args, 1)))
+  defun(q_d_function_arguments, args => d_function_arguments(arg(args, 0), rest_args(args, 1)))
+  defun(q_totalspecdisrep, args => totalspecdisrep(arg(args, 0)))
+  defun(q_instanciate_variable_list, args => instanciate_variable_list(arg(args, 0), arg(args, 1), arg(args, 2), max_vars?=args.get(3)))
+  defun(q_cl_reduce, args => cl_reduce(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_map_mlist, args => map_mlist(arg(args, 0)))
+  defun(q_clist_add, args => clist_add(arg(args, 0), arg(args, 1)))
+  defun(q_clist_mul, args => clist_mul(arg(args, 0), arg(args, 1), order?=args.get(2)))
+  defun(q_clist_pow, args => clist_pow(arg(args, 0), arg(args, 1)))
+  defun(q_clist_mbag, args => clist_mbag(arg(args, 0), arg(args, 1)))
+  defun(q_d_coeffs, args => d_coeffs(arg(args, 0), rest_args(args, 1)))
+  defun(q_unclist, args => unclist(arg(args, 0), arg(args, 1)))
+  defun(q_list_negp, args => list_negp(arg(args, 0)))
+  defun(q_tlist_add, args => tlist_add(arg(args, 0), arg(args, 1)))
+  defun(q_tlist_mul1, args => tlist_mul1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_tlist_mul, args => tlist_mul(arg(args, 0), arg(args, 1)))
+  defun(q_tlist_pow, args => tlist_pow(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_encode_tlist, args => encode_tlist(arg(args, 0), arg(args, 1)))
+  defun(q_d_trig_coeffs, args => d_trig_coeffs(arg(args, 0), rest_args(args, 1)))
+  defun(q_untlist, args => untlist(arg(args, 0), arg(args, 1)))
+  defun(q_d_taylor_coeffs, args => d_taylor_coeffs(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_slist_pow, args => slist_pow(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_series_coeffs, args => d_series_coeffs(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_unslist, args => unslist(arg(args, 0), arg(args, 1)))
+  defun(q_d_get_coef, args => d_get_coef(arg(args, 0), rest_args(args, 1)))
+  defun(q_d_uncoef, args => d_uncoef(arg(args, 0)))
+  defun(q_partition_clist, args => partition_clist(arg(args, 0), arg(args, 1)).0)
+  defun(q_d_partition_poly, args => d_partition_poly(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_d_partition_trig, args => d_partition_trig(arg(args, 0), arg(args, 1), arg(args, 2), rest_args(args, 3)))
+  defun(q_d_partition_series, args => d_partition_series(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_partition_taylor, args => d_partition_taylor(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+}
+
+///|
+fn register_share_engineering_format() -> Unit {
+  defun(q_engineering_format, args => engineering_format(arg(args, 0)))
+}
+
+///|
+fn register_share_odelin() -> Unit {
+  defun(q_ode_polynomialp, args => ode_polynomialp(arg(args, 0), arg(args, 1)))
+  defun(q_require_linear_homogeneous_de, args => require_linear_homogeneous_de(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_odelin, args => d_odelin(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_odelin_order_one, args => odelin_order_one(arg(args, 0), arg(args, 1)))
+  defun(q_expunge_const_factors, args => expunge_const_factors(arg(args, 0), arg(args, 1)))
+  defun(q_fss_cleanup, args => fss_cleanup(arg(args, 0), arg(args, 1)))
+  defun(q_post_check_cleanup, args => post_check_cleanup(arg(args, 0)))
+  defun(q_odelin_order_two, args => odelin_order_two(arg(args, 0), arg(args, 1)))
+  defun(q_check_de_sol, args => check_de_sol(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_check_fss, args => check_fss(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_make_unk_poly, args => make_unk_poly(arg(args, 0), arg(args, 1)).0)
+  defun(q_polycfs_to_eqs, args => polycfs_to_eqs(arg(args, 0), arg(args, 1)))
+  defun(q_ode_solve_by_factoring, args => ode_solve_by_factoring(arg(args, 0), arg(args, 1)))
+  defun(q_factor_differential_op, args => factor_differential_op(arg(args, 0), arg(args, 1)))
+  defun(q_polynomial_filter, args => polynomial_filter(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_ratfun_degree, args => ratfun_degree(arg(args, 0), arg(args, 1)))
+  defun(q_xeasy_eqs, args => xeasy_eqs(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_easy_eqs, args => easy_eqs(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_clean_equation, args => clean_equation(arg(args, 0)))
+  defun(q_generic_de_solver, args => generic_de_solver(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_get_de_cnd, args => get_de_cnd(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_bessel_xi_denom_filter, args => bessel_xi_denom_filter(arg(args, 0)))
+  defun(q_bessel_xi_degree_bound, args => bessel_xi_degree_bound(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_bessel_de_solver, args => bessel_de_solver(arg(args, 0), arg(args, 1)))
+  defun(q_bessel_sqrt_xi_denom_filter, args => bessel_sqrt_xi_denom_filter(arg(args, 0)))
+  defun(q_bessel_sqrt_xi_degree_bound, args => bessel_sqrt_xi_degree_bound(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_bessel_sqrt_de_solver, args => bessel_sqrt_de_solver(arg(args, 0), arg(args, 1)))
+  defun(q_hypergeo01_xi_denom_filter, args => hypergeo01_xi_denom_filter(arg(args, 0)))
+  defun(q_hypergeo01_xi_degree_bound, args => hypergeo01_xi_degree_bound(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_hypergeo01_de_solver, args => hypergeo01_de_solver(arg(args, 0), arg(args, 1)))
+  defun(q_spherodialwave_xi_denom_filter, args => spherodialwave_xi_denom_filter(arg(args, 0)))
+  defun(q_spherodialwave_xi_degree_bound, args => spherodialwave_xi_degree_bound(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_spherodialwave_de_solver, args => spherodialwave_de_solver(arg(args, 0), arg(args, 1)))
+  defun(q_hypergeo21_xi_denom_filter, args => hypergeo21_xi_denom_filter(arg(args, 0)))
+  defun(q_hypergeo21_xi_degree_bound, args => hypergeo21_xi_degree_bound(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_hypergeo21_de_solver, args => hypergeo21_de_solver(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_boolsimp() -> Unit {
+  defun(q_simp_mcond_shorten, args => simp_mcond_shorten(arg(args, 0), arg(args, 1)))
+  defun(q_simp_mcond, args => simp_mcond(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_bernstein() -> Unit {
+  defun(q_bf_bernstein_poly, args => bf_bernstein_poly(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_bernstein_poly, args => d_bernstein_poly(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_bernstein_integral, args => bernstein_integral(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_bernstein_poly_simp, args => bernstein_poly_simp(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_bernstein_approx, args => d_bernstein_approx(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_multibernstein_poly, args => d_multibernstein_poly(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_multi_bernstein_poly_simp, args => multi_bernstein_poly_simp(arg(args, 0), arg(args, 1), arg(args, 2)))
+}
+
+///|
+fn register_share_amatrix() -> Unit {
+  defun(q_d_amatrixmap, args => d_amatrixmap(arg(args, 0), rest_args(args, 1)))
+  defun(q_amatrix_assign, args => amatrix_assign(arg(args, 0), arg(args, 1)))
+  defun(q_amatrix_assign1, args => amatrix_assign1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_amatrix_assign1_row_column, args => amatrix_assign1_row_column(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_all_column, args => amatrix_assign1_all_column(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_amatrix_assign1_row_all, args => amatrix_assign1_row_all(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_amatrix_assign1_all_all, args => amatrix_assign1_all_all(arg(args, 0), arg(args, 1)))
+  defun(q_amatrix_assign1_list_integer, args => amatrix_assign1_list_integer(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_integer_list, args => amatrix_assign1_integer_list(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_list_all, args => amatrix_assign1_list_all(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_amatrix_assign1_all_list, args => amatrix_assign1_all_list(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_amatrix_assign1_list_list, args => amatrix_assign1_list_list(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_amatrix_column, args => amatrix_assign1_amatrix_column(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_row_amatrix, args => amatrix_assign1_row_amatrix(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_amatrix_amatrix, args => amatrix_assign1_amatrix_amatrix(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_boolean_column, args => amatrix_assign1_boolean_column(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_row_boolean, args => amatrix_assign1_row_boolean(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_amatrix_assign1_boolean_boolean, args => amatrix_assign1_boolean_boolean(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_dim__dolamatrix, args => dim__dolamatrix(arg(args, 0), arg(args, 1)))
+  defun(q_d_amatrixp, args => d_amatrixp(arg(args, 0)))
+  defun(q_d_nrows, args => d_nrows(arg(args, 0)))
+  defun(q_d_ncols, args => d_ncols(arg(args, 0)))
+  defun(q_d_amatrix_multiply, args => d_amatrix_multiply(arg(args, 0), arg(args, 1)))
+  defun(q_dot, args => dot(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6)))
+}
+
+///|
+fn register_share_charsets_flatten() -> Unit {
+  defun(q_get_op_and_arg, args => get_op_and_arg(arg(args, 0)).0)
+  defun(q_d_charsets_flatten, args => d_charsets_flatten(arg(args, 0)))
+  defun(q_same_op_p, args => same_op_p(arg(args, 0), arg(args, 1)))
+  defun(q_flatten_op, args => flatten_op(arg(args, 0), arg(args, 1)))
+  defun(q_d_charsets_every, args => { check_arity_range("$charsets_every", args, 0, -1); d_charsets_every(rest_args(args, 0)) })
+  putprop(q_d_charsets_every, t, q_translated) |> ignore
+}

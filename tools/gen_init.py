@@ -70,9 +70,21 @@ def is_ported(d):
 for d in share:
     if not is_ported(d):
         continue
-    stem = d["file"].split("/")[-1]
-    lines.append("    %s => Some(share_load_%s)" % (gen.moon_str(stem), gen.mangle(stem)))
+    key = "/".join(d["file"].split("/")[-2:])
+    lines.append("    %s => Some(share_load_%s)" % (gen.moon_str(key), gen.mangle(d["file"].split("/")[-1])))
 lines.append("    _ => None")
+lines.append("  }")
+lines.append("}")
+groups = json.load(open(os.path.join(HERE, "share_groups.json")))
+lines.append("")
+lines.append("///|")
+lines.append("/// Share loader files that only load (via defsystem or $load) a group of")
+lines.append("/// other Lisp files, keyed like share_module_loader.")
+lines.append("fn share_module_group(key : String) -> Array[String] {")
+lines.append("  match key {")
+for k in sorted(groups):
+    lines.append("    %s => [%s]" % (gen.moon_str(k), ", ".join(gen.moon_str(x) for x in groups[k])))
+lines.append("    _ => []")
 lines.append("  }")
 lines.append("}")
 open(os.path.join(ROOT, "core", "gen_init.mbt"), "w").write("\n".join(lines) + "\n")

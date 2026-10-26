@@ -83,6 +83,8 @@ def mangle0(n, alt=False):
            "]": "_rb", "{": "_lc", "}": "_rc", '"': "_dq", "`": "_bq", ";": "_sc"}
     if not pre and re.match(r"^(d|p|kw|ear|bf|q|n)-", s):
         s = s.replace("-", "--", 1)
+    elif not pre and re.match(r"^(d|p|kw|ear|bf|q|n)_", s):
+        s = s.replace("_", "-_", 1)
     if alt == "h":
         rep = dict(rep)
         rep["-"] = "_h_"
@@ -103,7 +105,7 @@ def mangle0(n, alt=False):
         pre += "op"
     name = pre + "".join(out)
     if name == "":
-        name = "empty"
+        name = "empty_symbol_name"
     if name[0].isdigit() or name[0] == "_":
         name = "n" + name
     return name

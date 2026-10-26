@@ -1813,7 +1813,7 @@ algnorm	defun	nalgfa.lisp:410	algnorm(f : Value, p : Value) -> Value
 $algnorm	defmfun	nalgfa.lisp:413	d_algnorm(r : Value, p : Value, var_ : Value) -> Value
 sqfrnorm	defun	nalgfa.lisp:421	sqfrnorm(f : Value, p : Value, fvar : Value) -> Value
 primelmt	defun	nalgfa.lisp:440	primelmt(a : Value, b : Value, gvar : Value) -> Value
-$primelmt	defmfun	nalgfa.lisp:461	d_primelmt(f_b : Value, p_a : Value, c : Value) -> Value
+$primelmt	defmfun	nalgfa.lisp:461	d_primelmt(f_b : Value, p__a : Value, c : Value) -> Value
 $bdiscr	defmfun	nalgfa.lisp:489	d_bdiscr(args : Value) -> Value
 bdiscr	defun	nalgfa.lisp:495	bdiscr(l : Value, minp : Value) -> Value
 number-of-digits	defun	ifactor.lisp:53	number_of_digits(n : Value) -> Value
@@ -6585,6 +6585,1104 @@ write-list-lowlevel	defun	../share/numericalio/numericalio.lisp:766	write_list_l
 get-input-sep-ch	defun	../share/numericalio/numericalio.lisp:793	get_input_sep_ch(sep_ch_flag : Value, my_stream : Value) -> Value
 get-output-sep-ch	defun	../share/numericalio/numericalio.lisp:800	get_output_sep_ch(sep_ch_flag : Value, my_stream : Value) -> Value
 require-string	defun	../share/numericalio/numericalio.lisp:831	require_string(s : Value) -> Value
+$ratmult	defun	../share/sym/operations.lisp:31	d_ratmult(a : Value, b : Value) -> Value
+$ratadd	defun	../share/sym/operations.lisp:32	d_ratadd(a : Value, b : Value) -> Value
+$ratfmult	defun	../share/sym/operations.lisp:33	d_ratfmult(ll : Value) -> Value
+$ratfadd	defun	../share/sym/operations.lisp:36	d_ratfadd(l : Value) -> Value
+$ratdivi	defun	../share/sym/operations.lisp:38	d_ratdivi(a : Value, b : Value) -> Value
+$ratexp	defun	../share/sym/operations.lisp:39	d_ratexp(x : Value, n : Value) -> Value
+$ratmoins	defun	../share/sym/operations.lisp:40	d_ratmoins(a : Value) -> Value
+$expandmult	defun	../share/sym/operations.lisp:43	d_expandmult(a : Value, b : Value) -> Value
+$expandadd	defun	../share/sym/operations.lisp:45	d_expandadd(a : Value, b : Value) -> Value
+$expandfmult	defun	../share/sym/operations.lisp:47	d_expandfmult(ll : Value) -> Value
+$expandfadd	defun	../share/sym/operations.lisp:49	d_expandfadd(l : Value) -> Value
+$expanddivi	defun	../share/sym/operations.lisp:51	d_expanddivi(a : Value, b : Value) -> Value
+$expandexp	defun	../share/sym/operations.lisp:53	d_expandexp(x : Value, n : Value) -> Value
+$expandmoins	defun	../share/sym/operations.lisp:54	d_expandmoins(a : Value) -> Value
+$ratsimpmult	defun	../share/sym/operations.lisp:57	d_ratsimpmult(a : Value, b : Value) -> Value
+$ratsimpadd	defun	../share/sym/operations.lisp:59	d_ratsimpadd(a : Value, b : Value) -> Value
+$ratsimpfmult	defun	../share/sym/operations.lisp:61	d_ratsimpfmult(ll : Value) -> Value
+$ratsimpfadd	defun	../share/sym/operations.lisp:63	d_ratsimpfadd(l : Value) -> Value
+$ratsimpdivi	defun	../share/sym/operations.lisp:65	d_ratsimpdivi(a : Value, b : Value) -> Value
+$ratsimpexp	defun	../share/sym/operations.lisp:67	d_ratsimpexp(x : Value, n : Value) -> Value
+$ratsimpmoins	defun	../share/sym/operations.lisp:69	d_ratsimpmoins(a : Value) -> Value
+$mevalmoins	defun	../share/sym/operations.lisp:73	d_mevalmoins(a : Value) -> Value
+$mevalmult	defun	../share/sym/operations.lisp:74	d_mevalmult(a : Value, b : Value) -> Value
+$mevaladd	defun	../share/sym/operations.lisp:75	d_mevaladd(a : Value, b : Value) -> Value
+$mevalfmult	defun	../share/sym/operations.lisp:76	d_mevalfmult(ll : Value) -> Value
+$mevalfadd	defun	../share/sym/operations.lisp:78	d_mevalfadd(l : Value) -> Value
+$mevaldivi	defun	../share/sym/operations.lisp:80	d_mevaldivi(x : Value, y : Value) -> Value
+$mevalexp	defun	../share/sym/operations.lisp:81	d_mevalexp(x : Value, n : Value) -> Value
+$operation	defun	../share/sym/operations.lisp:94	d_operation() -> Value
+$ele2pui0	defun	../share/sym/chbase.lisp:128	d_ele2pui0(max_ : Value, d_lelem : Value) -> Value
+ele2pui	defun	../share/sym/chbase.lisp:135	ele2pui(max_ : Value, lelem : Value) -> Value
+ele2pui_init	defun	../share/sym/chbase.lisp:139	ele2pui_init(max_ : Value, lelem : Value) -> Value
+$puireduc_init	defun	../share/sym/chbase.lisp:150	d_puireduc_init(max_ : Value, d_lpui : Value) -> Value
+puireduc_init	defun	../share/sym/chbase.lisp:155	puireduc_init(max_ : Value, lpui : Value) -> Value
+rangpi2	defun	../share/sym/chbase.lisp:173	rangpi2(n : Value, listpi : Value, lg : Value) -> Value
+rangpi3	defun	../share/sym/chbase.lisp:176	rangpi3(n : Value, i : Value, flistpi : Value) -> Value
+$puireduc0	defun	../share/sym/chbase.lisp:188	d_puireduc0(min_ : Value, max_ : Value, d_lpui : Value, d_lelem : Value) -> Value
+puireduc	defun	../share/sym/chbase.lisp:191	puireduc(min_ : Value, max_ : Value, lpui : Value, lelem : Value) -> Value
+$pm_ei2	defun	../share/sym/chbase.lisp:194	d_pm_ei2(min_ : Value, max_ : Value, lpui : Value, lelem : Value) -> Value
+$e_calbasepui	defun	../share/sym/chbase.lisp:223	d_e_calbasepui(card : Value, min_ : Value, max_ : Value, rlpui : Value, lelem : Value) -> Value
+$e_calpui	defun	../share/sym/chbase.lisp:243	d_e_calpui(card : Value, rlpui : Value, lelem : Value, pn : Value) -> Value
+$pe_rallonge	defun	../share/sym/chbase.lisp:255	d_pe_rallonge(l1 : Value, min_ : Value, max_ : Value, list1 : Value, list2 : Value) -> Value
+$ele2comp_init	defun	../share/sym/chbase.lisp:275	d_ele2comp_init(max_ : Value, d_lelem : Value) -> Value
+ele2comp_init	defun	../share/sym/chbase.lisp:278	ele2comp_init(max_ : Value, lelem : Value) -> Value
+ele2comp	defun	../share/sym/chbase.lisp:289	ele2comp(max_ : Value, lelem : Value) -> Value
+e_calbasecomp	defun	../share/sym/chbase.lisp:297	e_calbasecomp(card : Value, min_ : Value, max_ : Value, rbarrivee : Value, badepart : Value) -> Value
+$pui2ele0	defun	../share/sym/chbase.lisp:325	d_pui2ele0(max_ : Value, d_lpui : Value) -> Value
+pui2ele_init	defun	../share/sym/chbase.lisp:332	pui2ele_init(max_ : Value, lpui : Value) -> Value
+pui2ele	defun	../share/sym/chbase.lisp:343	pui2ele(max_ : Value, lpui : Value, d_pui2ele : Value) -> Value
+macdonald_pui2ele	defun	../share/sym/chbase.lisp:352	macdonald_pui2ele(n : Value, lpui : Value) -> Value
+macdonald2	defun	../share/sym/chbase.lisp:357	macdonald2(exposant : Value, ote : Value, poule : Value) -> Value
+termine	defun	../share/sym/chbase.lisp:372	termine(poule : Value) -> Value
+chbase-met	defun	../share/sym/chbase.lisp:389	chbase_met(exposant : Value, ote : Value, poule : Value) -> Value
+girard_pui2ele	defun	../share/sym/chbase.lisp:434	girard_pui2ele(max_ : Value, lpui : Value) -> Value
+$elereduc0	defun	../share/sym/chbase.lisp:443	d_elereduc0(min_ : Value, max_ : Value, lelem : Value, lpui : Value) -> Value
+elereduc	defun	../share/sym/chbase.lisp:446	elereduc(min_ : Value, max_ : Value, lelem : Value, lpui : Value) -> Value
+$troncelem	defun	../share/sym/chbase.lisp:450	d_troncelem(min_ : Value, max_ : Value, lelem : Value, lpui : Value) -> Value
+$p_baselem	defun	../share/sym/chbase.lisp:464	d_p_baselem(min_ : Value, max_ : Value, lelem : Value, lpui : Value) -> Value
+$p_calbaselem	defun	../share/sym/chbase.lisp:485	d_p_calbaselem(min_ : Value, max_ : Value, rlelem : Value, lpui : Value) -> Value
+$p_calelem	defun	../share/sym/chbase.lisp:500	d_p_calelem(rlelem : Value, lpui : Value, en : Value) -> Value
+$ep_rallonge	defun	../share/sym/chbase.lisp:509	d_ep_rallonge(l1 : Value, min_ : Value, max_ : Value, list1 : Value, list2 : Value) -> Value
+$pui2comp_init	defun	../share/sym/chbase.lisp:531	d_pui2comp_init(max_ : Value, d_lpui : Value) -> Value
+pui2comp_init	defun	../share/sym/chbase.lisp:534	pui2comp_init(max_ : Value, lpui : Value) -> Value
+pui2comp	defun	../share/sym/chbase.lisp:544	pui2comp(max_ : Value, lpui : Value) -> Value
+p_calbasecomp	defun	../share/sym/chbase.lisp:550	p__calbasecomp(card : Value, min_ : Value, max_ : Value, rlcomp : Value, lpui : Value) -> Value
+$comp2ele_init	defun	../share/sym/chbase.lisp:571	d_comp2ele_init(max_ : Value, d_lcomp : Value) -> Value
+comp2ele_init	defun	../share/sym/chbase.lisp:574	comp2ele_init(max_ : Value, lcomp : Value) -> Value
+comp2ele	defun	../share/sym/chbase.lisp:583	comp2ele(max_ : Value, lcomp : Value) -> Value
+c_calbaselem	defun	../share/sym/chbase.lisp:595	c_calbaselem(min_ : Value, max_ : Value, rlelem : Value, lcomp : Value) -> Value
+$comp2pui_init	defun	../share/sym/chbase.lisp:614	d_comp2pui_init(max_ : Value, d_lcomp : Value) -> Value
+comp2pui_init	defun	../share/sym/chbase.lisp:617	comp2pui_init(max_ : Value, lcomp : Value) -> Value
+comp2pui	defun	../share/sym/chbase.lisp:626	comp2pui(max_ : Value, lcomp : Value) -> Value
+c_calbasepui	defun	../share/sym/chbase.lisp:633	c_calbasepui(min_ : Value, max_ : Value, rlpui : Value, lcomp : Value) -> Value
+$complbase	defun	../share/sym/chbase.lisp:657	d_complbase(base : Value, rlist : Value, i : Value, sup : Value) -> Value
+$complbase2	defun	../share/sym/chbase.lisp:665	d_complbase2(base : Value, rlist : Value, i : Value, sup : Value) -> Value
+$debut	defun	../share/sym/chbase.lisp:676	d_debut(base : Value, list_ : Value, max_ : Value) -> Value
+chsigne	defun	../share/sym/chbase.lisp:686	chsigne(liste : Value) -> Value
+$estpartition	defun	../share/sym/util.lisp:40	d_estpartition(l : Value) -> Value
+somme	defun	../share/sym/util.lisp:47	somme(l1 : Value, l2 : Value, pr : Value) -> Value
+somme2	defun	../share/sym/util.lisp:64	somme2(l2 : Value, l1 : Value, pr : Value) -> Value
+lvar	defun	../share/sym/util.lisp:85	lvar(nb : Value, lvar : Value) -> Value
+lvar_lettre	defun	../share/sym/util.lisp:99	lvar_lettre(nb : Value, lvar : Value, lettre : Value) -> Value
+$degrep	defun	../share/sym/util.lisp:114	d_degrep(pol : Value) -> Value
+$degre	defun	../share/sym/util.lisp:125	d_degre(mon : Value) -> Value
+constante	defun	../share/sym/util.lisp:136	constante(termpart : Value) -> Value
+lconstante	defun	../share/sym/util.lisp:145	lconstante(ltermpart : Value) -> Value
+lgparts	defun	../share/sym/util.lisp:150	lgparts(ppart : Value) -> Value
+longueur	defun	../share/sym/util.lisp:156	longueur(i : Value) -> Value
+$calculvar	defun	../share/sym/util.lisp:162	d_calculvar(i : Value) -> Value
+$lex	defun	../share/sym/util.lisp:174	d_lex(term1 : Value, term2 : Value) -> Value
+orlongsup	defun	../share/sym/util.lisp:195	orlongsup(p : Value, q : Value) -> Value
+orlong	defun	../share/sym/util.lisp:211	orlong(p : Value, q : Value) -> Value
+$orlong_cst	defun	../share/sym/util.lisp:218	d_orlong_cst(p : Value, q : Value) -> Value
+$e_lexinv_cst	defun	../share/sym/util.lisp:226	d_e_lexinv_cst(mon1 : Value, mon2 : Value) -> Value
+$e_lexinv	defun	../share/sym/util.lisp:234	d_e_lexinv(p : Value, q : Value) -> Value
+$e_lex_cst	defun	../share/sym/util.lisp:240	d_e_lex_cst(p : Value, q : Value) -> Value
+$e_lex	defun	../share/sym/util.lisp:246	d_e_lex(p : Value, q : Value) -> Value
+lex_term	defun	../share/sym/util.lisp:251	lex_term(term1 : Value, term2 : Value) -> Value
+lex_mon	defun	../share/sym/util.lisp:254	lex_mon(m1 : Value, m2 : Value) -> Value
+lect	defun	../share/sym/util.lisp:272	lect(d_pol : Value, d_lvar : Value) -> Value
+macsy_list	defun	../share/sym/util.lisp:279	macsy_list(llist : Value) -> Value
+mac2lisp	defun	../share/sym/util.lisp:284	mac2lisp(list_ : Value) -> Value
+ecrit_listpol	defun	../share/sym/util.lisp:294	ecrit_listpol(listpol : Value, lvar : Value) -> Value
+multi_ecrit	defun	../share/sym/util.lisp:305	multi_ecrit(pol : Value, llvar : Value) -> Value
+multi_ecrit_mon	defun	../share/sym/util.lisp:315	multi_ecrit_mon(coe : Value, llexposants : Value, llvar : Value) -> Value
+ecrit_pol	defun	../share/sym/util.lisp:333	ecrit_pol(ppart : Value, lvar : Value) -> Value
+2ecrit	defun	../share/sym/util.lisp:341	n2ecrit(ppart : Value, lvar : Value) -> Value
+ch2rep	defun	../share/sym/util.lisp:348	ch2rep(partition1 : Value) -> Value
+ch2rep2	defun	../share/sym/util.lisp:352	ch2rep2(partition1 : Value, partition2 : Value) -> Value
+ch2repol	defun	../share/sym/util.lisp:364	ch2repol(ppart : Value) -> Value
+ch1rep	defun	../share/sym/util.lisp:370	ch1rep(partition2 : Value) -> Value
+ch1rep2	defun	../share/sym/util.lisp:376	ch1rep2(partition2 : Value, partition1 : Value) -> Value
+ch1repol	defun	../share/sym/util.lisp:387	ch1repol(ppart : Value) -> Value
+part	defun	../share/sym/util.lisp:397	part(listm : Value) -> Value
+$part2	defun	../share/sym/util.lisp:400	d_part2(listm : Value, lpartm : Value) -> Value
+$cherchepui	defun	../share/sym/util.lisp:410	d_cherchepui(mmon : Value) -> Value
+$card_orbit	defun	../share/sym/util.lisp:420	d_card_orbit(d_partition : Value, d_card : Value) -> Value
+card_orbit	defun	../share/sym/util.lisp:423	card_orbit(partition : Value, card : Value) -> Value
+$multinomial	defun	../share/sym/util.lisp:428	d_multinomial(poids : Value, d_partition : Value) -> Value
+multinomial	defun	../share/sym/util.lisp:431	multinomial(prec_multinomial : Value, partition : Value) -> Value
+nbperm0	defun	../share/sym/util.lisp:439	nbperm0(card : Value, m0 : Value, part : Value) -> Value
+nbperm	defun	../share/sym/util.lisp:441	nbperm(lpermn : Value, part : Value) -> Value
+nbperm2	defun	../share/sym/util.lisp:446	nbperm2(perm : Value, n : Value, i : Value, mi : Value) -> Value
+$card_stab	defmfun	../share/sym/util.lisp:458	d_card_stab(d_part : Value, d_egal : Value) -> Value
+$card_stab_init	defun	../share/sym/util.lisp:467	d_card_stab_init(d_part : Value, d_egal : Value) -> Value
+card_stab	defun	../share/sym/util.lisp:471	card_stab(s : Value, egal : Value) -> Value
+multiplicites	defun	../share/sym/util.lisp:475	multiplicites(s : Value, egal : Value) -> Value
+multiplicites2	defun	../share/sym/util.lisp:478	multiplicites2(s : Value, ai : Value, mi : Value, lmultip : Value, egal : Value) -> Value
+prod_factor	defun	../share/sym/util.lisp:489	prod_factor(l : Value) -> Value
+list_factor	defun	../share/sym/util.lisp:493	list_factor(l : Value, lfactor : Value) -> Value
+fact_recur	defun	../share/sym/util.lisp:499	fact_recur(m1 : Value, m2 : Value, factm1 : Value) -> Value
+finfact	defun	../share/sym/util.lisp:507	finfact(i : Value, m2 : Value, finfactm2 : Value) -> Value
+factorielle	defun	../share/sym/util.lisp:515	factorielle(n : Value) -> Value
+$lpermut	defun	../share/sym/util.lisp:527	d_lpermut(nuplet : Value) -> Value
+$ele2polynome	defun	../share/sym/util.lisp:539	d_ele2polynome(d_fct_elem : Value, d_z : Value) -> Value
+ele2polynome	defun	../share/sym/util.lisp:542	ele2polynome(l_degre__dolelem : Value, d_z : Value) -> Value
+genpoly2	defun	../share/sym/util.lisp:547	genpoly2(exp_ : Value, sign : Value, d_pol : Value, l__dolelem : Value, d_z : Value) -> Value
+$pui2polynome	defun	../share/sym/util.lisp:564	d_pui2polynome(d_var : Value, d_fct_pui : Value) -> Value
+pui2polynome	defun	../share/sym/util.lisp:567	pui2polynome(variable : Value, fct_pui : Value) -> Value
+$polynome2ele	defun	../share/sym/util.lisp:579	d_polynome2ele(d_p : Value, d_var : Value) -> Value
+polynome2ele	defun	../share/sym/util.lisp:582	polynome2ele(d_p : Value, d_var : Value) -> Value
+lcoe2	defun	../share/sym/util.lisp:598	lcoe2(precedexp : Value, p : Value, lcoe : Value) -> Value
+binomial	defun	../share/sym/util.lisp:616	binomial(n : Value, p : Value) -> Value
+maxote	defun	../share/sym/util.lisp:627	maxote(a : Value, b : Value) -> Value
+$distri_lect	defun	../share/sym/lecteur.lisp:29	d_distri_lect(d_pol : Value, d_lvar : Value) -> Value
+distri_lect	defun	../share/sym/lecteur.lisp:39	distri_lect(d_pol : Value, lvar : Value) -> Value
+somme_coef	defun	../share/sym/lecteur.lisp:43	somme_coef(pol_dist : Value) -> Value
+somme_coef2	defun	../share/sym/lecteur.lisp:50	somme_coef2(c : Value, m : Value, pol_dist : Value) -> Value
+exposants	defun	../share/sym/lecteur.lisp:61	exposants(pol : Value, lvar : Value) -> Value
+expomon	defun	../share/sym/lecteur.lisp:74	expomon(mon : Value) -> Value
+recupcoef	defun	../share/sym/lecteur.lisp:114	recupcoef(plist : Value, coef : Value) -> Value
+lvarexpo	defun	../share/sym/lecteur.lisp:138	lvarexpo(mmon : Value) -> Value
+expomon2	defun	../share/sym/lecteur.lisp:143	expomon2(lvar : Value) -> Value
+chercheexpo	defun	../share/sym/lecteur.lisp:158	chercheexpo(expo : Value) -> Value
+$distri_ecrit_init	defun	../share/sym/ecrivain.lisp:29	d_distri_ecrit_init(d_distribue : Value, d_lvar : Value) -> Value
+$ecrivain_sym	defun	../share/sym/ecrivain.lisp:35	d_ecrivain_sym(ppart : Value, lvar : Value) -> Value
+ecrit_mon	defun	../share/sym/ecrivain.lisp:44	ecrit_mon(part : Value, lvar : Value, coe : Value) -> Value
+arite_init	defun	../share/sym/arite.lisp:47	arite_init(degre : Value, arite : Value, d_puissances : Value) -> Value
+arite_physique_init	defun	../share/sym/arite.lisp:55	arite_physique_init(degre : Value, arite : Value, d_puissances : Value) -> Value
+complete_pui_physique	defun	../share/sym/arite.lisp:60	complete_pui_physique(n : Value, p : Value, d_puissance_resolvante : Value) -> Value
+n_complete_pui	defun	../share/sym/arite.lisp:82	n__complete_pui(n : Value, p : Value, d_puissance_resolvante : Value) -> Value
+$bidon	defun	../share/sym/elem.lisp:53	d_bidon() -> Value
+$multi_elem_init	defun	../share/sym/elem.lisp:79	d_multi_elem_init(d_multi_lelem : Value, d_multi_pc : Value, d_llvar : Value) -> Value
+multi_elem	defun	../share/sym/elem.lisp:85	multi_elem(multi_lelem : Value, d_multi_pc : Value, l_dollvar : Value) -> Value
+$elem_init	defun	../share/sym/elem.lisp:102	d_elem_init(valei : Value, sym_ : Value, d_lvar : Value) -> Value
+e_red1	defun	../share/sym/elem.lisp:139	e_red1(l : Value, ppart : Value) -> Value
+e_red2	defun	../share/sym/elem.lisp:144	e_red2(degpol : Value, ppart : Value, l : Value) -> Value
+rangei	defun	../share/sym/elem.lisp:163	rangei(l : Value, n : Value, lg : Value) -> Value
+rangei2	defun	../share/sym/elem.lisp:167	rangei2(lesei : Value, i : Value, n : Value) -> Value
+$reduit	defun	../share/sym/elem.lisp:184	d_reduit(card : Value, sym_ : Value) -> Value
+factpart	defun	../share/sym/elem.lisp:195	factpart(i : Value) -> Value
+devel1	defun	../share/sym/elem.lisp:217	devel1(j : Value, coei : Value, lgi : Value, card : Value) -> Value
+devel2	defun	../share/sym/elem.lisp:227	devel2(j : Value, nblib : Value, pilesol : Value) -> Value
+devel3	defun	../share/sym/elem.lisp:243	devel3(pilesol : Value, j : Value, nbpui1 : Value, r : Value, solu : Value, pile : Value) -> Value
+ramsol	defun	../share/sym/elem.lisp:272	ramsol(pj : Value, nbj : Value, r : Value, solu : Value) -> Value
+ramsol2	defun	../share/sym/elem.lisp:277	ramsol2(pj : Value, r : Value, coe : Value, solu : Value) -> Value
+ramsolfin	defun	../share/sym/elem.lisp:287	ramsolfin(nbpui1 : Value, tnb1 : Value, solu : Value) -> Value
+calcoe	defun	../share/sym/elem.lisp:299	calcoe(coe : Value, c : Value, n : Value) -> Value
+calcoe2	defun	../share/sym/elem.lisp:305	calcoe2(n : Value, res : Value, nc : Value, i : Value) -> Value
+syele	defun	../share/sym/elem.lisp:317	syele(mon : Value) -> Value
+inferieur	defun	../share/sym/elem.lisp:319	inferieur(a : Value, i : Value) -> Value
+e_ecrit	defun	../share/sym/elem.lisp:324	e_ecrit(solu : Value) -> Value
+e_ecrit2	defun	../share/sym/elem.lisp:331	e_ecrit2(solu : Value, listei : Value, mpol : Value, i_init : Value) -> Value
+$bidon2	defun	../share/sym/pui.lisp:46	d_bidon2() -> Value
+$multi_pui_init	defun	../share/sym/pui.lisp:56	d_multi_pui_init(d_multi_lpui : Value, d_multi_pc : Value, d_llvar : Value) -> Value
+multi_pui	defun	../share/sym/pui.lisp:60	multi_pui(multi_lpui : Value, d_multi_pc : Value, l_dollvar : Value) -> Value
+$pui_init	defun	../share/sym/pui.lisp:95	d_pui_init(valpi : Value, sym_ : Value, d_lvar : Value) -> Value
+p_red1	defun	../share/sym/pui.lisp:130	p__red1(d_l : Value, ppart : Value) -> Value
+p_red2	defun	../share/sym/pui.lisp:136	p__red2(degpol : Value, ppart : Value, d_l : Value) -> Value
+$p_reduit	defun	../share/sym/pui.lisp:145	d_p_reduit(sym_ : Value) -> Value
+$p_reduit_init	defun	../share/sym/pui.lisp:154	d_p_reduit_init(d_sym : Value) -> Value
+longde2	defun	../share/sym/pui.lisp:163	longde2(sym_ : Value, lg2 : Value) -> Value
+p_reducpart	defun	../share/sym/pui.lisp:199	p__reducpart(part : Value, coe : Value, lg : Value) -> Value
+constsol	defun	../share/sym/pui.lisp:224	constsol(coef : Value, m : Value, coe : Value, partf : Value, prsol : Value) -> Value
+p_fact	defun	../share/sym/pui.lisp:229	p__fact(part : Value, m : Value) -> Value
+multpui	defun	../share/sym/pui.lisp:242	multpui(partf : Value, puim : Value) -> Value
+multpui2	defun	../share/sym/pui.lisp:248	multpui2(part : Value, puim : Value, s : Value, k : Value) -> Value
+restpart	defun	../share/sym/pui.lisp:259	restpart(pui : Value, nb : Value, part : Value) -> Value
+p_ecrit	defun	../share/sym/pui.lisp:265	p__ecrit(solu : Value) -> Value
+p_ecrit2	defun	../share/sym/pui.lisp:272	p__ecrit2(solu : Value, listpi : Value, mpol : Value, i_init : Value) -> Value
+$schur2comp_init	defun	../share/sym/schur.lisp:65	d_schur2comp_init(d_comp : Value, d_listofvars : Value) -> Value
+schur2comp_pol	defun	../share/sym/schur.lisp:76	schur2comp_pol(d_pol : Value, listofvars : Value) -> Value
+lexinv_type1	defun	../share/sym/schur.lisp:94	lexinv_type1(terme1 : Value, terme2 : Value) -> Value
+2lexinv_type1	defun	../share/sym/schur.lisp:97	n2lexinv_type1(n1part : Value, n2part : Value) -> Value
+pol2part	defun	../share/sym/schur.lisp:112	pol2part(d_pol : Value, listofvar : Value) -> Value
+chvaretdegre	defun	../share/sym/schur.lisp:129	chvaretdegre(listofvar : Value) -> Value
+schur2comp	defun	../share/sym/schur.lisp:157	schur2comp(part : Value) -> Value
+$mon2schur_init	defun	../share/sym/schur.lisp:173	d_mon2schur_init(d_rpart : Value) -> Value
+duale12	defun	../share/sym/schur.lisp:184	duale12(partition : Value) -> Value
+duale21	defun	../share/sym/schur.lisp:213	duale21(partition : Value) -> Value
+2duale21	defun	../share/sym/schur.lisp:218	n2duale21(lmulti : Value, lpart : Value, partition1_duale : Value) -> Value
+chmultiplicites_parts	defun	../share/sym/schur.lisp:231	chmultiplicites_parts(partition : Value, lmulti : Value, lpart : Value) -> Value
+$kostka_init	defun	../share/sym/schur.lisp:243	d_kostka_init(d_1part : Value, d_2part : Value) -> Value
+kostka	defun	../share/sym/schur.lisp:246	kostka(l : Value, m : Value) -> Value
+schur-firstn	defun	../share/sym/schur.lisp:249	schur_firstn(n : Value, l : Value) -> Value
+lastn	defun	../share/sym/schur.lisp:258	lastn(l : Value, n : Value) -> Value
+good_tab0	defun	../share/sym/schur.lisp:261	good_tab0(l : Value, lcont : Value, ltas : Value) -> Value
+insert_tete	defun	../share/sym/schur.lisp:281	insert_tete(i : Value, l : Value) -> Value
+new_tas0	defun	../share/sym/schur.lisp:286	new_tas0(l1 : Value, ltas : Value) -> Value
+good_line	defun	../share/sym/schur.lisp:294	good_line(taille : Value, lcontrainte : Value, ltas : Value) -> Value
+good_line0	defun	../share/sym/schur.lisp:298	good_line0(taille : Value, lcontrainte : Value, ltas : Value) -> Value
+good_length	defun	../share/sym/schur.lisp:323	good_length(taille : Value, l : Value) -> Value
+$treinat_init	defun	../share/sym/schur.lisp:336	d_treinat_init(d_partition1 : Value) -> Value
+treinat	defun	../share/sym/schur.lisp:341	treinat(part2 : Value) -> Value
+soustreillisnat	defun	../share/sym/schur.lisp:343	soustreillisnat(lpartnt : Value, lpartt : Value) -> Value
+union_sym	defun	../share/sym/schur.lisp:351	union_sym(l1 : Value, l2 : Value) -> Value
+union2	defun	../share/sym/schur.lisp:358	union2(l1 : Value, l2 : Value) -> Value
+crefils_init	defun	../share/sym/schur.lisp:368	crefils_init(part : Value) -> Value
+crefils	defun	../share/sym/schur.lisp:373	crefils(rfin : Value, debut : Value, lfils : Value) -> Value
+tombecube	defun	../share/sym/schur.lisp:386	tombecube(rfin : Value, ai : Value, mi : Value, debut : Value) -> Value
+rmet	defun	../share/sym/schur.lisp:415	rmet(aj : Value, rpart : Value) -> Value
+schur-met	defun	../share/sym/schur.lisp:423	schur_met(aj : Value, part : Value) -> Value
+arrivecube	defun	../share/sym/schur.lisp:433	arrivecube(rpart : Value) -> Value
+$orbit_init	defun	../share/sym/direct.lisp:84	d_orbit_init(d_p : Value, d_lvar : Value) -> Value
+orbit	defun	../share/sym/direct.lisp:85	orbit(d_p : Value, d_lvar : Value) -> Value
+orbit2	defun	../share/sym/direct.lisp:91	orbit2(list_dolpol : Value, p__dist : Value, f_lvar : Value, d__lvar : Value) -> Value
+permut_circu	defun	../share/sym/direct.lisp:109	permut_circu(debut : Value, fin : Value) -> Value
+contient	defun	../share/sym/direct.lisp:114	contient(list_dolpol : Value, d_pol : Value) -> Value
+$multi_orbit_init	defun	../share/sym/direct.lisp:126	d_multi_orbit_init(d_p : Value, d_llvar : Value) -> Value
+multi_orbit_init	defun	../share/sym/direct.lisp:129	multi_orbit_init(d_p : Value, llvar : Value) -> Value
+multi_orbit	defun	../share/sym/direct.lisp:147	multi_orbit(lpoli : Value, lpoli_plus1 : Value, llvar : Value) -> Value
+epure	defun	../share/sym/direct.lisp:160	epure(l1 : Value, l2 : Value) -> Value
+dans	defun	../share/sym/direct.lisp:174	dans(l2 : Value, d_pol : Value) -> Value
+$pui_direct_init	defun	../share/sym/direct.lisp:242	d_pui_direct_init(d_or : Value, d_llvar : Value, d_ldegre : Value) -> Value
+pui_direct	defun	../share/sym/direct.lisp:248	pui_direct(or : Value, llvar : Value, ldegre : Value) -> Value
+pui_contract	defun	../share/sym/direct.lisp:270	pui_contract(d_pui_cont : Value, or : Value, llvar : Value, r : Value, ldegre_arite : Value) -> Value
+multi_partitions	defun	../share/sym/direct.lisp:284	multi_partitions(d_pol : Value, llvar : Value, ldegre_arite : Value) -> Value
+garde_que_partition_init	defun	../share/sym/direct.lisp:311	garde_que_partition_init(d_pol_dist : Value, degre_arite : Value) -> Value
+garde_que_partition	defun	../share/sym/direct.lisp:328	garde_que_partition(d_pol_dist : Value, degre_arite : Value) -> Value
+distribu	defun	../share/sym/direct.lisp:344	distribu(multipartition : Value, pol_part : Value) -> Value
+$direct_init	defun	../share/sym/direct.lisp:352	d_direct_init(d_lpol : Value, d_x : Value, d_p : Value, d_llvar : Value) -> Value
+direct	defun	../share/sym/direct.lisp:355	direct(l_dolpol : Value, d_x : Value, d_p : Value, d_llvar : Value) -> Value
+direct-parallele	defun	../share/sym/direct.lisp:382	direct_parallele(l_dolpol : Value, d_x : Value, d_p : Value, d_llvar : Value) -> Value
+multi_polynome2ele	defun	../share/sym/direct.lisp:421	multi_polynome2ele(l_dolpol : Value, d_y : Value) -> Value
+multi_decomp_init	defun	../share/sym/direct.lisp:431	multi_decomp_init(d_multi_pc : Value, d_multi_base : Value, d_llvar : Value) -> Value
+multi_ele2pui	defun	../share/sym/direct.lisp:442	multi_ele2pui(multi_lelem : Value) -> Value
+$somrac_init	defun	../share/sym/kak.lisp:71	d_somrac_init(listei : Value, k : Value) -> Value
+$p_rac	defun	../share/sym/kak.lisp:89	d_p_rac(listei : Value, k : Value) -> Value
+$som_pipj	defun	../share/sym/kak.lisp:109	d_som_pipj(n : Value, i : Value, nxlistpi : Value) -> Value
+$init_pi2mon	defun	../share/sym/kak.lisp:118	d_init_pi2mon(n : Value, i : Value, infki : Value) -> Value
+$pi2mon	defun	../share/sym/kak.lisp:126	d_pi2mon(n : Value, pui : Value, var_ : Value, sym_ : Value, coe : Value) -> Value
+$init_monlgfix	defun	../share/sym/kak.lisp:135	d_init_monlgfix(pui : Value, var_ : Value, slvarh : Value) -> Value
+$e_rac	defun	../share/sym/kak.lisp:159	d_e_rac(listei : Value, k : Value) -> Value
+$rac2	defun	../share/sym/kak.lisp:170	d_rac2(l : Value, nxlistpi : Value, n : Value) -> Value
+$init_piej	defun	../share/sym/kak.lisp:178	d_init_piej(l : Value, infkl : Value, n : Value) -> Value
+$piej	defun	../share/sym/kak.lisp:186	d_piej(pui : Value, var_ : Value, d_pi : Value, coe : Value, n : Value) -> Value
+$piej_lgfix	defun	../share/sym/kak.lisp:197	d_piej_lgfix(pui : Value, var_ : Value, slvarh : Value, n : Value) -> Value
+$monlgfix	defun	../share/sym/kak.lisp:217	d_monlgfix(pui : Value, rvar : Value, ote : Value, slvar : Value, poule : Value, maxote : Value) -> Value
+$met	defun	../share/sym/kak.lisp:233	d_met(pui : Value, ote : Value, poule : Value) -> Value
+$prodkak	defun	../share/sym/kak.lisp:246	d_prodkak(listei : Value, k : Value) -> Value
+$listpui	defun	../share/sym/kak.lisp:263	d_listpui(i : Value, listpui : Value, k : Value) -> Value
+$tcontract_init	defun	../share/sym/partpol.lisp:94	d_tcontract_init(d_pol : Value, d_lvar : Value) -> Value
+$contract_init	defun	../share/sym/partpol.lisp:101	d_contract_init(d_pol : Value, d_lvar : Value) -> Value
+$p_tpartpol_init	defun	../share/sym/partpol.lisp:123	d_p_tpartpol_init(d_pol : Value, d_lvar : Value) -> Value
+p_tpartpol	defun	../share/sym/partpol.lisp:130	p__tpartpol(d_pol : Value, d_lvar : Value) -> Value
+$tpartpol_init	defun	../share/sym/partpol.lisp:136	d_tpartpol_init(d_pol : Value, d_lvar : Value) -> Value
+tpartpol	defun	../share/sym/partpol.lisp:144	tpartpol(d_pol : Value, d_lvar : Value) -> Value
+$lexic	defun	../share/sym/partpol.lisp:148	d_lexic(p : Value, q : Value) -> Value
+tpartpol2	defun	../share/sym/partpol.lisp:155	tpartpol2(lpol : Value, card : Value) -> Value
+tpartpol3	defun	../share/sym/partpol.lisp:186	tpartpol3(card : Value, pol : Value, compteur : Value) -> Value
+$partpol_init	defun	../share/sym/partpol.lisp:208	d_partpol_init(d_psym : Value, d_lvar : Value) -> Value
+$cont2part_init	defun	../share/sym/partpol.lisp:227	d_cont2part_init(d_polcontrac : Value, d_lvar : Value) -> Value
+cont2part_rep1	defun	../share/sym/partpol.lisp:232	cont2part_rep1(polcontrac : Value, d_lvar : Value) -> Value
+cont2part	defun	../share/sym/partpol.lisp:236	cont2part(polcontrac : Value, lvar : Value) -> Value
+$partipol	defun	../share/sym/partpol.lisp:241	d_partipol(polycontracte : Value) -> Value
+partipol	defun	../share/sym/partpol.lisp:245	partipol(rat : Value) -> Value
+partipol1	defun	../share/sym/partpol.lisp:250	partipol1(rat : Value, lpart : Value) -> Value
+partipol2	defun	../share/sym/partpol.lisp:266	partipol2(lpart : Value, rat : Value, part : Value, pile : Value) -> Value
+$part2cont_init	defun	../share/sym/partpol.lisp:278	d_part2cont_init(d_ppart : Value, d_lvar : Value) -> Value
+$explose_init	defun	../share/sym/partpol.lisp:294	d_explose_init(d_pc : Value, d_lvar : Value) -> Value
+ordonne_expo	defun	../share/sym/partpol.lisp:320	ordonne_expo(pol : Value) -> Value
+prep	defun	../share/sym/partpol.lisp:327	prep(pol : Value) -> Value
+$multsym_init	defun	../share/sym/multmon.lisp:61	d_multsym_init(d_1ppart : Value, d_2ppart : Value, card : Value) -> Value
+multsym	defun	../share/sym/multmon.lisp:68	multsym(n1ppart : Value, n2ppart : Value, card : Value) -> Value
+mult_term	defun	../share/sym/multmon.lisp:81	mult_term(term1 : Value, term2 : Value, card : Value) -> Value
+$multmon_init	defun	../share/sym/multmon.lisp:92	d_multmon_init(d_mi : Value, d_mj : Value, card : Value) -> Value
+fmon2part	defun	../share/sym/multmon.lisp:102	fmon2part(m : Value) -> Value
+chexpo	defun	../share/sym/multmon.lisp:106	chexpo(liste : Value, lexpo : Value) -> Value
+multmon	defun	../share/sym/multmon.lisp:124	multmon(i : Value, j : Value, card : Value) -> Value
+fini0	defun	../share/sym/multmon.lisp:132	fini0(i : Value, card : Value) -> Value
+epur0	defun	../share/sym/multmon.lisp:138	epur0(j : Value) -> Value
+parti_som_init	defun	../share/sym/multmon.lisp:159	parti_som_init(i : Value, j : Value, terparts : Value) -> Value
+parti_som	defun	../share/sym/multmon.lisp:167	parti_som(i : Value, j : Value, ri : Value, rk : Value) -> Value
+somme_coe	defun	../share/sym/multmon.lisp:189	somme_coe(i : Value, k : Value) -> Value
+coei+k	defun	../share/sym/multmon.lisp:194	coei_plusk(i_plusk : Value, cik : Value) -> Value
+$permut	defun	../share/sym/permut.lisp:36	d_permut(nuplet : Value) -> Value
+insertion	defun	../share/sym/permut.lisp:64	insertion(a : Value, l : Value, i : Value) -> Value
+vire_nil	defun	../share/sym/permut.lisp:76	vire_nil(l : Value) -> Value
+un_de_chaque	defun	../share/sym/permut.lisp:81	un_de_chaque(l : Value) -> Value
+permut	defun	../share/sym/permut.lisp:87	permut(l : Value) -> Value
+$treillis_init	defun	../share/sym/treillis.lisp:47	d_treillis_init(n : Value) -> Value
+treillis	defun	../share/sym/treillis.lisp:50	treillis(n : Value) -> Value
+treillis2	defun	../share/sym/treillis.lisp:57	treillis2(pui : Value, ote : Value, ltreillis : Value, poule : Value) -> Value
+$lgtreillis_init	defun	../share/sym/treillis.lisp:74	d_lgtreillis_init(p : Value, l : Value) -> Value
+lgtreillis	defun	../share/sym/treillis.lisp:77	lgtreillis(poids : Value, longueur : Value) -> Value
+lgtreillis2	defun	../share/sym/treillis.lisp:85	lgtreillis2(poids : Value, rlongueur : Value, ote : Value, maxote : Value, partition : Value, lpart : Value) -> Value
+$ltreillis_init	defun	../share/sym/treillis.lisp:109	d_ltreillis_init(p : Value, l : Value) -> Value
+ltreillis	defun	../share/sym/treillis.lisp:112	ltreillis(poids : Value, longueur : Value) -> Value
+ltreillis2	defun	../share/sym/treillis.lisp:119	ltreillis2(poids : Value, rlongueur : Value, ote : Value, maxote : Value, partition : Value, lpart : Value) -> Value
+resolvante	defun	../share/sym/resolv1.lisp:58	resolvante(d_pol : Value, d_var : Value, d_fonction_resolvante : Value, d_list_var : Value) -> Value
+cree_subs	defun	../share/sym/resolv1.lisp:138	cree_subs(val : Value, d_ei : Value) -> Value
+symetrique_resolvante	defun	../share/sym/resolv1.lisp:151	symetrique_resolvante(d_fct_resolvante : Value, d_list_var : Value, elementaires : Value) -> Value
+puissances_symetrique_resolvante	defun	../share/sym/resolv1.lisp:190	puissances_symetrique_resolvante(ind : Value, arite_f : Value, f : Value, puif : Value, d_puissances : Value) -> Value
+complete_pui	defun	../share/sym/resolv1.lisp:214	complete_pui(n : Value, p : Value, puissance_resolvante : Value) -> Value
+linear_resolvante_init	defun	../share/sym/resolv1.lisp:240	linear_resolvante_init(d_pol : Value, d_var : Value, d_coeff : Value, alternee? : Value = Nil) -> Value
+linear_resolvante	defun	../share/sym/resolv1.lisp:247	linear_resolvante(coeff : Value, elementaires : Value, alternee? : Value = Nil) -> Value
+puissances_linear_resolvante	defun	../share/sym/resolv1.lisp:288	puissances_linear_resolvante(poids : Value, longueur : Value, permut_coeff : Value, d_puissances : Value, alternee : Value) -> Value
+pui_linear_resolvante	defun	../share/sym/resolv1.lisp:321	pui_linear_resolvante(permut_coeff : Value, poids : Value, longueur : Value, n : Value) -> Value
+somme_orbitale	defun	../share/sym/resolv1.lisp:344	somme_orbitale(poids : Value, rlongueur : Value, ote : Value, maxote : Value, partition : Value, lpart : Value, permut_coeff : Value, poids_init : Value, n : Value, p : Value) -> Value
+ev_forme_monomiale	defun	../share/sym/resolv1.lisp:394	ev_forme_monomiale(permut_coeff : Value, part : Value) -> Value
+sanszero	defun	../share/sym/resolv1.lisp:412	sanszero(rpartition : Value) -> Value
+retirezero	defun	../share/sym/resolv1.lisp:419	retirezero(coeff : Value) -> Value
+permut_alterne	defun	../share/sym/resolv1.lisp:442	permut_alterne(permut_coeff : Value) -> Value
+pas-dans	defun	../share/sym/resolv1.lisp:454	pas_dans(u : Value, list_ : Value) -> Value
+resol_carre	defun	../share/sym/resolv1.lisp:460	resol_carre(degre : Value, puissances : Value) -> Value
+un-sur-deux	defun	../share/sym/resolv1.lisp:463	un_sur_deux(liste : Value) -> Value
+require-graph	defun	../share/graphs/graph_core.lisp:59	require_graph(m : Value, ar : Value, gr : Value) -> Value
+require-digraph	defun	../share/graphs/graph_core.lisp:63	require_digraph(m : Value, ar : Value, gr : Value) -> Value
+require-graph-or-digraph	defun	../share/graphs/graph_core.lisp:67	require_graph_or_digraph(m : Value, ar : Value, gr : Value) -> Value
+$print_graph	defmfun	../share/graphs/graph_core.lisp:71	d_print_graph(gr : Value) -> Value
+$is_graph	defmfun	../share/graphs/graph_core.lisp:95	d_is_graph(x : Value) -> Value
+$is_digraph	defmfun	../share/graphs/graph_core.lisp:98	d_is_digraph(x : Value) -> Value
+$is_graph_or_digraph	defmfun	../share/graphs/graph_core.lisp:101	d_is_graph_or_digraph(x : Value) -> Value
+$graph_order	defmfun	../share/graphs/graph_core.lisp:104	d_graph_order(gr : Value) -> Value
+$graph_size	defmfun	../share/graphs/graph_core.lisp:110	d_graph_size(gr : Value) -> Value
+$get_positions	defmfun	../share/graphs/graph_core.lisp:116	d_get_positions(gr : Value) -> Value
+$set_positions	defmfun	../share/graphs/graph_core.lisp:122	d_set_positions(pos : Value, gr : Value) -> Value
+$copy_graph	defmfun	../share/graphs/graph_core.lisp:128	d_copy_graph(gr : Value) -> Value
+$new_graph	defmfun	../share/graphs/graph_core.lisp:154	d_new_graph() -> Value
+$vertices	defmfun	../share/graphs/graph_core.lisp:163	d_vertices(gr : Value) -> Value
+vertices	defun	../share/graphs/graph_core.lisp:168	vertices(gr : Value) -> Value
+require-vertex	defun	../share/graphs/graph_core.lisp:171	require_vertex(m : Value, i : Value, v : Value) -> Value
+is-vertex-in-graph	defun	../share/graphs/graph_core.lisp:175	is_vertex_in_graph(i : Value, gr : Value) -> Value
+require-vertex-in-graph	defun	../share/graphs/graph_core.lisp:183	require_vertex_in_graph(m : Value, i : Value, gr : Value) -> Value
+$is_vertex_in_graph	defmfun	../share/graphs/graph_core.lisp:187	d_is_vertex_in_graph(i : Value, gr : Value) -> Value
+$add_vertex	defmfun	../share/graphs/graph_core.lisp:192	d_add_vertex(i : Value, gr? : Value = Nil) -> Value
+$add_vertices	defmfun	../share/graphs/graph_core.lisp:203	d_add_vertices(vl : Value, gr : Value) -> Value
+add-vertex	defun	../share/graphs/graph_core.lisp:217	add_h_vertex(i : Value, gr : Value) -> Value
+neighbors	defun	../share/graphs/graph_core.lisp:231	neighbors(i : Value, gr : Value) -> Value
+in-neighbors	defun	../share/graphs/graph_core.lisp:236	in_h_neighbors(i : Value, gr : Value) -> Value
+out-neighbors	defun	../share/graphs/graph_core.lisp:239	out_h_neighbors(i : Value, gr : Value) -> Value
+$neighbors	defmfun	../share/graphs/graph_core.lisp:242	d_neighbors(i : Value, gr : Value) -> Value
+$out_neighbors	defmfun	../share/graphs/graph_core.lisp:248	d_out_neighbors(i : Value, gr : Value) -> Value
+$in_neighbors	defmfun	../share/graphs/graph_core.lisp:254	d_in_neighbors(i : Value, gr : Value) -> Value
+$degree_sequence	defmfun	../share/graphs/graph_core.lisp:260	d_degree_sequence(gr : Value) -> Value
+$remove_vertex	defmfun	../share/graphs/graph_core.lisp:268	d_remove_vertex(v : Value, gr : Value) -> Value
+$remove_vertices	defmfun	../share/graphs/graph_core.lisp:275	d_remove_vertices(vl : Value, gr : Value) -> Value
+remove-vertex	defun	../share/graphs/graph_core.lisp:283	remove_h_vertex(v : Value, gr : Value) -> Value
+$first_vertex	defmfun	../share/graphs/graph_core.lisp:313	d_first_vertex(gr : Value) -> Value
+$max_degree	defmfun	../share/graphs/graph_core.lisp:320	d_max_degree(gr : Value) -> Value
+$min_degree	defmfun	../share/graphs/graph_core.lisp:333	d_min_degree(gr : Value) -> Value
+$average_degree	defmfun	../share/graphs/graph_core.lisp:346	d_average_degree(gr : Value) -> Value
+$vertex_degree	defmfun	../share/graphs/graph_core.lisp:350	d_vertex_degree(v : Value, gr : Value) -> Value
+$vertex_in_degree	defmfun	../share/graphs/graph_core.lisp:356	d_vertex_in_degree(v : Value, gr : Value) -> Value
+$vertex_out_degree	defmfun	../share/graphs/graph_core.lisp:362	d_vertex_out_degree(v : Value, gr : Value) -> Value
+$get_vertex_label	defmfun	../share/graphs/graph_core.lisp:368	d_get_vertex_label(v : Value, gr : Value, default? : Value = Nil) -> Value
+get-vertex-label	defun	../share/graphs/graph_core.lisp:374	get_h_vertex_h_label(v : Value, gr : Value) -> Value
+$get_unique_vertex_by_label	defmfun	../share/graphs/graph_core.lisp:379	d_get_unique_vertex_by_label(l : Value, gr : Value) -> Value
+get-unique-vertex-by-label	defun	../share/graphs/graph_core.lisp:384	get_h_unique_h_vertex_h_by_h_label(l : Value, gr : Value) -> Value
+get-all-vertices-by-label	defun	../share/graphs/graph_core.lisp:391	get_h_all_h_vertices_h_by_h_label(l : Value, gr : Value) -> Value
+$get_all_vertices_by_label	defmfun	../share/graphs/graph_core.lisp:397	d_get_all_vertices_by_label(l : Value, gr : Value) -> Value
+$clear_vertex_label	defmfun	../share/graphs/graph_core.lisp:402	d_clear_vertex_label(v : Value, gr : Value) -> Value
+clear-vertex-label	defun	../share/graphs/graph_core.lisp:408	clear_h_vertex_h_label(v : Value, gr : Value) -> Value
+$set_vertex_label	defmfun	../share/graphs/graph_core.lisp:414	d_set_vertex_label(v : Value, l : Value, gr : Value) -> Value
+set-vertex-label	defun	../share/graphs/graph_core.lisp:420	set_h_vertex_h_label(v : Value, l : Value, gr : Value) -> Value
+require-medge	defun	../share/graphs/graph_core.lisp:433	require_medge(m : Value, ar : Value, e : Value) -> Value
+require-edge-in-graph	defun	../share/graphs/graph_core.lisp:443	require_edge_in_graph(m : Value, e : Value, gr : Value) -> Value
+m-edge-to-l-edge	defun	../share/graphs/graph_core.lisp:447	m_edge_to_l_edge(e : Value) -> Value
+m-edge-to-l-dedge	defun	../share/graphs/graph_core.lisp:451	m_edge_to_l_dedge(e : Value) -> Value
+l-edge-to-m-edge	defun	../share/graphs/graph_core.lisp:455	l_edge_to_m_edge(e : Value) -> Value
+$is_edge_in_graph	defmfun	../share/graphs/graph_core.lisp:458	d_is_edge_in_graph(e : Value, gr : Value) -> Value
+is-edge-in-graph	defun	../share/graphs/graph_core.lisp:465	is_h_edge_h_in_h_graph(e : Value, gr : Value) -> Value
+$add_edge	defmfun	../share/graphs/graph_core.lisp:470	d_add_edge(e : Value, gr : Value) -> Value
+$add_edges	defmfun	../share/graphs/graph_core.lisp:486	d_add_edges(el : Value, gr : Value) -> Value
+add-edge	defun	../share/graphs/graph_core.lisp:495	add_h_edge(e : Value, gr : Value) -> Value
+add-edges	defun	../share/graphs/graph_core.lisp:510	add_h_edges(elist : Value, gr : Value) -> Value
+$edges	defmfun	../share/graphs/graph_core.lisp:514	d_edges(gr : Value) -> Value
+edges	defun	../share/graphs/graph_core.lisp:520	edges(gr : Value) -> Value
+$remove_edge	defmfun	../share/graphs/graph_core.lisp:525	d_remove_edge(e : Value, gr : Value) -> Value
+$remove_edges	defmfun	../share/graphs/graph_core.lisp:535	d_remove_edges(el : Value, gr : Value) -> Value
+remove-edge	defun	../share/graphs/graph_core.lisp:543	remove_h_edge(e : Value, gr : Value) -> Value
+$contract_edge	defmfun	../share/graphs/graph_core.lisp:566	d_contract_edge(e : Value, gr : Value) -> Value
+$contract_edges	defmfun	../share/graphs/graph_core.lisp:578	d_contract_edges(el : Value, gr : Value) -> Value
+$get_edge_weight	defmfun	../share/graphs/graph_core.lisp:586	d_get_edge_weight(e : Value, gr : Value, default? : Value = Nil, not_present? : Value = Nil) -> Value
+get-edge-weight	defun	../share/graphs/graph_core.lisp:598	get_h_edge_h_weight(e : Value, gr : Value) -> Value
+$clear_edge_weight	defmfun	../share/graphs/graph_core.lisp:605	d_clear_edge_weight(e : Value, gr : Value) -> Value
+clear-edge-weight	defun	../share/graphs/graph_core.lisp:614	clear_h_edge_h_weight(e : Value, gr : Value) -> Value
+$set_edge_weight	defmfun	../share/graphs/graph_core.lisp:623	d_set_edge_weight(e : Value, w : Value, gr : Value) -> Value
+set-edge-weight	defun	../share/graphs/graph_core.lisp:632	set_h_edge_h_weight(e : Value, w : Value, gr : Value) -> Value
+$connect_vertices	defmfun	../share/graphs/graph_core.lisp:641	d_connect_vertices(sources : Value, sinks : Value, gr : Value) -> Value
+$subdivide_edge	defmfun	../share/graphs/graph_core.lisp:654	d_subdivide_edge(e : Value, gr : Value) -> Value
+new-set	defun	../share/graphs/graph_core.lisp:675	new_set(initial_content : Value) -> Value
+set-member	defun	../share/graphs/graph_core.lisp:681	set_member(obj : Value, set_ : Value) -> Value
+set-add	defun	../share/graphs/graph_core.lisp:684	set_add(obj : Value, set_ : Value) -> Value
+set-remove	defun	../share/graphs/graph_core.lisp:687	set_remove(obj : Value, set_ : Value) -> Value
+set-emptyp	defun	../share/graphs/graph_core.lisp:690	set_emptyp(set_ : Value) -> Value
+set-elements	defun	../share/graphs/graph_core.lisp:693	set_elements(set_ : Value) -> Value
+$empty_graph	defmfun	../share/graphs/graph_core.lisp:708	d_empty_graph(n : Value) -> Value
+$empty_digraph	defmfun	../share/graphs/graph_core.lisp:714	d_empty_digraph(n : Value) -> Value
+$create_graph	defmfun	../share/graphs/graph_core.lisp:720	d_create_graph(v_list : Value, e_list : Value, dir? : Value = Nil) -> Value
+$cycle_graph	defmfun	../share/graphs/graph_core.lisp:751	d_cycle_graph(n : Value) -> Value
+$cycle_digraph	defmfun	../share/graphs/graph_core.lisp:763	d_cycle_digraph(n : Value) -> Value
+$path_graph	defmfun	../share/graphs/graph_core.lisp:770	d_path_graph(n : Value) -> Value
+$path_digraph	defmfun	../share/graphs/graph_core.lisp:781	d_path_digraph(n : Value) -> Value
+$petersen_graph	defmfun	../share/graphs/graph_core.lisp:787	d_petersen_graph(n? : Value = Nil, d? : Value = Nil) -> Value
+$complement_graph	defmfun	../share/graphs/graph_core.lisp:815	d_complement_graph(gr : Value) -> Value
+$complete_graph	defmfun	../share/graphs/graph_core.lisp:829	d_complete_graph(n : Value) -> Value
+$from_adjacency_matrix	defmfun	../share/graphs/graph_core.lisp:847	d_from_adjacency_matrix(m : Value) -> Value
+$graph_union	defmfun	../share/graphs/graph_core.lisp:860	d_graph_union(gr_list : Value) -> Value
+graph-union	defun	../share/graphs/graph_core.lisp:871	graph_h_union(g1 : Value, g2 : Value) -> Value
+$graph_join	defmfun	../share/graphs/graph_core.lisp:885	d_graph_join(g1 : Value, g2 : Value) -> Value
+get-canonical-names	defun	../share/graphs/graph_core.lisp:902	get_canonical_names(l : Value) -> Value
+$graph_product	defmfun	../share/graphs/graph_core.lisp:909	d_graph_product(gr_list : Value) -> Value
+graph-product	defun	../share/graphs/graph_core.lisp:920	graph_h_product(g1 : Value, g2 : Value) -> Value
+$line_graph	defmfun	../share/graphs/graph_core.lisp:950	d_line_graph(gr : Value) -> Value
+$random_graph	defmfun	../share/graphs/graph_core.lisp:964	d_random_graph(n : Value, p : Value) -> Value
+$random_graph1	defmfun	../share/graphs/graph_core.lisp:978	d_random_graph1(n : Value, m : Value) -> Value
+$random_bipartite_graph	defmfun	../share/graphs/graph_core.lisp:999	d_random_bipartite_graph(a : Value, b : Value, p : Value) -> Value
+$random_digraph	defmfun	../share/graphs/graph_core.lisp:1011	d_random_digraph(n : Value, p : Value) -> Value
+$random_tournament	defmfun	../share/graphs/graph_core.lisp:1024	d_random_tournament(n : Value) -> Value
+$random_tree	defmfun	../share/graphs/graph_core.lisp:1036	d_random_tree(n : Value) -> Value
+$underlying_graph	defmfun	../share/graphs/graph_core.lisp:1052	d_underlying_graph(gr : Value) -> Value
+$induced_subgraph	defmfun	../share/graphs/graph_core.lisp:1064	d_induced_subgraph(vl : Value, gr : Value) -> Value
+$wheel_graph	defmfun	../share/graphs/graph_core.lisp:1085	d_wheel_graph(n : Value) -> Value
+$circulant_graph	defmfun	../share/graphs/graph_core.lisp:1102	d_circulant_graph(n : Value, l : Value) -> Value
+$connected_components	defmfun	../share/graphs/graph_core.lisp:1136	d_connected_components(gr : Value) -> Value
+$is_connected	defmfun	../share/graphs/graph_core.lisp:1155	d_is_connected(gr : Value) -> Value
+$is_tree	defmfun	../share/graphs/graph_core.lisp:1159	d_is_tree(gr : Value) -> Value
+$reachable_vertices	defmfun	../share/graphs/graph_core.lisp:1169	d_reachable_vertices(v : Value, gr : Value) -> Value
+$adjacency_matrix	defmfun	../share/graphs/graph_core.lisp:1193	d_adjacency_matrix(gr : Value) -> Value
+$laplacian_matrix	defmfun	../share/graphs/graph_core.lisp:1206	d_laplacian_matrix(gr : Value) -> Value
+$graph_charpoly	defmfun	../share/graphs/graph_core.lisp:1221	d_graph_charpoly(gr : Value, x : Value) -> Value
+$graph_eigenvalues	defmfun	../share/graphs/graph_core.lisp:1226	d_graph_eigenvalues(gr : Value) -> Value
+$girth	defmfun	../share/graphs/graph_core.lisp:1236	d_girth(gr : Value) -> Value
+$odd_girth	defmfun	../share/graphs/graph_core.lisp:1240	d_odd_girth(gr : Value) -> Value
+girth	defun	../share/graphs/graph_core.lisp:1244	girth(gr : Value, odd : Value) -> Value
+$vertex_eccentricity	defmfun	../share/graphs/graph_core.lisp:1279	d_vertex_eccentricity(v : Value, gr : Value) -> Value
+eccentricity	defun	../share/graphs/graph_core.lisp:1285	eccentricity(v_list : Value, gr : Value) -> Value
+$diameter	defmfun	../share/graphs/graph_core.lisp:1308	d_diameter(gr : Value) -> Value
+$radius	defmfun	../share/graphs/graph_core.lisp:1319	d_radius(gr : Value) -> Value
+$graph_center	defmfun	../share/graphs/graph_core.lisp:1330	d_graph_center(gr : Value) -> Value
+$graph_periphery	defmfun	../share/graphs/graph_core.lisp:1346	d_graph_periphery(gr : Value) -> Value
+$bipartition	defmfun	../share/graphs/graph_core.lisp:1367	d_bipartition(gr : Value) -> Value
+bi-partition	defun	../share/graphs/graph_core.lisp:1381	bi_partition(v : Value, gr : Value) -> Value
+$is_bipartite	defmfun	../share/graphs/graph_core.lisp:1407	d_is_bipartite(gr : Value) -> Value
+$biconnected_components	defmfun	../share/graphs/graph_core.lisp:1416	d_biconnected_components(gr : Value) -> Value
+$is_biconnected	defmfun	../share/graphs/graph_core.lisp:1429	d_is_biconnected(gr : Value) -> Value
+bicomponents	defun	../share/graphs/graph_core.lisp:1439	bicomponents(v : Value, gr : Value) -> Value
+dfs-bicomponents	defun	../share/graphs/graph_core.lisp:1460	dfs_bicomponents(gr : Value, w : Value) -> Value
+$strong_components	defmfun	../share/graphs/graph_core.lisp:1497	d_strong_components(gr : Value) -> Value
+$is_sconnected	defmfun	../share/graphs/graph_core.lisp:1515	d_is_sconnected(gr : Value) -> Value
+dfs-strong-components	defun	../share/graphs/graph_core.lisp:1519	dfs_strong_components(gr : Value, v : Value) -> Value
+$topological_sort	defmfun	../share/graphs/graph_core.lisp:1551	d_topological_sort(dag : Value) -> Value
+$max_flow	defmfun	../share/graphs/graph_core.lisp:1581	d_max_flow(net : Value, source : Value, sink : Value) -> Value
+$shortest_path	defmfun	../share/graphs/graph_core.lisp:1650	d_shortest_path(u : Value, v : Value, g : Value) -> Value
+$vertex_distance	defmfun	../share/graphs/graph_core.lisp:1677	d_vertex_distance(u : Value, v : Value, g : Value) -> Value
+edge-weight-1	defun	../share/graphs/graph_core.lisp:1693	edge_weight_1(e : Value, gr : Value) -> Value
+graph-edges-with-weights	defun	../share/graphs/graph_core.lisp:1697	graph_edges_with_weights(gr : Value) -> Value
+edges-by-weights	defun	../share/graphs/graph_core.lisp:1703	edges_by_weights(gr : Value) -> Value
+in-same-part	defun	../share/graphs/graph_core.lisp:1707	in_same_part(u : Value, v : Value, p : Value) -> Value
+join-parts	defun	../share/graphs/graph_core.lisp:1721	join_parts(u : Value, v : Value, p : Value) -> Value
+$minimum_spanning_tree	defmfun	../share/graphs/graph_core.lisp:1731	d_minimum_spanning_tree(gr : Value) -> Value
+$hamilton_cycle	defmfun	../share/graphs/graph_core.lisp:1753	d_hamilton_cycle(gr : Value) -> Value
+hamilton-cycle	defun	../share/graphs/graph_core.lisp:1762	hamilton_h_cycle(part : Value, gr : Value) -> Value
+$hamilton_path	defmfun	../share/graphs/graph_core.lisp:1782	d_hamilton_path(gr : Value) -> Value
+$vertices_by_degree	defmfun	../share/graphs/graph_core.lisp:1809	d_vertices_by_degree(gr : Value) -> Value
+vertices-by-degrees	defun	../share/graphs/graph_core.lisp:1813	vertices_h_by_h_degrees(gr : Value) -> Value
+greedy-color	defun	../share/graphs/graph_core.lisp:1820	greedy_color(gr : Value) -> Value
+$max_clique	defmfun	../share/graphs/graph_core.lisp:1836	d_max_clique(gr : Value) -> Value
+$min_vertex_cover	defmfun	../share/graphs/graph_core.lisp:1850	d_min_vertex_cover(gr : Value) -> Value
+$max_independent_set	defmfun	../share/graphs/graph_core.lisp:1862	d_max_independent_set(gr : Value) -> Value
+extend-clique	defun	../share/graphs/graph_core.lisp:1873	extend_clique(clique : Value, neigh : Value, coloring : Value, gr : Value) -> Value
+$vertex_coloring	defmfun	../share/graphs/graph_core.lisp:1901	d_vertex_coloring(g : Value) -> Value
+$chromatic_number	defmfun	../share/graphs/graph_core.lisp:1909	d_chromatic_number(g : Value) -> Value
+$edge_coloring	defmfun	../share/graphs/graph_core.lisp:1913	d_edge_coloring(gr : Value) -> Value
+$chromatic_index	defmfun	../share/graphs/graph_core.lisp:1935	d_chromatic_index(g : Value) -> Value
+dsatur	defun	../share/graphs/graph_core.lisp:1939	dsatur(g : Value) -> Value
+greedy-clique	defun	../share/graphs/graph_core.lisp:2078	greedy_clique(g : Value) -> Value
+extend-greedy-clique	defun	../share/graphs/graph_core.lisp:2086	extend_greedy_clique(clique : Value, neigh : Value, g : Value) -> Value
+$hash_table	defmfun	../share/graphs/graph_core.lisp:2111	d_hash_table() -> Value
+$get_hash	defmfun	../share/graphs/graph_core.lisp:2114	d_get_hash(elt_ : Value, ht : Value, default? : Value = Nil) -> Value
+$set_hash	defmfun	../share/graphs/graph_core.lisp:2119	d_set_hash(elt_ : Value, ht : Value, value : Value) -> Value
+$hash_table_data	defmfun	../share/graphs/graph_core.lisp:2125	d_hash_table_data(ht : Value) -> Value
+$temp_filename	defmfun	../share/graphs/graph_core.lisp:2141	d_temp_filename(file : Value) -> Value
+$read_string	defmfun	../share/graphs/graph_core.lisp:2146	d_read_string(str : Value) -> Value
+attractive-force	defun	../share/graphs/spring_embedding.lisp:42	attractive_force(d : Value) -> Value
+repulsive-force	defun	../share/graphs/spring_embedding.lisp:45	repulsive_force(d : Value) -> Value
+distance	defun	../share/graphs/spring_embedding.lisp:49	distance(p1 : Value, p2 : Value) -> Value
+random-positions	defun	../share/graphs/spring_embedding.lisp:53	random_positions(v_list : Value, dimension : Value) -> Value
+$spring_embedding	defmfun	../share/graphs/spring_embedding.lisp:72	d_spring_embedding(g : Value, depth : Value, fixed_vertices : Value, dimension : Value, continue_ : Value) -> Value
+$is_isomorphic	defmfun	../share/graphs/isomorphism.lisp:22	d_is_isomorphic(gr1 : Value, gr2 : Value) -> Value
+$isomorphism	defmfun	../share/graphs/isomorphism.lisp:27	d_isomorphism(gr1 : Value, gr2 : Value) -> Value
+isomorphism-graphs	defun	../share/graphs/isomorphism.lisp:53	isomorphism_graphs(gr1 : Value, gr2 : Value) -> Value
+extend-isomorphism-graphs	defun	../share/graphs/isomorphism.lisp:80	extend_isomorphism_graphs(mapping : Value, m1 : Value, m2 : Value, out1 : Value, out2 : Value, gr1 : Value, gr2 : Value) -> Value
+isomorphism-digraphs	defun	../share/graphs/isomorphism.lisp:153	isomorphism_digraphs(gr1 : Value, gr2 : Value) -> Value
+extend-isomorphism-digraphs	defun	../share/graphs/isomorphism.lisp:183	extend_isomorphism_digraphs(mapping : Value, m1 : Value, m2 : Value, out1 : Value, out2 : Value, in1 : Value, in2 : Value, gr1 : Value, gr2 : Value) -> Value
+$max_matching	defmfun	../share/graphs/matching.lisp:30	d_max_matching(gr : Value) -> Value
+maximum-matching-bipartite	defun	../share/graphs/matching.lisp:42	maximum_matching_bipartite(gr : Value, a : Value, b : Value, cover? : Value = Nil) -> Value
+get-cover-from-matching	defun	../share/graphs/matching.lisp:117	get_cover_from_matching(gr : Value, a : Value, matching : Value) -> Value
+main-vertex	defun	../share/graphs/matching.lisp:159	main_vertex(v : Value, sp : Value) -> Value
+join-sets	defun	../share/graphs/matching.lisp:166	join_sets(v : Value, u : Value, sp : Value) -> Value
+set-main-vertex	defun	../share/graphs/matching.lisp:170	set_main_vertex(m : Value, v : Value, sp : Value) -> Value
+maximum-matching-general	defun	../share/graphs/matching.lisp:185	maximum_matching_general(gr : Value) -> Value
+find-augmenting-path	defun	../share/graphs/matching.lisp:314	find_augmenting_path(a : Value, b : Value) -> Value
+find-augmenting-path-1	defun	../share/graphs/matching.lisp:329	find_augmenting_path_1(a : Value, b : Value) -> Value
+get-n	defun	../share/graphs/graph6.lisp:42	get_n(n : Value) -> Value
+get-r	defun	../share/graphs/graph6.lisp:50	get_r(n : Value) -> Value
+$graph6_encode	defmfun	../share/graphs/graph6.lisp:62	d_graph6_encode(gr : Value) -> Value
+graph6-string	defun	../share/graphs/graph6.lisp:66	graph6_string(gr : Value) -> Value
+$graph6_export	defmfun	../share/graphs/graph6.lisp:90	d_graph6_export(graphs : Value, fl : Value) -> Value
+$graph6_decode	defmfun	../share/graphs/graph6.lisp:105	d_graph6_decode(str : Value) -> Value
+$graph6_import	defmfun	../share/graphs/graph6.lisp:152	d_graph6_import(fl : Value) -> Value
+$sparse6_decode	defmfun	../share/graphs/graph6.lisp:168	d_sparse6_decode(str : Value) -> Value
+$sparse6_import	defmfun	../share/graphs/graph6.lisp:228	d_sparse6_import(fl : Value) -> Value
+$sparse6_encode	defmfun	../share/graphs/graph6.lisp:244	d_sparse6_encode(gr : Value) -> Value
+sparse6-string	defun	../share/graphs/graph6.lisp:248	sparse6_string(gr : Value) -> Value
+$sparse6_export	defmfun	../share/graphs/graph6.lisp:287	d_sparse6_export(graphs : Value, fl : Value) -> Value
+$dig6_encode	defmfun	../share/graphs/graph6.lisp:303	d_dig6_encode(gr : Value) -> Value
+dig6-string	defun	../share/graphs/graph6.lisp:307	dig6_string(gr : Value) -> Value
+$dig6_export	defmfun	../share/graphs/graph6.lisp:331	d_dig6_export(graphs : Value, fl : Value) -> Value
+$dig6_decode	defmfun	../share/graphs/graph6.lisp:342	d_dig6_decode(str : Value) -> Value
+$dig6_import	defmfun	../share/graphs/graph6.lisp:385	d_dig6_import(fl : Value) -> Value
+find-cycle	defun	../share/graphs/demoucron.lisp:47	find_h_cycle(gr : Value) -> Value
+dfs-find-cycle	defun	../share/graphs/demoucron.lisp:67	dfs_find_cycle(v : Value, gr : Value) -> Value
+$find_cycle	defmfun	../share/graphs/demoucron.lisp:78	d_find_cycle(gr : Value) -> Value
+find-facial-walks	defun	../share/graphs/demoucron.lisp:100	find_facial_walks(edges : Value) -> Value
+find-bridges	defun	../share/graphs/demoucron.lisp:131	find_bridges(gr : Value) -> Value
+dfs-find-bridge	defun	../share/graphs/demoucron.lisp:147	dfs_find_bridge(v : Value, gr : Value) -> Value
+match-bridges-to-walks	defun	../share/graphs/demoucron.lisp:166	match_bridges_to_walks() -> Value
+find-path	defun	../share/graphs/demoucron.lisp:182	find_path(bridge : Value, gr : Value) -> Value
+dfs-find-path	defun	../share/graphs/demoucron.lisp:200	dfs_find_path(v : Value, bridge : Value, gr : Value) -> Value
+embedd-path	defun	../share/graphs/demoucron.lisp:215	embedd_path(path : Value, face : Value) -> Value
+demoucron	defun	../share/graphs/demoucron.lisp:287	demoucron(g : Value, return_walks : Value) -> Value
+$planar_embedding	defmfun	../share/graphs/demoucron.lisp:378	d_planar_embedding(gr : Value) -> Value
+$is_planar	defmfun	../share/graphs/demoucron.lisp:384	d_is_planar(gr : Value) -> Value
+is-planar-unconnected	defun	../share/graphs/demoucron.lisp:401	is_planar_unconnected(g : Value) -> Value
+graphs-pqueue-insert	defun	../share/graphs/dijkstra.lisp:35	graphs_pqueue_insert(v : Value, w : Value, queue : Value) -> Value
+graphs-pqueue-emptyp	defun	../share/graphs/dijkstra.lisp:70	graphs_pqueue_emptyp(queue : Value) -> Value
+graphs-pqueue-first	defun	../share/graphs/dijkstra.lisp:73	graphs_pqueue_first(queue : Value) -> Value
+graphs-pqueue-get-weight	defun	../share/graphs/dijkstra.lisp:76	graphs_pqueue_get_weight(v : Value, queue : Value) -> Value
+graphs-pqueue-pop	defun	../share/graphs/dijkstra.lisp:79	graphs_pqueue_pop(queue : Value) -> Value
+graphs-pqueue-contains	defun	../share/graphs/dijkstra.lisp:118	graphs_pqueue_contains(v : Value, queue : Value) -> Value
+graphs-pqueue-set-weight	defun	../share/graphs/dijkstra.lisp:122	graphs_pqueue_set_weight(v : Value, w : Value, queue : Value) -> Value
+dijkstra	defun	../share/graphs/dijkstra.lisp:144	dijkstra(v : Value, v1 : Value, g : Value) -> (Value, Value)
+$shortest_weighted_path	defmfun	../share/graphs/dijkstra.lisp:186	d_shortest_weighted_path(v : Value, u : Value, g : Value) -> Value
+find-option	defun	../share/graphs/wiener_index.lisp:38	find_option(opt : Value, options : Value, default? : Value = Nil) -> Value
+$floyd_warshall	defmfun	../share/graphs/wiener_index.lisp:45	d_floyd_warshall(g : Value, options : Value) -> Value
+bellman-ford	defun	../share/graphs/wiener_index.lisp:100	bellman_ford(s : Value, g : Value) -> (Value, Value)
+$johnson	defmfun	../share/graphs/wiener_index.lisp:137	d_johnson(g : Value, options : Value) -> Value
+wiener-index	defun	../share/graphs/wiener_index.lisp:196	wiener_h_index(g : Value) -> Value
+$wiener_index	defmfun	../share/graphs/wiener_index.lisp:260	d_wiener_index(g : Value, options : Value) -> Value
+maxima-fft::mgetarray	defun	../share/numeric/fft-core.lisp:6	maxima_fft_mgetarray(marg : Value) -> Value
+maxima-fft::fft-arg-check	defun	../share/numeric/fft-core.lisp:12	maxima_fft_fft_arg_check(user_fcn_name : Value, ary : Value) -> Value
+maxima-fft::make-empty-copy	defun	../share/numeric/fft-core.lisp:20	maxima_fft_make_empty_copy(a : Value) -> Value
+maxima-fft::complex-to-polar	defun	../share/numeric/fft-core.lisp:33	maxima_fft_complex_to_polar(re : Value, im : Value) -> Value
+maxima-fft::polar-to-complex	defun	../share/numeric/fft-core.lisp:40	maxima_fft_polar_to_complex(mag : Value, phase_ : Value) -> Value
+maxima-fft::log-base2	defun	../share/numeric/fft-core.lisp:48	maxima_fft_log_base2(n : Value) -> Value
+maxima-fft::sincos-table	defun	../share/numeric/fft-core.lisp:64	maxima_fft_sincos_table(m : Value) -> Value
+maxima-fft::mlist->complex-cl-vector	defun	../share/numeric/fft-core.lisp:89	maxima_fft_mlist__gtcomplex_cl_vector(object_ : Value) -> Value
+maxima-fft::complex-cl-vector->mlist	defun	../share/numeric/fft-core.lisp:101	maxima_fft_complex_cl_vector__gtmlist(array : Value) -> Value
+maxima-fft::array->complex-cl-vector	defun	../share/numeric/fft-core.lisp:110	maxima_fft_array__gtcomplex_cl_vector(array : Value) -> Value
+maxima-fft::complex-cl-vector->vector	defun	../share/numeric/fft-core.lisp:120	maxima_fft_complex_cl_vector__gtvector(array : Value) -> Value
+maxima-fft::find-complex-fft-converters	defun	../share/numeric/fft-core.lisp:132	maxima_fft_find_complex_fft_converters(object_ : Value, maxima_function_name? : Value = Str("fft")) -> (Value, Value)
+maxima-fft::fft-r2-nn	defun	../share/numeric/fft-core.lisp:168	maxima_fft_fft_r2_nn(x : Value, inverse_fft_p? : Value = Nil) -> Value
+maxima-fft::mlist->rfft-vector	defun	../share/numeric/fft-core.lisp:240	maxima_fft_mlist__gtrfft_vector(object_ : Value) -> Value
+maxima-fft::array->rfft-vector	defun	../share/numeric/fft-core.lisp:253	maxima_fft_array__gtrfft_vector(array : Value) -> Value
+maxima-fft::find-rfft-converters	defun	../share/numeric/fft-core.lisp:267	maxima_fft_find_rfft_converters(object_ : Value) -> (Value, Value, Value)
+maxima-fft::find-irfft-converters	defun	../share/numeric/fft-core.lisp:305	maxima_fft_find_irfft_converters(object_ : Value) -> (Value, Value)
+maxima-fft::seq->bfft-vector	defun	../share/numeric/fft-core.lisp:345	maxima_fft_seq__gtbfft_vector(seq : Value) -> Value
+maxima-fft::mlist->bfft-vector	defun	../share/numeric/fft-core.lisp:352	maxima_fft_mlist__gtbfft_vector(mlist : Value) -> Value
+maxima-fft::lisp-array->bfft-vector	defun	../share/numeric/fft-core.lisp:355	maxima_fft_lisp_array__gtbfft_vector(arr : Value) -> Value
+maxima-fft::bfft-vector->seq	defun	../share/numeric/fft-core.lisp:358	maxima_fft_bfft_vector__gtseq(arr : Value, seqtype : Value) -> Value
+maxima-fft::bfft-vector->mlist	defun	../share/numeric/fft-core.lisp:361	maxima_fft_bfft_vector__gtmlist(arr : Value) -> Value
+maxima-fft::bfft-vector->lisp-array	defun	../share/numeric/fft-core.lisp:364	maxima_fft_bfft_vector__gtlisp_array(arr : Value) -> Value
+maxima-fft::bfft-vector->maxima-symbol-array	defun	../share/numeric/fft-core.lisp:367	maxima_fft_bfft_vector__gtmaxima_symbol_array(arr : Value) -> Value
+maxima-fft::find-bf-fft-converter	defun	../share/numeric/fft-core.lisp:377	maxima_fft_find_bf_fft_converter(input : Value, name? : Value = Str("bf_fft")) -> (Value, Value)
+maxima-fft::mlist->bf-rfft-vector	defun	../share/numeric/fft-core.lisp:395	maxima_fft_mlist__gtbf_rfft_vector(object_ : Value) -> Value
+maxima-fft::lisp-array->bf-rfft-vector	defun	../share/numeric/fft-core.lisp:405	maxima_fft_lisp_array__gtbf_rfft_vector(object_ : Value) -> Value
+maxima-fft::find-bf-rfft-converters	defun	../share/numeric/fft-core.lisp:414	maxima_fft_find_bf_rfft_converters(object_ : Value) -> (Value, Value)
+maxima-fft::find-bf-irfft-converters	defun	../share/numeric/fft-core.lisp:437	maxima_fft_find_bf_irfft_converters(object_ : Value) -> (Value, Value)
+bigfloat::sincos-table	defun	../share/numeric/fft-core.lisp:475	bf_sincos_table(m : Value) -> Value
+bigfloat::fft-r2-nn	defun	../share/numeric/fft-core.lisp:502	bf_fft_r2_nn(x : Value, inverse_fft_p? : Value = Nil) -> Value
+fft-converted	defun	../share/numeric/fft-interface.lisp:10	fft_converted(ary : Value, fast_ary : Value) -> Value
+$recttopolar	defun	../share/numeric/fft-interface.lisp:17	d_recttopolar(rary : Value, iary : Value) -> Value
+$polartorect	defun	../share/numeric/fft-interface.lisp:25	d_polartorect(rary : Value, iary : Value) -> Value
+$fft	defun	../share/numeric/fft-interface.lisp:34	d_fft(input : Value) -> Value
+$inverse_fft	defun	../share/numeric/fft-interface.lisp:46	d_inverse_fft(input : Value) -> Value
+$real_fft	defun	../share/numeric/fft-interface.lisp:63	d_real_fft(input : Value) -> Value
+$inverse_real_fft	defun	../share/numeric/fft-interface.lisp:117	d_inverse_real_fft(input : Value) -> Value
+$bf_fft	defun	../share/numeric/fft-interface.lisp:152	d_bf_fft(input : Value) -> Value
+$bf_inverse_fft	defun	../share/numeric/fft-interface.lisp:162	d_bf_inverse_fft(input : Value) -> Value
+$bf_real_fft	defun	../share/numeric/fft-interface.lisp:172	d_bf_real_fft(input : Value) -> Value
+$bf_inverse_real_fft	defun	../share/numeric/fft-interface.lisp:212	d_bf_inverse_real_fft(input : Value) -> Value
+$decimalfptrim	defmfun	../share/numeric/decfp-core.lisp:45	d_decimalfptrim(b : Value) -> Value
+decimalfptrim	defun	../share/numeric/decfp-core.lisp:52	decimalfptrim(f : Value, flag? : Value) -> Value
+decimalround	defun	../share/numeric/decfp-core.lisp:69	decimalround(s : Value, e : Value, ad : Value) -> Value
+flatsize10	defun	../share/numeric/decfp-core.lisp:118	flatsize10(r : Value) -> Value
+wxxml-bigfloat	defun	../share/numeric/decfp-core.lisp:144	wxxml_bigfloat(x : Value, l : Value, r : Value) -> Value
+decimalfpp	defun	../share/numeric/decfp-core.lisp:147	decimalfpp(x : Value) -> Value
+binaryfpp	defun	../share/numeric/decfp-core.lisp:150	binaryfpp(x : Value) -> Value
+decfpformat	defun	../share/numeric/decfp-core.lisp:161	decfpformat(l : Value) -> Value
+decfloat-from-fp	defun	../share/numeric/decfp-core.lisp:242	decfloat_from_fp(x : Value) -> Value
+decfp2flo	defun	../share/numeric/decfp-core.lisp:246	decfp2flo(l : Value) -> Value
+decbcons	defun	../share/numeric/decfp-core.lisp:277	decbcons(s : Value) -> Value
+$decbfloat	defmfun	../share/numeric/decfp-core.lisp:314	d_decbfloat(x : Value) -> Value
+decfppower	defun	../share/numeric/decfp-core.lisp:335	decfppower(ba : Value, e : Value) -> Value
+$binarybfloat	defmfun	../share/numeric/decfp-core.lisp:340	d_binarybfloat(x : Value) -> Value
+make-decimalfp-prog	defun	../share/numeric/decfp-core.lisp:406	make_decimalfp_prog(j : Value) -> Value
+decmabsbigfloat	defun	../share/numeric/decfp-core.lisp:425	decmabsbigfloat(l : Value) -> Value
+decfp2binfp	defun	../share/numeric/decfp-core.lisp:445	decfp2binfp(f : Value) -> Value
+decaddbigfloat	defun	../share/numeric/decfp-core.lisp:452	decaddbigfloat(h : Value) -> Value
+decrat2fp	defun	../share/numeric/decfp-core.lisp:489	decrat2fp(r : Value) -> Value
+decintofp	defun	../share/numeric/decfp-core.lisp:507	decintofp(l : Value) -> Value
+decfpquotient	defun	../share/numeric/decfp-core.lisp:517	decfpquotient(a : Value, b : Value) -> Value
+decfpdifference	defun	../share/numeric/decfp-core.lisp:525	decfpdifference(a : Value, b : Value) -> Value
+decfpminus	defun	../share/numeric/decfp-core.lisp:528	decfpminus(x : Value) -> Value
+decfpplus	defun	../share/numeric/decfp-core.lisp:533	decfpplus(a : Value, b : Value) -> Value
+dectimesbigfloat	defun	../share/numeric/decfp-core.lisp:547	dectimesbigfloat(h : Value) -> Value
+decfptimes	defun	../share/numeric/decfp-core.lisp:577	decfptimes(a : Value, b : Value) -> Value
+decfptimes*	defun	../share/numeric/decfp-core.lisp:579	decfptimes_star(a : Value, b : Value) -> Value
+decfpintexpt	defun	../share/numeric/decfp-core.lisp:586	decfpintexpt(int_ : Value, nn : Value, fixprec : Value) -> Value
+decfpone	defun	../share/numeric/decfp-core.lisp:595	decfpone() -> Value
+advise-fun-simp	defun	../share/numeric/decfp-core.lisp:792	advise_fun_simp(r : Value, test_ : Value, var_ : Value, val : Value) -> Value
+$decimalfpp	defmfun	../share/numeric/decfp-core.lisp:816	d_decimalfpp(x : Value) -> Value
+$pslq_integer_relation	defmfun	../share/pslq/pslq_integer_relation.lisp:64	d_pslq_integer_relation(l : Value) -> Value
+pslq-mabs	defun	../share/pslq/pslq_integer_relation.lisp:94	pslq_mabs(x : Value) -> Value
+pslq-nearest-integer	defun	../share/pslq/pslq_integer_relation.lisp:97	pslq_nearest_integer(x : Value) -> Value
+my-write-lisp-array	defun	../share/pslq/pslq_integer_relation.lisp:103	my_write_lisp_array(a : Value, s : Value, args : Value) -> Value
+pslq-integer-relations	defun	../share/pslq/pslq_integer_relation.lisp:116	pslq_integer_relations(x : Value, n : Value) -> Value
+badargcheck	defun	../share/contrib/bitwise/bitwise.lisp:67	badargcheck(a : Value, f : Value, n : Value) -> Value
+simp-bit-not	defun	../share/contrib/bitwise/bitwise.lisp:80	simp_bit_not(a : Value, tmp : Value, z : Value) -> Value
+simp-bit-and	defun	../share/contrib/bitwise/bitwise.lisp:100	simp_bit_and(args : Value, tmp : Value, z : Value) -> Value
+sorted-remove-pairs	defun	../share/contrib/bitwise/bitwise.lisp:161	sorted_remove_pairs(l : Value) -> Value
+remove-twos-complement	defun	../share/contrib/bitwise/bitwise.lisp:169	remove_twos_complement(n : Value, l : Value) -> Value
+simp-bit-xor	defun	../share/contrib/bitwise/bitwise.lisp:183	simp_bit_xor(args : Value, tmp : Value, z : Value) -> Value
+simp-bit-or	defun	../share/contrib/bitwise/bitwise.lisp:275	simp_bit_or(args : Value, tmp : Value, z : Value) -> Value
+simp-bit-lsh	defun	../share/contrib/bitwise/bitwise.lisp:347	simp_bit_lsh(e : Value, tmp : Value, z : Value) -> Value
+simp-bit-rsh	defun	../share/contrib/bitwise/bitwise.lisp:367	simp_bit_rsh(e : Value, tmp : Value, z : Value) -> Value
+simp-bit-onep	defun	../share/contrib/bitwise/bitwise.lisp:382	simp_bit_onep(e : Value, tmp : Value, z : Value) -> Value
+simp-bit-length	defun	../share/contrib/bitwise/bitwise.lisp:420	simp_bit_length(a : Value, tmp : Value, z : Value) -> Value
+max-to-abs	defun	../share/to_poly_solve/to_poly.lisp:23	max_to_abs(e : Value) -> Value
+min-to-abs	defun	../share/to_poly_solve/to_poly.lisp:26	min_to_abs(e : Value) -> Value
+convert-from-max-min-to-abs	defun	../share/to_poly_solve/to_poly.lisp:29	convert_from_max_min_to_abs(e : Value) -> Value
+maxima-variable-p	defun	../share/to_poly_solve/to_poly.lisp:35	maxima_variable_p(e : Value) -> Value
+list-subst	defun	../share/to_poly_solve/to_poly.lisp:38	list_subst(l : Value, p : Value) -> Value
+$to_poly	defun	../share/to_poly_solve/to_poly.lisp:47	d_to_poly(p : Value, vars? : Value = q_convert_all_vars) -> Value
+to-polynomial	defun	../share/to_poly_solve/to_poly.lisp:105	to_polynomial(p : Value, vars : Value, convert_cnst : Value) -> Value
+require-maxima-variable	defun	../share/to_poly_solve/to_poly.lisp:222	require_maxima_variable(x : Value, context_string : Value) -> Value
+suppress-multiple-zeros	defun	../share/to_poly_solve/to_poly.lisp:235	suppress_multiple_zeros(q : Value) -> Value
+$eliminate_using	defun	../share/to_poly_solve/to_poly.lisp:245	d_eliminate_using(eqs : Value, eq_ : Value, x : Value) -> Value
+eliminate-using	defun	../share/to_poly_solve/to_poly.lisp:266	eliminate_using(eqs : Value, eq_ : Value, x : Value) -> Value
+degree-upper-bound	defun	../share/to_poly_solve/to_poly.lisp:272	degree_upper_bound(p : Value, vars : Value) -> Value
+unk-eliminate	defun	../share/to_poly_solve/to_poly.lisp:289	unk_eliminate(eqs : Value, vars : Value, pivots? : Value = Nil) -> Value
+$elim	defun	../share/to_poly_solve/to_poly.lisp:323	d_elim(eqs : Value, x : Value) -> Value
+$elim_allbut	defun	../share/to_poly_solve/to_poly.lisp:343	d_elim_allbut(eqs : Value, x : Value) -> Value
+gather-args	defun	../share/to_poly_solve/to_poly.lisp:360	gather_args(e : Value, op : Value, vars : Value) -> Value
+gather-nonrational-powers	defun	../share/to_poly_solve/to_poly.lisp:372	gather_nonrational_powers(e : Value, vars : Value) -> Value
+gather-exp-args	defun	../share/to_poly_solve/to_poly.lisp:381	gather_exp_args(e : Value, vars : Value) -> Value
+$linearly_dependent_p	defun	../share/to_poly_solve/to_poly.lisp:391	d_linearly_dependent_p(a : Value, b : Value) -> Value
+linearly-dependent-p	defun	../share/to_poly_solve/to_poly.lisp:394	linearly_dependent_p(a : Value, b : Value) -> Value
+exponentialize-if	defun	../share/to_poly_solve/to_poly.lisp:399	exponentialize_if(e : Value, vars : Value) -> Value
+logarc-if	defun	../share/to_poly_solve/to_poly.lisp:404	logarc_if(e : Value, vars : Value) -> Value
+non-algebraic-subst	defun	../share/to_poly_solve/to_poly.lisp:409	non_algebraic_subst(e : Value, vars : Value) -> (Value, Value)
+non-algebraic-subst-list	defun	../share/to_poly_solve/to_poly.lisp:452	non_algebraic_subst_list(l : Value, vars : Value) -> (Value, Value)
+simp-parg	defun	../share/to_poly_solve/to_poly.lisp:501	simp_parg(e : Value, yy : Value, z : Value) -> Value
+simp-isreal-p	defun	../share/to_poly_solve/to_poly.lisp:547	simp_isreal_p(e : Value, yy : Value, z : Value) -> Value
+$new_variable	defun	../share/to_poly_solve/to_poly.lisp:582	d_new_variable(type_ : Value) -> Value
+new-gentemp	defun	../share/to_poly_solve/to_poly.lisp:585	new_gentemp(type_ : Value) -> Value
+$nicedummies	defun	../share/to_poly_solve/to_poly.lisp:618	d_nicedummies(e : Value) -> Value
+$complex_number_p	defun	../share/to_poly_solve/to_poly.lisp:665	d_complex_number_p(e : Value) -> Value
+get-number-args	defun	../share/pdiff/pdiff.lisp:33	get_number_args(f : Value) -> Value
+simp-pderivop	defun	../share/pdiff/pdiff.lisp:69	simp_pderivop(x : Value, yy : Value, z : Value) -> Value
+mapply-pdiff	defun	../share/pdiff/pdiff.lisp:120	mapply_pdiff(fn_ : Value, args : Value, fnname : Value, form : Value) -> Value
+sdiffgrad-pdiff	defun	../share/pdiff/pdiff.lisp:133	sdiffgrad_pdiff(e : Value, x : Value) -> Value
+dimension-pderiv	defun	../share/pdiff/pdiff.lisp:168	dimension_pderiv(form : Value, result : Value) -> Value
+tex-pderivop	defun	../share/pdiff/pdiff.lisp:241	tex_pderivop(x : Value, l : Value, r : Value) -> Value
+$convert_to_diff	defun	../share/pdiff/pdiff.lisp:280	d_convert_to_diff(e : Value) -> Value
+romberg-subr	defun	../share/numeric/romberg.lisp:25	romberg_subr(f : Value, left : Value, right : Value) -> (Value, Value, Value)
+$romberg	defun	../share/numeric/romberg.lisp:94	d_romberg(args : Value) -> Value
+defined-functionp	defun	../share/contrib/simplifying.lisp:32	defined_functionp(ex : Value) -> Value
+$simplifying	defun	../share/contrib/simplifying.lisp:53	d_simplifying(f : Value, simplifier : Value) -> Value
+$simpfuncall	defun	../share/contrib/simplifying.lisp:70	d_simpfuncall(fun : Value, args : Value) -> Value
+$simpfunmake	defun	../share/contrib/simplifying.lisp:72	d_simpfunmake(fun : Value, args : Value) -> Value
+simpfunmake	defun	../share/contrib/simplifying.lisp:78	simpfunmake(fun : Value, args : Value) -> Value
+simpcons	defmfun	../share/contrib/simplifying.lisp:88	simpcons(op : Value, args : Value) -> Value
+user-simplifying	defun	../share/contrib/simplifying.lisp:94	user_simplifying(l : Value, ignore_ : Value, simpflag : Value) -> Value
+$cyclep	defmfun	../share/combinatorics/combinatorics.lisp:85	d_cyclep(cm : Value, n : Value) -> Value
+$permp	defmfun	../share/combinatorics/combinatorics.lisp:98	d_permp(pm : Value) -> Value
+check-perm	defun	../share/combinatorics/combinatorics.lisp:104	check_perm(pm : Value, caller : Value) -> Value
+check-cycle	defun	../share/combinatorics/combinatorics.lisp:108	check_cycle(cm : Value, n : Value, caller : Value) -> Value
+check-list-or-set	defun	../share/combinatorics/combinatorics.lisp:112	check_list_or_set(lsm : Value, caller : Value) -> Value
+check-list	defun	../share/combinatorics/combinatorics.lisp:116	check_list(lm : Value, caller : Value) -> Value
+check-list-length	defun	../share/combinatorics/combinatorics.lisp:120	check_list_length(lm : Value, n : Value, caller : Value) -> Value
+check-pos-integer	defun	../share/combinatorics/combinatorics.lisp:124	check_pos_integer(n : Value, caller : Value) -> Value
+check-integer-n1-n2	defun	../share/combinatorics/combinatorics.lisp:128	check_integer_n1_n2(r : Value, n1 : Value, n2 : Value, caller : Value) -> Value
+$permult	defmfun	../share/combinatorics/combinatorics.lisp:134	d_permult(pm : Value, lmpm : Value) -> Value
+$perm_inverse	defmfun	../share/combinatorics/combinatorics.lisp:148	d_perm_inverse(pm : Value) -> Value
+$permute	defmfun	../share/combinatorics/combinatorics.lisp:159	d_permute(pm : Value, lsm : Value) -> Value
+$apply_cycles	defmfun	../share/combinatorics/combinatorics.lisp:170	d_apply_cycles(lmcm : Value, lsm : Value) -> Value
+$perm_undecomp	defmfun	../share/combinatorics/combinatorics.lisp:186	d_perm_undecomp(lmcm : Value, n : Value) -> Value
+$perm_cycles	defmfun	../share/combinatorics/combinatorics.lisp:194	d_perm_cycles(pm : Value) -> Value
+$perm_lex_rank	defmfun	../share/combinatorics/combinatorics.lisp:216	d_perm_lex_rank(pm : Value) -> Value
+$perm_length	defmfun	../share/combinatorics/combinatorics.lisp:228	d_perm_length(pm : Value) -> Value
+$perm_decomp	defmfun	../share/combinatorics/combinatorics.lisp:240	d_perm_decomp(pm : Value) -> Value
+$perm_parity	defmfun	../share/combinatorics/combinatorics.lisp:253	d_perm_parity(pm : Value) -> Value
+perm-parity	defun	../share/combinatorics/combinatorics.lisp:259	perm_parity(n : Value, p : Value) -> Value
+$perms_lex	defmfun	../share/combinatorics/combinatorics.lisp:270	d_perms_lex(n : Value, r0? : Value = Nil, rf? : Value = Nil) -> Value
+$perm_lex_next	defmfun	../share/combinatorics/combinatorics.lisp:291	d_perm_lex_next(pm : Value) -> Value
+$perm_lex_unrank	defmfun	../share/combinatorics/combinatorics.lisp:301	d_perm_lex_unrank(n : Value, r : Value) -> Value
+perm-lex-next	defun	../share/combinatorics/combinatorics.lisp:311	perm_lex_next(n : Value, pa : Value) -> Value
+perm-lex-unrank	defun	../share/combinatorics/combinatorics.lisp:328	perm_lex_unrank(n : Value, r : Value, pa : Value) -> Value
+$perms	defmfun	../share/combinatorics/combinatorics.lisp:345	d_perms(n : Value, r0? : Value = Nil, rf? : Value = Nil) -> Value
+$perm_unrank	defmfun	../share/combinatorics/combinatorics.lisp:367	d_perm_unrank(n : Value, r : Value) -> Value
+$perm_rank	defmfun	../share/combinatorics/combinatorics.lisp:377	d_perm_rank(pm : Value) -> Value
+perm-unrank	defun	../share/combinatorics/combinatorics.lisp:393	perm_unrank(n : Value, r : Value, pa : Value) -> Value
+transposition-next	defun	../share/combinatorics/combinatorics.lisp:416	transposition_next(n : Value, r : Value) -> (Value, Value)
+$perm_next	defmfun	../share/combinatorics/combinatorics.lisp:429	d_perm_next(pm : Value) -> Value
+$random_perm	defmfun	../share/combinatorics/combinatorics.lisp:440	d_random_perm(n : Value) -> Value
+$idummy	defmfun	../share/tensor/itensor.lisp:74	d_idummy() -> Value
+isprod	defun	../share/tensor/itensor.lisp:81	isprod(x : Value) -> Value
+derat	defun	../share/tensor/itensor.lisp:86	derat(x : Value) -> Value
+plusi	defun	../share/tensor/itensor.lisp:95	plusi(l : Value) -> Value
+minusi	defun	../share/tensor/itensor.lisp:105	minusi(l : Value) -> Value
+covi	defun	../share/tensor/itensor.lisp:119	covi(rp : Value) -> Value
+conti	defun	../share/tensor/itensor.lisp:120	conti(rp : Value) -> Value
+deri	defun	../share/tensor/itensor.lisp:121	deri(rp : Value) -> Value
+name	defun	../share/tensor/itensor.lisp:122	name(rp : Value) -> Value
+$covi	defmfun	../share/tensor/itensor.lisp:123	d_covi(rp : Value) -> Value
+$conti	defmfun	../share/tensor/itensor.lisp:127	d_conti(rp : Value) -> Value
+$deri	defmfun	../share/tensor/itensor.lisp:131	d_deri(rp : Value) -> Value
+$name	defmfun	../share/tensor/itensor.lisp:135	d_name(rp : Value) -> Value
+$defcon	defmfun	../share/tensor/itensor.lisp:147	d_defcon(n : Value) -> Value
+$dispcon	defmspec	../share/tensor/itensor.lisp:160	d_dispcon(a : Value) -> Value
+$remcon	defmspec	../share/tensor/itensor.lisp:183	d_remcon(a : Value) -> Value
+getcon	defun	../share/tensor/itensor.lisp:192	getcon(e : Value) -> Value
+rpobj	defun	../share/tensor/itensor.lisp:197	rpobj(e : Value) -> Value
+$imetric	defmfun	../share/tensor/itensor.lisp:212	d_imetric(v : Value) -> Value
+mysubst0	defun	../share/tensor/itensor.lisp:214	mysubst0(new_ : Value, old : Value) -> Value
+cov	defun	../share/tensor/itensor.lisp:217	cov(a : Value, b : Value) -> Value
+contr	defun	../share/tensor/itensor.lisp:224	contr(a : Value, b : Value) -> Value
+diffcov	defun	../share/tensor/itensor.lisp:231	diffcov(a : Value, b : Value, d : Value) -> Value
+$ichr1	defmfun	../share/tensor/itensor.lisp:242	d_ichr1(nargs : Value) -> Value
+$ichr2	defmfun	../share/tensor/itensor.lisp:286	d_ichr2(nargs : Value) -> Value
+$icurvature	defmfun	../share/tensor/itensor.lisp:323	d_icurvature(l1 : Value, l2 : Value) -> Value
+covsubst	defun	../share/tensor/itensor.lisp:361	covsubst(x : Value, y : Value, rp : Value) -> Value
+consubst	defun	../share/tensor/itensor.lisp:364	consubst(x : Value, y : Value, rp : Value) -> Value
+dersubst	defun	../share/tensor/itensor.lisp:369	dersubst(x : Value, y : Value, rp : Value) -> Value
+diffop	defun	../share/tensor/itensor.lisp:378	diffop() -> Value
+$idiff	defmfun	../share/tensor/itensor.lisp:388	d_idiff(args : Value) -> Value
+$covdiff	defmfun	../share/tensor/itensor.lisp:394	d_covdiff(nargs : Value) -> Value
+covdiff	defun	../share/tensor/itensor.lisp:406	covdiff(e : Value) -> Value
+covdifftimes	defun	../share/tensor/itensor.lisp:532	covdifftimes(l : Value, x : Value) -> Value
+vecdiff	defun	../share/tensor/itensor.lisp:550	vecdiff(v : Value, i : Value, j : Value, d : Value) -> Value
+liediff	defun	../share/tensor/itensor.lisp:576	liediff(v : Value, e : Value, n : Value) -> Value
+$liediff	defmfun	../share/tensor/itensor.lisp:723	d_liediff(v : Value, e : Value) -> Value
+$rediff	defmfun	../share/tensor/itensor.lisp:725	d_rediff(x : Value) -> Value
+$undiff	defmfun	../share/tensor/itensor.lisp:727	d_undiff(x : Value) -> Value
+$evundiff	defmfun	../share/tensor/itensor.lisp:753	d_evundiff(x : Value) -> Value
+putinones	defun	../share/tensor/itensor.lisp:755	putinones(e : Value) -> Value
+$lorentz_gauge	defmfun	../share/tensor/itensor.lisp:764	d_lorentz_gauge(n : Value) -> Value
+lorentz	defun	../share/tensor/itensor.lisp:778	lorentz(e : Value, l : Value) -> Value
+less	defun	../share/tensor/itensor.lisp:792	less(x : Value, y : Value) -> Value
+$contract	defmfun	../share/tensor/itensor.lisp:814	d_contract(e : Value) -> Value
+contract4a	defun	../share/tensor/itensor.lisp:832	contract4a(e : Value) -> Value
+contract5	defun	../share/tensor/itensor.lisp:859	contract5(e : Value) -> Value
+head	defun	../share/tensor/itensor.lisp:912	head(x : Value) -> Value
+firstintersect	defun	../share/tensor/itensor.lisp:914	firstintersect(l1 : Value, l2 : Value) -> Value
+contract2	defun	../share/tensor/itensor.lisp:917	contract2(l1 : Value, l2 : Value) -> Value
+setdiff	defun	../share/tensor/itensor.lisp:925	setdiff(s1 : Value, s2 : Value) -> Value
+contract3	defun	../share/tensor/itensor.lisp:936	contract3(it : Value, lst : Value) -> Value
+contract4	defun	../share/tensor/itensor.lisp:956	contract4(l : Value) -> Value
+$renorm	defmfun	../share/tensor/itensor.lisp:1050	d_renorm(e : Value, force? : Value = Nil) -> Value
+neglist	defun	../share/tensor/itensor.lisp:1076	neglist(l : Value) -> Value
+abnorm	defun	../share/tensor/itensor.lisp:1083	abnorm(e : Value) -> Value
+substlist	defun	../share/tensor/itensor.lisp:1092	substlist(b : Value, a : Value, l : Value) -> Value
+removenotin	defun	../share/tensor/itensor.lisp:1100	removenotin(i : Value, l : Value) -> Value
+removenotinm	defun	../share/tensor/itensor.lisp:1108	removenotinm(i : Value, l : Value) -> Value
+contractinside	defun	../share/tensor/itensor.lisp:1118	contractinside(c : Value) -> Value
+contract1	defun	../share/tensor/itensor.lisp:1133	contract1(f : Value, g : Value) -> Value
+$kdelta	defmfun	../share/tensor/itensor.lisp:1397	d_kdelta(l1 : Value, l2 : Value) -> Value
+$kdels	defmfun	../share/tensor/itensor.lisp:1438	d_kdels(l1 : Value, l2 : Value) -> Value
+delta	defun	../share/tensor/itensor.lisp:1447	delta(lower : Value, upper : Value, eps? : Value = Fix(-1L)) -> Value
+$ishow	defmfun	../share/tensor/itensor.lisp:1473	d_ishow(f : Value) -> Value
+ishow	defun	../share/tensor/itensor.lisp:1481	ishow(f : Value) -> Value
+splice	defun	../share/tensor/itensor.lisp:1503	splice(l1 : Value, l2 : Value) -> Value
+splice1	defun	../share/tensor/itensor.lisp:1509	splice1(l : Value) -> Value
+splice2	defun	../share/tensor/itensor.lisp:1513	splice2(x : Value) -> Value
+chainrule1	defun	../share/tensor/itensor.lisp:1558	chainrule1(e : Value, x : Value) -> Value
+diffexpt1	defun	../share/tensor/itensor.lisp:1564	diffexpt1(e : Value, x : Value) -> Value
+sdiff-negindexp	defun	../share/tensor/itensor.lisp:1577	sdiff_negindexp(i : Value) -> Value
+sdiff-negindex-base	defun	../share/tensor/itensor.lisp:1581	sdiff_negindex_base(i : Value) -> Value
+idiffmap	defun	../share/tensor/itensor.lisp:2187	idiffmap(e : Value, x : Value) -> Value
+idifftimes	defun	../share/tensor/itensor.lisp:2189	idifftimes(l : Value, x : Value) -> Value
+idiffexpt1	defun	../share/tensor/itensor.lisp:2197	idiffexpt1(e : Value, x : Value) -> Value
+idiffexpt	defun	../share/tensor/itensor.lisp:2208	idiffexpt(e : Value, x : Value) -> Value
+idiffint	defmfun	../share/tensor/itensor.lisp:2215	idiffint(e : Value, x : Value) -> Value
+idiffint1	defun	../share/tensor/itensor.lisp:2234	idiffint1(e : Value, x : Value, y : Value) -> Value
+idiff%deriv	defun	../share/tensor/itensor.lisp:2239	idiff_pctderiv(e : Value) -> Value
+ideriv	defun	../share/tensor/itensor.lisp:2243	ideriv(e : Value) -> Value
+idiffncexpt	defmfun	../share/tensor/itensor.lisp:2267	idiffncexpt(e : Value, x : Value) -> Value
+idiffsumprod	defmfun	../share/tensor/itensor.lisp:2295	idiffsumprod(e : Value, x : Value) -> Value
+idiffgrad	defun	../share/tensor/itensor.lisp:2306	idiffgrad(e : Value, x : Value) -> Value
+idiff	defmfun	../share/tensor/itensor.lisp:2329	idiff(e : Value, x : Value) -> Value
+diffrpobj	defun	../share/tensor/itensor.lisp:2391	diffrpobj(e : Value, x : Value) -> Value
+$lc0	defmfun	../share/tensor/itensor.lisp:2422	d_lc0(l1 : Value) -> Value
+$levi_civita	defmfun	../share/tensor/itensor.lisp:2435	d_levi_civita(l1 : Value, l2? : Value = Nil) -> Value
+$lc_l	defun	../share/tensor/itensor.lisp:2453	d_lc_l(e : Value) -> (Value, Value)
+$lc_u	defun	../share/tensor/itensor.lisp:2473	d_lc_u(e : Value) -> (Value, Value)
+nonumber	defun	../share/tensor/itensor.lisp:2500	nonumber(l : Value) -> Value
+removeindex	defun	../share/tensor/itensor.lisp:2508	removeindex(e : Value, l : Value) -> Value
+indices	defun	../share/tensor/itensor.lisp:2518	indices(e : Value) -> Value
+$indices	defmfun	../share/tensor/itensor.lisp:2590	d_indices(e : Value) -> Value
+samelists	defun	../share/tensor/itensor.lisp:2599	samelists(a : Value, b : Value) -> Value
+$flush	defmfun	../share/tensor/itensor.lisp:2609	d_flush(n : Value) -> Value
+$flushd	defmfun	../share/tensor/itensor.lisp:2620	d_flushd(n : Value) -> Value
+flush	defun	../share/tensor/itensor.lisp:2632	flush(e : Value, l : Value, flag : Value) -> Value
+$flushnd	defmfun	../share/tensor/itensor.lisp:2645	d_flushnd(e : Value, name : Value, n : Value) -> Value
+$rename	defmfun	../share/tensor/itensor.lisp:2659	d_rename(nargs : Value) -> Value
+rename	defun	../share/tensor/itensor.lisp:2664	rename(e : Value, index : Value) -> Value
+reorder	defun	../share/tensor/itensor.lisp:2682	reorder(e : Value) -> Value
+itensor-cleanup	defun	../share/tensor/itensor.lisp:2706	itensor_cleanup(a : Value, nn : Value) -> Value
+cleanup1	defun	../share/tensor/itensor.lisp:2708	cleanup1(a : Value) -> Value
+itensor-sort	defun	../share/tensor/itensor.lisp:2715	itensor_sort(l : Value) -> Value
+$remcomps	defmfun	../share/tensor/itensor.lisp:2718	d_remcomps(tensor : Value) -> Value
+$indexed_tensor	defmfun	../share/tensor/itensor.lisp:2725	d_indexed_tensor(tensor : Value) -> Value
+allfixed	defun	../share/tensor/itensor.lisp:2739	allfixed(l : Value) -> Value
+tensoreval	defun	../share/tensor/itensor.lisp:2742	tensoreval(tensor : Value, indxs : Value) -> Value
+$components	defmfun	../share/tensor/itensor.lisp:2748	d_components(tensor : Value, comp : Value) -> Value
+select	defun	../share/tensor/itensor.lisp:2786	select(tensor : Value, l1 : Value, l2 : Value, l3 : Value) -> Value
+$entertensor	defmfun	../share/tensor/itensor.lisp:2846	d_entertensor(nargs : Value) -> Value
+checkindex	defun	../share/tensor/itensor.lisp:2884	checkindex(e : Value, f : Value) -> Value
+memberl	defun	../share/tensor/itensor.lisp:2892	memberl(a : Value, b : Value) -> Value
+consmlist	defun	../share/tensor/itensor.lisp:2900	consmlist(l : Value) -> Value
+$indices2	defmfun	../share/tensor/itensor.lisp:2907	d_indices2(e : Value) -> Value
+$changename	defmfun	../share/tensor/itensor.lisp:2934	d_changename(a : Value, b : Value, e : Value) -> Value
+changename	defun	../share/tensor/itensor.lisp:2947	changename(a : Value, indspec : Value, ncov : Value, ncontr : Value, b : Value, e : Value) -> Value
+$coord	defmfun	../share/tensor/itensor.lisp:2964	d_coord(n : Value) -> Value
+$remcoord	defmfun	../share/tensor/itensor.lisp:2972	d_remcoord(args : Value) -> Value
+$listoftens	defmfun	../share/tensor/itensor.lisp:2983	d_listoftens(e : Value) -> Value
+listoftens	defun	../share/tensor/itensor.lisp:2986	listoftens(e : Value) -> Value
+numlist	defun	../share/tensor/itensor.lisp:2993	numlist(n? : Value = Fix(1L)) -> Value
+$showcomps	defmfun	../share/tensor/itensor.lisp:3002	d_showcomps(e : Value) -> Value
+$hodge	defmfun	../share/tensor/itensor.lisp:3027	d_hodge(e : Value) -> Value
+remsym	defun	../share/tensor/itensor.lisp:3066	remsym(name : Value, ncov : Value, ncontr : Value) -> Value
+$idim	defmfun	../share/tensor/itensor.lisp:3079	d_idim(n : Value) -> Value
+lp-rat-mlist-p	defun	../share/simplex/simplex_algorithm.lisp:98	lp_rat_mlist_p(x : Value) -> Value
+lp-rat-matrix-p	defun	../share/simplex/simplex_algorithm.lisp:99	lp_rat_matrix_p(x : Value) -> Value
+lp-mlsp	defun	../share/simplex/simplex_algorithm.lisp:101	lp_mlsp(a : Value, b : Value) -> Value
+lp-mgqp	defun	../share/simplex/simplex_algorithm.lisp:108	lp_mgqp(a : Value, b : Value) -> Value
+$linear_program	defun	../share/simplex/simplex_algorithm.lisp:118	d_linear_program(a : Value, b : Value, c : Value) -> Value
+simplex-sx	defun	../share/simplex/simplex_algorithm.lisp:245	simplex_sx(tab : Value, basis : Value, am : Value, m : Value, n : Value) -> Value
+pivot-sx	defun	../share/simplex/simplex_algorithm.lisp:303	pivot_sx(tab : Value, ip : Value, jp : Value, m : Value, n : Value) -> Value
+run-out-of-basis-sx	defun	../share/simplex/simplex_algorithm.lisp:333	run_out_of_basis_sx(tab : Value, m : Value, n : Value, basis : Value, i : Value) -> Value
+scale-sx	defun	../share/simplex/simplex_algorithm.lisp:355	scale_sx(tab : Value, m : Value, n : Value, sc_fac : Value) -> Value
+clast	defun	../share/pytranslate/pytranslate.lisp:57	clast(l : Value) -> Value
+mprogn-p	defun	../share/pytranslate/pytranslate.lisp:61	mprogn_p(form : Value) -> Value
+symbol-name-to-string	defun	../share/pytranslate/pytranslate.lisp:66	symbol_name_to_string(form : Value) -> Value
+symbol-to-ir	defun	../share/pytranslate/pytranslate.lisp:69	symbol_to_ir(form : Value) -> Value
+symbol-to-dictionary-ir	defun	../share/pytranslate/pytranslate.lisp:72	symbol_to_dictionary_ir(form : Value, dict_name? : Value = Nil) -> Value
+plot-to-ir	defun	../share/pytranslate/pytranslate.lisp:78	plot_to_ir(form : Value) -> Value
+mfactorial-to-ir	defun	../share/pytranslate/pytranslate.lisp:94	mfactorial_to_ir(form : Value) -> Value
+mexpt-to-ir	defun	../share/pytranslate/pytranslate.lisp:97	mexpt_to_ir(form : Value) -> Value
+assignment-to-ir	defun	../share/pytranslate/pytranslate.lisp:100	assignment_to_ir(form : Value) -> Value
+symbol-to-asterisk-ir	defun	../share/pytranslate/pytranslate.lisp:107	symbol_to_asterisk_ir(form : Value) -> Value
+endcons-to-ir	defun	../share/pytranslate/pytranslate.lisp:112	endcons_to_ir(form : Value) -> Value
+for-loop-to-ir	defun	../share/pytranslate/pytranslate.lisp:118	for_loop_to_ir(form : Value) -> Value
+for-list-to-ir	defun	../share/pytranslate/pytranslate.lisp:158	for_list_to_ir(form : Value) -> Value
+func-call-arg-to-ir	defun	../share/pytranslate/pytranslate.lisp:167	func_call_arg_to_ir(form : Value) -> Value
+lambda-to-ir	defun	../share/pytranslate/pytranslate.lisp:174	lambda_to_ir(form : Value) -> Value
+conditional-auxiliary	defun	../share/pytranslate/pytranslate.lisp:214	conditional_auxiliary(forms : Value) -> Value
+conditional-to-ir	defun	../share/pytranslate/pytranslate.lisp:220	conditional_to_ir(form : Value) -> Value
+if-to-ir	defun	../share/pytranslate/pytranslate.lisp:224	if_to_ir(form : Value, case_if? : Value = Nil) -> Value
+mcond-to-ir	defun	../share/pytranslate/pytranslate.lisp:241	mcond_to_ir(form : Value, is_expr? : Value = Nil) -> Value
+mprog-variable-names-list	defun	../share/pytranslate/pytranslate.lisp:245	mprog_variable_names_list(form : Value) -> Value
+mprog-arg-list	defun	../share/pytranslate/pytranslate.lisp:249	mprog_arg_list(form : Value) -> Value
+mprog-assign-to-dict	defun	../share/pytranslate/pytranslate.lisp:253	mprog_assign_to_dict(form : Value) -> Value
+mlist-p	defun	../share/pytranslate/pytranslate.lisp:262	mlist_p(form : Value) -> Value
+first-list-mprog	defun	../share/pytranslate/pytranslate.lisp:267	first_list_mprog(form : Value) -> Value
+but-first-mlist	defun	../share/pytranslate/pytranslate.lisp:270	but_first_mlist(form : Value) -> Value
+mprog-to-ir	defun	../share/pytranslate/pytranslate.lisp:276	mprog_to_ir(form : Value, context? : Value = Nil) -> Value
+mprogn-to-ir	defun	../share/pytranslate/pytranslate.lisp:340	mprogn_to_ir(form : Value, func_args? : Value) -> Value
+array-gen-ir	defun	../share/pytranslate/pytranslate.lisp:374	array_gen_ir(dimensions : Value) -> Value
+auxillary-array-to-ir	defun	../share/pytranslate/pytranslate.lisp:379	auxillary_array_to_ir(symbol : Value, dimensions : Value) -> Value
+array-def-to-ir	defun	../share/pytranslate/pytranslate.lisp:383	array_def_to_ir(form : Value) -> Value
+array-ref-to-ir	defun	../share/pytranslate/pytranslate.lisp:394	array_ref_to_ir(symbol : Value, indices : Value) -> Value
+func-arg-to-ir	defun	../share/pytranslate/pytranslate.lisp:404	func_arg_to_ir(form : Value) -> Value
+func-def-to-ir	defun	../share/pytranslate/pytranslate.lisp:412	func_def_to_ir(form : Value) -> Value
+atom-to-ir	defun	../share/pytranslate/pytranslate.lisp:475	atom_to_ir(form : Value) -> Value
+cons-to-ir	defun	../share/pytranslate/pytranslate.lisp:491	cons_to_ir(form : Value) -> Value
+maxima-to-ir	defun	../share/pytranslate/pytranslate.lisp:516	maxima_to_ir(form : Value, is_stmt? : Value = Nil) -> Value
+$pytranslate	defun	../share/pytranslate/pytranslate.lisp:531	d_pytranslate(form : Value, print_ir? : Value = Nil) -> Value
+ir-to-python	defun	../share/pytranslate/pytranslate.lisp:569	ir_to_python(form : Value, indentation_level? : Value = Fix(0L), is_stmt? : Value = Nil) -> Value
+dictionary-to-python	defun	../share/pytranslate/pytranslate.lisp:590	dictionary_to_python(form : Value, indentation_level : Value) -> Value
+obj-funcall-to-python	defun	../share/pytranslate/pytranslate.lisp:597	obj_funcall_to_python(form : Value, indentation_level : Value) -> Value
+while-loop-to-python	defun	../share/pytranslate/pytranslate.lisp:605	while_loop_to_python(form : Value, indentation_level : Value) -> Value
+for-list-to-python	defun	../share/pytranslate/pytranslate.lisp:610	for_list_to_python(form : Value, indentation_level : Value) -> Value
+lambda-to-python	defun	../share/pytranslate/pytranslate.lisp:616	lambda_to_python(form : Value, indentation_level : Value) -> Value
+conditional-to-python	defun	../share/pytranslate/pytranslate.lisp:623	conditional_to_python(form : Value, indentation_level : Value) -> Value
+cond-if-to-python	defun	../share/pytranslate/pytranslate.lisp:629	cond_if_to_python(form : Value, indentation_level : Value) -> Value
+cond-else-to-python	defun	../share/pytranslate/pytranslate.lisp:633	cond_else_to_python(form : Value, indentation_level : Value) -> Value
+cond-elif-to-python	defun	../share/pytranslate/pytranslate.lisp:637	cond_elif_to_python(form : Value, indentation_level : Value) -> Value
+element-array-to-python	defun	../share/pytranslate/pytranslate.lisp:641	element_array_to_python(form : Value, indentation_level : Value) -> Value
+func-def-to-python	defun	../share/pytranslate/pytranslate.lisp:646	func_def_to_python(form : Value, indentation_level : Value) -> Value
+struct-list-to-python	defun	../share/pytranslate/pytranslate.lisp:654	struct_list_to_python(form : Value, indentation_level : Value) -> Value
+unary-op-to-python	defun	../share/pytranslate/pytranslate.lisp:660	unary_op_to_python(form : Value, indentation_level : Value) -> Value
+del-to-python	defun	../share/pytranslate/pytranslate.lisp:665	del_to_python(form : Value, indentation_level : Value) -> Value
+funcall-to-python	defun	../share/pytranslate/pytranslate.lisp:670	funcall_to_python(form : Value, indentation_level : Value) -> Value
+string-to-python	defun	../share/pytranslate/pytranslate.lisp:677	string_to_python(form : Value, indentation_level : Value) -> Value
+assign-to-python	defun	../share/pytranslate/pytranslate.lisp:684	assign_to_python(form : Value, indentation_level : Value) -> Value
+asterisk-to-python	defun	../share/pytranslate/pytranslate.lisp:690	asterisk_to_python(form : Value, indentation_level : Value) -> Value
+symbol-to-python	defun	../share/pytranslate/pytranslate.lisp:695	symbol_to_python(form : Value, indentation_level : Value) -> Value
+op-no-bracket-template	defun	../share/pytranslate/pytranslate.lisp:699	op_no_bracket_template(op : Value) -> Value
+op-no-bracket-to-python	defun	../share/pytranslate/pytranslate.lisp:703	op_no_bracket_to_python(form : Value, indentation_level : Value) -> Value
+op-template	defun	../share/pytranslate/pytranslate.lisp:709	op_template(op : Value) -> Value
+op-to-python	defun	../share/pytranslate/pytranslate.lisp:713	op_to_python(form : Value, indentation_level : Value) -> Value
+body-to-python	defun	../share/pytranslate/pytranslate.lisp:736	body_to_python(form : Value, indentation_level : Value) -> Value
+body-indented-to-python	defun	../share/pytranslate/pytranslate.lisp:742	body_indented_to_python(form : Value, indentation_level : Value) -> Value
+num-to-python	defun	../share/pytranslate/pytranslate.lisp:748	num_to_python(form : Value, indentation_level : Value) -> Value
+$show_form	defun	../share/pytranslate/pytranslate.lisp:754	d_show_form(form : Value) -> Value
+protected-oper-apply	defun	../share/multiadditive/multiadditive.lisp:47	protected_oper_apply(e : Value, z : Value) -> Value
+multiadditive	defun	../share/multiadditive/multiadditive.lisp:50	multiadditive(e : Value) -> Value
+threadable	defun	../share/multiadditive/multiadditive.lisp:61	threadable(e : Value) -> Value
+idempotent	defun	../share/multiadditive/multiadditive.lisp:74	idempotent(e : Value) -> Value
+involution	defun	../share/multiadditive/multiadditive.lisp:84	involution(e : Value) -> Value
+simp-integer-sequence	defun	../share/integer_sequence/integer_sequence.lisp:30	simp_integer_sequence(e : Value, yy : Value, z : Value) -> Value
+number-sign	defun	../share/fourier_elim/fourier_elim.lisp:24	number_sign(x : Value) -> Value
+constant-expression-sign	defun	../share/fourier_elim/fourier_elim.lisp:38	constant_expression_sign(x : Value) -> Value
+fourier_elim-cartesian-product	defun	../share/fourier_elim/fourier_elim.lisp:58	fourier_elim_cartesian_product(b : Value) -> Value
+expand-and-over-or	defun	../share/fourier_elim/fourier_elim.lisp:69	expand_and_over_or(e : Value) -> Value
+make-positive-product	defun	../share/fourier_elim/fourier_elim.lisp:78	make_positive_product(l : Value) -> Value
+in-real-domain	defun	../share/fourier_elim/fourier_elim.lisp:93	in_real_domain(e : Value) -> Value
+freeof-floats	defun	../share/fourier_elim/fourier_elim.lisp:118	freeof_floats(e : Value) -> Value
+$splitify	defun	../share/fourier_elim/fourier_elim.lisp:129	d_splitify(e : Value) -> Value
+splitify	defun	../share/fourier_elim/fourier_elim.lisp:132	splitify(e : Value) -> Value
+fe>	defun	../share/fourier_elim/fourier_elim.lisp:161	fe_gt(a : Value, b : Value, expand? : Value = Nil, use_splitify? : Value = t) -> Value
+m=	defun	../share/fourier_elim/fourier_elim.lisp:246	m_eq(a : Value, b : Value, use_splitify? : Value = t) -> Value
+m-neq	defun	../share/fourier_elim/fourier_elim.lisp:285	m_neq(a : Value, b : Value) -> Value
+fe>=	defun	../share/fourier_elim/fourier_elim.lisp:296	fe_gt_eq(a : Value, b : Value) -> Value
+standardize-inequality	defun	../share/fourier_elim/fourier_elim.lisp:302	standardize_inequality(e : Value) -> Value
+$affine_p	defun	../share/fourier_elim/fourier_elim.lisp:328	d_affine_p(p : Value, vl : Value) -> Value
+linear-elimination	defun	../share/fourier_elim/fourier_elim.lisp:364	linear_elimination(l : Value, v : Value) -> Value
+$fourier_elim	defun	../share/fourier_elim/fourier_elim.lisp:378	d_fourier_elim(l : Value, vars : Value) -> Value
+post-fourier-elim-simp	defun	../share/fourier_elim/fourier_elim.lisp:452	post_fourier_elim_simp(pos : Value) -> Value
+fourier-elim	defun	../share/fourier_elim/fourier_elim.lisp:470	fourier_elim(pos : Value, vars : Value) -> Value
+simplify-fe-args	defun	../share/fourier_elim/fourier_elim.lisp:497	simplify_fe_args(pos : Value) -> Value
+fourier-elim-one-variable	defun	../share/fourier_elim/fourier_elim.lisp:516	fourier_elim_one_variable(pos : Value, x : Value, need_simp? : Value = t) -> Value
+apply-max	defun	../share/fourier_elim/fourier_elim.lisp:568	apply_max(l : Value) -> Value
+apply-min	defun	../share/fourier_elim/fourier_elim.lisp:578	apply_min(l : Value) -> Value
+compare-using-empty-context	defun	../share/fourier_elim/fourier_elim.lisp:588	compare_using_empty_context(a : Value, b : Value) -> Value
+tex-ezunits	defun	../share/ezunits/ezunits.lisp:11	tex_ezunits(x : Value, l : Value, r : Value) -> Value
+mathrm-ify	defun	../share/ezunits/ezunits.lisp:18	mathrm_ify(e : Value) -> Value
+$odds	defun	../share/ezunits/ezunits.lisp:41	d_odds(a : Value) -> Value
+$evens	defun	../share/ezunits/ezunits.lisp:43	d_evens(a : Value) -> Value
+mathml-presentation-ezunits	defun	../share/ezunits/ezunits.lisp:51	mathml_presentation_ezunits(mexpress : Value) -> Value
+ezunits-setup-mathml	defun	../share/ezunits/ezunits.lisp:59	ezunits_setup_mathml() -> Value
+my-take	defun	../share/contrib/opsubst.lisp:96	my_take(op : Value, args : Value) -> Value
+$opsubst	defun	../share/contrib/opsubst.lisp:99	d_opsubst(q : Value) -> Value
+verbify-string	defun	../share/contrib/opsubst.lisp:114	verbify_string(op : Value) -> Value
+safe-verbify	defun	../share/contrib/opsubst.lisp:119	safe_verbify(op : Value) -> Value
+op-subst	defun	../share/contrib/opsubst.lisp:122	op_subst(f : Value, g : Value, e : Value) -> Value
+$opsubstif	defun	../share/contrib/opsubst.lisp:135	d_opsubstif(id : Value, prd : Value, e : Value) -> Value
+op-subst-if	defun	../share/contrib/opsubst.lisp:143	op_subst_if(fn_ : Value, fo : Value, prd : Value, e : Value) -> Value
+$gatherargs	defun	../share/contrib/opsubst.lisp:166	d_gatherargs(e : Value, op : Value) -> Value
+gatherargs	defun	../share/contrib/opsubst.lisp:169	gatherargs(e : Value, op : Value) -> Value
+$gatherops	defun	../share/contrib/opsubst.lisp:174	d_gatherops(e : Value) -> Value
+gatherops	defun	../share/contrib/opsubst.lisp:177	gatherops(e : Value) -> Value
+os-chdir	defun	../share/contrib/operatingsystem/operatingsystem.lisp:20	os_chdir(dir : Value) -> Value
+os-mkdir	defun	../share/contrib/operatingsystem/operatingsystem.lisp:38	os_mkdir(dir : Value) -> Value
+os-rmdir	defun	../share/contrib/operatingsystem/operatingsystem.lisp:53	os_rmdir(dir : Value) -> Value
+os-getcurrentdirectory	defun	../share/contrib/operatingsystem/operatingsystem.lisp:70	os_getcurrentdirectory() -> Value
+os-copy-file	defun	../share/contrib/operatingsystem/operatingsystem.lisp:85	os_copy_file(from_file : Value, to_file : Value) -> Value
+$matching_parts	defun	../share/contrib/format/coeflist.lisp:22	d_matching_parts(expr : Value, predicate : Value, args : Value) -> Value
+$function_calls	defun	../share/contrib/format/coeflist.lisp:36	d_function_calls(expr : Value, functions : Value) -> Value
+$function_arguments	defun	../share/contrib/format/coeflist.lisp:42	d_function_arguments(expr : Value, functions : Value) -> Value
+totalspecdisrep	defun	../share/contrib/format/coeflist.lisp:47	totalspecdisrep(expr : Value) -> Value
+instanciate-variable-list	defun	../share/contrib/format/coeflist.lisp:63	instanciate_variable_list(vars : Value, expr : Value, caller : Value, max_vars? : Value = Nil) -> Value
+cl-reduce	defun	../share/contrib/format/coeflist.lisp:83	cl_reduce(function : Value, list_ : Value, key : Value) -> Value
+map-mlist	defun	../share/contrib/format/coeflist.lisp:90	map_mlist(list_ : Value) -> Value
+clist-add	defun	../share/contrib/format/coeflist.lisp:111	clist_add(l1 : Value, l2 : Value) -> Value
+clist-mul	defun	../share/contrib/format/coeflist.lisp:126	clist_mul(l1 : Value, l2 : Value, order? : Value = Nil) -> Value
+clist-pow	defun	../share/contrib/format/coeflist.lisp:142	clist_pow(l : Value, n : Value) -> Value
+clist-mbag	defun	../share/contrib/format/coeflist.lisp:164	clist_mbag(op : Value, clists : Value) -> Value
+$coeffs	defun	../share/contrib/format/coeflist.lisp:182	d_coeffs(expr : Value, vars : Value) -> Value
+unclist	defun	../share/contrib/format/coeflist.lisp:215	unclist(clist : Value, vars : Value) -> Value
+list-negp	defun	../share/contrib/format/coeflist.lisp:233	list_negp(l1 : Value) -> Value
+tlist-add	defun	../share/contrib/format/coeflist.lisp:238	tlist_add(l1 : Value, l2 : Value) -> Value
+tlist-mul1	defun	../share/contrib/format/coeflist.lisp:241	tlist_mul1(l1 : Value, l2 : Value, c1p : Value, c2p : Value) -> Value
+tlist-mul	defun	../share/contrib/format/coeflist.lisp:269	tlist_mul(l1 : Value, l2 : Value) -> Value
+tlist-pow	defun	../share/contrib/format/coeflist.lisp:277	tlist_pow(l : Value, n : Value, zeros : Value) -> Value
+encode-tlist	defun	../share/contrib/format/coeflist.lisp:306	encode_tlist(expr : Value, vs : Value) -> Value
+$trig_coeffs	defun	../share/contrib/format/coeflist.lisp:323	d_trig_coeffs(expr : Value, vars : Value) -> Value
+untlist	defun	../share/contrib/format/coeflist.lisp:347	untlist(tlist : Value, vars : Value) -> Value
+$taylor_coeffs	defun	../share/contrib/format/coeflist.lisp:364	d_taylor_coeffs(expr : Value, var_ : Value, order : Value) -> Value
+slist-pow	defun	../share/contrib/format/coeflist.lisp:386	slist_pow(s : Value, n : Value, order : Value) -> Value
+$series_coeffs	defun	../share/contrib/format/coeflist.lisp:413	d_series_coeffs(expr : Value, var_ : Value, order : Value) -> Value
+unslist	defun	../share/contrib/format/coeflist.lisp:450	unslist(clist : Value, vars : Value) -> Value
+$get_coef	defun	../share/contrib/format/coeflist.lisp:456	d_get_coef(clist : Value, keys : Value) -> Value
+$uncoef	defun	../share/contrib/format/coeflist.lisp:467	d_uncoef(cl : Value) -> Value
+partition-clist	defun	../share/contrib/format/coeflist.lisp:481	partition_clist(list_ : Value, test_ : Value) -> (Value, Value)
+$partition_poly	defun	../share/contrib/format/coeflist.lisp:491	d_partition_poly(expr : Value, test_ : Value, vars : Value) -> Value
+$partition_trig	defun	../share/contrib/format/coeflist.lisp:497	d_partition_trig(expr : Value, sintest : Value, costest : Value, vars : Value) -> Value
+$partition_series	defun	../share/contrib/format/coeflist.lisp:504	d_partition_series(expr : Value, test_ : Value, var_ : Value, order : Value) -> Value
+$partition_taylor	defun	../share/contrib/format/coeflist.lisp:510	d_partition_taylor(expr : Value, test_ : Value, var_ : Value, order : Value) -> Value
+engineering-format	defun	../share/contrib/engineering-format.lisp:47	engineering_format(x : Value) -> Value
+ode-polynomialp	defun	../share/contrib/diffequations/odelin.lisp:43	ode_polynomialp(p : Value, x : Value) -> Value
+require-linear-homogeneous-de	defun	../share/contrib/diffequations/odelin.lisp:46	require_linear_homogeneous_de(de : Value, y : Value, x : Value) -> Value
+$odelin	defun	../share/contrib/diffequations/odelin.lisp:75	d_odelin(de : Value, y : Value, x : Value) -> Value
+odelin-order-one	defun	../share/contrib/diffequations/odelin.lisp:82	odelin_order_one(cfs : Value, x : Value) -> Value
+expunge-const-factors	defun	../share/contrib/diffequations/odelin.lisp:85	expunge_const_factors(e : Value, x : Value) -> Value
+fss-cleanup	defun	../share/contrib/diffequations/odelin.lisp:96	fss_cleanup(fss : Value, x : Value) -> Value
+post-check-cleanup	defun	../share/contrib/diffequations/odelin.lisp:100	post_check_cleanup(fss : Value) -> Value
+odelin-order-two	defun	../share/contrib/diffequations/odelin.lisp:104	odelin_order_two(cfs : Value, x : Value) -> Value
+check-de-sol	defun	../share/contrib/diffequations/odelin.lisp:143	check_de_sol(cfs : Value, sol : Value, x : Value) -> Value
+check-fss	defun	../share/contrib/diffequations/odelin.lisp:154	check_fss(cfs : Value, fss : Value, x : Value) -> Value
+make-unk-poly	defun	../share/contrib/diffequations/odelin.lisp:164	make_unk_poly(x : Value, deg : Value) -> (Value, Value)
+polycfs-to-eqs	defun	../share/contrib/diffequations/odelin.lisp:174	polycfs_to_eqs(p : Value, x : Value) -> Value
+ode-solve-by-factoring	defun	../share/contrib/diffequations/odelin.lisp:188	ode_solve_by_factoring(r : Value, x : Value) -> Value
+factor-differential-op	defun	../share/contrib/diffequations/odelin.lisp:200	factor_differential_op(r : Value, x : Value) -> Value
+polynomial-filter	defun	../share/contrib/diffequations/odelin.lisp:242	polynomial_filter(p : Value, x : Value, f : Value) -> Value
+ratfun-degree	defun	../share/contrib/diffequations/odelin.lisp:259	ratfun_degree(q : Value, x : Value) -> Value
+xeasy-eqs	defun	../share/contrib/diffequations/odelin.lisp:264	xeasy_eqs(p : Value, s : Value, x : Value) -> Value
+easy-eqs	defun	../share/contrib/diffequations/odelin.lisp:278	easy_eqs(cnd : Value, s : Value, x : Value) -> Value
+clean-equation	defun	../share/contrib/diffequations/odelin.lisp:301	clean_equation(p : Value) -> Value
+generic-de-solver	defun	../share/contrib/diffequations/odelin.lisp:377	generic_de_solver(v : Value, x : Value, params : Value, denom_filter : Value, degree_bound : Value, de_cnd : Value) -> Value
+get-de-cnd	defun	../share/contrib/diffequations/odelin.lisp:416	get_de_cnd(xi : Value, vh : Value, v : Value, x : Value) -> Value
+bessel-xi-denom-filter	defun	../share/contrib/diffequations/odelin.lisp:444	bessel_xi_denom_filter(n : Value) -> Value
+bessel-xi-degree-bound	defun	../share/contrib/diffequations/odelin.lisp:447	bessel_xi_degree_bound(q : Value, v : Value, x : Value) -> Value
+bessel-de-solver	defun	../share/contrib/diffequations/odelin.lisp:450	bessel_de_solver(v : Value, x : Value) -> Value
+bessel-sqrt-xi-denom-filter	defun	../share/contrib/diffequations/odelin.lisp:484	bessel_sqrt_xi_denom_filter(n : Value) -> Value
+bessel-sqrt-xi-degree-bound	defun	../share/contrib/diffequations/odelin.lisp:487	bessel_sqrt_xi_degree_bound(q : Value, v : Value, x : Value) -> Value
+bessel-sqrt-de-solver	defun	../share/contrib/diffequations/odelin.lisp:490	bessel_sqrt_de_solver(v : Value, x : Value) -> Value
+hypergeo01-xi-denom-filter	defun	../share/contrib/diffequations/odelin.lisp:523	hypergeo01_xi_denom_filter(n : Value) -> Value
+hypergeo01-xi-degree-bound	defun	../share/contrib/diffequations/odelin.lisp:526	hypergeo01_xi_degree_bound(q : Value, v : Value, x : Value) -> Value
+hypergeo01-de-solver	defun	../share/contrib/diffequations/odelin.lisp:529	hypergeo01_de_solver(v : Value, x : Value) -> Value
+spherodialwave-xi-denom-filter	defun	../share/contrib/diffequations/odelin.lisp:577	spherodialwave_xi_denom_filter(n : Value) -> Value
+spherodialwave-xi-degree-bound	defun	../share/contrib/diffequations/odelin.lisp:580	spherodialwave_xi_degree_bound(q : Value, v : Value, x : Value) -> Value
+spherodialwave-de-solver	defun	../share/contrib/diffequations/odelin.lisp:583	spherodialwave_de_solver(v : Value, x : Value) -> Value
+hypergeo21-xi-denom-filter	defun	../share/contrib/diffequations/odelin.lisp:633	hypergeo21_xi_denom_filter(n : Value) -> Value
+hypergeo21-xi-degree-bound	defun	../share/contrib/diffequations/odelin.lisp:637	hypergeo21_xi_degree_bound(q : Value, v : Value, x : Value) -> Value
+hypergeo21-de-solver	defun	../share/contrib/diffequations/odelin.lisp:641	hypergeo21_de_solver(v : Value, x : Value) -> Value
+simp-mcond-shorten	defun	../share/contrib/boolsimp/boolsimp.lisp:142	simp_mcond_shorten(x : Value, z : Value) -> Value
+simp-mcond	defun	../share/contrib/boolsimp/boolsimp.lisp:163	simp_mcond(x : Value, y : Value, z : Value) -> Value
+bigfloat::bernstein-poly	defun	../share/bernstein/bernstein.lisp:27	bf_bernstein_poly(k : Value, n : Value, x : Value) -> Value
+$bernstein_poly	defun	../share/bernstein/bernstein.lisp:32	d_bernstein_poly(k : Value, n : Value, x : Value) -> Value
+bernstein-integral	defun	../share/bernstein/bernstein.lisp:49	bernstein_integral(k : Value, n : Value, x : Value) -> Value
+bernstein-poly-simp	defun	../share/bernstein/bernstein.lisp:63	bernstein_poly_simp(e : Value, y : Value, z : Value) -> Value
+$bernstein_approx	defun	../share/bernstein/bernstein.lisp:114	d_bernstein_approx(e : Value, vars : Value, n : Value) -> Value
+$multibernstein_poly	defun	../share/bernstein/bernstein.lisp:142	d_multibernstein_poly(k : Value, n : Value, x : Value) -> Value
+multi-bernstein-poly-simp	defun	../share/bernstein/bernstein.lisp:148	multi_bernstein_poly_simp(e : Value, y : Value, z : Value) -> Value
+$amatrixmap	defun	../share/amatrix/amatrix.lisp:9	d_amatrixmap(f : Value, m : Value) -> Value
+amatrix-assign	defun	../share/amatrix/amatrix.lisp:32	amatrix_assign(e : Value, x : Value) -> Value
+amatrix-assign1	defun	../share/amatrix/amatrix.lisp:50	amatrix_assign1(lhs : Value, aa : Value, i : Value, j : Value, x : Value) -> Value
+amatrix-assign1-row-column	defun	../share/amatrix/amatrix.lisp:79	amatrix_assign1_row_column(aa : Value, i : Value, j : Value, x : Value) -> Value
+amatrix-assign1-all-column	defun	../share/amatrix/amatrix.lisp:85	amatrix_assign1_all_column(aa : Value, j : Value, x : Value) -> Value
+amatrix-assign1-row-all	defun	../share/amatrix/amatrix.lisp:95	amatrix_assign1_row_all(aa : Value, i : Value, x : Value) -> Value
+amatrix-assign1-all-all	defun	../share/amatrix/amatrix.lisp:105	amatrix_assign1_all_all(aa : Value, x : Value) -> Value
+amatrix-assign1-list-integer	defun	../share/amatrix/amatrix.lisp:119	amatrix_assign1_list_integer(aa : Value, l : Value, j : Value, x : Value) -> Value
+amatrix-assign1-integer-list	defun	../share/amatrix/amatrix.lisp:122	amatrix_assign1_integer_list(aa : Value, i : Value, l : Value, x : Value) -> Value
+amatrix-assign1-list-all	defun	../share/amatrix/amatrix.lisp:125	amatrix_assign1_list_all(aa : Value, l : Value, x : Value) -> Value
+amatrix-assign1-all-list	defun	../share/amatrix/amatrix.lisp:139	amatrix_assign1_all_list(aa : Value, l : Value, x : Value) -> Value
+amatrix-assign1-list-list	defun	../share/amatrix/amatrix.lisp:153	amatrix_assign1_list_list(aa : Value, l1 : Value, l2 : Value, x : Value) -> Value
+amatrix-assign1-amatrix-column	defun	../share/amatrix/amatrix.lisp:177	amatrix_assign1_amatrix_column(aa : Value, ai : Value, j : Value, x : Value) -> Value
+amatrix-assign1-row-amatrix	defun	../share/amatrix/amatrix.lisp:179	amatrix_assign1_row_amatrix(aa : Value, i : Value, aj : Value, x : Value) -> Value
+amatrix-assign1-amatrix-amatrix	defun	../share/amatrix/amatrix.lisp:181	amatrix_assign1_amatrix_amatrix(aa : Value, ai : Value, aj : Value, x : Value) -> Value
+amatrix-assign1-boolean-column	defun	../share/amatrix/amatrix.lisp:183	amatrix_assign1_boolean_column(aa : Value, b : Value, j : Value, x : Value) -> Value
+amatrix-assign1-row-boolean	defun	../share/amatrix/amatrix.lisp:185	amatrix_assign1_row_boolean(aa : Value, i : Value, b : Value, x : Value) -> Value
+amatrix-assign1-boolean-boolean	defun	../share/amatrix/amatrix.lisp:187	amatrix_assign1_boolean_boolean(aa : Value, b1 : Value, b2 : Value, x : Value) -> Value
+dim-$amatrix	defun	../share/amatrix/amatrix.lisp:193	dim__dolamatrix(form : Value, result : Value) -> Value
+$amatrixp	defun	../share/amatrix/amatrix.lisp:224	d_amatrixp(a : Value) -> Value
+$nrows	defun	../share/amatrix/amatrix.lisp:227	d_nrows(a : Value) -> Value
+$ncols	defun	../share/amatrix/amatrix.lisp:232	d_ncols(a : Value) -> Value
+$amatrix_multiply	defun	../share/amatrix/amatrix.lisp:237	d_amatrix_multiply(m1 : Value, m2 : Value) -> Value
+dot	defun	../share/amatrix/amatrix.lisp:265	dot(n : Value, a : Value, a0 : Value, ainc : Value, b : Value, b0 : Value, binc : Value) -> Value
+get-op-and-arg	defun	../share/algebra/charsets/charsets_flatten.lisp:53	get_op_and_arg(e : Value) -> (Value, Value)
+$charsets_flatten	defun	../share/algebra/charsets/charsets_flatten.lisp:66	d_charsets_flatten(e : Value) -> Value
+same-op-p	defun	../share/algebra/charsets/charsets_flatten.lisp:81	same_op_p(x : Value, y : Value) -> Value
+flatten-op	defun	../share/algebra/charsets/charsets_flatten.lisp:87	flatten_op(e : Value, op : Value) -> Value
+$charsets_every	defmfun	../share/algebra/charsets/charsets_flatten.lisp:107	d_charsets_every(args : Value) -> Value
 intl::textdomain	macro	intl.lisp:509	intl_textdomain(domain : Value) -> Value
 intl::gettext	macro	intl.lisp:513	intl_gettext(string_ : Value) -> Value
 intl::ngettext	macro	intl.lisp:517	intl_ngettext(singular : Value, plural : Value, n : Value) -> Value
@@ -7003,3 +8101,20 @@ poly-second-lt	macro	../share/contrib/Grobner/grobner.lisp:777	poly_second_lt(p 
 debug-cgb	macro	../share/contrib/Grobner/grobner.lisp:961	debug_cgb(args : Value) -> Value
 define-unop	macro	../share/contrib/Grobner/grobner.lisp:2117	define_unop(maxima_name : Value, fun_name : Value, documentation? : Value) -> Value
 define-binop	macro	../share/contrib/Grobner/grobner.lisp:2127	define_binop(maxima_name : Value, fun_name : Value, documentation? : Value) -> Value
+lgi	macro	../share/sym/macros.lisp:26	lgi(sym_ : Value) -> Value
+moni	macro	../share/sym/macros.lisp:27	moni(p : Value) -> Value
+coei	macro	../share/sym/macros.lisp:28	coei(p : Value) -> Value
+termi	macro	../share/sym/macros.lisp:30	termi(p : Value) -> Value
+chcoeterm	macro	../share/sym/macros.lisp:31	chcoeterm(term : Value, coe : Value) -> Value
+termrest	macro	../share/sym/macros.lisp:33	termrest(p : Value) -> Value
+tmon	macro	../share/sym/macros.lisp:35	tmon(term : Value) -> Value
+tcoe	macro	../share/sym/macros.lisp:36	tcoe(term : Value) -> Value
+tlg	macro	../share/sym/macros.lisp:37	tlg(term : Value) -> Value
+opapply	macro	../share/to_poly_solve/to_poly.lisp:18	opapply(op : Value, args : Value) -> Value
+mwarn	macro	../share/contrib/simplifying.lisp:43	mwarn(str : Value, args : Value) -> Value
+push-array-mlist	macro	../share/combinatorics/combinatorics.lisp:74	push_array_mlist(pa : Value, lpm : Value) -> Value
+array-adjacent-transposition	macro	../share/combinatorics/combinatorics.lisp:77	array_adjacent_transposition(pa : Value, i : Value) -> Value
+array-transposition	macro	../share/combinatorics/combinatorics.lisp:80	array_transposition(pa : Value, i : Value, j : Value) -> Value
+ifnot	macro	../share/tensor/itensor.lisp:66	ifnot(clause : Value) -> Value
+mexp-lookup	macro	../share/contrib/format/coeflist.lisp:13	mexp_lookup(item : Value, alist : Value) -> Value
+mlist*	macro	../share/contrib/format/coeflist.lisp:14	mlist_star(arg1 : Value, more_args : Value) -> Value

@@ -1,0 +1,54 @@
+{
+ "sym/load-sym-lisp-files": [
+  "sym/macros",
+  "sym/operations",
+  "sym/chbase",
+  "sym/util",
+  "sym/lecteur",
+  "sym/ecrivain",
+  "sym/arite",
+  "sym/elem",
+  "sym/pui",
+  "sym/schur",
+  "sym/direct",
+  "sym/kak",
+  "sym/partpol",
+  "sym/multmon",
+  "sym/permut",
+  "sym/treillis",
+  "sym/resolv1",
+  "sym/resolvante",
+  "sym/resolcayley"
+ ],
+ "graphs/load-graphs": [
+  "graphs/graph_core",
+  "graphs/spring_embedding",
+  "graphs/isomorphism",
+  "graphs/matching",
+  "graphs/graph6",
+  "graphs/demoucron",
+  "graphs/dijkstra",
+  "graphs/wiener_index"
+ ],
+ "numeric/fft": [
+  "numeric/fft-package",
+  "numeric/fft-core",
+  "numeric/fft-interface"
+ ],
+ "numeric/decfp": [
+  "numeric/decfp-core"
+ ],
+ "linearalgebra/load-linearalgebra-lisp-files": [
+  "linearalgebra/mring",
+  "linearalgebra/lu",
+  "linearalgebra/linalgcholesky",
+  "linearalgebra/eigens-by-jacobi",
+  "linearalgebra/linalg-extra",
+  "linearalgebra/matrixexp",
+  "linearalgebra/linalg-utilities"
+ ],
+ "numericalio/load-numericalio": [
+  "numericalio/encode-decode-float",
+  "numericalio/numericalio"
+ ]
+}
