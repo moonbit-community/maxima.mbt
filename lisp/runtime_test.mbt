@@ -571,6 +571,21 @@ test "process primitives" {
 }
 
 ///|
+test "input designator t reads the terminal, not *standard-input*" {
+  let saved = console_reader.val
+  console_reader.val = () => Some("ab")
+  let got = with_special(
+    standard_input,
+    make_string_input_stream("xy"),
+    () => list([read_char(stream=t), read_char(), read_char(stream=t)]),
+  ) catch {
+    _ => Nil
+  }
+  console_reader.val = saved
+  inspect(prin1_to_string(got), content="(#\\a #\\x #\\b)")
+}
+
+///|
 test "format radix directives print upper-case digits" {
   inspect(
     try! format_to_string("&#x~x;|~16r|~b", [int(60), int(255), int(5)]),

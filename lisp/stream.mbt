@@ -347,9 +347,16 @@ pub fn capture_stdout(f : () -> Unit raise) -> String raise {
 // Input
 
 ///|
+/// Resolve an input stream designator: nil -> *standard-input*, t ->
+/// *terminal-io* (the console, even when *standard-input* is rebound).
 fn in_stream(s : Value) -> LStream {
   match s {
     Stream(st) => st
+    Sym(_) if s.truthy() =>
+      match console_in {
+        Stream(st) => st
+        _ => abort("no console")
+      }
     _ =>
       match symval(standard_input) {
         Stream(st) => st
