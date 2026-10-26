@@ -609,7 +609,7 @@ fn make_number(data : Value) -> Value raise {
     // as bfloat(1234)*10b0^(1000-3), with extra precision.
     let extra_prec = num_add(
       symval(q_ear_fast_bfloat_extra_bits),
-      int(@math.ceil(@math.ln(to_double(exp_)) / @math.ln(2.0)).to_int()),
+      int(@math.ceil(dlog(to_double(exp_)) / dlog(2.0)).to_int()),
     )
     let result = with_special(
       q_fpprec,

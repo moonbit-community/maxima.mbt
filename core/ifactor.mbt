@@ -554,7 +554,7 @@ fn ecm_factor_with_curve(
   let llim1 = to_double(lim1)
   while !num_gt(q, lim1) {
     q = d_next_prime(q)
-    let mut ex = (@math.ln(llim1) / @math.ln(to_double(q))).floor().to_int64()
+    let mut ex = (dlog(llim1) / dlog(to_double(q))).floor().to_int64()
     if num_eq(q, Fix(2L)) {
       ex += 2L
     } else if num_eq(q, Fix(3L)) {

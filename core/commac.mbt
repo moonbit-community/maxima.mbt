@@ -446,7 +446,7 @@ fn exploden_format_float_pretty(symb : Value) -> (Value, Value) raise {
     let (form, digits) = if zerop(a) {
       ("~,vf", 1)
     } else if 0.001 <= ad && ad <= 1.0e7 {
-      let integer_log10 = (@math.ln(ad) / 2.302585092994046).floor().to_int()
+      let integer_log10 = (dlog(ad) / 2.302585092994046).floor().to_int()
       let scale = 1 + integer_log10
       if scale < fpprintprec {
         ("~,vf", fpprintprec - scale)

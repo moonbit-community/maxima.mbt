@@ -63,7 +63,7 @@ fn z_function(x : Value, y : Value) -> Value raise {
     n = n - 1
   }
   let mut im = if y == 0.0 {
-    1.77245384 * @math.exp(-(x * x))
+    1.77245384 * dexp(-(x * x))
   } else {
     2.0 * (if use_r { r1 } else { s1 })
   }
@@ -71,10 +71,10 @@ fn z_function(x : Value, y : Value) -> Value raise {
   if ys > 0.0 {
     re = re * xs
   } else {
-    r1 = 3.5449077 * @math.exp(y * y - x * x)
+    r1 = 3.5449077 * dexp(y * y - x * x)
     r2 = 2.0 * x * y
-    re = (re - r1 * @math.sin(r2)) * xs
-    im = r1 * @math.cos(r2) - im
+    re = (re - r1 * dsin(r2)) * xs
+    im = r1 * dcos(r2) - im
   }
   list([list2(q_mlist, q_simp), Flo(re), Flo(im)])
 }

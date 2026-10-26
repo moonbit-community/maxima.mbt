@@ -900,7 +900,7 @@ fn gammafloat(a0 : Value) -> Value raise {
     // Reflection formula to make it positive:
     // gamma(x) = %pi/sin(%pi*x)/x/gamma(-x)
     Flo(
-      -@math.PI / (a * @math.sin(@math.PI * a)) /
+      -@math.PI / (a * dsin(@math.PI * a)) /
       to_double(gammafloat(Flo(-a))),
     )
   } else if a <= (double_float_epsilon).sqrt() {
@@ -909,9 +909,9 @@ fn gammafloat(a0 : Value) -> Value raise {
   } else if a < 10.0 {
     Flo(@slatec.dgamma(a))
   } else {
-    let c = (2.0 * @math.PI).sqrt() * @math.exp(@slatec.d9lgmc(a))
-    let v = @math.pow(a, 0.5 * a - 0.25)
-    let result = v * (v / @math.exp(a)) * c
+    let c = (2.0 * @math.PI).sqrt() * dexp(@slatec.d9lgmc(a))
+    let v = dpow(a, 0.5 * a - 0.25)
+    let result = v * (v / dexp(a)) * c
     if result.is_nan() || result.is_inf() {
       merr("gamma: overflow in GAMMAFLOAT.", [])
     } else {

@@ -90,3 +90,13 @@ test "float traps" {
   let r = try num_mul(big, big) catch { e => Value::Str("\{e}") } noraise { v => v }
   inspect(r, content="\"floating-point-overflow: arithmetic error FLOATING-POINT-OVERFLOW signalled\"")
 }
+
+///|
+test "libm and complex sqrt like sbcl" {
+  inspect(try! lsqrt(Value::Cplx(Value::Flo(3.0), Value::Flo(1.0))), content="#C(1.755317301824428 0.28484878459314106)")
+  inspect(try! lsqrt(Value::Flo(-4.0)), content="#C(0.0 2.0)")
+  inspect(try! lsqrt(Value::Cplx(Value::Flo(-3.0), Value::Flo(-1.0e-300))), content="#C(2.886751345948129e-301 -1.7320508075688772)")
+  inspect(try! lexp(Value::Flo(1.6)), content="4.953032424395115")
+  inspect(try! llog(Value::Flo(1.6)), content="0.47000362924573563")
+  inspect(try! expt(Value::Flo(2.5), Value::Flo(1.3)), content="3.2909555108355937")
+}

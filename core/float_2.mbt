@@ -73,7 +73,7 @@ fn float__fpphi() -> Value raise {
 /// CL `(log n)` of a rational: a single-float (computed in double and
 /// rounded, as SBCL does).
 fn float__slog(x : Double) -> Float {
-  Float::from_double(@math.ln(x))
+  Float::from_double(dlog(x))
 }
 
 ///|
@@ -267,7 +267,7 @@ fn fpgamma1() -> Value raise {
 fn comp_bf_pctgamma(prec : Value) -> Value raise {
   with_special(q_fpprec, prec, () => {
     let n = float__fceiling(
-      0.125 * (to_double(prec) * @math.ln(2.0) + @math.ln(24.0)),
+      0.125 * (to_double(prec) * dlog(2.0) + dlog(24.0)),
     )
     let n2 = num_mul(n, n)
     let alpha = 4.970625759544

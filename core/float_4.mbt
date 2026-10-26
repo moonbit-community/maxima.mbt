@@ -4,7 +4,7 @@
 
 ///|
 /// `#.(/ (log 10.0) (log 2.0))`
-let float__log2_10 : Double = @math.ln(10.0) / @math.ln(2.0)
+let float__log2_10 : Double = dlog(10.0) / dlog(2.0)
 
 ///|
 /// FPSCAN is called by lexical scan when a bigfloat is encountered.  For

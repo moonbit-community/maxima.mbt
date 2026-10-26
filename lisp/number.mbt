@@ -852,7 +852,7 @@ pub fn num_abs(x : Value) -> Value raise LispError {
     Cplx(r, i) => {
       let rd = to_double(r)
       let id = to_double(i)
-      Flo(@math.hypot(rd, id))
+      Flo(libm_hypot(rd, id))
     }
     _ => raise type_error(x, "number")
   }
@@ -1191,7 +1191,7 @@ pub fn expt(base : Value, power : Value) -> Value raise LispError {
           raise division_by_zero()
         }
       } else {
-        Flo(@math.pow(to_double(base), to_double(power)))
+        Flo(libm_pow(to_double(base), to_double(power)))
       }
     }
   }
@@ -1211,7 +1211,7 @@ fn expt_int(base : Value, power : Value) -> Value raise LispError {
     return num_div(Fix(1L), expt_int(base, num_neg(power)))
   }
   match base {
-    Flo(d) => Flo(@math.pow(d, to_double(power)))
+    Flo(d) => Flo(libm_pow(d, to_double(power)))
     Fix(1L) => base
     Fix(0L) => if zerop(power) { Fix(1L) } else { base }
     Fix(-1L) => if oddp(power) { base } else { Fix(1L) }
@@ -1279,10 +1279,10 @@ pub fn conjugate(x : Value) -> Value raise LispError {
 /// `(phase x)`
 pub fn phase(x : Value) -> Value raise LispError {
   match x {
-    Cplx(r, i) => Flo(@math.atan2(to_double(i), to_double(r)))
+    Cplx(r, i) => Flo(libm_atan2(to_double(i), to_double(r)))
     _ => {
       let d = to_double(x)
-      Flo(if d < 0.0 || (d == 0.0 && dsignbit(d)) { @math.atan2(0.0, d) } else { 0.0 })
+      Flo(if d < 0.0 || (d == 0.0 && dsignbit(d)) { libm_atan2(0.0, d) } else { 0.0 })
     }
   }
 }
@@ -1301,10 +1301,10 @@ pub fn cexp(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      let m = @math.exp(a)
-      Cplx(Flo(m * @math.cos(b)), Flo(m * @math.sin(b)))
+      let m = libm_exp(a)
+      Cplx(Flo(m * libm_cos(b)), Flo(m * libm_sin(b)))
     }
-    _ => Flo(@math.exp(to_double(x)))
+    _ => Flo(libm_exp(to_double(x)))
   }
 }
 
@@ -1312,7 +1312,7 @@ pub fn cexp(x : Value) -> Value raise LispError {
 /// Complex logarithm (principal branch).
 pub fn clog(x : Value) -> Value raise LispError {
   let (a, b) = cparts_d(x)
-  Cplx(Flo(@math.ln(@math.hypot(a, b))), Flo(@math.atan2(b, a)))
+  Cplx(Flo(libm_log(libm_hypot(a, b))), Flo(libm_atan2(b, a)))
 }
 
 ///|
@@ -1331,7 +1331,7 @@ pub fn llog(x : Value) -> Value raise LispError {
       if d < 0.0 {
         clog(x)
       } else {
-        Flo(@math.ln(d))
+        Flo(libm_log(d))
       }
     }
   }
@@ -1347,22 +1347,60 @@ pub fn llog2(x : Value, base : Value) -> Value raise LispError {
 /// `(sqrt x)` — complex result for negative reals, as in CL.
 pub fn lsqrt(x : Value) -> Value raise LispError {
   match x {
-    Cplx(_, _) => {
-      let (a, b) = cparts_d(x)
-      let m = @math.hypot(a, b)
-      let re = ((m + a) / 2.0).sqrt()
-      let im = ((m - a) / 2.0).sqrt()
-      Cplx(Flo(re), Flo(if b < 0.0 || (b == 0.0 && dsignbit(b)) { -im } else { im }))
-    }
+    Cplx(_, _) => complex_sqrt(x)
     _ => {
       let d = to_double(x)
       if d < 0.0 {
-        Cplx(Flo(0.0), Flo((-d).sqrt()))
+        complex_sqrt(Cplx(Flo(d), Flo(0.0)))
       } else {
         Flo(d.sqrt())
       }
     }
   }
+}
+
+///|
+/// SBCL's COMPLEX-SQRT (Kahan's algorithm, with CSSQS scaling).
+fn complex_sqrt(z : Value) -> Value raise LispError {
+  let (x, y) = cparts_d(z)
+  let mut rho = x * x + y * y
+  let mut k = 0
+  if rho.is_inf() && (x.abs().is_inf() || y.abs().is_inf()) {
+    k = 0
+  } else if rho.is_inf() ||
+    (rho < least_positive_normalized_double_float / double_float_epsilon &&
+    (x != 0.0 || y != 0.0)) {
+    // scale to avoid overflow/underflow
+    let m = x.abs().max(y.abs())
+    let (_, e, _) = decode_float(m)
+    let kk = -(e - 1)
+    let xs = @math.scalbn(x, kk)
+    let ys = @math.scalbn(y, kk)
+    rho = xs * xs + ys * ys
+    k = -kk
+  }
+  if !x.is_nan() {
+    rho = @math.scalbn(x.abs(), -k) + rho.sqrt()
+  }
+  if (k & 1) != 0 {
+    k = k >> 1
+  } else {
+    k = (k >> 1) - 1
+    rho = rho + rho
+  }
+  rho = @math.scalbn(rho.sqrt(), k)
+  let mut eta = rho
+  let mut nu = y
+  if rho != 0.0 {
+    if !nu.abs().is_inf() {
+      nu = nu / rho / 2.0
+    }
+    if x < 0.0 {
+      eta = nu.abs()
+      nu = if dsignbit(y) { -rho } else { rho }
+    }
+  }
+  Cplx(Flo(eta), Flo(nu))
 }
 
 ///|
@@ -1375,9 +1413,9 @@ pub fn lsin(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(@math.sin(a) * @math.cosh(b)), Flo(@math.cos(a) * @math.sinh(b)))
+      Cplx(Flo(libm_sin(a) * libm_cosh(b)), Flo(libm_cos(a) * libm_sinh(b)))
     }
-    _ => real_fn(x, @math.sin)
+    _ => real_fn(x, libm_sin)
   }
 }
 
@@ -1386,9 +1424,9 @@ pub fn lcos(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(@math.cos(a) * @math.cosh(b)), Flo(-@math.sin(a) * @math.sinh(b)))
+      Cplx(Flo(libm_cos(a) * libm_cosh(b)), Flo(-libm_sin(a) * libm_sinh(b)))
     }
-    _ => real_fn(x, @math.cos)
+    _ => real_fn(x, libm_cos)
   }
 }
 
@@ -1396,7 +1434,7 @@ pub fn lcos(x : Value) -> Value raise LispError {
 pub fn ltan(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => num_div(lsin(x), lcos(x))
-    _ => real_fn(x, @math.tan)
+    _ => real_fn(x, libm_tan)
   }
 }
 
@@ -1405,9 +1443,9 @@ pub fn lsinh(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(@math.sinh(a) * @math.cos(b)), Flo(@math.cosh(a) * @math.sin(b)))
+      Cplx(Flo(libm_sinh(a) * libm_cos(b)), Flo(libm_cosh(a) * libm_sin(b)))
     }
-    _ => real_fn(x, @math.sinh)
+    _ => real_fn(x, libm_sinh)
   }
 }
 
@@ -1416,9 +1454,9 @@ pub fn lcosh(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => {
       let (a, b) = cparts_d(x)
-      Cplx(Flo(@math.cosh(a) * @math.cos(b)), Flo(@math.sinh(a) * @math.sin(b)))
+      Cplx(Flo(libm_cosh(a) * libm_cos(b)), Flo(libm_sinh(a) * libm_sin(b)))
     }
-    _ => real_fn(x, @math.cosh)
+    _ => real_fn(x, libm_cosh)
   }
 }
 
@@ -1426,7 +1464,7 @@ pub fn lcosh(x : Value) -> Value raise LispError {
 pub fn ltanh(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => num_div(lsinh(x), lcosh(x))
-    _ => real_fn(x, @math.tanh)
+    _ => real_fn(x, libm_tanh)
   }
 }
 
@@ -1434,7 +1472,7 @@ pub fn ltanh(x : Value) -> Value raise LispError {
 /// `(atan y)` or `(atan y x)`
 pub fn latan(y : Value, x? : Value) -> Value raise LispError {
   match x {
-    Some(xv) => Flo(@math.atan2(to_double(y), to_double(xv)))
+    Some(xv) => Flo(libm_atan2(to_double(y), to_double(xv)))
     None =>
       match y {
         Cplx(_, _) => {
@@ -1444,7 +1482,7 @@ pub fn latan(y : Value, x? : Value) -> Value raise LispError {
           let b = clog(num_sub(Fix(1L), iz))
           num_div(num_sub(a, b), Cplx(Fix(0L), Fix(2L)))
         }
-        _ => real_fn(y, @math.atan)
+        _ => real_fn(y, libm_atan)
       }
   }
 }
@@ -1457,7 +1495,7 @@ pub fn lasin(x : Value) -> Value raise LispError {
     _ => {
       let d = to_double(x)
       if d.abs() <= 1.0 {
-        Flo(@math.asin(d))
+        Flo(libm_asin(d))
       } else {
         casin(x)
       }
@@ -1481,7 +1519,7 @@ pub fn lacos(x : Value) -> Value raise LispError {
     _ => {
       let d = to_double(x)
       if d.abs() <= 1.0 {
-        Flo(@math.acos(d))
+        Flo(libm_acos(d))
       } else {
         num_sub(Flo(@math.PI / 2.0), casin(x))
       }
@@ -1493,7 +1531,7 @@ pub fn lacos(x : Value) -> Value raise LispError {
 pub fn lasinh(x : Value) -> Value raise LispError {
   match x {
     Cplx(_, _) => clog(num_add(x, lsqrt(num_add(num_mul(x, x), Fix(1L)))))
-    _ => real_fn(x, @math.asinh)
+    _ => real_fn(x, libm_asinh)
   }
 }
 
@@ -1505,7 +1543,7 @@ pub fn lacosh(x : Value) -> Value raise LispError {
     _ => {
       let d = to_double(x)
       if d >= 1.0 {
-        Flo(@math.acosh(d))
+        Flo(libm_acosh(d))
       } else {
         clog(num_add(x, num_mul(lsqrt(one_plus(x)), lsqrt(one_minus(x)))))
       }
@@ -1521,7 +1559,7 @@ pub fn latanh(x : Value) -> Value raise LispError {
     _ => {
       let d = to_double(x)
       if d.abs() < 1.0 {
-        Flo(@math.atanh(d))
+        Flo(libm_atanh(d))
       } else {
         num_div(num_sub(clog(one_plus(x)), clog(num_sub(Fix(1L), x))), Fix(2L))
       }
@@ -1533,7 +1571,7 @@ pub fn latanh(x : Value) -> Value raise LispError {
 /// `(cis x)`
 pub fn cis(x : Value) -> Value raise LispError {
   let d = to_double(x)
-  Cplx(Flo(@math.cos(d)), Flo(@math.sin(d)))
+  Cplx(Flo(libm_cos(d)), Flo(libm_sin(d)))
 }
 
 ///|

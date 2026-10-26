@@ -205,12 +205,12 @@ fn cpoly__log(x : Double) -> Double raise {
   if x == 0.0 {
     raise division_by_zero()
   }
-  cpoly__chk(@math.ln(x))
+  cpoly__chk(dlog(x))
 }
 
 ///|
 fn cpoly__exp(x : Double) -> Double raise {
-  cpoly__chk(@math.exp(x))
+  cpoly__chk(dexp(x))
 }
 
 ///|
@@ -275,7 +275,7 @@ fn cpoly__errset(f : () -> Value raise) -> Value raise {
 /// `(cos (float (* 94/180 pi)))`.
 fn cpoly__rot94() -> (Double, Double) {
   let ang = 47.0 / 90.0 * @math.PI
-  (@math.cos(ang), @math.sin(ang))
+  (dcos(ang), dsin(ang))
 }
 
 // ---------------------------------------------------------------------------
