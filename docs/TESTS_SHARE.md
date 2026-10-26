@@ -11,8 +11,8 @@
 | rtest_zeilberger | ok | 53/53 |
 | rtest_boolsimp | ok | 45/48 |
 | rtest_eigen | ok | 23/23 |
-| rtest_lsquares | ok | 8/67 |
-| rtest_pytranslate | ok | 13/74 |
+| rtest_lsquares | ok | 67/67 |
+| rtest_pytranslate | ok | 73/74 |
 | rtest_odelin | ok | 109/109 |
 | rtestezunits | ok | 318/318 |
 | rtest_numericalio | ok | 109/109 |
@@ -22,19 +22,19 @@
 | rtest_md5sum | ok | 2/2 |
 | rtest_opproperties | ok | 117/117 |
 | rtest_stats | ok | 1/14 |
-| rtest_distrib | ok | 4/189 |
-| rtest_descriptive | ok | 6/152 |
+| rtest_distrib | ok | 189/189 |
+| rtest_descriptive | ok | 152/152 |
 | rtest_interpol | ok | 12/18 |
 | rtest_levin | ok | 104/104 |
 | rtest_fractals | ok | 11/11 |
 | rtest_bernstein | ok | 44/44 |
 | rtest_atensor | ok | 20/20 |
 | rtest_ctensor | ok | 49/49 |
-| rtest_itensor | exit -6 | incomplete |
+| rtest_itensor | ok | 63/63 |
 | rtest_dgemm | ok | incomplete |
 | rtest_dgeqrf | ok | incomplete |
 | rtest_dgesv | ok | incomplete |
-| rtest_dlsode | ok | 15/22 |
+| rtest_dlsode | ok | 22/22 |
 | rtest_fourier_elim | ok | 164/164 |
 | rtest_sequence | ok | 54/54 |
 | rtest_cholesky | ok | 41/41 |
@@ -54,9 +54,9 @@
 | rtestprintf | ok | 73/73 |
 | rtest_simplex | ok | 18/18 |
 | rtest_graphs | ok | 105/105 |
-| rtest_abs_integrate | ok | 104/252 |
+| rtest_abs_integrate | ok | 118/252 |
 | rtest_pochhammer | ok | 36/36 |
-| rtest_to_poly_solve | ok | incomplete |
+| rtest_to_poly_solve | ok | 336/336 |
 | rtest_sym | ok | 77/77 |
 | rtest_mnewton | ok | 30/30 |
 | rtest_solve_rat_ineq | ok | 17/17 |
@@ -70,9 +70,9 @@
 | rtest_rfft | ok | 13/46 |
 | rtest_rk_adaptive | ok | 15/15 |
 | rtest_wrstcse | ok | 97/97 |
-| rtest_draw | ok | 182/186 |
+| rtest_draw | ok | 186/186 |
 | rtest_engineering_format | ok | 16/16 |
 | rtest_raddenest | ok | 123/123 |
 | rtest_decfp | ok | 6/6 |
 
-Total: 3987 of 4662 in completed files.
+Total: 4861 of 5061 in completed files.

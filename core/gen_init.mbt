@@ -687,11 +687,13 @@ fn share_load_dgemm() -> Unit raise {
 ///|
 fn share_load_inference_result() -> Unit raise {
   register_share_inference_result()
+  init_share_inference_result()
 }
 
 ///|
 fn share_load_numstats() -> Unit raise {
   register_share_numstats()
+  init_share_numstats()
 }
 
 ///|
@@ -790,6 +792,8 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "lapack/dgesv" => Some(share_load_dgesv)
     "lapack/dgeqrf" => Some(share_load_dgeqrf)
     "lapack/dgemm" => Some(share_load_dgemm)
+    "stats/inference_result" => Some(share_load_inference_result)
+    "stats/numstats" => Some(share_load_numstats)
     _ => None
   }
 }

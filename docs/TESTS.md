@@ -5,7 +5,7 @@
 | rtest_ask1 | ok | 70/70 |
 | rtest_sqdnst | ok | 13/13 |
 | rtest_extensions | ok | 18/18 |
-| rtest_rules | ok | 241/242 |
+| rtest_rules | ok | 242/242 |
 | rtestnset | ok | 672/672 |
 | rtest1 | ok | 206/208 |
 | rtest1a | ok | 54/54 |
@@ -23,8 +23,8 @@
 | rtest13 | ok | 39/39 |
 | rtest13s | ok | 18/18 |
 | rtest14 | ok | 439/439 |
-| rtest15 | ok | 410/430 |
-| rtest16 | ok | 1112/1118 |
+| rtest15 | ok | 428/430 |
+| rtest16 | ok | 1115/1118 |
 | rtestode | ok | 109/109 |
 | rtestode_zp | ok | 30/30 |
 | rtest3 | ok | 250/250 |
@@ -36,8 +36,8 @@
 | rtest_allnummod | ok | 575/575 |
 | rtest_maxmin | ok | 110/110 |
 | rtestconjugate | ok | 291/291 |
-| rtestsum | ok | 345/348 |
-| rtest_trig | ok | 229/231 |
+| rtestsum | ok | 348/348 |
+| rtest_trig | ok | 231/231 |
 | rtest_zeta | ok | 32/32 |
 | rtest_diff_invtrig | ok | 26/26 |
 | rtest_scalarp | ok | 22/22 |
@@ -50,8 +50,8 @@
 | rtest_abs | ok | 175/175 |
 | rtest_taylor | ok | 246/246 |
 | rtest_dot | ok | 72/72 |
-| rtest_mset | ok | incomplete |
-| rtest_boolean | ok | 115/116 |
+| rtest_mset | ok | 110/113 |
+| rtest_boolean | ok | 116/116 |
 | rtest_round | ok | 101/101 |
 | rtest_map | ok | 145/145 |
 | rtest_sign | ok | 800/800 |
@@ -73,13 +73,13 @@
 | rtest_laplace | ok | 102/102 |
 | rtest_plotoptions | ok | 6/13 |
 | rtest_algsys | ok | 75/75 |
-| rtest_trace | ok | 96/100 |
+| rtest_trace | ok | 97/100 |
 | rtest_polynomialp | ok | 17/17 |
 | rtest_limit_extra | ok | 473/474 |
 | rtest_limit_gruntz | ok | 97/97 |
 | rtest_limit_wester | ok | 14/14 |
 | rtest_great | ok | 31/31 |
-| rtest_atan2 | ok | 84/85 |
+| rtest_atan2 | ok | 85/85 |
 | rtest_gcd | ok | 39/39 |
 | rtest_hstep | ok | 60/60 |
 | rtest_sinc | ok | 48/48 |
@@ -92,4 +92,4 @@
 | rtest_wxmx | ok | 11/11 |
 | rtest_load_relative | ok | 5/5 |
 
-Total: 16273 of 16328 in completed files.
+Total: 16413 of 16441 in completed files.
