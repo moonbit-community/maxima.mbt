@@ -18,3 +18,4 @@
 - maxlist-in-place/minlist-in-place private in rat3d (rat3d__*); factor's degvector uses them
 - RISK: names proclaimed special by declare-top in EARLIER files are special in later files (CL global proclamation). defint treats k m s ans sign ind deg denom val as lexical; rat3 similar. Audit with a script: for each file, specials declared in earlier build-order files that are let-bound in this file.
 - intcv2_mv; intsc second value Nil; ptimes%e throw carries (nil updn) list
+- mhayat let-pw/tlist-mapc declared fns are approximations; expand inline (specfn uses let-pw)
