@@ -7,7 +7,7 @@ usage: python3 tools/difftest.py 'expr1;' 'expr2;' ...
 import subprocess, sys, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PORT = os.path.join(ROOT, "_build", "native", "release", "build", "cmd", "main", "main.exe")
+PORT = os.environ.get("MAXIMA_PORT") or os.path.join(ROOT, "_build", "native", "debug", "build", "cmd", "main", "main.exe")
 
 
 def run(cmd, stmt, timeout=60):
@@ -17,14 +17,8 @@ def run(cmd, stmt, timeout=60):
         out = p.stdout
     except subprocess.TimeoutExpired:
         return "<timeout>"
-    lines = [l for l in out.splitlines() if l.strip()]
-    # drop the echo of the input statements
-    res = []
-    for l in lines:
-        if l.startswith("(%i") or l.startswith("display2d"):
-            continue
-        res.append(l)
-    return "\n".join(res)
+    lines = [l.rstrip() for l in out.splitlines() if l.strip()]
+    return "\n".join(l for l in lines if not l.startswith("display2d"))
 
 
 def main():

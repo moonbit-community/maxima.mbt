@@ -29,12 +29,16 @@ pub fn exit(code : Int) -> Unit {
 pub fn cli_main(args : Array[String]) -> Int {
   (fn() -> Int raise {
     let mut quiet = false
+    let mut very_quiet = false
     let actions : Array[(String, String)] = []
     let mut i = 1
     while i < args.length() {
       let a = args[i]
-      if a == "-q" || a == "--quiet" || a == "--very-quiet" {
+      if a == "-q" || a == "--quiet" {
         quiet = true
+      } else if a == "--very-quiet" {
+        quiet = true
+        very_quiet = true
       } else if a == "--no-init" {
         ()
       } else if a.has_prefix("--batch-string=") {
@@ -54,6 +58,10 @@ pub fn cli_main(args : Array[String]) -> Int {
       i += 1
     }
     initialize()
+    if very_quiet {
+      // as init-cl.lisp does for --very-quiet
+      set(q_ear_display_labels_p, Nil) |> ignore
+    }
     if actions.is_empty() {
       maxima_interactive(quiet~)
     } else {
