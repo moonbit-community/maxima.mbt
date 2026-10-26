@@ -5,11 +5,6 @@ import {
 warnings = "-unused_value-unused_mut-unreachable_code-unused_block_label-unused_loop_variable-unused_package"
 
 options(
-  link: {
-    "native": {
-      "cc-flags": "-ffp-contract=off",
-    },
-  },
   targets: {
     "libm_native.mbt": [ "native" ],
     "libm_portable.mbt": [ "not", "native" ],

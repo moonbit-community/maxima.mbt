@@ -22,3 +22,4 @@
 - set ops now SBCL order (union/intersection/set-difference); factor port assumed order-preserving intersection — recheck if factor tests differ
 - dopgcdcofacts returns 3 (lesfac__dopgcdcofacts3); bakalevelsolve declared tuple but 1 value
 - many private errcatch/errset helpers (risch, limit, solve, cpoly, ratout): consolidate into glue later
+- slatec tests: release builds need -ffp-contract=off (removed link cc-flags from slatec/moon.pkg since it made moon build link slatec as an exe); cmd/main sets it
