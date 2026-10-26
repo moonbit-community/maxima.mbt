@@ -203,7 +203,23 @@ fn d_dependencies(form : Value) -> Value raise {
 }
 
 ///|
+/// Port: share packages redefine DERIV, SDIFF and I-$DEPENDENCIES when
+/// loaded (share/tensor/itensor.lisp); in CL every caller then reaches the
+/// new definition through the function cell. Such a package installs its
+/// definition in these hooks.
+let comm__deriv_hook : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
+let comm__sdiff_hook : Ref[((Value, Value) -> Value raise)?] = Ref(None)
+
+///|
+let comm__dependencies_hook : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
 fn i__doldependencies(l : Value) -> Value raise {
+  if comm__dependencies_hook.val is Some(f) {
+    return f(l)
+  }
   let mut res : Value = Nil
   for z in l.iter() {
     if atom(z) {
@@ -303,6 +319,9 @@ fn d_del(e : Value) -> Value raise {
 
 ///|
 fn deriv(e : Value) -> Value raise {
+  if comm__deriv_hook.val is Some(f) {
+    return f(e)
+  }
   let mut e = e
   if e is Nil {
     wna_err(q_d_diff) |> ignore
@@ -444,6 +463,9 @@ fn atomgrad(e : Value, x : Value) -> Value raise {
 ///|
 /// The args to SDIFF are assumed to be simplified.
 fn sdiff(e : Value, x : Value) -> Value raise {
+  if comm__sdiff_hook.val is Some(f) {
+    return f(e, x)
+  }
   // Remove a special representation from the variable of differentiation
   let x = specrepcheck(x)
   if alike1(e, x).truthy() {
