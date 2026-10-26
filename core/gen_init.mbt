@@ -764,16 +764,19 @@ fn share_load_visualization() -> Unit raise {
 ///|
 fn share_load_fftpack5_fftpack5() -> Unit raise {
   register_share_fftpack5_fftpack5()
+  init_share_fftpack5_fftpack5()
 }
 
 ///|
 fn share_load_fftpack5_interface() -> Unit raise {
   register_share_fftpack5_interface()
+  init_share_fftpack5_interface()
 }
 
 ///|
 fn share_load_fftpack5_lisp_fftpack5() -> Unit raise {
   register_share_fftpack5_lisp_fftpack5()
+  init_share_fftpack5_lisp_fftpack5()
 }
 
 ///|
@@ -794,11 +797,13 @@ fn share_load_lapack_lapack_lapack_package() -> Unit raise {
 ///|
 fn share_load_minpack_package() -> Unit raise {
   register_share_minpack_package()
+  init_share_minpack_package()
 }
 
 ///|
 fn share_load_cobyla_package() -> Unit raise {
   register_share_cobyla_package()
+  init_share_cobyla_package()
 }
 
 ///|
@@ -1381,17 +1386,20 @@ fn share_load_hompack_interface() -> Unit raise {
 fn share_load_minpack_interface() -> Unit raise {
   init_vars_n_dot_dot_share_minpack_minpack_interface()
   register_share_minpack_interface()
+  init_share_minpack_interface()
 }
 
 ///|
 fn share_load_cobyla_interface() -> Unit raise {
   init_vars_n_dot_dot_share_cobyla_cobyla_interface()
   register_share_cobyla_interface()
+  init_share_cobyla_interface()
 }
 
 ///|
 fn share_load_bf__cobyla_interface() -> Unit raise {
   register_share_bf__cobyla_interface()
+  init_share_bf__cobyla_interface()
 }
 
 ///|
@@ -1503,6 +1511,9 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "sym/compile" => Some(share_load_compile)
     "sym/load-sym-lisp-files" => Some(share_load_load_sym_lisp_files)
     "lisp/hompack-package" => Some(share_load_hompack_package)
+    "fftpack5/fftpack5" => Some(share_load_fftpack5_fftpack5)
+    "fftpack5/fftpack5-interface" => Some(share_load_fftpack5_interface)
+    "lisp/fftpack5" => Some(share_load_fftpack5_lisp_fftpack5)
     "lapack/lapack-package" => Some(share_load_lapack_lapack_package)
     "blas/blas-package" => Some(share_load_blas_package)
     "lapack/lapack-package" => Some(share_load_lapack_lapack_lapack_package)
@@ -1581,6 +1592,9 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "simplification/scifac" => Some(share_load_scifac)
     "simplification/rducon" => Some(share_load_rducon)
     "hompack/hompack-interface" => Some(share_load_hompack_interface)
+    "minpack/minpack-interface" => Some(share_load_minpack_interface)
+    "cobyla/cobyla-interface" => Some(share_load_cobyla_interface)
+    "cobyla/bf-cobyla-interface" => Some(share_load_bf__cobyla_interface)
     "colnew/colnew-if" => Some(share_load_colnew_if)
     _ => None
   }
@@ -1597,7 +1611,7 @@ fn share_module_group(key : String) -> Array[String]? {
     "cobyla/load-cobyla" => Some(["cobyla/cobyla-interface"])
     "colnew/load-colnew" => Some(["colnew/colnew-if"])
     "draw/draw" => Some(["draw/grcommon", "draw/gnuplot", "draw/vtk", "draw/picture"])
-    "fftpack5/load-fftpack5" => Some(["fftpack5/fftpack5-interface"])
+    "fftpack5/load-fftpack5" => Some(["fftpack5/fftpack5", "fftpack5/fftpack5-interface"])
     "gentran/gentran" => Some(["gentran/allgentran"])
     "graphs/load-graphs" => Some(["graphs/graph_core", "graphs/spring_embedding", "graphs/isomorphism", "graphs/matching", "graphs/graph6", "graphs/demoucron", "graphs/dijkstra", "graphs/wiener_index"])
     "hompack/load-hompack" => Some(["hompack/hompack-interface"])

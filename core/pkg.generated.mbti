@@ -11,6 +11,8 @@ pub fn initialize() -> Unit raise
 // Errors
 
 // Types and methods
+type BfCobylaValue
+
 type CombinMinfact
 
 type ShareSoundIn
