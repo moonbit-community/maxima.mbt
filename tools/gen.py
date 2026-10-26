@@ -430,7 +430,8 @@ def main():
                 continue
             if e is None:
                 complex_vars.append("%s\t%s.lisp:%d\t%s" % (nm, d["file"], v["line"], v["init"].get("v")))
-                if v["init"]["k"] == "quote":
+                vt = v["init"].get("v") or ""
+                if v["init"]["k"] == "quote" and not any(x in vt for x in ("#<", "##", "`", ",", "#$")):
                     body.append("  defvar_init(%s, lread(%s))" % (sym_const(nm), moon_str(v["init"]["v"])))
                 continue
             body.append("  defvar_init(%s, %s)" % (sym_const(nm), e))

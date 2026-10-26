@@ -336,10 +336,13 @@ assigned `numeric.lisp` designs that layer.
    comments that explain the math or the algorithm; drop history.
 4. `moon check` until there are 0 errors (`tools/errs.sh` gives a compact
    list; `tools/errs.sh | grep <yourfile>` to focus). Warnings are fine.
-5. Do not modify files you were not assigned, nor `gen_*`, `glue.mbt`,
+5. Never run `moon fmt` on the whole project (it rewrites generated and
+   shared files); format only your own files if at all, and commit only
+   your own files. `lread` does not support backquote/comma.
+6. Do not modify files you were not assigned, nor `gen_*`, `glue.mbt`,
    `lisp/` (report needed runtime additions instead, or add a private
    helper in your own file).
-6. Report: what you ported, any function you could not port (and why), any
+7. Report: what you ported, any function you could not port (and why), any
    signature problem (multiple values, wrong arity), runtime/glue additions
    you needed.
 

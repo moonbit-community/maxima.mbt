@@ -4,3 +4,6 @@
 - multiple values not declared: separc (separc_mv), rischform (_mv), rischlogeprog (_mv), getfncoeff (_mv)
 - risch has private risch__errcatch reproducing Lisp errcatch cleanup; consider shared glue version
 - bessel/airy numerics depend on slatec (excluded); need a plan (mechanical f2cl->MoonBit translation)
+- exploden_format_float_pretty / pregexp_extract_groups_integers declared multi-value incorrectly; parse_lambda_list_mv
+- intl: .mo catalogs not loadable; commac: local timezone = UTC
+- init_globals handles //, limitp, *alpha
