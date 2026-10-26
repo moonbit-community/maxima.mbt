@@ -122,17 +122,20 @@ fn share_load_eval_string() -> Unit raise {
 ///|
 fn share_load_unicode_sniffer() -> Unit raise {
   register_share_unicode_sniffer()
+  init_share_unicode_sniffer()
 }
 
 ///|
 fn share_load_stringproc() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_stringproc()
   register_share_stringproc()
+  init_share_stringproc()
 }
 
 ///|
 fn share_load_printf() -> Unit raise {
   register_share_printf()
+  init_share_printf()
 }
 
 ///|
@@ -144,18 +147,21 @@ fn share_load_cryptools() -> Unit raise {
 fn share_load_md5() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_md5()
   register_share_md5()
+  init_share_md5()
 }
 
 ///|
 fn share_load_base64() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_base64()
   register_share_base64()
+  init_share_base64()
 }
 
 ///|
 fn share_load_sha1() -> Unit raise {
   init_vars_n_dot_dot_share_stringproc_sha1()
   register_share_sha1()
+  init_share_sha1()
 }
 
 ///|
