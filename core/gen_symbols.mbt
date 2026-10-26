@@ -8894,6 +8894,12 @@ let q_adjust_character_encoding : Value = sym("adjust-character-encoding")
 let q_adn_star : Value = sym("adn*")
 
 ///|
+let q_adsum : Value = sym("adsum")
+
+///|
+let q_adusum : Value = sym("adusum")
+
+///|
 let q_aexpr : Value = sym("aexpr")
 
 ///|
@@ -9548,6 +9554,9 @@ let q_b_search_expr : Value = sym("b-search-expr")
 let q_b1 : Value = sym("b1")
 
 ///|
+let q_backslash_check : Value = sym("backslash-check")
+
+///|
 let q_backward : Value = sym("backward")
 
 ///|
@@ -9968,6 +9977,9 @@ let q_bf_2f1_numeric_alt : Value = sym("bigfloat::2f1-numeric-alt")
 let q_bf_op_eq : Value = sym("bigfloat::=")
 
 ///|
+let q_bf_agm : Value = sym("bigfloat::agm")
+
+///|
 let q_bf_atan : Value = sym("bigfloat::atan")
 
 ///|
@@ -10050,6 +10062,9 @@ let q_bf_bfloat_init_lambert_w_k : Value = sym("bigfloat::bfloat-init-lambert-w-
 
 ///|
 let q_bf_bigfloat : Value = sym("bigfloat::bigfloat")
+
+///|
+let q_bf_cdiv_double_float : Value = sym("bigfloat::cdiv-double-float")
 
 ///|
 let q_bf_cdiv_single_float : Value = sym("bigfloat::cdiv-single-float")
@@ -10781,10 +10796,19 @@ let q_checkencode : Value = sym("checkencode")
 let q_checkfit : Value = sym("checkfit")
 
 ///|
+let q_checkflagandact : Value = sym("checkflagandact")
+
+///|
 let q_checklabel : Value = sym("checklabel")
 
 ///|
+let q_checkpow : Value = sym("checkpow")
+
+///|
 let q_checkrat : Value = sym("checkrat")
+
+///|
+let q_checksigntm : Value = sym("checksigntm")
 
 ///|
 let q_choozp : Value = sym("choozp")
@@ -11574,6 +11598,9 @@ let q_crecip : Value = sym("crecip")
 
 ///|
 let q_crecip_general : Value = sym("crecip-general")
+
+///|
+let q_crf : Value = sym("crf")
 
 ///|
 let q_csc : Value = sym("csc")
@@ -12977,6 +13004,9 @@ let q_easy_cases : Value = sym("easy-cases")
 let q_easy_subs : Value = sym("easy-subs")
 
 ///|
+let q_eat_continuations : Value = sym("eat-continuations")
+
+///|
 let q_ebaksubst : Value = sym("ebaksubst")
 
 ///|
@@ -14015,7 +14045,13 @@ let q_factosimp : Value = sym("factosimp")
 let q_factplus0 : Value = sym("factplus0")
 
 ///|
+let q_factplus1 : Value = sym("factplus1")
+
+///|
 let q_factplus2 : Value = sym("factplus2")
+
+///|
+let q_factpluscomb : Value = sym("factpluscomb")
 
 ///|
 let q_factplusdep : Value = sym("factplusdep")
@@ -14126,6 +14162,9 @@ let q_fasprint : Value = sym("fasprint")
 let q_fastcont : Value = sym("fastcont")
 
 ///|
+let q_fbino : Value = sym("fbino")
+
+///|
 let q_fboundp : Value = sym("fboundp")
 
 ///|
@@ -14157,6 +14196,9 @@ let q_ff : Value = sym("ff")
 
 ///|
 let q_ffactor : Value = sym("ffactor")
+
+///|
+let q_ffib : Value = sym("ffib")
 
 ///|
 let q_ffloor : Value = sym("ffloor")
@@ -14261,6 +14303,9 @@ let q_findleastvar : Value = sym("findleastvar")
 let q_findp : Value = sym("findp")
 
 ///|
+let q_findpowers : Value = sym("findpowers")
+
+///|
 let q_findpowers1 : Value = sym("findpowers1")
 
 ///|
@@ -14274,6 +14319,9 @@ let q_finds : Value = sym("finds")
 
 ///|
 let q_findses : Value = sym("findses")
+
+///|
+let q_findsignofactors : Value = sym("findsignofactors")
 
 ///|
 let q_findsignoftheirproduct : Value = sym("findsignoftheirproduct")
@@ -15281,6 +15329,9 @@ let q_fpn : Value = sym("fpn")
 let q_fpoly1 : Value = sym("fpoly1")
 
 ///|
+let q_fpolysum : Value = sym("fpolysum")
+
+///|
 let q_fpone : Value = sym("fpone")
 
 ///|
@@ -15834,6 +15885,9 @@ let q_getf : Value = sym("getf")
 
 ///|
 let q_getfact : Value = sym("getfact")
+
+///|
+let q_getfactorial : Value = sym("getfactorial")
 
 ///|
 let q_getfncoeff : Value = sym("getfncoeff")
@@ -16895,6 +16949,9 @@ let q_initialize_atan2_hashtable : Value = sym("initialize-atan2-hashtable")
 let q_initialize_numeric_constant : Value = sym("initialize-numeric-constant")
 
 ///|
+let q_initialize_real_and_run_time : Value = sym("initialize-real-and-run-time")
+
+///|
 let q_initialize_runtime_globals : Value = sym("initialize-runtime-globals")
 
 ///|
@@ -17079,6 +17136,9 @@ let q_integrate1 : Value = sym("integrate1")
 
 ///|
 let q_integrate5 : Value = sym("integrate5")
+
+///|
+let q_integrator : Value = sym("integrator")
 
 ///|
 let q_interactive_eval : Value = sym("interactive-eval")
@@ -17388,6 +17448,9 @@ let q_isquadraticp : Value = sym("isquadraticp")
 
 ///|
 let q_istrength : Value = sym("istrength")
+
+///|
+let q_isum : Value = sym("isum")
 
 ///|
 let q_isum_giveup : Value = sym("isum-giveup")
@@ -19400,7 +19463,28 @@ let q_mat : Value = sym("mat")
 let q_match : Value = sym("match")
 
 ///|
+let q_match_date_yyyy_mm_dd : Value = sym("match-date-yyyy-mm-dd")
+
+///|
+let q_match_fraction_nnn : Value = sym("match-fraction-nnn")
+
+///|
 let q_match_sign : Value = sym("match-sign")
+
+///|
+let q_match_time_hh_mm_ss : Value = sym("match-time-hh-mm-ss")
+
+///|
+let q_match_tz_hh : Value = sym("match-tz-hh")
+
+///|
+let q_match_tz_hh_mm : Value = sym("match-tz-hh-mm")
+
+///|
+let q_match_tz_hhmm : Value = sym("match-tz-hhmm")
+
+///|
+let q_match_tz_z : Value = sym("match-tz-z")
 
 ///|
 let q_matchdeclare : Value = sym("matchdeclare")
@@ -24431,6 +24515,9 @@ let q_res1 : Value = sym("res1")
 let q_res1_var : Value = sym("res1-var")
 
 ///|
+let q_reset_ccol : Value = sym("reset-ccol")
+
+///|
 let q_reset_do_the_work : Value = sym("reset-do-the-work")
 
 ///|
@@ -26477,16 +26564,124 @@ let q_skr : Value = sym("skr")
 let q_slash : Value = sym("slash")
 
 ///|
+let q_slatec_d9aimp : Value = sym("slatec::d9aimp")
+
+///|
+let q_slatec_d9b0mp : Value = sym("slatec::d9b0mp")
+
+///|
+let q_slatec_d9b1mp : Value = sym("slatec::d9b1mp")
+
+///|
+let q_slatec_d9lgmc : Value = sym("slatec::d9lgmc")
+
+///|
 let q_slatec_d9upak : Value = sym("slatec::d9upak")
+
+///|
+let q_slatec_dai : Value = sym("slatec::dai")
+
+///|
+let q_slatec_daie : Value = sym("slatec::daie")
+
+///|
+let q_slatec_dasyik : Value = sym("slatec::dasyik")
+
+///|
+let q_slatec_dasyjy : Value = sym("slatec::dasyjy")
+
+///|
+let q_slatec_dbesi : Value = sym("slatec::dbesi")
+
+///|
+let q_slatec_dbesi0 : Value = sym("slatec::dbesi0")
+
+///|
+let q_slatec_dbesi1 : Value = sym("slatec::dbesi1")
+
+///|
+let q_slatec_dbesj : Value = sym("slatec::dbesj")
+
+///|
+let q_slatec_dbesj0 : Value = sym("slatec::dbesj0")
+
+///|
+let q_slatec_dbesj1 : Value = sym("slatec::dbesj1")
+
+///|
+let q_slatec_dbesk : Value = sym("slatec::dbesk")
+
+///|
+let q_slatec_dbesk0 : Value = sym("slatec::dbesk0")
+
+///|
+let q_slatec_dbesk1 : Value = sym("slatec::dbesk1")
+
+///|
+let q_slatec_dbesy : Value = sym("slatec::dbesy")
+
+///|
+let q_slatec_dbesy0 : Value = sym("slatec::dbesy0")
+
+///|
+let q_slatec_dbesy1 : Value = sym("slatec::dbesy1")
+
+///|
+let q_slatec_dbi : Value = sym("slatec::dbi")
+
+///|
+let q_slatec_dbie : Value = sym("slatec::dbie")
+
+///|
+let q_slatec_dbsi0e : Value = sym("slatec::dbsi0e")
+
+///|
+let q_slatec_dbsi1e : Value = sym("slatec::dbsi1e")
+
+///|
+let q_slatec_dbsk0e : Value = sym("slatec::dbsk0e")
+
+///|
+let q_slatec_dbsk1e : Value = sym("slatec::dbsk1e")
+
+///|
+let q_slatec_dbsknu : Value = sym("slatec::dbsknu")
+
+///|
+let q_slatec_dbsynu : Value = sym("slatec::dbsynu")
+
+///|
+let q_slatec_dcsevl : Value = sym("slatec::dcsevl")
+
+///|
+let q_slatec_de1 : Value = sym("slatec::de1")
 
 ///|
 let q_slatec_dei : Value = sym("slatec::dei")
 
 ///|
+let q_slatec_derf : Value = sym("slatec::derf")
+
+///|
+let q_slatec_derfc : Value = sym("slatec::derfc")
+
+///|
 let q_slatec_dgamlm : Value = sym("slatec::dgamlm")
 
 ///|
+let q_slatec_dgamln : Value = sym("slatec::dgamln")
+
+///|
+let q_slatec_dgamma : Value = sym("slatec::dgamma")
+
+///|
 let q_slatec_dgtsl : Value = sym("slatec::dgtsl")
+
+///|
+let q_slatec_djairy : Value = sym("slatec::djairy")
+
+///|
+let q_slatec_dlngam : Value = sym("slatec::dlngam")
 
 ///|
 let q_slatec_dqag : Value = sym("slatec::dqag")
@@ -26522,6 +26717,9 @@ let q_slatec_dqawce : Value = sym("slatec::dqawce")
 let q_slatec_dqawf : Value = sym("slatec::dqawf")
 
 ///|
+let q_slatec_dqawfe : Value = sym("slatec::dqawfe")
+
+///|
 let q_slatec_dqawo : Value = sym("slatec::dqawo")
 
 ///|
@@ -26534,13 +26732,49 @@ let q_slatec_dqaws : Value = sym("slatec::dqaws")
 let q_slatec_dqawse : Value = sym("slatec::dqawse")
 
 ///|
+let q_slatec_dqc25c : Value = sym("slatec::dqc25c")
+
+///|
+let q_slatec_dqc25f : Value = sym("slatec::dqc25f")
+
+///|
+let q_slatec_dqc25s : Value = sym("slatec::dqc25s")
+
+///|
 let q_slatec_dqcheb : Value = sym("slatec::dqcheb")
 
 ///|
 let q_slatec_dqelg : Value = sym("slatec::dqelg")
 
 ///|
+let q_slatec_dqk15 : Value = sym("slatec::dqk15")
+
+///|
+let q_slatec_dqk15i : Value = sym("slatec::dqk15i")
+
+///|
+let q_slatec_dqk15w : Value = sym("slatec::dqk15w")
+
+///|
+let q_slatec_dqk21 : Value = sym("slatec::dqk21")
+
+///|
+let q_slatec_dqk31 : Value = sym("slatec::dqk31")
+
+///|
+let q_slatec_dqk41 : Value = sym("slatec::dqk41")
+
+///|
+let q_slatec_dqk51 : Value = sym("slatec::dqk51")
+
+///|
+let q_slatec_dqk61 : Value = sym("slatec::dqk61")
+
+///|
 let q_slatec_dqmomo : Value = sym("slatec::dqmomo")
+
+///|
+let q_slatec_dqng : Value = sym("slatec::dqng")
 
 ///|
 let q_slatec_dqpsrt : Value = sym("slatec::dqpsrt")
@@ -26555,10 +26789,19 @@ let q_slatec_dqwgtf : Value = sym("slatec::dqwgtf")
 let q_slatec_dqwgts : Value = sym("slatec::dqwgts")
 
 ///|
+let q_slatec_dspenc : Value = sym("slatec::dspenc")
+
+///|
+let q_slatec_dyairy : Value = sym("slatec::dyairy")
+
+///|
 let q_slatec_fdump : Value = sym("slatec::fdump")
 
 ///|
 let q_slatec_initds : Value = sym("slatec::initds")
+
+///|
+let q_slatec_j4save : Value = sym("slatec::j4save")
 
 ///|
 let q_slatec_xercnt : Value = sym("slatec::xercnt")
@@ -26570,16 +26813,49 @@ let q_slatec_xerhlt : Value = sym("slatec::xerhlt")
 let q_slatec_xermsg : Value = sym("slatec::xermsg")
 
 ///|
+let q_slatec_xerprn : Value = sym("slatec::xerprn")
+
+///|
 let q_slatec_xgetua : Value = sym("slatec::xgetua")
 
 ///|
 let q_slatec_zabs : Value = sym("slatec::zabs")
 
 ///|
+let q_slatec_zacai : Value = sym("slatec::zacai")
+
+///|
+let q_slatec_zacon : Value = sym("slatec::zacon")
+
+///|
+let q_slatec_zairy : Value = sym("slatec::zairy")
+
+///|
+let q_slatec_zasyi : Value = sym("slatec::zasyi")
+
+///|
+let q_slatec_zbesh : Value = sym("slatec::zbesh")
+
+///|
+let q_slatec_zbesi : Value = sym("slatec::zbesi")
+
+///|
+let q_slatec_zbesj : Value = sym("slatec::zbesj")
+
+///|
 let q_slatec_zbesk : Value = sym("slatec::zbesk")
 
 ///|
 let q_slatec_zbesy : Value = sym("slatec::zbesy")
+
+///|
+let q_slatec_zbinu : Value = sym("slatec::zbinu")
+
+///|
+let q_slatec_zbiry : Value = sym("slatec::zbiry")
+
+///|
+let q_slatec_zbknu : Value = sym("slatec::zbknu")
 
 ///|
 let q_slatec_zbuni : Value = sym("slatec::zbuni")
@@ -26594,13 +26870,55 @@ let q_slatec_zdiv : Value = sym("slatec::zdiv")
 let q_slatec_zexp : Value = sym("slatec::zexp")
 
 ///|
+let q_slatec_zkscl : Value = sym("slatec::zkscl")
+
+///|
+let q_slatec_zlog : Value = sym("slatec::zlog")
+
+///|
+let q_slatec_zmlri : Value = sym("slatec::zmlri")
+
+///|
 let q_slatec_zmlt : Value = sym("slatec::zmlt")
+
+///|
+let q_slatec_zrati : Value = sym("slatec::zrati")
+
+///|
+let q_slatec_zs1s2 : Value = sym("slatec::zs1s2")
+
+///|
+let q_slatec_zseri : Value = sym("slatec::zseri")
 
 ///|
 let q_slatec_zshch : Value = sym("slatec::zshch")
 
 ///|
+let q_slatec_zsqrt_dol : Value = sym("slatec::zsqrt$")
+
+///|
 let q_slatec_zuchk : Value = sym("slatec::zuchk")
+
+///|
+let q_slatec_zunhj : Value = sym("slatec::zunhj")
+
+///|
+let q_slatec_zuni1 : Value = sym("slatec::zuni1")
+
+///|
+let q_slatec_zuni2 : Value = sym("slatec::zuni2")
+
+///|
+let q_slatec_zunik : Value = sym("slatec::zunik")
+
+///|
+let q_slatec_zunk1 : Value = sym("slatec::zunk1")
+
+///|
+let q_slatec_zunk2 : Value = sym("slatec::zunk2")
+
+///|
+let q_slatec_zuoik : Value = sym("slatec::zuoik")
 
 ///|
 let q_slatec_zwrsk : Value = sym("slatec::zwrsk")
@@ -27422,6 +27740,9 @@ let q_subst2s : Value = sym("subst2s")
 let q_subst4 : Value = sym("subst4")
 
 ///|
+let q_subst41 : Value = sym("subst41")
+
+///|
 let q_substforsum : Value = sym("substforsum")
 
 ///|
@@ -27503,6 +27824,9 @@ let q_sumcontract2 : Value = sym("sumcontract2")
 let q_sumpls : Value = sym("sumpls")
 
 ///|
+let q_sumsum : Value = sym("sumsum")
+
+///|
 let q_sumtimes : Value = sym("sumtimes")
 
 ///|
@@ -27510,6 +27834,9 @@ let q_sumultin : Value = sym("sumultin")
 
 ///|
 let q_supercosnx : Value = sym("supercosnx")
+
+///|
+let q_superexpt : Value = sym("superexpt")
 
 ///|
 let q_supersinx : Value = sym("supersinx")

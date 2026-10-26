@@ -311,6 +311,12 @@ def analyze_file(module, rel):
             for g in f[(2 if h == "eval-when" else 1):]:
                 handle(g, line)
             return
+        if h in ("let", "let*") and len(f) > 2:
+            # defuns inside a top-level closure (shared lexical state)
+            for g in f[2:]:
+                if isinstance(g, list) and g and sym(g[0]) in ("defun", "defmfun", "defmspec", "progn"):
+                    handle(g, getattr(g, "line", line) or line)
+            return
         if h == "defun" or h == "defun-maclisp":
             name = sym(f[1])
             if name is None and isinstance(f[1], list):

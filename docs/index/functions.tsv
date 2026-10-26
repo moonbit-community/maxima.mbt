@@ -110,6 +110,7 @@ strip-float-zeros	defun	commac.lisp:383	strip_float_zeros(s : Value) -> Value
 explodec	defun	commac.lisp:399	explodec(symb : Value) -> Value
 maybe-invert-string-case	defun	commac.lisp:405	maybe_invert_string_case(string_ : Value) -> Value
 intern-invert-case	defun	commac.lisp:445	intern_invert_case(string_ : Value) -> Value
+print-invert-case	defun	commac.lisp:455	print_invert_case(sym_ : Value) -> Value
 implode	defun	commac.lisp:476	implode(list_ : Value) -> Value
 explode	defun	commac.lisp:486	explode(symb : Value) -> Value
 get-first-char	defun	commac.lisp:491	get_first_char(symb : Value) -> Value
@@ -120,7 +121,16 @@ flatc	defun	commac.lisp:517	flatc(sym_ : Value) -> Value
 flatsize	defun	commac.lisp:520	flatsize(sym_ : Value) -> Value
 tyi-raw	defun	commac.lisp:546	tyi_raw(stream? : Value, eof_option? : Value = Nil) -> Value
 tyi	defun	commac.lisp:556	tyi(stream? : Value, eof_option? : Value = Nil) -> Value
+backslash-check	defun	commac.lisp:570	backslash_check(ch : Value, stream : Value, eof_option : Value) -> Value
+eat-continuations	defun	commac.lisp:582	eat_continuations(ch : Value, stream : Value, eof_option : Value) -> Value
 $timedate	defmfun	commac.lisp:595	d_timedate(time? : Value, tz? : Value = Nil) -> Value
+match-date-yyyy-mm-dd	defun	commac.lisp:666	match_date_yyyy_mm_dd(s : Value) -> Value
+match-time-hh-mm-ss	defun	commac.lisp:672	match_time_hh_mm_ss(s : Value) -> Value
+match-fraction-nnn	defun	commac.lisp:678	match_fraction_nnn(s : Value) -> Value
+match-tz-hh-mm	defun	commac.lisp:685	match_tz_hh_mm(s : Value) -> Value
+match-tz-hhmm	defun	commac.lisp:691	match_tz_hhmm(s : Value) -> Value
+match-tz-hh	defun	commac.lisp:697	match_tz_hh(s : Value) -> Value
+match-tz-z	defun	commac.lisp:703	match_tz_z(s : Value) -> Value
 $parse_timedate	defmfun	commac.lisp:708	d_parse_timedate(s : Value) -> Value
 pregexp-extract-groups-integers	defun	commac.lisp:751	pregexp_extract_groups_integers(matches : Value, s : Value) -> (Value, Value)
 parse-integer-or-sign	defun	commac.lisp:757	parse_integer_or_sign(s : Value) -> Value
@@ -698,6 +708,11 @@ try-float-computation	defun	comm.lisp:1022	try_float_computation(thunk : Value) 
 $float	defmfun	comm.lisp:1037	d_float(e : Value) -> Value
 $coeff	defmfun	comm.lisp:1116	d_coeff(e : Value, x : Value, n? : Value = Fix(1L)) -> Value
 coeff-contains-powers	defun	comm.lisp:1141	coeff_contains_powers(e : Value, var_ : Value) -> Value
+$hipow	defmfun	comm.lisp:1154	d_hipow(e : Value, var_ : Value) -> Value
+$lopow	defmfun	comm.lisp:1159	d_lopow(e : Value, var_ : Value) -> Value
+findpowers	defun	comm.lisp:1162	findpowers(e : Value, hiflg : Value, var_ : Value) -> Value
+findpowers1	defun	comm.lisp:1170	findpowers1(e : Value, hiflg : Value, var_ : Value) -> Value
+checkpow	defun	comm.lisp:1182	checkpow(pow : Value, hiflg : Value) -> Value
 $push	defmspec	comm.lisp:1197	d_push(z : Value) -> Value
 $pop	defmspec	comm.lisp:1225	d_pop(z : Value) -> Value
 diffint	defun	comm2.lisp:16	diffint(e : Value, x : Value) -> Value
@@ -736,6 +751,8 @@ rtc-divide-by-gcd	defun	comm2.lisp:469	rtc_divide_by_gcd(llist : Value, gcd_ : V
 $nterms	defmfun	comm2.lisp:473	d_nterms(e : Value) -> Value
 $fibtophi	defmfun	comm2.lisp:490	d_fibtophi(e : Value, lnorecurse? : Value = Nil) -> Value
 $numerval	defmspec	comm2.lisp:499	d_numerval(l : Value) -> Value
+$derivdegree	defmfun	comm2.lisp:513	d_derivdegree(e : Value, depvar : Value, var_ : Value) -> Value
+derivdeg1	defun	comm2.lisp:516	derivdeg1(e : Value, depvar : Value, var_ : Value) -> Value
 $dpart	defmfun	comm2.lisp:538	d_dpart(args : Value) -> Value
 $lpart	defmfun	comm2.lisp:541	d_lpart(e : Value, args : Value) -> Value
 make-mbox	defmfun	comm2.lisp:544	make_mbox(e : Value, l? : Value) -> Value
@@ -933,41 +950,118 @@ mbuildq-subst	defun	buildq.lisp:118	mbuildq_subst(alist : Value, expression : Va
 mbuildq-associate	defun	buildq.lisp:156	mbuildq_associate(atom_ : Value, alist : Value) -> Value
 mbuildq-splice-associate	defun	buildq.lisp:183	mbuildq_splice_associate(expression : Value, alist : Value) -> Value
 slatec::fdump	defun	numerical/slatec/fdump.lisp:20	slatec_fdump() -> Value
+slatec::j4save	defun	numerical/slatec/j4save.lisp:25	slatec_j4save(iwhich : Value, ivalue : Value, iset : Value) -> (Value, Value, Value, Value)
 slatec::initds	defun	numerical/slatec/initds.lisp:20	slatec_initds(os : Value, nos : Value, eta : Value) -> (Value, Value, Value, Value)
 slatec::xgetua	defun	numerical/slatec/xgetua.lisp:20	slatec_xgetua(iunita : Value, n : Value) -> (Value, Value)
 slatec::xermsg	defun	numerical/slatec/xermsg.lisp:20	slatec_xermsg(librar : Value, subrou : Value, messg : Value, nerr : Value, level : Value) -> (Value, Value, Value, Value, Value)
 slatec::xercnt	defun	numerical/slatec/xercnt.lisp:20	slatec_xercnt(librar : Value, subrou : Value, messg : Value, nerr : Value, level : Value, kontrl : Value) -> (Value, Value, Value, Value, Value, Value)
 slatec::xerhlt	defun	numerical/slatec/xerhlt.lisp:20	slatec_xerhlt(messg : Value) -> Value
+slatec::xerprn	defun	numerical/slatec/xerprn.lisp:22	slatec_xerprn(prefix : Value, npref : Value, messg : Value, nwrap : Value) -> (Value, Value, Value, Value)
+slatec::dcsevl	defun	numerical/slatec/dcsevl.lisp:23	slatec_dcsevl(x : Value, cs : Value, n : Value) -> (Value, Value, Value, Value)
+slatec::d9lgmc	defun	numerical/slatec/d9lgmc.lisp:47	slatec_d9lgmc(x : Value) -> (Value, Value)
 slatec::dgamlm	defun	numerical/slatec/dgamlm.lisp:20	slatec_dgamlm(xmin : Value, xmax : Value) -> (Value, Value)
+slatec::dgamma	defun	numerical/slatec/dgamma.lisp:75	slatec_dgamma(x : Value) -> (Value, Value)
+slatec::dgamln	defun	numerical/slatec/dgamln.lisp:98	slatec_dgamln(z : Value, ierr : Value) -> (Value, Value, Value)
+slatec::dlngam	defun	numerical/slatec/dlngam.lisp:29	slatec_dlngam(x : Value) -> (Value, Value)
+slatec::d9b0mp	defun	numerical/slatec/d9b0mp.lisp:207	slatec_d9b0mp(x : Value, ampl : Value, theta : Value) -> (Value, Value, Value)
+slatec::d9b1mp	defun	numerical/slatec/d9b1mp.lisp:204	slatec_d9b1mp(x : Value, ampl : Value, theta : Value) -> (Value, Value, Value)
+slatec::dbesj0	defun	numerical/slatec/dbesj0.lisp:48	slatec_dbesj0(x : Value) -> (Value, Value)
+slatec::dbesj1	defun	numerical/slatec/dbesj1.lisp:50	slatec_dbesj1(x : Value) -> (Value, Value)
+slatec::djairy	defun	numerical/slatec/djairy.lisp:264	slatec_djairy(x : Value, rx : Value, c : Value, ai : Value, dai : Value) -> (Value, Value, Value, Value, Value)
+slatec::dasyjy	defun	numerical/slatec/dasyjy.lisp:258	slatec_dasyjy(funjy : Value, x : Value, fnu : Value, flgjy : Value, in_ : Value, y : Value, wk : Value, iflw : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::dbesj	defun	numerical/slatec/dbesj.lisp:38	slatec_dbesj(x : Value, alpha : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value)
+slatec::dbsi0e	defun	numerical/slatec/dbsi0e.lisp:171	slatec_dbsi0e(x : Value) -> (Value, Value)
+slatec::dbsi1e	defun	numerical/slatec/dbsi1e.lisp:173	slatec_dbsi1e(x : Value) -> (Value, Value)
+slatec::dbesi0	defun	numerical/slatec/dbesi0.lisp:48	slatec_dbesi0(x : Value) -> (Value, Value)
+slatec::dbesi1	defun	numerical/slatec/dbesi1.lisp:49	slatec_dbesi1(x : Value) -> (Value, Value)
+slatec::dasyik	defun	numerical/slatec/dasyik.lisp:62	slatec_dasyik(x : Value, fnu : Value, kode : Value, flgik : Value, ra : Value, arg : Value, in_ : Value, y : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::dbesi	defun	numerical/slatec/dbesi.lisp:22	slatec_dbesi(x : Value, alpha : Value, kode : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value, Value)
+slatec::zbesi	defun	numerical/slatec/zbesi.lisp:22	slatec_zbesi(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::zabs	defun	numerical/slatec/zabs.lisp:20	slatec_zabs(zr : Value, zi : Value) -> (Value, Value, Value)
+slatec::zacai	defun	numerical/slatec/zacai.lisp:22	slatec_zacai(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, rl : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zairy	defun	numerical/slatec/zairy.lisp:29	slatec_zairy(zr : Value, zi : Value, id : Value, kode : Value, air : Value, aii : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zasyi	defun	numerical/slatec/zasyi.lisp:27	slatec_zasyi(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, rl : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zbesj	defun	numerical/slatec/zbesj.lisp:22	slatec_zbesj(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zbinu	defun	numerical/slatec/zbinu.lisp:22	slatec_zbinu(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, rl : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zbknu	defun	numerical/slatec/zbknu.lisp:46	slatec_zbknu(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::zbuni	defun	numerical/slatec/zbuni.lisp:20	slatec_zbuni(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, nui : Value, nlast : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::zdiv	defun	numerical/slatec/zdiv.lisp:20	slatec_zdiv(ar : Value, ai : Value, br : Value, bi : Value, cr : Value, ci : Value) -> (Value, Value, Value, Value, Value, Value)
 slatec::zexp	defun	numerical/slatec/zexp.lisp:20	slatec_zexp(ar : Value, ai : Value, br : Value, bi : Value) -> (Value, Value, Value, Value)
+slatec::zkscl	defun	numerical/slatec/zkscl.lisp:22	slatec_zkscl(zrr : Value, zri : Value, fnu : Value, n : Value, yr : Value, yi : Value, nz : Value, rzr : Value, rzi : Value, ascle : Value, tol : Value, elim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zlog	defun	numerical/slatec/zlog.lisp:22	slatec_zlog(ar : Value, ai : Value, br : Value, bi : Value, ierr : Value) -> (Value, Value, Value, Value, Value)
+slatec::zmlri	defun	numerical/slatec/zmlri.lisp:22	slatec_zmlri(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::zmlt	defun	numerical/slatec/zmlt.lisp:20	slatec_zmlt(ar : Value, ai : Value, br : Value, bi : Value, cr : Value, ci : Value) -> (Value, Value, Value, Value, Value, Value)
+slatec::zrati	defun	numerical/slatec/zrati.lisp:26	slatec_zrati(zr : Value, zi : Value, fnu : Value, n : Value, cyr : Value, cyi : Value, tol : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::zs1s2	defun	numerical/slatec/zs1s2.lisp:22	slatec_zs1s2(zrr : Value, zri : Value, s1r : Value, s1i : Value, s2r : Value, s2i : Value, nz : Value, ascle : Value, alim : Value, iuf : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zseri	defun	numerical/slatec/zseri.lisp:22	slatec_zseri(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::zshch	defun	numerical/slatec/zshch.lisp:20	slatec_zshch(zr : Value, zi : Value, cshr : Value, cshi : Value, cchr : Value, cchi : Value) -> (Value, Value, Value, Value, Value, Value)
+slatec::zsqrt$	defun	numerical/slatec/zsqrt.lisp:22	slatec_zsqrt_dol(ar : Value, ai : Value, br : Value, bi : Value) -> (Value, Value, Value, Value)
 slatec::zuchk	defun	numerical/slatec/zuchk.lisp:20	slatec_zuchk(yr : Value, yi : Value, nz : Value, ascle : Value, tol : Value) -> (Value, Value, Value, Value, Value)
+slatec::zunhj	defun	numerical/slatec/zunhj.lisp:528	slatec_zunhj(zr : Value, zi : Value, fnu : Value, ipmtr : Value, tol : Value, phir : Value, phii : Value, argr : Value, argi : Value, zeta1r : Value, zeta1i : Value, zeta2r : Value, zeta2i : Value, asumr : Value, asumi : Value, bsumr : Value, bsumi : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zuni1	defun	numerical/slatec/zuni1.lisp:22	slatec_zuni1(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, nlast : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zuni2	defun	numerical/slatec/zuni2.lisp:35	slatec_zuni2(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, nlast : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zunik	defun	numerical/slatec/zunik.lisp:110	slatec_zunik(zrr : Value, zri : Value, fnu : Value, ikflg : Value, ipmtr : Value, tol : Value, init_ : Value, phir : Value, phii : Value, zeta1r : Value, zeta1i : Value, zeta2r : Value, zeta2i : Value, sumr : Value, sumi : Value, cwrkr : Value, cwrki : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zuoik	defun	numerical/slatec/zuoik.lisp:22	slatec_zuoik(zr : Value, zi : Value, fnu : Value, kode : Value, ikflg : Value, n : Value, yr : Value, yi : Value, nuf : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::zwrsk	defun	numerical/slatec/zwrsk.lisp:20	slatec_zwrsk(zrr : Value, zri : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, cwr : Value, cwi : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::dbesy0	defun	numerical/slatec/dbesy0.lisp:51	slatec_dbesy0(x : Value) -> (Value, Value)
+slatec::dbesy1	defun	numerical/slatec/dbesy1.lisp:52	slatec_dbesy1(x : Value) -> (Value, Value)
+slatec::dbesy	defun	numerical/slatec/dbesy.lisp:25	slatec_dbesy(x : Value, fnu : Value, n : Value, y : Value) -> (Value, Value, Value, Value)
+slatec::dbsynu	defun	numerical/slatec/dbsynu.lisp:34	slatec_dbsynu(x : Value, fnu : Value, n : Value, y : Value) -> (Value, Value, Value, Value)
+slatec::dyairy	defun	numerical/slatec/dyairy.lisp:298	slatec_dyairy(x : Value, rx : Value, c : Value, bi : Value, dbi : Value) -> (Value, Value, Value, Value, Value)
 slatec::zbesy	defun	numerical/slatec/zbesy.lisp:20	slatec_zbesy(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, cwrkr : Value, cwrki : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zbesh	defun	numerical/slatec/zbesh.lisp:22	slatec_zbesh(zr : Value, zi : Value, fnu : Value, kode : Value, m : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zacon	defun	numerical/slatec/zacon.lisp:22	slatec_zacon(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, rl : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::zbunk	defun	numerical/slatec/zbunk.lisp:20	slatec_zbunk(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zunk1	defun	numerical/slatec/zunk1.lisp:22	slatec_zunk1(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::zunk2	defun	numerical/slatec/zunk2.lisp:41	slatec_zunk2(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::dbesk0	defun	numerical/slatec/dbesk0.lisp:46	slatec_dbesk0(x : Value) -> (Value, Value)
+slatec::dbsk0e	defun	numerical/slatec/dbsk0e.lisp:126	slatec_dbsk0e(x : Value) -> (Value, Value)
+slatec::dbesk1	defun	numerical/slatec/dbesk1.lisp:48	slatec_dbesk1(x : Value) -> (Value, Value)
+slatec::dbsk1e	defun	numerical/slatec/dbsk1e.lisp:126	slatec_dbsk1e(x : Value) -> (Value, Value)
+slatec::dbesk	defun	numerical/slatec/dbesk.lisp:25	slatec_dbesk(x : Value, fnu : Value, kode : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value, Value)
+slatec::dbsknu	defun	numerical/slatec/dbsknu.lisp:33	slatec_dbsknu(x : Value, fnu : Value, kode : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value, Value)
 slatec::zbesk	defun	numerical/slatec/zbesk.lisp:20	slatec_zbesk(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::d9aimp	defun	numerical/slatec/d9aimp.lisp:431	slatec_d9aimp(x : Value, ampl : Value, theta : Value) -> (Value, Value, Value)
+slatec::daie	defun	numerical/slatec/daie.lisp:166	slatec_daie(x : Value) -> (Value, Value)
+slatec::dai	defun	numerical/slatec/dai.lisp:61	slatec_dai(x : Value) -> (Value, Value)
+slatec::dbie	defun	numerical/slatec/dbie.lisp:243	slatec_dbie(x : Value) -> (Value, Value)
+slatec::dbi	defun	numerical/slatec/dbi.lisp:96	slatec_dbi(x : Value) -> (Value, Value)
+slatec::zbiry	defun	numerical/slatec/zbiry.lisp:28	slatec_zbiry(zr : Value, zi : Value, id : Value, kode : Value, bir : Value, bii : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::derf	defun	numerical/slatec/derf.lisp:54	slatec_derf(x : Value) -> (Value, Value)
+slatec::derfc	defun	numerical/slatec/derfc.lisp:172	slatec_derfc(x : Value) -> (Value, Value)
+slatec::de1	defun	numerical/slatec/de1.lisp:372	slatec_de1(x : Value) -> (Value, Value)
 slatec::dei	defun	numerical/slatec/dei.lisp:20	slatec_dei(x : Value) -> (Value, Value)
+slatec::dspenc	defun	numerical/slatec/dspenc.lisp:66	slatec_dspenc(x : Value) -> (Value, Value)
 slatec::d9upak	defun	numerical/slatec/d9upak.lisp:20	slatec_d9upak(x : Value, y : Value, n : Value) -> (Value, Value, Value)
 slatec::dqwgtf	defun	numerical/slatec/dqwgtf.lisp:20	slatec_dqwgtf(x : Value, omega : Value, p2 : Value, p3 : Value, p4 : Value, integr : Value) -> (Value, Value, Value, Value, Value, Value, Value)
 slatec::dqcheb	defun	numerical/slatec/dqcheb.lisp:20	slatec_dqcheb(x : Value, fval : Value, cheb12 : Value, cheb24 : Value) -> (Value, Value, Value, Value)
+slatec::dqk15w	defun	numerical/slatec/dqk15w.lisp:41	slatec_dqk15w(f : Value, w : Value, p1 : Value, p2 : Value, p3 : Value, p4 : Value, kp : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqwgts	defun	numerical/slatec/dqwgts.lisp:20	slatec_dqwgts(x : Value, a : Value, b : Value, alfa : Value, beta : Value, integr : Value) -> (Value, Value, Value, Value, Value, Value, Value)
 slatec::dqwgtc	defun	numerical/slatec/dqwgtc.lisp:20	slatec_dqwgtc(x : Value, c : Value, p2 : Value, p3 : Value, p4 : Value, kp : Value) -> (Value, Value, Value, Value, Value, Value, Value)
 slatec::dgtsl	defun	numerical/slatec/dgtsl.lisp:20	slatec_dgtsl(n : Value, c : Value, d : Value, e : Value, b : Value, info : Value) -> (Value, Value, Value, Value, Value, Value)
+slatec::dqk15	defun	numerical/slatec/dqk15.lisp:42	slatec_dqk15(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqk31	defun	numerical/slatec/dqk31.lisp:53	slatec_dqk31(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqk41	defun	numerical/slatec/dqk41.lisp:61	slatec_dqk41(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqk51	defun	numerical/slatec/dqk51.lisp:70	slatec_dqk51(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqk61	defun	numerical/slatec/dqk61.lisp:75	slatec_dqk61(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqk21	defun	numerical/slatec/dqk21.lisp:47	slatec_dqk21(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqk15i	defun	numerical/slatec/dqk15i.lisp:43	slatec_dqk15i(f : Value, boun : Value, inf : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqelg	defun	numerical/slatec/dqelg.lisp:20	slatec_dqelg(n : Value, epstab : Value, result : Value, abserr : Value, res3la : Value, nres : Value) -> (Value, Value, Value, Value, Value, Value)
 slatec::dqpsrt	defun	numerical/slatec/dqpsrt.lisp:20	slatec_dqpsrt(limit : Value, last_dol : Value, maxerr : Value, ermax : Value, elist : Value, iord : Value, nrmax : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqc25s	defun	numerical/slatec/dqc25s.lisp:30	slatec_dqc25s(f : Value, a : Value, b : Value, bl : Value, br : Value, alfa : Value, beta : Value, ri : Value, rj : Value, rg : Value, rh : Value, result : Value, abserr : Value, resasc : Value, integr : Value, nev : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqmomo	defun	numerical/slatec/dqmomo.lisp:20	slatec_dqmomo(alfa : Value, beta : Value, ri : Value, rj : Value, rg : Value, rh : Value, integr : Value) -> (Value, Value, Value, Value, Value, Value, Value)
+slatec::dqc25c	defun	numerical/slatec/dqc25c.lisp:30	slatec_dqc25c(f : Value, a : Value, b : Value, c : Value, result : Value, abserr : Value, krul : Value, neval : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::dqc25f	defun	numerical/slatec/dqc25f.lisp:30	slatec_dqc25f(f : Value, a : Value, b : Value, omega : Value, integr : Value, nrmom : Value, maxp1 : Value, ksave : Value, result : Value, abserr : Value, neval : Value, resabs : Value, resasc : Value, momcom : Value, chebmo : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqage	defun	numerical/slatec/dqage.lisp:20	slatec_dqage(f : Value, a : Value, b : Value, epsabs : Value, epsrel : Value, key : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqagie	defun	numerical/slatec/dqagie.lisp:20	slatec_dqagie(f : Value, bound : Value, inf : Value, epsabs : Value, epsrel : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqagp	defun	numerical/slatec/dqagp.lisp:20	slatec_dqagp(f : Value, a : Value, b : Value, npts2 : Value, points : Value, epsabs : Value, epsrel : Value, result : Value, abserr : Value, neval : Value, ier : Value, leniw : Value, lenw : Value, last_dol : Value, iwork : Value, work : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqagpe	defun	numerical/slatec/dqagpe.lisp:20	slatec_dqagpe(f : Value, a : Value, b : Value, npts2 : Value, points : Value, epsabs : Value, epsrel : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, pts : Value, iord : Value, level : Value, ndin : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqagse	defun	numerical/slatec/dqagse.lisp:20	slatec_dqagse(f : Value, a : Value, b : Value, epsabs : Value, epsrel : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::dqawfe	defun	numerical/slatec/dqawfe.lisp:22	slatec_dqawfe(f : Value, a : Value, omega : Value, integr : Value, epsabs : Value, limlst : Value, limit : Value, maxp1 : Value, result : Value, abserr : Value, neval : Value, ier : Value, rslst : Value, erlst : Value, ierlst : Value, lst : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, nnlog : Value, chebmo : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqawoe	defun	numerical/slatec/dqawoe.lisp:20	slatec_dqawoe(f : Value, a : Value, b : Value, omega : Value, integr : Value, epsabs : Value, epsrel : Value, limit : Value, icall : Value, maxp1 : Value, result : Value, abserr : Value, neval : Value, ier : Value, last_dol : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, nnlog : Value, momcom : Value, chebmo : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqawse	defun	numerical/slatec/dqawse.lisp:20	slatec_dqawse(f : Value, a : Value, b : Value, alfa : Value, beta : Value, integr : Value, epsabs : Value, epsrel : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqawce	defun	numerical/slatec/dqawce.lisp:20	slatec_dqawce(f : Value, a : Value, b : Value, c : Value, epsabs : Value, epsrel : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
+slatec::dqng	defun	numerical/slatec/dqng.lisp:141	slatec_dqng(f : Value, a : Value, b : Value, epsabs : Value, epsrel : Value, result : Value, abserr : Value, neval : Value, ier : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqag	defun	numerical/slatec/dqag.lisp:20	slatec_dqag(f : Value, a : Value, b : Value, epsabs : Value, epsrel : Value, key : Value, result : Value, abserr : Value, neval : Value, ier : Value, limit : Value, lenw : Value, last_dol : Value, iwork : Value, work : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqags	defun	numerical/slatec/dqags.lisp:20	slatec_dqags(f : Value, a : Value, b : Value, epsabs : Value, epsrel : Value, result : Value, abserr : Value, neval : Value, ier : Value, limit : Value, lenw : Value, last_dol : Value, iwork : Value, work : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
 slatec::dqagi	defun	numerical/slatec/dqagi.lisp:20	slatec_dqagi(f : Value, bound : Value, inf : Value, epsabs : Value, epsrel : Value, result : Value, abserr : Value, neval : Value, ier : Value, limit : Value, lenw : Value, last_dol : Value, iwork : Value, work : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value)
@@ -1015,6 +1109,8 @@ fmt	defun	csimp.lisp:176	fmt(exp_ : Value) -> Value
 spexp	defun	csimp.lisp:211	spexp(expl : Value, dn_star : Value) -> Value
 subin	defun	csimp.lisp:214	subin(y : Value, x : Value) -> Value
 subin-var	defun	csimp.lisp:220	subin_var(y : Value, x : Value, ivar : Value) -> Value
+$rhs	defmfun	csimp.lisp:246	d_rhs(rel : Value) -> Value
+$lhs	defmfun	csimp.lisp:255	d_lhs(rel : Value) -> Value
 ratgreaterp	defun	csimp.lisp:264	ratgreaterp(x : Value, y : Value) -> Value
 %especial	defun	csimp.lisp:275	p_especial(e : Value) -> Value
 trigred	defun	csimp.lisp:307	trigred(r : Value) -> Value
@@ -1236,6 +1332,7 @@ bigfloat::1-	defun	numeric.lisp:373	bf_1_(x : Value) -> Value
 bigfloat::+	defun	numeric.lisp:440	bf_op_plus(args : Value) -> Value
 bigfloat::-	defun	numeric.lisp:543	bf_op_(number : Value, more_numbers : Value) -> Value
 bigfloat::*	defun	numeric.lisp:620	bf_op_star(args : Value) -> Value
+bigfloat::cdiv-double-float	defun	numeric.lisp:682	bf_cdiv_double_float(x : Value, y : Value) -> Value
 bigfloat::cdiv-single-float	defun	numeric.lisp:826	bf_cdiv_single_float(x : Value, y : Value) -> Value
 bigfloat::/	defun	numeric.lisp:1107	bf_op_sl(number : Value, more_numbers : Value) -> Value
 bigfloat::=	defun	numeric.lisp:1173	bf_op_eq(number : Value, more_numbers : Value) -> Value
@@ -1348,6 +1445,10 @@ $sconcat	defmfun	macsys.lisp:575	d_sconcat(x : Value) -> Value
 $system	defmfun	macsys.lisp:585	d_system(args : Value) -> Value
 $room	defmfun	macsys.lisp:637	d_room(arg? : Value) -> Value
 maxima-lisp-debugger	defun	macsys.lisp:642	maxima_lisp_debugger(condition : Value, me_or_my_encapsulation : Value) -> Value
+initialize-real-and-run-time	defun	macsys.lisp:668	initialize_real_and_run_time() -> Value
+$absolute_real_time	defmfun	macsys.lisp:672	d_absolute_real_time() -> Value
+$elapsed_real_time	defmfun	macsys.lisp:674	d_elapsed_real_time() -> Value
+$elapsed_run_time	defmfun	macsys.lisp:678	d_elapsed_run_time() -> Value
 $garbage_collect	defmfun	macsys.lisp:684	d_garbage_collect() -> Value
 load-and-tell	defun	mload.lisp:15	load_and_tell(filename : Value) -> Value
 errset-namestring	defun	mload.lisp:19	errset_namestring(x : Value) -> Value
@@ -1421,6 +1522,8 @@ $tex	defmspec	mactex.lisp:106	d_tex(l : Value) -> Value
 quote-chars	defun	mactex.lisp:119	quote_chars(sym_ : Value, ch_str : Value) -> Value
 quote-%	defun	mactex.lisp:127	quote__pct(sym_ : Value) -> Value
 tex1	defun	mactex.lisp:130	tex1(mexplabel : Value, filename_or_stream? : Value = Nil) -> Value
+reset-ccol	defun	mactex.lisp:219	reset_ccol() -> Value
+myprinc	defun	mactex.lisp:221	myprinc(chstr : Value, texport? : Value = Nil) -> Value
 tex	defun	mactex.lisp:233	tex(x : Value, l : Value, r : Value, lop : Value, rop : Value) -> Value
 tex-atom	defun	mactex.lisp:248	tex_atom(x : Value, l : Value, r : Value) -> Value
 tex-string	defun	mactex.lisp:265	tex_string(x : Value) -> Value
@@ -2249,6 +2352,7 @@ bigfloat::elliptic-sn-cn-dn-descending	defun	ellipt.lisp:123	bf_elliptic_sn_cn_d
 bigfloat::sn	defun	ellipt.lisp:169	bf_sn(u : Value, m : Value) -> Value
 bigfloat::dn	defun	ellipt.lisp:202	bf_dn(u : Value, m : Value) -> Value
 bigfloat::cn	defun	ellipt.lisp:264	bf_cn(u : Value, m : Value) -> Value
+bigfloat::agm	defun	ellipt.lisp:317	bf_agm(a0 : Value, b0 : Value, c0 : Value, tol : Value) -> (Value, Value, Value, Value)
 bigfloat::jacobi-am-agm	defun	ellipt.lisp:355	bf_jacobi_am_agm(u : Value, m : Value, tol : Value) -> Value
 bigfloat::bf-jacobi-am	defun	ellipt.lisp:376	bf_bf_jacobi_am(u : Value, m : Value, tol : Value) -> Value
 bigfloat::bferrtol	defun	ellipt.lisp:403	bf_bferrtol(args : Value) -> Value
@@ -2274,6 +2378,7 @@ simp-%jacobi_dn	simplifier	ellipt.lisp:1258	simp__pctjacobi_dn(form : Value, y :
 simp-%inverse_jacobi_sn	simplifier	ellipt.lisp:1354	simp__pctinverse_jacobi_sn(form : Value, y : Value, p__pctsimpflag : Value) -> Value
 simp-%inverse_jacobi_cn	simplifier	ellipt.lisp:1426	simp__pctinverse_jacobi_cn(form : Value, y : Value, p__pctsimpflag : Value) -> Value
 simp-%inverse_jacobi_dn	simplifier	ellipt.lisp:1466	simp__pctinverse_jacobi_dn(form : Value, y : Value, p__pctsimpflag : Value) -> Value
+crf	defun	ellipt.lisp:1512	crf(x : Value, y : Value, z : Value) -> Value
 elliptic-f	defun	ellipt.lisp:1564	elliptic_f(phi_arg : Value, m_arg : Value) -> Value
 elliptic-k	defun	ellipt.lisp:1641	elliptic_k(m : Value) -> Value
 elliptic-e	defun	ellipt.lisp:1677	elliptic_e(phi : Value, m : Value) -> Value
@@ -3116,6 +3221,9 @@ distrinplusprev	defun	irinte.lisp:615	distrinplusprev(fun : Value, var2 : Value)
 distrintimesprev	defun	irinte.lisp:620	distrintimesprev(fun : Value, var2 : Value) -> Value
 inside	defun	irinte.lisp:625	inside(fun : Value, arg : Value) -> Value
 unquote	defun	irinte.lisp:630	unquote(fun : Value) -> Value
+checksigntm	defun	irinte.lisp:635	checksigntm(expr : Value) -> Value
+checkflagandact	defun	irinte.lisp:653	checkflagandact(expr : Value) -> Value
+findsignofactors	defun	irinte.lisp:659	findsignofactors(listofactors : Value) -> Value
 findsignoftheirproduct	defun	irinte.lisp:665	findsignoftheirproduct(llist : Value) -> Value
 changesign	defun	irinte.lisp:678	changesign(sign : Value) -> Value
 den1	defun	irinte.lisp:700	den1(c : Value, b : Value, a : Value, x : Value) -> Value
@@ -3149,6 +3257,8 @@ freevar02	defun	sin.lisp:70	freevar02(m : Value, var2 : Value) -> Value
 free12	defun	sin.lisp:75	free12(a : Value, var2 : Value) -> Value
 rationalizer	defun	sin.lisp:83	rationalizer(x : Value) -> Value
 expand-base-of-exp	defun	sin.lisp:87	expand_base_of_exp(e : Value, x : Value) -> Value
+intform	defun	sin.lisp:109	intform(expres : Value, var2 : Value) -> Value
+integrator	defun	sin.lisp:285	integrator(ear_exp : Value, var2 : Value, stack? : Value = Nil) -> Value
 separc	defun	sin.lisp:466	separc(ex : Value) -> Value
 m2-ratrootform	defun	sin.lisp:505	m2_ratrootform(expr : Value, var2 : Value) -> Value
 m2-chebyform	defun	sin.lisp:519	m2_chebyform(expr : Value, var2 : Value) -> Value
@@ -3175,7 +3285,11 @@ integrate-mexpt-2	defun	sin.lisp:757	integrate_mexpt_2(a : Value, x : Value) -> 
 integrate5	defun	sin.lisp:762	integrate5(ex : Value, var2 : Value) -> Value
 denomfind	defun	sin.lisp:767	denomfind(x : Value) -> Value
 make-new-var	defun	sin.lisp:773	make_new_var(prefix : Value, expr? : Value = Nil) -> Value
+superexpt	defun	sin.lisp:822	superexpt(expr : Value, var2 : Value, bas1 : Value, pow1 : Value) -> Value
+elemxpt	defun	sin.lisp:853	elemxpt(expr : Value, var2 : Value, new_var : Value) -> Value
 ratroot	defun	sin.lisp:926	ratroot(expr : Value, var2 : Value, ratroot2 : Value, w : Value) -> Value
+subst4	defun	sin.lisp:996	subst4(ex : Value, k : Value, ratroot2 : Value) -> Value
+subst41	defun	sin.lisp:1009	subst41(expr : Value, a : Value, b : Value, k : Value, ratroot2 : Value, old_var : Value) -> Value
 chebyf	defun	sin.lisp:1035	chebyf(expr : Value, var2 : Value) -> Value
 greaterratp	defun	sin.lisp:1262	greaterratp(x1 : Value, x2 : Value) -> Value
 trig1	defun	sin.lisp:1274	trig1(x : Value) -> Value
@@ -5484,6 +5598,9 @@ factcomb	defun	combin.lisp:112	factcomb(e : Value) -> Value
 factrat	defun	combin.lisp:125	factrat(e : Value) -> Value
 factqsnt	defun	combin.lisp:132	factqsnt(num : Value, den : Value) -> Value
 factcombplus	defun	combin.lisp:138	factcombplus(e : Value) -> Value
+getfactorial	defun	combin.lisp:157	getfactorial(e : Value) -> Value
+factplus1	defun	combin.lisp:172	factplus1(exp_ : Value, e : Value, fact : Value) -> Value
+factpluscomb	defun	combin.lisp:191	factpluscomb(e : Value) -> Value
 nplus	defun	combin.lisp:206	nplus(e : Value) -> Value
 factexpand	defun	combin.lisp:211	factexpand(e : Value) -> Value
 factplusdep	defun	combin.lisp:220	factplusdep(e : Value, fact : Value) -> Value
@@ -5504,6 +5621,7 @@ simplim%zeta	defun	combin.lisp:527	simplim_pctzeta(expr : Value, var_ : Value, v
 simp-%zeta	simplifier	combin.lisp:545	simp__pctzeta(form : Value, y : Value, p__pctsimpflag : Value) -> Value
 float-zeta	defun	combin.lisp:626	float_zeta(s : Value) -> Value
 $fib	defmfun	combin.lisp:718	d_fib(n : Value) -> Value
+ffib	defun	combin.lisp:727	ffib(p_n : Value) -> Value
 $lucas	defmfun	combin.lisp:753	d_lucas(n : Value) -> Value
 lucas	defun	combin.lisp:760	lucas(n : Value) -> Value
 $cfdisrep	defmfun	combin.lisp:779	d_cfdisrep(a : Value) -> Value
@@ -5540,6 +5658,12 @@ ratcf	defun	combin.lisp:1081	ratcf(x : Value, y : Value) -> Value
 $cfexpand	defmfun	combin.lisp:1096	d_cfexpand(x : Value) -> Value
 cfexpand	defun	combin.lisp:1100	cfexpand(ll : Value) -> Value
 simpsum2	defun	combin.lisp:1110	simpsum2(exp_ : Value, i : Value, lo : Value, hi : Value) -> Value
+adsum	defun	combin.lisp:1132	adsum(e : Value) -> Value
+adusum	defun	combin.lisp:1134	adusum(e : Value) -> Value
+fpolysum	defun	combin.lisp:1137	fpolysum(e : Value, lo : Value, hi : Value, poly_var : Value) -> Value
+fbino	defun	combin.lisp:1172	fbino(e : Value, y : Value, lo : Value, hi : Value, poly_var : Value) -> Value
+isum	defun	combin.lisp:1272	isum(e : Value, lo : Value, poly_var : Value) -> Value
+sumsum	defun	combin.lisp:1330	sumsum(e : Value, poly_var : Value, lo : Value, hi : Value, n_starplus : Value, n_startimes : Value) -> Value
 $product	defmspec	combin.lisp:1380	d_product(l : Value) -> Value
 simpprod	defun	combin.lisp:1387	simpprod(x : Value, y : Value, z : Value) -> Value
 $taytorat	defmfun	combin.lisp:1396	d_taytorat(e : Value) -> Value

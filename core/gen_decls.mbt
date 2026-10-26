@@ -456,6 +456,10 @@ declare fn maybe_invert_string_case(string_ : Value) -> Value raise
 declare fn intern_invert_case(string_ : Value) -> Value raise
 
 ///|
+/// defun print-invert-case -- commac.lisp:455
+declare fn print_invert_case(sym_ : Value) -> Value raise
+
+///|
 /// defun implode -- commac.lisp:476
 declare fn implode(list_ : Value) -> Value raise
 
@@ -496,8 +500,44 @@ declare fn tyi_raw(stream? : Value, eof_option? : Value = Nil) -> Value raise
 declare fn tyi(stream? : Value, eof_option? : Value = Nil) -> Value raise
 
 ///|
+/// defun backslash-check -- commac.lisp:570
+declare fn backslash_check(ch : Value, stream : Value, eof_option : Value) -> Value raise
+
+///|
+/// defun eat-continuations -- commac.lisp:582
+declare fn eat_continuations(ch : Value, stream : Value, eof_option : Value) -> Value raise
+
+///|
 /// defmfun $timedate -- commac.lisp:595
 declare fn d_timedate(time? : Value, tz? : Value = Nil) -> Value raise
+
+///|
+/// defun match-date-yyyy-mm-dd -- commac.lisp:666
+declare fn match_date_yyyy_mm_dd(s : Value) -> Value raise
+
+///|
+/// defun match-time-hh-mm-ss -- commac.lisp:672
+declare fn match_time_hh_mm_ss(s : Value) -> Value raise
+
+///|
+/// defun match-fraction-nnn -- commac.lisp:678
+declare fn match_fraction_nnn(s : Value) -> Value raise
+
+///|
+/// defun match-tz-hh-mm -- commac.lisp:685
+declare fn match_tz_hh_mm(s : Value) -> Value raise
+
+///|
+/// defun match-tz-hhmm -- commac.lisp:691
+declare fn match_tz_hhmm(s : Value) -> Value raise
+
+///|
+/// defun match-tz-hh -- commac.lisp:697
+declare fn match_tz_hh(s : Value) -> Value raise
+
+///|
+/// defun match-tz-z -- commac.lisp:703
+declare fn match_tz_z(s : Value) -> Value raise
 
 ///|
 /// defmfun $parse_timedate -- commac.lisp:708
@@ -2811,6 +2851,26 @@ declare fn d_coeff(e : Value, x : Value, n? : Value = Fix(1L)) -> Value raise
 declare fn coeff_contains_powers(e : Value, var_ : Value) -> Value raise
 
 ///|
+/// defmfun $hipow -- comm.lisp:1154
+declare fn d_hipow(e : Value, var_ : Value) -> Value raise
+
+///|
+/// defmfun $lopow -- comm.lisp:1159
+declare fn d_lopow(e : Value, var_ : Value) -> Value raise
+
+///|
+/// defun findpowers -- comm.lisp:1162
+declare fn findpowers(e : Value, hiflg : Value, var_ : Value) -> Value raise
+
+///|
+/// defun findpowers1 -- comm.lisp:1170
+declare fn findpowers1(e : Value, hiflg : Value, var_ : Value) -> Value raise
+
+///|
+/// defun checkpow -- comm.lisp:1182
+declare fn checkpow(pow : Value, hiflg : Value) -> Value raise
+
+///|
 /// defmspec $push -- comm.lisp:1197
 declare fn d_push(z : Value) -> Value raise
 
@@ -2962,6 +3022,14 @@ declare fn d_fibtophi(e : Value, lnorecurse? : Value = Nil) -> Value raise
 ///|
 /// defmspec $numerval -- comm2.lisp:499
 declare fn d_numerval(l : Value) -> Value raise
+
+///|
+/// defmfun $derivdegree -- comm2.lisp:513
+declare fn d_derivdegree(e : Value, depvar : Value, var_ : Value) -> Value raise
+
+///|
+/// defun derivdeg1 -- comm2.lisp:516
+declare fn derivdeg1(e : Value, depvar : Value, var_ : Value) -> Value raise
 
 ///|
 /// defmfun $dpart -- comm2.lisp:538
@@ -3753,6 +3821,11 @@ declare fn mbuildq_splice_associate(expression : Value, alist : Value) -> Value 
 declare fn slatec_fdump() -> Value raise
 
 ///|
+/// defun slatec::j4save -- numerical/slatec/j4save.lisp:25
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn slatec_j4save(iwhich : Value, ivalue : Value, iset : Value) -> (Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::initds -- numerical/slatec/initds.lisp:20
 /// Returns 4 values (CL multiple values) as a tuple.
 declare fn slatec_initds(os : Value, nos : Value, eta : Value) -> (Value, Value, Value, Value) raise
@@ -3777,14 +3850,144 @@ declare fn slatec_xercnt(librar : Value, subrou : Value, messg : Value, nerr : V
 declare fn slatec_xerhlt(messg : Value) -> Value raise
 
 ///|
+/// defun slatec::xerprn -- numerical/slatec/xerprn.lisp:22
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn slatec_xerprn(prefix : Value, npref : Value, messg : Value, nwrap : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dcsevl -- numerical/slatec/dcsevl.lisp:23
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn slatec_dcsevl(x : Value, cs : Value, n : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::d9lgmc -- numerical/slatec/d9lgmc.lisp:47
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_d9lgmc(x : Value) -> (Value, Value) raise
+
+///|
 /// defun slatec::dgamlm -- numerical/slatec/dgamlm.lisp:20
 /// Returns 2 values (CL multiple values) as a tuple.
 declare fn slatec_dgamlm(xmin : Value, xmax : Value) -> (Value, Value) raise
 
 ///|
+/// defun slatec::dgamma -- numerical/slatec/dgamma.lisp:75
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dgamma(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dgamln -- numerical/slatec/dgamln.lisp:98
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn slatec_dgamln(z : Value, ierr : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun slatec::dlngam -- numerical/slatec/dlngam.lisp:29
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dlngam(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::d9b0mp -- numerical/slatec/d9b0mp.lisp:207
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn slatec_d9b0mp(x : Value, ampl : Value, theta : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun slatec::d9b1mp -- numerical/slatec/d9b1mp.lisp:204
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn slatec_d9b1mp(x : Value, ampl : Value, theta : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun slatec::dbesj0 -- numerical/slatec/dbesj0.lisp:48
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesj0(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbesj1 -- numerical/slatec/dbesj1.lisp:50
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesj1(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::djairy -- numerical/slatec/djairy.lisp:264
+/// Returns 5 values (CL multiple values) as a tuple.
+declare fn slatec_djairy(x : Value, rx : Value, c : Value, ai : Value, dai : Value) -> (Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dasyjy -- numerical/slatec/dasyjy.lisp:258
+/// Returns 8 values (CL multiple values) as a tuple.
+declare fn slatec_dasyjy(funjy : Value, x : Value, fnu : Value, flgjy : Value, in_ : Value, y : Value, wk : Value, iflw : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dbesj -- numerical/slatec/dbesj.lisp:38
+/// Returns 5 values (CL multiple values) as a tuple.
+declare fn slatec_dbesj(x : Value, alpha : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dbsi0e -- numerical/slatec/dbsi0e.lisp:171
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbsi0e(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbsi1e -- numerical/slatec/dbsi1e.lisp:173
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbsi1e(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbesi0 -- numerical/slatec/dbesi0.lisp:48
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesi0(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbesi1 -- numerical/slatec/dbesi1.lisp:49
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesi1(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dasyik -- numerical/slatec/dasyik.lisp:62
+/// Returns 8 values (CL multiple values) as a tuple.
+declare fn slatec_dasyik(x : Value, fnu : Value, kode : Value, flgik : Value, ra : Value, arg : Value, in_ : Value, y : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dbesi -- numerical/slatec/dbesi.lisp:22
+/// Returns 6 values (CL multiple values) as a tuple.
+declare fn slatec_dbesi(x : Value, alpha : Value, kode : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zbesi -- numerical/slatec/zbesi.lisp:22
+/// Returns 9 values (CL multiple values) as a tuple.
+declare fn slatec_zbesi(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::zabs -- numerical/slatec/zabs.lisp:20
 /// Returns 3 values (CL multiple values) as a tuple.
 declare fn slatec_zabs(zr : Value, zi : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun slatec::zacai -- numerical/slatec/zacai.lisp:22
+/// Returns 13 values (CL multiple values) as a tuple.
+declare fn slatec_zacai(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, rl : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zairy -- numerical/slatec/zairy.lisp:29
+/// Returns 8 values (CL multiple values) as a tuple.
+declare fn slatec_zairy(zr : Value, zi : Value, id : Value, kode : Value, air : Value, aii : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zasyi -- numerical/slatec/zasyi.lisp:27
+/// Returns 12 values (CL multiple values) as a tuple.
+declare fn slatec_zasyi(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, rl : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zbesj -- numerical/slatec/zbesj.lisp:22
+/// Returns 9 values (CL multiple values) as a tuple.
+declare fn slatec_zbesj(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zbinu -- numerical/slatec/zbinu.lisp:22
+/// Returns 13 values (CL multiple values) as a tuple.
+declare fn slatec_zbinu(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, rl : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zbknu -- numerical/slatec/zbknu.lisp:46
+/// Returns 11 values (CL multiple values) as a tuple.
+declare fn slatec_zbknu(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
 /// defun slatec::zbuni -- numerical/slatec/zbuni.lisp:20
@@ -3802,9 +4005,39 @@ declare fn slatec_zdiv(ar : Value, ai : Value, br : Value, bi : Value, cr : Valu
 declare fn slatec_zexp(ar : Value, ai : Value, br : Value, bi : Value) -> (Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::zkscl -- numerical/slatec/zkscl.lisp:22
+/// Returns 12 values (CL multiple values) as a tuple.
+declare fn slatec_zkscl(zrr : Value, zri : Value, fnu : Value, n : Value, yr : Value, yi : Value, nz : Value, rzr : Value, rzi : Value, ascle : Value, tol : Value, elim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zlog -- numerical/slatec/zlog.lisp:22
+/// Returns 5 values (CL multiple values) as a tuple.
+declare fn slatec_zlog(ar : Value, ai : Value, br : Value, bi : Value, ierr : Value) -> (Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zmlri -- numerical/slatec/zmlri.lisp:22
+/// Returns 9 values (CL multiple values) as a tuple.
+declare fn slatec_zmlri(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::zmlt -- numerical/slatec/zmlt.lisp:20
 /// Returns 6 values (CL multiple values) as a tuple.
 declare fn slatec_zmlt(ar : Value, ai : Value, br : Value, bi : Value, cr : Value, ci : Value) -> (Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zrati -- numerical/slatec/zrati.lisp:26
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_zrati(zr : Value, zi : Value, fnu : Value, n : Value, cyr : Value, cyi : Value, tol : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zs1s2 -- numerical/slatec/zs1s2.lisp:22
+/// Returns 10 values (CL multiple values) as a tuple.
+declare fn slatec_zs1s2(zrr : Value, zri : Value, s1r : Value, s1i : Value, s2r : Value, s2i : Value, nz : Value, ascle : Value, alim : Value, iuf : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zseri -- numerical/slatec/zseri.lisp:22
+/// Returns 11 values (CL multiple values) as a tuple.
+declare fn slatec_zseri(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
 /// defun slatec::zshch -- numerical/slatec/zshch.lisp:20
@@ -3812,9 +4045,39 @@ declare fn slatec_zmlt(ar : Value, ai : Value, br : Value, bi : Value, cr : Valu
 declare fn slatec_zshch(zr : Value, zi : Value, cshr : Value, cshi : Value, cchr : Value, cchi : Value) -> (Value, Value, Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::zsqrt$ -- numerical/slatec/zsqrt.lisp:22
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn slatec_zsqrt_dol(ar : Value, ai : Value, br : Value, bi : Value) -> (Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::zuchk -- numerical/slatec/zuchk.lisp:20
 /// Returns 5 values (CL multiple values) as a tuple.
 declare fn slatec_zuchk(yr : Value, yi : Value, nz : Value, ascle : Value, tol : Value) -> (Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zunhj -- numerical/slatec/zunhj.lisp:528
+/// Returns 17 values (CL multiple values) as a tuple.
+declare fn slatec_zunhj(zr : Value, zi : Value, fnu : Value, ipmtr : Value, tol : Value, phir : Value, phii : Value, argr : Value, argi : Value, zeta1r : Value, zeta1i : Value, zeta2r : Value, zeta2i : Value, asumr : Value, asumi : Value, bsumr : Value, bsumi : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zuni1 -- numerical/slatec/zuni1.lisp:22
+/// Returns 13 values (CL multiple values) as a tuple.
+declare fn slatec_zuni1(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, nlast : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zuni2 -- numerical/slatec/zuni2.lisp:35
+/// Returns 13 values (CL multiple values) as a tuple.
+declare fn slatec_zuni2(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, nlast : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zunik -- numerical/slatec/zunik.lisp:110
+/// Returns 17 values (CL multiple values) as a tuple.
+declare fn slatec_zunik(zrr : Value, zri : Value, fnu : Value, ikflg : Value, ipmtr : Value, tol : Value, init_ : Value, phir : Value, phii : Value, zeta1r : Value, zeta1i : Value, zeta2r : Value, zeta2i : Value, sumr : Value, sumi : Value, cwrkr : Value, cwrki : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zuoik -- numerical/slatec/zuoik.lisp:22
+/// Returns 12 values (CL multiple values) as a tuple.
+declare fn slatec_zuoik(zr : Value, zi : Value, fnu : Value, kode : Value, ikflg : Value, n : Value, yr : Value, yi : Value, nuf : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
 /// defun slatec::zwrsk -- numerical/slatec/zwrsk.lisp:20
@@ -3822,9 +4085,44 @@ declare fn slatec_zuchk(yr : Value, yi : Value, nz : Value, ascle : Value, tol :
 declare fn slatec_zwrsk(zrr : Value, zri : Value, fnu : Value, kode : Value, n : Value, yr : Value, yi : Value, nz : Value, cwr : Value, cwi : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::dbesy0 -- numerical/slatec/dbesy0.lisp:51
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesy0(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbesy1 -- numerical/slatec/dbesy1.lisp:52
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesy1(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbesy -- numerical/slatec/dbesy.lisp:25
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn slatec_dbesy(x : Value, fnu : Value, n : Value, y : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dbsynu -- numerical/slatec/dbsynu.lisp:34
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn slatec_dbsynu(x : Value, fnu : Value, n : Value, y : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dyairy -- numerical/slatec/dyairy.lisp:298
+/// Returns 5 values (CL multiple values) as a tuple.
+declare fn slatec_dyairy(x : Value, rx : Value, c : Value, bi : Value, dbi : Value) -> (Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::zbesy -- numerical/slatec/zbesy.lisp:20
 /// Returns 11 values (CL multiple values) as a tuple.
 declare fn slatec_zbesy(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, cwrkr : Value, cwrki : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zbesh -- numerical/slatec/zbesh.lisp:22
+/// Returns 10 values (CL multiple values) as a tuple.
+declare fn slatec_zbesh(zr : Value, zi : Value, fnu : Value, kode : Value, m : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zacon -- numerical/slatec/zacon.lisp:22
+/// Returns 14 values (CL multiple values) as a tuple.
+declare fn slatec_zacon(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, rl : Value, fnul : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
 /// defun slatec::zbunk -- numerical/slatec/zbunk.lisp:20
@@ -3832,14 +4130,104 @@ declare fn slatec_zbesy(zr : Value, zi : Value, fnu : Value, kode : Value, n : V
 declare fn slatec_zbunk(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::zunk1 -- numerical/slatec/zunk1.lisp:22
+/// Returns 12 values (CL multiple values) as a tuple.
+declare fn slatec_zunk1(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::zunk2 -- numerical/slatec/zunk2.lisp:41
+/// Returns 12 values (CL multiple values) as a tuple.
+declare fn slatec_zunk2(zr : Value, zi : Value, fnu : Value, kode : Value, mr : Value, n : Value, yr : Value, yi : Value, nz : Value, tol : Value, elim : Value, alim : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dbesk0 -- numerical/slatec/dbesk0.lisp:46
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesk0(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbsk0e -- numerical/slatec/dbsk0e.lisp:126
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbsk0e(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbesk1 -- numerical/slatec/dbesk1.lisp:48
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbesk1(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbsk1e -- numerical/slatec/dbsk1e.lisp:126
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbsk1e(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbesk -- numerical/slatec/dbesk.lisp:25
+/// Returns 6 values (CL multiple values) as a tuple.
+declare fn slatec_dbesk(x : Value, fnu : Value, kode : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dbsknu -- numerical/slatec/dbsknu.lisp:33
+/// Returns 6 values (CL multiple values) as a tuple.
+declare fn slatec_dbsknu(x : Value, fnu : Value, kode : Value, n : Value, y : Value, nz : Value) -> (Value, Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::zbesk -- numerical/slatec/zbesk.lisp:20
 /// Returns 9 values (CL multiple values) as a tuple.
 declare fn slatec_zbesk(zr : Value, zi : Value, fnu : Value, kode : Value, n : Value, cyr : Value, cyi : Value, nz : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::d9aimp -- numerical/slatec/d9aimp.lisp:431
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn slatec_d9aimp(x : Value, ampl : Value, theta : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun slatec::daie -- numerical/slatec/daie.lisp:166
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_daie(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dai -- numerical/slatec/dai.lisp:61
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dai(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbie -- numerical/slatec/dbie.lisp:243
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbie(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dbi -- numerical/slatec/dbi.lisp:96
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dbi(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::zbiry -- numerical/slatec/zbiry.lisp:28
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_zbiry(zr : Value, zi : Value, id : Value, kode : Value, bir : Value, bii : Value, ierr : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::derf -- numerical/slatec/derf.lisp:54
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_derf(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::derfc -- numerical/slatec/derfc.lisp:172
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_derfc(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::de1 -- numerical/slatec/de1.lisp:372
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_de1(x : Value) -> (Value, Value) raise
+
+///|
 /// defun slatec::dei -- numerical/slatec/dei.lisp:20
 /// Returns 2 values (CL multiple values) as a tuple.
 declare fn slatec_dei(x : Value) -> (Value, Value) raise
+
+///|
+/// defun slatec::dspenc -- numerical/slatec/dspenc.lisp:66
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn slatec_dspenc(x : Value) -> (Value, Value) raise
 
 ///|
 /// defun slatec::d9upak -- numerical/slatec/d9upak.lisp:20
@@ -3857,6 +4245,11 @@ declare fn slatec_dqwgtf(x : Value, omega : Value, p2 : Value, p3 : Value, p4 : 
 declare fn slatec_dqcheb(x : Value, fval : Value, cheb12 : Value, cheb24 : Value) -> (Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::dqk15w -- numerical/slatec/dqk15w.lisp:41
+/// Returns 13 values (CL multiple values) as a tuple.
+declare fn slatec_dqk15w(f : Value, w : Value, p1 : Value, p2 : Value, p3 : Value, p4 : Value, kp : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::dqwgts -- numerical/slatec/dqwgts.lisp:20
 /// Returns 7 values (CL multiple values) as a tuple.
 declare fn slatec_dqwgts(x : Value, a : Value, b : Value, alfa : Value, beta : Value, integr : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
@@ -3872,6 +4265,41 @@ declare fn slatec_dqwgtc(x : Value, c : Value, p2 : Value, p3 : Value, p4 : Valu
 declare fn slatec_dgtsl(n : Value, c : Value, d : Value, e : Value, b : Value, info : Value) -> (Value, Value, Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::dqk15 -- numerical/slatec/dqk15.lisp:42
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_dqk15(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqk31 -- numerical/slatec/dqk31.lisp:53
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_dqk31(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqk41 -- numerical/slatec/dqk41.lisp:61
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_dqk41(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqk51 -- numerical/slatec/dqk51.lisp:70
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_dqk51(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqk61 -- numerical/slatec/dqk61.lisp:75
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_dqk61(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqk21 -- numerical/slatec/dqk21.lisp:47
+/// Returns 7 values (CL multiple values) as a tuple.
+declare fn slatec_dqk21(f : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqk15i -- numerical/slatec/dqk15i.lisp:43
+/// Returns 9 values (CL multiple values) as a tuple.
+declare fn slatec_dqk15i(f : Value, boun : Value, inf : Value, a : Value, b : Value, result : Value, abserr : Value, resabs : Value, resasc : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::dqelg -- numerical/slatec/dqelg.lisp:20
 /// Returns 6 values (CL multiple values) as a tuple.
 declare fn slatec_dqelg(n : Value, epstab : Value, result : Value, abserr : Value, res3la : Value, nres : Value) -> (Value, Value, Value, Value, Value, Value) raise
@@ -3882,9 +4310,24 @@ declare fn slatec_dqelg(n : Value, epstab : Value, result : Value, abserr : Valu
 declare fn slatec_dqpsrt(limit : Value, last_dol : Value, maxerr : Value, ermax : Value, elist : Value, iord : Value, nrmax : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::dqc25s -- numerical/slatec/dqc25s.lisp:30
+/// Returns 16 values (CL multiple values) as a tuple.
+declare fn slatec_dqc25s(f : Value, a : Value, b : Value, bl : Value, br : Value, alfa : Value, beta : Value, ri : Value, rj : Value, rg : Value, rh : Value, result : Value, abserr : Value, resasc : Value, integr : Value, nev : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::dqmomo -- numerical/slatec/dqmomo.lisp:20
 /// Returns 7 values (CL multiple values) as a tuple.
 declare fn slatec_dqmomo(alfa : Value, beta : Value, ri : Value, rj : Value, rg : Value, rh : Value, integr : Value) -> (Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqc25c -- numerical/slatec/dqc25c.lisp:30
+/// Returns 8 values (CL multiple values) as a tuple.
+declare fn slatec_dqc25c(f : Value, a : Value, b : Value, c : Value, result : Value, abserr : Value, krul : Value, neval : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqc25f -- numerical/slatec/dqc25f.lisp:30
+/// Returns 15 values (CL multiple values) as a tuple.
+declare fn slatec_dqc25f(f : Value, a : Value, b : Value, omega : Value, integr : Value, nrmom : Value, maxp1 : Value, ksave : Value, result : Value, abserr : Value, neval : Value, resabs : Value, resasc : Value, momcom : Value, chebmo : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
 /// defun slatec::dqage -- numerical/slatec/dqage.lisp:20
@@ -3912,6 +4355,11 @@ declare fn slatec_dqagpe(f : Value, a : Value, b : Value, npts2 : Value, points 
 declare fn slatec_dqagse(f : Value, a : Value, b : Value, epsabs : Value, epsrel : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
+/// defun slatec::dqawfe -- numerical/slatec/dqawfe.lisp:22
+/// Returns 23 values (CL multiple values) as a tuple.
+declare fn slatec_dqawfe(f : Value, a : Value, omega : Value, integr : Value, epsabs : Value, limlst : Value, limit : Value, maxp1 : Value, result : Value, abserr : Value, neval : Value, ier : Value, rslst : Value, erlst : Value, ierlst : Value, lst : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, nnlog : Value, chebmo : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
 /// defun slatec::dqawoe -- numerical/slatec/dqawoe.lisp:20
 /// Returns 23 values (CL multiple values) as a tuple.
 declare fn slatec_dqawoe(f : Value, a : Value, b : Value, omega : Value, integr : Value, epsabs : Value, epsrel : Value, limit : Value, icall : Value, maxp1 : Value, result : Value, abserr : Value, neval : Value, ier : Value, last_dol : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, nnlog : Value, momcom : Value, chebmo : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
@@ -3925,6 +4373,11 @@ declare fn slatec_dqawse(f : Value, a : Value, b : Value, alfa : Value, beta : V
 /// defun slatec::dqawce -- numerical/slatec/dqawce.lisp:20
 /// Returns 17 values (CL multiple values) as a tuple.
 declare fn slatec_dqawce(f : Value, a : Value, b : Value, c : Value, epsabs : Value, epsrel : Value, limit : Value, result : Value, abserr : Value, neval : Value, ier : Value, alist : Value, blist : Value, rlist : Value, elist : Value, iord : Value, last_dol : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun slatec::dqng -- numerical/slatec/dqng.lisp:141
+/// Returns 9 values (CL multiple values) as a tuple.
+declare fn slatec_dqng(f : Value, a : Value, b : Value, epsabs : Value, epsrel : Value, result : Value, abserr : Value, neval : Value, ier : Value) -> (Value, Value, Value, Value, Value, Value, Value, Value, Value) raise
 
 ///|
 /// defun slatec::dqag -- numerical/slatec/dqag.lisp:20
@@ -4123,6 +4576,14 @@ declare fn subin(y : Value, x : Value) -> Value raise
 ///|
 /// defun subin-var -- csimp.lisp:220
 declare fn subin_var(y : Value, x : Value, ivar : Value) -> Value raise
+
+///|
+/// defmfun $rhs -- csimp.lisp:246
+declare fn d_rhs(rel : Value) -> Value raise
+
+///|
+/// defmfun $lhs -- csimp.lisp:255
+declare fn d_lhs(rel : Value) -> Value raise
 
 ///|
 /// defun ratgreaterp -- csimp.lisp:264
@@ -5023,6 +5484,10 @@ declare fn bf_op_(number : Value, more_numbers : Value) -> Value raise
 declare fn bf_op_star(args : Value) -> Value raise
 
 ///|
+/// defun bigfloat::cdiv-double-float -- numeric.lisp:682
+declare fn bf_cdiv_double_float(x : Value, y : Value) -> Value raise
+
+///|
 /// defun bigfloat::cdiv-single-float -- numeric.lisp:826
 declare fn bf_cdiv_single_float(x : Value, y : Value) -> Value raise
 
@@ -5472,6 +5937,22 @@ declare fn d_room(arg? : Value) -> Value raise
 declare fn maxima_lisp_debugger(condition : Value, me_or_my_encapsulation : Value) -> Value raise
 
 ///|
+/// defun initialize-real-and-run-time -- macsys.lisp:668
+declare fn initialize_real_and_run_time() -> Value raise
+
+///|
+/// defmfun $absolute_real_time -- macsys.lisp:672
+declare fn d_absolute_real_time() -> Value raise
+
+///|
+/// defmfun $elapsed_real_time -- macsys.lisp:674
+declare fn d_elapsed_real_time() -> Value raise
+
+///|
+/// defmfun $elapsed_run_time -- macsys.lisp:678
+declare fn d_elapsed_run_time() -> Value raise
+
+///|
 /// defmfun $garbage_collect -- macsys.lisp:684
 declare fn d_garbage_collect() -> Value raise
 
@@ -5764,6 +6245,14 @@ declare fn quote__pct(sym_ : Value) -> Value raise
 ///|
 /// defun tex1 -- mactex.lisp:130
 declare fn tex1(mexplabel : Value, filename_or_stream? : Value = Nil) -> Value raise
+
+///|
+/// defun reset-ccol -- mactex.lisp:219
+declare fn reset_ccol() -> Value raise
+
+///|
+/// defun myprinc -- mactex.lisp:221
+declare fn myprinc(chstr : Value, texport? : Value = Nil) -> Value raise
 
 ///|
 /// defun tex -- mactex.lisp:233
@@ -9087,6 +9576,11 @@ declare fn bf_dn(u : Value, m : Value) -> Value raise
 declare fn bf_cn(u : Value, m : Value) -> Value raise
 
 ///|
+/// defun bigfloat::agm -- ellipt.lisp:317
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn bf_agm(a0 : Value, b0 : Value, c0 : Value, tol : Value) -> (Value, Value, Value, Value) raise
+
+///|
 /// defun bigfloat::jacobi-am-agm -- ellipt.lisp:355
 declare fn bf_jacobi_am_agm(u : Value, m : Value, tol : Value) -> Value raise
 
@@ -9185,6 +9679,10 @@ declare fn simp__pctinverse_jacobi_cn(form : Value, y : Value, p__pctsimpflag : 
 ///|
 /// simplifier simp-%inverse_jacobi_dn -- ellipt.lisp:1466
 declare fn simp__pctinverse_jacobi_dn(form : Value, y : Value, p__pctsimpflag : Value) -> Value raise
+
+///|
+/// defun crf -- ellipt.lisp:1512
+declare fn crf(x : Value, y : Value, z : Value) -> Value raise
 
 ///|
 /// defun elliptic-f -- ellipt.lisp:1564
@@ -12580,6 +13078,18 @@ declare fn inside(fun : Value, arg : Value) -> Value raise
 declare fn unquote(fun : Value) -> Value raise
 
 ///|
+/// defun checksigntm -- irinte.lisp:635
+declare fn checksigntm(expr : Value) -> Value raise
+
+///|
+/// defun checkflagandact -- irinte.lisp:653
+declare fn checkflagandact(expr : Value) -> Value raise
+
+///|
+/// defun findsignofactors -- irinte.lisp:659
+declare fn findsignofactors(listofactors : Value) -> Value raise
+
+///|
 /// defun findsignoftheirproduct -- irinte.lisp:665
 declare fn findsignoftheirproduct(llist : Value) -> Value raise
 
@@ -12712,6 +13222,14 @@ declare fn rationalizer(x : Value) -> Value raise
 declare fn expand_base_of_exp(e : Value, x : Value) -> Value raise
 
 ///|
+/// defun intform -- sin.lisp:109
+declare fn intform(expres : Value, var2 : Value) -> Value raise
+
+///|
+/// defun integrator -- sin.lisp:285
+declare fn integrator(ear_exp : Value, var2 : Value, stack? : Value = Nil) -> Value raise
+
+///|
 /// defun separc -- sin.lisp:466
 declare fn separc(ex : Value) -> Value raise
 
@@ -12816,8 +13334,24 @@ declare fn denomfind(x : Value) -> Value raise
 declare fn make_new_var(prefix : Value, expr? : Value = Nil) -> Value raise
 
 ///|
+/// defun superexpt -- sin.lisp:822
+declare fn superexpt(expr : Value, var2 : Value, bas1 : Value, pow1 : Value) -> Value raise
+
+///|
+/// defun elemxpt -- sin.lisp:853
+declare fn elemxpt(expr : Value, var2 : Value, new_var : Value) -> Value raise
+
+///|
 /// defun ratroot -- sin.lisp:926
 declare fn ratroot(expr : Value, var2 : Value, ratroot2 : Value, w : Value) -> Value raise
+
+///|
+/// defun subst4 -- sin.lisp:996
+declare fn subst4(ex : Value, k : Value, ratroot2 : Value) -> Value raise
+
+///|
+/// defun subst41 -- sin.lisp:1009
+declare fn subst41(expr : Value, a : Value, b : Value, k : Value, ratroot2 : Value, old_var : Value) -> Value raise
 
 ///|
 /// defun chebyf -- sin.lisp:1035
@@ -22087,6 +22621,18 @@ declare fn factqsnt(num : Value, den : Value) -> Value raise
 declare fn factcombplus(e : Value) -> Value raise
 
 ///|
+/// defun getfactorial -- combin.lisp:157
+declare fn getfactorial(e : Value) -> Value raise
+
+///|
+/// defun factplus1 -- combin.lisp:172
+declare fn factplus1(exp_ : Value, e : Value, fact : Value) -> Value raise
+
+///|
+/// defun factpluscomb -- combin.lisp:191
+declare fn factpluscomb(e : Value) -> Value raise
+
+///|
 /// defun nplus -- combin.lisp:206
 declare fn nplus(e : Value) -> Value raise
 
@@ -22165,6 +22711,10 @@ declare fn float_zeta(s : Value) -> Value raise
 ///|
 /// defmfun $fib -- combin.lisp:718
 declare fn d_fib(n : Value) -> Value raise
+
+///|
+/// defun ffib -- combin.lisp:727
+declare fn ffib(p_n : Value) -> Value raise
 
 ///|
 /// defmfun $lucas -- combin.lisp:753
@@ -22309,6 +22859,30 @@ declare fn cfexpand(ll : Value) -> Value raise
 ///|
 /// defun simpsum2 -- combin.lisp:1110
 declare fn simpsum2(exp_ : Value, i : Value, lo : Value, hi : Value) -> Value raise
+
+///|
+/// defun adsum -- combin.lisp:1132
+declare fn adsum(e : Value) -> Value raise
+
+///|
+/// defun adusum -- combin.lisp:1134
+declare fn adusum(e : Value) -> Value raise
+
+///|
+/// defun fpolysum -- combin.lisp:1137
+declare fn fpolysum(e : Value, lo : Value, hi : Value, poly_var : Value) -> Value raise
+
+///|
+/// defun fbino -- combin.lisp:1172
+declare fn fbino(e : Value, y : Value, lo : Value, hi : Value, poly_var : Value) -> Value raise
+
+///|
+/// defun isum -- combin.lisp:1272
+declare fn isum(e : Value, lo : Value, poly_var : Value) -> Value raise
+
+///|
+/// defun sumsum -- combin.lisp:1330
+declare fn sumsum(e : Value, poly_var : Value, lo : Value, hi : Value, n_starplus : Value, n_startimes : Value) -> Value raise
 
 ///|
 /// defmspec $product -- combin.lisp:1380
