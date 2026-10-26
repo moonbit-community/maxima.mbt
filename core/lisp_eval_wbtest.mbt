@@ -132,6 +132,10 @@ test "lisp eval: macros, backquote and setf" {
   )
   inspect(le_test("(let ((x 'y)) `(a `(b ,,x)))"), content="(a `(b ,y))")
   inspect(
+    le_test("(let ((b '(x y))) `(a `(c ,,@b)))"),
+    content="(a `(c ,x ,y))",
+  )
+  inspect(
     le_test("(let ((l (list 1 2 3))) (setf (car l) 'a (cadr l) 'b (nth 2 l) 'c) l)"),
     content="(a b c)",
   )

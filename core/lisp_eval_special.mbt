@@ -973,7 +973,38 @@ fn le__qq_expand(x : Value, depth : Int) -> (Value, Bool) {
               tail_const = tc
               break
             }
-            if le__qq_form_p(e, @lisp.q_unquote_splicing) && depth == 1 {
+            // ,,@x and ,@,@x inside a nested backquote: one unquote per
+            // element of x, spliced into this list
+            let nested_splice = if depth == 2 &&
+              (le__qq_form_p(e, @lisp.q_unquote) ||
+              le__qq_form_p(e, @lisp.q_unquote_splicing)) &&
+              le__qq_form_p(cadr(e), @lisp.q_unquote_splicing) {
+              Some(car(e))
+            } else {
+              None
+            }
+            if nested_splice is Some(kind) {
+              if cur.length() > 0 {
+                segs.push(cons(sym("list"), list(cur)))
+                cur.clear()
+              }
+              let z = sym("si::qq-elt")
+              segs.push(
+                list3(
+                  sym("mapcar"),
+                  list2(
+                    sym("function"),
+                    list3(
+                      sym("lambda"),
+                      list1(z),
+                      list3(sym("list"), list2(sym("quote"), kind), z),
+                    ),
+                  ),
+                  cadr(cadr(e)),
+                ),
+              )
+              all_const = false
+            } else if le__qq_form_p(e, @lisp.q_unquote_splicing) && depth == 1 {
               if cur.length() > 0 {
                 segs.push(cons(sym("list"), list(cur)))
                 cur.clear()

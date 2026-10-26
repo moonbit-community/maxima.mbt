@@ -423,8 +423,6 @@ let le__prelude : String =
   #|  (destructuring-bind (base-name &key (simpcheck :default) (subfun-arglist nil)
   #|                                      (custom-defmfun nil) (skip-properties nil))
   #|      (if (symbolp base-name-and-options) (list base-name-and-options) base-name-and-options)
-  #|    (when subfun-arglist
-  #|      (error "def-simplifier: :subfun-arglist is not supported by this port's Lisp evaluator"))
   #|    (let* ((noun-name (intern (concatenate 'string "%" (string base-name))))
   #|           (verb-name (intern (concatenate 'string "$" (string base-name))))
   #|           (simp-name (intern (concatenate 'string "simp-" (string noun-name))))
@@ -436,6 +434,29 @@ let le__prelude : String =
   #|                                collect (list arg `(nth ,count ,form-arg)))
   #|                          (loop for arg in lambda-list and count from 1
   #|                                collect (list arg `(simpcheck (nth ,count ,form-arg) ,z-arg))))))
+  #|     (if subfun-arglist
+  #|      `(progn
+  #|         (defprop ,verb-name ,simp-name specsimp)
+  #|         (defun ,simp-name (,form-arg ,unused-arg ,z-arg)
+  #|           (declare (ignore ,unused-arg))
+  #|           (let ((pretty-name
+  #|                   `((mqapply) ((,',verb-name array) ,',@subfun-arglist)
+  #|                     ,',@lambda-list)))
+  #|             (sub-arg-count-check ,(length subfun-arglist)
+  #|                                  ,(length lambda-list)
+  #|                                  ,form-arg
+  #|                                  pretty-name))
+  #|           (multiple-value-bind (,@subfun-arglist)
+  #|               (values-list (mapcar #'(lambda (arg) (simpcheck arg ,z-arg))
+  #|                                    (subfunsubs ,form-arg)))
+  #|             (multiple-value-bind (,@lambda-list)
+  #|                 (values-list (mapcar #'(lambda (arg) (simpcheck arg ,z-arg))
+  #|                                      (subfunargs ,form-arg)))
+  #|               (flet ((give-up (&key (fun-subs (list ,@subfun-arglist))
+  #|                                     (fun-args (list ,@lambda-list)))
+  #|                        (eqtest (subfunmakes ',verb-name fun-subs fun-args)
+  #|                                ,form-arg)))
+  #|                 ,@body)))))
   #|      `(progn
   #|         ,@(unless custom-defmfun
   #|             `((defmfun ,verb-name (,@lambda-list) (ftake ',noun-name ,@lambda-list))))
@@ -455,7 +476,7 @@ let le__prelude : String =
   #|             (flet ((give-up (&key (noun-name ',noun-name)
   #|                                   (args (list ,@lambda-list)))
   #|                      (eqtest (list* (list noun-name) args) ,form-arg)))
-  #|               ,@body)))))))
+  #|               ,@body))))))))
   #|;; Translator run-time macros (transq.lisp, mdefun.lisp, transm.lisp,
   #|;; fcall.lisp, trpred.lisp).
   #|(defmacro def-mtrvar (v a &optional (priority 1))

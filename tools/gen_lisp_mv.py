@@ -27,6 +27,24 @@ out = [
 ]
 n = 0
 reg = open(os.path.join(ROOT, "core/gen_registry.mbt")).read()
+# Functions declared with one value whose port provides `<name>_mv`
+# returning all of them (docs/PORTING.md).
+mv_helpers = {}
+for f in sorted(os.listdir(os.path.join(ROOT, "core"))):
+    if not f.endswith(".mbt") or f.startswith("gen_") or f.startswith("lisp_eval"):
+        continue
+    text = open(os.path.join(ROOT, "core", f)).read()
+    for m in re.finditer(r"^fn (\w+)_mv\(((?:[^()]|\([^()]*\))*)\)\s*->\s*\(([^()]*)\)\s*raise", text, re.M):
+        mv_helpers[m.group(1)] = len([x for x in m.group(3).split(",") if x.strip()])
+for m in re.finditer(r"^  defun\((q_\w+), args => ((\w+)\((.*)\))\)$", reg, re.M):
+    sym, fname, rest = m.group(1), m.group(3), m.group(4)
+    k = mv_helpers.get(fname)
+    if not k:
+        continue
+    elems = ", ".join("r.%d" % i for i in range(k))
+    out.append("    (%s, args => {\n      let r = %s_mv(%s)\n      [%s]\n    }),"
+               % (sym, fname, rest, elems))
+    n += 1
 for m in re.finditer(r"^  defun\((q_\w+), args => ((\w+)\(.*\))\.0\)$", reg, re.M):
     sym, call, fname = m.group(1), m.group(2), m.group(3)
     k = arity.get(fname)

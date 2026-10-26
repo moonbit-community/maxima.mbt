@@ -5,6 +5,50 @@
 ///|
 fn le__mv_wrappers() -> Array[(Value, (Array[Value]) -> Array[Value] raise)] {
   [
+    (q_parse_lambda_list, args => {
+      let r = parse_lambda_list_mv(arg(args, 0))
+      [r.0, r.1, r.2, r.3, r.4, r.5, r.6, r.7]
+    }),
+    (q_at_not_dependent_find_vars, args => {
+      let r = at_not_dependent_find_vars_mv(arg(args, 0), arg(args, 1))
+      [r.0, r.1]
+    }),
+    (q_bf_lentz, args => {
+      let r = bf_lentz_mv(arg(args, 0), arg(args, 1))
+      [r.0, r.1, r.2]
+    }),
+    (q_complex_number_p, args => {
+      let r = complex_number_p_mv(arg(args, 0), ntypep?=args.get(1))
+      [r.0, r.1, r.2]
+    }),
+    (q_bf_find_root_subr, args => {
+      let r = bf_find_root_subr_mv(arg(args, 0), arg(args, 1), arg(args, 2), abserr?=key_arg(args, 3, ":abserr"), relerr?=key_arg(args, 3, ":relerr"))
+      [r.0, r.1, r.2]
+    }),
+    (q_rischform, args => {
+      let r = rischform_mv(arg(args, 0), arg(args, 1))
+      [r.0, r.1, r.2, r.3]
+    }),
+    (q_rischlogeprog, args => {
+      let r = rischlogeprog_mv(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8))
+      [r.0, r.1, r.2]
+    }),
+    (q_getfncoeff, args => {
+      let r = getfncoeff_mv(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7))
+      [r.0, r.1, r.2, r.3]
+    }),
+    (q_separc, args => {
+      let r = separc_mv(arg(args, 0))
+      [r.0, r.1]
+    }),
+    (q_intcv2, args => {
+      let r = intcv2_mv(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4))
+      [r.0, r.1, r.2]
+    }),
+    (q_sumsum, args => {
+      let r = sumsum_mv(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5))
+      [r.0, r.1]
+    }),
     (q_intl_parse_plurals, args => {
       let r = intl_parse_plurals(arg(args, 0))
       [r.0, r.1]
