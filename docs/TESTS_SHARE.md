@@ -21,10 +21,10 @@
 | rtest_stringproc | ok | 87/87 |
 | rtest_md5sum | ok | 2/2 |
 | rtest_opproperties | ok | 117/117 |
-| rtest_stats | ok | 1/14 |
+| rtest_stats | ok | 14/14 |
 | rtest_distrib | ok | 189/189 |
 | rtest_descriptive | ok | 152/152 |
-| rtest_interpol | ok | 12/18 |
+| rtest_interpol | ok | 18/18 |
 | rtest_levin | ok | 104/104 |
 | rtest_fractals | ok | 11/11 |
 | rtest_bernstein | ok | 44/44 |
@@ -47,14 +47,14 @@
 | rtest_accumulate | ok | 22/22 |
 | rtest_list_operations | ok | 106/106 |
 | rtest_bitwise | ok | 71/71 |
-| rtest_gf | ok | 3/10 |
+| rtest_gf | ok | 10/10 |
 | rtest_arag | ok | 106/109 |
 | rtest_pdiff | ok | 90/90 |
 | rtest_to_poly | ok | 32/32 |
 | rtestprintf | ok | 73/73 |
 | rtest_simplex | ok | 18/18 |
 | rtest_graphs | ok | 105/105 |
-| rtest_abs_integrate | ok | 118/252 |
+| rtest_abs_integrate | ok | 252/252 |
 | rtest_pochhammer | ok | 36/36 |
 | rtest_to_poly_solve | ok | 336/336 |
 | rtest_sym | ok | 77/77 |
@@ -75,4 +75,4 @@
 | rtest_raddenest | ok | 123/123 |
 | rtest_decfp | ok | 6/6 |
 
-Total: 4861 of 5061 in completed files.
+Total: 5021 of 5061 in completed files.

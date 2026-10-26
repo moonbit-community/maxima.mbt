@@ -21,8 +21,11 @@ moon build --release
 
 | Test suite | Passing |
 |---|---|
-| Core (`run_testsuite()`, 92 files) | see `docs/TESTS.md` (≈99.8%) |
-| Share packages (`share_tests=only`, 72 files) | see `docs/TESTS_SHARE.md` |
+| Core (`run_testsuite()`, 92 files) | 16413 / 16441 (99.8%), all files complete — `docs/TESTS.md` |
+| Share packages (`share_tests=only`, 72 files) | 5021 / 5061 (99.2%) — `docs/TESTS_SHARE.md` |
+
+The LAPACK tests (`rtest_dgemm`, `rtest_dgeqrf`, `rtest_dgesv`) are left out
+of Maxima's test list under SBCL; run with `batch(file, test)` they pass.
 
 Not supported, by design: compiling Maxima code to Lisp (`translate` and
 `compile` keep their interface but functions stay interpreted), loading
