@@ -1,0 +1,140 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/f2cl"
+
+import {
+  "moonbitlang/core/ref",
+}
+
+// Values
+pub fn c_abs(Complex) -> Double
+
+pub fn c_add(Complex, Complex) -> Complex
+
+pub fn c_conj(Complex) -> Complex
+
+pub fn c_div(Complex, Complex) -> Complex
+
+pub fn c_eq(Complex, Complex) -> Bool
+
+pub fn c_mul(Complex, Complex) -> Complex
+
+pub fn c_mul_d(Complex, Double) -> Complex
+
+pub fn c_neg(Complex) -> Complex
+
+pub fn c_sqrt(Complex) -> Complex
+
+pub fn c_sub(Complex, Complex) -> Complex
+
+pub let c_zero : Complex
+
+pub fn cplx(Double, Double) -> Complex
+
+pub fn d1mach(Int32) -> Double
+
+pub fn d_abs(Double) -> Double
+
+pub fn d_max(Double, Double) -> Double
+
+pub fn d_min(Double, Double) -> Double
+
+pub fn d_mul_c(Double, Complex) -> Complex
+
+pub fn d_sign(Double, Double) -> Double
+
+pub fn d_sq(Double) -> Double
+
+pub fn f2cl_string(String, Int32) -> String
+
+pub fn f_aint(Double) -> Double
+
+pub fn f_atan(Double) -> Double
+
+pub fn f_atan2(Double, Double) -> Double
+
+pub fn f_cos(Double) -> Double
+
+pub fn f_cosh(Double) -> Double
+
+pub fn f_exp(Double) -> Double
+
+pub fn f_hypot(Double, Double) -> Double
+
+pub fn f_int(Double) -> Int32
+
+pub fn f_log(Double) -> Double
+
+pub fn f_log10(Double) -> Double
+
+pub fn f_nint(Double) -> Int32
+
+pub fn f_pow(Double, Double) -> Double
+
+pub fn f_sin(Double) -> Double
+
+pub fn f_sinh(Double) -> Double
+
+pub fn f_sqrt(Double) -> Double
+
+pub fn f_tan(Double) -> Double
+
+pub fn f_tanh(Double) -> Double
+
+pub fn fchar(Int32) -> String
+
+pub fn fformat(Int32, Array[FmtItem], Array[FArg]) -> Unit
+
+pub fn fstr_set(String, Int32, Int32, String) -> String
+
+pub fn fstr_sub(String, Int32, Int32) -> String
+
+pub fn i1mach(Int32) -> Int32
+
+pub fn i1mach9_as_double() -> Double
+
+pub fn i_abs(Int32) -> Int32
+
+pub fn i_max(Int32, Int32) -> Int32
+
+pub fn i_min(Int32, Int32) -> Int32
+
+pub fn i_mod(Int32, Int32) -> Int32
+
+pub fn i_pow(Int32, Int32) -> Int32
+
+pub fn i_sign(Int32, Int32) -> Int32
+
+pub fn ichar(String) -> Int32
+
+pub let output_hook : @ref.Ref[(String) -> Unit]
+
+pub fn s_max(Float, Float) -> Float
+
+pub fn s_min(Float, Float) -> Float
+
+// Errors
+
+// Types and methods
+pub(all) struct Complex {
+  re : Double
+  im : Double
+}
+
+pub(all) enum FArg {
+  AI(Int32)
+  AD(Double)
+  AS(String)
+  AB(Bool)
+  AC(Complex)
+}
+
+pub(all) enum FmtItem {
+  Lit(String)
+  Dir(String)
+  Rep(Int32, Array[FmtItem])
+  Forever(Array[FmtItem])
+}
+
+// Type aliases
+
+// Traits

@@ -262180,5 +262180,1081 @@ null
 }
 ],
 "lines": 346
+},
+{
+"file": "../share/lbfgs/maxima-lbfgs",
+"module": "share",
+"functions": [
+{
+"kind": "defmfun",
+"name": "$lbfgs",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fom-expr",
+"x-list",
+"x-initial",
+"eps",
+"iprint-list"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 75,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defmvar",
+"name": "$lbfgs_nfeval_max",
+"init": {
+"k": "int",
+"v": "100"
+},
+"line": 72
+},
+{
+"kind": "defmvar",
+"name": "$lbfgs_ncorrections",
+"init": {
+"k": "int",
+"v": "25"
+},
+"line": 73
+}
+],
+"specials": [
+"$lbfgs_ncorrections",
+"$lbfgs_nfeval_max"
+],
+"symbols": [
+"$diff",
+"$first",
+"$float",
+"$lbfgs",
+"$lbfgs_ncorrections",
+"$lbfgs_nfeval_max",
+"$listp",
+"$numer",
+"$second",
+"%false%",
+"a",
+"b",
+"flonum",
+"funcall",
+"function",
+"integer4",
+"lambda",
+"list",
+"mequal",
+"meval",
+"mlist",
+"x"
+],
+"calls": {
+"in-package": 1,
+"defmvar": 2,
+"defmfun": 1,
+"fom-expr": 1,
+"if": 2,
+"or": 1,
+"and": 2,
+"symbolp": 1,
+"mfboundp": 1,
+"consp": 1,
+"eq": 2,
+"caar": 1,
+"merror": 2,
+"let*": 1,
+"m": 1,
+"nwork": 1,
+"+": 2,
+"*": 3,
+"xtol": 1,
+"iflag": 1,
+"scache": 1,
+"make-array": 6,
+"w": 1,
+"diag": 1,
+"g": 1,
+"x": 1,
+"iprint": 1,
+"diagco": 1,
+"return-value": 1,
+"f": 1,
+"$listp": 1,
+"progn": 2,
+"setq": 9,
+"coerce-float-fun": 4,
+"$first": 1,
+"$second": 1,
+"mapcar": 2,
+"coerce": 4,
+"cdr": 2,
+"setf": 5,
+"aref": 2,
+"nth": 2,
+"let": 2,
+"$float": 1,
+"meval": 1,
+"replace": 2,
+"common-lisp-user::/blockdata-lb2/": 1,
+"dotimes": 1,
+"nfeval": 1,
+"apply": 1,
+"when": 1,
+"list*": 1,
+"multiple-value-bind": 1,
+"var-0": 1,
+"common-lisp-user::lbfgs": 1,
+"declare": 1,
+"ignore": 1,
+"append": 1,
+"cond": 1,
+"return": 1
+},
+"toplevel": [],
+"lines": 151
+},
+{
+"file": "../share/odepack/dlsode-interface",
+"module": "share",
+"functions": [
+{
+"kind": "defmfun",
+"name": "$dlsode_init",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"vars",
+"mf"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 26,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$dlsode_step",
+"pkg": "maxima",
+"ll": {
+"req": [
+"init-y",
+"tt",
+"tout",
+"rtol",
+"atol",
+"istate",
+"state"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 110,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$dlsode",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"yvars",
+"inity",
+"trange",
+"rtol",
+"atol",
+"mf"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 220,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$assoc",
+"$cons",
+"$dlsode",
+"$dlsode_init",
+"$dlsode_step",
+"$f",
+"$fjac",
+"$float",
+"$iwork",
+"$jacobian",
+"$len_iwork",
+"$len_rwork",
+"$length",
+"$liw",
+"$lrw",
+"$method_order",
+"$mf",
+"$n_f_eval",
+"$n_j_eval",
+"$n_steps",
+"$neq",
+"$rwork",
+"$vars",
+"double-float",
+"eql",
+"fex",
+"flonum",
+"integer4",
+"jex",
+"list",
+"mlist"
+],
+"calls": {
+"in-package": 1,
+"defmfun": 3,
+"f": 2,
+"unless": 3,
+"member": 1,
+"eql": 1,
+"merror": 4,
+"let*": 4,
+"lrw": 2,
+"ecase": 3,
+"+": 3,
+"*": 4,
+"rwork": 2,
+"make-array": 7,
+"liw": 2,
+"iwork": 2,
+"fjac": 2,
+"when": 2,
+"=": 2,
+"coerce-float-fun": 2,
+"meval": 1,
+"list*": 3,
+"cddr": 1,
+"1+": 2,
+"$length": 2,
+"make-mlist": 17,
+"init-y": 1,
+"let": 3,
+"vars": 2,
+"$assoc": 8,
+"mf": 1,
+"neq": 2,
+"and": 1,
+"itol": 1,
+"if": 2,
+"listp": 2,
+"y-array": 1,
+"1-": 2,
+"length": 2,
+"cdr": 3,
+"$float": 7,
+"flet": 1,
+"jex": 2,
+"declare": 2,
+"type": 4,
+"array": 2,
+"ignore": 2,
+"j": 1,
+"apply": 1,
+"row": 2,
+"dolist": 2,
+"r": 1,
+"c": 1,
+"setf": 1,
+"fref": 1,
+"incf": 2,
+"multiple-value-bind": 1,
+"ign-0": 1,
+"odepack:dlsode": 1,
+"fex": 1,
+"rest": 1,
+"list": 1,
+"coerce": 1,
+"aref": 6,
+"tstart": 1,
+"elt": 8,
+"tend": 1,
+"tstep": 1,
+"$cons": 2,
+"state": 1,
+"$dlsode_init": 1,
+"loop": 1,
+"minusp": 1,
+"push": 1,
+"nreverse": 1
+},
+"toplevel": [],
+"lines": 251
+},
+{
+"file": "../share/lapack/eigensys",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "maxima-matrix-dims",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "complex-maxima-matrix-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 8,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lapack-lispify-matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"nrow",
+"ncol"
+],
+"opt": [
+[
+"assume-complex-maxima-matrix-p",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 15,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lapack-maxify-matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"nrow",
+"ncol",
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 41,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$dgeev",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [
+[
+"right-vec-p",
+null,
+null
+],
+[
+"left-vec-p",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 56,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$dgesvd",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [
+[
+"jobu",
+null,
+null
+],
+[
+"jobvt",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 162,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$dlange",
+"pkg": "maxima",
+"ll": {
+"req": [
+"norm",
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 246,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$zlange",
+"pkg": "maxima",
+"ll": {
+"req": [
+"norm",
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 277,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$zgeev",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [
+[
+"right-vec-p",
+null,
+null
+],
+[
+"left-vec-p",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 307,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$zheev",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [
+[
+"eigen-vector-p",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 373,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$%i",
+"$dgeev",
+"$dgesvd",
+"$dlange",
+"$float",
+"$frobenius",
+"$imagpart",
+"$inf_norm",
+"$matrix",
+"$max",
+"$one_norm",
+"$realpart",
+"$zgeev",
+"$zheev",
+"$zlange",
+"add",
+"complex",
+"flonum",
+"i",
+"imagpart",
+"lambda",
+"list",
+"mlist",
+"mul",
+"r",
+"realpart",
+"z"
+],
+"calls": {
+"in-package": 1,
+"defun": 10,
+"a": 7,
+"let": 13,
+"values": 1,
+"length": 2,
+"cdr": 6,
+"dolist": 4,
+"row": 6,
+"col": 2,
+"unless": 1,
+"eql": 2,
+"$imagpart": 2,
+"return-from": 1,
+"assume-complex-maxima-matrix-p": 1,
+"setq": 1,
+"$float": 1,
+"let*": 12,
+"mat": 1,
+"make-array": 26,
+"*": 8,
+"mat-2d": 1,
+"list": 3,
+"r": 3,
+"setf": 4,
+"aref": 10,
+"if": 25,
+"coerce": 2,
+"complex": 1,
+"$realpart": 1,
+"incf": 6,
+"nrow": 2,
+"res": 2,
+"dotimes": 6,
+"c": 2,
+"push": 4,
+"add": 2,
+"realpart": 1,
+"mul": 3,
+"imagpart": 1,
+"nreverse": 4,
+"flet": 4,
+"make-eigvec": 3,
+"n": 1,
+"do": 1,
+"posn": 1,
+"cond": 5,
+"t": 1,
+"val+": 1,
+"val-": 1,
+"sub": 1,
+"1+": 1,
+"a-mat": 3,
+"lapack-lispify-matrix": 3,
+"wr": 2,
+"wi": 1,
+"vl": 2,
+"vr": 2,
+"multiple-value-bind": 11,
+"z-jobvl": 4,
+"lapack:dgeev": 2,
+"declare": 8,
+"ignore": 8,
+"work": 7,
+"merror": 8,
+"e-vec-right": 2,
+"e-vec-left": 2,
+"fixup-jobu": 3,
+"arg": 2,
+"fixup-jobvt": 3,
+"maxima-matrix-dims": 3,
+"s": 1,
+"min": 1,
+"u": 1,
+"u1": 1,
+"vt": 1,
+"vt1": 1,
+"z-jobu": 2,
+"lapack::dgesvd": 2,
+"vt-max": 1,
+"lapack-maxify-matrix": 4,
+"s-max": 1,
+"maxify-vector": 1,
+"norm": 2,
+"nrows": 2,
+"norm-type": 2,
+"ecase": 2,
+"$max": 2,
+"$one_norm": 2,
+"$inf_norm": 2,
+"$frobenius": 2,
+"equal": 2,
+"lapack::dlange": 1,
+"lapack::zlange": 1,
+"w": 2,
+"rwork": 3,
+"lapack:zgeev": 2,
+"max": 1,
+"-": 1,
+"z-jobz": 2,
+"lapack:zheev": 2,
+"e-vec": 1
+},
+"toplevel": [],
+"lines": 427
+},
+{
+"file": "../share/lapack/dgesv",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$dgesv",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 12,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$dgesv",
+"integer4"
+],
+"calls": {
+"in-package": 1,
+"defun": 1,
+"a": 1,
+"multiple-value-bind": 3,
+"a-nrow": 1,
+"maxima-matrix-dims": 2,
+"b-nrow": 1,
+"let": 1,
+"b-mat": 1,
+"lapack-lispify-matrix": 1,
+"ipiv": 1,
+"make-array": 1,
+"z-n": 1,
+"lapack::dgesv": 1,
+"declare": 1,
+"ignore": 1,
+"cond": 1,
+"merror": 2,
+"-": 1,
+"t": 1,
+"lapack-maxify-matrix": 1
+},
+"toplevel": [],
+"lines": 32
+},
+{
+"file": "../share/lapack/dgeqrf",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$dgeqrf",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 10,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dgeqrf-unpack",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a-nrow",
+"a-ncol",
+"a-mat",
+"tau"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 40,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dgeqrf-unpack-r",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a-nrow",
+"a-ncol",
+"a-mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 46,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dgeqrf-unpack-q",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a-nrow",
+"a-ncol",
+"a-mat",
+"tau"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 61,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dgeqrf-h",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i",
+"tau",
+"a-nrow",
+"a-mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 71,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dgeqrf-v",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i",
+"j",
+"a-nrow",
+"a-mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 83,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dgeqrf-multiply-into",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"mat-1",
+"mat-2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 89,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dgeqrf-inner-product",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"mat-1",
+"mat-2",
+"i",
+"j"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 97,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$dgeqrf",
+"flonum",
+"mlist"
+],
+"calls": {
+"in-package": 1,
+"defun": 8,
+"a": 1,
+"multiple-value-bind": 3,
+"a-nrow": 4,
+"maxima-matrix-dims": 1,
+"let": 8,
+"work": 2,
+"make-array": 4,
+"tau": 1,
+"min": 2,
+"foo-1": 2,
+"lapack::dgeqrf": 2,
+"declare": 2,
+"ignore": 2,
+"let*": 3,
+"cond": 2,
+"merror": 1,
+"-": 3,
+"t": 2,
+"dgeqrf-unpack": 1,
+"q": 1,
+"dgeqrf-unpack-q": 1,
+"list": 1,
+"r-ncol": 1,
+"r-mat": 1,
+"*": 10,
+"dotimes": 10,
+"j": 4,
+"i": 6,
+"1+": 2,
+"if": 2,
+"<": 1,
+"r-ij": 1,
+"+": 8,
+"setf": 5,
+"aref": 11,
+"lapack-maxify-matrix": 2,
+"dgeqrf-multiply-into": 1,
+"k": 2,
+"v-k": 1,
+"dgeqrf-v": 1,
+"foo": 1,
+"bar": 1,
+"=": 1,
+"n": 2,
+"dgeqrf-inner-product": 1,
+"setq": 1
+},
+"toplevel": [],
+"lines": 101
+},
+{
+"file": "../share/lapack/dgemm",
+"module": "share",
+"functions": [
+{
+"kind": "defmfun",
+"name": "$dgemm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"c",
+{
+"k": "nil"
+}
+],
+[
+"transpose_a",
+null
+],
+[
+"transpose_b",
+null
+],
+[
+"alpha",
+{
+"k": "float",
+"v": "1.0"
+}
+],
+[
+"beta",
+{
+"k": "float",
+"v": "0.0"
+}
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 5,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$dgemm",
+"$float",
+"flonum"
+],
+"calls": {
+"in-package": 1,
+"defmfun": 1,
+"a": 1,
+"c": 1,
+"alpha": 1,
+"beta": 2,
+"flet": 1,
+"multiple-value-bind": 5,
+"a-nrows": 1,
+"maxima-matrix-dims": 3,
+"at-nrows": 1,
+"maybe-transpose-dims": 2,
+"b-nrows": 1,
+"bt-nrows": 1,
+"c-nrows": 1,
+"if": 3,
+"values": 1,
+"when": 3,
+"and": 3,
+"not": 2,
+"setf": 2,
+"unless": 1,
+"=": 1,
+"merror": 3,
+"or": 1,
+"/=": 2,
+"let": 1,
+"$float": 1,
+"matrix-a": 1,
+"lapack-lispify-matrix": 3,
+"matrix-b": 1,
+"matrix-c": 1,
+"cond": 1,
+"t": 1,
+"make-array": 1,
+"*": 1,
+"trans-a": 1,
+"trans-b": 1,
+"blas::dgemm": 1,
+"lapack-maxify-matrix": 1
+},
+"toplevel": [],
+"lines": 74
 }
 ]

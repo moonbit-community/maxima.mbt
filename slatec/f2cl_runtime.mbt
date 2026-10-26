@@ -165,3 +165,9 @@ fn f_aint(x : Double) -> Double {
 fn f_sqrt(x : Double) -> Double {
   x.sqrt()
 }
+
+///|
+/// (expt x 2), which SBCL compiles as (* x x).
+fn d_sq(x : Double) -> Double {
+  x * x
+}

@@ -83,3 +83,9 @@ share/draw/wbd
 share/distrib/numdistrib
 share/to_poly_solve/to_poly_solve_extra
 share/contrib/format/miller-format
+share/lbfgs/maxima-lbfgs
+share/odepack/dlsode-interface
+share/lapack/eigensys
+share/lapack/dgesv
+share/lapack/dgeqrf
+share/lapack/dgemm

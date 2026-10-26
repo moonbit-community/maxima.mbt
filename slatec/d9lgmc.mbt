@@ -41,7 +41,7 @@ pub fn d9lgmc(x : Double) -> Double {
         }
         d9lgmc_v = 1.0 / (12.0 * x)
         if x < d9lgmc_xbig.val {
-          d9lgmc_v = (dcsevl(((2.0 * (f_pow((10.0 / x), 2.0))) - 1.0), d9lgmc_algmcs, d9lgmc_nalgm.val)) / x
+          d9lgmc_v = (dcsevl(((2.0 * (d_sq(10.0 / x))) - 1.0), d9lgmc_algmcs, d9lgmc_nalgm.val)) / x
         }
         return d9lgmc_v
       }

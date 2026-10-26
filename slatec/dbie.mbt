@@ -79,7 +79,7 @@ pub fn dbie(x : Double) -> Double {
           dbie_nbip1.val = initds(dbie_bip1cs, 47, eta)
           dbie_nbip2.val = initds(dbie_bip2cs, 88, eta)
           dbie_x3sml.val = (Float::from_double(f_pow(eta.to_double(), (Float::from_double(0.3333)).to_double()))).to_double()
-          dbie_x32sml.val = 1.3104 * (f_pow(dbie_x3sml.val, 2.0))
+          dbie_x32sml.val = 1.3104 * (dbie_x3sml.val * dbie_x3sml.val)
           dbie_xbig.val = f_pow(d1mach(2), 0.6666)
         }
         dbie_first_.val = false

@@ -59,7 +59,7 @@ pub fn daie(x : Double) -> Double {
           daie_naip1.val = initds(daie_aip1cs, 57, eta)
           daie_naip2.val = initds(daie_aip2cs, 37, eta)
           daie_x3sml.val = (Float::from_double(f_pow(eta.to_double(), (Float::from_double(0.3333)).to_double()))).to_double()
-          daie_x32sml.val = 1.3104 * (f_pow(daie_x3sml.val, 2.0))
+          daie_x32sml.val = 1.3104 * (daie_x3sml.val * daie_x3sml.val)
           daie_xbig.val = f_pow(d1mach(2), 0.6666)
         }
         daie_first_.val = false

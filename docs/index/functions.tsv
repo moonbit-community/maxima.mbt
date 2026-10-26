@@ -7935,6 +7935,30 @@ format-clist	defun	../share/contrib/format/miller-format.lisp:232	format_clist(c
 format-sum	defun	../share/contrib/format/miller-format.lisp:269	format_sum(sum : Value) -> Value
 format-product	defun	../share/contrib/format/miller-format.lisp:283	format_product(prod : Value) -> Value
 format-fraction	defun	../share/contrib/format/miller-format.lisp:303	format_fraction(frac : Value) -> Value
+$lbfgs	defmfun	../share/lbfgs/maxima-lbfgs.lisp:75	d_lbfgs(fom_expr : Value, x_list : Value, x_initial : Value, eps : Value, iprint_list : Value) -> Value
+$dlsode_init	defmfun	../share/odepack/dlsode-interface.lisp:26	d_dlsode_init(f : Value, vars : Value, mf : Value) -> Value
+$dlsode_step	defmfun	../share/odepack/dlsode-interface.lisp:110	d_dlsode_step(init_y : Value, tt : Value, tout : Value, rtol : Value, atol : Value, istate : Value, state : Value) -> Value
+$dlsode	defmfun	../share/odepack/dlsode-interface.lisp:220	d_dlsode(f : Value, yvars : Value, inity : Value, trange : Value, rtol : Value, atol : Value, mf : Value) -> Value
+maxima-matrix-dims	defun	../share/lapack/eigensys.lisp:3	maxima_matrix_dims(a : Value) -> (Value, Value)
+complex-maxima-matrix-p	defun	../share/lapack/eigensys.lisp:8	complex_maxima_matrix_p(a : Value) -> Value
+lapack-lispify-matrix	defun	../share/lapack/eigensys.lisp:15	lapack_lispify_matrix(a : Value, nrow : Value, ncol : Value, assume_complex_maxima_matrix_p? : Value = Nil) -> Value
+lapack-maxify-matrix	defun	../share/lapack/eigensys.lisp:41	lapack_maxify_matrix(nrow : Value, ncol : Value, a : Value) -> Value
+$dgeev	defun	../share/lapack/eigensys.lisp:56	d_dgeev(a : Value, right_vec_p? : Value = Nil, left_vec_p? : Value = Nil) -> Value
+$dgesvd	defun	../share/lapack/eigensys.lisp:162	d_dgesvd(a : Value, jobu? : Value = Nil, jobvt? : Value = Nil) -> Value
+$dlange	defun	../share/lapack/eigensys.lisp:246	d_dlange(norm : Value, a : Value) -> Value
+$zlange	defun	../share/lapack/eigensys.lisp:277	d_zlange(norm : Value, a : Value) -> Value
+$zgeev	defun	../share/lapack/eigensys.lisp:307	d_zgeev(a : Value, right_vec_p? : Value = Nil, left_vec_p? : Value = Nil) -> Value
+$zheev	defun	../share/lapack/eigensys.lisp:373	d_zheev(a : Value, eigen_vector_p? : Value = Nil) -> Value
+$dgesv	defun	../share/lapack/dgesv.lisp:12	d_dgesv(a : Value, b : Value) -> Value
+$dgeqrf	defun	../share/lapack/dgeqrf.lisp:10	d_dgeqrf(a : Value) -> Value
+dgeqrf-unpack	defun	../share/lapack/dgeqrf.lisp:40	dgeqrf_unpack(a_nrow : Value, a_ncol : Value, a_mat : Value, tau : Value) -> Value
+dgeqrf-unpack-r	defun	../share/lapack/dgeqrf.lisp:46	dgeqrf_unpack_r(a_nrow : Value, a_ncol : Value, a_mat : Value) -> Value
+dgeqrf-unpack-q	defun	../share/lapack/dgeqrf.lisp:61	dgeqrf_unpack_q(a_nrow : Value, a_ncol : Value, a_mat : Value, tau : Value) -> Value
+dgeqrf-h	defun	../share/lapack/dgeqrf.lisp:71	dgeqrf_h(i : Value, tau : Value, a_nrow : Value, a_mat : Value) -> Value
+dgeqrf-v	defun	../share/lapack/dgeqrf.lisp:83	dgeqrf_v(i : Value, j : Value, a_nrow : Value, a_mat : Value) -> Value
+dgeqrf-multiply-into	defun	../share/lapack/dgeqrf.lisp:89	dgeqrf_multiply_into(n : Value, mat_1 : Value, mat_2 : Value) -> Value
+dgeqrf-inner-product	defun	../share/lapack/dgeqrf.lisp:97	dgeqrf_inner_product(n : Value, mat_1 : Value, mat_2 : Value, i : Value, j : Value) -> Value
+$dgemm	defmfun	../share/lapack/dgemm.lisp:5	d_dgemm(a : Value, b : Value, c? : Value = Nil, transpose_a? : Value = Nil, transpose_b? : Value = Nil, alpha? : Value = Flo(1.0), beta? : Value = Flo(0.0)) -> Value
 intl::textdomain	macro	intl.lisp:509	intl_textdomain(domain : Value) -> Value
 intl::gettext	macro	intl.lisp:513	intl_gettext(string_ : Value) -> Value
 intl::ngettext	macro	intl.lisp:517	intl_ngettext(singular : Value, plural : Value, n : Value) -> Value

@@ -1,0 +1,14 @@
+import {
+  "moonbitlang/core/math",
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/double",
+}
+
+options(
+  targets: {
+    "libm_native.mbt": [ "native" ],
+    "libm_portable.mbt": [ "not", "native" ],
+  },
+)
+
+warnings = "-unused_package"
