@@ -200,27 +200,9 @@ fn extract(index : Value, j : Value) -> Value raise {
 }
 
 ///|
-/// MAREF1 of trans2.lisp (the translator's array reference), for the cases
-/// that arise here.
+/// `(maref ar i j)`: MAREF1 of trans2.lisp.
 fn linnew__maref1(ar : Value, inds : Array[Value]) -> Value raise {
-  if arrayp(ar) && inds.length() == array_rank(ar) {
-    aref(ar, inds.map(i => to_int(i)))
-  } else if hash_table_p(ar) {
-    gethash(if inds.length() > 1 { list(inds) } else { inds[0] }, ar)
-  } else if symbolp(ar) {
-    if mget(ar, q_hashar).truthy() {
-      harrfind(cons(list2(ar, q_array), list(inds)))
-    } else {
-      cons(list2(ar, q_array), list(inds))
-    }
-  } else if inds.length() == 1 &&
-    (d_listp(ar).truthy() || d_matrixp(ar).truthy()) {
-    nth(to_int(inds[0]), ar)
-  } else if d_matrixp(ar).truthy() && inds.length() == 2 {
-    nth(to_int(inds[1]), nth(to_int(inds[0]), ar))
-  } else {
-    merr("Wrong number of array indices: ~M", [cons(list1(q_mlist), list(inds))])
-  }
+  maref1(ar, list(inds))
 }
 
 ///|

@@ -1,54 +1,24 @@
-// Interpreter-level parts of trmode.lisp: $modedeclare (mode_declare),
-// $define_variable, $mode_identity and the ASSIGN-MODE-CHECK assign
-// property. The translator (and so the rest of trmode.lisp) is excluded
-// from the port, so nothing here is in gen_decls and everything is private.
-// The translator binds the TBIND property during translation only; with no
-// translator it is never set, so TR-GET-MODE is (GET A 'MODE) and PUT-MODE
-// is (SETF (GET NAME TYPE) MODE).
-
-///|
-let trmode__q_mode_checkp : Value = sym("$mode_checkp")
-
-///|
-let trmode__q_mode_check_warnp : Value = sym("$mode_check_warnp")
-
-///|
-let trmode__q_mode_check_errorp : Value = sym("$mode_check_errorp")
-
-///|
-let trmode__q_define_variable : Value = sym("$define_variable")
-
-///|
-let trmode__q_mode_identity : Value = sym("$mode_identity")
-
-///|
-let trmode__q_value_check : Value = sym("$value_check")
-
-///|
-let trmode__q_tbind : Value = sym("tbind")
+// Port of src/trmode.lisp: MODEDECLARE, DEFINE_VARIABLE, MODE_IDENTITY
+// and the run time mode checking code (the ASSIGN-MODE-CHECK assign
+// property).
 
 ///|
 /// MSEEMINGLY-UNBOUND
-fn trmode__mseemingly_unbound(x : Value) -> Bool raise {
-  !boundp(x) || eq(symval(x), x)
-}
-
-///|
-/// TR-GET-MODE (transl.lisp), interpreter case.
-fn trmode__tr_get_mode(a : Value) -> Value {
-  get(a, q_mode)
+fn mseemingly_unbound(x : Value) -> Value raise {
+  lbool(!boundp(x) || eq(symval(x), x))
 }
 
 ///|
 /// ASSIGN-MODE-CHECK
-fn trmode__assign_mode_check(var_ : Value, value : Value) -> Value raise {
-  let mode = trmode__tr_get_mode(var_)
-  let user_level = d_get(var_, trmode__q_value_check)
+fn assign_mode_check(var_ : Value, value : Value) -> Value raise {
+  let mode = tr_get_mode(var_)
+  let user_level = d_get(var_, q_d_value_check)
   if mode.truthy() {
-    with_specials(
-      [(trmode__q_mode_check_warnp, t), (trmode__q_mode_check_errorp, t)],
-      () => trmode__chekvalue(var_, mode, val=value),
-    )
+    with_specials([(q_d_mode_check_warnp, t), (q_d_mode_check_errorp, t)], () => chekvalue(
+      var_,
+      mode,
+      val=value,
+    ))
     |> ignore
   }
   if user_level.truthy() {
@@ -58,8 +28,58 @@ fn trmode__assign_mode_check(var_ : Value, value : Value) -> Value raise {
 }
 
 ///|
+/// DEF%TR $DEFINE_VARIABLE: VAR INIT MODE.
+fn trmode__tr_define_variable(form : Value) -> Value raise {
+  if length(form) > 3 {
+    let var_ = cadr(form)
+    let val = caddr(form)
+    let mode = cadddr(form)
+    let mode_form = list3(list1(q_d_modedeclare), var_, mode)
+    translate(mode_form) |> ignore
+    // POSSIBLE OVERKILL HERE
+    push_pre_transl_form(list2(q_declaim, list2(q_special, var_))) |> ignore
+    set(q_defined_variables, cons(var_, symval(q_defined_variables))) |> ignore
+    // Get rid of previous definitions put on by the translator.
+    let mut l = symval(q_ear_pre_transl_forms)
+    while l is Cons(_) {
+      // REMOVE SOME OVERKILL
+      if eq(caar(l), q_def_mtrvar) && eq(cadar(l), var_) {
+        set(q_ear_pre_transl_forms, remove(car(l), symval(q_ear_pre_transl_forms)))
+        |> ignore
+      }
+      l = cdr(l)
+    }
+    if !eq(mode, q_d_any) {
+      // so that the rest of the translation gronks this.
+      putprop(var_, q_assign_mode_check, q_assign) |> ignore
+    }
+    cons(
+      q_d_any,
+      list([
+        q_eval_when,
+        list([q_kw_compile_toplevel, q_kw_load_toplevel, q_kw_execute]),
+        list2(q_meval_star, transl__quote(mode_form)),
+        if !eq(mode, q_d_any) {
+          list4(q_defprop, var_, q_assign_mode_check, q_assign)
+        } else {
+          Nil
+        },
+        list3(q_def_mtrvar, var_, dtranslate(val)),
+      ]),
+    )
+  } else {
+    tr_format(
+      Str("error: 'define_variable' must have 3 arguments; found: ~:M~%"),
+      list1(form),
+    )
+    |> ignore
+    Nil
+  }
+}
+
+///|
 /// `(defmspec $define_variable (l) ...)`
-fn trmode__d_define_variable(l : Value) -> Value raise {
+fn d_define_variable(l : Value) -> Value raise {
   let l = cdr(l)
   if !(length(l) > 2) {
     merror(
@@ -79,7 +99,7 @@ fn trmode__d_define_variable(l : Value) -> Value raise {
   if !eq(caddr(l), q_d_any) {
     putprop(car(l), q_assign_mode_check, q_assign) |> ignore
   }
-  if trmode__mseemingly_unbound(car(l)) {
+  if mseemingly_unbound(car(l)).truthy() {
     meval(list([list1(q_msetq), car(l), cadr(l)]))
   } else {
     meval(car(l))
@@ -88,7 +108,7 @@ fn trmode__d_define_variable(l : Value) -> Value raise {
 
 ///|
 /// `(defmspec $mode_identity (l) ...)`
-fn trmode__d_mode_identity(l : Value) -> Value raise {
+fn d_mode_identity(l : Value) -> Value raise {
   let l = cdr(l)
   if length(l) != 2 {
     merror(
@@ -99,20 +119,20 @@ fn trmode__d_mode_identity(l : Value) -> Value raise {
   }
   let obj = cadr(l)
   let v = meval(obj)
-  trmode__chekvalue(obj, trmode__ir_or_extend(car(l)), val=v) |> ignore
+  chekvalue(obj, ir_or_extend(car(l)), val=v) |> ignore
   v
 }
 
 ///|
 /// IR-OR-EXTEND
-fn trmode__ir_or_extend(x : Value) -> Value raise {
+fn ir_or_extend(x : Value) -> Value raise {
   let name = if symbolp(x) { symbol_name(x) } else { "" }
   let built_in_type = match name {
     "$float" | "$real" | "$floatp" | "$flonum" | "$floatnum" => q_d_float
     "$fixp" | "$fixnum" | "$integer" => q_d_fixnum
     "$rational" | "$rat" => q_d_rational
     "$number" | "$bignum" | "$big" => q_d_number
-    "$boolean" | "$bool" => sym("$boolean")
+    "$boolean" | "$bool" => q_d_boolean
     "$list" | "$listp" => q_d_list
     "$complex" => q_d_complex
     "$any" | "$none" | "$any_check" => q_d_any
@@ -136,7 +156,7 @@ fn trmode__ir_or_extend(x : Value) -> Value raise {
 
 ///|
 /// `(defmspec $modedeclare (x) ...)`
-fn trmode__d_modedeclare(x : Value) -> Value raise {
+fn d_modedeclare(x : Value) -> Value raise {
   let x = cdr(x)
   if oddp(int(length(x))) {
     merror(
@@ -148,7 +168,7 @@ fn trmode__d_modedeclare(x : Value) -> Value raise {
   let nl = Collector::new()
   let mut l = x
   while !(l is Nil) {
-    trmode__declmode(car(l), trmode__ir_or_extend(cadr(l)), false)
+    declmode(car(l), ir_or_extend(cadr(l)), Nil) |> ignore
     nl.add(car(l))
     l = cddr(l)
   }
@@ -157,31 +177,31 @@ fn trmode__d_modedeclare(x : Value) -> Value raise {
 
 ///|
 /// DECLMODE; TRFLAG is true only in the translator.
-fn trmode__declmode(form : Value, mode : Value, trflag : Bool) -> Unit raise {
+fn declmode(form : Value, mode : Value, trflag : Value) -> Value raise {
   if atom(form) {
-    trmode__declvalue(form, mode, trflag)
-    if !trflag && symval(trmode__q_mode_checkp).truthy() {
-      trmode__chekvalue(form, mode) |> ignore
+    declvalue(form, mode, trflag) |> ignore
+    if trflag is Nil && symval(q_d_mode_checkp).truthy() {
+      chekvalue(form, mode) |> ignore
     }
   } else if eq(caar(form), q_mlist) {
     for l in cdr(form).iter() {
-      trmode__declmode(l, mode, trflag)
+      declmode(l, mode, trflag) |> ignore
     }
   } else if memq(q_array, cdar(form)).truthy() {
-    trmode__put_mode(caar(form), mode, q_array_mode)
+    declarray(caar(form), mode) |> ignore
   } else if eq(caar(form), q_d_function) {
     for l in cdr(form).iter() {
       let l = if stringp(l) { d_verbify(l) } else { l }
-      trmode__put_mode(l, mode, q_function_mode)
+      declfun(l, mode) |> ignore
     }
-  } else if eq(caar(form), sym("$fixed_num_args_function")) ||
-    eq(caar(form), sym("$variable_num_args_function")) {
+  } else if eq(caar(form), q_d_fixed_num_args_function) ||
+    eq(caar(form), q_d_variable_num_args_function) {
     for f in cdr(form).iter() {
       let f = if stringp(f) { d_verbify(f) } else { f }
-      trmode__put_mode(f, mode, q_function_mode)
+      declfun(f, mode) |> ignore
       mputprop(f, t, caar(form)) |> ignore
     }
-  } else if eq(caar(form), sym("$completearray")) {
+  } else if eq(caar(form), q_d_completearray) {
     for l in cdr(form).iter() {
       putprop(if atom(l) { l } else { caar(l) }, mode, q_array_mode) |> ignore
     }
@@ -189,36 +209,27 @@ fn trmode__declmode(form : Value, mode : Value, trflag : Bool) -> Unit raise {
     for l in cdr(form).iter() {
       mputprop(l, mode, q_array_mode) |> ignore
     }
-  } else if eq(caar(form), sym("$arrayfun")) {
+  } else if eq(caar(form), q_d_arrayfun) {
     for l in cdr(form).iter() {
       mputprop(l, mode, q_arrayfun_mode) |> ignore
     }
   } else {
-    trmode__put_mode(caar(form), mode, q_function_mode)
+    declfun(caar(form), mode) |> ignore
   }
+  Nil
 }
 
 ///|
 /// DECLVALUE
-fn trmode__declvalue(v : Value, mode : Value, trflag : Bool) -> Unit raise {
-  let v = if trflag {
-    // TEVAL
-    let b = if symbolp(v) { get(v, trmode__q_tbind) } else { Nil }
-    if b.truthy() {
-      b
-    } else {
-      v
-    }
-  } else {
-    v
-  }
+fn declvalue(v : Value, mode : Value, trflag : Value) -> Value raise {
+  let v = if trflag.truthy() { teval(v) } else { v }
   add2lnc(v, symval(q_d_props)) |> ignore
-  putprop(v, mode, q_mode) |> ignore
+  setf_tr_get_mode(mode, v)
 }
 
 ///|
 /// CHEKVALUE (my-v mode &optional (val (meval1 my-v) val-givenp))
-fn trmode__chekvalue(my_v : Value, mode : Value, val? : Value) -> Value raise {
+fn chekvalue(my_v : Value, mode : Value, val? : Value) -> Value raise {
   let val_givenp = val is Some(_)
   let val = match val {
     Some(v) => v
@@ -236,7 +247,7 @@ fn trmode__chekvalue(my_v : Value, mode : Value, val? : Value) -> Value raise {
     Some(u => numberp(u))
   } else if eq(mode, q_d_list) {
     Some(u => d_listp(u).truthy())
-  } else if eq(mode, sym("$boolean")) {
+  } else if eq(mode, q_d_boolean) {
     Some(u => eq(u, t) || u is Nil)
   } else {
     None
@@ -266,7 +277,7 @@ fn trmode__chekvalue(my_v : Value, mode : Value, val? : Value) -> Value raise {
     nchecker.truthy() &&
     !mfuncall(q_d_featurep, list2(val, nchecker)).truthy())
   if bad {
-    trmode__signal_mode_error(my_v, mode, val)
+    signal_mode_error(my_v, mode, val)
   } else {
     Nil
   }
@@ -274,40 +285,104 @@ fn trmode__chekvalue(my_v : Value, mode : Value, val? : Value) -> Value raise {
 
 ///|
 /// SIGNAL-MODE-ERROR
-fn trmode__signal_mode_error(
-  object : Value,
+fn signal_mode_error(
+  object_ : Value,
   mode : Value,
   value : Value,
 ) -> Value raise {
   let msg = "translator: ~:M was declared with mode ~:M, but it has value: ~M"
-  if symval(trmode__q_mode_check_warnp).truthy() &&
-    !symval(trmode__q_mode_check_errorp).truthy() {
-    mtell(list([Str(msg), object, mode, value]))
-  } else if symval(trmode__q_mode_check_errorp).truthy() {
-    merror(Str(msg), list([object, mode, value]))
+  if symval(q_d_mode_check_warnp).truthy() &&
+    !symval(q_d_mode_check_errorp).truthy() {
+    mtell(list([Str(msg), object_, mode, value]))
+  } else if symval(q_d_mode_check_errorp).truthy() {
+    merror(Str(msg), list([object_, mode, value]))
   } else {
     Nil
   }
 }
 
 ///|
-/// PUT-MODE, interpreter case (TBIND is never set without the translator).
-fn trmode__put_mode(name : Value, mode : Value, type_ : Value) -> Unit raise {
-  putprop(name, mode, type_) |> ignore
+/// TR-DECLARE-VARMODE
+fn tr_declare_varmode(variable : Value, mode : Value) -> Value raise {
+  declvalue(variable, ir_or_extend(mode), t)
 }
 
 ///|
-/// Top-level forms of trmode.lisp needed by the interpreter. Called from
-/// init_macsys (trmode has no generated init).
-fn trmode__init() -> Unit raise {
-  defvar_init(trmode__q_mode_checkp, t)
-  defvar_init(trmode__q_mode_check_warnp, t)
-  defvar_init(trmode__q_mode_check_errorp, Nil)
-  defun(q_assign_mode_check, args => trmode__assign_mode_check(
-    args[0],
-    args[1],
-  ))
-  register_mspec(q_d_modedeclare, trmode__d_modedeclare)
-  register_mspec(trmode__q_define_variable, trmode__d_define_variable)
-  register_mspec(trmode__q_mode_identity, trmode__d_mode_identity)
+/// DEF%TR $MODE_IDENTITY
+fn trmode__tr_mode_identity(form : Value) -> Value raise {
+  cons(ir_or_extend(cadr(form)), dtranslate(caddr(form)))
+}
+
+///|
+/// DEF%TR $MODEDECLARE: if we really wanted to we could cons up a list here
+/// at translate time and return it to match the return value in the
+/// interpreted case
+fn trmode__tr_modedeclare(form : Value) -> Value raise {
+  let mut l = cdr(form)
+  while l is Cons(_) {
+    declmode(car(l), ir_or_extend(cadr(l)), t) |> ignore
+    l = cddr(l)
+  }
+  cons(q_d_any, Nil)
+}
+
+///|
+/// ASS-EQ-REF
+fn ass_eq_ref(table : Value, key : Value, dflt? : Value = Nil) -> Value raise {
+  let val = assq(key, table)
+  if val.truthy() {
+    cdr(val)
+  } else {
+    dflt
+  }
+}
+
+///|
+/// ASS-EQ-SET
+fn ass_eq_set(val : Value, table : Value, key : Value) -> Value raise {
+  let cell = assq(key, table)
+  if cell.truthy() {
+    rplacd(cell, val) |> ignore
+    table
+  } else {
+    cons(cons(key, val), table)
+  }
+}
+
+///|
+/// PUT-MODE
+fn put_mode(name : Value, mode : Value, type_ : Value) -> Value raise {
+  if get(name, q_tbind).truthy() {
+    setf_tr_get_val_modes(ass_eq_set(mode, tr_get_val_modes(name), type_), name)
+  } else {
+    putprop(name, mode, type_)
+  }
+}
+
+///|
+/// DECLARRAY
+fn declarray(ar : Value, mode : Value) -> Value raise {
+  put_mode(ar, mode, q_array_mode)
+}
+
+///|
+/// DECLFUN
+fn declfun(f : Value, mode : Value) -> Value raise {
+  put_mode(f, mode, q_function_mode)
+}
+
+///|
+/// UDM-ERR: 1/2 is not $RATIONAL. bad name. it means CRE form.
+fn udm_err(mode : Value) -> Value raise {
+  mtell(list2(Str("translator: no such mode declaration: ~:M~%"), mode))
+}
+
+///|
+fn init_trmode() -> Unit raise {
+  for v in [q_d_mode_checkp, q_d_mode_check_warnp, q_d_mode_check_errorp] {
+    defmvar(v, val=symval(v), Nil) |> ignore
+  }
+  transl__deftr(q_d_define_variable, trmode__tr_define_variable)
+  transl__deftr(q_d_mode_identity, trmode__tr_mode_identity)
+  transl__deftr(q_d_modedeclare, trmode__tr_modedeclare)
 }

@@ -9,7 +9,7 @@ fn d_adjoint(mat : Value) -> Value raise {
     for i in 1..=nn {
       for j in 1..=nn {
         // (maset val adj i j): adj is a matrix, so this is MASET1.
-        desoln__maset1(
+        maset1(
           mul_star(
             list2(
               power(int(-1), int(i + j)),
@@ -17,7 +17,7 @@ fn d_adjoint(mat : Value) -> Value raise {
             ),
           ),
           adj,
-          [int(i), int(j)],
+          list([int(i), int(j)]),
         )
         |> ignore
       }
@@ -35,7 +35,7 @@ fn d_invert_by_adjoint(mat : Value) -> Value raise {
   ))
   let mat1 = if symval(q_d_scalarmatrixp).truthy() &&
     num_eq(d_length(mat), int(1)) {
-    desoln__maref1(adj, [int(1), int(1)])
+    maref1(adj, list([int(1), int(1)]))
   } else {
     adj
   }

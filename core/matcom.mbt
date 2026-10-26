@@ -314,7 +314,7 @@ fn matcom__array_check(pt : Value, x : Value) -> Value {
 
 ///|
 fn d_matchdeclare(form : Value) -> Value raise {
-  proc__dolmatchdeclare(cdr(form))
+  with_special(q_meta_prop_p, Nil, () => proc__dolmatchdeclare(cdr(form)))
 }
 
 ///|
@@ -375,8 +375,8 @@ fn proc__dolmatchdeclare(x : Value) -> Value raise {
         ) {
         improper_arg_err(p, q_d_matchdeclare) |> ignore
       }
-      add2lnc(car(x), symval(q_d_props)) |> ignore
-      mputprop(car(x), list1(p), q_matchdeclare) |> ignore
+      meta_add2lnc(car(x), q_d_props) |> ignore
+      meta_mputprop(car(x), list1(p), q_matchdeclare) |> ignore
     } else if d_listp(car(x)) is Nil {
       improper_arg_err(car(x), q_d_matchdeclare) |> ignore
     } else {

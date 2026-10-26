@@ -1243,8 +1243,15 @@ fn d_defstruct(l : Value) -> Value raise {
 
 ///|
 fn defstruct_translate(form : Value) -> Value raise {
-  ignore(form)
-  merr("translate: not supported in this port", [])
+  let translated_args = mapcar(x => translate(x), cdr(form))
+  list3(
+    q_d_any,
+    q_simplify,
+    cons(
+      q_list,
+      cons(list2(q_quote, list1(caar(form))), mapcar(x => cdr(x), translated_args)),
+    ),
+  )
 }
 
 ///|

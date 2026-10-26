@@ -19,7 +19,7 @@ fn d_eliminate(eqns : Value, vars : Value) -> Value raise {
     }
     if num_eq(d_length(vars), l) {
       vars = d_reverse(vars)
-      sv = desoln__maref1(vars, [int(1)])
+      sv = maref1(vars, list([int(1)]))
       vars = d_reverse(simplify(d_rest(vars)))
       flag = true
     }
@@ -46,7 +46,7 @@ fn d_eliminate(eqns : Value, vars : Value) -> Value raise {
           // maxima starts indices with 1, therefore the 1+
           se = d_cons(
             simplify(
-              d_resultant(eqns, desoln__maref1(teqns, [num_add(k, int(1))]), v),
+              d_resultant(eqns, maref1(teqns, list([num_add(k, int(1))])), v),
             ),
             se,
           )
@@ -65,7 +65,7 @@ fn d_eliminate(eqns : Value, vars : Value) -> Value raise {
               list2(
                 simplify(
                   d_last(
-                    simplify(d_solve(desoln__maref1(eqns, [int(1)]), varl=sv)),
+                    simplify(d_solve(maref1(eqns, list([int(1)])), varl=sv)),
                   ),
                 ),
                 q_d_eval,

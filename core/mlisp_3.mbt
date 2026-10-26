@@ -792,7 +792,7 @@ fn mdefine(l : Value) -> Value raise {
       set_lineinfo(fnname, cadar(fun), body) |> ignore
       mputprop(fnname, mdefine1(args, body), q_mexpr) |> ignore
       if symval(q_d_translate).truthy() {
-        translate_compat__function(fnname) |> ignore
+        translate_function(fnname) |> ignore
       }
     } else {
       add2lnc(fnname, symval(q_d_arrays)) |> ignore

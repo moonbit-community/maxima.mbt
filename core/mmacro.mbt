@@ -70,7 +70,9 @@ fn mdefmacro1(fun : Value, body : Value) -> Value raise {
   add2lnc(cons(list1(name), args), symval(q_d_macros)) |> ignore
   mputprop(name, mdefine1(args, body), q_mmacro) |> ignore
   if symval(q_d_translate).truthy() {
-    merr("translate-and-eval-macsyma-expression: not supported in this port", [])
+    translate_and_eval_macsyma_expression(
+      list3(list1(q_mdefmacro), fun, body),
+    )
     |> ignore
   }
   list3(list2(q_mdefmacro, q_simp), fun, body)
