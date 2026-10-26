@@ -1075,12 +1075,14 @@ fn share_load_modsimp() -> Unit raise {
 fn share_load_sheafa() -> Unit raise {
   init_vars_n_dot_dot_share_affine_sheafa()
   register_share_sheafa()
+  init_share_sheafa()
 }
 
 ///|
 fn share_load_dim_3() -> Unit raise {
   init_vars_n_dot_dot_share_affine_dim_3()
   register_share_dim_3()
+  init_share_dim_3()
 }
 
 ///|
@@ -1150,12 +1152,14 @@ fn share_load_polyc() -> Unit raise {
 fn share_load_sheafb() -> Unit raise {
   init_vars_n_dot_dot_share_affine_sheafb()
   register_share_sheafb()
+  init_share_sheafb()
 }
 
 ///|
 fn share_load_dim4_help() -> Unit raise {
   init_vars_n_dot_dot_share_affine_dim4_help()
   register_share_dim4_help()
+  init_share_dim4_help()
 }
 
 ///|
@@ -1173,6 +1177,7 @@ fn share_load_affine() -> Unit raise {
 fn share_load_sheafc() -> Unit raise {
   init_vars_n_dot_dot_share_affine_sheafc()
   register_share_sheafc()
+  init_share_sheafc()
 }
 
 ///|
@@ -1474,13 +1479,19 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "unicodedata/unicodedata-txt" => Some(share_load_unicodedata_txt)
     "unicodedata/grind-patch" => Some(share_load_grind_patch)
     "affine/polya" => Some(share_load_polya)
+    "affine/sheafa" => Some(share_load_sheafa)
+    "affine/dim-3" => Some(share_load_dim_3)
+    "affine/polysmp" => Some(share_load_polysmp)
     "affine/sysdef" => Some(share_load_sysdef)
     "affine/sub-proj" => Some(share_load_sub_proj)
     "affine/new-rat" => Some(share_load_new_rat)
     "affine/sys-declaim" => Some(share_load_sys_declaim)
     "affine/aquotient" => Some(share_load_aquotient)
     "affine/polyc" => Some(share_load_polyc)
+    "affine/sheafb" => Some(share_load_sheafb)
+    "affine/dim4-help" => Some(share_load_dim4_help)
     "affine/affine" => Some(share_load_affine)
+    "affine/sheafc" => Some(share_load_sheafc)
     "affine/polyb" => Some(share_load_polyb)
     "nelder_mead/defpackage" => Some(share_load_defpackage)
     "odepack/package" => Some(share_load_odepack_package)
