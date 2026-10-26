@@ -287,7 +287,22 @@ fn print_invert_case(sym_ : Value) -> Value raise {
 }
 
 ///|
+/// The function cell of EXPLODEN. Share packages redefine EXPLODEN at load
+/// time (engineering-format.lisp wraps the previous definition), as CL
+/// Maxima does with DEFUN; callers in the port reach the current
+/// definition through this cell.
+let commac__exploden_cell : Ref[(Value) -> Value raise] = Ref(
+  commac__exploden_base,
+)
+
+///|
 fn exploden(symb : Value) -> Value raise {
+  (commac__exploden_cell.val)(symb)
+}
+
+///|
+/// The definition of EXPLODEN in commac.lisp.
+fn commac__exploden_base(symb : Value) -> Value raise {
   let string_ = if symbolp(symb) {
     lstring(print_invert_case(symb))
   } else if floatp(symb) {

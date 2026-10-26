@@ -62,6 +62,7 @@ fn register_cl_functions() -> Unit {
   cl__def("assoc", a => assoc(arg(a, 0), arg(a, 1)))
   cl__def("copy-list", a => copy_list(arg(a, 0)))
   cl__def("copy-tree", a => copy_tree(arg(a, 0)))
+  cl__def("copy-seq", a => copy_seq(arg(a, 0)))
   cl__def("null", a => lbool(arg(a, 0) is Nil))
   cl__def("not", a => lbool(arg(a, 0) is Nil))
   cl__def("atom", a => lbool(atom(arg(a, 0))))
@@ -210,6 +211,42 @@ fn register_cl_functions() -> Unit {
     } else {
       int(i)
     }
+  })
+  cl__def("delete-file", a => {
+    let path = lstring(arg(a, 0))
+    @fs.remove_file(path) catch {
+      _ =>
+        raise LispError::Condition(
+          intern("file-error"),
+          "cannot delete file \{path}",
+          Str(path),
+        )
+    }
+    t
+  })
+  // RENAME-FILE (primary value: the new name). moonbitlang/x/fs has no
+  // rename, so the file is copied and the original deleted.
+  cl__def("rename-file", a => {
+    let from = lstring(arg(a, 0))
+    let to = lstring(arg(a, 1))
+    let bytes = read_file_bytes(from)
+    @fs.write_bytes_to_file(to, bytes) catch {
+      _ =>
+        raise LispError::Condition(
+          intern("file-error"),
+          "cannot rename file \{from} to \{to}",
+          Str(from),
+        )
+    }
+    @fs.remove_file(from) catch {
+      _ =>
+        raise LispError::Condition(
+          intern("file-error"),
+          "cannot rename file \{from} to \{to}",
+          Str(from),
+        )
+    }
+    Str(to)
   })
   cl__def("lisp-implementation-type", _ => Str("MoonBit"))
   cl__def("lisp-implementation-version", _ => Str("0.1"))
