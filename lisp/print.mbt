@@ -185,6 +185,29 @@ pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
     Vec(a) =>
       if a.elt == "character" {
         print_value(sb, Str(lstring(x)), escape)
+      } else if a.dims.length() != 1 {
+        // Multidimensional array: #nA(...) with nested rows, as CL prints it.
+        let rank = a.dims.length()
+        sb.write_string("#\{rank}A")
+        fn rows(k : Int, off : Int) -> Unit {
+          if k == rank {
+            print_value(sb, a.data[off], escape)
+            return
+          }
+          let mut stride = 1
+          for j in (k + 1)..<rank {
+            stride *= a.dims[j]
+          }
+          sb.write_char('(')
+          for i in 0..<a.dims[k] {
+            if i > 0 {
+              sb.write_char(' ')
+            }
+            rows(k + 1, off + i * stride)
+          }
+          sb.write_char(')')
+        }
+        rows(0, 0)
       } else {
         sb.write_string("#(")
         let n = match a.fill {
