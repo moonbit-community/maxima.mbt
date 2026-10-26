@@ -67,6 +67,15 @@ pub fn read_file(path : String) -> String raise LispError {
 }
 
 ///|
+/// Read a whole file as octets (`:element-type '(unsigned-byte 8)`).
+pub fn read_file_bytes(path : String) -> Bytes raise LispError {
+  @fs.read_file_to_bytes(path) catch {
+    _ =>
+      raise Condition(intern("file-error"), "cannot open file \{path}", Str(path))
+  }
+}
+
+///|
 /// Write a whole file.
 pub fn write_file(path : String, contents : String) -> Unit raise LispError {
   @fs.write_string_to_file(path, contents) catch {
