@@ -1746,6 +1746,7 @@ fn mlisp__setting_list(var_ : Value, possible_values : Value) -> Unit {
 
 ///|
 fn init_mlisp() -> Unit raise {
+  init_macdes_create_list()
   defvar_init(q_ear_lambda_expr_funs, make_hash_table(kind=HashTest::Eq))
   putprop(q_d_op_at, q_mrecord_assign, q_mset_extension_operator) |> ignore
   // Following property assignments comprise the Lisp code equivalent to
