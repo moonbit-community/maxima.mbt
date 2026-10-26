@@ -23,3 +23,6 @@
 - dopgcdcofacts returns 3 (lesfac__dopgcdcofacts3); bakalevelsolve declared tuple but 1 value
 - many private errcatch/errset helpers (risch, limit, solve, cpoly, ratout): consolidate into glue later
 - slatec tests: release builds need -ffp-contract=off (removed link cc-flags from slatec/moon.pkg since it made moon build link slatec as an exe); cmd/main sets it
+- PERF: port ~30-45x slower than SBCL on grobner (coefficient arithmetic in sratsimp/m*); profile later
+- Struct values hash to constant in hash tables (no identity hash) — add id field to LStruct
+- PERF profile: ~50% time in moonbit_incref/decref (RC on Value boxes), then eq, plist_get, car/cdr, alike. Startup 0.18s. expand/ratsimp benchmark ~17x slower than SBCL.

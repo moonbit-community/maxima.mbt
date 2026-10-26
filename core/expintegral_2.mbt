@@ -1517,7 +1517,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 1: Exponential Integral E
-  putprop(q_p_expintegral_e, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_e, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_e,
@@ -1552,7 +1552,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 2: Exponential Integral E1
-  putprop(q_p_expintegral_e1, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_e1, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_e1,
@@ -1577,7 +1577,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 3: Exponential Integral Ei
-  putprop(q_p_expintegral_ei, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_ei, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(q_p_expintegral_ei, t, q_commutes_with_conjugate) |> ignore
   expintegral__defgrad(q_p_expintegral_ei, [q_d_x], [maxima_lit(" %e^x/x")])
@@ -1597,7 +1597,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 4: Logarithmic integral li
-  putprop(q_p_expintegral_li, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_li, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_li,
@@ -1622,7 +1622,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 5: Exponential Integral Si
-  putprop(q_p_expintegral_si, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_si, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(q_p_expintegral_si, t, q_commutes_with_conjugate) |> ignore
   putprop(q_p_expintegral_si, q_odd_function_reflect, q_reflection_rule)
@@ -1642,7 +1642,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 6: Exponential Integral Shi
-  putprop(q_p_expintegral_shi, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_shi, expintegral__bags(), q_distribute_over)
   |> ignore
   // (The Lisp source puts these two properties on %expintegral_si again.)
   putprop(q_p_expintegral_si, t, q_commutes_with_conjugate) |> ignore
@@ -1667,7 +1667,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 7: Exponential Integral Ci
-  putprop(q_p_expintegral_ci, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_ci, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_ci,
@@ -1692,7 +1692,7 @@ fn init_expintegral() -> Unit raise {
   |> ignore
 
   // Part 8: Exponential Integral Chi
-  putprop(q_p_expintegral_chi, expintegral__bags(), q_distribute_u_over)
+  putprop(q_p_expintegral_chi, expintegral__bags(), q_distribute_over)
   |> ignore
   putprop(
     q_p_expintegral_chi,

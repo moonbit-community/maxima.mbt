@@ -641,7 +641,7 @@ fn init_airy() -> Unit raise {
   putprop(q_p_airy_ai, q_simplim_pctairy_ai, q_simplim_pctfunction) |> ignore
   airy__defgrad(q_p_airy_ai, [maxima_lit("$airy_dai(z)")])
   // airy_ai distributes over lists, matrices, and equations
-  putprop(q_p_airy_ai, bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_airy_ai, bags(), q_distribute_over) |> ignore
   // airy_ai has mirror symmetry
   putprop(q_p_airy_ai, t, q_commutes_with_conjugate) |> ignore
   // Integral of Ai(z)
@@ -663,14 +663,14 @@ fn init_airy() -> Unit raise {
   |> ignore
   airy__defgrad(q_p_airy_dai, [maxima_lit("$z*airy_ai(z)")])
   putprop(q_p_airy_dai, lread("((z) ((%airy_ai) z))"), q_integral) |> ignore
-  putprop(q_p_airy_dai, bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_airy_dai, bags(), q_distribute_over) |> ignore
   putprop(q_p_airy_dai, t, q_commutes_with_conjugate) |> ignore
   sethash(q_p_airy_dai, flonum_op, q_airy_dai) |> ignore
 
   // Airy Bi function
   putprop(q_p_airy_bi, q_simplim_pctairy_bi, q_simplim_pctfunction) |> ignore
   airy__defgrad(q_p_airy_bi, [maxima_lit("$ airy_dbi(z)")])
-  putprop(q_p_airy_bi, bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_airy_bi, bags(), q_distribute_over) |> ignore
   putprop(q_p_airy_bi, t, q_commutes_with_conjugate) |> ignore
   // Integral of Bi(z)
   // http://functions.wolfram.com/03.06.21.0002.01
@@ -691,7 +691,7 @@ fn init_airy() -> Unit raise {
   |> ignore
   airy__defgrad(q_p_airy_dbi, [maxima_lit("$z*airy_bi(z)")])
   putprop(q_p_airy_dbi, lread("((z) ((%airy_bi) z))"), q_integral) |> ignore
-  putprop(q_p_airy_dbi, bags(), q_distribute_u_over) |> ignore
+  putprop(q_p_airy_dbi, bags(), q_distribute_over) |> ignore
   putprop(q_p_airy_dbi, t, q_commutes_with_conjugate) |> ignore
   sethash(q_p_airy_dbi, flonum_op, q_airy_dbi) |> ignore
 }

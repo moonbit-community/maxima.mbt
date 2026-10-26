@@ -454,6 +454,6 @@ fn simpnct_antisym_check(l : Value, check : Value) -> Value raise {
 ///|
 fn init_mdot() -> Unit raise {
   // The operators "." and "^^" distribute over equations.
-  putprop(q_mnctimes, list1(q_mequal), q_distribute_u_over) |> ignore
-  putprop(q_mncexpt, list1(q_mequal), q_distribute_u_over) |> ignore
+  putprop(q_mnctimes, list1(q_mequal), q_distribute_over) |> ignore
+  putprop(q_mncexpt, list1(q_mequal), q_distribute_over) |> ignore
 }

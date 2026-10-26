@@ -1440,7 +1440,7 @@ fn complm(ask_or_not : Value, ll : Value, ul : Value) -> Value raise {
 /// example, in
 ///
 /// integrate(x^(2*n)*exp(-(x)^2),x)    ==>
-/// -gamma_incomplete((2*n+1)/2,x^2)*x^(2*n+1)*abs(x)^(-2*n-1)/2
+/// -gamma_h_incomplete((2*n+1)/2,x^2)*x^(2*n+1)*abs(x)^(-2*n-1)/2
 ///
 /// the integral has a discontinuity at x=0.
 fn intsubs(e : Value, a : Value, b : Value, ivar : Value) -> Value raise {
@@ -1571,8 +1571,8 @@ fn discontinuities(expr : Value, ivar : Value) -> Value raise {
     } else if eq(op, q_p_signum) {
       // signum(x) has a discontinuity at x = 0.
       add_unique(first(args))
-    } else if eq(op, q_p_gamma_u_incomplete) {
-      // gamma_incomplete(a, z), unless a is a positive integer, has a
+    } else if eq(op, q_p_gamma_incomplete) {
+      // gamma_h_incomplete(a, z), unless a is a positive integer, has a
       // discontinuity at z = 0 and when crossing the negative real axis.
       let a = first(args)
       let z = second(args)
@@ -1731,7 +1731,7 @@ fn easy_subs(
         ivar,
         list([
           q_p_log, q_p_asin, q_p_acos, q_p_atan, q_p_asinh, q_p_acosh, q_p_atanh, q_p_atan2,
-          q_p_gamma_u_incomplete, q_p_expintegral_ei, q_p_signum,
+          q_p_gamma_incomplete, q_p_expintegral_ei, q_p_signum,
         ]),
       ).truthy() &&
       // The list above is only a coarse screen.  DISCONTINUITIES, asked
@@ -1766,7 +1766,7 @@ fn limit_subs(e : Value, ll : Value, ul : Value, ivar : Value) -> Value raise {
   if involve_var(
       e,
       ivar,
-      list([q_p_atan, q_p_gamma_u_incomplete, q_p_expintegral_ei]),
+      list([q_p_atan, q_p_gamma_incomplete, q_p_expintegral_ei]),
     ).truthy() {
     Nil // functions with discontinuities
   } else {

@@ -499,7 +499,7 @@ fn stirling0(e : Value) -> Value raise {
     } else {
       e
     }
-  } else if eq(op, q_p_gamma_u_incomplete) {
+  } else if eq(op, q_p_gamma_incomplete) {
     gamma_incomplete_asymptotic(
       e,
       limit__var(),
@@ -572,7 +572,7 @@ fn gamma_incomplete_asymptotic(
     )
   } else {
     // Case 3: fall back
-    ftake(q_p_gamma_u_incomplete, [aaa, z])
+    ftake(q_p_gamma_incomplete, [aaa, z])
   }
 }
 

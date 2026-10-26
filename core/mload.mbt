@@ -627,12 +627,15 @@ fn generic_autoload(file : Value) -> Value raise {
   set(q_ear_autoloaded_files, cons(file, symval(q_ear_autoloaded_files)))
   |> ignore
   let path = mload__str(cdr(file))
-  let typ = match mload__parse(path).type_ {
-    Some(s) => s
-    None => ""
-  }
+  // (pathname-type file) is NIL for a name without a type, which matches
+  // none of bin-ext ("" in SBCL), "lisp", "lsp".
   let bin_ext = ""
-  if typ.to_lower() == bin_ext || typ.to_lower() == "lisp" || typ.to_lower() == "lsp" {
+  let lisp_p = match mload__parse(path).type_ {
+    Some(typ) =>
+      typ.to_lower() == bin_ext || typ.to_lower() == "lisp" || typ.to_lower() == "lsp"
+    None => false
+  }
+  if lisp_p {
     with_specials([(q_ear_read_base, Fix(10L)), (q_ear_print_base, Fix(10L))], () => suprv1__load_lisp_file(
       path,
     ))

@@ -418,7 +418,7 @@ fn macsys__continue_once(
   if !symval(q_d_nolabels).truthy() {
     set(d_tag, symval(q_d_op_pct)) |> ignore
   }
-  set(q_d_op_u_, symval(q_d_op__)) |> ignore
+  set(q_d_op_, symval(q_d_op__)) |> ignore
   if symval(q_d_showtime).truthy() {
     // we don't distinguish showtime:all?? /RJF
     suprv1__fmt(t, "Evaluation took ~,4F seconds (~,4F elapsed)", [

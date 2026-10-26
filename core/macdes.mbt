@@ -1,5 +1,8 @@
-// The list-creation utility of src/macdes.lisp (the rest of that file is the
-// help system, which is not ported). Registered from init_mlisp.
+// macdes.lisp is excluded from the port (help system), but it also defines
+// the list utility $create_list, which is ported here.
+
+///|
+let macdes__q_d_create_list : Value = sym("$create_list")
 
 ///|
 /// `(defmspec $create_list (l) ...)`
@@ -8,65 +11,49 @@ fn macdes__d_create_list(l : Value) -> Value raise {
 }
 
 ///|
-/// `(defun create-list1 (form &rest l &aux lis var1 top) ...)`
+/// `(defun create-list1 (form &rest l) ...)`
 fn macdes__create_list1(form : Value, l : Value) -> Value raise {
   if l is Nil {
     return list1(meval(form))
   }
-  let var1 = car(l)
-  let mut lis = cadr(l)
+  let var1 = first(l)
+  let mut lis = second(l)
   let mut l = cddr(l)
   if !symbolp(var1) {
     merr("create_list: expected a symbol; found: ~A", [var1]) |> ignore
   }
   lis = meval(lis)
-  // (mbinding ((list var1)) ...): bind VAR1 to itself, unbind on exit.
   let vars = list1(var1)
-  let mut win = false
-  defer (if win { munbind(vars) |> ignore })
-  mbind(vars, vars, Nil) |> ignore
-  win = true
-  let numeric = if numberp(lis) {
-    let top0 = car(l)
-    l = cdr(l)
-    let top = meval(top0)
-    if numberp(top) {
-      Some(top)
-    } else {
-      None
-    }
-  } else {
-    None
-  }
-  match numeric {
-    Some(top) => {
-      let out = Collector::new()
-      let mut i = lis
-      while num_le(i, top) {
-        mset(var1, i) |> ignore
-        out.append_list(macdes__create_list1(form, l))
-        i = num_add(i, Fix(1L))
-      }
-      out.result()
-    }
-    None =>
-      if d_listp(lis).truthy() {
-        let out = Collector::new()
-        for v in cdr(lis).iter() {
-          mset(var1, v) |> ignore
-          out.append_list(macdes__create_list1(form, l))
+  mlisp__mbinding(vars, vars, Nil, fn() {
+    if numberp(lis) {
+      let top = meval(car(l))
+      l = cdr(l)
+      if numberp(top) {
+        // (loop for i from lis to top do (mset var1 i) append ...)
+        let acc = Collector::new()
+        let mut i = lis
+        while num_le(i, top) {
+          mset(var1, i) |> ignore
+          acc.append_list(macdes__create_list1(form, l))
+          i = num_add(i, Fix(1L))
         }
-        out.result()
-      } else {
-        merr("create_list: unexpected arguments.", [])
+        return acc.result()
       }
-  }
+    }
+    if d_listp(lis).truthy() {
+      let acc = Collector::new()
+      for v in cdr(lis).iter() {
+        mset(var1, v) |> ignore
+        acc.append_list(macdes__create_list1(form, l))
+      }
+      acc.result()
+    } else {
+      merr("create_list: unexpected arguments.", [])
+    }
+  })
 }
 
 ///|
-let macdes__q_d_create_list : Value = sym("$create_list")
-
-///|
-fn init_macdes_create_list() -> Unit raise {
+fn init_macdes() -> Unit raise {
   register_mspec(macdes__q_d_create_list, macdes__d_create_list)
 }

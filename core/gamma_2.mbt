@@ -406,7 +406,7 @@ fn erf(z : Value) -> Value raise {
 }
 
 ///|
-/// erf(z) = sqrt(z^2)/z*(1 - gamma_incomplete(1/2,z^2)/sqrt(%pi)) for a CL
+/// erf(z) = sqrt(z^2)/z*(1 - gamma_h_incomplete(1/2,z^2)/sqrt(%pi)) for a CL
 /// complex z.
 fn complex_erf(z : Value) -> Value raise {
   let sgn : Value = if num_lt(realpart(z), Flo(0.0)) ||
@@ -421,7 +421,7 @@ fn complex_erf(z : Value) -> Value raise {
       Flo(1.0),
       num_mul(
         num_inv(Flo(@math.PI.sqrt())),
-        gamma_incomplete(Flo(0.5), num_mul(z, z)),
+        gamma_h_incomplete(Flo(0.5), num_mul(z, z)),
       ),
     ),
   )
@@ -532,9 +532,9 @@ fn bf_bf_erf(z : Value) -> Value raise {
 ///|
 fn bf_bf_erfc(z : Value) -> Value raise {
   // erfc(z) = 1/sqrt(pi)*gamma_incomplete_tail(1/2,z^2)       realpart(z) > 0
-  //         = 2 - 1/sqrt(pi)*gamma_incomplete(1/2,z^2)        realpart(z) < 0
+  //         = 2 - 1/sqrt(pi)*gamma_h_incomplete(1/2,z^2)        realpart(z) < 0
   let gamma_inc = (z : Value) => if numberp(z) {
-    gamma_incomplete(Flo(0.5), z)
+    gamma_h_incomplete(Flo(0.5), z)
   } else if bf_is_bigfloat(z) {
     bf_to(
       d_bfloat(
@@ -1249,6 +1249,12 @@ fn gamma2__init() -> Unit raise {
   // Generalized Erf is antisymmetric Erf(z1,z2) = - Erf(z2,z1)
   with_specials([(q_d_context, q_d_global), (q_context, q_d_global)], () => {
     meval(mk(q_d_declare, [q_p_erf_generalized, q_d_antisymmetric])) |> ignore
+    // In the built CL image this symbol also carries the operator
+    // property ($antisymmetric and OPERS), i.e. DECLARE took its OPERS
+    // branch: asum.lisp's additions to OPERS were in effect. Our inits run
+    // strictly in build order (asum after gamma), so store it explicitly.
+    putprop(q_p_erf_generalized, t, q_d_antisymmetric) |> ignore
+    putprop(q_p_erf_generalized, t, q_opers) |> ignore
     // Let's remove built-in symbols from list for user-defined properties.
     set(q_d_props, remove(q_p_erf_generalized, symval(q_d_props))) |> ignore
   })

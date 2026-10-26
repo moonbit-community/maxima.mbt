@@ -270,7 +270,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
   let expr = cdr(w0)
   let e_ = q_d__pcte
   let half = () => div(Fix(1L), Fix(2L))
-  let gi = list1(q_p_gamma_u_incomplete)
+  let gi = list1(q_p_gamma_incomplete)
   let mut w : Value = Nil
 
   // Type 1a: (a^(c*(z^r)^p+d)^v
@@ -291,7 +291,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
       var2,
       // (a^(d+c*(var2^r)^p))^v
       power(power(a, add2(d, mul2(c, power(power(var2, r), p)))), v),
-      // gamma_incomplete(1/(p*r), -c*v*(var2^r)^p*log(a))
+      // gamma_h_incomplete(1/(p*r), -c*v*(var2^r)^p*log(a))
       take(gi, [
         inv(mul2(p, r)),
         muln_([
@@ -330,7 +330,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
       div(Fix(-1L), r),
       power(a, d),
       power(var2, add2(v, Fix(1L))),
-      ftake(q_p_gamma_u_incomplete, [
+      ftake(q_p_gamma_incomplete, [
         div(add2(v, Fix(1L)), r),
         muln_([Fix(-1L), b, power(var2, r), sin__lg(a)]),
       ]),
@@ -497,7 +497,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
           muln_([
             power(Fix(2L), sub(index, n)),
             ftake(q_p_binomial, [n, index]),
-            ftake(q_p_gamma_u_incomplete, [
+            ftake(q_p_gamma_incomplete, [
               div(add2(index, Fix(1L)), Fix(2L)),
               mul3(
                 div(Fix(-1L), mul2(Fix(4L), a)),
@@ -623,7 +623,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
                       mul3(div(Fix(-1L), b), power(ab(), Fix(2L)), sin__lg(d)),
                       half(),
                     ),
-                    ftake(q_p_gamma_u_incomplete, [
+                    ftake(q_p_gamma_incomplete, [
                       div(addn_([index1, index2, Fix(2L)]), Fix(2L)),
                       mul3(
                         div(Fix(-1L), mul2(Fix(4L), b)),
@@ -636,7 +636,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
                     a,
                     ab(),
                     sin__lg(d),
-                    ftake(q_p_gamma_u_incomplete, [
+                    ftake(q_p_gamma_incomplete, [
                       div(addn_([index1, index2, Fix(1L)]), Fix(2L)),
                       mul3(
                         div(Fix(-1L), mul2(Fix(4L), b)),
@@ -774,7 +774,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
         ),
         div(mul2(Fix(-1L), n), r),
       ),
-      ftake(q_p_gamma_u_incomplete, [
+      ftake(q_p_gamma_incomplete, [
         div(n, r),
         mul3(
           Fix(-1L),
@@ -1023,7 +1023,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
             mul2(Fix(-1L), div(power(zz(), Fix(2L)), bl())),
             div(add2(index, Fix(1L)), Fix(-2L)),
           ),
-          ftake(q_p_gamma_u_incomplete, [
+          ftake(q_p_gamma_incomplete, [
             div(add2(index, Fix(1L)), Fix(2L)),
             mul2(Fix(-1L), div(power(zz(), Fix(2L)), mul2(Fix(4L), bl()))),
           ]),
@@ -1172,7 +1172,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
           ),
           add2(
             mul3(
-              ftake(q_p_gamma_u_incomplete, [
+              ftake(q_p_gamma_incomplete, [
                 mul2(div(Fix(1L), Fix(2L)), addn_([index1, index2, Fix(1L)])),
                 mul2(div(Fix(-1L), Fix(4L)), div(power(yy(), Fix(2L)), dl())),
               ]),
@@ -1181,7 +1181,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
             ),
             muln_([
               Fix(2L),
-              ftake(q_p_gamma_u_incomplete, [
+              ftake(q_p_gamma_incomplete, [
                 mul2(div(Fix(1L), Fix(2L)), addn_([index1, index2, Fix(2L)])),
                 mul2(div(Fix(-1L), Fix(4L)), div(power(yy(), Fix(2L)), dl())),
               ]),

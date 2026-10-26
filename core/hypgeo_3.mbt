@@ -60,7 +60,7 @@ fn lt_arbpow2(
         inv(b),
         power(mul3(par, a, inv(b)), mul2(int(-1), add2(pow2, int(1)))),
         power(q_d__pcte, mul3(par, a, inv(b))),
-        hypgeo__take(q_p_gamma_u_incomplete, [
+        hypgeo__take(q_p_gamma_incomplete, [
           add2(pow2, int(1)),
           mul3(par, a, inv(b)),
         ]),
@@ -411,7 +411,7 @@ fn fractest2(
   if hypgeo__ratp(i1) ||
     eq(flg, q_d) ||
     eq(flg, q_kbateman) ||
-    eq(flg, q_gamma_u_incomplete) ||
+    eq(flg, q_gamma_incomplete) ||
     eq(flg, q_htjory) ||
     eq(flg, q_erfc) ||
     eq(flg, q_slommel) ||
@@ -428,7 +428,7 @@ fn fractest2(
         dtw(i1, a1)
       } else if eq(flg, q_kbateman) {
         kbatemantw(i1, a1)
-      } else if eq(flg, q_gamma_u_incomplete) {
+      } else if eq(flg, q_gamma_incomplete) {
         gamma_incomplete_to_gamma_incomplete_lower(a1, i1)
       } else if eq(flg, q_kti) {
         kti(i1, a1)
@@ -676,7 +676,7 @@ fn wtm(a : Value, i1 : Value, i2 : Value) -> Value raise {
 ///|
 /// Incomplete gamma function in terms of Whittaker W function
 ///
-/// gamma_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
+/// gamma_h_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
 fn gammaincompletetw(a : Value, x : Value) -> Value raise {
   mul3(
     power(x, div(sub(a, int(1)), int(2))),
@@ -690,11 +690,11 @@ fn gammaincompletetw(a : Value, x : Value) -> Value raise {
 ///
 /// Only for a=0 we use the general representation as a Whittaker W function:
 ///
-///   gamma_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
+///   gamma_h_incomplete(a,x) = x^((a-1)/2)*exp(-x/2)*W[(a-1)/2,a/2](x)
 ///
 /// In all other cases we transform to a lower incomplete Gamma function:
 ///
-///   gamma_incomplete(a,x) = gamma(a)- gamma_incomplete_lower(a,x)
+///   gamma_h_incomplete(a,x) = gamma(a)- gamma_incomplete_lower(a,x)
 fn gamma_incomplete_to_gamma_incomplete_lower(
   a : Value,
   x : Value,
