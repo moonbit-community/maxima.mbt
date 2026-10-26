@@ -190,6 +190,7 @@ fn share_load_orthopoly() -> Unit raise {
 ///|
 fn share_load_trigrat() -> Unit raise {
   register_share_trigrat()
+  init_share_trigrat()
 }
 
 ///|
