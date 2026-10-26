@@ -59,6 +59,14 @@ fn register_cl_functions() -> Unit {
   cl__def("nthcdr", a => nthcdr(to_int(arg(a, 0)), arg(a, 1)))
   cl__def("last", a => last(arg(a, 0)))
   cl__def("member", a => member(arg(a, 0), arg(a, 1)))
+  cl__def("position", a => {
+    let i = position(arg(a, 0), arg(a, 1))
+    if i < 0 {
+      Nil
+    } else {
+      int(i)
+    }
+  })
   cl__def("assoc", a => assoc(arg(a, 0), arg(a, 1)))
   cl__def("copy-list", a => copy_list(arg(a, 0)))
   cl__def("copy-tree", a => copy_tree(arg(a, 0)))
