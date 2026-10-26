@@ -552,8 +552,10 @@ fn findtl1(e : Value) -> Value raise {
 
 ///|
 fn tlist_merge(tlists : Value) -> Value raise {
+  // TLIST is special: GET-DATUM sees the list being built.
+  let b = bind(q_tlist, Nil)
+  defer unbind(b)
   let mut tlists = tlists
-  let mut tlist : Value = Nil
   while !(tlists is Nil) {
     let mut a_tlist = car(tlists)
     while !(a_tlist is Nil) {
@@ -562,10 +564,14 @@ fn tlist_merge(tlists : Value) -> Value raise {
         temp = car(a_tlist)
         if tvar_q(datum_var(temp)).truthy() ||
           hayat__memq_arr(caar(datum_var(temp)), [q_mexpt, q_p_log]) {
-          tlist = cons(
-            list4(datum_var(temp), trunc_stack(temp), exp_pt(temp), switches(temp)),
-            tlist,
+          set(
+            q_tlist,
+            cons(
+              list4(datum_var(temp), trunc_stack(temp), exp_pt(temp), switches(temp)),
+              symval(q_tlist),
+            ),
           )
+          |> ignore
         } else {
           merr("taylor: ~M cannot be a variable.", [datum_var(temp)]) |> ignore
         }
@@ -593,7 +599,7 @@ fn tlist_merge(tlists : Value) -> Value raise {
     }
     tlists = cdr(tlists)
   }
-  nreverse(tlist)
+  nreverse(symval(q_tlist))
 }
 
 ///|
