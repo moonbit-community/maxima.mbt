@@ -28,3 +28,4 @@
 - PERF profile: ~50% time in moonbit_incref/decref (RC on Value boxes), then eq, plist_get, car/cdr, alike. Startup 0.18s. expand/ratsimp benchmark ~17x slower than SBCL.
 - LHash iteration order after remhash+reinsert differs from SBCL's free-list reuse (graphs works around with share_graphs__remhash); SBCL behaviour is intricate (high-water mark + free list)
 - format ~a on non-$ Lisp symbols prints lowercase (SBCL prints upcase) — only error messages
+- Codex #10: keyword supplied-p not tracked by the generator (dgemm infers 'beta given' from value; beta=0.0 without C not rejected)
