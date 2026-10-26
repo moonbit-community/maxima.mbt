@@ -11,7 +11,6 @@ fn api__initialize_system() -> Unit raise {
   init_generated()
   globals__record_other_defmvars()
   register_cl_functions()
-  init_translate_compat()
 }
 
 ///|

@@ -11,19 +11,10 @@
 // computation), scale_lp (use equilibratium scaling), warn_rank_sx.
 
 ///|
-/// The MAREF macro (transm.lisp) expands to MAREF1 (trans2.lisp, part of
-/// the translator, not ported); the cases for Maxima lists and matrices.
+/// `(maref ar i ...)`: the MAREF macro (transm.lisp) expands to MAREF1
+/// (trans2.lisp).
 fn share_simplex_algorithm__maref(ar : Value, inds : Array[Int]) -> Value raise {
-  if inds.length() == 1 && (d_listp(ar).truthy() || d_matrixp(ar).truthy()) {
-    nth(inds[0], ar)
-  } else if d_matrixp(ar).truthy() && inds.length() == 2 {
-    nth(inds[1], nth(inds[0], ar))
-  } else {
-    merror(
-      Str("Wrong number of array indices: ~M"),
-      list1(cons(list1(q_mlist), list(inds.map(i => int(i))))),
-    )
-  }
+  maref1(ar, list(inds.map(i => int(i))))
 }
 
 ///|

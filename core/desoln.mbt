@@ -1,58 +1,6 @@
 // Port of src/desoln.lisp: desolve (Laplace transform ODE solver).
 
 ///|
-/// `maref1` (trans2.lisp, not ported with the translator): reference an
-/// array, hash table, or Maxima list/matrix element. Also used by elim and
-/// invert.
-fn desoln__maref1(ar : Value, inds : Array[Value]) -> Value raise {
-  if arrayp(ar) && inds.length() == array_rank(ar) {
-    aref(ar, inds.map(i => to_int(i)))
-  } else if hash_table_p(ar) {
-    gethash(if inds.length() > 1 { list(inds) } else { inds[0] }, ar)
-  } else if symbolp(ar) {
-    if mget(ar, q_hashar).truthy() {
-      harrfind(cons(list2(ar, q_array), list(inds)))
-    } else {
-      cons(list2(ar, q_array), list(inds))
-    }
-  } else if inds.length() == 1 &&
-    (d_listp(ar).truthy() || d_matrixp(ar).truthy()) {
-    nth(to_int(inds[0]), ar)
-  } else if d_matrixp(ar).truthy() && inds.length() == 2 {
-    nth(to_int(inds[1]), nth(to_int(inds[0]), ar))
-  } else {
-    merr("Wrong number of array indices: ~M", [cons(list1(q_mlist), list(inds))])
-  }
-}
-
-///|
-/// `maset1` (trans2.lisp): store into an array, hash table, or Maxima
-/// list/matrix element.
-fn desoln__maset1(val : Value, ar : Value, inds : Array[Value]) -> Value raise {
-  if arrayp(ar) && inds.length() == array_rank(ar) {
-    aset(ar, inds.map(i => to_int(i)), val)
-  } else if hash_table_p(ar) {
-    sethash(if inds.length() > 1 { list(inds) } else { inds[0] }, ar, val)
-  } else if symbolp(ar) {
-    raise LispError::SimpleError(
-      "MASET1: first argument must not be a symbol; found: " +
-      princ_to_string(ar),
-    )
-  } else if inds.length() == 1 &&
-    (d_listp(ar).truthy() || d_matrixp(ar).truthy()) {
-    rplaca(nthcdr(to_int(inds[0]), ar), val) |> ignore
-    val
-  } else if d_matrixp(ar).truthy() && inds.length() == 2 {
-    rplaca(nthcdr(to_int(inds[1]), nth(to_int(inds[0]), ar)), val) |> ignore
-    val
-  } else {
-    raise LispError::SimpleError(
-      "MASET1: invalid array reference: " + princ_to_string(ar),
-    )
-  }
-}
-
-///|
 fn d_desolve(eqns : Value, vars : Value) -> Value raise {
   let lvar = d_gensym()
   with_special(q_d_dispflag, Nil, () => {
@@ -71,7 +19,7 @@ fn d_desolve(eqns : Value, vars : Value) -> Value raise {
       vars = list2(list1(q_mlist), vars)
       flag = true
     }
-    let mut ovar = desoln__maref1(vars, [int(1)])
+    let mut ovar = maref1(vars, list([int(1)]))
     if !num_eq(d_length(ovar), int(1)) {
       merr("desolve: more than one independent variable: ~M", [ovar]) |> ignore
     }
@@ -128,7 +76,7 @@ fn d_desolve(eqns : Value, vars : Value) -> Value raise {
       ),
     )
     if flag && num_eq(d_length(tvars), int(1)) {
-      desoln__maref1(teqns, [int(1)])
+      maref1(teqns, list([int(1)]))
     } else {
       teqns
     }
