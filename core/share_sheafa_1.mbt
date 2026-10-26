@@ -22,6 +22,12 @@ let sheafa__q_variable_correspondence : Value = sym("variable-correspondence")
 ///|
 let sheafa__q_ideal : Value = sym("ideal")
 
+///|
+let sheafa__q_list_tableaux : Value = sym("list-tableaux")
+
+///|
+let sheafa__q_compose_rmap : Value = sym("compose-rmap")
+
 // ---------------------------------------------------------------------------
 // Structure helpers (defstructs of amacros.lisp)
 
