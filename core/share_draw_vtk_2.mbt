@@ -2333,8 +2333,11 @@ fn draw_vtk(args : Value) -> Value raise {
       )
       |> ignore
   }
-  // The Lisp code now runs the script with ($system "python ..."); the
-  // port cannot run programs, so the script is only written.
+  if member(symval(q_d_draw_renderer), list2(q_d_vtk, q_d_vtk6)).truthy() {
+    d_system(list1(format(Nil, "(python \"~a\")&", [gfn]))) |> ignore
+  } else {
+    d_system(list1(format(Nil, "(python3 \"~a\")&", [gfn]))) |> ignore
+  }
   q_d_done
 }
 

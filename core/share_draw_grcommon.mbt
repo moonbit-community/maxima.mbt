@@ -1,297 +1,36 @@
 // Port of share/draw/grcommon.lisp: graphics options common to the
 // Gnuplot and VTK renderers of the draw package, the marching cubes
 // algorithm for implicit surfaces, and the entry points draw, draw2d and
-// draw3d.  It also holds private translations of the pieces of
-// src/plot.lisp and src/plotcolors.lisp (not part of the port) that the
-// draw package uses: COERCE-FLOAT-FUN, ADAPTIVE-PLOT, PLOT-TEMP-FILE,
-// *COLOR-TABLE*, ATOM-TO-DOWNCASED-STRING and HEX-TO-NUMERIC-LIST.
+// draw3d.
 
 // ---------------------------------------------------------------------------
-// Private translations of plot.lisp / plotcolors.lisp helpers
+// The plot.lisp / plotcolors.lisp helpers used by the draw package
 
 ///|
 /// plot.lisp's special *PLOT-REALPART* (T by default).
-let share_draw__q_plot_realpart : Value = sym("*plot-realpart*")
+let share_draw__q_plot_realpart : Value = q_ear_plot_realpart
 
 ///|
 /// plotcolors.lisp's special *COLOR-TABLE* (an EQUAL hash table of color
 /// names to "#rrggbb" strings).
-let share_draw__q_color_table : Value = sym("*color-table*")
-
-///|
-/// The C library's getpid, used for (GETPID) of server.lisp.
-extern "C" fn share_draw__c_getpid() -> Int = "getpid"
+let share_draw__q_color_table : Value = q_ear_color_table
 
 ///|
 /// server.lisp's GETPID: the process id.
 fn share_draw__getpid() -> Value {
-  int(share_draw__c_getpid())
+  int(process_id())
 }
 
 ///|
 /// plot.lisp's MAYBE-REALPART.
 fn share_draw__maybe_realpart(x : Value) -> Value raise {
-  if symval(share_draw__q_plot_realpart).truthy() {
-    d_realpart(x)
-  } else {
-    let ri = trisplit(x)
-    if zerop1(cdr(ri)).truthy() {
-      car(ri)
-    } else {
-      Nil
-    }
-  }
-}
-
-///|
-/// The Lisp ERRCATCH macro: `Some(value)` on success, None when a Maxima
-/// or Lisp error (or a throw to an errcatch tag) occurred.
-fn share_draw__errcatch(f : () -> Value raise) -> Value? raise {
-  let ec = cons(symval(q_bindlist), symval(q_loclist))
-  with_specials([(q_errcatch, ec), (q_ear_mdebug, Nil)], () => {
-    let r = f() catch {
-      LispError::Throw(tag, _) as e =>
-        if eq(tag, q_macsyma_quit) || eq(tag, q_errorsw) || eq(tag, q_rat_err) {
-          errlfun1(ec) |> ignore
-          return None
-        } else {
-          raise e
-        }
-      LispError::ReturnFrom(_, _) as e => raise e
-      LispError::Go(_) as e => raise e
-      e => {
-        if !is_maxima_error(e) {
-          let msg = match e {
-            LispError::SimpleError(m) => m
-            LispError::Condition(_, m, _) => m
-            _ => e.to_string()
-          }
-          set(q_d_error, mk_simp(q_mlist, [Str(msg)])) |> ignore
-          if symval(q_d_errormsg).truthy() {
-            d_errormsg() |> ignore
-          }
-        }
-        errlfun1(ec) |> ignore
-        return None
-      }
-    }
-    Some(r)
-  })
-}
-
-///|
-/// The check a compiled `(lambda (g1 ... gn) ...)` makes on its argument
-/// count (a CL program error, not a Maxima error).
-fn share_draw__check_nargs(actuals : Array[Value], nargs : Int) -> Unit raise {
-  if actuals.length() != nargs {
-    raise LispError::SimpleError(
-      "invalid number of arguments: " + actuals.length().to_string(),
-    )
-  }
-}
-
-///|
-/// COERCE-MAXIMA-FUNCTION-OR-MAXIMA-LAMBDA with :float-fun '$float.
-fn share_draw__coerce_maxima_function(nargs : Int, expr : Value) -> Value {
-  lfunc("coerce-maxima-function", actuals => {
-    share_draw__check_nargs(actuals, nargs)
-    with_specials(
-      [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-      () => {
-        let result = share_draw__errcatch(() => d_float(
-          share_draw__maybe_realpart(mapply(expr, list(actuals), t)),
-        ))
-        match result {
-          Some(v) => v
-          None => t
-        }
-      },
-    )
-  })
-}
-
-///|
-/// COERCE-LISP-FUNCTION-OR-LISP-LAMBDA with :float-fun '$float.
-fn share_draw__coerce_lisp_function(nargs : Int, expr : Value) -> Value {
-  lfunc("coerce-lisp-function", actuals => {
-    share_draw__check_nargs(actuals, nargs)
-    with_specials(
-      [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-      () => {
-        let result = share_draw__maybe_realpart(apply(expr, list(actuals)))
-        d_float(result)
-      },
-    )
-  })
-}
-
-///|
-/// plot.lisp's %COERCE-FLOAT-FUN with FLOAT-FUN = '$float: a Lisp function
-/// which evaluates EXPR (a function name, lambda expression or general
-/// Maxima expression in the variables LVARS) to a float, or T when the
-/// evaluation fails.
-fn share_draw__p_coerce_float_fun(
-  expr : Value,
-  lvars : Value,
-  fname : Value,
-) -> Value raise {
-  let nargs_of = (lv : Value) => if lv.truthy() { length(cdr(lv)) } else { 1 }
-  if expr is Str(_) && getopr0(expr).truthy() {
-    let a = if lvars.truthy() { lvars } else { mk(q_mlist, [gensym()]) }
-    return share_draw__p_coerce_float_fun(
-      mk(q_d_apply, [getopr0(expr), a]),
-      a,
-      fname,
-    )
-  }
-  if symbolp(expr) &&
-    !memq(expr, lvars).truthy() &&
-    !d_constantp(expr).truthy() {
-    if fboundp(expr) {
-      return share_draw__coerce_lisp_function(nargs_of(lvars), expr)
-    }
-    let mexpr = mget(expr, q_mexpr)
-    if mexpr.truthy() {
-      let args = cdr(second(mexpr))
-      return share_draw__coerce_maxima_function(length(args), expr)
-    }
-    if get(expr, q_mfexpr_star).truthy() ||
-      mget(expr, q_mmacro).truthy() ||
-      get(d_nounify(expr), q_operators).truthy() ||
-      get(d_verbify(expr), q_operators).truthy() {
-      let a = if lvars.truthy() { lvars } else { mk(q_mlist, [gensym()]) }
-      return share_draw__p_coerce_float_fun(mk(q_d_apply, [expr, a]), a, fname)
-    }
-    return merror(Str("~a: unknown function: ~M"), list2(fname, expr))
-  }
-  if expr is Cons(_) && eq(caar(expr), q_lambda) {
-    let args = cdr(second(expr))
-    return share_draw__coerce_maxima_function(length(args), expr)
-  }
-  // A general expression.
-  let vars = cdr(
-    if lvars.truthy() {
-      lvars
-    } else {
-      d_sort(with_special(q_d_listconstvars, Nil, () => d_listofvars(expr)))
-    },
-  )
-  let subscripted = remove_if(v => atom(v), vars)
-  let symbols = remove_if(v => !atom(v), vars)
-  let nargs = length(vars)
-  let evaluate = () => with_specials(
-    [(q_d_ratprint, Nil), (q_d_numer, t), (q_ear_nounsflag, t)],
-    () => match
-      share_draw__errcatch(() => d_float(share_draw__maybe_realpart(meval(expr)))) {
-      Some(v) => v
-      None => t
-    },
-  )
-  if subscripted is Nil {
-    lfunc("coerce-float-fun", actuals => {
-      share_draw__check_nargs(actuals, nargs)
-      progv(vars, list(actuals), evaluate)
-    })
-  } else {
-    lfunc("coerce-float-fun", actuals => {
-      share_draw__check_nargs(actuals, nargs)
-      let saved = mapcar(v => meval(v), subscripted)
-      let vals = Collector::new()
-      let mut i = 0
-      for v in vars.iter() {
-        if i >= actuals.length() {
-          break
-        }
-        if atom(v) {
-          vals.add(actuals[i])
-        } else {
-          mset(v, actuals[i]) |> ignore
-        }
-        i = i + 1
-      }
-      let restore = () => {
-        let mut s = saved
-        for v in subscripted.iter() {
-          mset(v, car(s)) |> ignore
-          s = cdr(s)
-        }
-      }
-      let r = progv(symbols, vals.result(), evaluate) catch {
-        e => {
-          restore()
-          raise e
-        }
-      }
-      restore()
-      r
-    })
-  }
+  maybe_realpart(x)
 }
 
 ///|
 /// plot.lisp's COERCE-FLOAT-FUN called as (coerce-float-fun expr lvars).
 fn share_draw__coerce_float_fun(expr : Value, lvars : Value) -> Value raise {
-  if !d_listp(lvars).truthy() {
-    merr("coerce-float-fun: expecting a Maxima list, found: ~M", [lvars])
-    |> ignore
-  }
-  share_draw__p_coerce_float_fun(expr, lvars, Str("coerce-float-fun"))
-}
-
-///|
-/// plot.lisp's SLOW-OSCILLATION-P.
-fn share_draw__slow_oscillation_p(
-  f0 : Value,
-  f1 : Value,
-  f2 : Value,
-  f3 : Value,
-  f4 : Value,
-) -> Bool raise {
-  let sign_change = (x : Value, y : Value, z : Value) => {
-    if !(numberp(x) && numberp(y) && numberp(z)) {
-      2
-    } else if (num_gt(y, x) && num_gt(y, z)) || (num_lt(y, x) && num_lt(y, z)) {
-      1
-    } else {
-      0
-    }
-  }
-  sign_change(f0, f1, f2) + sign_change(f1, f2, f3) + sign_change(f2, f3, f4) <=
-  2
-}
-
-///|
-/// plot.lisp's SMOOTH-ENOUGH-P.
-fn share_draw__smooth_enough_p(
-  f_a : Value,
-  f_a1 : Value,
-  f_b : Value,
-  f_b1 : Value,
-  f_c : Value,
-  eps : Value,
-) -> Bool raise {
-  if [f_a, f_a1, f_b, f_b1, f_c].iter().all(v => numberp(v)) {
-    let quad = num_div(
-      num_sum([
-        f_a,
-        num_mul(Fix(-5L), f_a1),
-        num_mul(Fix(9L), f_b),
-        num_mul(Fix(-7L), f_b1),
-        num_mul(Fix(2L), f_c),
-      ]),
-      Fix(24L),
-    )
-    let quad_b = num_div(
-      num_sum([num_mul(Fix(5L), f_b), num_mul(Fix(8L), f_b1), num_neg(f_c)]),
-      Fix(12L),
-    )
-    let mn = num_min(num_min(num_min(num_min(f_a, f_a1), f_b), f_b1), f_c)
-    let diff = num_sub(num_abs(quad), num_mul(eps, num_sub(quad_b, mn)))
-    let delta = num_mul(Fix(150L), symval(q_n_plusflonum_epsilon_plus))
-    num_le(diff, delta)
-  } else {
-    false
-  }
+  coerce_float_fun(expr, list1(lvars))
 }
 
 ///|
@@ -307,92 +46,36 @@ fn share_draw__adaptive_plot(
   depth : Int,
   eps : Value,
 ) -> Value raise {
-  let a1 = num_div(num_add(a, b), Fix(2L))
-  let b1 = num_div(num_add(b, c), Fix(2L))
-  let f_a1 = fcn(a1)
-  let f_b1 = fcn(b1)
-  if !(depth > 0) ||
-    (
-      share_draw__slow_oscillation_p(f_a, f_a1, f_b, f_b1, f_c) &&
-      share_draw__smooth_enough_p(f_a, f_a1, f_b, f_b1, f_c, eps)
-    ) {
-    list([a, f_a, a1, f_a1, b, f_b, b1, f_b1, c, f_c])
-  } else if !symval(share_draw__q_plot_realpart).truthy() &&
-    f_a is Nil &&
-    f_a1 is Nil &&
-    f_b is Nil &&
-    f_b1 is Nil &&
-    f_c is Nil {
-    list([a, f_a, a1, f_a1, b, f_b, b1, f_b1, c, f_c])
-  } else {
-    let left = share_draw__adaptive_plot(
-      fcn,
-      a,
-      a1,
-      b,
-      f_a,
-      f_a1,
-      f_b,
-      depth - 1,
-      num_mul(Fix(2L), eps),
-    )
-    let right = share_draw__adaptive_plot(
-      fcn,
-      b,
-      b1,
-      c,
-      f_b,
-      f_b1,
-      f_c,
-      depth - 1,
-      num_mul(Fix(2L), eps),
-    )
-    append(left, cddr(right))
-  }
+  adaptive_plot(
+    lfunc("adaptive-plot-fcn", args => fcn(arg(args, 0))),
+    a,
+    b,
+    c,
+    f_a,
+    f_b,
+    f_c,
+    int(depth),
+    eps,
+  )
 }
 
 ///|
-/// plot.lisp's PLOT-TEMP-FILE with PRESERVE-FILE true and no plot
-/// options: FILE in *maxima-tempdir*.
+/// plot.lisp's PLOT-TEMP-FILE called as (plot-temp-file file t).
 fn share_draw__plot_temp_file(file : Value) -> Value raise {
-  let tmp = symval(q_ear_maxima_tempdir)
-  let filename = if tmp.truthy() {
-    format(Nil, "~a/~a", [tmp, file])
-  } else {
-    file
-  }
-  format(Nil, "~a", [filename])
+  plot_temp_file(file, preserve_file=t)
 }
 
 ///|
 /// plotcolors.lisp's ATOM-TO-DOWNCASED-STRING.
 fn share_draw__atom_to_downcased_string(val : Value) -> String raise {
-  let s = string_downcase(
-    string_trim("\"", char_list_to_string(mstring(val))),
-  )
-  let sb = StringBuilder::new()
-  for c in s {
-    let n = c.to_int()
-    if n != 32 && n != 45 && n != 95 {
-      sb.write_char(c)
-    }
-  }
-  sb.to_string()
+  lstring(atom_to_downcased_string(val))
 }
 
 ///|
 /// plotcolors.lisp's HEX-TO-NUMERIC-LIST: "#rrggbb" to a list of three
 /// floats in [0, 1].
 fn share_draw__hex_to_numeric_list(str : Value) -> Value raise {
-  let s = lstring(str)
-  let comp = (i : Int) => {
-    let h = s.view(start_offset=i, end_offset=i + 2).to_string()
-    match parse_integer(h, radix=16) {
-      Some(v) => num_div(v, Flo(255.0))
-      None => raise LispError::SimpleError("parse-integer: junk in string " + h)
-    }
-  }
-  list([comp(1), comp(3), comp(5)])
+  hex_to_numeric_list(str)
 }
 
 ///|
@@ -2082,172 +1765,12 @@ fn init_share_grcommon() -> Unit raise {
   if !boundp(q_ear_gr_options) {
     set(q_ear_gr_options, make_hash_table()) |> ignore
   }
-  // *COLOR-TABLE* of plotcolors.lisp, then the colors grcommon.lisp adds.
-  if !boundp(share_draw__q_color_table) ||
-    !symval(share_draw__q_color_table).truthy() {
-    let tab = make_hash_table(kind=Equal)
-    for kv in share_draw__plotcolors_table {
-      sethash(Str(kv.0), tab, Str(kv.1)) |> ignore
-    }
-    set(share_draw__q_color_table, tab) |> ignore
-  }
+  // The colors grcommon.lisp adds to *COLOR-TABLE* (plotcolors.lisp).
   let tab = symval(share_draw__q_color_table)
   for kv in share_draw__grcommon_colors {
     sethash(Str(kv.0), tab, Str(kv.1)) |> ignore
   }
 }
-///|
-/// The *COLOR-TABLE* entries of src/plotcolors.lisp (not ported).
-let share_draw__plotcolors_table : Array[(String, String)] = [
-  ("aliceblue", "#f0f8ff"),
-  ("antiquewhite", "#faebd7"),
-  ("aqua", "#00ffff"),
-  ("aquamarine", "#7fffd4"),
-  ("azure", "#f0ffff"),
-  ("beige", "#f5f5dc"),
-  ("bisque", "#ffe4c4"),
-  ("black", "#000000"),
-  ("blanchedalmond", "#ffebcd"),
-  ("blue", "#0000ff"),
-  ("blueviolet", "#8a2be2"),
-  ("brown", "#a52a2a"),
-  ("burlywood", "#deb887"),
-  ("cadetblue", "#5f9ea0"),
-  ("chartreuse", "#7fff00"),
-  ("chocolate", "#d2691e"),
-  ("coral", "#ff7f50"),
-  ("cornflowerblue", "#6495ed"),
-  ("cornsilk", "#fff8dc"),
-  ("crimson", "#dc143c"),
-  ("cyan", "#00ffff"),
-  ("darkblue", "#00008b"),
-  ("darkcyan", "#008b8b"),
-  ("darkgoldenrod", "#b8860b"),
-  ("darkgray", "#a9a9a9"),
-  ("darkgrey", "#a9a9a9"),
-  ("darkgreen", "#006400"),
-  ("darkkhaki", "#bdb76b"),
-  ("darkmagenta", "#8b008b"),
-  ("darkolivegreen", "#556b2f"),
-  ("darkorange", "#ff8c00"),
-  ("darkorchid", "#9932cc"),
-  ("darkred", "#8b0000"),
-  ("darksalmon", "#e9967a"),
-  ("darkseagreen", "#8fbc8f"),
-  ("darkslateblue", "#483d8b"),
-  ("darkslategray", "#2f4f4f"),
-  ("darkslategrey", "#2f4f4f"),
-  ("darkturquoise", "#00ced1"),
-  ("darkviolet", "#9400d3"),
-  ("deeppink", "#ff1493"),
-  ("deepskyblue", "#00bfff"),
-  ("dimgray", "#696969"),
-  ("dimgrey", "#696969"),
-  ("dodgerblue", "#1e90ff"),
-  ("firebrick", "#b22222"),
-  ("floralwhite", "#fffaf0"),
-  ("forestgreen", "#228b22"),
-  ("fuchsia", "#ff00ff"),
-  ("gainsboro", "#dcdcdc"),
-  ("ghostwhite", "#f8f8ff"),
-  ("gold", "#ffd700"),
-  ("goldenrod", "#daa520"),
-  ("gray", "#bebebe"),
-  ("grey", "#bebebe"),
-  ("green", "#00ff00"),
-  ("greenyellow", "#adff2f"),
-  ("honeydew", "#f0fff0"),
-  ("hotpink", "#ff69b4"),
-  ("indianred", "#cd5c5c"),
-  ("indigo", "#4b0082"),
-  ("ivory", "#fffff0"),
-  ("khaki", "#f0e68c"),
-  ("lavender", "#e6e6fa"),
-  ("lavenderblush", "#fff0f5"),
-  ("lawngreen", "#7cfc00"),
-  ("lemonchiffon", "#fffacd"),
-  ("lightblue", "#add8e6"),
-  ("lightcoral", "#f08080"),
-  ("lightcyan", "#e0ffff"),
-  ("lightgoldenrodyellow", "#fafad2"),
-  ("lightgray", "#d3d3d3"),
-  ("lightgrey", "#d3d3d3"),
-  ("lightgreen", "#90ee90"),
-  ("lightpink", "#ffb6c1"),
-  ("lightsalmon", "#ffa07a"),
-  ("lightseagreen", "#20b2aa"),
-  ("lightskyblue", "#87cefa"),
-  ("lightslategray", "#778899"),
-  ("lightslategrey", "#778899"),
-  ("lightsteelblue", "#b0c4de"),
-  ("lightyellow", "#ffffe0"),
-  ("lime", "#00ff00"),
-  ("limegreen", "#32cd32"),
-  ("linen", "#faf0e6"),
-  ("magenta", "#ff00ff"),
-  ("maroon", "#b03060"),
-  ("mediumaquamarine", "#66cdaa"),
-  ("mediumblue", "#0000cd"),
-  ("mediumorchid", "#ba55d3"),
-  ("mediumpurple", "#9370db"),
-  ("mediumseagreen", "#3cb371"),
-  ("mediumslateblue", "#7b68ee"),
-  ("mediumspringgreen", "#00fa9a"),
-  ("mediumturquoise", "#48d1cc"),
-  ("mediumvioletred", "#c71585"),
-  ("midnightblue", "#191970"),
-  ("mintcream", "#f5fffa"),
-  ("mistyrose", "#ffe4e1"),
-  ("moccasin", "#ffe4b5"),
-  ("navajowhite", "#ffdead"),
-  ("navy", "#000080"),
-  ("oldlace", "#fdf5e6"),
-  ("olive", "#808000"),
-  ("olivedrab", "#6b8e23"),
-  ("orange", "#ffa500"),
-  ("orangered", "#ff4500"),
-  ("orchid", "#da70d6"),
-  ("palegoldenrod", "#eee8aa"),
-  ("palegreen", "#98fb98"),
-  ("paleturquoise", "#afeeee"),
-  ("palevioletred", "#db7093"),
-  ("papayawhip", "#ffefd5"),
-  ("peachpuff", "#ffdab9"),
-  ("peru", "#cd853f"),
-  ("pink", "#ffc0cb"),
-  ("plum", "#dda0dd"),
-  ("powderblue", "#b0e0e6"),
-  ("purple", "#a020f0"),
-  ("rebeccapurple", "#663399"),
-  ("red", "#ff0000"),
-  ("rosybrown", "#bc8f8f"),
-  ("royalblue", "#4169e1"),
-  ("saddlebrown", "#8b4513"),
-  ("salmon", "#fa8072"),
-  ("sandybrown", "#f4a460"),
-  ("seagreen", "#2e8b57"),
-  ("seashell", "#fff5ee"),
-  ("sienna", "#a0522d"),
-  ("silver", "#c0c0c0"),
-  ("skyblue", "#87ceeb"),
-  ("slateblue", "#6a5acd"),
-  ("slategray", "#708090"),
-  ("slategrey", "#708090"),
-  ("snow", "#fffafa"),
-  ("springgreen", "#00ff7f"),
-  ("steelblue", "#4682b4"),
-  ("tan", "#d2b48c"),
-  ("teal", "#008080"),
-  ("thistle", "#d8bfd8"),
-  ("tomato", "#ff6347"),
-  ("turquoise", "#40e0d0"),
-  ("violet", "#ee82ee"),
-  ("wheat", "#f5deb3"),
-  ("white", "#ffffff"),
-  ("whitesmoke", "#f5f5f5"),
-  ("yellow", "#ffff00"),
-  ("yellowgreen", "#9acd32"),
-]
 
 ///|
 /// Colors grcommon.lisp adds to *COLOR-TABLE*.
