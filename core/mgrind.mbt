@@ -744,7 +744,16 @@ fn strsym(x : Value) -> Value raise {
 }
 
 ///|
+/// Port: share/contrib/unicodedata/grind-patch.lisp redefines SLASH when
+/// loaded; in CL every caller then reaches the new definition through the
+/// function cell. That package installs its definition here.
+let mgrind__slash_redefined : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
 fn slash(x : Value) -> Value raise {
+  if mgrind__slash_redefined.val is Some(f) {
+    return f(x)
+  }
   if x is Nil {
     return Nil
   }
