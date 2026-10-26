@@ -31,7 +31,7 @@ pub fn intern(name : String) -> Symbol {
     None => {
       let s = new_symbol(name, true)
       symbol_table[name] = s
-      if name == "t" || name.has_prefix(":") {
+      if name == "t" || is_keyword_name(name) {
         s.value = Sym(s)
         s.bound = true
         s.constant = true
@@ -96,7 +96,7 @@ pub fn symbol_name(x : Value) -> String raise LispError {
   match x {
     Nil => "nil"
     // CL keyword names exclude the package marker.
-    Sym(s) => if s.name.has_prefix(":") { s.name.substring(start=1) } else { s.name }
+    Sym(s) => if is_keyword_name(s.name) { s.name.substring(start=1) } else { s.name }
     _ => raise SimpleError("symbol-name: not a symbol: \{x}")
   }
 }
@@ -496,7 +496,14 @@ pub fn kw(name : String) -> Value {
 /// `(keywordp x)`
 pub fn keywordp(x : Value) -> Bool {
   match x {
-    Sym(s) => s.name.has_prefix(":")
+    Sym(s) => is_keyword_name(s.name)
     _ => false
   }
+}
+
+///|
+/// Keyword symbols are stored as ":name" with an alphabetic first character;
+/// Maxima operator symbols such as ":" and "::=" are ordinary symbols.
+pub fn is_keyword_name(name : String) -> Bool {
+  name.length() > 1 && name[0] == ':' && name[1].to_int().unsafe_to_char().is_ascii_alphabetic()
 }

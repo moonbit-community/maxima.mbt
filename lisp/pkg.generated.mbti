@@ -367,6 +367,8 @@ pub fn intersection(Value, Value, pred2? : (Value, Value) -> Bool raise) -> Valu
 
 pub fn invert_case(String) -> String
 
+pub fn is_keyword_name(String) -> Bool
+
 pub fn isqrt(Value) -> Value raise LispError
 
 pub fn keywordp(Value) -> Bool
