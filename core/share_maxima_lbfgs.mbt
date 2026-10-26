@@ -1,6 +1,6 @@
 // Port of share/lbfgs/maxima-lbfgs.lisp: the Maxima interface to the
 // L-BFGS minimizer (Nocedal's LBFGS.F/MCSRCH.F, translated by f2cl; the
-// MoonBit translation is the package dii/maxima/lbfgs).
+// MoonBit translation is the package moonbit-community/maxima/lbfgs).
 
 ///|
 /// A double-float argument of an f2cl routine: the Lisp signals a TYPE-ERROR

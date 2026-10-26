@@ -1,6 +1,6 @@
 // Port of share/odepack/dlsode-interface.lisp: the Maxima interface to
 // ODEPACK's DLSODE (translated by f2cl; the MoonBit translation is the
-// package dii/maxima/odepack).
+// package moonbit-community/maxima/odepack).
 //
 // The work arrays kept in the state list are Lisp arrays, as in the Lisp;
 // they are copied to and from the FixedArrays DLSODE works on around each

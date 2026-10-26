@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/hompack"
+package "moonbit-community/maxima/hompack"
 
 import {
   "moonbitlang/core/ref",

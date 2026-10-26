@@ -1,4 +1,4 @@
-# SLATEC and QUADPACK in MoonBit (`dii/maxima/slatec`)
+# SLATEC and QUADPACK in MoonBit (`moonbit-community/maxima/slatec`)
 
 Maxima ships the numerical Fortran libraries it needs as f2cl-generated Lisp
 (`.repos/maxima/src/numerical/slatec/*.lisp`, run on the f2cl runtime
@@ -9,7 +9,7 @@ of them, with native types, that reproduces the Lisp results bit for bit.
 `numerical/slatec/quadpack.lisp` (the Maxima-side `$quad_qags` etc.) is *not*
 part of it; that glue belongs to the core port and calls into this package.
 
-To use it from a package, add `"dii/maxima/slatec"` to its `moon.pkg` import
+To use it from a package, add `"moonbit-community/maxima/slatec"` to its `moon.pkg` import
 list and call `@slatec.<routine>`.
 
 ## Layout

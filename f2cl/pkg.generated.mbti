@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/f2cl"
+package "moonbit-community/maxima/f2cl"
 
 import {
   "moonbitlang/core/ref",

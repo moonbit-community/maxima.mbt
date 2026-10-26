@@ -347,6 +347,7 @@ using @lisp {
   print_value,
   probe_file,
   process_id,
+  program_path,
   progv,
   push_ref,
   push_special,

@@ -1,7 +1,7 @@
 // Port of share/fftpack5/fftpack5.lisp: the Lisp-level FFT functions of
 // the FFTPACK5 package (RFFT, INVERSE-RFFT, CFFT, INVERSE-CFFT and their
 // tests), on top of the f2cl translation of FFTPACK 5.1 (the MoonBit package
-// dii/maxima/fftpack5).
+// moonbit-community/maxima/fftpack5).
 //
 // CL arrays specialized to DOUBLE-FLOAT and (COMPLEX DOUBLE-FLOAT) are
 // runtime arrays whose element type is "double-float" (elements Flo) and

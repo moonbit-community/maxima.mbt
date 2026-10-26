@@ -2,7 +2,7 @@
 usage: python3 tools/rtest_problem.py rtest7 46 [47 ...]"""
 import sys, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REPOS_DIR = os.path.join(ROOT, ".repos") if os.path.isdir(os.path.join(ROOT, ".repos")) else "/Users/dii/git/maxima.mbt/.repos"
+REPOS_DIR = os.environ.get("MAXIMA_REPOS", os.path.join(ROOT, ".repos"))
 
 def statements(text):
     out, buf, i, n = [], [], 0, len(text)

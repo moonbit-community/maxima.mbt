@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/cobyla"
+package "moonbit-community/maxima/cobyla"
 
 import {
   "moonbitlang/core/ref",

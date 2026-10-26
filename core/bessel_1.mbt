@@ -3,7 +3,7 @@
 // Copyright (c) 1984,1987 by William Schelter, University of Texas.
 //
 // The numerical routines call the SLATEC/AMOS translations in
-// dii/maxima/slatec. SBCL traps floating-point overflow and invalid
+// moonbit-community/maxima/slatec. SBCL traps floating-point overflow and invalid
 // operations, while the MoonBit SLATEC code computes with raw doubles; a
 // result that comes back infinite or NaN is where the Lisp would have
 // signalled, so it is turned into the same condition (bessel__fl).

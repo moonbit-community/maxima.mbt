@@ -1,7 +1,7 @@
 // Port of share/cobyla/cobyla-interface.lisp: fmin_cobyla, the Maxima
 // interface to COBYLA (Constrained Optimization BY Linear Approximations),
 // on top of the f2cl translation of COBYLA (the MoonBit package
-// dii/maxima/cobyla).
+// moonbit-community/maxima/cobyla).
 
 ///|
 /// %%PRETTY-FNAME of fmin_cobyla / bf_fmin_cobyla.

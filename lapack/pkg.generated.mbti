@@ -1,8 +1,8 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/lapack"
+package "moonbit-community/maxima/lapack"
 
 import {
-  "dii/maxima/f2cl",
+  "moonbit-community/maxima/f2cl",
 }
 
 // Values

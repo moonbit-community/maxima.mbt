@@ -130,3 +130,28 @@ pub fn pipe_write_string(h : Int, s : String) -> Bool {
 pub fn close_output_pipe(h : Int) -> Int {
   c_pipe_close(h)
 }
+
+///|
+/// The path the program was started with (argv[0]); "" if unknown.
+pub fn program_path() -> String {
+  let args = @env.args()
+  if args.length() > 0 {
+    args[0]
+  } else {
+    ""
+  }
+}
+
+///|
+extern "c" fn c_run_with_stack(
+  call : FuncRef[(() -> Unit) -> Unit],
+  closure : () -> Unit,
+  stack_size : Int64,
+) -> Int = "maxima_run_with_stack"
+
+///|
+/// Run `f` on a thread with a `stack_size`-byte stack and wait for it
+/// (directly on this thread if no thread can be created).
+pub fn run_with_stack(stack_size : Int64, f : () -> Unit) -> Unit {
+  c_run_with_stack(g => g(), f, stack_size) |> ignore
+}

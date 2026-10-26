@@ -1,6 +1,6 @@
 // Port of share/cobyla/bf-cobyla-interface.lisp: bf_fmin_cobyla, the
 // bigfloat version of fmin_cobyla.  COBYLA itself is the translation of
-// share/cobyla/lisp/bf-*.lisp in the package dii/maxima/cobyla, generic over
+// share/cobyla/lisp/bf-*.lisp in the package moonbit-community/maxima/cobyla, generic over
 // its BfReal trait; the instance below is the BIGFLOAT package's generic
 // arithmetic (numeric.lisp) on Lisp values.
 

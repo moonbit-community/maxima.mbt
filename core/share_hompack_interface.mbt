@@ -1,6 +1,6 @@
 // Port of share/hompack/hompack-interface.lisp: the Maxima interface to
 // HOMPACK (translated by f2cl; the MoonBit translation is the package
-// dii/maxima/hompack).
+// moonbit-community/maxima/hompack).
 //
 // The coefficient and degree arrays are built as Lisp arrays, as in the Lisp,
 // and copied to the FixedArrays HOMPACK works on.  HOMPACK calls the user

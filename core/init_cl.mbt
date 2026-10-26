@@ -12,7 +12,60 @@
 // which is a Maxima source tree).
 
 ///|
-let init_cl__default_prefix : String = "/Users/dii/git/maxima.mbt/.repos/maxima"
+/// Whether DIR is a Maxima source tree (the port runs from one: share
+/// packages, tests and the Lisp sources are read from it).
+fn init_cl__maxima_tree_p(dir : String) -> Bool {
+  probe_file(dir + "/src/init-cl.lisp") && directory_p(dir + "/share")
+}
+
+///|
+/// The directory part of PATH ("." when it has none).
+fn init_cl__dirname(path : String) -> String {
+  match path.rev_find("/") {
+    Some(0) => "/"
+    Some(i) => path.substring(end=i)
+    None => "."
+  }
+}
+
+///|
+/// The default *autoconf-prefix*: the Maxima source tree `.repos/maxima`
+/// (see tools/fetch-maxima.sh) found by walking up from the current
+/// directory, then from the program's directory. MAXIMA_PREFIX overrides it
+/// (set-pathnames).
+let init_cl__default_prefix : String = {
+  let cwd = current_directory()
+  let prog = program_path()
+  let prog_dir = init_cl__dirname(
+    if prog.has_prefix("/") || prog == "" {
+      prog
+    } else {
+      cwd + "/" + prog
+    },
+  )
+  let found : Ref[String?] = Ref(None)
+  for start in [cwd, prog_dir] {
+    let mut dir = start
+    for _ in 0..<64 {
+      if found.val is Some(_) {
+        break
+      }
+      if init_cl__maxima_tree_p(dir + "/.repos/maxima") {
+        found.val = Some(dir + "/.repos/maxima")
+        break
+      }
+      let up = init_cl__dirname(dir)
+      if up == dir || dir == "" {
+        break
+      }
+      dir = up
+    }
+  }
+  match found.val {
+    Some(d) => d
+    None => cwd + "/.repos/maxima"
+  }
+}
 
 ///|
 let init_cl__q_autoconf_prefix : Value = sym("*autoconf-prefix*")

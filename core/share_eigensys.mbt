@@ -1,6 +1,6 @@
 // Port of share/lapack/eigensys.lisp: the Maxima interface to LAPACK's
 // DGEEV, DGESVD, DLANGE, ZLANGE, ZGEEV and ZHEEV (translated by f2cl; the
-// MoonBit translation is the package dii/maxima/lapack).
+// MoonBit translation is the package moonbit-community/maxima/lapack).
 //
 // The "Lisp matrices" are Lisp vectors (column-major) of flonums or of
 // (complex flonum)s, as in the Lisp; they are copied to and from the

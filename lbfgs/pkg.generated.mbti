@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/lbfgs"
+package "moonbit-community/maxima/lbfgs"
 
 // Values
 pub fn blockdata_lb2() -> Unit

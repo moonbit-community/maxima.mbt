@@ -10,12 +10,29 @@ expression representation (Lisp s-expressions such as `((mplus simp) 1 $x)`),
 so it behaves like Maxima down to the details and is validated with Maxima's
 own test suites.
 
+[![CI](https://github.com/moonbit-community/maxima.mbt/actions/workflows/ci.yml/badge.svg)](https://github.com/moonbit-community/maxima.mbt/actions/workflows/ci.yml)
+
+## Building and running
+
+The port reads Maxima's share packages, test files and Lisp sources from a
+Maxima source tree at run time, so fetch the exact tree it was translated
+from first (about 150 MB):
+
 ```sh
+tools/fetch-maxima.sh        # clones calyau/maxima at the pinned commit into .repos/maxima
 moon build --release
 ./_build/native/release/build/cmd/main/main.exe              # interactive
 ./_build/native/release/build/cmd/main/main.exe --batch-string='integrate(x^2*sin(x),x);'
 ./_build/native/release/build/cmd/main/main.exe -b file.mac
 ```
+
+The program finds `.repos/maxima` by looking in the current directory, the
+program's directory and their parents; set `MAXIMA_PREFIX` to use a Maxima
+source tree elsewhere (`tools/fetch-maxima.sh <dir>` fetches one there).
+
+As a library (`moon add moonbit-community/maxima`), `@core.initialize()`
+sets Maxima up and `@core.cli_main(args)` runs it with Maxima's command-line
+options.
 
 ## Status
 
@@ -78,8 +95,9 @@ ported function only changes calls made through the function cell.
 ```sh
 python3 tools/rtests.py                 # core test suite, one process per file
 python3 tools/rtests.py --share         # share-package test suite
+python3 tools/rtests.py --check         # fail on any file below docs/TESTS.md (CI)
 python3 tools/difftest.py 'expr;' ...   # compare with the reference Maxima
-moon test lisp slatec                    # runtime and numerics unit tests
+moon test                               # runtime, numerics and evaluator unit tests
 ```
 
 ## License

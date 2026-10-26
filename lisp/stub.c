@@ -194,3 +194,35 @@ int32_t maxima_pipe_close(int32_t h) {
   if (r != -1 && WIFEXITED(r)) return WEXITSTATUS(r);
   return -1;
 }
+
+/* Run CALL(DATA) on a new thread with a STACK_SIZE-byte stack and wait for
+   it: Maxima's deep recursion needs far more than the default main-thread
+   stack, and a thread's stack size can be set portably. Runs it directly if
+   the thread cannot be created. */
+#include <pthread.h>
+struct maxima_thread_arg {
+  void (*call)(void *);
+  void *data;
+};
+
+static void *maxima_thread_main(void *p) {
+  struct maxima_thread_arg *a = (struct maxima_thread_arg *)p;
+  a->call(a->data);
+  return NULL;
+}
+
+MOONBIT_FFI_EXPORT
+int32_t maxima_run_with_stack(void (*call)(void *), void *data, int64_t stack_size) {
+  struct maxima_thread_arg a = {call, data};
+  pthread_attr_t attr;
+  pthread_t th;
+  if (pthread_attr_init(&attr) == 0 &&
+      pthread_attr_setstacksize(&attr, (size_t)stack_size) == 0 &&
+      pthread_create(&th, &attr, maxima_thread_main, &a) == 0) {
+    pthread_attr_destroy(&attr);
+    pthread_join(th, NULL);
+    return 0;
+  }
+  call(data);
+  return -1;
+}

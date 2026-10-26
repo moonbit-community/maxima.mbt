@@ -1,6 +1,6 @@
 // Port of share/minpack/minpack-interface.lisp: minpack_lsquares and
 // minpack_solve, on top of the f2cl translation of MINPACK (the MoonBit
-// package dii/maxima/minpack).
+// package moonbit-community/maxima/minpack).
 
 ///|
 /// `#.(sqrt double-float-epsilon)`, the default tolerance.

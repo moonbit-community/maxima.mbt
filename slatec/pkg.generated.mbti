@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/slatec"
+package "moonbit-community/maxima/slatec"
 
 // Values
 pub fn d1mach(Int32) -> Double

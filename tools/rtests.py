@@ -1,13 +1,15 @@
 """Run Maxima's core test files one per process; print a pass/fail table.
 
-usage: python3 tools/rtests.py [-j N] [-t TIMEOUT] [names...]
-Writes logs to _build/rtests/<name>.log and a summary to docs/TESTS.md (with
---save).
+usage: python3 tools/rtests.py [--share] [-j N] [-t TIMEOUT] [--save|--check] [names...]
+Writes logs to _build/rtests/<name>.log and a summary to docs/TESTS.md
+(docs/TESTS_SHARE.md with --share) with --save. --check instead compares with
+that summary and exits with status 1 if any file passes fewer tests than
+recorded there (used by CI).
 """
 import subprocess, sys, os, re, concurrent.futures, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REPOS_DIR = os.path.join(ROOT, ".repos") if os.path.isdir(os.path.join(ROOT, ".repos")) else "/Users/dii/git/maxima.mbt/.repos"
+REPOS_DIR = os.environ.get("MAXIMA_REPOS", os.path.join(ROOT, ".repos"))
 EXE = os.environ.get("MAXIMA_PORT") or os.path.join(ROOT, "_build", "native", "release", "build", "cmd", "main", "main.exe")
 LOGDIR = os.path.join(ROOT, "_build", "rtests")
 
@@ -43,13 +45,14 @@ def run_one(name, timeout):
 
 def main():
     args = sys.argv[1:]
-    j, timeout, save = 6, 600, False
+    j, timeout, save, check = 6, 600, False, False
     names = []
     while args:
         a = args.pop(0)
         if a == "-j": j = int(args.pop(0))
         elif a == "-t": timeout = int(args.pop(0))
         elif a == "--save": save = True
+        elif a == "--check": check = True
         elif a == "--share":
             global SHARE
             SHARE = True
@@ -66,8 +69,21 @@ def main():
     tp = sum(r[2] or 0 for r in rows); tt = sum(r[3] or 0 for r in rows)
     print("TOTAL passed %d of %d in completed files; %d files incomplete" %
           (tp, tt, sum(1 for r in rows if r[2] is None)))
+    out = "TESTS_SHARE.md" if SHARE else "TESTS.md"
+    if check:
+        recorded = {}
+        for line in open(os.path.join(ROOT, "docs", out)):
+            m = re.match(r"\| (\S+) \| [^|]* \| (\d+)/(\d+) \|", line)
+            if m:
+                recorded[m.group(1)] = int(m.group(2))
+        worse = [(r[0], r[2], recorded[r[0]]) for r in rows
+                 if r[0] in recorded and (r[2] or 0) < recorded[r[0]]]
+        for name, passed, want in worse:
+            print("REGRESSION %s: %s passed, docs/%s records %d" % (name, passed, out, want))
+        if worse:
+            sys.exit(1)
+        print("no regressions against docs/%s" % out)
     if save:
-        out = "TESTS_SHARE.md" if SHARE else "TESTS.md"
         title = "Share" if SHARE else "Core"
         with open(os.path.join(ROOT, "docs", out), "w") as f:
             f.write("# %s test suite status\n\n| file | status | passed |\n|---|---|---|\n" % title)

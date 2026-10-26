@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and unit tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Fetch the Maxima source tree
+        run: tools/fetch-maxima.sh
+      - run: moon version --all
+      - run: moon update
+      - run: moon check
+      - name: Unit tests (runtime and numerical libraries)
+        run: moon test lisp f2cl slatec lbfgs odepack lapack hompack colnew fftpack5 minpack cobyla
+      - run: moon build --release
+      - name: Smoke test
+        run: |
+          out=$(./_build/native/release/build/cmd/main/main.exe --very-quiet \
+            --batch-string='display2d:false$ integrate(x^2*sin(x),x); load(stringproc)$ sconcat("a",1);')
+          echo "$out"
+          echo "$out" | grep -F '2*x*sin(x)+(2-x^2)*cos(x)'
+          echo "$out" | grep -Fx '"a1"'
+      - name: Interface files are up to date
+        run: |
+          moon info
+          git diff --exit-code -- '*.mbti'
+
+  core-unit:
+    # Compiling core's test binaries needs ~13 GB of memory: more than the
+    # macOS runners have.
+    name: Core unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Fetch the Maxima source tree
+        run: tools/fetch-maxima.sh
+      - run: moon update
+      - run: moon test --release core
+
+  testsuite:
+    name: Maxima test suite (${{ matrix.suite }})
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [core, share]
+    runs-on: macos-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Fetch the Maxima source tree
+        run: tools/fetch-maxima.sh
+      - run: moon update
+      - run: moon build --release
+      - name: Run the test suite against docs/TESTS*.md
+        run: |
+          if [ "${{ matrix.suite }}" = share ]; then share=--share; fi
+          python3 tools/rtests.py $share -j 3 --check
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rtests-${{ matrix.suite }}
+          path: _build/rtests/

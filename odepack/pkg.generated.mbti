@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/odepack"
+package "moonbit-community/maxima/odepack"
 
 // Values
 pub fn adjlr(Int32, FixedArray[Int32], Int32, Int32) -> Int32

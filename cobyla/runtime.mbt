@@ -1,4 +1,4 @@
-// The f2cl runtime (package dii/maxima/f2cl) used by the generated code.
+// The f2cl runtime (package moonbit-community/maxima/f2cl) used by the generated code.
 
 ///|
 using @f2cl {

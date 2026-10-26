@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/colnew"
+package "moonbit-community/maxima/colnew"
 
 // Values
 pub fn approx(Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Int32], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> (Int32, Double)

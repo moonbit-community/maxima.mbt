@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/minpack"
+package "moonbit-community/maxima/minpack"
 
 // Values
 pub fn dogleg(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit

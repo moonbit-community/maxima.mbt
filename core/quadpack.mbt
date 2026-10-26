@@ -1,7 +1,7 @@
 // Port of src/numerical/slatec/quadpack.lisp: the Maxima interface to the
 // QUADPACK integration routines (quad_qag, quad_qags, quad_qagi, quad_qawc,
 // quad_qawf, quad_qawo, quad_qaws, quad_qagp, quad_control).  The Fortran
-// routines themselves are the package dii/maxima/slatec (@slatec).
+// routines themselves are the package moonbit-community/maxima/slatec (@slatec).
 
 // ---------------------------------------------------------------------------
 // quadpack.lisp

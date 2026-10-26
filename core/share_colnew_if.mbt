@@ -1,6 +1,6 @@
 // Port of share/colnew/colnew-if.lisp: the Maxima interface to COLNEW
 // (translated by f2cl; the MoonBit translation is the package
-// dii/maxima/colnew).
+// moonbit-community/maxima/colnew).
 
 ///|
 /// convert-to-array of a Maxima list into a double-float array.

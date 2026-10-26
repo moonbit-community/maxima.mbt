@@ -6,9 +6,7 @@ can parse them."""
 import os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-repos = os.path.join(ROOT, ".repos")
-if not os.path.isdir(repos):
-    repos = "/Users/dii/git/maxima.mbt/.repos"
+repos = os.environ.get("MAXIMA_REPOS", os.path.join(ROOT, ".repos"))
 src = os.path.join(repos, "maxima/share/contrib/elliptic_curves/modular_polynomials.lisp")
 text = open(src).read()
 # drop #| ... |# block comments and ; line comments

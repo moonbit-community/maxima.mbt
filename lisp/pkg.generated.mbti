@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "dii/maxima/lisp"
+package "moonbit-community/maxima/lisp"
 
 import {
   "moonbitlang/core/bigint",
@@ -671,6 +671,8 @@ pub fn probe_file(String) -> Bool
 
 pub fn process_id() -> Int32
 
+pub fn program_path() -> String
+
 pub fn[T] progv(Value, Value, () -> T raise) -> T raise
 
 pub fn push_ref(Value, @ref.Ref[Value]) -> Value
@@ -746,6 +748,8 @@ pub fn rplaca(Value, Value) -> Value
 pub fn rplacd(Value, Value) -> Value
 
 pub fn run_shell_command(String) -> Int32
+
+pub fn run_with_stack(Int64, () -> Unit) -> Unit
 
 pub fn scale_float(Double, Int32) -> Double
 
