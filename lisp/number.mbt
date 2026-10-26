@@ -518,12 +518,17 @@ pub fn num_add(a : Value, b : Value) -> Value raise LispError {
           ftrap(x + y, x, y)
         }
         _ =>
-          // As SBCL: the real operand is treated as complex with zero
-          // imaginary part (so -0.0 + 0 gives 0.0).
-          {
-            let (r1, i1) = cparts(a)
-            let (r2, i2) = cparts(b)
-            make_complex(num_add(r1, r2), num_add(i1, i2))
+          // As SBCL: (+ real complex) takes the imaginary part as
+          // (+ 0 im), so -0.0 becomes 0.0, while (+ complex real) keeps
+          // the complex operand's imaginary part.
+          match (a, b) {
+            (Cplx(r1, i1), Fix(_) | Big(_) | Ratio(_, _) | Flo(_)) =>
+              make_complex(num_add(r1, b), i1)
+            _ => {
+              let (r1, i1) = cparts(a)
+              let (r2, i2) = cparts(b)
+              make_complex(num_add(r1, r2), num_add(i1, i2))
+            }
           }
       }
     }
@@ -1311,8 +1316,21 @@ pub fn cexp(x : Value) -> Value raise LispError {
 ///|
 /// Complex logarithm (principal branch).
 pub fn clog(x : Value) -> Value raise LispError {
-  let (a, b) = cparts_d(x)
-  Cplx(Flo(libm_log(libm_hypot(a, b))), Flo(libm_atan2(b, a)))
+  match x {
+    Cplx(_, _) => {
+      let (a, b) = cparts_d(x)
+      cplx_of(complex_log_scaled_d(a, b, 0))
+    }
+    _ => {
+      // SBCL: (log x) for x < 0 is (complex (log (- x)) pi).
+      let d = to_double(x)
+      if d < 0.0 {
+        Cplx(Flo(libm_log(-d)), Flo(@math.PI))
+      } else {
+        Cplx(Flo(libm_log(d)), Flo(0.0))
+      }
+    }
+  }
 }
 
 ///|
@@ -1324,6 +1342,11 @@ pub fn lexp(x : Value) -> Value raise LispError {
 ///|
 /// `(log x)` — complex result for negative reals, as in CL.
 pub fn llog(x : Value) -> Value raise LispError {
+  // SBCL (float traps enabled) signals DIVISION-BY-ZERO for the log of any
+  // zero: 0, 0.0, -0.0, #C(0.0 0.0).
+  if zerop(x) {
+    raise division_by_zero()
+  }
   match x {
     Cplx(_, _) => clog(x)
     _ => {
@@ -1363,6 +1386,13 @@ pub fn lsqrt(x : Value) -> Value raise LispError {
 /// SBCL's COMPLEX-SQRT (Kahan's algorithm, with CSSQS scaling).
 fn complex_sqrt(z : Value) -> Value raise LispError {
   let (x, y) = cparts_d(z)
+  cplx_of(complex_sqrt_d(x, y))
+}
+
+///|
+/// SBCL's CSSQS: |z|^2 scaled to avoid overflow/underflow; returns
+/// (rho, k) with |z|^2 = rho * 2^(2k).
+fn cssqs_d(x : Double, y : Double) -> (Double, Int) {
   let mut rho = x * x + y * y
   let mut k = 0
   if rho.is_inf() && (x.abs().is_inf() || y.abs().is_inf()) {
@@ -1379,6 +1409,15 @@ fn complex_sqrt(z : Value) -> Value raise LispError {
     rho = xs * xs + ys * ys
     k = -kk
   }
+  (rho, k)
+}
+
+///|
+/// SBCL's COMPLEX-SQRT (Kahan's algorithm, with CSSQS scaling).
+fn complex_sqrt_d(x : Double, y : Double) -> (Double, Double) {
+  let (rho0, k0) = cssqs_d(x, y)
+  let mut rho = rho0
+  let mut k = k0
   if !x.is_nan() {
     rho = @math.scalbn(x.abs(), -k) + rho.sqrt()
   }
@@ -1400,7 +1439,112 @@ fn complex_sqrt(z : Value) -> Value raise LispError {
       nu = if dsignbit(y) { -rho } else { rho }
     }
   }
-  Cplx(Flo(eta), Flo(nu))
+  (eta, nu)
+}
+
+///|
+/// SBCL's COMPLEX-LOG-SCALED: log(z) + j*log(2), using log1p near |z| = 1.
+fn complex_log_scaled_d(x : Double, y : Double, j : Int) -> (Double, Double) {
+  let t0 = 1.0 / 2.0.sqrt()
+  let t1 = 1.2
+  let t2 = 3.0
+  let ln2 = libm_log(2.0)
+  let (rho, k) = cssqs_d(x, y)
+  let beta = x.abs().max(y.abs())
+  let theta = x.abs().min(y.abs())
+  let re = if k == 0 && t0 < beta && (beta <= t1 || rho < t2) {
+    libm_log1p((beta - 1.0) * (beta + 1.0) + theta * theta) / 2.0
+  } else {
+    libm_log(rho) / 2.0 + (k + j).to_double() * ln2
+  }
+  (re, libm_atan2(y, x))
+}
+
+///|
+fn float_sign_d(s : Double, v : Double) -> Double {
+  if dsignbit(s) {
+    -v.abs()
+  } else {
+    v.abs()
+  }
+}
+
+///|
+/// SBCL's COMPLEX-ASIN (Kahan). For real-plus-complex sums the imaginary
+/// part is (+ 0 y) / (- 0 y), as in SBCL's contagion.
+fn complex_asin_d(x : Double, y : Double) -> (Double, Double) {
+  let (a1, b1) = complex_sqrt_d(1.0 - x, 0.0 - y) // sqrt(1-z)
+  let (a2, b2) = complex_sqrt_d(1.0 + x, 0.0 + y) // sqrt(1+z)
+  (libm_atan(x / (a1 * a2 - b1 * b2)), libm_asinh(a1 * b2 - b1 * a2))
+}
+
+///|
+/// SBCL's COMPLEX-ACOS (Kahan).
+fn complex_acos_d(x : Double, y : Double) -> (Double, Double) {
+  let (ap, bp) = complex_sqrt_d(1.0 + x, 0.0 + y) // sqrt(1+z)
+  let (am, bm) = complex_sqrt_d(1.0 - x, 0.0 - y) // sqrt(1-z)
+  (2.0 * libm_atan(am / ap), libm_asinh(ap * bm - bp * am))
+}
+
+///|
+/// SBCL's COMPLEX-ACOSH (Kahan).
+fn complex_acosh_d(x : Double, y : Double) -> (Double, Double) {
+  let (am, bm) = complex_sqrt_d(x - 1.0, y) // sqrt(z-1)
+  let (ap, bp) = complex_sqrt_d(x + 1.0, y) // sqrt(z+1)
+  (libm_asinh(am * ap + bm * bp), 2.0 * libm_atan(bm / ap))
+}
+
+///|
+/// SBCL's COMPLEX-ASINH: asinh z = -i asin(i z).
+fn complex_asinh_d(x : Double, y : Double) -> (Double, Double) {
+  let (re, im) = complex_asin_d(-y, x)
+  (im, -re)
+}
+
+///|
+/// SBCL's COMPLEX-ATANH (Kahan, with scaling).
+fn complex_atanh_d(rp : Double, ip : Double) -> (Double, Double) {
+  let theta = most_positive_double_float.sqrt() / 4.0
+  let rho = 4.0 / most_positive_double_float.sqrt()
+  let half_pi = @math.PI / 2.0
+  let beta = float_sign_d(rp, 1.0)
+  let x = beta * rp
+  let y = beta * -ip
+  let mut eta = 0.0
+  let mut nu = 0.0
+  if x > theta || y.abs() > theta {
+    // To avoid overflow...
+    nu = float_sign_d(y, half_pi)
+    // ETA is the real part of 1/(x + iy), x/(x^2+y^2), computed without
+    // overflow.
+    let x_bigger = x > y.abs()
+    let r = if x_bigger { y / x } else { x / y }
+    let d = 1.0 + r * r
+    eta = if x_bigger { 1.0 / x / d } else { r / y / d }
+  } else if x == 1.0 {
+    let t1 = 4.0 + y * y
+    let t2 = y.abs() + rho
+    eta = libm_log(t1.sqrt().sqrt() / t2.sqrt())
+    nu = 0.5 * float_sign_d(y, half_pi + libm_atan(0.5 * t2))
+  } else {
+    let t1 = y.abs() + rho
+    // Normal case using log1p(x) = log(1 + x)
+    eta = 0.25 * libm_log1p(4.0 * x / ((1.0 - x) * (1.0 - x) + t1 * t1))
+    nu = 0.5 * libm_atan2(2.0 * y, (1.0 - x) * (1.0 + x) - t1 * t1)
+  }
+  (beta * eta, -(beta * nu))
+}
+
+///|
+/// SBCL's COMPLEX-ATAN: atan z = -i atanh(i z).
+fn complex_atan_d(x : Double, y : Double) -> (Double, Double) {
+  let (re, im) = complex_atanh_d(-y, x)
+  (im, -re)
+}
+
+///|
+fn cplx_of(p : (Double, Double)) -> Value {
+  Cplx(Flo(p.0), Flo(p.1))
 }
 
 ///|
@@ -1476,11 +1620,8 @@ pub fn latan(y : Value, x? : Value) -> Value raise LispError {
     None =>
       match y {
         Cplx(_, _) => {
-          // atan(z) = (log(1+iz) - log(1-iz)) / (2i)
-          let iz = num_mul(Cplx(Fix(0L), Fix(1L)), y)
-          let a = clog(num_add(Fix(1L), iz))
-          let b = clog(num_sub(Fix(1L), iz))
-          num_div(num_sub(a, b), Cplx(Fix(0L), Fix(2L)))
+          let (a, b) = cparts_d(y)
+          cplx_of(complex_atan_d(a, b))
         }
         _ => real_fn(y, libm_atan)
       }
@@ -1488,82 +1629,71 @@ pub fn latan(y : Value, x? : Value) -> Value raise LispError {
 }
 
 ///|
-/// `(asin x)`; complex for |x| > 1.
+/// `(asin x)`; complex for |x| > 1 (SBCL's COMPLEX-ASIN).
 pub fn lasin(x : Value) -> Value raise LispError {
+  let (a, b) = cparts_d(x)
   match x {
-    Cplx(_, _) => casin(x)
-    _ => {
-      let d = to_double(x)
-      if d.abs() <= 1.0 {
-        Flo(libm_asin(d))
+    Cplx(_, _) => cplx_of(complex_asin_d(a, b))
+    _ =>
+      if a.abs() <= 1.0 {
+        Flo(libm_asin(a))
       } else {
-        casin(x)
+        cplx_of(complex_asin_d(a, 0.0))
       }
-    }
   }
 }
 
 ///|
-fn casin(x : Value) -> Value raise LispError {
-  // asin(z) = -i log(iz + sqrt(1 - z^2))
-  let i = Cplx(Fix(0L), Fix(1L))
-  let w = clog(num_add(num_mul(i, x), lsqrt(num_sub(Fix(1L), num_mul(x, x)))))
-  num_mul(Cplx(Fix(0L), Fix(-1L)), w)
-}
-
-///|
-/// `(acos x)`; complex for |x| > 1.
+/// `(acos x)`; complex for |x| > 1 (SBCL's COMPLEX-ACOS).
 pub fn lacos(x : Value) -> Value raise LispError {
+  let (a, b) = cparts_d(x)
   match x {
-    Cplx(_, _) => num_sub(Flo(@math.PI / 2.0), casin(x))
-    _ => {
-      let d = to_double(x)
-      if d.abs() <= 1.0 {
-        Flo(libm_acos(d))
+    Cplx(_, _) => cplx_of(complex_acos_d(a, b))
+    _ =>
+      if a.abs() <= 1.0 {
+        Flo(libm_acos(a))
       } else {
-        num_sub(Flo(@math.PI / 2.0), casin(x))
+        cplx_of(complex_acos_d(a, 0.0))
       }
-    }
   }
 }
 
 ///|
 pub fn lasinh(x : Value) -> Value raise LispError {
   match x {
-    Cplx(_, _) => clog(num_add(x, lsqrt(num_add(num_mul(x, x), Fix(1L)))))
+    Cplx(_, _) => {
+      let (a, b) = cparts_d(x)
+      cplx_of(complex_asinh_d(a, b))
+    }
     _ => real_fn(x, libm_asinh)
   }
 }
 
 ///|
 pub fn lacosh(x : Value) -> Value raise LispError {
+  let (a, b) = cparts_d(x)
   match x {
-    Cplx(_, _) =>
-      clog(num_add(x, num_mul(lsqrt(one_plus(x)), lsqrt(one_minus(x)))))
-    _ => {
-      let d = to_double(x)
-      if d >= 1.0 {
-        Flo(libm_acosh(d))
+    Cplx(_, _) => cplx_of(complex_acosh_d(a, b))
+    _ =>
+      if a >= 1.0 {
+        Flo(libm_acosh(a))
       } else {
-        clog(num_add(x, num_mul(lsqrt(one_plus(x)), lsqrt(one_minus(x)))))
+        cplx_of(complex_acosh_d(a, 0.0))
       }
-    }
   }
 }
 
 ///|
 pub fn latanh(x : Value) -> Value raise LispError {
+  let (a, b) = cparts_d(x)
   match x {
-    Cplx(_, _) =>
-      num_div(num_sub(clog(one_plus(x)), clog(num_sub(Fix(1L), x))), Fix(2L))
-    _ => {
-      let d = to_double(x)
-      if d.abs() < 1.0 {
-        Flo(libm_atanh(d))
+    Cplx(_, _) => cplx_of(complex_atanh_d(a, b))
+    _ =>
+      if a.abs() <= 1.0 {
+        Flo(libm_atanh(a))
       } else {
-        num_div(num_sub(clog(one_plus(x)), clog(num_sub(Fix(1L), x))), Fix(2L))
+        cplx_of(complex_atanh_d(a, 0.0))
       }
-    }
   }
 }
 
