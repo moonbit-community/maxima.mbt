@@ -485,3 +485,11 @@ test "subnormal printing like sbcl" {
   inspect(float_to_string(3.0 * 4.9406564584124654e-324), content="1.4821969375237396e-323")
   inspect(float_to_string(2.2250738585072014e-308), content="2.2250738585072014e-308")
 }
+
+///|
+test "real / complex like sbcl two-arg-/" {
+  inspect(try! num_div(Value::Flo(57.156235665862923517), Value::Cplx(Value::Flo(2.2999999999999998), Value::Flo(1.7))), content="#C(16.07082420922796 -11.878435285081538)")
+  inspect(try! num_div(Value::Flo(-2.0), Value::Cplx(Value::Flo(3.0), Value::Flo(-7.0))), content="#C(-0.10344827586206898 -0.24137931034482762)")
+  inspect(try! num_div(Value::Flo(0.0), Value::Cplx(Value::Flo(3.0), Value::Flo(-7.0))), content="#C(-0.0 0.0)")
+  inspect(try! num_div(Value::Flo(-0.0), Value::Cplx(Value::Flo(3.0), Value::Flo(7.0))), content="#C(0.0 0.0)")
+}

@@ -647,35 +647,29 @@ pub fn num_div(a : Value, b : Value) -> Value raise LispError {
           ftrap(x / y, x, y)
         }
         _ =>
-          // SBCL's algorithms (Smith-style scaling for complex divisors).
+          // SBCL's TWO-ARG-/ (Smith's algorithm), also for a real
+          // dividend (its imaginary part is IMAGPART of the real).
           match (a, b) {
-            (Cplx(rx, ix), Cplx(ry, iy)) =>
+            (_, Cplx(ry, iy)) => {
+              let rx = realpart(a)
+              let ix = imagpart(a)
               if num_gt(num_abs(ry), num_abs(iy)) {
                 let r = num_div(iy, ry)
-                let dn = num_mul(ry, num_add(Fix(1L), num_mul(r, r)))
+                let dn = num_add(ry, num_mul(r, iy))
                 make_complex(
                   num_div(num_add(rx, num_mul(ix, r)), dn),
                   num_div(num_sub(ix, num_mul(rx, r)), dn),
                 )
               } else {
                 let r = num_div(ry, iy)
-                let dn = num_mul(iy, num_add(Fix(1L), num_mul(r, r)))
+                let dn = num_add(iy, num_mul(r, ry))
                 make_complex(
                   num_div(num_add(num_mul(rx, r), ix), dn),
                   num_div(num_sub(num_mul(ix, r), rx), dn),
                 )
               }
+            }
             (Cplx(rx, ix), _) => make_complex(num_div(rx, b), num_div(ix, b))
-            (_, Cplx(ry, iy)) =>
-              if num_gt(num_abs(ry), num_abs(iy)) {
-                let r = num_div(iy, ry)
-                let dn = num_mul(ry, num_add(Fix(1L), num_mul(r, r)))
-                make_complex(num_div(a, dn), num_div(num_neg(num_mul(a, r)), dn))
-              } else {
-                let r = num_div(ry, iy)
-                let dn = num_mul(iy, num_add(Fix(1L), num_mul(r, r)))
-                make_complex(num_div(num_mul(a, r), dn), num_div(num_neg(a), dn))
-              }
             _ => raise type_error(a, "number")
           }
       }
