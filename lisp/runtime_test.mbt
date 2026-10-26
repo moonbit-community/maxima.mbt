@@ -586,6 +586,19 @@ test "input designator t reads the terminal, not *standard-input*" {
 }
 
 ///|
+test "binary file output round trip" {
+  let path = "_build/runtime_test_bytes.bin"
+  let data = Bytes::from_array([b'R', b'I', b'F', b'F', b'\x00', b'\xff', b'\x80'])
+  write_file_bytes(path, data) catch {
+    _ => fail("write_file_bytes failed")
+  }
+  let back = read_file_bytes(path) catch { _ => b"" }
+  inspect(back.length(), content="7")
+  inspect(back[5].to_int(), content="255")
+  assert_true(back == data)
+}
+
+///|
 test "format radix directives print upper-case digits" {
   inspect(
     try! format_to_string("&#x~x;|~16r|~b", [int(60), int(255), int(5)]),

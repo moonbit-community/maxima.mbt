@@ -877,6 +877,8 @@ pub fn write_char(Char, stream? : Value) -> Unit
 
 pub fn write_file(String, String) -> Unit raise LispError
 
+pub fn write_file_bytes(String, Bytes) -> Unit raise LispError
+
 pub fn write_stderr(String) -> Unit
 
 pub fn write_stdout(String) -> Unit
