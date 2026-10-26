@@ -26,6 +26,12 @@ for d in db:
     nm = "init_" + gen.mangle(d["file"].split("/")[-1])
     if nm in defined and nm not in os.environ.get("SKIP_INIT", "").split(","):
         lines.append("  %s()" % nm)
+# init functions of files outside the analyzed build list (e.g. numerical/
+# quadpack.lisp), in a fixed order
+known = set("init_" + gen.mangle(d["file"].split("/")[-1]) for d in db)
+for nm in ["init_quadpack"]:
+    if nm in defined and nm not in known:
+        lines.append("  %s()" % nm)
 lines.append("}")
 open(os.path.join(ROOT, "core", "gen_init.mbt"), "w").write("\n".join(lines) + "\n")
 print("inits:", len(defined))
