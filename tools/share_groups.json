@@ -50,5 +50,11 @@
  "numericalio/load-numericalio": [
   "numericalio/encode-decode-float",
   "numericalio/numericalio"
+ ],
+ "draw/draw": [
+  "draw/grcommon",
+  "draw/gnuplot",
+  "draw/vtk",
+  "draw/picture"
  ]
 }

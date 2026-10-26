@@ -31002,6 +31002,715 @@ declare fn flatten_op(e : Value, op : Value) -> Value raise
 /// defmfun $charsets_every -- ../share/algebra/charsets/charsets_flatten.lisp:107
 declare fn d_charsets_every(args : Value) -> Value raise
 
+///|
+/// defun $set_draw_defaults -- ../share/draw/grcommon.lisp:51
+declare fn d_set_draw_defaults(opts : Value) -> Value raise
+
+///|
+/// defun user-defaults -- ../share/draw/grcommon.lisp:54
+declare fn user_defaults() -> Value raise
+
+///|
+/// defun ini-gr-options -- ../share/draw/grcommon.lisp:66
+declare fn ini_gr_options() -> Value raise
+
+///|
+/// defun get-option -- ../share/draw/grcommon.lisp:209
+declare fn get_option(opt : Value) -> Value raise
+
+///|
+/// defun correct-color-name -- ../share/draw/grcommon.lisp:737
+declare fn correct_color_name(str : Value) -> Value raise
+
+///|
+/// defun correct-color-hex -- ../share/draw/grcommon.lisp:746
+declare fn correct_color_hex(str : Value) -> Value raise
+
+///|
+/// defun correct-color -- ../share/draw/grcommon.lisp:752
+declare fn correct_color(str : Value) -> Value raise
+
+///|
+/// defun hex-to-rgb -- ../share/draw/grcommon.lisp:759
+declare fn hex_to_rgb(str : Value) -> Value raise
+
+///|
+/// defun update-color -- ../share/draw/grcommon.lisp:764
+declare fn update_color(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-key_pos -- ../share/draw/grcommon.lisp:798
+declare fn update_key_pos(val : Value) -> Value raise
+
+///|
+/// defun update-terminal -- ../share/draw/grcommon.lisp:819
+declare fn update_terminal(val : Value) -> Value raise
+
+///|
+/// defun update-transform -- ../share/draw/grcommon.lisp:887
+declare fn update_transform(val : Value) -> Value raise
+
+///|
+/// defun check-enhanced3d-model -- ../share/draw/grcommon.lisp:931
+declare fn check_enhanced3d_model(grobj : Value, lis : Value) -> Value raise
+
+///|
+/// defun update-enhanced3d-expression -- ../share/draw/grcommon.lisp:935
+declare fn update_enhanced3d_expression(vars : Value) -> Value raise
+
+///|
+/// defun update-enhanced3d -- ../share/draw/grcommon.lisp:942
+declare fn update_enhanced3d(val : Value) -> Value raise
+
+///|
+/// defun check-isolines-model -- ../share/draw/grcommon.lisp:993
+declare fn check_isolines_model(grobj : Value, lis : Value) -> Value raise
+
+///|
+/// defun update-isolines-expression -- ../share/draw/grcommon.lisp:997
+declare fn update_isolines_expression(vars : Value) -> Value raise
+
+///|
+/// defun update-isolines -- ../share/draw/grcommon.lisp:1004
+declare fn update_isolines(val : Value) -> Value raise
+
+///|
+/// defun update-contour-isolines -- ../share/draw/grcommon.lisp:1052
+declare fn update_contour_isolines(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-boolean-option -- ../share/draw/grcommon.lisp:1077
+declare fn update_boolean_option(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-positive-integer -- ../share/draw/grcommon.lisp:1087
+declare fn update_positive_integer(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-positive-float -- ../share/draw/grcommon.lisp:1097
+declare fn update_positive_float(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-nonnegative-float -- ../share/draw/grcommon.lisp:1108
+declare fn update_nonnegative_float(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-view -- ../share/draw/grcommon.lisp:1119
+declare fn update_view(val : Value) -> Value raise
+
+///|
+/// defun update-interpolate_color -- ../share/draw/grcommon.lisp:1142
+declare fn update_interpolate_color(val : Value) -> Value raise
+
+///|
+/// defun update-allocation -- ../share/draw/grcommon.lisp:1164
+declare fn update_allocation(val : Value) -> Value raise
+
+///|
+/// defun update-dimensions -- ../share/draw/grcommon.lisp:1184
+declare fn update_dimensions(val : Value) -> Value raise
+
+///|
+/// defun update-pointtype -- ../share/draw/grcommon.lisp:1200
+declare fn update_pointtype(val : Value) -> Value raise
+
+///|
+/// defun update-string -- ../share/draw/grcommon.lisp:1219
+declare fn update_string(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-opacity -- ../share/draw/grcommon.lisp:1226
+declare fn update_opacity(val : Value) -> Value raise
+
+///|
+/// defun update-palette -- ../share/draw/grcommon.lisp:1239
+declare fn update_palette(val : Value) -> Value raise
+
+///|
+/// defun update-linestyle -- ../share/draw/grcommon.lisp:1298
+declare fn update_linestyle(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun update-pointsjoined -- ../share/draw/grcommon.lisp:1326
+declare fn update_pointsjoined(val : Value) -> Value raise
+
+///|
+/// defun update-capping -- ../share/draw/grcommon.lisp:1336
+declare fn update_capping(val : Value) -> Value raise
+
+///|
+/// defun ini-local-option-variables -- ../share/draw/grcommon.lisp:1350
+declare fn ini_local_option_variables() -> Value raise
+
+///|
+/// defun ini-global-options -- ../share/draw/grcommon.lisp:1364
+declare fn ini_global_options() -> Value raise
+
+///|
+/// defun update-gr-option -- ../share/draw/grcommon.lisp:1382
+declare fn update_gr_option(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun near-equal -- ../share/draw/grcommon.lisp:1633
+declare fn near_equal(a : Value, b : Value) -> Value raise
+
+///|
+/// defun copy-array -- ../share/draw/grcommon.lisp:1911
+declare fn copy_array(array : Value) -> Value raise
+
+///|
+/// defun edge-interpolation -- ../share/draw/grcommon.lisp:1921
+declare fn edge_interpolation(x1 : Value, y1 : Value, z1 : Value, x2 : Value, y2 : Value, z2 : Value, v1 : Value, v2 : Value) -> Value raise
+
+///|
+/// defun flatten -- ../share/draw/grcommon.lisp:1940
+declare fn flatten(lis : Value) -> Value raise
+
+///|
+/// defun find-triangles -- ../share/draw/grcommon.lisp:1947
+declare fn find_triangles(expr : Value, par1 : Value, xmin : Value, xmax : Value, par2 : Value, ymin : Value, ymax : Value, par3 : Value, zmin : Value, zmax : Value) -> Value raise
+
+///|
+/// defun $draw -- ../share/draw/grcommon.lisp:2043
+declare fn d_draw(args : Value) -> Value raise
+
+///|
+/// defun $draw2d -- ../share/draw/grcommon.lisp:2052
+declare fn d_draw2d(args : Value) -> Value raise
+
+///|
+/// defun $draw3d -- ../share/draw/grcommon.lisp:2056
+declare fn d_draw3d(args : Value) -> Value raise
+
+///|
+/// defun extrema-over-finite-floats-list -- ../share/draw/gnuplot.lisp:35
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn extrema_over_finite_floats_list(x : Value) -> (Value, Value) raise
+
+///|
+/// defun finite-real-p -- ../share/draw/gnuplot.lisp:44
+declare fn finite_real_p(x : Value) -> Value raise
+
+///|
+/// defun write-font-type -- ../share/draw/gnuplot.lisp:48
+declare fn write_font_type() -> Value raise
+
+///|
+/// defun $multiplot_mode -- ../share/draw/gnuplot.lisp:60
+declare fn d_multiplot_mode(term : Value) -> Value raise
+
+///|
+/// defun update-ranges-2d -- ../share/draw/gnuplot.lisp:108
+declare fn update_ranges_2d(xmin : Value, xmax : Value, ymin : Value, ymax : Value) -> Value raise
+
+///|
+/// defun update-ranges-3d -- ../share/draw/gnuplot.lisp:116
+declare fn update_ranges_3d(xmin : Value, xmax : Value, ymin : Value, ymax : Value, zmin : Value, zmax : Value) -> Value raise
+
+///|
+/// defun axes-to-plot -- ../share/draw/gnuplot.lisp:139
+declare fn axes_to_plot() -> Value raise
+
+///|
+/// defun make-obj-title -- ../share/draw/gnuplot.lisp:151
+declare fn make_obj_title(str : Value) -> Value raise
+
+///|
+/// defun points-command -- ../share/draw/gnuplot.lisp:266
+declare fn points_command() -> Value raise
+
+///|
+/// defun points-array-2d -- ../share/draw/gnuplot.lisp:302
+declare fn points_array_2d(arg : Value) -> Value raise
+
+///|
+/// defun points-array-1d -- ../share/draw/gnuplot.lisp:339
+declare fn points_array_1d(arg1 : Value, arg2? : Value = Nil) -> Value raise
+
+///|
+/// defun points-list -- ../share/draw/gnuplot.lisp:380
+declare fn points_list(arg1 : Value, arg2? : Value = Nil) -> Value raise
+
+///|
+/// defun points3d-command -- ../share/draw/gnuplot.lisp:463
+declare fn points3d_command() -> Value raise
+
+///|
+/// defun replace-substring -- ../share/draw/gnuplot.lisp:953
+declare fn replace_substring(string_ : Value, part : Value, replacement : Value) -> Value raise
+
+///|
+/// defun x-elements -- ../share/draw/gnuplot.lisp:1583
+declare fn x_elements(list_ : Value) -> Value raise
+
+///|
+/// defun y-elements -- ../share/draw/gnuplot.lisp:1588
+declare fn y_elements(list_ : Value) -> Value raise
+
+///|
+/// defun contains-zeros -- ../share/draw/gnuplot.lisp:1593
+declare fn contains_zeros(i : Value, j : Value, sample : Value) -> Value raise
+
+///|
+/// defun sample-data -- ../share/draw/gnuplot.lisp:1598
+declare fn sample_data(expr : Value, xmin : Value, xmax : Value, ymin : Value, ymax : Value, sample : Value, grid : Value) -> Value raise
+
+///|
+/// defun draw-print-segment -- ../share/draw/gnuplot.lisp:1615
+declare fn draw_print_segment(points : Value, xmin : Value, xdelta : Value, ymin : Value, ydelta : Value) -> Value raise
+
+///|
+/// defun draw-print-square -- ../share/draw/gnuplot.lisp:1623
+declare fn draw_print_square(xmin : Value, xmax : Value, ymin : Value, ymax : Value, sample : Value, grid : Value) -> Value raise
+
+///|
+/// defun imp-pl-prepare-factor -- ../share/draw/gnuplot.lisp:1642
+declare fn imp_pl_prepare_factor(expr : Value) -> Value raise
+
+///|
+/// defun imp-pl-prepare-expr -- ../share/draw/gnuplot.lisp:1651
+declare fn imp_pl_prepare_expr(expr : Value) -> Value raise
+
+///|
+/// defun resolve-suggestions -- ../share/draw/gnuplot.lisp:2844
+declare fn resolve_suggestions(largs : Value) -> Value raise
+
+///|
+/// defun make-scene-2d -- ../share/draw/gnuplot.lisp:2863
+declare fn make_scene_2d(args : Value) -> Value raise
+
+///|
+/// defun make-scene-3d -- ../share/draw/gnuplot.lisp:3065
+declare fn make_scene_3d(args : Value) -> Value raise
+
+///|
+/// defun draw_gnuplot -- ../share/draw/gnuplot.lisp:3249
+declare fn draw_gnuplot(args : Value) -> Value raise
+
+///|
+/// defun $add_zeroes -- ../share/draw/gnuplot.lisp:3665
+declare fn d_add_zeroes(num : Value) -> Value raise
+
+///|
+/// defun $draw_file -- ../share/draw/gnuplot.lisp:3670
+declare fn d_draw_file(opts : Value) -> Value raise
+
+///|
+/// defun $activate_window -- ../share/draw/gnuplot.lisp:3764
+declare fn d_activate_window(term : Value, num : Value) -> Value raise
+
+///|
+/// defun get-appenddata-name -- ../share/draw/vtk.lisp:65
+declare fn get_appenddata_name() -> Value raise
+
+///|
+/// defun get-extract-name -- ../share/draw/vtk.lisp:68
+declare fn get_extract_name() -> Value raise
+
+///|
+/// defun get-outline-name -- ../share/draw/vtk.lisp:71
+declare fn get_outline_name() -> Value raise
+
+///|
+/// defun get-outlineactor-name -- ../share/draw/vtk.lisp:74
+declare fn get_outlineactor_name() -> Value raise
+
+///|
+/// defun get-textproperty-name -- ../share/draw/vtk.lisp:77
+declare fn get_textproperty_name() -> Value raise
+
+///|
+/// defun get-cubeaxesactor2d-name -- ../share/draw/vtk.lisp:80
+declare fn get_cubeaxesactor2d_name() -> Value raise
+
+///|
+/// defun get-camera-name -- ../share/draw/vtk.lisp:83
+declare fn get_camera_name() -> Value raise
+
+///|
+/// defun get-renderer-name -- ../share/draw/vtk.lisp:86
+declare fn get_renderer_name() -> Value raise
+
+///|
+/// defun get-source-name -- ../share/draw/vtk.lisp:89
+declare fn get_source_name() -> Value raise
+
+///|
+/// defun get-mapper-name -- ../share/draw/vtk.lisp:92
+declare fn get_mapper_name() -> Value raise
+
+///|
+/// defun get-actor-name -- ../share/draw/vtk.lisp:95
+declare fn get_actor_name() -> Value raise
+
+///|
+/// defun get-labelactor-name -- ../share/draw/vtk.lisp:98
+declare fn get_labelactor_name() -> Value raise
+
+///|
+/// defun get-trans-name -- ../share/draw/vtk.lisp:101
+declare fn get_trans_name() -> Value raise
+
+///|
+/// defun get-filter-name -- ../share/draw/vtk.lisp:104
+declare fn get_filter_name() -> Value raise
+
+///|
+/// defun get-floatarray-name -- ../share/draw/vtk.lisp:107
+declare fn get_floatarray_name() -> Value raise
+
+///|
+/// defun get-data-file-name -- ../share/draw/vtk.lisp:110
+declare fn get_data_file_name() -> Value raise
+
+///|
+/// defun get-points-name -- ../share/draw/vtk.lisp:113
+declare fn get_points_name() -> Value raise
+
+///|
+/// defun get-glyphpoints-name -- ../share/draw/vtk.lisp:116
+declare fn get_glyphpoints_name() -> Value raise
+
+///|
+/// defun get-polydata-name -- ../share/draw/vtk.lisp:119
+declare fn get_polydata_name() -> Value raise
+
+///|
+/// defun get-cellarray-name -- ../share/draw/vtk.lisp:122
+declare fn get_cellarray_name() -> Value raise
+
+///|
+/// defun get-polydatamapper-name -- ../share/draw/vtk.lisp:125
+declare fn get_polydatamapper_name() -> Value raise
+
+///|
+/// defun get-solidsource-name -- ../share/draw/vtk.lisp:128
+declare fn get_solidsource_name() -> Value raise
+
+///|
+/// defun get-triangle-name -- ../share/draw/vtk.lisp:131
+declare fn get_triangle_name() -> Value raise
+
+///|
+/// defun get-label-name -- ../share/draw/vtk.lisp:134
+declare fn get_label_name() -> Value raise
+
+///|
+/// defun get-chart-name -- ../share/draw/vtk.lisp:137
+declare fn get_chart_name() -> Value raise
+
+///|
+/// defun get-table-name -- ../share/draw/vtk.lisp:140
+declare fn get_table_name() -> Value raise
+
+///|
+/// defun get-arrayx-name -- ../share/draw/vtk.lisp:143
+declare fn get_arrayx_name() -> Value raise
+
+///|
+/// defun get-arrayy-name -- ../share/draw/vtk.lisp:146
+declare fn get_arrayy_name() -> Value raise
+
+///|
+/// defun get-isolines-name -- ../share/draw/vtk.lisp:149
+declare fn get_isolines_name() -> Value raise
+
+///|
+/// defun scenebounds -- ../share/draw/vtk.lisp:152
+declare fn scenebounds() -> Value raise
+
+///|
+/// defun vtkappendpolydata-code -- ../share/draw/vtk.lisp:179
+declare fn vtkappendpolydata_code(an : Value, fe : Value, fl : Value) -> Value raise
+
+///|
+/// defun vtkoutlinefilter-code -- ../share/draw/vtk.lisp:219
+declare fn vtkoutlinefilter_code(on : Value, an : Value) -> Value raise
+
+///|
+/// defun vtkpolydatamapper-code -- ../share/draw/vtk.lisp:224
+declare fn vtkpolydatamapper_code(mn : Value, fn_ : Value, con : Value) -> Value raise
+
+///|
+/// defun vtkpolydatamapper-isoline-code -- ../share/draw/vtk.lisp:232
+declare fn vtkpolydatamapper_isoline_code(mn : Value, sn : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun vtkextractpolydatageometry-code -- ../share/draw/vtk.lisp:238
+declare fn vtkextractpolydatageometry_code(en : Value, cell : Value, poin : Value) -> Value raise
+
+///|
+/// defun vtktextproperty-code -- ../share/draw/vtk.lisp:248
+declare fn vtktextproperty_code(tn : Value) -> Value raise
+
+///|
+/// defun vtkcubeaxesactor2d-code -- ../share/draw/vtk.lisp:253
+declare fn vtkcubeaxesactor2d_code(can : Value, adn : Value, tn : Value) -> Value raise
+
+///|
+/// defun vtkrenderer3d-code -- ../share/draw/vtk.lisp:266
+declare fn vtkrenderer3d_code(rn : Value, an : Value, on : Value, bgcol : Value, cn : Value, rv : Value, rh : Value, fa : Value, fl : Value) -> Value raise
+
+///|
+/// defun vtkrenderer2d-code -- ../share/draw/vtk.lisp:294
+declare fn vtkrenderer2d_code(cn : Value, rn : Value) -> Value raise
+
+///|
+/// defun vtkchartxy-code -- ../share/draw/vtk.lisp:343
+declare fn vtkchartxy_code(cn : Value) -> Value raise
+
+///|
+/// defun vtkcellarray-code -- ../share/draw/vtk.lisp:361
+declare fn vtkcellarray_code(cn : Value, pn : Value, celldim : Value, ind : Value) -> Value raise
+
+///|
+/// defun vtkfloatarray-code -- ../share/draw/vtk.lisp:380
+declare fn vtkfloatarray_code(fan : Value, sn : Value, values : Value, addarr? : Value = t) -> Value raise
+
+///|
+/// defun vtkglyph3d-code -- ../share/draw/vtk.lisp:398
+declare fn vtkglyph3d_code(fn_ : Value, sn : Value, pdn : Value) -> Value raise
+
+///|
+/// defun vtkpoints-code -- ../share/draw/vtk.lisp:405
+declare fn vtkpoints_code(pn : Value, sn : Value, x : Value, y : Value, z : Value) -> Value raise
+
+///|
+/// defun vtktransform-code -- ../share/draw/vtk.lisp:419
+declare fn vtktransform_code(tn : Value) -> Value raise
+
+///|
+/// defun vtktransformfilter-code -- ../share/draw/vtk.lisp:422
+declare fn vtktransformfilter_code(fn_ : Value, sn : Value, tn : Value) -> Value raise
+
+///|
+/// defun vtktransformpolydatafilter-code -- ../share/draw/vtk.lisp:428
+declare fn vtktransformpolydatafilter_code(fn_ : Value, sn : Value, tn : Value, ds : Value) -> Value raise
+
+///|
+/// defun vtkactor-code -- ../share/draw/vtk.lisp:436
+declare fn vtkactor_code(an : Value, mn : Value, col : Value, op : Value, lw : Value, ws : Value) -> Value raise
+
+///|
+/// defun vtkactor-isoline-code -- ../share/draw/vtk.lisp:455
+declare fn vtkactor_isoline_code(an : Value, lw : Value) -> Value raise
+
+///|
+/// defun vtkactor-glyph-code -- ../share/draw/vtk.lisp:462
+declare fn vtkactor_glyph_code(an : Value, col : Value, op : Value) -> Value raise
+
+///|
+/// defun vtktubefilter-code -- ../share/draw/vtk.lisp:473
+declare fn vtktubefilter_code(tn : Value, fn_ : Value, lt : Value) -> Value raise
+
+///|
+/// defun vtkcontourfilter-code -- ../share/draw/vtk.lisp:481
+declare fn vtkcontourfilter_code(in_ : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun vtkrendererwindow-code -- ../share/draw/vtk.lisp:500
+declare fn vtkrendererwindow_code(ns : Value) -> Value raise
+
+///|
+/// defun vtk-terminal -- ../share/draw/vtk.lisp:540
+declare fn vtk_terminal() -> Value raise
+
+///|
+/// defun lookup-table-exists -- ../share/draw/vtk.lisp:622
+declare fn lookup_table_exists(pal : Value) -> Value raise
+
+///|
+/// defun color-transform-function -- ../share/draw/vtk.lisp:631
+declare fn color_transform_function(c : Value, n : Value, f : Value) -> Value raise
+
+///|
+/// defun check-lookup-table -- ../share/draw/vtk.lisp:689
+declare fn check_lookup_table() -> Value raise
+
+///|
+/// defun build-surface-grid -- ../share/draw/vtk.lisp:766
+declare fn build_surface_grid(nx : Value, ny : Value) -> Value raise
+
+///|
+/// defun vtk3d-cone -- ../share/draw/vtk.lisp:782
+declare fn vtk3d_cone(cen : Value, rad : Value, hei : Value, dir : Value) -> Value raise
+
+///|
+/// defun rotate -- ../share/draw/vtk.lisp:845
+declare fn rotate(x : Value, y : Value, z : Value, a : Value, b : Value, c : Value, u : Value, v : Value, w : Value, rad : Value) -> Value raise
+
+///|
+/// defun vtk3d-prism -- ../share/draw/vtk.lisp:863
+declare fn vtk3d_prism(cen : Value, n : Value, edgp : Value, hei : Value, dir : Value) -> Value raise
+
+///|
+/// defun vtk3d-cylinder -- ../share/draw/vtk.lisp:962
+declare fn vtk3d_cylinder(cen : Value, rad : Value, hei : Value, dir : Value) -> Value raise
+
+///|
+/// defun vtk3d-cube -- ../share/draw/vtk.lisp:1047
+declare fn vtk3d_cube(xlen : Value, ylen : Value, zlen : Value, cen : Value) -> Value raise
+
+///|
+/// defun vtk3d-sphere -- ../share/draw/vtk.lisp:1096
+declare fn vtk3d_sphere(cen : Value, rad : Value) -> Value raise
+
+///|
+/// defun vtk3d-parallelogram -- ../share/draw/vtk.lisp:1139
+declare fn vtk3d_parallelogram(ori : Value, p1 : Value, p2 : Value) -> Value raise
+
+///|
+/// defun vtk3d-triangle -- ../share/draw/vtk.lisp:1201
+declare fn vtk3d_triangle(v1 : Value, v2 : Value, v3 : Value) -> Value raise
+
+///|
+/// defun vtk3d-vector -- ../share/draw/vtk.lisp:1263
+declare fn vtk3d_vector(arg1 : Value, arg2 : Value) -> Value raise
+
+///|
+/// defun vtk3d-points -- ../share/draw/vtk.lisp:1333
+declare fn vtk3d_points(arg : Value) -> Value raise
+
+///|
+/// defun vtk2d-points -- ../share/draw/vtk.lisp:1619
+declare fn vtk2d_points(arg1 : Value, arg2? : Value = Nil) -> Value raise
+
+///|
+/// defun vtk3d-parametric -- ../share/draw/vtk.lisp:1760
+declare fn vtk3d_parametric(xfun : Value, yfun : Value, zfun : Value, par1 : Value, parmin : Value, parmax : Value) -> Value raise
+
+///|
+/// defun vtk2d-parametric -- ../share/draw/vtk.lisp:1857
+declare fn vtk2d_parametric(xfun : Value, yfun : Value, par : Value, parmin : Value, parmax : Value) -> Value raise
+
+///|
+/// defun vtk2d-polar -- ../share/draw/vtk.lisp:1935
+declare fn vtk2d_polar(radius : Value, ang : Value, minang : Value, maxang : Value) -> Value raise
+
+///|
+/// defun vtk3d-parametric_surface -- ../share/draw/vtk.lisp:1944
+declare fn vtk3d_parametric_surface(xfun : Value, yfun : Value, zfun : Value, par1 : Value, par1min : Value, par1max : Value, par2 : Value, par2min : Value, par2max : Value) -> Value raise
+
+///|
+/// defun vtk3d-spherical -- ../share/draw/vtk.lisp:2066
+declare fn vtk3d_spherical(radius : Value, azi : Value, minazi : Value, maxazi : Value, zen : Value, minzen : Value, maxzen : Value) -> Value raise
+
+///|
+/// defun vtk3d-cylindrical -- ../share/draw/vtk.lisp:2078
+declare fn vtk3d_cylindrical(r : Value, z : Value, minz : Value, maxz : Value, azi : Value, minazi : Value, maxazi : Value) -> Value raise
+
+///|
+/// defun vtk3d-explicit -- ../share/draw/vtk.lisp:2090
+declare fn vtk3d_explicit(fcn : Value, par1 : Value, minval1 : Value, maxval1 : Value, par2 : Value, minval2 : Value, maxval2 : Value) -> Value raise
+
+///|
+/// defun vtk2d-explicit -- ../share/draw/vtk.lisp:2214
+declare fn vtk2d_explicit(fcn : Value, var_ : Value, minval : Value, maxval : Value) -> Value raise
+
+///|
+/// defun vtk3d-elevation_grid -- ../share/draw/vtk.lisp:2356
+declare fn vtk3d_elevation_grid(mat : Value, x0 : Value, y0 : Value, width : Value, height : Value) -> Value raise
+
+///|
+/// defun build-surface-triangular-grid -- ../share/draw/vtk.lisp:2467
+declare fn build_surface_triangular_grid(ntri : Value) -> Value raise
+
+///|
+/// defun vtk3d-implicit -- ../share/draw/vtk.lisp:2475
+declare fn vtk3d_implicit(expr : Value, par1 : Value, xmin : Value, xmax : Value, par2 : Value, ymin : Value, ymax : Value, par3 : Value, zmin : Value, zmax : Value) -> Value raise
+
+///|
+/// defun vtk3d-label -- ../share/draw/vtk.lisp:2578
+declare fn vtk3d_label(lab : Value) -> Value raise
+
+///|
+/// defun vtk3d-tube -- ../share/draw/vtk.lisp:2649
+declare fn vtk3d_tube(xfun : Value, yfun : Value, zfun : Value, rad : Value, par : Value, parmin : Value, parmax : Value) -> Value raise
+
+///|
+/// defun make-vtk-scene-2d -- ../share/draw/vtk.lisp:2852
+declare fn make_vtk_scene_2d(args : Value) -> Value raise
+
+///|
+/// defun make-vtk-scene-3d -- ../share/draw/vtk.lisp:2941
+declare fn make_vtk_scene_3d(args : Value) -> Value raise
+
+///|
+/// defun draw_vtk -- ../share/draw/vtk.lisp:3047
+declare fn draw_vtk(args : Value) -> Value raise
+
+///|
+/// defun cut-and-round -- ../share/draw/picture.lisp:27
+declare fn cut_and_round(seq : Value) -> Value raise
+
+///|
+/// defun $make_level_picture -- ../share/draw/picture.lisp:48
+declare fn d_make_level_picture(data : Value, wi? : Value = Nil, he? : Value = Nil) -> Value raise
+
+///|
+/// defun $picturep -- ../share/draw/picture.lisp:75
+declare fn d_picturep(x : Value) -> Value raise
+
+///|
+/// defun $picture_equalp -- ../share/draw/picture.lisp:96
+declare fn d_picture_equalp(pic1 : Value, pic2 : Value) -> Value raise
+
+///|
+/// defun $make_rgb_picture -- ../share/draw/picture.lisp:111
+declare fn d_make_rgb_picture(redlevel : Value, greenlevel : Value, bluelevel : Value) -> Value raise
+
+///|
+/// defun $take_channel -- ../share/draw/picture.lisp:139
+declare fn d_take_channel(pic : Value, chn : Value) -> Value raise
+
+///|
+/// defun $negative_picture -- ../share/draw/picture.lisp:167
+declare fn d_negative_picture(pic : Value) -> Value raise
+
+///|
+/// defun $rgb2level -- ../share/draw/picture.lisp:196
+declare fn d_rgb2level(pic : Value) -> Value raise
+
+///|
+/// defun $get_pixel -- ../share/draw/picture.lisp:229
+declare fn d_get_pixel(pic : Value, x : Value, y : Value) -> Value raise
+
+///|
+/// defun init-readtable -- ../share/draw/picture.lisp:278
+declare fn init_readtable() -> Value raise
+
+///|
+/// defun skip-whitespace -- ../share/draw/picture.lisp:285
+declare fn skip_whitespace(f : Value) -> Value raise
+
+///|
+/// defun extract-r-g-b-bits -- ../share/draw/picture.lisp:292
+declare fn extract_r_g_b_bits(n__bits_per_color_output : Value, n__hex_digits_input : Value, value : Value) -> Value raise
+
+///|
+/// defun read-colour -- ../share/draw/picture.lisp:304
+declare fn read_colour(f : Value) -> Value raise
+
+///|
+/// defun read-charspec -- ../share/draw/picture.lisp:342
+declare fn read_charspec(f : Value, cnt : Value) -> Value raise
+
+///|
+/// defun read-color-spec-for-type -- ../share/draw/picture.lisp:348
+declare fn read_color_spec_for_type(str : Value, cnt : Value, hash : Value, type_char : Value) -> Value raise
+
+///|
+/// defun read-color-spec -- ../share/draw/picture.lisp:361
+declare fn read_color_spec(str : Value, cnt : Value, hash : Value) -> Value raise
+
+///|
+/// defun $read_xpm -- ../share/draw/picture.lisp:367
+declare fn d_read_xpm(mfspec : Value) -> Value raise
+
+///|
+/// defun read-xpm-from-stream -- ../share/draw/picture.lisp:376
+declare fn read_xpm_from_stream(image : Value) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -32744,6 +33453,58 @@ declare fn mexp_lookup(item : Value, alist : Value) -> Value raise
 /// macro mlist* (arg1 &rest more-args) -- ../share/contrib/format/coeflist.lisp:14
 declare fn mlist_star(arg1 : Value, more_args : Value) -> Value raise
 
+///|
+/// macro transform-point (n) -- ../share/draw/grcommon.lisp:852
+declare fn transform_point(n : Value) -> Value raise
+
+///|
+/// macro transform-lists (n) -- ../share/draw/grcommon.lisp:867
+declare fn transform_lists(n : Value) -> Value raise
+
+///|
+/// macro listify-arguments (args) -- ../share/draw/grcommon.lisp:1641
+declare fn listify_arguments(args : Value) -> Value raise
+
+///|
+/// macro make-triangle-vertices (i1 j1 k1 i2 j2 k2 e1 e2) -- ../share/draw/grcommon.lisp:1934
+declare fn make_triangle_vertices(i1 : Value, j1 : Value, k1 : Value, i2 : Value, j2 : Value, k2 : Value, e1 : Value, e2 : Value) -> Value raise
+
+///|
+/// macro update-range (axi vmin vmax) -- ../share/draw/gnuplot.lisp:101
+declare fn update_range(axi : Value, vmin : Value, vmax : Value) -> Value raise
+
+///|
+/// macro check-extremes-x () -- ../share/draw/gnuplot.lisp:120
+declare fn check_extremes_x() -> Value raise
+
+///|
+/// macro check-extremes-y () -- ../share/draw/gnuplot.lisp:125
+declare fn check_extremes_y() -> Value raise
+
+///|
+/// macro check-extremes-z () -- ../share/draw/gnuplot.lisp:130
+declare fn check_extremes_z() -> Value raise
+
+///|
+/// macro build-polygon (coord) -- ../share/draw/gnuplot.lisp:1414
+declare fn build_polygon(coord : Value) -> Value raise
+
+///|
+/// macro check-tube-extreme (ex cx cy cz circ) -- ../share/draw/gnuplot.lisp:2511
+declare fn check_tube_extreme(ex : Value, cx : Value, cy : Value, cz : Value, circ : Value) -> Value raise
+
+///|
+/// macro write-palette-code () -- ../share/draw/gnuplot.lisp:2773
+declare fn write_palette_code() -> Value raise
+
+///|
+/// macro write-subarray (arr str) -- ../share/draw/gnuplot.lisp:3237
+declare fn write_subarray(arr : Value, str : Value) -> Value raise
+
+///|
+/// macro vtk-check-tube-extreme (ex cx cy cz) -- ../share/draw/vtk.lisp:2629
+declare fn vtk_check_tube_extreme(ex : Value, cx : Value, cy : Value, cz : Value) -> Value raise
+
 // ---- Per-file initialization (top-level forms of each Lisp file)
 
 ///|
@@ -34189,4 +34950,20 @@ declare fn init_share_amatrix() -> Unit raise
 ///|
 /// top-level forms of ../share/algebra/charsets/charsets_flatten.lisp
 declare fn init_share_charsets_flatten() -> Unit raise
+
+///|
+/// top-level forms of ../share/draw/grcommon.lisp
+declare fn init_share_grcommon() -> Unit raise
+
+///|
+/// top-level forms of ../share/draw/gnuplot.lisp
+declare fn init_share_gnuplot() -> Unit raise
+
+///|
+/// top-level forms of ../share/draw/vtk.lisp
+declare fn init_share_vtk() -> Unit raise
+
+///|
+/// top-level forms of ../share/draw/picture.lisp
+declare fn init_share_picture() -> Unit raise
 

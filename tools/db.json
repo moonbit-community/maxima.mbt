@@ -252615,5 +252615,6389 @@ null
 }
 ],
 "lines": 115
+},
+{
+"file": "../share/draw/grcommon",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$set_draw_defaults",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "opts",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 51,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "user-defaults",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 54,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ini-gr-options",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 66,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-option",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 209,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "correct-color-name",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 737,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "correct-color-hex",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 746,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "correct-color",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 752,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "hex-to-rgb",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 759,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-color",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 764,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-key_pos",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 798,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-terminal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 819,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-transform",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 887,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "check-enhanced3d-model",
+"pkg": "maxima",
+"ll": {
+"req": [
+"grobj",
+"lis"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 931,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-enhanced3d-expression",
+"pkg": "maxima",
+"ll": {
+"req": [
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 935,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-enhanced3d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 942,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "check-isolines-model",
+"pkg": "maxima",
+"ll": {
+"req": [
+"grobj",
+"lis"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 993,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-isolines-expression",
+"pkg": "maxima",
+"ll": {
+"req": [
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 997,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-isolines",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1004,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-contour-isolines",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1052,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-boolean-option",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1077,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-positive-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1087,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-positive-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1097,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-nonnegative-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1108,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-view",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1119,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-interpolate_color",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1142,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-allocation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1164,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-dimensions",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1184,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-pointtype",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1200,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1219,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-opacity",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1226,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-palette",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1239,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-linestyle",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1298,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-pointsjoined",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1326,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-capping",
+"pkg": "maxima",
+"ll": {
+"req": [
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1336,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ini-local-option-variables",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1350,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ini-global-options",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1364,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-gr-option",
+"pkg": "maxima",
+"ll": {
+"req": [
+"opt",
+"val"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1382,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "near-equal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1633,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "copy-array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"array"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1911,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "edge-interpolation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x1",
+"y1",
+"z1",
+"x2",
+"y2",
+"z2",
+"v1",
+"v2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1921,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "flatten",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lis"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1940,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "find-triangles",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr",
+"par1",
+"xmin",
+"xmax",
+"par2",
+"ymin",
+"ymax",
+"par3",
+"zmin",
+"zmax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1947,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$draw",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2043,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$draw2d",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2052,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$draw3d",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2056,
+"nvalues": 0
+}
+],
+"macros": [
+{
+"name": "transform-point",
+"ll": "(n)",
+"line": 852,
+"simple": true,
+"pll": {
+"req": [
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "transform-lists",
+"ll": "(n)",
+"line": 867,
+"simple": true,
+"pll": {
+"req": [
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "listify-arguments",
+"ll": "(args)",
+"line": 1641,
+"simple": true,
+"pll": {
+"req": [
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "make-triangle-vertices",
+"ll": "(i1 j1 k1 i2 j2 k2 e1 e2)",
+"line": 1934,
+"simple": true,
+"pll": {
+"req": [
+"i1",
+"j1",
+"k1",
+"i2",
+"j2",
+"k2",
+"e1",
+"e2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+}
+],
+"vars": [
+{
+"kind": "defvar",
+"name": "$draw_renderer",
+"init": {
+"k": "quote",
+"v": "$gnuplot_pipes"
+},
+"line": 44
+},
+{
+"kind": "defvar",
+"name": "$draw_use_pngcairo",
+"init": {
+"k": "nil"
+},
+"line": 46
+},
+{
+"kind": "defvar",
+"name": "*user-gr-default-options*",
+"init": {
+"k": "nil"
+},
+"line": 50
+},
+{
+"kind": "defvar",
+"name": "*allocations*",
+"init": {
+"k": "nil"
+},
+"line": 61
+},
+{
+"kind": "defvar",
+"name": "*gr-options*",
+"init": {
+"k": "expr",
+"v": "(make-hash-table)"
+},
+"line": 65
+},
+{
+"kind": "defvar",
+"name": "*draw-terminal-number*",
+"init": {
+"k": "str",
+"v": ""
+},
+"line": 817
+},
+{
+"kind": "defvar",
+"name": "*draw-transform-dimensions*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 847
+},
+{
+"kind": "defvar",
+"name": "*draw-transform-f1*",
+"init": {
+"k": "nil"
+},
+"line": 848
+},
+{
+"kind": "defvar",
+"name": "*draw-transform-f2*",
+"init": {
+"k": "nil"
+},
+"line": 849
+},
+{
+"kind": "defvar",
+"name": "*draw-transform-f3*",
+"init": {
+"k": "nil"
+},
+"line": 850
+},
+{
+"kind": "defvar",
+"name": "*draw-enhanced3d-type*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 928
+},
+{
+"kind": "defvar",
+"name": "*draw-enhanced3d-fun*",
+"init": {
+"k": "nil"
+},
+"line": 929
+},
+{
+"kind": "defvar",
+"name": "*draw-isolines-type*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 990
+},
+{
+"kind": "defvar",
+"name": "*draw-isolines-fun*",
+"init": {
+"k": "nil"
+},
+"line": 991
+},
+{
+"kind": "defvar",
+"name": "*i3d_triangles*",
+"init": {
+"k": "quote",
+"v": "#(#(-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 8 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 1 9 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 8 3 9 8 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 2 10 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 8 3 1 2 10 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(9 2 10 0 2 9 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(2 8 3 2 10 8 10 9 8 -1 -1 -1 -1 -1 -1 -1) #(3 11 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 11 2 8 11 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 9 0 2 3 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 11 2 1 9 11 9 8 11 -1 -1 -1 -1 -1 -1 -1) #(3 10 1 11 10 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 10 1 0 8 10 8 11 10 -1 -1 -1 -1 -1 -1 -1) #(3 9 0 3 11 9 11 10 9 -1 -1 -1 -1 -1 -1 -1) #(9 8 10 10 8 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 7 8 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 3 0 7 3 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 1 9 8 4 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 1 9 4 7 1 7 3 1 -1 -1 -1 -1 -1 -1 -1) #(1 2 10 8 4 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(3 4 7 3 0 4 1 2 10 -1 -1 -1 -1 -1 -1 -1) #(9 2 10 9 0 2 8 4 7 -1 -1 -1 -1 -1 -1 -1) #(2 10 9 2 9 7 2 7 3 7 9 4 -1 -1 -1 -1) #(8 4 7 3 11 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(11 4 7 11 2 4 2 0 4 -1 -1 -1 -1 -1 -1 -1) #(9 0 1 8 4 7 2 3 11 -1 -1 -1 -1 -1 -1 -1) #(4 7 11 9 4 11 9 11 2 9 2 1 -1 -1 -1 -1) #(3 10 1 3 11 10 7 8 4 -1 -1 -1 -1 -1 -1 -1) #(1 11 10 1 4 11 1 0 4 7 11 4 -1 -1 -1 -1) #(4 7 8 9 0 11 9 11 10 11 0 3 -1 -1 -1 -1) #(4 7 11 4 11 9 9 11 10 -1 -1 -1 -1 -1 -1 -1) #(9 5 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(9 5 4 0 8 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 5 4 1 5 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(8 5 4 8 3 5 3 1 5 -1 -1 -1 -1 -1 -1 -1) #(1 2 10 9 5 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(3 0 8 1 2 10 4 9 5 -1 -1 -1 -1 -1 -1 -1) #(5 2 10 5 4 2 4 0 2 -1 -1 -1 -1 -1 -1 -1) #(2 10 5 3 2 5 3 5 4 3 4 8 -1 -1 -1 -1) #(9 5 4 2 3 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 11 2 0 8 11 4 9 5 -1 -1 -1 -1 -1 -1 -1) #(0 5 4 0 1 5 2 3 11 -1 -1 -1 -1 -1 -1 -1) #(2 1 5 2 5 8 2 8 11 4 8 5 -1 -1 -1 -1) #(10 3 11 10 1 3 9 5 4 -1 -1 -1 -1 -1 -1 -1) #(4 9 5 0 8 1 8 10 1 8 11 10 -1 -1 -1 -1) #(5 4 0 5 0 11 5 11 10 11 0 3 -1 -1 -1 -1) #(5 4 8 5 8 10 10 8 11 -1 -1 -1 -1 -1 -1 -1) #(9 7 8 5 7 9 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(9 3 0 9 5 3 5 7 3 -1 -1 -1 -1 -1 -1 -1) #(0 7 8 0 1 7 1 5 7 -1 -1 -1 -1 -1 -1 -1) #(1 5 3 3 5 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(9 7 8 9 5 7 10 1 2 -1 -1 -1 -1 -1 -1 -1) #(10 1 2 9 5 0 5 3 0 5 7 3 -1 -1 -1 -1) #(8 0 2 8 2 5 8 5 7 10 5 2 -1 -1 -1 -1) #(2 10 5 2 5 3 3 5 7 -1 -1 -1 -1 -1 -1 -1) #(7 9 5 7 8 9 3 11 2 -1 -1 -1 -1 -1 -1 -1) #(9 5 7 9 7 2 9 2 0 2 7 11 -1 -1 -1 -1) #(2 3 11 0 1 8 1 7 8 1 5 7 -1 -1 -1 -1) #(11 2 1 11 1 7 7 1 5 -1 -1 -1 -1 -1 -1 -1) #(9 5 8 8 5 7 10 1 3 10 3 11 -1 -1 -1 -1) #(5 7 0 5 0 9 7 11 0 1 0 10 11 10 0 -1) #(11 10 0 11 0 3 10 5 0 8 0 7 5 7 0 -1) #(11 10 5 7 11 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(10 6 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 8 3 5 10 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(9 0 1 5 10 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 8 3 1 9 8 5 10 6 -1 -1 -1 -1 -1 -1 -1) #(1 6 5 2 6 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 6 5 1 2 6 3 0 8 -1 -1 -1 -1 -1 -1 -1) #(9 6 5 9 0 6 0 2 6 -1 -1 -1 -1 -1 -1 -1) #(5 9 8 5 8 2 5 2 6 3 2 8 -1 -1 -1 -1) #(2 3 11 10 6 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(11 0 8 11 2 0 10 6 5 -1 -1 -1 -1 -1 -1 -1) #(0 1 9 2 3 11 5 10 6 -1 -1 -1 -1 -1 -1 -1) #(5 10 6 1 9 2 9 11 2 9 8 11 -1 -1 -1 -1) #(6 3 11 6 5 3 5 1 3 -1 -1 -1 -1 -1 -1 -1) #(0 8 11 0 11 5 0 5 1 5 11 6 -1 -1 -1 -1) #(3 11 6 0 3 6 0 6 5 0 5 9 -1 -1 -1 -1) #(6 5 9 6 9 11 11 9 8 -1 -1 -1 -1 -1 -1 -1) #(5 10 6 4 7 8 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 3 0 4 7 3 6 5 10 -1 -1 -1 -1 -1 -1 -1) #(1 9 0 5 10 6 8 4 7 -1 -1 -1 -1 -1 -1 -1) #(10 6 5 1 9 7 1 7 3 7 9 4 -1 -1 -1 -1) #(6 1 2 6 5 1 4 7 8 -1 -1 -1 -1 -1 -1 -1) #(1 2 5 5 2 6 3 0 4 3 4 7 -1 -1 -1 -1) #(8 4 7 9 0 5 0 6 5 0 2 6 -1 -1 -1 -1) #(7 3 9 7 9 4 3 2 9 5 9 6 2 6 9 -1) #(3 11 2 7 8 4 10 6 5 -1 -1 -1 -1 -1 -1 -1) #(5 10 6 4 7 2 4 2 0 2 7 11 -1 -1 -1 -1) #(0 1 9 4 7 8 2 3 11 5 10 6 -1 -1 -1 -1) #(9 2 1 9 11 2 9 4 11 7 11 4 5 10 6 -1) #(8 4 7 3 11 5 3 5 1 5 11 6 -1 -1 -1 -1) #(5 1 11 5 11 6 1 0 11 7 11 4 0 4 11 -1) #(0 5 9 0 6 5 0 3 6 11 6 3 8 4 7 -1) #(6 5 9 6 9 11 4 7 9 7 11 9 -1 -1 -1 -1) #(10 4 9 6 4 10 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 10 6 4 9 10 0 8 3 -1 -1 -1 -1 -1 -1 -1) #(10 0 1 10 6 0 6 4 0 -1 -1 -1 -1 -1 -1 -1) #(8 3 1 8 1 6 8 6 4 6 1 10 -1 -1 -1 -1) #(1 4 9 1 2 4 2 6 4 -1 -1 -1 -1 -1 -1 -1) #(3 0 8 1 2 9 2 4 9 2 6 4 -1 -1 -1 -1) #(0 2 4 4 2 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(8 3 2 8 2 4 4 2 6 -1 -1 -1 -1 -1 -1 -1) #(10 4 9 10 6 4 11 2 3 -1 -1 -1 -1 -1 -1 -1) #(0 8 2 2 8 11 4 9 10 4 10 6 -1 -1 -1 -1) #(3 11 2 0 1 6 0 6 4 6 1 10 -1 -1 -1 -1) #(6 4 1 6 1 10 4 8 1 2 1 11 8 11 1 -1) #(9 6 4 9 3 6 9 1 3 11 6 3 -1 -1 -1 -1) #(8 11 1 8 1 0 11 6 1 9 1 4 6 4 1 -1) #(3 11 6 3 6 0 0 6 4 -1 -1 -1 -1 -1 -1 -1) #(6 4 8 11 6 8 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(7 10 6 7 8 10 8 9 10 -1 -1 -1 -1 -1 -1 -1) #(0 7 3 0 10 7 0 9 10 6 7 10 -1 -1 -1 -1) #(10 6 7 1 10 7 1 7 8 1 8 0 -1 -1 -1 -1) #(10 6 7 10 7 1 1 7 3 -1 -1 -1 -1 -1 -1 -1) #(1 2 6 1 6 8 1 8 9 8 6 7 -1 -1 -1 -1) #(2 6 9 2 9 1 6 7 9 0 9 3 7 3 9 -1) #(7 8 0 7 0 6 6 0 2 -1 -1 -1 -1 -1 -1 -1) #(7 3 2 6 7 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(2 3 11 10 6 8 10 8 9 8 6 7 -1 -1 -1 -1) #(2 0 7 2 7 11 0 9 7 6 7 10 9 10 7 -1) #(1 8 0 1 7 8 1 10 7 6 7 10 2 3 11 -1) #(11 2 1 11 1 7 10 6 1 6 7 1 -1 -1 -1 -1) #(8 9 6 8 6 7 9 1 6 11 6 3 1 3 6 -1) #(0 9 1 11 6 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(7 8 0 7 0 6 3 11 0 11 6 0 -1 -1 -1 -1) #(7 11 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(7 6 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(3 0 8 11 7 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 1 9 11 7 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(8 1 9 8 3 1 11 7 6 -1 -1 -1 -1 -1 -1 -1) #(10 1 2 6 11 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 2 10 3 0 8 6 11 7 -1 -1 -1 -1 -1 -1 -1) #(2 9 0 2 10 9 6 11 7 -1 -1 -1 -1 -1 -1 -1) #(6 11 7 2 10 3 10 8 3 10 9 8 -1 -1 -1 -1) #(7 2 3 6 2 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(7 0 8 7 6 0 6 2 0 -1 -1 -1 -1 -1 -1 -1) #(2 7 6 2 3 7 0 1 9 -1 -1 -1 -1 -1 -1 -1) #(1 6 2 1 8 6 1 9 8 8 7 6 -1 -1 -1 -1) #(10 7 6 10 1 7 1 3 7 -1 -1 -1 -1 -1 -1 -1) #(10 7 6 1 7 10 1 8 7 1 0 8 -1 -1 -1 -1) #(0 3 7 0 7 10 0 10 9 6 10 7 -1 -1 -1 -1) #(7 6 10 7 10 8 8 10 9 -1 -1 -1 -1 -1 -1 -1) #(6 8 4 11 8 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(3 6 11 3 0 6 0 4 6 -1 -1 -1 -1 -1 -1 -1) #(8 6 11 8 4 6 9 0 1 -1 -1 -1 -1 -1 -1 -1) #(9 4 6 9 6 3 9 3 1 11 3 6 -1 -1 -1 -1) #(6 8 4 6 11 8 2 10 1 -1 -1 -1 -1 -1 -1 -1) #(1 2 10 3 0 11 0 6 11 0 4 6 -1 -1 -1 -1) #(4 11 8 4 6 11 0 2 9 2 10 9 -1 -1 -1 -1) #(10 9 3 10 3 2 9 4 3 11 3 6 4 6 3 -1) #(8 2 3 8 4 2 4 6 2 -1 -1 -1 -1 -1 -1 -1) #(0 4 2 4 6 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 9 0 2 3 4 2 4 6 4 3 8 -1 -1 -1 -1) #(1 9 4 1 4 2 2 4 6 -1 -1 -1 -1 -1 -1 -1) #(8 1 3 8 6 1 8 4 6 6 10 1 -1 -1 -1 -1) #(10 1 0 10 0 6 6 0 4 -1 -1 -1 -1 -1 -1 -1) #(4 6 3 4 3 8 6 10 3 0 3 9 10 9 3 -1) #(10 9 4 6 10 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 9 5 7 6 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 8 3 4 9 5 11 7 6 -1 -1 -1 -1 -1 -1 -1) #(5 0 1 5 4 0 7 6 11 -1 -1 -1 -1 -1 -1 -1) #(11 7 6 8 3 4 3 5 4 3 1 5 -1 -1 -1 -1) #(9 5 4 10 1 2 7 6 11 -1 -1 -1 -1 -1 -1 -1) #(6 11 7 1 2 10 0 8 3 4 9 5 -1 -1 -1 -1) #(7 6 11 5 4 10 4 2 10 4 0 2 -1 -1 -1 -1) #(3 4 8 3 5 4 3 2 5 10 5 2 11 7 6 -1) #(7 2 3 7 6 2 5 4 9 -1 -1 -1 -1 -1 -1 -1) #(9 5 4 0 8 6 0 6 2 6 8 7 -1 -1 -1 -1) #(3 6 2 3 7 6 1 5 0 5 4 0 -1 -1 -1 -1) #(6 2 8 6 8 7 2 1 8 4 8 5 1 5 8 -1) #(9 5 4 10 1 6 1 7 6 1 3 7 -1 -1 -1 -1) #(1 6 10 1 7 6 1 0 7 8 7 0 9 5 4 -1) #(4 0 10 4 10 5 0 3 10 6 10 7 3 7 10 -1) #(7 6 10 7 10 8 5 4 10 4 8 10 -1 -1 -1 -1) #(6 9 5 6 11 9 11 8 9 -1 -1 -1 -1 -1 -1 -1) #(3 6 11 0 6 3 0 5 6 0 9 5 -1 -1 -1 -1) #(0 11 8 0 5 11 0 1 5 5 6 11 -1 -1 -1 -1) #(6 11 3 6 3 5 5 3 1 -1 -1 -1 -1 -1 -1 -1) #(1 2 10 9 5 11 9 11 8 11 5 6 -1 -1 -1 -1) #(0 11 3 0 6 11 0 9 6 5 6 9 1 2 10 -1) #(11 8 5 11 5 6 8 0 5 10 5 2 0 2 5 -1) #(6 11 3 6 3 5 2 10 3 10 5 3 -1 -1 -1 -1) #(5 8 9 5 2 8 5 6 2 3 8 2 -1 -1 -1 -1) #(9 5 6 9 6 0 0 6 2 -1 -1 -1 -1 -1 -1 -1) #(1 5 8 1 8 0 5 6 8 3 8 2 6 2 8 -1) #(1 5 6 2 1 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 3 6 1 6 10 3 8 6 5 6 9 8 9 6 -1) #(10 1 0 10 0 6 9 5 0 5 6 0 -1 -1 -1 -1) #(0 3 8 5 6 10 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(10 5 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(11 5 10 7 5 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(11 5 10 11 7 5 8 3 0 -1 -1 -1 -1 -1 -1 -1) #(5 11 7 5 10 11 1 9 0 -1 -1 -1 -1 -1 -1 -1) #(10 7 5 10 11 7 9 8 1 8 3 1 -1 -1 -1 -1) #(11 1 2 11 7 1 7 5 1 -1 -1 -1 -1 -1 -1 -1) #(0 8 3 1 2 7 1 7 5 7 2 11 -1 -1 -1 -1) #(9 7 5 9 2 7 9 0 2 2 11 7 -1 -1 -1 -1) #(7 5 2 7 2 11 5 9 2 3 2 8 9 8 2 -1) #(2 5 10 2 3 5 3 7 5 -1 -1 -1 -1 -1 -1 -1) #(8 2 0 8 5 2 8 7 5 10 2 5 -1 -1 -1 -1) #(9 0 1 5 10 3 5 3 7 3 10 2 -1 -1 -1 -1) #(9 8 2 9 2 1 8 7 2 10 2 5 7 5 2 -1) #(1 3 5 3 7 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 8 7 0 7 1 1 7 5 -1 -1 -1 -1 -1 -1 -1) #(9 0 3 9 3 5 5 3 7 -1 -1 -1 -1 -1 -1 -1) #(9 8 7 5 9 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(5 8 4 5 10 8 10 11 8 -1 -1 -1 -1 -1 -1 -1) #(5 0 4 5 11 0 5 10 11 11 3 0 -1 -1 -1 -1) #(0 1 9 8 4 10 8 10 11 10 4 5 -1 -1 -1 -1) #(10 11 4 10 4 5 11 3 4 9 4 1 3 1 4 -1) #(2 5 1 2 8 5 2 11 8 4 5 8 -1 -1 -1 -1) #(0 4 11 0 11 3 4 5 11 2 11 1 5 1 11 -1) #(0 2 5 0 5 9 2 11 5 4 5 8 11 8 5 -1) #(9 4 5 2 11 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(2 5 10 3 5 2 3 4 5 3 8 4 -1 -1 -1 -1) #(5 10 2 5 2 4 4 2 0 -1 -1 -1 -1 -1 -1 -1) #(3 10 2 3 5 10 3 8 5 4 5 8 0 1 9 -1) #(5 10 2 5 2 4 1 9 2 9 4 2 -1 -1 -1 -1) #(8 4 5 8 5 3 3 5 1 -1 -1 -1 -1 -1 -1 -1) #(0 4 5 1 0 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(8 4 5 8 5 3 9 0 5 0 3 5 -1 -1 -1 -1) #(9 4 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 11 7 4 9 11 9 10 11 -1 -1 -1 -1 -1 -1 -1) #(0 8 3 4 9 7 9 11 7 9 10 11 -1 -1 -1 -1) #(1 10 11 1 11 4 1 4 0 7 4 11 -1 -1 -1 -1) #(3 1 4 3 4 8 1 10 4 7 4 11 10 11 4 -1) #(4 11 7 9 11 4 9 2 11 9 1 2 -1 -1 -1 -1) #(9 7 4 9 11 7 9 1 11 2 11 1 0 8 3 -1) #(11 7 4 11 4 2 2 4 0 -1 -1 -1 -1 -1 -1 -1) #(11 7 4 11 4 2 8 3 4 3 2 4 -1 -1 -1 -1) #(2 9 10 2 7 9 2 3 7 7 4 9 -1 -1 -1 -1) #(9 10 7 9 7 4 10 2 7 8 7 0 2 0 7 -1) #(3 7 10 3 10 2 7 4 10 1 10 0 4 0 10 -1) #(1 10 2 8 7 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 9 1 4 1 7 7 1 3 -1 -1 -1 -1 -1 -1 -1) #(4 9 1 4 1 7 0 8 1 8 7 1 -1 -1 -1 -1) #(4 0 3 7 4 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(4 8 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(9 10 8 10 11 8 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(3 0 9 3 9 11 11 9 10 -1 -1 -1 -1 -1 -1 -1) #(0 1 10 0 10 8 8 10 11 -1 -1 -1 -1 -1 -1 -1) #(3 1 10 11 3 10 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 2 11 1 11 9 9 11 8 -1 -1 -1 -1 -1 -1 -1) #(3 0 9 3 9 11 1 2 9 2 11 9 -1 -1 -1 -1) #(0 2 11 8 0 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(3 2 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(2 3 8 2 8 10 10 8 9 -1 -1 -1 -1 -1 -1 -1) #(9 10 2 0 9 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(2 3 8 2 8 10 0 1 8 1 10 8 -1 -1 -1 -1) #(1 10 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(1 3 8 9 1 8 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 9 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(0 3 8 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1) #(-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1))"
+},
+"line": 1652
+}
+],
+"specials": [
+"$draw_renderer",
+"$draw_use_pngcairo",
+"*allocations*",
+"*draw-enhanced3d-fun*",
+"*draw-enhanced3d-type*",
+"*draw-isolines-fun*",
+"*draw-isolines-type*",
+"*draw-terminal-number*",
+"*draw-transform-dimensions*",
+"*draw-transform-f1*",
+"*draw-transform-f2*",
+"*draw-transform-f3*",
+"*gr-options*",
+"*i3d_triangles*",
+"*user-gr-default-options*"
+],
+"symbols": [
+"$adapt_depth",
+"$allocation",
+"$animated_gif",
+"$append",
+"$aquaterm",
+"$asterisk",
+"$atom",
+"$auto",
+"$axis_3d",
+"$axis_bottom",
+"$axis_left",
+"$axis_right",
+"$axis_top",
+"$background_color",
+"$base",
+"$border",
+"$both",
+"$bottom_center",
+"$bottom_left",
+"$bottom_right",
+"$boxes",
+"$cairolatex_pdf",
+"$cairolatex_pdf_standalone",
+"$canvas",
+"$capping",
+"$cbrange",
+"$cbtics",
+"$center",
+"$center_left",
+"$center_right",
+"$circle",
+"$closed",
+"$color",
+"$colorbox",
+"$columns",
+"$cone",
+"$contour",
+"$contour_levels",
+"$cube",
+"$cylinder",
+"$dashes",
+"$data_file_name",
+"$delay",
+"$diamant",
+"$dimensions",
+"$dot",
+"$dot_dash",
+"$dots",
+"$down_triangle",
+"$draw",
+"$draw2d",
+"$draw3d",
+"$draw_realpart",
+"$draw_renderer",
+"$draw_use_pngcairo",
+"$dumb",
+"$dumb_file",
+"$empty",
+"$emptyp",
+"$enhanced3d",
+"$eps",
+"$eps_color",
+"$eps_height",
+"$eps_width",
+"$epslatex",
+"$epslatex_standalone",
+"$error_type",
+"$fifth",
+"$file_bgcolor",
+"$file_name",
+"$fill_color",
+"$fill_density",
+"$filled",
+"$filled_circle",
+"$filled_diamant",
+"$filled_down_triangle",
+"$filled_func",
+"$filled_square",
+"$filled_up_triangle",
+"$first",
+"$flatten",
+"$float",
+"$font",
+"$font_size",
+"$fourth",
+"$gif",
+"$gnuplot",
+"$gnuplot_file_name",
+"$gnuplot_pipes",
+"$gr2d",
+"$gr3d",
+"$gray",
+"$grid",
+"$head_angle",
+"$head_both",
+"$head_length",
+"$head_type",
+"$horizontal",
+"$impulses",
+"$interpolate_color",
+"$ip_grid",
+"$ip_grid_in",
+"$isolines",
+"$isolines_levels",
+"$jpg",
+"$key",
+"$key_pos",
+"$label_alignment",
+"$label_orientation",
+"$left",
+"$length",
+"$lhs",
+"$line_type",
+"$line_width",
+"$listofvars",
+"$listp",
+"$logcb",
+"$logx",
+"$logx_secondary",
+"$logy",
+"$logy_secondary",
+"$logz",
+"$map",
+"$multipage_eps",
+"$multipage_eps_color",
+"$multipage_pdf",
+"$multipage_pdfcairo",
+"$multiply",
+"$nofilled",
+"$none",
+"$nticks",
+"$obj",
+"$op",
+"$opacity",
+"$open",
+"$palette",
+"$pdf",
+"$pdf_height",
+"$pdf_width",
+"$pdfcairo",
+"$pic_height",
+"$pic_width",
+"$plus",
+"$ply",
+"$png",
+"$pngcairo",
+"$pnm",
+"$point_size",
+"$point_type",
+"$points_joined",
+"$print",
+"$proportional_axes",
+"$qt",
+"$rest",
+"$rhs",
+"$right",
+"$rot_horizontal",
+"$rot_vertical",
+"$round",
+"$sconcat",
+"$screen",
+"$second",
+"$set_draw_defaults",
+"$setify",
+"$setp",
+"$short_dashes",
+"$short_long_dashes",
+"$short_short_long_dashes",
+"$sixth",
+"$solid",
+"$sphere",
+"$square",
+"$stl",
+"$subsetp",
+"$surface",
+"$surface_hide",
+"$svg",
+"$terminal",
+"$third",
+"$tiff",
+"$tikz",
+"$tikz_standalone",
+"$title",
+"$top_center",
+"$top_left",
+"$top_right",
+"$transform",
+"$transparent",
+"$tree_reduce",
+"$tube",
+"$tube_extremes",
+"$union",
+"$unit_vectors",
+"$up_triangle",
+"$user_preamble",
+"$vertical",
+"$view",
+"$vrml",
+"$vtk",
+"$vtk6",
+"$vtk7",
+"$windows",
+"$wired_surface",
+"$wxt",
+"$x",
+"$x11",
+"$x_voxel",
+"$xaxis",
+"$xaxis_color",
+"$xaxis_secondary",
+"$xaxis_type",
+"$xaxis_width",
+"$xlabel",
+"$xlabel_secondary",
+"$xrange",
+"$xrange_secondary",
+"$xtics",
+"$xtics_axis",
+"$xtics_rotate",
+"$xtics_secondary",
+"$xtics_secondary_axis",
+"$xtics_secondary_rotate",
+"$xu_grid",
+"$xy",
+"$xy_file",
+"$xyplane",
+"$xyz",
+"$y",
+"$y_voxel",
+"$yaxis",
+"$yaxis_color",
+"$yaxis_secondary",
+"$yaxis_type",
+"$yaxis_width",
+"$ylabel",
+"$ylabel_secondary",
+"$yrange",
+"$yrange_secondary",
+"$ytics",
+"$ytics_axis",
+"$ytics_rotate",
+"$ytics_secondary",
+"$ytics_secondary_axis",
+"$ytics_secondary_rotate",
+"$yv_grid",
+"$z",
+"$z_voxel",
+"$zaxis",
+"$zaxis_color",
+"$zaxis_type",
+"$zaxis_width",
+"$zlabel",
+"$zlabel_rotate",
+"$zrange",
+"$ztics",
+"$ztics_axis",
+"$ztics_rotate",
+"*draw-transform-dimensions*",
+"*draw-transform-f1*",
+"*draw-transform-f2*",
+"*draw-transform-f3*",
+"<=",
+"=",
+">",
+">=",
+"abs",
+"and",
+"aref",
+"caddr",
+"cons",
+"done",
+"draw_gnuplot",
+"draw_vtk",
+"edge-interpolation",
+"float",
+"flonum",
+"funcall",
+"if",
+"integerp",
+"lambda",
+"length",
+"let",
+"list",
+"map",
+"mapcar",
+"mlist",
+"nil",
+"numberp",
+"position",
+"px",
+"py",
+"pz",
+"rest",
+"setf",
+"simp",
+"str",
+"string",
+"string=",
+"t",
+"u1",
+"u2",
+"u3",
+"val",
+"when",
+"x",
+"xold",
+"xx",
+"y",
+"yold",
+"yy",
+"z",
+"zold",
+"zz"
+],
+"calls": {
+"defvar": 15,
+"defun": 45,
+"&rest": 4,
+"setf": 144,
+"cons": 4,
+"dolist": 3,
+"x": 1,
+"if": 29,
+"equal": 2,
+"$op": 1,
+"update-gr-option": 1,
+"$lhs": 2,
+"$rhs": 2,
+"merror": 62,
+"make-hash-table": 1,
+"gethash": 732,
+"list": 29,
+"opt": 10,
+"str": 7,
+"some": 1,
+"loop": 13,
+"and": 10,
+"or": 7,
+"=": 5,
+"length": 5,
+"char=": 1,
+"schar": 1,
+"every": 2,
+"subseq": 3,
+"correct-color-name": 2,
+"correct-color-hex": 1,
+"string=": 2,
+"format": 13,
+"numberp": 10,
+"case": 7,
+"otherwise": 6,
+"let": 22,
+"unless": 4,
+"correct-color": 1,
+"when": 16,
+"val": 15,
+"$top_left": 1,
+"$top_center": 1,
+"$top_right": 1,
+"$center_left": 1,
+"$center": 1,
+"$center_right": 1,
+"$bottom_left": 1,
+"$bottom_center": 1,
+"$bottom_right": 1,
+"cond": 26,
+"eq": 1,
+"setq": 1,
+"cadr": 2,
+"caddr": 6,
+"t": 26,
+"defmacro": 4,
+"n": 4,
+"vars": 3,
+"$third": 8,
+"$fourth": 6,
+"coerce-float-fun": 16,
+"$first": 12,
+"$second": 13,
+"$fifth": 1,
+"$sixth": 1,
+"grobj": 2,
+"null": 4,
+"position": 3,
+"not": 7,
+"$subsetp": 2,
+"$setify": 4,
+"$listofvars": 2,
+"$length": 2,
+"step": 1,
+"$float": 11,
+"nth": 5,
+"end": 1,
+"num": 1,
+"concatenate": 6,
+"string-trim": 1,
+"integerp": 3,
+">": 4,
+">=": 4,
+"rh": 1,
+"<=": 11,
+"y": 1,
+"fval": 1,
+"cls": 1,
+"rest": 3,
+"let*": 5,
+"pos": 1,
+"-": 10,
+"$sconcat": 1,
+"floatp": 4,
+"<": 3,
+"atom-to-downcased-string": 2,
+"hex-to-numeric-list": 4,
+"append": 3,
+"$dots": 1,
+"$solid": 1,
+"$dashes": 1,
+"$short_dashes": 1,
+"$short_long_dashes": 1,
+"$short_short_long_dashes": 1,
+"$dot_dash": 1,
+"$tube": 1,
+"member": 9,
+"getpid": 2,
+"$allocation": 1,
+"update-allocation": 1,
+"$dimensions": 1,
+"update-dimensions": 5,
+"$fill_density": 1,
+"update-positive-float": 1,
+"$xyplane": 1,
+"$point_size": 1,
+"update-nonnegative-float": 1,
+"$points_joined": 1,
+"update-pointsjoined": 1,
+"$colorbox": 1,
+"stringp": 1,
+"update-linestyle": 1,
+"$capping": 1,
+"update-capping": 2,
+"$point_type": 1,
+"update-pointtype": 1,
+"update-positive-integer": 1,
+"update-contour-isolines": 1,
+"$opacity": 1,
+"update-opacity": 1,
+"update-boolean-option": 1,
+"$filled_func": 1,
+"$transform": 1,
+"update-transform": 1,
+"$enhanced3d": 1,
+"update-enhanced3d": 1,
+"$isolines": 1,
+"update-isolines": 1,
+"cadddr": 1,
+"do": 3,
+"car": 3,
+"string-right-trim": 2,
+"cadar": 1,
+"caddar": 1,
+"$terminal": 1,
+"update-terminal": 1,
+"$key_pos": 1,
+"update-key_pos": 1,
+"$zlabel_rotate": 1,
+"$head_type": 1,
+"$contour": 1,
+"$proportional_axes": 1,
+"$error_type": 1,
+"$label_alignment": 1,
+"$label_orientation": 1,
+"update-string": 1,
+"$user_preamble": 1,
+"st": 1,
+"$atom": 1,
+"fval2": 2,
+"$round": 2,
+"$listp": 1,
+"$palette": 1,
+"update-palette": 1,
+"update-color": 2,
+"$view": 1,
+"update-view": 3,
+"$interpolate_color": 1,
+"update-interpolate_color": 1,
+"$tube_extremes": 1,
+"$print": 8,
+"substitute": 2,
+"$file_bgcolor": 1,
+"$rot_vertical": 1,
+"second": 3,
+"$rot_horizontal": 1,
+"first": 3,
+"$pic_width": 1,
+"$pic_height": 1,
+"*": 8,
+"a": 1,
+"abs": 1,
+"args": 1,
+"array": 1,
+"adjust-array": 1,
+"make-array": 7,
+"array-element-type": 1,
+"x1": 1,
+"+": 15,
+"i1": 1,
+"lis": 1,
+"flatten": 3,
+"cdr": 2,
+"expr": 1,
+"ny": 1,
+"get-option": 2,
+"nz": 1,
+"dx": 1,
+"/": 3,
+"dy": 1,
+"dz": 1,
+"fcn": 1,
+"m-": 1,
+"vert": 1,
+"px": 1,
+"py": 1,
+"pz": 1,
+"oldval": 1,
+"newval": 1,
+"aref": 23,
+"triangles": 1,
+"cubidx": 1,
+"k-1": 1,
+"i+1": 1,
+"j+1": 1,
+"logior": 8,
+"push": 1,
+"make-triangle-vertices": 12,
+"copy-array": 1,
+"apply": 2,
+"$draw": 1,
+"draw_gnuplot": 1,
+"draw_vtk": 1
+},
+"toplevel": [
+{
+"head": "setf",
+"line": 216,
+"text": "(setf (gethash \"antiquewhite2\" *color-table*) \"#EEDFCC\" (gethash \"antiquewhite3\" *color-table*) \"#CDC0B0\" (gethash \"antiquewhite4\" *color-table*) \"#8B8378\" (gethash \"antiquewhite\" *color-table*) \"#FAE"
+}
+],
+"lines": 2063
+},
+{
+"file": "../share/draw/gnuplot",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "extrema-over-finite-floats-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 35,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "finite-real-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 44,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-font-type",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 48,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$multiplot_mode",
+"pkg": "maxima",
+"ll": {
+"req": [
+"term"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 60,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-ranges-2d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xmin",
+"xmax",
+"ymin",
+"ymax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 108,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "update-ranges-3d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xmin",
+"xmax",
+"ymin",
+"ymax",
+"zmin",
+"zmax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 116,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "axes-to-plot",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 139,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-obj-title",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 151,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "points-command",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 266,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "points-array-2d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 302,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "points-array-1d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg1"
+],
+"opt": [
+[
+"arg2",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 339,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "points-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg1"
+],
+"opt": [
+[
+"arg2",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 380,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "points3d-command",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 463,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "replace-substring",
+"pkg": "maxima",
+"ll": {
+"req": [
+"string",
+"part",
+"replacement"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 953,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "x-elements",
+"pkg": "maxima",
+"ll": {
+"req": [
+"list"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1583,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "y-elements",
+"pkg": "maxima",
+"ll": {
+"req": [
+"list"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1588,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "contains-zeros",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i",
+"j",
+"sample"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1593,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sample-data",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr",
+"xmin",
+"xmax",
+"ymin",
+"ymax",
+"sample",
+"grid"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1598,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "draw-print-segment",
+"pkg": "maxima",
+"ll": {
+"req": [
+"points",
+"xmin",
+"xdelta",
+"ymin",
+"ydelta"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1615,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "draw-print-square",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xmin",
+"xmax",
+"ymin",
+"ymax",
+"sample",
+"grid"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1623,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "imp-pl-prepare-factor",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1642,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "imp-pl-prepare-expr",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1651,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "resolve-suggestions",
+"pkg": "maxima",
+"ll": {
+"req": [
+"largs"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2844,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-scene-2d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2863,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-scene-3d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3065,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "draw_gnuplot",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3249,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$add_zeroes",
+"pkg": "maxima",
+"ll": {
+"req": [
+"num"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3665,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$draw_file",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "opts",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3670,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$activate_window",
+"pkg": "maxima",
+"ll": {
+"req": [
+"term",
+"num"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3764,
+"nvalues": 0
+}
+],
+"macros": [
+{
+"name": "update-range",
+"ll": "(axi vmin vmax)",
+"line": 101,
+"simple": true,
+"pll": {
+"req": [
+"axi",
+"vmin",
+"vmax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "check-extremes-x",
+"ll": "()",
+"line": 120,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "check-extremes-y",
+"ll": "()",
+"line": 125,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "check-extremes-z",
+"ll": "()",
+"line": 130,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "build-polygon",
+"ll": "(coord)",
+"line": 1414,
+"simple": true,
+"pll": {
+"req": [
+"coord"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "check-tube-extreme",
+"ll": "(ex cx cy cz circ)",
+"line": 2511,
+"simple": true,
+"pll": {
+"req": [
+"ex",
+"cx",
+"cy",
+"cz",
+"circ"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "write-palette-code",
+"ll": "()",
+"line": 2773,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "write-subarray",
+"ll": "(arr str)",
+"line": 3237,
+"simple": true,
+"pll": {
+"req": [
+"arr",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+}
+],
+"vars": [
+{
+"kind": "defvar",
+"name": "$draw_version",
+"init": {
+"k": "int",
+"v": "2"
+},
+"line": 33
+},
+{
+"kind": "defvar",
+"name": "*multiplot-is-active*",
+"init": {
+"k": "nil"
+},
+"line": 59
+},
+{
+"kind": "defvar",
+"name": "pts",
+"init": {
+"k": "expr",
+"v": "()"
+},
+"line": 1591
+},
+{
+"kind": "defvar",
+"name": "*2d-graphic-objects*",
+"init": {
+"k": "expr",
+"v": "(make-hash-table)"
+},
+"line": 2803
+},
+{
+"kind": "defvar",
+"name": "*3d-graphic-objects*",
+"init": {
+"k": "expr",
+"v": "(make-hash-table)"
+},
+"line": 3031
+}
+],
+"specials": [
+"$draw_version",
+"*2d-graphic-objects*",
+"*3d-graphic-objects*",
+"*multiplot-is-active*",
+"pts"
+],
+"symbols": [
+"$activate_window",
+"$adapt_depth",
+"$add_zeroes",
+"$allocation",
+"$animated_gif",
+"$append",
+"$aquaterm",
+"$axis_3d",
+"$axis_bottom",
+"$axis_left",
+"$axis_right",
+"$axis_top",
+"$background_color",
+"$bars",
+"$base",
+"$border",
+"$both",
+"$boxes",
+"$cairolatex_pdf",
+"$cairolatex_pdf_standalone",
+"$canvas",
+"$capping",
+"$cbrange",
+"$cbtics",
+"$center",
+"$color",
+"$colorbox",
+"$columns",
+"$contour",
+"$contour_levels",
+"$cylindrical",
+"$data_file_name",
+"$delay",
+"$dimensions",
+"$draw_file",
+"$draw_realpart",
+"$draw_renderer",
+"$draw_version",
+"$dumb",
+"$dumb_file",
+"$elevation_grid",
+"$ellipse",
+"$empty",
+"$enhanced3d",
+"$eps",
+"$eps_color",
+"$eps_height",
+"$eps_width",
+"$epslatex",
+"$epslatex_standalone",
+"$error_type",
+"$errors",
+"$explicit",
+"$factor",
+"$file_bgcolor",
+"$file_name",
+"$fill_color",
+"$fill_density",
+"$filled",
+"$filled_func",
+"$first",
+"$float",
+"$font",
+"$font_size",
+"$fourth",
+"$gif",
+"$gnuplot",
+"$gnuplot_command",
+"$gnuplot_file_args",
+"$gnuplot_file_name",
+"$gnuplot_pipes",
+"$gnuplot_view_args",
+"$gr2d",
+"$gr3d",
+"$gray",
+"$grid",
+"$head_angle",
+"$head_both",
+"$head_length",
+"$head_type",
+"$horizontal",
+"$image",
+"$implicit",
+"$interpolate_color",
+"$ip_grid",
+"$ip_grid_in",
+"$is-boole-eval",
+"$jpg",
+"$key",
+"$key_pos",
+"$label",
+"$label_alignment",
+"$label_orientation",
+"$left",
+"$length",
+"$level",
+"$lhs",
+"$line_type",
+"$line_width",
+"$listofvars",
+"$listp",
+"$logcb",
+"$logx",
+"$logx_secondary",
+"$logy",
+"$logy_secondary",
+"$logz",
+"$map",
+"$matrixp",
+"$mesh",
+"$multipage_eps",
+"$multipage_eps_color",
+"$multipage_pdf",
+"$multipage_pdfcairo",
+"$multiplot_mode",
+"$nofilled",
+"$none",
+"$nticks",
+"$numberp",
+"$numer",
+"$op",
+"$palette",
+"$parametric",
+"$parametric_surface",
+"$pdf",
+"$pdf_height",
+"$pdf_width",
+"$pdfcairo",
+"$pic_height",
+"$pic_width",
+"$picturep",
+"$plot_options",
+"$png",
+"$pngcairo",
+"$point_size",
+"$point_type",
+"$points",
+"$points_joined",
+"$polar",
+"$polygon",
+"$prederror",
+"$proportional_axes",
+"$put",
+"$qt",
+"$quadrilateral",
+"$rectangle",
+"$region",
+"$rgb",
+"$rgb_alpha",
+"$rhs",
+"$right",
+"$sconcat",
+"$screen",
+"$second",
+"$spherical",
+"$substitute",
+"$surface",
+"$surface_hide",
+"$svg",
+"$system",
+"$terminal",
+"$third",
+"$tikz",
+"$tikz_standalone",
+"$title",
+"$transparent",
+"$tree_reduce",
+"$triangle",
+"$tube",
+"$unit_vectors",
+"$user_preamble",
+"$vector",
+"$version",
+"$vertical",
+"$view",
+"$windows",
+"$wired_surface",
+"$wxt",
+"$x",
+"$x11",
+"$x_voxel",
+"$xaxis",
+"$xaxis_color",
+"$xaxis_secondary",
+"$xaxis_type",
+"$xaxis_width",
+"$xlabel",
+"$xlabel_secondary",
+"$xrange",
+"$xrange_secondary",
+"$xtics",
+"$xtics_axis",
+"$xtics_rotate",
+"$xtics_secondary",
+"$xtics_secondary_axis",
+"$xtics_secondary_rotate",
+"$xu_grid",
+"$xy",
+"$xy_file",
+"$xyplane",
+"$xyz",
+"$y",
+"$y_voxel",
+"$yaxis",
+"$yaxis_color",
+"$yaxis_secondary",
+"$yaxis_type",
+"$yaxis_width",
+"$ylabel",
+"$ylabel_secondary",
+"$yrange",
+"$yrange_secondary",
+"$ytics",
+"$ytics_axis",
+"$ytics_rotate",
+"$ytics_secondary",
+"$ytics_secondary_axis",
+"$ytics_secondary_rotate",
+"$yv_grid",
+"$zaxis",
+"$zaxis_color",
+"$zaxis_type",
+"$zaxis_width",
+"$zlabel",
+"$zrange",
+"$ztics",
+"$ztics_axis",
+"$ztics_rotate",
+"%bars",
+"%cos",
+"%cylindrical",
+"%elevation_grid",
+"%ellipse",
+"%errors",
+"%explicit",
+"%image",
+"%implicit",
+"%label",
+"%mesh",
+"%parametric",
+"%parametric_surface",
+"%points",
+"%polar",
+"%polygon",
+"%quadrilateral",
+"%rectangle",
+"%region",
+"%sin",
+"%spherical",
+"%suggest",
+"%triangle",
+"%tube",
+"%vector",
+"*draw-enhanced3d-fun*",
+"*draw-enhanced3d-type*",
+"*draw-transform-dimensions*",
+"*draw-transform-f1*",
+"*draw-transform-f2*",
+"*draw-transform-f3*",
+"*gr-options*",
+"1+",
+":element-type",
+":initial-contents",
+"<",
+"<=",
+"=",
+">",
+"abs",
+"and",
+"append",
+"apply",
+"bars",
+"boolean",
+"caddr",
+"cadr",
+"car",
+"case",
+"cdr",
+"char=",
+"concatenate",
+"cond",
+"cxx",
+"cylindrical",
+"cyy",
+"czz",
+"done",
+"dotimes",
+"element-size",
+"elevation_grid",
+"ellipse",
+"eq",
+"equal",
+"errors",
+"every",
+"explicit",
+"explicit3d",
+"factored",
+"finite-real-p",
+"first",
+"floatp",
+"flonum",
+"format",
+"fun",
+"funcall",
+"get-option",
+"gethash",
+"if",
+"image",
+"imp-pl-prepare-factor",
+"implicit",
+"implicit3d",
+"integerp",
+"k",
+"label",
+"lambda",
+"length",
+"let",
+"like",
+"list",
+"listp",
+"make-array",
+"make-scene-2d",
+"make-scene-3d",
+"map",
+"max",
+"mequal",
+"merror",
+"mesh",
+"mexpt",
+"min",
+"mlist",
+"mtimes",
+"n",
+"nil",
+"nth",
+"numberp",
+"or",
+"pal",
+"parametric",
+"parametric3d",
+"parametric_surface",
+"points",
+"points3d",
+"polar",
+"polygon",
+"pts",
+"push",
+"quadrilateral",
+"quadrilateral3d",
+"rectangle",
+"region",
+"rest",
+"result",
+"second",
+"setf",
+"simp",
+"spherical",
+"stream",
+"string",
+"t",
+"third",
+"triangle",
+"triangle3d",
+"triplete",
+"tt",
+"tube",
+"vect",
+"vect3d",
+"vector",
+"vgrid",
+"when",
+"with-output-to-string",
+"x",
+"xmax",
+"xmin",
+"xx",
+"ymax",
+"ymin",
+"yy",
+"z",
+"zmax",
+"zmin",
+"zz"
+],
+"calls": {
+"$put": 1,
+"defvar": 5,
+"defun": 29,
+"x": 9,
+"let": 63,
+"xmin": 17,
+"loop": 38,
+"when": 56,
+"and": 21,
+"realp": 2,
+"not": 79,
+"float-inf-p": 2,
+"float-nan-p": 2,
+"<": 17,
+"setq": 40,
+">": 26,
+"values": 1,
+"if": 145,
+"string=": 4,
+"get-option": 451,
+"eql": 7,
+"mwarning": 1,
+"or": 24,
+"eq": 10,
+"format": 234,
+"term": 2,
+"case": 21,
+"$screen": 1,
+"$multiplot_mode": 4,
+"send-gnuplot-command": 10,
+"write-font-type": 44,
+"setf": 359,
+"$wxt": 3,
+"$qt": 3,
+"$windows": 2,
+"$none": 1,
+"otherwise": 6,
+"merror": 57,
+"defmacro": 8,
+"axi": 1,
+"update-range": 5,
+"update-ranges-2d": 18,
+"defstruct": 1,
+"str": 3,
+"=": 36,
+"length": 45,
+"concatenate": 4,
+"subseq": 3,
+"defun-checked": 29,
+"arg": 2,
+"joined": 1,
+"$listp": 24,
+"every": 4,
+"rest": 32,
+"cdadr": 7,
+"unless": 5,
+"cond": 42,
+"null": 18,
+"t": 38,
+"make-obj-title": 31,
+"hex-to-rgb": 39,
+"axes-to-plot": 23,
+"map": 43,
+"$float": 155,
+"y": 2,
+"second": 98,
+"$tree_reduce": 18,
+"cons": 33,
+"make-gr-object": 25,
+"list": 88,
+"make-array": 44,
+"*": 70,
+"flatten": 3,
+"ps": 2,
+"pt": 2,
+"xmax": 15,
+"ymin": 16,
+"ymax": 15,
+"pos": 2,
+"dim": 2,
+"array-dimensions": 3,
+"car": 36,
+"cadr": 32,
+"aref": 94,
+"transform-point": 12,
+"check-extremes-x": 10,
+"check-extremes-y": 12,
+"incf": 56,
+"points-command": 3,
+"arg1": 12,
+"arg2": 5,
+"first": 101,
+"cdaddr": 3,
+"transform-lists": 6,
+"multiple-value-setq": 2,
+"extrema-over-finite-floats-list": 2,
+"mapcan": 8,
+"arrayp": 1,
+"points-array-2d": 1,
+"points-array-1d": 1,
+"points-list": 1,
+"pal": 1,
+"arg3": 1,
+"pts": 4,
+"check-enhanced3d-model": 8,
+"third": 6,
+"funcall": 41,
+"mapcar": 2,
+"update-ranges-3d": 10,
+"points3d-command": 1,
+"pltcmd": 1,
+"+": 75,
+"append": 14,
+"$length": 21,
+"let*": 18,
+"y1": 7,
+"caddr": 26,
+"x2": 7,
+"y2": 7,
+"x3": 5,
+"y3": 5,
+"grobj": 5,
+"polygon": 3,
+"gr-object-name": 9,
+"x4": 3,
+"y4": 3,
+"xc": 1,
+"fyc": 1,
+"fa": 1,
+"fb": 1,
+"fang1": 1,
+"fang2": 1,
+"nticks": 1,
+"result": 3,
+"notevery": 2,
+"floatp": 7,
+"<=": 2,
+"min": 7,
+"max": 6,
+"/": 91,
+"-": 56,
+"cos": 2,
+"sin": 2,
+">=": 6,
+"return": 1,
+"yold": 1,
+"string": 1,
+"with-output-to-string": 1,
+"out": 1,
+"search": 1,
+"char=": 1,
+"write-string": 2,
+"&rest": 5,
+"is2d": 1,
+"xx": 4,
+"dolist": 13,
+"k": 6,
+"$second": 9,
+"$third": 4,
+"replace-substring": 1,
+"$first": 7,
+"$fourth": 1,
+"$center": 1,
+"$left": 1,
+"$right": 1,
+"$horizontal": 1,
+"$vertical": 1,
+"count": 9,
+"yo": 2,
+"dx": 3,
+"dy": 3,
+"/=": 5,
+"apply": 14,
+"$filled": 2,
+"$empty": 2,
+"$nofilled": 2,
+"zo": 1,
+"cadddr": 11,
+"dz": 1,
+"fcn": 2,
+"depth": 1,
+"$numer": 6,
+"x-step": 1,
+"*plot-realpart*": 5,
+"coerce-float-fun": 16,
+"log": 2,
+"flet": 2,
+"dotimes": 2,
+"1+": 45,
+"push": 8,
+"fun": 3,
+"nreverse": 3,
+"do": 16,
+"x-mid": 1,
+"cdr": 20,
+"cddr": 8,
+"x-end": 1,
+"y-start": 1,
+"y-mid": 1,
+"y-end": 1,
+"item": 2,
+"while": 3,
+"numberp": 3,
+"exp": 4,
+"xold": 1,
+"fcn2": 1,
+"coord": 1,
+"ineq": 1,
+"ny": 2,
+"err": 1,
+"xarr": 1,
+"yarr": 1,
+"barr": 1,
+"subsetp": 8,
+"$listofvars": 15,
+"like": 8,
+"labels": 1,
+"bipart": 31,
+"xx1": 1,
+"ym": 1,
+"b1": 2,
+"b2": 2,
+"b3": 2,
+"b4": 2,
+"build-polygon": 13,
+"make-list": 3,
+"endp": 1,
+"list*": 1,
+"x-elements": 2,
+"i": 2,
+"expr": 6,
+"ydelta": 3,
+"epsilon": 1,
+"j": 1,
+"points": 1,
+"point2": 1,
+"x1": 1,
+"coerce": 4,
+"nconc": 1,
+"contains-zeros": 2,
+"draw-print-segment": 1,
+"imp-pl-prepare-factor": 2,
+"$plot_options": 1,
+"m-": 1,
+"$rhs": 18,
+"$lhs": 6,
+"ip-grid": 1,
+"ip-grid-in": 1,
+"xdelta": 1,
+"sample": 1,
+"ssample": 1,
+"imp-pl-prepare-expr": 1,
+"sample-data": 2,
+"xxmax": 1,
+"yymin": 1,
+"yymax": 1,
+"draw-print-square": 1,
+"y-elements": 1,
+"loop-finish": 3,
+"zmin": 7,
+"zmax": 7,
+"grouping": 1,
+"update-enhanced3d-expression": 5,
+"find-triangles": 1,
+"equal": 8,
+"v1": 1,
+"yv_grid": 1,
+"fminval1": 1,
+"fminval2": 1,
+"fmaxval1": 1,
+"fmaxval2": 1,
+"epsx": 1,
+"epsy": 1,
+"uu": 1,
+"yy": 2,
+"vv": 1,
+"zz": 2,
+"nx": 1,
+"check-extremes-z": 6,
+"mat": 2,
+"fy0": 2,
+"fwidth": 2,
+"fheight": 2,
+"yi": 3,
+"1-": 2,
+"cdar": 4,
+"print": 2,
+"elevation_grid": 1,
+"r": 2,
+"c": 1,
+"z1": 2,
+"z2": 2,
+"z3": 2,
+"mesh": 2,
+"z4": 1,
+"xfun": 4,
+"tmin": 3,
+"tmax": 3,
+"tt": 3,
+"eps": 2,
+"radius": 2,
+"declare": 2,
+"notinline": 2,
+"$append": 3,
+"vgrid": 2,
+"umin": 1,
+"umax": 1,
+"vmin": 1,
+"vmax": 2,
+"ueps": 1,
+"veps": 2,
+"nu": 1,
+"nv": 1,
+"ex": 1,
+"teps": 1,
+"check-tube-extreme": 2,
+"sqrt": 2,
+"cadadr": 1,
+"counter": 2,
+"nth": 4,
+"count1": 1,
+"count2": 1,
+"make-hash-table": 2,
+"gethash": 62,
+"largs": 1,
+"explicit": 1,
+"consp": 4,
+"caar": 3,
+"caaadr": 1,
+"member": 6,
+"args": 2,
+"ini-gr-options": 2,
+"ini-local-option-variables": 2,
+"user-defaults": 3,
+"resolve-suggestions": 2,
+"listify-arguments": 3,
+"update-gr-option": 17,
+"xf": 2,
+"yf": 2,
+"x2i": 1,
+"x2f": 1,
+"y2i": 1,
+"y2f": 1,
+"near-equal": 7,
+"stringp": 2,
+"write-palette-code": 2,
+"zi": 1,
+"zf": 1,
+"$surface": 1,
+"$base": 1,
+"$both": 1,
+"$map": 1,
+"$xy": 1,
+"$xyz": 1,
+"arr": 1,
+"ini-global-options": 1,
+"scenes-list": 1,
+"ncols": 1,
+"$terminal": 1,
+"$columns": 1,
+"$dimensions": 1,
+"$file_name": 1,
+"$gnuplot_file_name": 1,
+"$data_file_name": 1,
+"$delay": 1,
+"$file_bgcolor": 1,
+"$pic_width": 1,
+"$pic_height": 1,
+"$eps_width": 1,
+"$eps_height": 1,
+"$pdf_width": 1,
+"$pdf_height": 1,
+"make-scene-3d": 1,
+"make-scene-2d": 1,
+"plot-temp-file": 2,
+"open": 2,
+"native-namestring": 2,
+"$dumb": 1,
+"round": 52,
+"$dumb_file": 1,
+"$canvas": 2,
+"$png": 2,
+"$pngcairo": 2,
+"$epslatex": 2,
+"$epslatex_standalone": 2,
+"$cairolatex_pdf": 2,
+"$cairolatex_pdf_standalone": 2,
+"$jpg": 2,
+"$gif": 2,
+"$svg": 2,
+"$tikz": 2,
+"$tikz_standalone": 2,
+"$animated_gif": 1,
+"$aquaterm": 2,
+"$x11": 1,
+"mtell": 2,
+"ceiling": 2,
+"alloc": 1,
+"reverse": 3,
+"nilcounter": 1,
+"scn": 1,
+"thisalloc": 1,
+"fourth": 1,
+"mod": 1,
+"floor": 1,
+"obj": 1,
+"pop": 1,
+"gr-object-groups": 1,
+"gr-object-points": 1,
+"glis": 1,
+"ncol": 1,
+"l": 1,
+"m": 1,
+"cadar": 1,
+"non-numeric-region": 2,
+"finite-real-p": 2,
+"write-subarray": 3,
+"close": 3,
+"$system": 2,
+"check-gnuplot-process": 1,
+"num": 1,
+"$sconcat": 1,
+"$op": 1,
+"$eps": 1,
+"$eps_color": 1,
+"$pdf": 1,
+"$pdfcairo": 1,
+"integerp": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 32,
+"text": "($put '$gnuplot 1 '$version)"
+},
+{
+"head": "defstruct",
+"line": 148,
+"text": "(defstruct gr-object name command groups points)"
+},
+{
+"head": "defun-checked",
+"line": 175,
+"text": "(defun-checked errors (arg) (let ((etype (get-option '$error_type)) (joined (get-option '$points_joined)) element-size pts pltcmd grouping xmin xmax ymin ymax with) (if (and ($listp arg) (every #'$lis"
+},
+{
+"head": "defun-checked",
+"line": 433,
+"text": "(defun-checked points (arg1 &optional (arg2 nil)) (if (arrayp arg1) (if (= (length (array-dimensions arg1)) 2) (points-array-2d arg1) (points-array-1d arg1 arg2)) (points-list arg1 arg2)))"
+},
+{
+"head": "defun-checked",
+"line": 498,
+"text": "(defun-checked points3d (arg1 &optional (arg2 nil) (arg3 nil)) (let (pts x y z xmin xmax ymin ymax zmin zmax ncols col) (check-enhanced3d-model \"points\" '(0 1 3)) (cond (($listp arg1) (cond ((and (eve"
+},
+{
+"head": "defun-checked",
+"line": 619,
+"text": "(defun-checked polygon (arg1 &optional (arg2 nil)) (if (and (get-option '$transparent) (not (get-option '$border))) (merror \"draw (polygon): transparent is true and border is false; this is not consis"
+},
+{
+"head": "defun-checked",
+"line": 712,
+"text": "(defun-checked triangle (arg1 arg2 arg3) (if (or (not ($listp arg1)) (not (= ($length arg1) 2)) (not ($listp arg2)) (not (= ($length arg2) 2)) (not ($listp arg3)) (not (= ($length arg3) 2))) (merror \""
+},
+{
+"head": "defun-checked",
+"line": 753,
+"text": "(defun-checked quadrilateral (arg1 arg2 arg3 arg4) (if (or (not ($listp arg1)) (not (= ($length arg1) 2)) (not ($listp arg2)) (not (= ($length arg2) 2)) (not ($listp arg3)) (not (= ($length arg3) 2)) "
+},
+{
+"head": "defun-checked",
+"line": 800,
+"text": "(defun-checked rectangle (arg1 arg2) (if (or (not ($listp arg1)) (not (= ($length arg1) 2)) (not ($listp arg2)) (not (= ($length arg2) 2))) (merror \"draw2d (rectangle): vertices are not correct\")) (le"
+},
+{
+"head": "defun-checked",
+"line": 841,
+"text": "(defun-checked ellipse (xc yc a b ang1 ang2) (if (and (get-option '$transparent) (not (get-option '$border))) (merror \"draw2d (ellipse): transparent is true and border is false; this is not consistent"
+},
+{
+"head": "defun-checked",
+"line": 966,
+"text": "(defun-checked label (&rest lab) (let ((n (length lab)) (result nil) is2d) (cond ((= n 0) (merror \"draw (label): no arguments in object labels\")) ((every #'$listp lab) (cond ((every #'(lambda (z) (= 3"
+},
+{
+"head": "defun-checked",
+"line": 1039,
+"text": "(defun-checked bars (&rest boxes) (let ((n (length boxes)) (count -1) (xmin most-positive-double-float) (xmax most-negative-double-float) (ymin most-positive-double-float) (ymax most-negative-double-f"
+},
+{
+"head": "defun-checked",
+"line": 1098,
+"text": "(defun-checked vect (arg1 arg2) (if (or (not ($listp arg1)) (not (= ($length arg1) 2)) (not ($listp arg2)) (not (= ($length arg2) 2))) (merror \"draw (vector): coordinates are not correct\")) (let ((xo "
+},
+{
+"head": "defun-checked",
+"line": 1162,
+"text": "(defun-checked vect3d (arg1 arg2) (if (or (not ($listp arg1)) (not (= ($length arg1) 3)) (not ($listp arg2)) (not (= ($length arg2) 3))) (merror \"draw (vector): coordinates are not correct\")) (let ((x"
+},
+{
+"head": "defun-checked",
+"line": 1235,
+"text": "(defun-checked explicit (fcn var minval maxval) (let* ((nticks (get-option '$nticks)) (depth (get-option '$adapt_depth)) ($numer t) (xmin ($float minval)) (xmax ($float maxval)) (x-step (/ (- xmax xmi"
+},
+{
+"head": "defun-checked",
+"line": 1418,
+"text": "(defun-checked region (ineq x-var x-minval x-maxval y-var y-minval y-maxval) (let* ((nx (get-option '$x_voxel)) (ny (get-option '$y_voxel)) (xmin ($float x-minval)) (xmax ($float x-maxval)) (ymin ($fl"
+},
+{
+"head": "defun-checked",
+"line": 1662,
+"text": "(defun-checked implicit (expr x xmin xmax y ymin ymax) (let* (($numer t) ($plot_options $plot_options) (pts ()) (expr (m- ($rhs expr) ($lhs expr))) (ip-grid (get-option '$ip_grid)) (ip-grid-in (get-op"
+},
+{
+"head": "defun-checked",
+"line": 1750,
+"text": "(defun-checked implicit3d (expr par1 xmin xmax par2 ymin ymax par3 zmin zmax) (let ((xmin ($float xmin)) (xmax ($float xmax)) (ymin ($float ymin)) (ymax ($float ymax)) (zmin ($float zmin)) (zmax ($flo"
+},
+{
+"head": "defun-checked",
+"line": 1829,
+"text": "(defun-checked explicit3d (fcn par1 minval1 maxval1 par2 minval2 maxval2) (let* ((xu_grid (get-option '$xu_grid)) (yv_grid (get-option '$yv_grid)) (fminval1 ($float minval1)) (fminval2 ($float minval2"
+},
+{
+"head": "defun-checked",
+"line": 1933,
+"text": "(defun-checked elevation_grid (mat x0 y0 width height) (let ((fx0 ($float x0)) (fy0 ($float y0)) (fwidth ($float width)) (fheight ($float height)) (xmin most-positive-double-float) (xmax most-negative"
+},
+{
+"head": "defun-checked",
+"line": 2020,
+"text": "(defun-checked mesh (&rest row) (let (result xx yy zz (xmin most-positive-double-float) (xmax most-negative-double-float) (ymin most-positive-double-float) (ymax most-negative-double-float) (zmin most"
+},
+{
+"head": "defun-checked",
+"line": 2095,
+"text": "(defun-checked triangle3d (arg1 arg2 arg3) (if (or (not ($listp arg1)) (not (= ($length arg1) 3)) (not ($listp arg2)) (not (= ($length arg2) 3)) (not ($listp arg3)) (not (= ($length arg3) 3))) (merror"
+},
+{
+"head": "defun-checked",
+"line": 2138,
+"text": "(defun-checked quadrilateral3d (arg1 arg2 arg3 arg4) (if (or (not ($listp arg1)) (not (= ($length arg1) 3)) (not ($listp arg2)) (not (= ($length arg2) 3)) (not ($listp arg3)) (not (= ($length arg3) 3)"
+},
+{
+"head": "defun-checked",
+"line": 2188,
+"text": "(defun-checked parametric (xfun yfun par parmin parmax) (let* ((nticks (get-option '$nticks)) ($numer t) (tmin ($float parmin)) (tmax ($float parmax)) (xmin most-positive-double-float) (xmax most-nega"
+},
+{
+"head": "defun-checked",
+"line": 2251,
+"text": "(defun-checked polar (radius ang minang maxang) (let ((grobj (parametric `((mtimes simp) ,radius ((%cos simp) ,ang)) `((mtimes simp) ,radius ((%sin simp) ,ang)) ang minang maxang))) (setf (gr-object-n"
+},
+{
+"head": "defun-checked",
+"line": 2278,
+"text": "(defun-checked spherical (radius azi minazi maxazi zen minzen maxzen) (declare (notinline parametric_surface)) (let ((grobj (parametric_surface `((mtimes simp) ,radius ((%sin simp) ,zen) ((%cos simp) "
+},
+{
+"head": "defun-checked",
+"line": 2310,
+"text": "(defun-checked cylindrical (r z minz maxz azi minazi maxazi) (declare (notinline parametric_surface)) (let ((grobj (parametric_surface `((mtimes simp) ,r ((%cos simp) ,azi)) `((mtimes simp) ,r ((%sin "
+},
+{
+"head": "defun-checked",
+"line": 2340,
+"text": "(defun-checked parametric3d (xfun yfun zfun par1 parmin parmax) (let* ((nticks (get-option '$nticks)) ($numer t) (tmin ($float parmin)) (tmax ($float parmax)) (xmin most-positive-double-float) (xmax m"
+},
+{
+"head": "defun-checked",
+"line": 2420,
+"text": "(defun-checked parametric_surface (xfun yfun zfun par1 par1min par1max par2 par2min par2max) (let* ((ugrid (get-option '$xu_grid)) (vgrid (get-option '$yv_grid)) ($numer t) (umin ($float par1min)) (um"
+},
+{
+"head": "defun-checked",
+"line": 2527,
+"text": "(defun-checked tube (xfun yfun zfun rad par1 parmin parmax) (let* ((ugrid (get-option '$xu_grid)) (vgrid (get-option '$yv_grid)) ($numer t) (tmin ($float parmin)) (tmax ($float parmax)) (vmax 6.283185"
+},
+{
+"head": "defun-checked",
+"line": 2682,
+"text": "(defun-checked image (mat x0 y0 width height) (let ((fx0 ($float x0)) (fy0 ($float y0)) (fwidth ($float width)) (fheight ($float height)) result nrows ncols dx dy n) (cond (($matrixp mat) (setf nrows "
+},
+{
+"head": "setf",
+"line": 2806,
+"text": "(setf (gethash '$points *2d-graphic-objects*) 'points (gethash '$errors *2d-graphic-objects*) 'errors (gethash '$polygon *2d-graphic-objects*) 'polygon (gethash '$ellipse *2d-graphic-objects*) 'ellips"
+},
+{
+"head": "setf",
+"line": 3034,
+"text": "(setf (gethash '$points *3d-graphic-objects*) 'points3d (gethash '$elevation_grid *3d-graphic-objects*) 'elevation_grid (gethash '$mesh *3d-graphic-objects*) 'mesh (gethash '$triangle *3d-graphic-obje"
+}
+],
+"lines": 3777
+},
+{
+"file": "../share/draw/vtk",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "get-appenddata-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 65,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-extract-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 68,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-outline-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 71,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-outlineactor-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 74,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-textproperty-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 77,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-cubeaxesactor2d-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 80,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-camera-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 83,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-renderer-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 86,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-source-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 89,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-mapper-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 92,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-actor-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 95,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-labelactor-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 98,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-trans-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 101,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-filter-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 104,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-floatarray-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 107,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-data-file-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 110,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-points-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 113,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-glyphpoints-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 116,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-polydata-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 119,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-cellarray-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 122,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-polydatamapper-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 125,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-solidsource-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 128,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-triangle-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 131,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-label-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 134,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-chart-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 137,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-table-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 140,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-arrayx-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 143,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-arrayy-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 146,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-isolines-name",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 149,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "scenebounds",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 152,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkappendpolydata-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"an",
+"fe",
+"fl"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 179,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkoutlinefilter-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"on",
+"an"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 219,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkpolydatamapper-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mn",
+"fn",
+"con"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 224,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkpolydatamapper-isoline-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mn",
+"sn",
+"fn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 232,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkextractpolydatageometry-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"en",
+"cell",
+"poin"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 238,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtktextproperty-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"tn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 248,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkcubeaxesactor2d-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"can",
+"adn",
+"tn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 253,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkrenderer3d-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"rn",
+"an",
+"on",
+"bgcol",
+"cn",
+"rv",
+"rh",
+"fa",
+"fl"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 266,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkrenderer2d-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cn",
+"rn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 294,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkchartxy-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 343,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkcellarray-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cn",
+"pn",
+"celldim",
+"ind"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 361,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkfloatarray-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fan",
+"sn",
+"values"
+],
+"opt": [
+[
+"addarr",
+{
+"k": "t"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 380,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkglyph3d-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"sn",
+"pdn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 398,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkpoints-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pn",
+"sn",
+"x",
+"y",
+"z"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 405,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtktransform-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"tn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 419,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtktransformfilter-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"sn",
+"tn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 422,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtktransformpolydatafilter-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"sn",
+"tn",
+"ds"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 428,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkactor-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"an",
+"mn",
+"col",
+"op",
+"lw",
+"ws"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 436,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkactor-isoline-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"an",
+"lw"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 455,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkactor-glyph-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"an",
+"col",
+"op"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 462,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtktubefilter-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"tn",
+"fn",
+"lt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 473,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkcontourfilter-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"fn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 481,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtkrendererwindow-code",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ns"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 500,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk-terminal",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 540,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lookup-table-exists",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pal"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 622,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "color-transform-function",
+"pkg": "maxima",
+"ll": {
+"req": [
+"c",
+"n",
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 631,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "check-lookup-table",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 689,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "build-surface-grid",
+"pkg": "maxima",
+"ll": {
+"req": [
+"nx",
+"ny"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 766,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-cone",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cen",
+"rad",
+"hei",
+"dir"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 782,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "rotate",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"y",
+"z",
+"a",
+"b",
+"c",
+"u",
+"v",
+"w",
+"rad"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 845,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-prism",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cen",
+"n",
+"edgp",
+"hei",
+"dir"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 863,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-cylinder",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cen",
+"rad",
+"hei",
+"dir"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 962,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-cube",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xlen",
+"ylen",
+"zlen",
+"cen"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1047,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-sphere",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cen",
+"rad"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1096,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-parallelogram",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ori",
+"p1",
+"p2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1139,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-triangle",
+"pkg": "maxima",
+"ll": {
+"req": [
+"v1",
+"v2",
+"v3"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1201,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-vector",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg1",
+"arg2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1263,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-points",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1333,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk2d-points",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg1"
+],
+"opt": [
+[
+"arg2",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1619,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-parametric",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xfun",
+"yfun",
+"zfun",
+"par1",
+"parmin",
+"parmax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1760,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk2d-parametric",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xfun",
+"yfun",
+"par",
+"parmin",
+"parmax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1857,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk2d-polar",
+"pkg": "maxima",
+"ll": {
+"req": [
+"radius",
+"ang",
+"minang",
+"maxang"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1935,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-parametric_surface",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xfun",
+"yfun",
+"zfun",
+"par1",
+"par1min",
+"par1max",
+"par2",
+"par2min",
+"par2max"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1944,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-spherical",
+"pkg": "maxima",
+"ll": {
+"req": [
+"radius",
+"azi",
+"minazi",
+"maxazi",
+"zen",
+"minzen",
+"maxzen"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2066,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-cylindrical",
+"pkg": "maxima",
+"ll": {
+"req": [
+"r",
+"z",
+"minz",
+"maxz",
+"azi",
+"minazi",
+"maxazi"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2078,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-explicit",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fcn",
+"par1",
+"minval1",
+"maxval1",
+"par2",
+"minval2",
+"maxval2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2090,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk2d-explicit",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fcn",
+"var",
+"minval",
+"maxval"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2214,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-elevation_grid",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"x0",
+"y0",
+"width",
+"height"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2356,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "build-surface-triangular-grid",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ntri"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2467,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-implicit",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr",
+"par1",
+"xmin",
+"xmax",
+"par2",
+"ymin",
+"ymax",
+"par3",
+"zmin",
+"zmax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2475,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-label",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "lab",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2578,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "vtk3d-tube",
+"pkg": "maxima",
+"ll": {
+"req": [
+"xfun",
+"yfun",
+"zfun",
+"rad",
+"par",
+"parmin",
+"parmax"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2649,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-vtk-scene-2d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2852,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-vtk-scene-3d",
+"pkg": "maxima",
+"ll": {
+"req": [
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2941,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "draw_vtk",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3047,
+"nvalues": 0
+}
+],
+"macros": [
+{
+"name": "vtk-check-tube-extreme",
+"ll": "(ex cx cy cz)",
+"line": 2629,
+"simple": true,
+"pll": {
+"req": [
+"ex",
+"cx",
+"cy",
+"cz"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+}
+],
+"vars": [
+{
+"kind": "defvar",
+"name": "*vtk-appenddata-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 31
+},
+{
+"kind": "defvar",
+"name": "*vtk-extract-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 32
+},
+{
+"kind": "defvar",
+"name": "*vtk-outline-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 33
+},
+{
+"kind": "defvar",
+"name": "*vtk-polydatamapper-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 34
+},
+{
+"kind": "defvar",
+"name": "*vtk-outlineactor-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 35
+},
+{
+"kind": "defvar",
+"name": "*vtk-textproperty-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 36
+},
+{
+"kind": "defvar",
+"name": "*vtk-cubeaxesactor2d-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 37
+},
+{
+"kind": "defvar",
+"name": "*vtk-camera-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 38
+},
+{
+"kind": "defvar",
+"name": "*vtk-renderer-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 39
+},
+{
+"kind": "defvar",
+"name": "*vtk-source-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 40
+},
+{
+"kind": "defvar",
+"name": "*vtk-mapper-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 41
+},
+{
+"kind": "defvar",
+"name": "*vtk-actor-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 42
+},
+{
+"kind": "defvar",
+"name": "*vtk-labelactor-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 43
+},
+{
+"kind": "defvar",
+"name": "*vtk-trans-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 44
+},
+{
+"kind": "defvar",
+"name": "*vtk-filter-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 45
+},
+{
+"kind": "defvar",
+"name": "*vtk-floatarray-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 46
+},
+{
+"kind": "defvar",
+"name": "*vtk-data-file-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 47
+},
+{
+"kind": "defvar",
+"name": "*vtk-points-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 48
+},
+{
+"kind": "defvar",
+"name": "*vtk-glyphpoints-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 49
+},
+{
+"kind": "defvar",
+"name": "*vtk-polydata-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 50
+},
+{
+"kind": "defvar",
+"name": "*vtk-cellarray-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 51
+},
+{
+"kind": "defvar",
+"name": "*vtk-solidsource-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 52
+},
+{
+"kind": "defvar",
+"name": "*vtk-triangle-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 53
+},
+{
+"kind": "defvar",
+"name": "*vtk-label-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 54
+},
+{
+"kind": "defvar",
+"name": "*vtk-chart-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 55
+},
+{
+"kind": "defvar",
+"name": "*vtk-table-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 56
+},
+{
+"kind": "defvar",
+"name": "*vtk-arrayx-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 57
+},
+{
+"kind": "defvar",
+"name": "*vtk-arrayy-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 58
+},
+{
+"kind": "defvar",
+"name": "*vtk-2dkey-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 59
+},
+{
+"kind": "defvar",
+"name": "*vtk-isolines-counter*",
+"init": {
+"k": "int",
+"v": "0"
+},
+"line": 60
+},
+{
+"kind": "defvar",
+"name": "*lookup-tables*",
+"init": {
+"k": "nil"
+},
+"line": 61
+},
+{
+"kind": "defvar",
+"name": "*unitscale-already-defined*",
+"init": {
+"k": "nil"
+},
+"line": 62
+},
+{
+"kind": "defparameter",
+"name": "*enhanced3d-or-isolines-code*",
+"init": {
+"k": "expr",
+"v": "(make-hash-table)"
+},
+"line": 63
+},
+{
+"kind": "defvar",
+"name": "*vtk2d-graphic-objects*",
+"init": {
+"k": "expr",
+"v": "(make-hash-table)"
+},
+"line": 2844
+},
+{
+"kind": "defvar",
+"name": "*vtk3d-graphic-objects*",
+"init": {
+"k": "expr",
+"v": "(make-hash-table)"
+},
+"line": 2919
+}
+],
+"specials": [
+"*enhanced3d-or-isolines-code*",
+"*lookup-tables*",
+"*unitscale-already-defined*",
+"*vtk-2dkey-counter*",
+"*vtk-actor-counter*",
+"*vtk-appenddata-counter*",
+"*vtk-arrayx-counter*",
+"*vtk-arrayy-counter*",
+"*vtk-camera-counter*",
+"*vtk-cellarray-counter*",
+"*vtk-chart-counter*",
+"*vtk-cubeaxesactor2d-counter*",
+"*vtk-data-file-counter*",
+"*vtk-extract-counter*",
+"*vtk-filter-counter*",
+"*vtk-floatarray-counter*",
+"*vtk-glyphpoints-counter*",
+"*vtk-isolines-counter*",
+"*vtk-label-counter*",
+"*vtk-labelactor-counter*",
+"*vtk-mapper-counter*",
+"*vtk-outline-counter*",
+"*vtk-outlineactor-counter*",
+"*vtk-points-counter*",
+"*vtk-polydata-counter*",
+"*vtk-polydatamapper-counter*",
+"*vtk-renderer-counter*",
+"*vtk-solidsource-counter*",
+"*vtk-source-counter*",
+"*vtk-table-counter*",
+"*vtk-textproperty-counter*",
+"*vtk-trans-counter*",
+"*vtk-triangle-counter*",
+"*vtk2d-graphic-objects*",
+"*vtk3d-graphic-objects*"
+],
+"symbols": [
+"$acos",
+"$adapt_depth",
+"$allocation",
+"$append",
+"$asin",
+"$atan",
+"$axis_3d",
+"$background_color",
+"$capping",
+"$color",
+"$columns",
+"$cone",
+"$cos",
+"$cube",
+"$cylinder",
+"$cylindrical",
+"$dimensions",
+"$done",
+"$draw_realpart",
+"$draw_renderer",
+"$elevation_grid",
+"$enhanced3d",
+"$eps",
+"$eps_color",
+"$explicit",
+"$file_name",
+"$fill_color",
+"$filled_func",
+"$first",
+"$float",
+"$font_size",
+"$fourth",
+"$gnuplot_file_name",
+"$gr2d",
+"$gr3d",
+"$gray",
+"$grid",
+"$head_angle",
+"$head_length",
+"$implicit",
+"$impulses",
+"$isolines",
+"$isolines_color",
+"$isolines_levels",
+"$jpg",
+"$key",
+"$key_pos",
+"$label",
+"$label_alignment",
+"$label_orientation",
+"$length",
+"$lhs",
+"$line_type",
+"$line_width",
+"$listofvars",
+"$listp",
+"$logx",
+"$logy",
+"$matrixp",
+"$none",
+"$nticks",
+"$numer",
+"$obj",
+"$op",
+"$opacity",
+"$palette",
+"$parallelogram",
+"$parametric",
+"$parametric_surface",
+"$ply",
+"$png",
+"$pngcairo",
+"$pnm",
+"$point_size",
+"$point_type",
+"$points",
+"$points_joined",
+"$polar",
+"$prism",
+"$rhs",
+"$screen",
+"$second",
+"$sin",
+"$sphere",
+"$spherical",
+"$split",
+"$stl",
+"$surface_hide",
+"$system",
+"$terminal",
+"$third",
+"$tiff",
+"$transform",
+"$triangle",
+"$tube",
+"$unit_vectors",
+"$vector",
+"$view",
+"$vrml",
+"$vtk",
+"$vtk6",
+"$wired_surface",
+"$x_voxel",
+"$xlabel",
+"$xrange",
+"$xu_grid",
+"$y_voxel",
+"$ylabel",
+"$yrange",
+"$yv_grid",
+"$z_voxel",
+"$zlabel",
+"$zrange",
+"%cos",
+"%sin",
+"*draw-enhanced3d-fun*",
+"*draw-enhanced3d-type*",
+"*draw-transform-dimensions*",
+"*draw-transform-f1*",
+"*draw-transform-f2*",
+"*draw-transform-f3*",
+"<=",
+"=",
+">",
+"abs",
+"and",
+"aref",
+"case",
+"cdr",
+"character",
+"count",
+"cxx",
+"cyy",
+"czz",
+"done",
+"dotimes",
+"eq",
+"equal",
+"first",
+"floatp",
+"flonum",
+"fun",
+"funcall",
+"get-option",
+"incf",
+"integerp",
+"k",
+"lambda",
+"length",
+"let",
+"like",
+"list",
+"listp",
+"make-vtk-scene-2d",
+"make-vtk-scene-3d",
+"mlist",
+"mtimes",
+"nil",
+"nth",
+"numberp",
+"or",
+"rest",
+"scalars",
+"scalars-count",
+"second",
+"setf",
+"simp",
+"string",
+"t",
+"third",
+"tt",
+"vgrid",
+"vtk2d-explicit",
+"vtk2d-parametric",
+"vtk2d-points",
+"vtk2d-polar",
+"vtk3d-cone",
+"vtk3d-cube",
+"vtk3d-cylinder",
+"vtk3d-cylindrical",
+"vtk3d-elevation_grid",
+"vtk3d-explicit",
+"vtk3d-implicit",
+"vtk3d-label",
+"vtk3d-parallelogram",
+"vtk3d-parametric",
+"vtk3d-parametric_surface",
+"vtk3d-points",
+"vtk3d-prism",
+"vtk3d-sphere",
+"vtk3d-spherical",
+"vtk3d-triangle",
+"vtk3d-tube",
+"vtk3d-vector",
+"when",
+"x",
+"y",
+"z"
+],
+"calls": {
+"defvar": 34,
+"defparameter": 1,
+"make-hash-table": 3,
+"defun": 85,
+"format": 514,
+"incf": 71,
+"let": 49,
+"yrange": 2,
+"get-option": 119,
+"zrange": 1,
+"setf": 335,
+"concatenate": 39,
+"if": 31,
+"car": 26,
+"cadr": 37,
+"an": 4,
+"when": 108,
+">": 43,
+"hash-table-count": 1,
+"loop": 32,
+"gethash": 35,
+"remhash": 1,
+"on": 1,
+"mn": 2,
+"en": 1,
+"tn": 3,
+"can": 1,
+"rn": 1,
+"let*": 9,
+"rvk": 1,
+"*": 170,
+"rhk": 1,
+"x": 6,
+"$sin": 7,
+"y": 2,
+"-": 64,
+"$cos": 8,
+"z": 2,
+"colist": 2,
+"hex-to-numeric-list": 6,
+"str": 17,
+"make-array": 78,
+"first": 28,
+"second": 27,
+"third": 15,
+"cn": 3,
+"xrange": 1,
+"rest": 39,
+"mfunction-call": 1,
+"cond": 23,
+"case": 26,
+"otherwise": 11,
+"length": 18,
+"fan": 1,
+"addarr": 1,
+"aref": 84,
+"fn": 3,
+"pn": 1,
+"not": 54,
+"null": 7,
+"in": 1,
+"contours": 1,
+"subseq": 2,
+"t": 17,
+"ns": 1,
+"ncol": 1,
+"alloc": 1,
+"reverse": 3,
+"nilcounter": 1,
+"ceiling": 2,
+"/": 48,
+"count": 12,
+"cdr": 8,
+"thisalloc": 1,
+"+": 80,
+"fourth": 1,
+"mod": 1,
+"filename": 1,
+"offscreenterms": 1,
+"extension": 1,
+"classformat": 1,
+"$jpg": 1,
+"$tiff": 1,
+"$pnm": 1,
+"merror": 46,
+"pal": 1,
+"pos": 1,
+"position": 1,
+"equal": 4,
+"1+": 5,
+"c": 2,
+"pf": 1,
+"<": 13,
+"lut": 1,
+"append": 7,
+"list": 39,
+"color-transform-function": 3,
+"caddr": 23,
+"triplete": 2,
+"n": 2,
+"with-output-to-string": 2,
+"stream": 2,
+"dotimes": 9,
+"k": 7,
+"nth": 2,
+"cadddr": 18,
+"nx": 3,
+"f": 1,
+"1-": 4,
+"cons": 4,
+"cen": 4,
+"opacity": 15,
+"linewidth": 17,
+"wiredsurface": 15,
+"capping": 4,
+"source-name": 14,
+"get-source-name": 15,
+"mapper-name": 14,
+"get-mapper-name": 22,
+"actor-name": 14,
+"get-actor-name": 22,
+"trans-name": 14,
+"get-trans-name": 15,
+"filter-name": 14,
+"get-filter-name": 22,
+"fcen": 5,
+"$float": 86,
+"fhei": 3,
+"frad": 3,
+"fdir": 3,
+"or": 23,
+"$listp": 11,
+"=": 32,
+"$length": 12,
+"every": 9,
+"floatp": 21,
+"<=": 9,
+"vtktransform-code": 16,
+"vtktransformpolydatafilter-code": 18,
+"vtkpolydatamapper-code": 21,
+"vtkactor-code": 17,
+"vtkextractpolydatageometry-code": 22,
+"get-extract-name": 22,
+"cos": 2,
+"expt": 6,
+"points-name": 9,
+"get-points-name": 10,
+"cellarray-name": 7,
+"get-cellarray-name": 10,
+"fedgp": 1,
+"ang": 1,
+"xcount": 1,
+"ycount": 1,
+"zcount": 1,
+"sqrt": 7,
+"rotate": 1,
+"vtkpoints-code": 15,
+"vtkcellarray-code": 14,
+"build-surface-grid": 5,
+"$acos": 1,
+"$asin": 3,
+"$atan": 2,
+"xlen": 1,
+"fxlen": 1,
+"fylen": 1,
+"fzlen": 1,
+"ori": 1,
+"fori": 1,
+"map": 31,
+"fp1": 1,
+"fp2": 1,
+"notevery": 3,
+"transform-point": 13,
+"and": 7,
+"v1": 1,
+"triangle-name": 1,
+"get-triangle-name": 1,
+"polydata-name": 1,
+"get-polydata-name": 3,
+"fv1": 1,
+"fv2": 1,
+"fv3": 1,
+"arg1": 2,
+"head-length": 1,
+"head-angle": 1,
+"line-width": 1,
+"unit-vectors": 1,
+"dx": 1,
+"dy": 1,
+"dz": 1,
+"vtktransformfilter-code": 1,
+"arg": 1,
+"point-type": 1,
+"point-size": 1,
+"line-type": 2,
+"color": 10,
+"floatarray-name": 2,
+"get-floatarray-name": 12,
+"tmp": 1,
+"mapcar": 3,
+"output-string": 1,
+"minscalar": 1,
+"maxscalar": 1,
+"transform-lists": 2,
+"check-enhanced3d-model": 7,
+"funcall": 45,
+"vtkfloatarray-code": 12,
+"yy": 4,
+"zz": 4,
+"ind": 1,
+"vtktubefilter-code": 3,
+">=": 4,
+"get-glyphpoints-name": 1,
+"vtkglyph3d-code": 2,
+"get-solidsource-name": 1,
+"vtkactor-glyph-code": 1,
+"arg2": 1,
+"pointtype": 1,
+"pointsize": 1,
+"linetype": 3,
+"key": 3,
+"arrayx-name": 3,
+"get-arrayx-name": 4,
+"arrayy-name": 3,
+"get-arrayy-name": 4,
+"table-name": 3,
+"get-table-name": 4,
+"string=": 5,
+"string-trim": 5,
+"cdadr": 4,
+"cdaddr": 1,
+"round": 15,
+"tbl": 1,
+"xfun": 4,
+"$numer": 5,
+"tmin": 3,
+"tmax": 3,
+"tt": 2,
+"eps": 2,
+"update-enhanced3d-expression": 5,
+"setq": 23,
+"coerce-float-fun": 14,
+"*plot-realpart*": 2,
+"subsetp": 2,
+"$listofvars": 6,
+"like": 2,
+"loop-finish": 1,
+"radius": 2,
+"vtk2d-parametric": 1,
+"yv_grid": 2,
+"umin": 1,
+"umax": 1,
+"vmin": 1,
+"vmax": 2,
+"epsu": 1,
+"epsv": 1,
+"scalars2-count": 4,
+"scalars-count": 4,
+"ny": 2,
+"scalars": 5,
+"scalars2": 5,
+"xx": 3,
+"uu": 2,
+"vv": 2,
+"check-isolines-model": 5,
+"update-isolines-expression": 4,
+"vtkcontourfilter-code": 5,
+"vtkpolydatamapper-isoline-code": 5,
+"vtkactor-isoline-code": 5,
+"vtk3d-parametric_surface": 2,
+"r": 1,
+"fcn": 2,
+"fminval1": 1,
+"fminval2": 1,
+"fmaxval1": 1,
+"fmaxval2": 1,
+"epsx": 1,
+"epsy": 1,
+"adaptdepth": 1,
+"fillcolor": 1,
+"xmin": 1,
+"xmax": 1,
+"x-step": 1,
+"log": 2,
+"flet": 1,
+"push": 2,
+"fun": 1,
+"nreverse": 2,
+"do": 4,
+"x-mid": 1,
+"cddr": 8,
+"x-end": 1,
+"y-start": 1,
+"y-mid": 1,
+"y-end": 1,
+"item": 1,
+"while": 1,
+"numberp": 3,
+"eq": 2,
+"exp": 2,
+"xold": 1,
+"col": 1,
+"mat": 1,
+"fy0": 1,
+"fwidth": 1,
+"fheight": 1,
+"xi": 1,
+"yi": 1,
+"$matrixp": 1,
+"cdar": 1,
+"ntri": 1,
+"cont": 1,
+"p": 1,
+"tri": 1,
+"expr": 1,
+"fxmax": 1,
+"fymin": 1,
+"fymax": 1,
+"fzmin": 1,
+"fzmax": 1,
+"transform": 1,
+"find-triangles": 1,
+"build-surface-triangular-grid": 1,
+"&rest": 2,
+"out": 1,
+"dolist": 5,
+"$first": 1,
+"$second": 1,
+"$third": 1,
+"$fourth": 1,
+"get-labelactor-name": 1,
+"get-label-name": 1,
+"get-polydatamapper-name": 2,
+"defmacro": 1,
+"ex": 1,
+"vgrid": 1,
+"teps": 1,
+"veps": 1,
+"nu": 1,
+"nv": 1,
+"$append": 1,
+"vtk-check-tube-extreme": 2,
+"sin": 1,
+"args": 2,
+"chart-name": 1,
+"get-chart-name": 1,
+"renderer-name": 2,
+"get-renderer-name": 2,
+"ini-gr-options": 3,
+"ini-local-option-variables": 3,
+"user-defaults": 3,
+"listify-arguments": 3,
+"$lhs": 6,
+"$allocation": 2,
+"update-allocation": 2,
+"$rhs": 75,
+"$color": 2,
+"update-color": 7,
+"$fill_color": 1,
+"$file_name": 3,
+"update-string": 12,
+"$font_size": 2,
+"update-positive-float": 8,
+"$head_angle": 2,
+"$head_length": 2,
+"$background_color": 3,
+"$dimensions": 3,
+"update-dimensions": 3,
+"$nticks": 2,
+"update-positive-integer": 8,
+"$line_width": 2,
+"$line_type": 2,
+"update-linestyle": 2,
+"$key": 1,
+"$key_pos": 1,
+"update-key_pos": 1,
+"$logx": 1,
+"update-boolean-option": 7,
+"$logy": 1,
+"$filled_func": 1,
+"update-gr-option": 7,
+"$grid": 1,
+"$transform": 2,
+"update-transform": 2,
+"$points_joined": 2,
+"update-pointsjoined": 2,
+"$point_type": 2,
+"update-pointtype": 2,
+"$point_size": 2,
+"update-nonnegative-float": 2,
+"$terminal": 3,
+"update-terminal": 3,
+"$unit_vectors": 2,
+"$xlabel": 2,
+"$ylabel": 2,
+"$xrange": 2,
+"$yrange": 2,
+"apply": 2,
+"vtkchartxy-code": 1,
+"vtkrenderer2d-code": 1,
+"appenddata-name": 1,
+"get-appenddata-name": 1,
+"outline-name": 1,
+"get-outline-name": 1,
+"polydatamapper-name": 1,
+"outlineactor-name": 1,
+"get-outlineactor-name": 1,
+"textproperty-name": 1,
+"get-textproperty-name": 1,
+"cubeaxesactor2d-name": 1,
+"get-cubeaxesactor2d-name": 1,
+"camera-name": 1,
+"get-camera-name": 1,
+"first-actor": 1,
+"first-labelactor": 1,
+"first-extract": 1,
+"first-label": 1,
+"$axis_3d": 1,
+"$capping": 1,
+"update-capping": 1,
+"$isolines_color": 1,
+"$isolines_levels": 1,
+"update-contour-isolines": 1,
+"$enhanced3d": 1,
+"update-enhanced3d": 1,
+"$isolines": 1,
+"update-isolines": 1,
+"$opacity": 1,
+"update-opacity": 1,
+"$palette": 1,
+"update-palette": 1,
+"$view": 1,
+"update-view": 1,
+"$wired_surface": 1,
+"$xu_grid": 1,
+"$yv_grid": 1,
+"$x_voxel": 1,
+"$y_voxel": 1,
+"$z_voxel": 1,
+"$zlabel": 1,
+"$gnuplot_file_name": 1,
+"$surface_hide": 1,
+"$label_alignment": 1,
+"$label_orientation": 1,
+"$zrange": 1,
+"scenebounds": 1,
+"vtkappendpolydata-code": 1,
+"vtkoutlinefilter-code": 1,
+"vtktextproperty-code": 1,
+"vtkcubeaxesactor2d-code": 1,
+"vtkrenderer3d-code": 1,
+"cmdstorage": 1,
+"ini-global-options": 1,
+"$columns": 1,
+"make-vtk-scene-3d": 1,
+"make-vtk-scene-2d": 1,
+"plot-temp-file": 1,
+"getpid": 1,
+"open": 1,
+"eql": 1,
+"scn": 1,
+"vtkrendererwindow-code": 1,
+"vtk-terminal": 1,
+"close": 1,
+"member": 1,
+"$system": 2
+},
+"toplevel": [
+{
+"head": "setf",
+"line": 2847,
+"text": "(setf (gethash '$explicit *vtk2d-graphic-objects*) 'vtk2d-explicit (gethash '$parametric *vtk2d-graphic-objects*) 'vtk2d-parametric (gethash '$points *vtk2d-graphic-objects*) 'vtk2d-points (gethash '$"
+},
+{
+"head": "setf",
+"line": 2922,
+"text": "(setf (gethash '$cone *vtk3d-graphic-objects*) 'vtk3d-cone (gethash '$cylinder *vtk3d-graphic-objects*) 'vtk3d-cylinder (gethash '$cube *vtk3d-graphic-objects*) 'vtk3d-cube (gethash '$prism *vtk3d-gra"
+}
+],
+"lines": 3140
+},
+{
+"file": "../share/draw/picture",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "cut-and-round",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 27,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$make_level_picture",
+"pkg": "maxima",
+"ll": {
+"req": [
+"data"
+],
+"opt": [
+[
+"wi",
+{
+"k": "nil"
+},
+null
+],
+[
+"he",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 48,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$picturep",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 75,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$picture_equalp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pic1",
+"pic2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 96,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$make_rgb_picture",
+"pkg": "maxima",
+"ll": {
+"req": [
+"redlevel",
+"greenlevel",
+"bluelevel"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 111,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$take_channel",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pic",
+"chn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 139,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$negative_picture",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pic"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 167,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$rgb2level",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pic"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 196,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$get_pixel",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pic",
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 229,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "init-readtable",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 278,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "skip-whitespace",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 285,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "extract-r-g-b-bits",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n-bits-per-color-output",
+"n-hex-digits-input",
+"value"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 292,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-colour",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 304,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-charspec",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"cnt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 342,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-color-spec-for-type",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"cnt",
+"hash",
+"type-char"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 348,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-color-spec",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"cnt",
+"hash"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 361,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_xpm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mfspec"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 367,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-xpm-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"image"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 376,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "*xpm-readtable*",
+"init": {
+"k": "nil"
+},
+"line": 275
+}
+],
+"specials": [
+"*xpm-readtable*"
+],
+"symbols": [
+"$args",
+"$blue",
+"$flatten",
+"$float",
+"$get_pixel",
+"$green",
+"$length",
+"$level",
+"$listp",
+"$make_level_picture",
+"$make_rgb_picture",
+"$matrixp",
+"$negative_picture",
+"$picture",
+"$picture_equalp",
+"$picturep",
+"$read_xpm",
+"$red",
+"$rgb",
+"$rgb2level",
+"$rgb_alpha",
+"$take_channel",
+"*parse-stream*",
+"<",
+"<=",
+">",
+">=",
+"and",
+"c",
+"char=",
+"cond",
+"declare",
+"equal",
+"fz",
+"gobble-comment",
+"ignore",
+"integer",
+"integerp",
+"lambda",
+"let",
+"list",
+"meval",
+"mlist",
+"round",
+"s",
+"string",
+"t",
+"values",
+"z",
+"{"
+],
+"calls": {
+"defun": 18,
+"seq": 1,
+"map": 1,
+"data": 2,
+"wi": 1,
+"he": 1,
+"let": 21,
+"width": 2,
+"cond": 3,
+"setf": 25,
+"length": 6,
+"cdadr": 1,
+"cdr": 1,
+"make-array": 6,
+"*": 13,
+"cut-and-round": 2,
+"rest": 2,
+"$flatten": 1,
+"$args": 1,
+"t": 2,
+"merror": 17,
+"list": 11,
+"x": 1,
+"and": 11,
+"consp": 1,
+"eq": 7,
+"caar": 1,
+"=": 6,
+"member": 3,
+"second": 7,
+"integerp": 4,
+"third": 5,
+"fourth": 4,
+"vectorp": 1,
+"fifth": 5,
+"every": 1,
+"pic1": 1,
+"if": 13,
+"$picturep": 9,
+"alike1": 1,
+"redlevel": 1,
+"when": 11,
+"not": 12,
+"equal": 8,
+"cadr": 5,
+"caddr": 4,
+"cadddr": 5,
+"loop": 12,
+"aref": 32,
+"nth": 26,
+"incf": 11,
+"pic": 4,
+"or": 4,
+"let*": 3,
+"height": 1,
+"dim": 1,
+"img": 1,
+"stride": 2,
+"case": 3,
+"$red": 1,
+"$green": 1,
+"$blue": 1,
+"+": 14,
+"arr": 1,
+"copy-seq": 1,
+"/": 2,
+"-": 9,
+"rgb-stride": 1,
+"rgb-array": 1,
+"level-array": 1,
+"round": 1,
+">": 2,
+"<": 2,
+"$level": 1,
+"$rgb": 1,
+"$rgb_alpha": 1,
+"defvar": 1,
+"unless": 1,
+"copy-readtable": 1,
+"set-macro-character": 1,
+"set-syntax-from-char": 1,
+"f": 3,
+"read-char": 5,
+"char=": 2,
+"unread-char": 2,
+"n-bits-per-color-output": 1,
+"r-bits-input": 1,
+"ash": 7,
+"g-bits-input": 1,
+"mod": 2,
+"b-bits-input": 1,
+"r-bits-output": 1,
+"g-bits-output": 1,
+"b-bits-output": 1,
+"a": 1,
+"digit-char-p": 1,
+"push": 1,
+"multiple-value-bind": 1,
+"value": 1,
+"parse-integer": 2,
+"coerce": 1,
+"reverse": 1,
+"extract-r-g-b-bits": 2,
+"otherwise": 1,
+"string=": 2,
+"setq": 5,
+"null": 1,
+"subseq": 1,
+"format": 1,
+"str": 2,
+"with-input-from-string": 3,
+"cs": 1,
+"c": 1,
+"chars": 1,
+"read-charspec": 2,
+"skip-whitespace": 2,
+"char/=": 1,
+"read": 7,
+"gethash": 2,
+"read-color-spec-for-type": 3,
+"mfspec": 1,
+"read-xpm-from-stream": 2,
+"with-open-file": 1,
+"image": 2,
+"init-readtable": 1,
+"string/=": 1,
+"chartab": 1,
+"make-hash-table": 1,
+"cspec": 1,
+"cpp": 1,
+"counter": 1,
+"read-color-spec": 1,
+"progn": 1,
+"stringp": 1,
+"1+": 1,
+"alpha": 1,
+"first": 1
+},
+"toplevel": [],
+"lines": 422
 }
 ]

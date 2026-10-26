@@ -535,6 +535,30 @@ fn share_load_charsets_flatten() -> Unit raise {
 }
 
 ///|
+fn share_load_grcommon() -> Unit raise {
+  init_vars_n_dot_dot_share_draw_grcommon()
+  register_share_grcommon()
+}
+
+///|
+fn share_load_gnuplot() -> Unit raise {
+  init_vars_n_dot_dot_share_draw_gnuplot()
+  register_share_gnuplot()
+}
+
+///|
+fn share_load_vtk() -> Unit raise {
+  init_vars_n_dot_dot_share_draw_vtk()
+  register_share_vtk()
+}
+
+///|
+fn share_load_picture() -> Unit raise {
+  init_vars_n_dot_dot_share_draw_picture()
+  register_share_picture()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
@@ -579,6 +603,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
 /// other Lisp files, keyed like share_module_loader.
 fn share_module_group(key : String) -> Array[String] {
   match key {
+    "draw/draw" => ["draw/grcommon", "draw/gnuplot", "draw/vtk", "draw/picture"]
     "graphs/load-graphs" => ["graphs/graph_core", "graphs/spring_embedding", "graphs/isomorphism", "graphs/matching", "graphs/graph6", "graphs/demoucron", "graphs/dijkstra", "graphs/wiener_index"]
     "linearalgebra/load-linearalgebra-lisp-files" => ["linearalgebra/mring", "linearalgebra/lu", "linearalgebra/linalgcholesky", "linearalgebra/eigens-by-jacobi", "linearalgebra/linalg-extra", "linearalgebra/matrixexp", "linearalgebra/linalg-utilities"]
     "numeric/decfp" => ["numeric/decfp-core"]

@@ -74,3 +74,7 @@ share/contrib/boolsimp/boolsimp
 share/bernstein/bernstein
 share/amatrix/amatrix
 share/algebra/charsets/charsets_flatten
+share/draw/grcommon
+share/draw/gnuplot
+share/draw/vtk
+share/draw/picture
