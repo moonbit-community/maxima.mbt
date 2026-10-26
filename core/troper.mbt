@@ -1,7 +1,9 @@
 // Port of src/troper.lisp: the basic OPERATORS properties translators.
 
 ///|
-let troper__q_cl_signum : Value = sym("cl:signum")
+/// CL:SIGNUM (shadowed in the MAXIMA package by Maxima's SIGNUM); the
+/// reader maps `cl:signum` to this symbol.
+let troper__q_cl_signum : Value = sym("cl::signum")
 
 ///|
 /// DEF%TR MMINUS
@@ -256,6 +258,7 @@ fn troper__tr_float(form : Value) -> Value raise {
 
 ///|
 fn init_troper() -> Unit raise {
+  defun(troper__q_cl_signum, args => signum(arg(args, 0)), name="cl:signum")
   transl__deftr(q_mminus, troper__tr_mminus)
   transl__deftr(q_mplus, troper__tr_mplus)
   transl__deftr(q_mtimes, troper__tr_mtimes)

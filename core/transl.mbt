@@ -18,7 +18,10 @@
 // `transl__deftr` by the file's init function.
 
 ///|
-let transl__q_intl_gettext : Value = sym("intl:gettext")
+/// INTL:GETTEXT as the Lisp reader reads it.
+let transl__q_intl_gettext : Value = lread("intl:gettext") catch {
+  _ => sym("gettext")
+}
 
 ///|
 /// `'x`

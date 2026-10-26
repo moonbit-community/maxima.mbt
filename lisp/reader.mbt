@@ -407,6 +407,14 @@ fn plain_package(p : String) -> Bool {
 /// other packages `p::name` when the port defines such a symbol (see
 /// tools/gen.py:mangle); otherwise the plain name.
 fn package_symbol(p : String, name : String) -> Value {
+  if p == "cl" || p == "common-lisp" {
+    // a CL symbol shadowed by Maxima (e.g. CL:SIGNUM), when the port
+    // defines it as `cl::name`
+    match find_symbol("cl::" + name) {
+      Sym(_) as s => return s
+      _ => ()
+    }
+  }
   if plain_package(p) {
     return sym(name)
   }

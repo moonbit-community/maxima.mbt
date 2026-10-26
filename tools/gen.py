@@ -521,6 +521,21 @@ def main():
             continue
         sym_lines.append("///|\nlet %s : Value = sym(%s)\n" % (q, moon_str(s)))
 
+    # The $- and %-symbols that core (non-share) files mention: the symbols
+    # of CL Maxima's MAXIMA package when the image is dumped, from which
+    # init-cl.lisp builds *BUILTIN-SYMBOLS*.
+    core_names = set()
+    for d in db:
+        if d.get("module") == "share" or d["file"] in excluded:
+            continue
+        core_names |= set(d["symbols"])
+        core_names |= set(f["name"] for f in d["functions"] if f["name"])
+        core_names |= set(v["name"] for v in d["vars"])
+    core_names = sorted(n for n in core_names if n[:1] in ("$", "%"))
+    sym_lines.append("///|\n/// $- and %-symbols mentioned by the core (non-share) files.\n"
+                     "let gen_core_symbol_names : Array[String] = [\n" +
+                     "".join("  %s,\n" % moon_str(n) for n in core_names) + "]\n")
+
     os.makedirs(CORE, exist_ok=True)
     open(os.path.join(CORE, "gen_symbols.mbt"), "w").write("\n".join(sym_lines) + "\n")
     open(os.path.join(CORE, "gen_decls.mbt"), "w").write("\n".join(decl_lines) + "\n")
