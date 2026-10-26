@@ -27,7 +27,7 @@ def main():
         stmts = [l.strip() for l in open(args[1]) if l.strip() and not l.startswith("//")]
     else:
         stmts = args
-    ref_cmd = ["maxima", "--very-quiet", "--no-init"]
+    ref_cmd = [os.path.join(ROOT, "tools", "maxima-ref"), "--very-quiet", "--no-init"]
     port_cmd = [PORT, "--very-quiet"]
     bad = 0
     for s in stmts:

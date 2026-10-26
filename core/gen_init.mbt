@@ -100,5 +100,4 @@ fn init_generated() -> Unit raise {
   init_pois3()
   init_todd_coxeter()
   init_max_ext()
-  init_init_cl()
 }
