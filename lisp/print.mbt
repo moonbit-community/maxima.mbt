@@ -37,6 +37,70 @@ pub fn float_digits(d : Double) -> (String, Int) {
 }
 
 ///|
+/// SBCL's FLONUM-TO-DIGITS (Burger & Dybvig free-format) for a positive
+/// subnormal double. SBCL's INTEGER-DECODE-FLOAT normalizes a subnormal's
+/// significand to 53 bits, so its digit generation runs at full double
+/// precision and prints more digits than the shortest representation.
+/// Returns (digits, exponent) with value = 0.d1d2... * 10^exponent.
+fn subnormal_digits(d : Double) -> (String, Int) {
+  let (sig, _, _) = integer_decode_float(d)
+  let extra = 53 - sig.bit_length()
+  let f = sig.shl(extra)
+  let e = -1074 - extra
+  let high_ok = (f % 2N).is_zero()
+  let low_ok = high_ok
+  // e < 0 and e != min-e, f != 2^52 (generally): r = 2f, s = 2^(1-e), m = 1
+  let two52 = 1N.shl(52)
+  let (r0, s0, mp0, mm0) = if f == two52 {
+    (f * 4N, 1N.shl(1 - e + 1), 2N, 1N)
+  } else {
+    (f * 2N, 1N.shl(-e + 1), 1N, 1N)
+  }
+  let mut r = r0
+  let mut s = s0
+  let mut mp = mp0
+  let mut mm = mm0
+  let ten = 10N
+  // scale: find k with 10^(k-1) <= (r+m+)/s < 10^k
+  let mut k = 0
+  while (r + mp) > s || (high_ok && r + mp == s) {
+    s = s * ten
+    k += 1
+  }
+  while (r + mp) * ten < s || (!high_ok && (r + mp) * ten == s) {
+    r = r * ten
+    mp = mp * ten
+    mm = mm * ten
+    k -= 1
+  }
+  let sb = StringBuilder::new()
+  while true {
+    let rr = r * ten
+    let dgt = rr / s
+    r = rr - dgt * s
+    mp = mp * ten
+    mm = mm * ten
+    let tc1 = r < mm || (low_ok && r == mm)
+    let tc2 = r + mp > s || (high_ok && r + mp == s)
+    if tc1 || tc2 {
+      let dv = if !tc1 && tc2 {
+        dgt + 1N
+      } else if tc1 && !tc2 {
+        dgt
+      } else if r * 2N < s {
+        dgt
+      } else {
+        dgt + 1N
+      }
+      sb.write_string(dv.to_string())
+      break
+    }
+    sb.write_string(dgt.to_string())
+  }
+  (sb.to_string(), k)
+}
+
+///|
 /// Print a double the way SBCL's `prin1` does with
 /// `*read-default-float-format*` = double-float.
 pub fn float_to_string(d : Double) -> String {
@@ -53,8 +117,12 @@ pub fn float_to_string(d : Double) -> String {
   if d == 0.0 {
     return sign + "0.0"
   }
-  let (digits, e) = float_digits(d)
   let a = d.abs()
+  let (digits, e) = if a < 2.2250738585072014e-308 {
+    subnormal_digits(a)
+  } else {
+    float_digits(d)
+  }
   if a >= 1.0e-3 && a < 1.0e7 {
     // fixed notation
     if e <= 0 {
@@ -86,6 +154,11 @@ fn needs_escape(name : String) -> Bool {
   // looks like a number?
   parse_integer(name) is Some(_)
 }
+
+///|
+/// The `:print-function` of defstruct types, by type name: a function of
+/// (struct stream depth) that writes the printed representation.
+pub let struct_print_functions : Map[String, Value] = Map::new()
 
 ///|
 /// Print a value to a StringBuilder. `escape` is prin1 (true) vs princ.
@@ -185,6 +258,29 @@ pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
     Vec(a) =>
       if a.elt == "character" {
         print_value(sb, Str(lstring(x)), escape)
+      } else if a.dims.length() != 1 {
+        // Multidimensional array: #nA(...) with nested rows, as CL prints it.
+        let rank = a.dims.length()
+        sb.write_string("#\{rank}A")
+        fn rows(k : Int, off : Int) -> Unit {
+          if k == rank {
+            print_value(sb, a.data[off], escape)
+            return
+          }
+          let mut stride = 1
+          for j in (k + 1)..<rank {
+            stride *= a.dims[j]
+          }
+          sb.write_char('(')
+          for i in 0..<a.dims[k] {
+            if i > 0 {
+              sb.write_char(' ')
+            }
+            rows(k + 1, off + i * stride)
+          }
+          sb.write_char(')')
+        }
+        rows(0, 0)
       } else {
         sb.write_string("#(")
         let n = match a.fill {
@@ -201,6 +297,12 @@ pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
       }
     Hash(_) => sb.write_string("#<HASH-TABLE>")
     Func(f) => sb.write_string("#<FUNCTION \{f.name}>")
+    Struct(s) if struct_print_functions.get(s.stype.name) is Some(f) => {
+      // defstruct :print-function: (funcall f struct stream depth)
+      let st = make_string_output_stream()
+      let _ = funcall(f, [x, st, Fix(0L)]) catch { _ => Nil }
+      sb.write_string(get_output_stream_string(st))
+    }
     Struct(s) => {
       sb.write_string("#S(" + s.stype.name)
       for v in s.slots {

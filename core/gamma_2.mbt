@@ -406,7 +406,7 @@ fn erf(z : Value) -> Value raise {
 }
 
 ///|
-/// erf(z) = sqrt(z^2)/z*(1 - gamma_h_incomplete(1/2,z^2)/sqrt(%pi)) for a CL
+/// erf(z) = sqrt(z^2)/z*(1 - gamma_incomplete(1/2,z^2)/sqrt(%pi)) for a CL
 /// complex z.
 fn complex_erf(z : Value) -> Value raise {
   let sgn : Value = if num_lt(realpart(z), Flo(0.0)) ||
@@ -532,7 +532,7 @@ fn bf_bf_erf(z : Value) -> Value raise {
 ///|
 fn bf_bf_erfc(z : Value) -> Value raise {
   // erfc(z) = 1/sqrt(pi)*gamma_incomplete_tail(1/2,z^2)       realpart(z) > 0
-  //         = 2 - 1/sqrt(pi)*gamma_h_incomplete(1/2,z^2)        realpart(z) < 0
+  //         = 2 - 1/sqrt(pi)*gamma_incomplete(1/2,z^2)        realpart(z) < 0
   let gamma_inc = (z : Value) => if numberp(z) {
     gamma_h_incomplete(Flo(0.5), z)
   } else if bf_is_bigfloat(z) {

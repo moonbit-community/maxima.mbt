@@ -132,7 +132,7 @@ fn quote_chars(sym_ : Value, ch_str : Value) -> Value raise {
   let n = string_length(strsym)
   let mut pos = -1
   for i in 0..<n {
-    if string_search(chs, char_at(strsym, i).to_string()) >= 0 {
+    if string_search(char_at(strsym, i).to_string(), chs) >= 0 {
       pos = i
       break
     }

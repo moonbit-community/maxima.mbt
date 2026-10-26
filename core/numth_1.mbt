@@ -1,6 +1,6 @@
 // Port of src/numth.lisp, part 1: various number theory functions --
 // divsum, totient, jacobi, Gaussian factoring, and the functions in (Z/nZ)*
-// (zn_h_order, zn_primroot, zn_log, solve_congruences, zn_nth_root, tables).
+// (zn_order, zn_primroot, zn_log, solve_congruences, zn_nth_root, tables).
 //
 // Parts 2 and 3 (numth_2.mbt, numth_3.mbt) hold the Galois field code.
 
@@ -550,7 +550,7 @@ fn gcexpt(a : Value, n : Value) -> Value raise {
 // ---------------------------------------------------------------------------
 // Maxima functions in (Z/nZ)*
 //
-// zn_h_order, zn_primroot_p, zn_primroot, zn_log,
+// zn_order, zn_primroot_p, zn_primroot, zn_log,
 // solve_congruences, zn_characteristic_factors, zn_factor_generators,
 // zn_nth_root, zn_add_table, zn_mult_table, zn_power_table
 //
@@ -969,7 +969,7 @@ fn zn_gcdex2(x : Value, y : Value) -> Value raise {
 /// solve g^x = a mod n, where g is a generator of (Z/nZ)* or of a subgroup
 /// containing a
 ///
-/// optional argument: ifactors of zn_h_order(g,n)
+/// optional argument: ifactors of zn_order(g,n)
 fn d_zn_log(a : Value, g : Value, n : Value, fs_ord? : Value = Nil) -> Value raise {
   if !(integerp(a) && integerp(g) && integerp(n)) {
     return if fs_ord.truthy() {
@@ -1324,7 +1324,7 @@ fn d_zn_factor_generators(m : Value) -> Value raise {
 ///
 /// zn_factor_generators(104);                     --> [79,27,89]
 /// zn_characteristic_factors(104);                --> [2,2,12]
-/// map(lambda([g], zn_h_order(g,104)), [79,27,89]); --> [2,2,12]
+/// map(lambda([g], zn_order(g,104)), [79,27,89]); --> [2,2,12]
 ///
 /// Every element in Z104* can be expressed as
 ///   79^i * 27^j * 89^k (mod m) where 0 <= i,j < 2 and 0 <= k < 12

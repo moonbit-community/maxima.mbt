@@ -360,7 +360,7 @@ fn simplifya(x : Value, y : Value) -> Value raise {
   }
   if symval(q_d_distribute_over).truthy() &&
     get(op, q_distribute_over).truthy() {
-    // A function with the property 'distribute_h_over.
+    // A function with the property 'distribute_over.
     let r = distribute_h_over(x, y)
     if r.truthy() {
       return r

@@ -115,19 +115,34 @@ pub fn as_symbol(x : Value) -> Symbol raise LispError {
 // Property lists
 
 ///|
+/// NIL is a symbol in CL and has a property list (Maxima puts `sysconst`
+/// and `data` on it). `Nil` is not a `Sym`, so its plist lives in the
+/// interned symbol named "nil".
+let nil_plist_holder : Symbol = intern("nil")
+
+///|
+fn plist_symbol(s : Value) -> Symbol? {
+  match s {
+    Sym(sy) => Some(sy)
+    Nil => Some(nil_plist_holder)
+    _ => None
+  }
+}
+
+///|
 /// `(get sym prop)`
 pub fn get(s : Value, prop : Value) -> Value {
-  match s {
-    Sym(sy) => plist_get(sy.plist, prop)
-    _ => Nil
+  match plist_symbol(s) {
+    Some(sy) => plist_get(sy.plist, prop)
+    None => Nil
   }
 }
 
 ///|
 /// `(get sym prop default)`
 pub fn get_default(s : Value, prop : Value, default : Value) -> Value {
-  match s {
-    Sym(sy) =>
+  match plist_symbol(s) {
+    Some(sy) =>
       loop sy.plist {
         Cons({ car: k, cdr: Cons({ car: v, cdr: rest }) }) =>
           if eq(k, prop) {
@@ -157,8 +172,8 @@ fn plist_get(pl : Value, prop : Value) -> Value {
 ///|
 /// `(putprop sym val prop)` — Maclisp argument order; returns val.
 pub fn putprop(s : Value, v : Value, prop : Value) -> Value {
-  match s {
-    Sym(sy) => {
+  match plist_symbol(s) {
+    Some(sy) => {
       let mut p = sy.plist
       while p is Cons(c) {
         if eq(c.car, prop) {
@@ -191,8 +206,8 @@ pub fn setf_get(s : Value, prop : Value, v : Value) -> Value {
 ///|
 /// `(remprop sym prop)` — returns non-nil if a property was removed.
 pub fn remprop(s : Value, prop : Value) -> Value {
-  match s {
-    Sym(sy) => {
+  match plist_symbol(s) {
+    Some(sy) => {
       let mut prev : Cons? = None
       let mut p = sy.plist
       while p is Cons(c) {
@@ -223,8 +238,8 @@ pub fn remprop(s : Value, prop : Value) -> Value {
 ///|
 /// `(symbol-plist s)`
 pub fn symbol_plist(s : Value) -> Value {
-  match s {
-    Sym(sy) => sy.plist
+  match plist_symbol(s) {
+    Some(sy) => sy.plist
     _ => Nil
   }
 }
@@ -232,8 +247,8 @@ pub fn symbol_plist(s : Value) -> Value {
 ///|
 /// `(setf (symbol-plist s) pl)`
 pub fn set_symbol_plist(s : Value, pl : Value) -> Value {
-  match s {
-    Sym(sy) => sy.plist = pl
+  match plist_symbol(s) {
+    Some(sy) => sy.plist = pl
     _ => ()
   }
   pl

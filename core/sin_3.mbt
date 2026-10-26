@@ -291,7 +291,7 @@ fn integrate_exp_special(expr : Value, var2 : Value) -> Value raise {
       var2,
       // (a^(d+c*(var2^r)^p))^v
       power(power(a, add2(d, mul2(c, power(power(var2, r), p)))), v),
-      // gamma_h_incomplete(1/(p*r), -c*v*(var2^r)^p*log(a))
+      // gamma_incomplete(1/(p*r), -c*v*(var2^r)^p*log(a))
       take(gi, [
         inv(mul2(p, r)),
         muln_([

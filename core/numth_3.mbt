@@ -3019,6 +3019,13 @@ fn numth__boolean_assign(name : String) -> Value {
 
 ///|
 fn init_numth() -> Unit raise {
+  // The :print-function options of the gf-data and ef-data defstructs.
+  @lisp.struct_print_functions["gf-data"] = lfunc("gf-data-short-print", args => {
+    gf_data_short_print(args[0], args[1], args[2])
+  })
+  @lisp.struct_print_functions["ef-data"] = lfunc("ef-data-short-print", args => {
+    ef_data_short_print(args[0], args[1], args[2])
+  })
   // (defmvar $zn_primroot_limit 1000 ... :setting-predicate #'integer-predicate)
   putprop(
     q_d_zn_primroot_limit,

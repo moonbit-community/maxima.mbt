@@ -1080,6 +1080,7 @@ fn maxima_interactive(quiet? : Bool = false) -> Unit raise {
 ///|
 fn init_macsys() -> Unit raise {
   defvar_init(macsys__q_query_input, Nil)
+  trmode__init()
   let (sec, min, hour, day, month, year) = macsys__now_decoded()
   macsys__build_time.val = format_to_string(
     "~4,'0d-~2,'0d-~2,'0d ~2,'0d:~2,'0d:~2,'0d",
@@ -1100,7 +1101,7 @@ fn init_macsys() -> Unit raise {
     ),
   )
   |> ignore
-  setf_get(q_p_build_info, q_dimension_build_info, q_dimension) |> ignore
+  setf_get(q_p_build_info, q_dimension, q_dimension_build_info) |> ignore
   initialize_real_and_run_time() |> ignore
   defun(q_d_absolute_real_time, args => {
     check_arity("$absolute_real_time", args, 0)

@@ -466,7 +466,10 @@ fn d_batchload(filename_or_stream : Value) -> Value raise {
       list([list1(q_mlist), q_d_file_search_maxima]),
     )
     if wxmx_file_p(filename).truthy() {
-      merr("wxmx files are not supported in this port: ~M", [filename])
+      let in_stream = make_string_input_stream(
+        mload__str(wxmx__input_string(filename)),
+      )
+      batchload_stream(in_stream, truename=Str(mload__str(filename)))
     } else {
       batchload_stream(mload__open(filename))
     }
@@ -699,7 +702,10 @@ fn d_batch(filename_or_stream : Value, demo? : Value = q_kw_batch) -> Value rais
   if eq(demo, q_kw_test) {
     test_batch(filename, Nil, show_all=t).0
   } else if wxmx_file_p(filename).truthy() {
-    merr("wxmx files are not supported in this port: ~M", [filename])
+    let in_stream = make_string_input_stream(
+      mload__str(wxmx__input_string(filename)),
+    )
+    batch_stream(in_stream, demo, truename=Str(mload__str(filename)))
   } else {
     batch_stream(mload__open(filename), demo)
   }

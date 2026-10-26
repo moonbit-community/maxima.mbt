@@ -219489,5 +219489,2192 @@ null
 }
 ],
 "lines": 168
+},
+{
+"file": "../share/diffequations/pwilt",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "pwilt-add-parts",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 30,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pwilt-mult-parts",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 42,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pwilt-parts",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 51,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pwilt-one-part",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"s",
+"x",
+"xtemp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 88,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pwilt-subst-periodic",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 98,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pwilt-polynomial-degree",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 120,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pwilt1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"s",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 135,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pwilt2",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"s",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 158,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$pwilt",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"s",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 195,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defmvar",
+"name": "$pwilt_hstep_all",
+"init": {
+"k": "nil"
+},
+"line": 27
+}
+],
+"specials": [
+"$pwilt_hstep_all"
+],
+"symbols": [
+"$%e",
+"$%k",
+"$breakup",
+"$delta",
+"$demoivre",
+"$denom",
+"$diff",
+"$get",
+"$globalsolve",
+"$hstep",
+"$inf",
+"$listp",
+"$load",
+"$multiplicities",
+"$negative",
+"$num",
+"$partfrac",
+"$positive",
+"$programmode",
+"$put",
+"$pwilt",
+"$pwilt_hstep_all",
+"$solve",
+"$solvedecomposes",
+"$solveexplicit",
+"$solvefactors",
+"$version",
+"%ilt",
+"%laplace",
+"%pwilt",
+"%pwilt_periodic",
+"%sum",
+"+",
+"-",
+"add",
+"and",
+"ap",
+"b",
+"bp",
+"car",
+"cdr",
+"cons",
+"d",
+"div",
+"e",
+"ee",
+"eq",
+"fail",
+"freeof",
+"if",
+"lambda",
+"let*",
+"list",
+"m",
+"mapcar",
+"max",
+"maxima-substitute",
+"mequal-lhs",
+"mequal-rhs",
+"mequalp",
+"mul",
+"n",
+"offset",
+"or",
+"p",
+"periodic",
+"power",
+"pwilt-add-parts",
+"pwilt-mult-parts",
+"pwilt-one-part",
+"pwilt-parts",
+"pwilt-subst-periodic",
+"pwilt1",
+"recurse",
+"return-from",
+"s",
+"setq",
+"simp",
+"soln",
+"t",
+"unless",
+"x",
+"xtemp"
+],
+"calls": {
+"in-package": 1,
+"$put": 1,
+"if": 6,
+"not": 1,
+"$get": 1,
+"$load": 1,
+"defmvar": 1,
+"defun": 9,
+"a": 2,
+"flet": 2,
+"let": 8,
+"loop": 1,
+"cond": 5,
+"return": 2,
+"nreconc": 2,
+"push": 3,
+"pwilt-merge": 1,
+"pop": 4,
+"t": 6,
+"reduce": 4,
+"pwilt-add-parts": 2,
+"mapcar": 8,
+"e": 6,
+"setq": 4,
+"specrepcheck": 3,
+"list": 9,
+"cons": 10,
+"margs": 2,
+"pwilt-mult-parts": 1,
+"car": 4,
+"power": 1,
+"cdr": 9,
+"neg": 3,
+"caar": 1,
+"inv": 1,
+"cdar": 1,
+"let*": 4,
+"period": 1,
+"sub": 2,
+"second": 1,
+"scale": 1,
+"first": 1,
+"case": 1,
+"asksign": 1,
+"$positive": 1,
+"$negative": 1,
+"return-from": 2,
+"add": 1,
+"take": 3,
+"p": 1,
+"lexp": 1,
+"mul": 3,
+"$hstep": 1,
+"maxima-substitute": 1,
+"pwilt1": 3,
+"labels": 2,
+"and": 3,
+"<": 2,
+"freeof": 1,
+"recurse": 1,
+"addn": 3,
+"eq": 1,
+"caddr": 2,
+"cadr": 2,
+"subst": 1,
+"pwilt2": 1,
+"d": 1,
+"$denom": 1,
+"n-deg": 1,
+"pwilt-polynomial-degree": 2,
+"d-deg": 1,
+"unless": 2,
+"alike1": 1,
+"fail": 2,
+"solns": 1,
+"$programmode": 1,
+"$globalsolve": 1,
+"$solvedecomposes": 1,
+"$solveexplicit": 1,
+"$solvefactors": 1,
+"$solve": 1,
+"$demoivre": 1,
+"$listp": 2,
+"=": 2,
+"length": 2,
+"+": 1,
+"mbagp": 1,
+"delsimp": 1,
+"periodic": 1,
+"result": 1,
+"pwilt-parts": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 23,
+"text": "($put '$pwilt 1 '$version)"
+},
+{
+"head": "if",
+"line": 25,
+"text": "(if (not ($get '$hstep '$version)) ($load '$hstep))"
+}
+],
+"lines": 218
+},
+{
+"file": "../share/numericalio/encode-decode-float",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "smash-float-into-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 25,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "smash-decoded-float-32-into-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"significand",
+"exponent",
+"sign"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 35,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "construct-float-32-from-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 48,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "extract-smashed-float-32-from-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 54,
+"nvalues": 3
+},
+{
+"kind": "defun",
+"name": "smash-decoded-float-64-into-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"significand",
+"exponent",
+"sign"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 63,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "construct-float-64-from-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 76,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "extract-smashed-float-64-from-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 82,
+"nvalues": 3
+},
+{
+"kind": "defun",
+"name": "write-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 93,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "size-in-bytes",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 96,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-float-64",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 99,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "define-external-byte-order",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 115,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-unsigned-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"nb-bytes",
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 119,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-unsigned-integer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"quantity",
+"nb-bytes",
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 135,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "*external-byte-order*",
+"init": {
+"k": "kw",
+"v": ":msb"
+},
+"line": 112
+}
+],
+"specials": [
+"*external-byte-order*"
+],
+"symbols": [
+"+",
+":lsb",
+":msb",
+"ash",
+"double-float",
+"eof",
+"lambda",
+"long-float",
+"member",
+"setq",
+"x",
+"y"
+],
+"calls": {
+"in-package": 1,
+"defun": 13,
+"x": 8,
+"multiple-value-bind": 3,
+"significand": 5,
+"integer-decode-float": 1,
+"if": 13,
+"or": 2,
+"typep": 4,
+"smash-decoded-float-64-into-integer": 1,
+"smash-decoded-float-32-into-integer": 1,
+"=": 2,
+"dpb": 4,
+">": 2,
+"byte": 10,
+"+": 4,
+"ldb": 6,
+"extract-smashed-float-32-from-integer": 1,
+"*": 2,
+"scale-float": 2,
+"float": 2,
+"eql": 4,
+"values": 4,
+"let": 5,
+"exponent": 2,
+"-": 2,
+"sign": 2,
+"extract-smashed-float-64-from-integer": 1,
+"write-unsigned-integer": 3,
+"smash-float-into-integer": 1,
+"size-in-bytes": 1,
+"s": 1,
+"eq": 2,
+"construct-float-64-from-integer": 1,
+"deftype": 1,
+"defvar": 1,
+"check-type": 1,
+"setf": 1,
+"nb-bytes": 1,
+"zerop": 3,
+"bytes": 1,
+"y": 1,
+"dotimes": 1,
+"i": 1,
+"return-from": 1,
+"setq": 1,
+"nconc": 1,
+"list": 1,
+"case": 2,
+":lsb": 2,
+"mapc": 2,
+"nreverse": 1,
+":msb": 2,
+"quantity": 1,
+"unless": 2,
+"write-byte": 2,
+"logand": 2,
+"ash": 2,
+"1-": 2
+},
+"toplevel": [
+{
+"head": "deftype",
+"line": 108,
+"text": "(deftype external-byte-order () \"Defines the legal values for *EXTERNAL-BYTE-ORDER*.\" '(member :msb :lsb))"
+}
+],
+"lines": 151
+},
+{
+"file": "../share/numericalio/numericalio",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$assume_external_byte_order",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 44,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lisp-or-declared-maxima-array-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 53,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$openw_binary",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 58,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$opena_binary",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 67,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$openr_binary",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 76,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 85,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_binary_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename",
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 101,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fill-matrix-from-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"l",
+"m",
+"nrow",
+"ncol"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 111,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 122,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_binary_array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file-name"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 134,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-into-existing-array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file-name",
+"a",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 139,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-into-existing-array-size-known",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename",
+"a",
+"sep-ch-flag",
+"mode",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 148,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-into-existing-array-size-known-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"a",
+"sep-ch-flag",
+"mode",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 162,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-into-existing-array-size-unknown-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"a",
+"sep-ch",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 170,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-and-return-new-array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 178,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-and-return-new-array-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 192,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_hashed_array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename",
+"a"
+],
+"opt": [
+[
+"sep-ch-flag",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 199,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-hashed-array-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"a",
+"sep-ch-flag"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 211,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_nested_list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename"
+],
+"opt": [
+[
+"sep-ch-flag",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 227,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-nested-list-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"sep-ch-flag"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 239,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 247,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-into-existing-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename",
+"l",
+"sep-ch-flag",
+"mode",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 260,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-into-existing-list-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"l",
+"sep-ch-flag",
+"mode",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 274,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename",
+"sep-ch-flag",
+"mode",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 283,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-list-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"sep-ch-flag",
+"mode",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 297,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_binary_list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 310,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_struct",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream-or-filename"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 328,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-struct-separator-flag-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 347,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-struct-default-name",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file-name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 354,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-struct-name-stem",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file-name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 363,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-struct-field-name",
+"pkg": "maxima",
+"ll": {
+"req": [
+"field"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 383,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-struct-repeated-name",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fields"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 393,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "read-struct-from-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"sep-ch-flag",
+"name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 400,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-mlist-from-string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"sep-ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 438,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fast-mlist-from-string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"sep-ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 453,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fast-separator-char",
+"pkg": "maxima",
+"ll": {
+"req": [
+"sep-ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 463,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fast-whitespace-fields",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 473,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fast-separated-fields",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"separator"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 490,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fast-blank-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"start",
+"end"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 514,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fast-skip-blanks",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"start",
+"end"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 520,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fast-back-over-blanks",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"start",
+"end"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 524,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "scan-plain-number",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"start",
+"end"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 528,
+"nvalues": 1
+},
+{
+"kind": "defun",
+"name": "slow-mlist-from-string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"sep-ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 569,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "cons-appropriate-field",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ll",
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 617,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_lisp_array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file-name",
+"a"
+],
+"opt": [
+[
+"sep-ch-flag",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 627,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$read_maxima_array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file-name",
+"a"
+],
+"opt": [
+[
+"sep-ch-flag",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 630,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "reset-for-parse-next-element",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 641,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parse-next-element",
+"pkg": "maxima",
+"ll": {
+"req": [
+"in",
+"sep-ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 646,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "open-file-appropriately",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file-name",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 688,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$write_data",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"stream-or-filename"
+],
+"opt": [
+[
+"sep-ch-flag",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 697,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$write_binary_data",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"stream-or-filename"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 700,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-data",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"stream-or-filename",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 703,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"out",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 726,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-lisp-array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"out",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 730,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-lisp-array-helper",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"d",
+"indices",
+"out",
+"sep-ch",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 734,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-maxima-array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"out",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 747,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-hashed-array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"out",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 750,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"l",
+"out",
+"sep-ch-flag",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 762,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "write-list-lowlevel",
+"pkg": "maxima",
+"ll": {
+"req": [
+"l",
+"out",
+"sep-ch",
+"mode"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 766,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-input-sep-ch",
+"pkg": "maxima",
+"ll": {
+"req": [
+"sep-ch-flag",
+"my-stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 793,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-output-sep-ch",
+"pkg": "maxima",
+"ll": {
+"req": [
+"sep-ch-flag",
+"my-stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 800,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "require-string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 831,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "newline-symbol",
+"init": {
+"k": "expr",
+"v": "(intern (coerce '(#\\$ #\\Newline) 'string))"
+},
+"line": 636
+},
+{
+"kind": "defvar",
+"name": "whitespace-sans-newline",
+"init": {
+"k": "expr",
+"v": "(remove #\\Newline *whitespace-chars*)"
+},
+"line": 637
+}
+],
+"specials": [
+"$lispdisp",
+"newline-symbol",
+"whitespace-sans-newline"
+],
+"symbols": [
+"$+",
+"$,",
+"$-",
+"$;",
+"$arrayapply",
+"$arrayinfo",
+"$assume_external_byte_order",
+"$comma",
+"$csv",
+"$done",
+"$file_output_append",
+"$first",
+"$float",
+"$gensym",
+"$length",
+"$lispdisp",
+"$listp",
+"$lsb",
+"$matrix",
+"$matrixp",
+"$msb",
+"$numberp",
+"$opena_binary",
+"$openr_binary",
+"$openw_binary",
+"$pipe",
+"$read_array",
+"$read_binary_array",
+"$read_binary_list",
+"$read_binary_matrix",
+"$read_hashed_array",
+"$read_lisp_array",
+"$read_list",
+"$read_matrix",
+"$read_maxima_array",
+"$read_nested_list",
+"$read_struct",
+"$rest",
+"$semicolon",
+"$space",
+"$tab",
+"$true",
+"$write_binary_data",
+"$write_data",
+"$|",
+"*",
+"=",
+"alphanumericp",
+"aref",
+"array",
+"binary",
+"c",
+"cdr",
+"char=",
+"character",
+"column",
+"cons",
+"eof",
+"hashar",
+"if",
+"lambda",
+"mlist",
+"mode",
+"nreverse",
+"or",
+"out",
+"read-struct-field-name",
+"sep-ch",
+"simp",
+"string",
+"text",
+"unsigned-byte",
+"write-list-lowlevel",
+"x"
+],
+"calls": {
+"in-package": 1,
+"defun": 64,
+"x": 8,
+"cond": 30,
+"define-external-byte-order": 2,
+"t": 26,
+"merror": 18,
+"or": 14,
+"arrayp": 2,
+"mget": 3,
+"file": 3,
+"open": 4,
+"native-namestring": 11,
+"stream-or-filename": 12,
+"if": 68,
+"$matrixp": 2,
+"car": 13,
+"let*": 9,
+"sep-ch-flag": 6,
+"cadr": 6,
+"nrow": 1,
+"length": 10,
+"cdr": 9,
+"ncol": 2,
+">": 4,
+"cdadr": 2,
+"l": 6,
+"$read_list": 1,
+"*": 5,
+"fill-matrix-from-list": 2,
+"rows-list": 1,
+"$read_nested_list": 1,
+"rows-list-nonempty": 1,
+"remove-if": 1,
+"$read_binary_list": 1,
+"type-of": 3,
+"let": 51,
+"dotimes": 4,
+"i": 4,
+"j": 1,
+"setf": 4,
+"nth": 3,
+"1+": 5,
+"setq": 62,
+"and": 12,
+"lisp-or-declared-maxima-array-p": 1,
+"mode": 2,
+"read-into-existing-array": 2,
+"read-and-return-new-array": 2,
+"file-name": 7,
+"not": 11,
+"get": 1,
+"n": 5,
+"apply": 1,
+"read-into-existing-array-size-known": 1,
+"streamp": 8,
+"read-into-existing-array-size-known-from-stream": 2,
+"with-open-file": 7,
+"in": 17,
+"eq": 29,
+"null": 10,
+"sep-ch": 8,
+"get-input-sep-ch": 6,
+"reset-for-parse-next-element": 4,
+"parse-next-element": 4,
+"read-float-64": 4,
+"return": 28,
+"row-major-aref": 1,
+"loop": 19,
+"vector-push-extend": 1,
+"read-and-return-new-array-from-stream": 2,
+"read-into-existing-array-size-unknown-from-stream": 1,
+"read-hashed-array-from-stream": 2,
+"key": 1,
+"read-line": 3,
+"make-mlist-from-string": 2,
+"$first": 1,
+"=": 3,
+"$length": 3,
+"arrstore": 2,
+"list": 8,
+"$rest": 1,
+"read-nested-list-from-stream": 2,
+"a": 6,
+"cons": 16,
+"nreverse": 6,
+"$listp": 2,
+"caddr": 1,
+"read-into-existing-list": 2,
+"integerp": 1,
+"read-list": 3,
+"read-into-existing-list-from-stream": 2,
+"read-list-from-stream": 2,
+"eql": 4,
+"nconc": 1,
+"decf": 1,
+"dolist": 1,
+"arg": 2,
+"read-struct-separator-flag-p": 1,
+"read-struct-from-stream": 2,
+"$gensym": 2,
+"read-struct-default-name": 1,
+"stringp": 2,
+"member": 8,
+"read-struct-name-stem": 1,
+"unless": 8,
+"map": 1,
+"when": 17,
+"subseq": 1,
+"zerop": 2,
+"digit-char-p": 4,
+"char": 12,
+"concatenate": 3,
+"field": 1,
+"intern-invert-case": 1,
+"gettext": 5,
+"fields": 3,
+"do": 4,
+"header": 1,
+"columns": 1,
+"make-list": 1,
+"line-number": 1,
+"incf": 10,
+"mapcar": 3,
+"defstruct1": 1,
+"s": 10,
+"fast-mlist-from-string": 1,
+"slow-mlist-from-string": 1,
+"fast-whitespace-fields": 1,
+"fast-separated-fields": 1,
+"<": 9,
+">=": 1,
+"push": 5,
+"start": 1,
+"found": 1,
+"end": 1,
+"fast-blank-p": 1,
+"stop": 1,
+"digits": 1,
+"marker": 1,
+"marker-index": 1,
+"char=": 1,
+"return-from": 4,
+"-": 3,
+"values": 1,
+"read-from-string": 1,
+"with-input-from-string": 1,
+"*parse-stream*": 1,
+"ll": 2,
+"sign": 1,
+"found-token": 1,
+"found-sep": 1,
+"scan-one-token-g": 3,
+"format": 5,
+"cons-appropriate-field": 2,
+"m*": 1,
+"reverse": 2,
+"$read_array": 2,
+"defvar": 2,
+"intern": 1,
+"coerce": 1,
+"remove": 1,
+"prev-token-sep-ch": 1,
+"*whitespace-chars*": 2,
+"progn": 5,
+"write-data": 2,
+"write-matrix": 1,
+"write-lisp-array": 2,
+"write-maxima-array": 1,
+"write-hashed-array": 1,
+"write-list": 1,
+"finish-output": 1,
+"close": 1,
+"m": 1,
+"d": 1,
+"array-dimensions": 1,
+"write-lisp-array-helper": 2,
+"write-list-lowlevel": 4,
+"terpri": 3,
+"symbol-array": 1,
+"get-output-sep-ch": 2,
+"$arrayapply": 1,
+"pop": 2,
+"append": 1,
+"exploden": 1,
+"declare": 1,
+"special": 1,
+"mgrind": 1,
+"write-char": 1,
+"$numberp": 1,
+"write-float": 1,
+"$float": 1,
+"/=": 1,
+"stripdollar": 1
+},
+"toplevel": [],
+"lines": 836
 }
 ]

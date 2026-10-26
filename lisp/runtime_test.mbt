@@ -82,6 +82,9 @@ test "complex arithmetic like sbcl" {
   inspect(try! num_div(Value::Flo(2.0), c2), content="#C(0.10344827586206898 0.24137931034482762)")
   inspect(try! num_add(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(3.0 0.0)")
   inspect(try! num_mul(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(2.0 -0.0)")
+  inspect(try! num_add(Value::Flo(2.0), Value::Cplx(Flo(1.0), Value::Flo(-0.0))), content="#C(3.0 0.0)")
+  inspect(try! num_sub(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(-1.0 -0.0)")
+  inspect(try! num_sub(Value::Flo(2.0), Value::Cplx(Flo(1.0), Value::Flo(0.0))), content="#C(1.0 0.0)")
 }
 
 ///|
@@ -472,4 +475,13 @@ test "eq on bignums is identity" {
   let b = try! expt(Fix(10L), Fix(30L))
   inspect(eq(b, b), content="true")
   inspect(eq(b, try! expt(Fix(10L), Fix(30L))), content="false")
+}
+
+///|
+test "subnormal printing like sbcl" {
+  inspect(float_to_string(4.9406564584124654e-324), content="4.9406564584124654e-324")
+  inspect(float_to_string(1.0e-310), content="9.99999999999997e-311")
+  inspect(float_to_string(1.5e-315), content="1.500000000192854e-315")
+  inspect(float_to_string(3.0 * 4.9406564584124654e-324), content="1.4821969375237396e-323")
+  inspect(float_to_string(2.2250738585072014e-308), content="2.2250738585072014e-308")
 }

@@ -178,6 +178,7 @@ integerp
 intern
 intersection
 invert_case
+is_keyword_name
 isqrt
 keywordp
 kw
@@ -326,6 +327,7 @@ rationalp
 ratiop
 read_char
 read_file
+read_file_bytes
 read_line
 read_stdin_line
 realp
@@ -378,6 +380,7 @@ string_to_char_list
 string_trim
 string_upcase
 stringp
+struct_print_functions
 struct_ref
 struct_set
 struct_typep

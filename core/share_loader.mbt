@@ -21,6 +21,7 @@ fn share_try_load(path : String) -> Bool raise {
         "mring", "lu", "linalgcholesky", "eigens-by-jacobi", "linalg-extra", "matrixexp",
         "linalg-utilities",
       ]
+    "load-numericalio" => ["encode-decode-float", "numericalio"]
     _ => []
   }
   if group.length() > 0 {

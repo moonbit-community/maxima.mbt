@@ -483,7 +483,7 @@ fn d_invert_by_gausselim(k : Value) -> Value raise {
         cons(list1(q_d_matrix), mxc(disreplist1(k)))
       }
       if ratmx.truthy() && !symval(q_d_detout).truthy() {
-        fmapl1(lfunc("identity", args => arg(args, 0)), k)
+        fmapl1(lfunc("identity", args => arg(args, 0)), list1(k))
       } else if !ratmx.truthy() {
         d_totaldisrep(k)
       } else {
@@ -966,7 +966,10 @@ fn powerx(mat : Value, x : Value) -> Value raise {
       let xx = x
       return with_special(q_ear_inv, q_d_detout, () => mul2_star(
         power_star(cadr(m), xx),
-        fmapl1(lfunc("identity", args => arg(args, 0)), powerx(caddr(m), xx)),
+        fmapl1(
+          lfunc("identity", args => arg(args, 0)),
+          list1(powerx(caddr(m), xx)),
+        ),
       ))
     }
   }

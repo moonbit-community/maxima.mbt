@@ -9,8 +9,8 @@ fn init_generated() -> Unit raise {
   register_generated_simplifiers()
   init_float_format()
   init_intl()
-  init_globals()
   init_clmacs()
+  init_globals()
   init_float_properties()
   init_commac()
   init_mormac()
@@ -19,6 +19,8 @@ fn init_generated() -> Unit raise {
   init_mforma()
   init_mopers()
   init_simp()
+  init_pois2()
+  init_pois3()
   init_nforma()
   init_opr_util()
   init_nparse()
@@ -32,6 +34,14 @@ fn init_generated() -> Unit raise {
   init_mlisp()
   init_buildq()
   init_quadpack()
+  init_prompt_util()
+  init_suprv1()
+  init_macsys()
+  init_testsuite()
+  init_mload()
+  init_mactex()
+  init_dskfn()
+  init_numerical_utils()
   init_simp_fn()
   init_csimp()
   init_logarc()
@@ -41,19 +51,17 @@ fn init_generated() -> Unit raise {
   init_zero()
   init_halfangle()
   init_numeric()
-  init_prompt_util()
-  init_suprv1()
-  init_macsys()
-  init_testsuite()
-  init_mload()
-  init_mactex()
-  init_dskfn()
   init_nalgfa()
   init_ifactor()
   init_rat3e()
   init_nrat4()
   init_acall()
-  init_numerical_utils()
+  init_hayat()
+  init_trigi()
+  init_trigo()
+  init_trgred()
+  init_db()
+  init_compar()
   init_bessel()
   init_airy()
   init_ellipt()
@@ -62,8 +70,19 @@ fn init_generated() -> Unit raise {
   init_grind()
   init_displa()
   init_spgcd()
-  init_db()
-  init_compar()
+  init_rand_mt19937()
+  init_asum()
+  init_fortra()
+  init_optim()
+  init_mdot()
+  init_series()
+  init_numth()
+  init_combin()
+  init_nset()
+  init_maxmin()
+  init_conjugate()
+  init_hstep()
+  init_sinc()
   init_nummod()
   init_hypergeometric()
   init_nfloat()
@@ -71,14 +90,10 @@ fn init_generated() -> Unit raise {
   init_risch()
   init_irinte()
   init_sin()
-  init_hayat()
   init_residu()
   init_defint()
   init_hypgeo()
   init_laplac()
-  init_trigi()
-  init_trigo()
-  init_trgred()
   init_specfn()
   init_mat()
   init_nisimp()
@@ -94,21 +109,6 @@ fn init_generated() -> Unit raise {
   init_expintegral()
   init_gamma()
   init_plasma()
-  init_rand_mt19937()
-  init_asum()
-  init_fortra()
-  init_optim()
-  init_mdot()
-  init_series()
-  init_numth()
-  init_combin()
-  init_nset()
-  init_maxmin()
-  init_conjugate()
-  init_hstep()
-  init_sinc()
-  init_pois2()
-  init_pois3()
   init_todd_coxeter()
   init_max_ext()
   init_init_cl()
@@ -190,6 +190,7 @@ fn share_load_orthopoly() -> Unit raise {
 ///|
 fn share_load_trigrat() -> Unit raise {
   register_share_trigrat()
+  init_share_trigrat()
 }
 
 ///|
@@ -229,6 +230,23 @@ fn share_load_linalg_utilities() -> Unit raise {
 }
 
 ///|
+fn share_load_pwilt() -> Unit raise {
+  init_vars_n_dot_dot_share_diffequations_pwilt()
+  register_share_pwilt()
+}
+
+///|
+fn share_load_encode_decode_float() -> Unit raise {
+  init_vars_n_dot_dot_share_numericalio_encode_decode_float()
+  register_share_encode_decode_float()
+}
+
+///|
+fn share_load_numericalio() -> Unit raise {
+  register_share_numericalio()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
@@ -244,15 +262,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "sregex" => Some(share_load_sregex)
     "unwind_protect" => Some(share_load_unwind_protect)
     "grobner" => Some(share_load_grobner)
-    "orthopoly" => Some(share_load_orthopoly)
     "trigrat" => Some(share_load_trigrat)
-    "mring" => Some(share_load_mring)
-    "lu" => Some(share_load_lu)
-    "linalgcholesky" => Some(share_load_linalgcholesky)
-    "eigens-by-jacobi" => Some(share_load_eigens_by_jacobi)
-    "linalg-extra" => Some(share_load_linalg_extra)
-    "matrixexp" => Some(share_load_matrixexp)
-    "linalg-utilities" => Some(share_load_linalg_utilities)
     _ => None
   }
 }
