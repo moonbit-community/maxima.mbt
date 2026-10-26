@@ -11,19 +11,22 @@ REPOS_DIR = os.path.join(ROOT, ".repos") if os.path.isdir(os.path.join(ROOT, ".r
 EXE = os.environ.get("MAXIMA_PORT") or os.path.join(ROOT, "_build", "native", "release", "build", "cmd", "main", "main.exe")
 LOGDIR = os.path.join(ROOT, "_build", "rtests")
 
-def testsuite_files():
+def testsuite_files(share=False):
     src = open(os.path.join(REPOS_DIR, "maxima", "src", "testsuite.lisp")).read()
     i = src.index("$testsuite_files")
     j = src.index("$share_testsuite_files")
-    names = re.findall(r'"(rtest[^"]*)"', src[i:j])
+    names = re.findall(r'"(rtest[^"]*)"', src[j:] if share else src[i:j])
     return names
+
+SHARE = False
 
 def run_one(name, timeout):
     os.makedirs(LOGDIR, exist_ok=True)
     log = os.path.join(LOGDIR, name + ".log")
     t0 = time.time()
     try:
-        p = subprocess.run([EXE, "--batch-string=run_testsuite(tests=[\"%s\"]);" % name],
+        opt = ", share_tests=true" if SHARE else ""
+        p = subprocess.run([EXE, "--batch-string=run_testsuite(tests=[\"%s\"]%s);" % (name, opt)],
                            capture_output=True, text=True, timeout=timeout)
         out = p.stdout + p.stderr
         status = "ok" if p.returncode == 0 else "exit %d" % p.returncode
@@ -47,9 +50,12 @@ def main():
         if a == "-j": j = int(args.pop(0))
         elif a == "-t": timeout = int(args.pop(0))
         elif a == "--save": save = True
+        elif a == "--share":
+            global SHARE
+            SHARE = True
         else: names.append(a)
     if not names:
-        names = testsuite_files()
+        names = testsuite_files(SHARE)
     rows = []
     with concurrent.futures.ThreadPoolExecutor(j) as ex:
         for r in ex.map(lambda n: run_one(n, timeout), names):
@@ -61,8 +67,10 @@ def main():
     print("TOTAL passed %d of %d in completed files; %d files incomplete" %
           (tp, tt, sum(1 for r in rows if r[2] is None)))
     if save:
-        with open(os.path.join(ROOT, "docs", "TESTS.md"), "w") as f:
-            f.write("# Core test suite status\n\n| file | status | passed |\n|---|---|---|\n")
+        out = "TESTS_SHARE.md" if SHARE else "TESTS.md"
+        title = "Share" if SHARE else "Core"
+        with open(os.path.join(ROOT, "docs", out), "w") as f:
+            f.write("# %s test suite status\n\n| file | status | passed |\n|---|---|---|\n" % title)
             for name, status, passed, total, nprob, dt in rows:
                 res = "%s/%s" % (passed, total) if passed is not None else "incomplete"
                 f.write("| %s | %s | %s |\n" % (name, status, res))
