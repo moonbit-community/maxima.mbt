@@ -57,3 +57,9 @@ test "hash and lists" {
   inspect(nreverse(list([int(1), int(2), int(3)])), content="(3 2 1)")
   inspect(append(list([int(1)]), list([int(2)])), content="(1 2)")
 }
+
+///|
+test "nil reads as Nil" {
+  inspect(try! lread("(a nil ())"), content="(a nil nil)")
+  assert_true(try! lread("nil") is Nil)
+}

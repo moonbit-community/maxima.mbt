@@ -11,3 +11,4 @@
 - mgenarray struct slots: aref aset type null generator content; instream: stream line stream-name
 - maxima_lit never evaluates; use meval_star(maxima_lit(..)) where Lisp evaluated
 - REPL must not reprint merror text (merror prints itself)
+- safe-recursion must raise Condition named unsafe-recursion (compar meqp_by_csign catches it)

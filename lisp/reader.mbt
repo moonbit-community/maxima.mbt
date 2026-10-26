@@ -169,6 +169,9 @@ fn LReader::read(self : LReader) -> Value raise LispError {
     }
     _ => {
       let (name, escaped) = self.token()
+      if !escaped && name == "nil" {
+        return Nil
+      }
       if !escaped {
         match parse_number_token(name) {
           Some(n) => return n

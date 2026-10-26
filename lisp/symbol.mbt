@@ -44,7 +44,11 @@ pub fn intern(name : String) -> Symbol {
 ///|
 /// Intern and wrap as a Value.
 pub fn sym(name : String) -> Value {
-  Sym(intern(name))
+  if name == "nil" {
+    Nil
+  } else {
+    Sym(intern(name))
+  }
 }
 
 ///|
