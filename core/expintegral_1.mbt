@@ -276,11 +276,11 @@ fn simp__pctexpintegral_e(
         ),
       )
     }
-    if eq(symval(q_d_expintrep), q_p_gamma_u_incomplete) {
+    if eq(symval(q_d_expintrep), q_p_gamma_incomplete) {
       // We transform to the Incomplete Gamma function.
       return mul2(
         power(arg, num_sub(order, Fix(1L))),
-        take(list1(q_p_gamma_u_incomplete), [num_sub(Fix(1L), order), arg]),
+        take(list1(q_p_gamma_incomplete), [num_sub(Fix(1L), order), arg]),
       )
     }
     return give_up()
@@ -389,11 +389,11 @@ fn simp__pctexpintegral_e(
       }
     }
   }
-  if eq(symval(q_d_expintrep), q_p_gamma_u_incomplete) {
+  if eq(symval(q_d_expintrep), q_p_gamma_incomplete) {
     // We transform to the Incomplete Gamma function.
     return mul2(
       power(arg, sub(order, Fix(1L))),
-      take(list1(q_p_gamma_u_incomplete), [sub(Fix(1L), order), arg]),
+      take(list1(q_p_gamma_incomplete), [sub(Fix(1L), order), arg]),
     )
   }
   if symval(q_d_hypergeometric_representation).truthy() {

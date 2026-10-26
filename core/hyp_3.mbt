@@ -83,7 +83,7 @@ fn hypredincgm(a : Value, z : Value) -> Value raise {
       power(mz, mul2(Fix(-1L), a)),
       sub(
         take(list1(q_p_gamma), [a]),
-        take(list1(q_p_gamma_u_incomplete), [a, mz]),
+        take(list1(q_p_gamma_incomplete), [a, mz]),
       ),
     ])
   }
