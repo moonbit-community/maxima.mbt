@@ -6,6 +6,17 @@ extern "c" fn c_write_stdout(b : Bytes, len : Int) = "maxima_write_stdout"
 extern "c" fn c_flush_stdout() = "maxima_flush_stdout"
 
 ///|
+#borrow(b)
+extern "c" fn c_write_stderr(b : Bytes, len : Int) = "maxima_write_stderr"
+
+///|
+/// Write a string to the process's stderr.
+pub fn write_stderr(s : String) -> Unit {
+  let b = @utf8.encode(s)
+  c_write_stderr(b, b.length())
+}
+
+///|
 #borrow(eof)
 extern "c" fn c_read_line(eof : Ref[Int]) -> Bytes = "maxima_read_line"
 

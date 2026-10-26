@@ -13,7 +13,7 @@ PORT = os.environ.get("MAXIMA_PORT") or os.path.join(ROOT, "_build", "native", "
 def run(cmd, stmt, timeout=60):
     try:
         p = subprocess.run(cmd + ["--batch-string=display2d:false$ " + stmt],
-                           capture_output=True, text=True, timeout=timeout)
+                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=timeout)
         out = p.stdout
     except subprocess.TimeoutExpired:
         return "<timeout>"

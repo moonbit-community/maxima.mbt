@@ -12,6 +12,13 @@ void maxima_write_stdout(moonbit_bytes_t b, int32_t len) {
 MOONBIT_FFI_EXPORT
 void maxima_flush_stdout(void) { fflush(stdout); }
 
+MOONBIT_FFI_EXPORT
+void maxima_write_stderr(moonbit_bytes_t b, int32_t len) {
+  fflush(stdout);
+  fwrite(b, 1, (size_t)len, stderr);
+  fflush(stderr);
+}
+
 /* Read one line from stdin (including the newline). Returns an empty byte
    string at EOF; *eof is set to 1 then. */
 MOONBIT_FFI_EXPORT
