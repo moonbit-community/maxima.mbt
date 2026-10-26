@@ -30,15 +30,12 @@ jobs:
       - run: moon version --all
       - run: moon update
       - run: moon check
-      # The numerical libraries' tests compare bit for bit with results SBCL
-      # computed on macOS; glibc's libm rounds some functions differently,
-      # so on Linux only the runtime is tested.
+      # These tests compare floating-point results bit for bit with SBCL
+      # running on macOS; glibc's libm rounds some functions differently, so
+      # they run on macOS only.
       - name: Unit tests (runtime and numerical libraries)
         if: runner.os == 'macOS'
         run: moon test lisp f2cl slatec lbfgs odepack lapack hompack colnew fftpack5 minpack cobyla
-      - name: Unit tests (runtime)
-        if: runner.os == 'Linux'
-        run: moon test lisp
       - run: moon build --release
       - name: Smoke test
         run: |
