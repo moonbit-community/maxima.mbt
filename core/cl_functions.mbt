@@ -272,6 +272,37 @@ fn register_cl_functions() -> Unit {
     }
     Str(to)
   })
+  cl__def("logbitp", a => lbool(logbitp(to_int(arg(a, 0)), arg(a, 1))))
+  cl__def("array-dimension", a => int(array_dimension(arg(a, 0), to_int(arg(a, 1)))))
+  cl__def("getf", a => getf(arg(a, 0), arg(a, 1), default=arg(a, 2)))
+  cl__def("namestring", a => string(arg(a, 0)))
+  cl__def("pathname-name", a => {
+    let p = lstring(arg(a, 0))
+    let base = match p.rev_find("/") {
+      Some(i) => p.substring(start=i + 1)
+      None => p
+    }
+    match base.rev_find(".") {
+      Some(i) if i > 0 => Str(base.substring(end=i))
+      _ => Str(base)
+    }
+  })
+  cl__def("pathname-type", a => {
+    let p = lstring(arg(a, 0))
+    let base = match p.rev_find("/") {
+      Some(i) => p.substring(start=i + 1)
+      None => p
+    }
+    match base.rev_find(".") {
+      Some(i) if i > 0 => Str(base.substring(start=i + 1))
+      _ => Nil
+    }
+  })
+  cl__def("pathname-version", _ => Nil)
+  cl__def("getenv", a => match getenv(lstring(arg(a, 0))) {
+    Some(v) => Str(v)
+    None => Nil
+  })
   cl__def("lisp-implementation-type", _ => Str("MoonBit"))
   cl__def("lisp-implementation-version", _ => Str("0.1"))
 }

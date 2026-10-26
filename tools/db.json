@@ -263827,5 +263827,79 @@ null
 },
 "toplevel": [],
 "lines": 294
+},
+{
+"file": "../share/contrib/integration/abs_integrate",
+"module": "share",
+"functions": [
+{
+"kind": "defmfun",
+"name": "$integration_depth",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 24,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defmvar",
+"name": "$extra_integration_methods",
+"init": {
+"k": "expr",
+"v": "(simplifya (list (list 'mlist) '$intfudu '$intfugudu '$signum_int '$abs_integrate_use_if '$floor_int '$if_int) t)"
+},
+"line": 14
+},
+{
+"kind": "defmvar",
+"name": "$extra_definite_integration_methods",
+"init": {
+"k": "expr",
+"v": "(simplifya (list (list 'mlist) '$abs_defint) t)"
+},
+"line": 19
+}
+],
+"specials": [
+"$extra_definite_integration_methods",
+"$extra_integration_methods",
+"*integrator-level*"
+],
+"symbols": [
+"$abs_defint",
+"$abs_integrate_use_if",
+"$extra_definite_integration_methods",
+"$extra_integration_methods",
+"$floor_int",
+"$if_int",
+"$integration_depth",
+"$intfudu",
+"$intfugudu",
+"$signum_int",
+"*integrator-level*",
+"mlist"
+],
+"calls": {
+"in-package": 1,
+"defmvar": 2,
+"simplifya": 2,
+"list": 4,
+"defmfun": 1,
+"declare": 1,
+"special": 1,
+"if": 1,
+"boundp": 1
+},
+"toplevel": [],
+"lines": 26
 }
 ]

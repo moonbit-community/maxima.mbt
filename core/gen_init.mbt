@@ -697,6 +697,12 @@ fn share_load_numstats() -> Unit raise {
 }
 
 ///|
+fn share_load_abs_integrate() -> Unit raise {
+  register_share_abs_integrate()
+  init_share_abs_integrate()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
@@ -794,6 +800,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "lapack/dgemm" => Some(share_load_dgemm)
     "stats/inference_result" => Some(share_load_inference_result)
     "stats/numstats" => Some(share_load_numstats)
+    "integration/abs_integrate" => Some(share_load_abs_integrate)
     _ => None
   }
 }

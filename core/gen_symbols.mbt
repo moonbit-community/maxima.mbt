@@ -569,6 +569,12 @@ let q_d_abramowitz_id : Value = sym("$abramowitz_id")
 let q_d_abs : Value = sym("$abs")
 
 ///|
+let q_d_abs_defint : Value = sym("$abs_defint")
+
+///|
+let q_d_abs_integrate_use_if : Value = sym("$abs_integrate_use_if")
+
+///|
 let q_d_absboxchar : Value = sym("$absboxchar")
 
 ///|
@@ -2912,6 +2918,12 @@ let q_d_exptsubst : Value = sym("$exptsubst")
 let q_d_extdiff : Value = sym("$extdiff")
 
 ///|
+let q_d_extra_definite_integration_methods : Value = sym("$extra_definite_integration_methods")
+
+///|
+let q_d_extra_integration_methods : Value = sym("$extra_integration_methods")
+
+///|
 let q_d_extremal_subset : Value = sym("$extremal_subset")
 
 ///|
@@ -3195,6 +3207,9 @@ let q_d_flonum : Value = sym("$flonum")
 
 ///|
 let q_d_floor : Value = sym("$floor")
+
+///|
+let q_d_floor_int : Value = sym("$floor_int")
 
 ///|
 let q_d_floyd_warshall : Value = sym("$floyd_warshall")
@@ -3986,6 +4001,9 @@ let q_d_idummyx : Value = sym("$idummyx")
 let q_d_if : Value = sym("$if")
 
 ///|
+let q_d_if_int : Value = sym("$if_int")
+
+///|
 let q_d_ifactor_verbose : Value = sym("$ifactor_verbose")
 
 ///|
@@ -4181,6 +4199,9 @@ let q_d_integration_constant : Value = sym("$integration_constant")
 let q_d_integration_constant_counter : Value = sym("$integration_constant_counter")
 
 ///|
+let q_d_integration_depth : Value = sym("$integration_depth")
+
+///|
 let q_d_interpolate : Value = sym("$interpolate")
 
 ///|
@@ -4200,6 +4221,12 @@ let q_d_intervalp : Value = sym("$intervalp")
 
 ///|
 let q_d_intfaclim : Value = sym("$intfaclim")
+
+///|
+let q_d_intfudu : Value = sym("$intfudu")
+
+///|
+let q_d_intfugudu : Value = sym("$intfugudu")
 
 ///|
 let q_d_intopois : Value = sym("$intopois")
@@ -7644,6 +7671,9 @@ let q_d_signbfloat : Value = sym("$signbfloat")
 
 ///|
 let q_d_signum : Value = sym("$signum")
+
+///|
+let q_d_signum_int : Value = sym("$signum_int")
 
 ///|
 let q_d_silent : Value = sym("$silent")

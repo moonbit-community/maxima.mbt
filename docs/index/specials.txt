@@ -127,6 +127,8 @@ $expop
 $exptdispflag
 $exptisolate
 $exptsubst
+$extra_definite_integration_methods
+$extra_integration_methods
 $facexpand
 $factlim
 $factor_max_degree

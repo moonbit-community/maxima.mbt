@@ -32169,6 +32169,10 @@ declare fn swpoly(cc : Value, x : Value) -> Value raise
 /// defun $test_normality -- ../share/stats/numstats.lisp:109
 declare fn d_test_normality(x : Value, n1? : Value = Nil) -> Value raise
 
+///|
+/// defmfun $integration_depth -- ../share/contrib/integration/abs_integrate.lisp:24
+declare fn d_integration_depth() -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -35476,4 +35480,8 @@ declare fn init_share_inference_result() -> Unit raise
 ///|
 /// top-level forms of ../share/stats/numstats.lisp
 declare fn init_share_numstats() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/integration/abs_integrate.lisp
+declare fn init_share_abs_integrate() -> Unit raise
 

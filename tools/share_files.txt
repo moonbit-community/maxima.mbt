@@ -91,3 +91,4 @@ share/lapack/dgeqrf
 share/lapack/dgemm
 share/stats/inference_result
 share/stats/numstats
+share/contrib/integration/abs_integrate

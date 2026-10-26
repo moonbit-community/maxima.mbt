@@ -9930,3 +9930,9 @@ fn register_share_numstats() -> Unit {
   defun(q_swpoly, args => swpoly(arg(args, 0), arg(args, 1)))
   defun(q_d_test_normality, args => d_test_normality(arg(args, 0), n1?=args.get(1)))
 }
+
+///|
+fn register_share_abs_integrate() -> Unit {
+  defun(q_d_integration_depth, args => { check_arity_range("$integration_depth", args, 0, 0); d_integration_depth() })
+  putprop(q_d_integration_depth, t, q_translated) |> ignore
+}

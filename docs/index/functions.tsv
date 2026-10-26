@@ -7974,6 +7974,7 @@ rank_sum_recursion	defun	../share/stats/numstats.lisp:46	rank_sum_recursion(i : 
 signed_rank_recursion	defun	../share/stats/numstats.lisp:68	signed_rank_recursion(i : Value, j : Value) -> Value
 swpoly	defun	../share/stats/numstats.lisp:88	swpoly(cc : Value, x : Value) -> Value
 $test_normality	defun	../share/stats/numstats.lisp:109	d_test_normality(x : Value, n1? : Value = Nil) -> Value
+$integration_depth	defmfun	../share/contrib/integration/abs_integrate.lisp:24	d_integration_depth() -> Value
 intl::textdomain	macro	intl.lisp:509	intl_textdomain(domain : Value) -> Value
 intl::gettext	macro	intl.lisp:513	intl_gettext(string_ : Value) -> Value
 intl::ngettext	macro	intl.lisp:517	intl_ngettext(singular : Value, plural : Value, n : Value) -> Value
