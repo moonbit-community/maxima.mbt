@@ -872,14 +872,14 @@ fn elliptic_pi(n : Value, phi : Value, m : Value) -> Value raise {
       num_add(int(1), num_mul(k, sin_phi)),
     )
     num_sub(
-      num_mul(sin_phi, bf_bf_rf(expt(cos_phi, int(2)), k2sin, Flo(1.0))),
+      num_mul(sin_phi, bf_bf_rf(num_mul(cos_phi, cos_phi), k2sin, Flo(1.0))),
       num_mul(
         num_mul(num_div(nn, int(3)), expt(sin_phi, int(3))),
         bf_bf_rj(
-          expt(cos_phi, int(2)),
+          num_mul(cos_phi, cos_phi),
           k2sin,
           Flo(1.0),
-          num_sub(int(1), num_mul(n, expt(sin_phi, int(2)))),
+          num_sub(int(1), num_mul(n, num_mul(sin_phi, sin_phi))),
         ),
       ),
     )
