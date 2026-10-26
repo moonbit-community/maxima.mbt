@@ -31,6 +31,7 @@ fn init_generated() -> Unit raise {
   init_mmacro()
   init_mlisp()
   init_buildq()
+  init_quadpack()
   init_simp_fn()
   init_csimp()
   init_logarc()
