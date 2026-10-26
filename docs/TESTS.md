@@ -7,11 +7,11 @@
 | rtest_extensions | ok | 18/18 |
 | rtest_rules | ok | 242/242 |
 | rtestnset | ok | 672/672 |
-| rtest1 | ok | 206/208 |
+| rtest1 | ok | 208/208 |
 | rtest1a | ok | 54/54 |
-| rtest2 | ok | 318/322 |
+| rtest2 | ok | 322/322 |
 | rtest4 | ok | 120/120 |
-| rtest5 | ok | 82/85 |
+| rtest5 | ok | 83/85 |
 | rtest6 | ok | 182/182 |
 | rtest6a | ok | 91/91 |
 | rtest6b | ok | 58/58 |
@@ -23,8 +23,8 @@
 | rtest13 | ok | 39/39 |
 | rtest13s | ok | 18/18 |
 | rtest14 | ok | 439/439 |
-| rtest15 | ok | 428/430 |
-| rtest16 | ok | 1115/1118 |
+| rtest15 | ok | 430/430 |
+| rtest16 | ok | 1118/1118 |
 | rtestode | ok | 109/109 |
 | rtestode_zp | ok | 30/30 |
 | rtest3 | ok | 250/250 |
@@ -50,7 +50,7 @@
 | rtest_abs | ok | 175/175 |
 | rtest_taylor | ok | 246/246 |
 | rtest_dot | ok | 72/72 |
-| rtest_mset | ok | 110/113 |
+| rtest_mset | ok | 113/113 |
 | rtest_boolean | ok | 116/116 |
 | rtest_round | ok | 101/101 |
 | rtest_map | ok | 145/145 |
@@ -71,7 +71,7 @@
 | rtest_limit | ok | 454/454 |
 | rtest_powerseries | ok | 73/73 |
 | rtest_laplace | ok | 102/102 |
-| rtest_plotoptions | ok | 6/13 |
+| rtest_plotoptions | ok | 13/13 |
 | rtest_algsys | ok | 75/75 |
 | rtest_trace | ok | 97/100 |
 | rtest_polynomialp | ok | 17/17 |
@@ -92,4 +92,4 @@
 | rtest_wxmx | ok | 11/11 |
 | rtest_load_relative | ok | 5/5 |
 
-Total: 16413 of 16441 in completed files.
+Total: 16435 of 16441 in completed files.

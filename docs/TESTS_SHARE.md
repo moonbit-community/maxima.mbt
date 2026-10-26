@@ -9,7 +9,7 @@
 | rtest_z_transform | ok | 36/36 |
 | rtest_zeilberger_extreme | ok | 9/9 |
 | rtest_zeilberger | ok | 53/53 |
-| rtest_boolsimp | ok | 45/48 |
+| rtest_boolsimp | ok | 48/48 |
 | rtest_eigen | ok | 23/23 |
 | rtest_lsquares | ok | 67/67 |
 | rtest_pytranslate | ok | 73/74 |
@@ -48,7 +48,7 @@
 | rtest_list_operations | ok | 106/106 |
 | rtest_bitwise | ok | 71/71 |
 | rtest_gf | ok | 10/10 |
-| rtest_arag | ok | 106/109 |
+| rtest_arag | ok | 109/109 |
 | rtest_pdiff | ok | 90/90 |
 | rtest_to_poly | ok | 32/32 |
 | rtestprintf | ok | 73/73 |
@@ -75,4 +75,4 @@
 | rtest_raddenest | ok | 123/123 |
 | rtest_decfp | ok | 6/6 |
 
-Total: 5021 of 5061 in completed files.
+Total: 5027 of 5061 in completed files.
