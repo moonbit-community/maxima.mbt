@@ -737,6 +737,24 @@ fn le__global_macro(s : Symbol) -> Value? {
 }
 
 ///|
+/// The global macro of a symbol, defining one of Maxima's macros from its
+/// source if the name has no definition.
+fn le__global_macro_or_library(s : Symbol) -> Value? raise {
+  match le__global_macro(s) {
+    Some(m) => Some(m)
+    None =>
+      if s.func is None &&
+        le__maxima_macro_sources.contains(s.name) &&
+        !le__builtin_macros().contains(s.name) &&
+        le__define_library_macro(s) {
+        le__global_macro(s)
+      } else {
+        None
+      }
+  }
+}
+
+///|
 /// Expand a macro form with an expander function value.
 fn le__call_expander(expander : Value, form : Value, env : LeEnv) -> Value raise {
   let saved = le__cur_env.val
@@ -786,7 +804,76 @@ fn le__comp_compound(
     Some(expander) => return le__comp(expander(form, env), env, mv)
     None => ()
   }
+  if s.func is None && le__maxima_macro_sources.contains(s.name) {
+    return le__comp_library_macro_call(s, head, args, form, env, mv)
+  }
   le__comp_global_call(s, head, args, env)
+}
+
+///|
+/// A call of an undefined name that is one of Maxima's own macros
+/// (lisp_eval_maxima_macros.mbt): decided when it runs, so that a function
+/// defined later under that name is called; otherwise the macro is defined
+/// and the form compiled as a macro form (in a frame of its own, as the
+/// enclosing frames already exist).
+fn le__comp_library_macro_call(
+  s : Symbol,
+  head : Value,
+  args : Value,
+  form : Value,
+  env : LeEnv,
+  mv : Bool,
+) -> LeCode {
+  let as_call : Ref[LeCode?] = Ref(None)
+  let as_macro : Ref[(LeFInfo, LeCode)?] = Ref(None)
+  f => match s.func {
+    Some(_) => {
+      let c = match as_call.val {
+        Some(c) => c
+        None => {
+          let c = le__comp_global_call(s, head, args, env)
+          as_call.val = Some(c)
+          c
+        }
+      }
+      c(f)
+    }
+    None => {
+      let (fi, c) = match as_macro.val {
+        Some(p) => p
+        None => {
+          if !le__define_library_macro(s) {
+            le__undefined_function(head) |> ignore
+          }
+          let fi = { size: 0 }
+          let c = le__comp(form, Frame(fi, env), mv)
+          as_macro.val = Some((fi, c))
+          (fi, c)
+        }
+      }
+      c(le__new_frame(fi, f))
+    }
+  }
+}
+
+///|
+/// Define one of Maxima's macros from its source (if it has none yet).
+fn le__define_library_macro(s : Symbol) -> Bool raise {
+  if get(Sym(s), le__q_macro_function).truthy() {
+    return true
+  }
+  match le__maxima_macro_sources.get(s.name) {
+    Some(src) => {
+      let saved = @lisp.reader_package.val
+      @lisp.reader_package.val = "maxima"
+      defer {
+        @lisp.reader_package.val = saved
+      }
+      @lisp.lread_source_all(src, x => le__eval_file_form(x) |> ignore)
+      get(Sym(s), le__q_macro_function).truthy()
+    }
+    None => false
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -806,7 +893,7 @@ fn le__macroexpand_1(form : Value, env : LeEnv) -> (Value, Bool) raise {
           return (le__call_expander(expander, form, env), true)
         GlobalFun => ()
       }
-      match le__global_macro(s) {
+      match le__global_macro_or_library(s) {
         Some(expander) => return (le__call_expander(expander, form, env), true)
         None => ()
       }
@@ -876,7 +963,7 @@ fn le__eval_file_form(form : Value) -> Value raise {
         Nil
       }
     Cons({ car: Sym(s), .. }) if !le__special_forms().contains(s.name) &&
-      (le__global_macro(s) is Some(_) || le__builtin_macros().contains(s.name)) => {
+      (le__global_macro_or_library(s) is Some(_) || le__builtin_macros().contains(s.name)) => {
       let (g, ex) = le__macroexpand_1(form, Top)
       if ex {
         le__eval_file_form(g)

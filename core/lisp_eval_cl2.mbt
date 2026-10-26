@@ -1077,7 +1077,10 @@ fn le__register_symbols() -> Unit {
   le__def("si::setsymfn", a => {
     let v = le__arg(a, 1)
     match (le__arg(a, 0), v) {
-      (Sym(s), Func(lf)) => s.func = Some(lf)
+      (Sym(s), Func(lf)) => {
+        s.func = Some(lf)
+        le__interpreted_defuns.add(s.id)
+      }
       (Sym(s), Nil) => s.func = None
       (n, _) => le__install_function(n, v)
     }
@@ -1634,7 +1637,7 @@ fn le__register_eval() -> Unit {
   })
   le__def("macro-function", a => match le__arg(a, 0) {
     Sym(s) =>
-      match le__global_macro(s) {
+      match le__global_macro_or_library(s) {
         Some(m) => m
         None =>
           match le__builtin_macros().get(s.name) {

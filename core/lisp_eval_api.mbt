@@ -7,7 +7,11 @@ let le__initialized : Ref[Bool] = Ref(false)
 /// Install the reader hooks (#. and #$) that need the evaluator.
 fn le__init_reader_hooks() -> Unit {
   @lisp.read_eval_hook.val = form => lisp_eval_form(form)
-  @lisp.read_maxima_hook.val = text => copy_tree(maxima_lit(text))
+  @lisp.read_maxima_hook.val = text => with_special(
+    q_ear_mread_prompt,
+    Str(""),
+    () => macsyma_read_string(Str(text)),
+  )
 }
 
 ///|
@@ -88,6 +92,7 @@ fn le__init() -> Unit raise {
     }
   }
   le__init_reader_hooks()
+  le__wrap_mv_functions()
   // the function cells of the operations compiled inline
   for name in [
     "+", "-", "*", "<", ">", "<=", ">=", "=", "eq", "eql", "equal", "cons", "1+",
@@ -106,6 +111,47 @@ fn le__init() -> Unit raise {
     @lisp.reader_package.val = saved
   }
   @lisp.lread_source_all(le__prelude, f => le__eval_file_form(f) |> ignore)
+}
+
+///|
+/// The multiple-valued wrappers installed by `le__wrap_mv_functions`.
+let le__mv_wrapped : Map[Int, LFunc] = Map::new()
+
+///|
+/// Symbols whose function was defined by interpreted code (not to be
+/// replaced by a wrapper).
+let le__interpreted_defuns : Set[Int] = Set::new()
+
+///|
+/// Replace the function cells of the ported multiple-valued functions
+/// (which return their primary value) by wrappers that also set the values
+/// register. Run at initialization and after a share package is loaded.
+fn le__wrap_mv_functions() -> Unit {
+  for p in le__mv_wrappers() {
+    match p.0 {
+      Sym({ func: Some(lf), .. } as s) => {
+        if le__mv_wrapped.get(s.id) is Some(w) && physical_equal(w, lf) {
+          continue
+        }
+        if le__interpreted_defuns.contains(s.id) {
+          continue
+        }
+        let f = p.1
+        let w : LFunc = { name: s.name, call: args => le__values(f(args)) }
+        s.func = Some(w)
+        le__mv_wrapped[s.id] = w
+      }
+      _ => ()
+    }
+  }
+}
+
+///|
+/// Called after a share package's functions have been registered.
+fn lisp_eval_after_share_load() -> Unit {
+  if le__initialized.val {
+    le__wrap_mv_functions()
+  }
 }
 
 ///|
@@ -203,10 +249,12 @@ fn lisp_function_of_lambda(lform : Value) -> Value raise {
 /// Is the symbol the name of a Lisp macro? (CL MACRO-FUNCTION as a test)
 fn lisp_macro_p(s : Value) -> Bool raise {
   match s {
-    Sym(sy) =>
+    Sym(sy) => {
       get(s, le__q_macro_function).truthy() ||
       le__builtin_macros().contains(sy.name) ||
-      (!le__initialized.val && le__prelude_macros().contains(sy.name))
+      (!le__initialized.val && le__prelude_macros().contains(sy.name)) ||
+      (sy.func is None && le__maxima_macro_sources.contains(sy.name))
+    }
     _ => false
   }
 }
@@ -226,6 +274,12 @@ fn lisp_macro_function(s : Value) -> Value raise {
       if !le__initialized.val && le__prelude_macros().contains(sy.name) {
         le__init()
         return get(s, le__q_macro_function)
+      }
+      if sy.func is None && le__maxima_macro_sources.contains(sy.name) {
+        le__init()
+        if le__define_library_macro(sy) {
+          return get(s, le__q_macro_function)
+        }
       }
       Nil
     }

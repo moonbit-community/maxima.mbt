@@ -684,32 +684,29 @@ fn LReader::read_dispatch(self : LReader) -> Value? raise LispError {
       }
     }
     '$' => {
-      // Maxima syntax up to the terminating (unquoted) $
+      // Maxima syntax up to the terminating $ (nparse.lisp's $-READ-AUX):
+      // #$expr$ reads as (meval* 'expr), #$$expr$ as 'expr.
+      self.skip_ws()
+      let mut meval_flag = true
+      if self.peek() is Some('$') {
+        self.next() |> ignore
+        meval_flag = false
+      }
       let sb = StringBuilder::new()
-      let mut in_str = false
       while true {
         let c = self.next_or_eof()
-        if in_str {
-          sb.write_char(c)
-          if c == '\\' {
-            sb.write_char(self.next_or_eof())
-          } else if c == '"' {
-            in_str = false
-          }
-        } else if c == '$' {
+        sb.write_char(c)
+        if c == '$' {
           break
-        } else {
-          if c == '"' {
-            in_str = true
-          }
-          sb.write_char(c)
         }
       }
-      Some((read_maxima_hook.val)(sb.to_string())) catch {
+      let expr = (read_maxima_hook.val)(sb.to_string()) catch {
         LispError::SimpleError(m) => raise SimpleError(m)
         LispError::Condition(s, m, p) => raise Condition(s, m, p)
         e => raise SimpleError(e.to_string())
       }
+      let q = list2(sym("quote"), expr)
+      Some(if meval_flag { list2(sym("meval*"), q) } else { q })
     }
     '=' => {
       // #n= object: a label for shared structure

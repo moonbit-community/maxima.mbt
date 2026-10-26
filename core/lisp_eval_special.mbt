@@ -783,6 +783,7 @@ fn le__install_function(name : Value, fv : Value) -> Unit raise {
   match (name, fv) {
     (Sym(s), Func(lf)) => {
       s.func = Some(lf)
+      le__interpreted_defuns.add(s.id)
       remprop(name, le__q_macro_function) |> ignore
     }
     (Cons({ car: Sym({ name: "setf", .. }), cdr: Cons({ car: Sym(s), .. }) }), _) =>
