@@ -495,68 +495,81 @@ fn share_load_pytranslate() -> Unit raise {
 ///|
 fn share_load_multiadditive() -> Unit raise {
   register_share_multiadditive()
+  init_share_multiadditive()
 }
 
 ///|
 fn share_load_integer_sequence() -> Unit raise {
   register_share_integer_sequence()
+  init_share_integer_sequence()
 }
 
 ///|
 fn share_load_fourier_elim() -> Unit raise {
   register_share_fourier_elim()
+  init_share_fourier_elim()
 }
 
 ///|
 fn share_load_ezunits() -> Unit raise {
   register_share_ezunits()
+  init_share_ezunits()
 }
 
 ///|
 fn share_load_opsubst() -> Unit raise {
   register_share_opsubst()
+  init_share_opsubst()
 }
 
 ///|
 fn share_load_operatingsystem() -> Unit raise {
   register_share_operatingsystem()
+  init_share_operatingsystem()
 }
 
 ///|
 fn share_load_coeflist() -> Unit raise {
   register_share_coeflist()
+  init_share_coeflist()
 }
 
 ///|
 fn share_load_engineering_format() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_engineering_format()
   register_share_engineering_format()
+  init_share_engineering_format()
 }
 
 ///|
 fn share_load_odelin() -> Unit raise {
   register_share_odelin()
+  init_share_odelin()
 }
 
 ///|
 fn share_load_boolsimp() -> Unit raise {
   register_share_boolsimp()
+  init_share_boolsimp()
 }
 
 ///|
 fn share_load_bernstein() -> Unit raise {
   init_vars_n_dot_dot_share_bernstein_bernstein()
   register_share_bernstein()
+  init_share_bernstein()
 }
 
 ///|
 fn share_load_amatrix() -> Unit raise {
   register_share_amatrix()
+  init_share_amatrix()
 }
 
 ///|
 fn share_load_charsets_flatten() -> Unit raise {
   register_share_charsets_flatten()
+  init_share_charsets_flatten()
 }
 
 ///|
@@ -640,9 +653,19 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "numeric/fft-package" => Some(share_load_fft_package)
     "numeric/decfp-core" => Some(share_load_decfp_core)
     "tensor/itensor" => Some(share_load_itensor)
+    "multiadditive/multiadditive" => Some(share_load_multiadditive)
+    "integer_sequence/integer_sequence" => Some(share_load_integer_sequence)
+    "fourier_elim/fourier_elim" => Some(share_load_fourier_elim)
+    "ezunits/ezunits" => Some(share_load_ezunits)
+    "contrib/opsubst" => Some(share_load_opsubst)
+    "operatingsystem/operatingsystem" => Some(share_load_operatingsystem)
+    "format/coeflist" => Some(share_load_coeflist)
     "contrib/engineering-format" => Some(share_load_engineering_format)
     "diffequations/odelin" => Some(share_load_odelin)
     "boolsimp/boolsimp" => Some(share_load_boolsimp)
+    "bernstein/bernstein" => Some(share_load_bernstein)
+    "amatrix/amatrix" => Some(share_load_amatrix)
+    "charsets/charsets_flatten" => Some(share_load_charsets_flatten)
     _ => None
   }
 }
