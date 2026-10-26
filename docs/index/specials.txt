@@ -97,6 +97,8 @@ $current_variables
 $current_weights
 $d2%
 $dblfloat
+$debug_hompack
+$debug_minpack
 $debugmode
 $default_format_prompt
 $default_let_rule_package
@@ -731,6 +733,7 @@ $zn_primroot_verbose
 *builtin-symbols-with-values*
 *c
 *c*
+*calcfc*
 *cancelled
 *cant-open-compile-mformat*
 *changevp*
@@ -781,6 +784,7 @@ $zn_primroot_verbose
 *debug*
 *debug-bessel*
 *debug-cf-eval*
+*debug-cobyla*
 *debug-compar*
 *debug-defint-log*
 *debug-directory-cached*
@@ -901,6 +905,7 @@ $zn_primroot_verbose
 *external-byte-order*
 *extra-html-entries*
 *f*
+*f-fun*
 *f2-red*
 *f90-output-line-length-max*
 *facial-walks*
@@ -912,6 +917,7 @@ $zn_primroot_verbose
 *fast-bfloat-extra-bits*
 *fctcfixn*
 *fixed-vertices*
+*fjac-fun*
 *flg
 *floatfield*
 *flonum-op*

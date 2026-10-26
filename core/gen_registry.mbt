@@ -13218,3 +13218,44 @@ fn register_share_rducon() -> Unit {
   defun(q_reduce_constants, args => reduce_constants(arg(args, 0), newconst?=args.get(1)))
   defun(q_d_reduce_consts, args => d_reduce_consts(arg(args, 0), newconstant?=args.get(1)))
 }
+
+///|
+fn register_share_hompack_interface() -> Unit {
+  defun(q_parse_equations, args => parse_equations(arg(args, 0), arg(args, 1), arg(args, 2)).0)
+  defun(q_convert_coef, args => convert_coef(arg(args, 0)))
+  defun(q_convert_kdeg, args => convert_kdeg(arg(args, 0), arg(args, 1)))
+  defun(q_d_hompack_polsys, args => { check_arity_range("$hompack_polsys", args, 2, -1); { defmfun_check_keywords(q_d_hompack_polsys, args, 2, [(q_d_iflg1, Fix(0L)), (q_d_epsbig, Flo(0.0001)), (q_d_epssml, Flo(1.0e-14)), (q_d_numrr, Fix(10L)), (q_d_iflg2, Nil), (q_d_sspar, Nil)]); d_hompack_polsys(arg(args, 0), arg(args, 1), iflg1?=key_arg(args, 2, ":iflg1"), epsbig?=key_arg(args, 2, ":epsbig"), epssml?=key_arg(args, 2, ":epssml"), numrr?=key_arg(args, 2, ":numrr"), iflg2?=key_arg(args, 2, ":iflg2"), sspar?=key_arg(args, 2, ":sspar")) } })
+  putprop(q_d_hompack_polsys, t, q_translated) |> ignore
+  defun(q_hompack_f, args => hompack_f(arg(args, 0), arg(args, 1)).0)
+  defun(q_hompack_fjac, args => hompack_fjac(arg(args, 0), arg(args, 1), arg(args, 2)).0)
+  defun(q_d_hompack_fixpdf, args => { check_arity_range("$hompack_fixpdf", args, 2, -1); { defmfun_check_keywords(q_d_hompack_fixpdf, args, 2, [(q_d_iflag, Fix(-1L)), (q_d_arctol, Flo(-1.0)), (q_d_eps, Flo(1.0e-05)), (q_d_trace, Fix(0L)), (q_d_inita, Nil)]); d_hompack_fixpdf(arg(args, 0), arg(args, 1), iflag?=key_arg(args, 2, ":iflag"), arctol?=key_arg(args, 2, ":arctol"), eps?=key_arg(args, 2, ":eps"), trace?=key_arg(args, 2, ":trace"), inita?=key_arg(args, 2, ":inita")) } })
+  putprop(q_d_hompack_fixpdf, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_minpack_interface() -> Unit {
+  defun(q_d_minpack_lsquares, args => { check_arity_range("$minpack_lsquares", args, 3, -1); { defmfun_check_keywords(q_d_minpack_lsquares, args, 3, [(q_d_jacobian, t), (q_d_tolerance, Nil)]); d_minpack_lsquares(arg(args, 0), arg(args, 1), arg(args, 2), jacobian?=key_arg(args, 3, ":jacobian"), tolerance?=key_arg(args, 3, ":tolerance")) } })
+  putprop(q_d_minpack_lsquares, t, q_translated) |> ignore
+  defun(q_d_minpack_solve, args => { check_arity_range("$minpack_solve", args, 3, -1); { defmfun_check_keywords(q_d_minpack_solve, args, 3, [(q_d_jacobian, t), (q_d_tolerance, Nil)]); d_minpack_solve(arg(args, 0), arg(args, 1), arg(args, 2), jacobian?=key_arg(args, 3, ":jacobian"), tolerance?=key_arg(args, 3, ":tolerance")) } })
+  putprop(q_d_minpack_solve, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_cobyla_interface() -> Unit {
+  defun(q_cobyla_calcfc, args => cobyla_calcfc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_fmin_cobyla, args => { check_arity_range("$fmin_cobyla", args, 3, -1); { defmfun_check_keywords(q_d_fmin_cobyla, args, 3, [(q_d_constraints, Nil), (q_d_rhobeg, Flo(1.0)), (q_d_rhoend, Flo(1.0e-06)), (q_d_iprint, Fix(0L)), (q_d_maxfun, Fix(1000L))]); d_fmin_cobyla(arg(args, 0), arg(args, 1), arg(args, 2), constraints?=key_arg(args, 3, ":constraints"), rhobeg?=key_arg(args, 3, ":rhobeg"), rhoend?=key_arg(args, 3, ":rhoend"), iprint?=key_arg(args, 3, ":iprint"), maxfun?=key_arg(args, 3, ":maxfun")) } })
+  putprop(q_d_fmin_cobyla, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_bf__cobyla_interface() -> Unit {
+  defun(q_bf_calcfc, args => bf_calcfc(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_bf_fmin_cobyla, args => { check_arity_range("$bf_fmin_cobyla", args, 3, -1); { defmfun_check_keywords(q_d_bf_fmin_cobyla, args, 3, [(q_d_constraints, Nil), (q_d_rhobeg, Flo(1.0)), (q_d_rhoend, Nil), (q_d_iprint, Fix(0L)), (q_d_maxfun, Fix(1000L))]); d_bf_fmin_cobyla(arg(args, 0), arg(args, 1), arg(args, 2), constraints?=key_arg(args, 3, ":constraints"), rhobeg?=key_arg(args, 3, ":rhobeg"), rhoend?=key_arg(args, 3, ":rhoend"), iprint?=key_arg(args, 3, ":iprint"), maxfun?=key_arg(args, 3, ":maxfun")) } })
+  putprop(q_d_bf_fmin_cobyla, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_colnew_if() -> Unit {
+  defun(q_d_colnew_expert, args => d_colnew_expert(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8), arg(args, 9), arg(args, 10), arg(args, 11), arg(args, 12), arg(args, 13), arg(args, 14), arg(args, 15), arg(args, 16)))
+  defun(q_d_colnew_appsln, args => d_colnew_appsln(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+}

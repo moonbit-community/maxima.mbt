@@ -43237,6 +43237,69 @@ declare fn reduce_constants(x : Value, newconst? : Value = Nil) -> Value raise
 /// defun $reduce_consts -- ../share/simplification/rducon.lisp:266
 declare fn d_reduce_consts(x : Value, newconstant? : Value = Nil) -> Value raise
 
+///|
+/// defun parse-equations -- ../share/hompack/hompack-interface.lisp:10
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn parse_equations(eqnlist : Value, varlist : Value, fname : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun convert-coef -- ../share/hompack/hompack-interface.lisp:83
+declare fn convert_coef(coef : Value) -> Value raise
+
+///|
+/// defun convert-kdeg -- ../share/hompack/hompack-interface.lisp:106
+declare fn convert_kdeg(kdeg : Value, numt : Value) -> Value raise
+
+///|
+/// defmfun $hompack_polsys -- ../share/hompack/hompack-interface.lisp:124
+declare fn d_hompack_polsys(eqnlist : Value, varlist : Value, iflg1? : Value = Fix(0L), epsbig? : Value = Flo(0.0001), epssml? : Value = Flo(1.0e-14), numrr? : Value = Fix(10L), iflg2? : Value = Nil, sspar? : Value = Nil) -> Value raise
+
+///|
+/// defun hompack::f -- ../share/hompack/hompack-interface.lisp:292
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn hompack_f(x : Value, v : Value) -> (Value, Value) raise
+
+///|
+/// defun hompack::fjac -- ../share/hompack/hompack-interface.lisp:304
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn hompack_fjac(x : Value, v : Value, k : Value) -> (Value, Value, Value) raise
+
+///|
+/// defmfun $hompack_fixpdf -- ../share/hompack/hompack-interface.lisp:314
+declare fn d_hompack_fixpdf(fcns : Value, varlist : Value, iflag? : Value = Fix(-1L), arctol? : Value = Flo(-1.0), eps? : Value = Flo(1.0e-05), trace? : Value = Fix(0L), inita? : Value = Nil) -> Value raise
+
+///|
+/// defmfun $minpack_lsquares -- ../share/minpack/minpack-interface.lisp:10
+declare fn d_minpack_lsquares(fcns : Value, vars : Value, init_x : Value, jacobian? : Value = t, tolerance? : Value) -> Value raise
+
+///|
+/// defmfun $minpack_solve -- ../share/minpack/minpack-interface.lisp:163
+declare fn d_minpack_solve(fcns : Value, vars : Value, init_x : Value, jacobian? : Value = t, tolerance? : Value) -> Value raise
+
+///|
+/// defun cobyla::calcfc -- ../share/cobyla/cobyla-interface.lisp:19
+declare fn cobyla_calcfc(n : Value, m : Value, x : Value, f : Value, con : Value) -> Value raise
+
+///|
+/// defmfun $fmin_cobyla -- ../share/cobyla/cobyla-interface.lisp:23
+declare fn d_fmin_cobyla(f : Value, vars : Value, init_x : Value, constraints? : Value = Nil, rhobeg? : Value = Flo(1.0), rhoend? : Value = Flo(1.0e-06), iprint? : Value = Fix(0L), maxfun? : Value = Fix(1000L)) -> Value raise
+
+///|
+/// defun bigfloat::calcfc -- ../share/cobyla/bf-cobyla-interface.lisp:18
+declare fn bf_calcfc(n : Value, m : Value, x : Value, f : Value, con : Value) -> Value raise
+
+///|
+/// defmfun $bf_fmin_cobyla -- ../share/cobyla/bf-cobyla-interface.lisp:27
+declare fn d_bf_fmin_cobyla(f : Value, vars : Value, init_x : Value, constraints? : Value = Nil, rhobeg? : Value = Flo(1.0), rhoend? : Value = Nil, iprint? : Value = Fix(0L), maxfun? : Value = Fix(1000L)) -> Value raise
+
+///|
+/// defun $colnew_expert -- ../share/colnew/colnew-if.lisp:8
+declare fn d_colnew_expert(ncomp : Value, m : Value, aleft : Value, aright : Value, zeta : Value, ipar : Value, ltol : Value, tol : Value, fixpnt : Value, ispace : Value, fspace : Value, iflag : Value, f : Value, df : Value, g : Value, dg : Value, init_guess : Value) -> Value raise
+
+///|
+/// defun $colnew_appsln -- ../share/colnew/colnew-if.lisp:110
+declare fn d_colnew_appsln(x : Value, zlen : Value, fspace : Value, ispace : Value) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -47672,4 +47735,24 @@ declare fn init_share_scifac() -> Unit raise
 ///|
 /// top-level forms of ../share/simplification/rducon.lisp
 declare fn init_share_rducon() -> Unit raise
+
+///|
+/// top-level forms of ../share/hompack/hompack-interface.lisp
+declare fn init_share_hompack_interface() -> Unit raise
+
+///|
+/// top-level forms of ../share/minpack/minpack-interface.lisp
+declare fn init_share_minpack_interface() -> Unit raise
+
+///|
+/// top-level forms of ../share/cobyla/cobyla-interface.lisp
+declare fn init_share_cobyla_interface() -> Unit raise
+
+///|
+/// top-level forms of ../share/cobyla/bf-cobyla-interface.lisp
+declare fn init_share_bf__cobyla_interface() -> Unit raise
+
+///|
+/// top-level forms of ../share/colnew/colnew-if.lisp
+declare fn init_share_colnew_if() -> Unit raise
 

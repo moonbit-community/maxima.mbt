@@ -72,5 +72,23 @@
  "lbfgs/lb1": [],
  "lbfgs/mcstep": [],
  "lbfgs/mcsrch": [],
- "lbfgs/lbfgs": []
+ "lbfgs/lbfgs": [],
+ "hompack/load-hompack": [
+  "hompack/hompack-interface"
+ ],
+ "minpack/load-minpack": [
+  "minpack/minpack-interface"
+ ],
+ "cobyla/load-cobyla": [
+  "cobyla/cobyla-interface"
+ ],
+ "cobyla/load-bf-cobyla": [
+  "cobyla/bf-cobyla-interface"
+ ],
+ "colnew/load-colnew": [
+  "colnew/colnew-if"
+ ],
+ "fftpack5/load-fftpack5": [
+  "fftpack5/fftpack5-interface"
+ ]
 }

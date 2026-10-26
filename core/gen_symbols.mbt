@@ -1013,6 +1013,9 @@ let q_d_apropos : Value = sym("$apropos")
 let q_d_aquaterm : Value = sym("$aquaterm")
 
 ///|
+let q_d_arctol : Value = sym("$arctol")
+
+///|
 let q_d_args : Value = sym("$args")
 
 ///|
@@ -1335,6 +1338,9 @@ let q_d_bf_fft : Value = sym("$bf_fft")
 
 ///|
 let q_d_bf_find_root : Value = sym("$bf_find_root")
+
+///|
+let q_d_bf_fmin_cobyla : Value = sym("$bf_fmin_cobyla")
 
 ///|
 let q_d_bf_inverse_fft : Value = sym("$bf_inverse_fft")
@@ -2087,6 +2093,12 @@ let q_d_collect_skew_relations : Value = sym("$collect_skew_relations")
 let q_d_collectterms : Value = sym("$collectterms")
 
 ///|
+let q_d_colnew_appsln : Value = sym("$colnew_appsln")
+
+///|
+let q_d_colnew_expert : Value = sym("$colnew_expert")
+
+///|
 let q_d_color : Value = sym("$color")
 
 ///|
@@ -2286,6 +2298,9 @@ let q_d_constantp : Value = sym("$constantp")
 
 ///|
 let q_d_constituent : Value = sym("$constituent")
+
+///|
+let q_d_constraints : Value = sym("$constraints")
 
 ///|
 let q_d_cont2part : Value = sym("$cont2part")
@@ -2562,6 +2577,12 @@ let q_d_deactivate : Value = sym("$deactivate")
 
 ///|
 let q_d_debug : Value = sym("$debug")
+
+///|
+let q_d_debug_hompack : Value = sym("$debug_hompack")
+
+///|
+let q_d_debug_minpack : Value = sym("$debug_minpack")
 
 ///|
 let q_d_debugmode : Value = sym("$debugmode")
@@ -3779,6 +3800,9 @@ let q_d_eps_width : Value = sym("$eps_width")
 let q_d_epsabs : Value = sym("$epsabs")
 
 ///|
+let q_d_epsbig : Value = sym("$epsbig")
+
+///|
 let q_d_epsilon : Value = sym("$epsilon")
 
 ///|
@@ -3792,6 +3816,9 @@ let q_d_epslatex_standalone : Value = sym("$epslatex_standalone")
 
 ///|
 let q_d_epsrel : Value = sym("$epsrel")
+
+///|
+let q_d_epssml : Value = sym("$epssml")
 
 ///|
 let q_d_eq : Value = sym("$eq")
@@ -4602,6 +4629,9 @@ let q_d_flushd : Value = sym("$flushd")
 
 ///|
 let q_d_flushnd : Value = sym("$flushnd")
+
+///|
+let q_d_fmin_cobyla : Value = sym("$fmin_cobyla")
 
 ///|
 let q_d_fmult_sym : Value = sym("$fmult_sym")
@@ -5618,6 +5648,12 @@ let q_d_homogeneous : Value = sym("$homogeneous")
 let q_d_homogeneous_ldata_on_to_open : Value = sym("$homogeneous-ldata-on-to-open")
 
 ///|
+let q_d_hompack_fixpdf : Value = sym("$hompack_fixpdf")
+
+///|
+let q_d_hompack_polsys : Value = sym("$hompack_polsys")
+
+///|
 let q_d_horizontal : Value = sym("$horizontal")
 
 ///|
@@ -5742,6 +5778,15 @@ let q_d_ifc2 : Value = sym("$ifc2")
 
 ///|
 let q_d_ifg : Value = sym("$ifg")
+
+///|
+let q_d_iflag : Value = sym("$iflag")
+
+///|
+let q_d_iflg1 : Value = sym("$iflg1")
+
+///|
+let q_d_iflg2 : Value = sym("$iflg2")
 
 ///|
 let q_d_iframe : Value = sym("$iframe")
@@ -5904,6 +5949,9 @@ let q_d_init_pi2mon : Value = sym("$init_pi2mon")
 
 ///|
 let q_d_init_piej : Value = sym("$init_piej")
+
+///|
+let q_d_inita : Value = sym("$inita")
 
 ///|
 let q_d_initial : Value = sym("$initial")
@@ -6135,6 +6183,9 @@ let q_d_ip_grid : Value = sym("$ip_grid")
 
 ///|
 let q_d_ip_grid_in : Value = sym("$ip_grid_in")
+
+///|
+let q_d_iprint : Value = sym("$iprint")
 
 ///|
 let q_d_irpmon : Value = sym("$irpmon")
@@ -7325,6 +7376,9 @@ let q_d_maxexpprintlen : Value = sym("$maxexpprintlen")
 let q_d_maxfpprintprec : Value = sym("$maxfpprintprec")
 
 ///|
+let q_d_maxfun : Value = sym("$maxfun")
+
+///|
 let q_d_maxfuncalls : Value = sym("$maxfuncalls")
 
 ///|
@@ -7512,6 +7566,12 @@ let q_d_minors : Value = sym("$minors")
 
 ///|
 let q_d_minors2_2 : Value = sym("$minors2_2")
+
+///|
+let q_d_minpack_lsquares : Value = sym("$minpack_lsquares")
+
+///|
+let q_d_minpack_solve : Value = sym("$minpack_solve")
 
 ///|
 let q_d_minus : Value = sym("$minus")
@@ -8214,6 +8274,9 @@ let q_d_numfactor : Value = sym("$numfactor")
 
 ///|
 let q_d_nummod : Value = sym("$nummod")
+
+///|
+let q_d_numrr : Value = sym("$numrr")
 
 ///|
 let q_d_nusum : Value = sym("$nusum")
@@ -10211,6 +10274,12 @@ let q_d_rgb_alpha : Value = sym("$rgb_alpha")
 let q_d_rho : Value = sym("$rho")
 
 ///|
+let q_d_rhobeg : Value = sym("$rhobeg")
+
+///|
+let q_d_rhoend : Value = sym("$rhoend")
+
+///|
 let q_d_rhs : Value = sym("$rhs")
 
 ///|
@@ -11051,6 +11120,9 @@ let q_d_ssearch : Value = sym("$ssearch")
 let q_d_ssort : Value = sym("$ssort")
 
 ///|
+let q_d_sspar : Value = sym("$sspar")
+
+///|
 let q_d_sstatus : Value = sym("$sstatus")
 
 ///|
@@ -11685,6 +11757,9 @@ let q_d_tol_f : Value = sym("$tol-f")
 
 ///|
 let q_d_tol_x : Value = sym("$tol-x")
+
+///|
+let q_d_tolerance : Value = sym("$tolerance")
 
 ///|
 let q_d_tomato : Value = sym("$tomato")
@@ -14138,6 +14213,9 @@ let q_n_starc : Value = sym("*c")
 let q_ear_c : Value = sym("*c*")
 
 ///|
+let q_ear_calcfc : Value = sym("*calcfc*")
+
+///|
 let q_n_starcanc_eq : Value = sym("*canc=")
 
 ///|
@@ -14298,6 +14376,9 @@ let q_ear_debug_bessel : Value = sym("*debug-bessel*")
 
 ///|
 let q_ear_debug_cf_eval : Value = sym("*debug-cf-eval*")
+
+///|
+let q_ear_debug_cobyla : Value = sym("*debug-cobyla*")
 
 ///|
 let q_ear_debug_compar : Value = sym("*debug-compar*")
@@ -14684,6 +14765,9 @@ let q_n_starf_dlog : Value = sym("*f-dlog")
 let q_n_starf_dlogb : Value = sym("*f-dlogb")
 
 ///|
+let q_ear_f_fun : Value = sym("*f-fun*")
+
+///|
 let q_n_starf_irr : Value = sym("*f-irr")
 
 ///|
@@ -14748,6 +14832,9 @@ let q_n_starfexpr : Value = sym("*fexpr")
 
 ///|
 let q_ear_fixed_vertices : Value = sym("*fixed-vertices*")
+
+///|
+let q_ear_fjac_fun : Value = sym("*fjac-fun*")
 
 ///|
 let q_n_starflg : Value = sym("*flg")
@@ -17333,6 +17420,9 @@ let q_kw_inline_impl : Value = sym(":inline-impl")
 let q_kw_integer : Value = sym(":integer")
 
 ///|
+let q_kw_integer4 : Value = sym(":integer4")
+
+///|
 let q_kw_invert : Value = sym(":invert")
 
 ///|
@@ -17430,6 +17520,9 @@ let q_kw_show_matrix : Value = sym(":show-matrix")
 
 ///|
 let q_kw_spread : Value = sym(":spread")
+
+///|
+let q_kw_start2 : Value = sym(":start2")
 
 ///|
 let q_kw_sub : Value = sym(":sub")
@@ -19034,6 +19127,9 @@ let q_backward : Value = sym("backward")
 let q_bad : Value = sym("bad")
 
 ///|
+let q_bad_cons : Value = sym("bad-cons")
+
+///|
 let q_bad_form : Value = sym("bad-form")
 
 ///|
@@ -19638,6 +19734,9 @@ let q_bf_bfloat_init_lambert_w_k : Value = sym("bigfloat::bfloat-init-lambert-w-
 
 ///|
 let q_bf_bigfloat : Value = sym("bigfloat::bigfloat")
+
+///|
+let q_bf_calcfc : Value = sym("bigfloat::calcfc")
 
 ///|
 let q_bf_cdiv_double_float : Value = sym("bigfloat::cdiv-double-float")
@@ -21311,6 +21410,9 @@ let q_cntxt : Value = sym("cntxt")
 let q_cnv : Value = sym("cnv")
 
 ///|
+let q_cobyla_calcfc : Value = sym("cobyla::calcfc")
+
+///|
 let q_code : Value = sym("code")
 
 ///|
@@ -22238,10 +22340,16 @@ let q_convert : Value = sym("convert")
 let q_convert_all_vars : Value = sym("convert-all-vars")
 
 ///|
+let q_convert_coef : Value = sym("convert-coef")
+
+///|
 let q_convert_deg_sequence_to_monomial : Value = sym("convert-deg-sequence-to-monomial")
 
 ///|
 let q_convert_from_max_min_to_abs : Value = sym("convert-from-max-min-to-abs")
+
+///|
+let q_convert_kdeg : Value = sym("convert-kdeg")
 
 ///|
 let q_convert_list : Value = sym("convert-list")
@@ -22671,6 +22779,9 @@ let q_cut_and_round : Value = sym("cut-and-round")
 
 ///|
 let q_cv : Value = sym("cv")
+
+///|
+let q_cval : Value = sym("cval")
 
 ///|
 let q_cwhile : Value = sym("cwhile")
@@ -23576,6 +23687,9 @@ let q_dfs_find_path : Value = sym("dfs-find-path")
 let q_dfs_strong_components : Value = sym("dfs-strong-components")
 
 ///|
+let q_dfsub : Value = sym("dfsub")
+
+///|
 let q_dgeqrf_h : Value = sym("dgeqrf-h")
 
 ///|
@@ -23610,6 +23724,9 @@ let q_dgr : Value = sym("dgr")
 
 ///|
 let q_dgrf : Value = sym("dgrf")
+
+///|
+let q_dgsub : Value = sym("dgsub")
 
 ///|
 let q_di : Value = sym("di")
@@ -26489,6 +26606,9 @@ let q_fboundp : Value = sym("fboundp")
 let q_fceiling : Value = sym("fceiling")
 
 ///|
+let q_fcn_and_jacobian : Value = sym("fcn-and-jacobian")
+
+///|
 let q_fcns : Value = sym("fcns")
 
 ///|
@@ -26949,6 +27069,9 @@ let q_fixvl1 : Value = sym("fixvl1")
 
 ///|
 let q_fj : Value = sym("fj")
+
+///|
+let q_fjf : Value = sym("fjf")
 
 ///|
 let q_fk : Value = sym("fk")
@@ -28571,6 +28694,15 @@ let q_fungen_ampenv_for_meval : Value = sym("fungen&env-for-meval")
 let q_fuu : Value = sym("fuu")
 
 ///|
+let q_fv : Value = sym("fv")
+
+///|
+let q_fval : Value = sym("fval")
+
+///|
+let q_fvs : Value = sym("fvs")
+
+///|
 let q_fx : Value = sym("fx")
 
 ///|
@@ -30149,7 +30281,13 @@ let q_gruntz1 : Value = sym("gruntz1")
 let q_gso : Value = sym("gso")
 
 ///|
+let q_gsub : Value = sym("gsub")
+
+///|
 let q_gt : Value = sym("gt")
+
+///|
+let q_guess : Value = sym("guess")
 
 ///|
 let q_gvar : Value = sym("gvar")
@@ -30429,6 +30567,12 @@ let q_hl : Value = sym("hl")
 
 ///|
 let q_hlinsolve : Value = sym("hlinsolve")
+
+///|
+let q_hompack_f : Value = sym("hompack::f")
+
+///|
+let q_hompack_fjac : Value = sym("hompack::fjac")
 
 ///|
 let q_horn_plus : Value = sym("horn+")
@@ -35141,6 +35285,9 @@ let q_maybe_simplifya_protected : Value = sym("maybe-simplifya-protected")
 let q_maybe_tex_mexpt_trig_like : Value = sym("maybe-tex-mexpt-trig-like")
 
 ///|
+let q_maybe_to : Value = sym("maybe-to")
+
+///|
 let q_maybpc : Value = sym("maybpc")
 
 ///|
@@ -38087,6 +38234,9 @@ let q_normalize_zopen : Value = sym("normalize-zopen")
 let q_normalize_zopen_in_pls : Value = sym("normalize-zopen-in-pls")
 
 ///|
+let q_normalized_constraints : Value = sym("normalized-constraints")
+
+///|
 let q_normalized_modulus : Value = sym("normalized-modulus")
 
 ///|
@@ -39324,6 +39474,9 @@ let q_parse_condition : Value = sym("parse-condition")
 
 ///|
 let q_parse_elevation : Value = sym("parse-elevation")
+
+///|
+let q_parse_equations : Value = sym("parse-equations")
 
 ///|
 let q_parse_err : Value = sym("parse-err")
@@ -43257,6 +43410,9 @@ let q_repl_deg : Value = sym("repl-deg")
 
 ///|
 let q_replac : Value = sym("replac")
+
+///|
+let q_replace : Value = sym("replace")
 
 ///|
 let q_replace_coset_in_multiply_table : Value = sym("replace-coset-in-multiply-table")
@@ -48695,6 +48851,9 @@ let q_term_star : Value = sym("term*")
 let q_term_coeff : Value = sym("term-coeff")
 
 ///|
+let q_term_deg : Value = sym("term-deg")
+
+///|
 let q_term_depends_p : Value = sym("term-depends-p")
 
 ///|
@@ -50741,6 +50900,9 @@ let q_v_plusw_starc : Value = sym("v+w*c")
 let q_v_disp_abs : Value = sym("v-disp-abs")
 
 ///|
+let q_v_list : Value = sym("v-list")
+
+///|
 let q_v1 : Value = sym("v1")
 
 ///|
@@ -51473,6 +51635,9 @@ let q_x_star_starq1 : Value = sym("x**q1")
 let q_x_elements : Value = sym("x-elements")
 
 ///|
+let q_x_list : Value = sym("x-list")
+
+///|
 let q_x_not_x : Value = sym("x-not-x")
 
 ///|
@@ -51579,6 +51744,9 @@ let q_xtorterm : Value = sym("xtorterm")
 
 ///|
 let q_xv : Value = sym("xv")
+
+///|
+let q_xval : Value = sym("xval")
 
 ///|
 let q_xx : Value = sym("xx")

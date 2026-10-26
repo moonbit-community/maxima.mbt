@@ -206,3 +206,8 @@ share/algebra/charsets/charsets_set
 share/algebra/charsets/charsets_length
 share/simplification/scifac
 share/simplification/rducon
+share/hompack/hompack-interface
+share/minpack/minpack-interface
+share/cobyla/cobyla-interface
+share/cobyla/bf-cobyla-interface
+share/colnew/colnew-if

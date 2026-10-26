@@ -1315,6 +1315,34 @@ fn share_load_rducon() -> Unit raise {
 }
 
 ///|
+fn share_load_hompack_interface() -> Unit raise {
+  init_vars_n_dot_dot_share_hompack_hompack_interface()
+  register_share_hompack_interface()
+}
+
+///|
+fn share_load_minpack_interface() -> Unit raise {
+  init_vars_n_dot_dot_share_minpack_minpack_interface()
+  register_share_minpack_interface()
+}
+
+///|
+fn share_load_cobyla_interface() -> Unit raise {
+  init_vars_n_dot_dot_share_cobyla_cobyla_interface()
+  register_share_cobyla_interface()
+}
+
+///|
+fn share_load_bf__cobyla_interface() -> Unit raise {
+  register_share_bf__cobyla_interface()
+}
+
+///|
+fn share_load_colnew_if() -> Unit raise {
+  register_share_colnew_if()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
@@ -1468,8 +1496,13 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
 /// file's contents are compiled into the port, loading it does nothing).
 fn share_module_group(key : String) -> Array[String]? {
   match key {
+    "cobyla/load-bf-cobyla" => Some(["cobyla/bf-cobyla-interface"])
+    "cobyla/load-cobyla" => Some(["cobyla/cobyla-interface"])
+    "colnew/load-colnew" => Some(["colnew/colnew-if"])
     "draw/draw" => Some(["draw/grcommon", "draw/gnuplot", "draw/vtk", "draw/picture"])
+    "fftpack5/load-fftpack5" => Some(["fftpack5/fftpack5-interface"])
     "graphs/load-graphs" => Some(["graphs/graph_core", "graphs/spring_embedding", "graphs/isomorphism", "graphs/matching", "graphs/graph6", "graphs/demoucron", "graphs/dijkstra", "graphs/wiener_index"])
+    "hompack/load-hompack" => Some(["hompack/hompack-interface"])
     "lapack/load-lapack" => Some(["lapack/eigensys", "lapack/dgesv", "lapack/dgeqrf", "lapack/dgemm"])
     "lbfgs/lb1" => Some([])
     "lbfgs/lb2" => Some([])
@@ -1479,6 +1512,7 @@ fn share_module_group(key : String) -> Array[String]? {
     "lbfgs/mcsrch" => Some([])
     "lbfgs/mcstep" => Some([])
     "linearalgebra/load-linearalgebra-lisp-files" => Some(["linearalgebra/mring", "linearalgebra/lu", "linearalgebra/linalgcholesky", "linearalgebra/eigens-by-jacobi", "linearalgebra/linalg-extra", "linearalgebra/matrixexp", "linearalgebra/linalg-utilities"])
+    "minpack/load-minpack" => Some(["minpack/minpack-interface"])
     "numeric/decfp" => Some(["numeric/decfp-core"])
     "numeric/fft" => Some(["numeric/fft-package", "numeric/fft-core", "numeric/fft-interface"])
     "numericalio/load-numericalio" => Some(["numericalio/encode-decode-float", "numericalio/numericalio"])

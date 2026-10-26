@@ -10719,6 +10719,21 @@ obtain-constant	defun	../share/simplification/rducon.lisp:56	obtain_constant(key
 find-constant	defun	../share/simplification/rducon.lisp:110	find_constant(x : Value) -> Value
 reduce-constants	defun	../share/simplification/rducon.lisp:119	reduce_constants(x : Value, newconst? : Value = Nil) -> Value
 $reduce_consts	defun	../share/simplification/rducon.lisp:266	d_reduce_consts(x : Value, newconstant? : Value = Nil) -> Value
+parse-equations	defun	../share/hompack/hompack-interface.lisp:10	parse_equations(eqnlist : Value, varlist : Value, fname : Value) -> (Value, Value, Value, Value)
+convert-coef	defun	../share/hompack/hompack-interface.lisp:83	convert_coef(coef : Value) -> Value
+convert-kdeg	defun	../share/hompack/hompack-interface.lisp:106	convert_kdeg(kdeg : Value, numt : Value) -> Value
+$hompack_polsys	defmfun	../share/hompack/hompack-interface.lisp:124	d_hompack_polsys(eqnlist : Value, varlist : Value, iflg1? : Value = Fix(0L), epsbig? : Value = Flo(0.0001), epssml? : Value = Flo(1.0e-14), numrr? : Value = Fix(10L), iflg2? : Value = Nil, sspar? : Value = Nil) -> Value
+hompack::f	defun	../share/hompack/hompack-interface.lisp:292	hompack_f(x : Value, v : Value) -> (Value, Value)
+hompack::fjac	defun	../share/hompack/hompack-interface.lisp:304	hompack_fjac(x : Value, v : Value, k : Value) -> (Value, Value, Value)
+$hompack_fixpdf	defmfun	../share/hompack/hompack-interface.lisp:314	d_hompack_fixpdf(fcns : Value, varlist : Value, iflag? : Value = Fix(-1L), arctol? : Value = Flo(-1.0), eps? : Value = Flo(1.0e-05), trace? : Value = Fix(0L), inita? : Value = Nil) -> Value
+$minpack_lsquares	defmfun	../share/minpack/minpack-interface.lisp:10	d_minpack_lsquares(fcns : Value, vars : Value, init_x : Value, jacobian? : Value = t, tolerance? : Value) -> Value
+$minpack_solve	defmfun	../share/minpack/minpack-interface.lisp:163	d_minpack_solve(fcns : Value, vars : Value, init_x : Value, jacobian? : Value = t, tolerance? : Value) -> Value
+cobyla::calcfc	defun	../share/cobyla/cobyla-interface.lisp:19	cobyla_calcfc(n : Value, m : Value, x : Value, f : Value, con : Value) -> Value
+$fmin_cobyla	defmfun	../share/cobyla/cobyla-interface.lisp:23	d_fmin_cobyla(f : Value, vars : Value, init_x : Value, constraints? : Value = Nil, rhobeg? : Value = Flo(1.0), rhoend? : Value = Flo(1.0e-06), iprint? : Value = Fix(0L), maxfun? : Value = Fix(1000L)) -> Value
+bigfloat::calcfc	defun	../share/cobyla/bf-cobyla-interface.lisp:18	bf_calcfc(n : Value, m : Value, x : Value, f : Value, con : Value) -> Value
+$bf_fmin_cobyla	defmfun	../share/cobyla/bf-cobyla-interface.lisp:27	d_bf_fmin_cobyla(f : Value, vars : Value, init_x : Value, constraints? : Value = Nil, rhobeg? : Value = Flo(1.0), rhoend? : Value = Nil, iprint? : Value = Fix(0L), maxfun? : Value = Fix(1000L)) -> Value
+$colnew_expert	defun	../share/colnew/colnew-if.lisp:8	d_colnew_expert(ncomp : Value, m : Value, aleft : Value, aright : Value, zeta : Value, ipar : Value, ltol : Value, tol : Value, fixpnt : Value, ispace : Value, fspace : Value, iflag : Value, f : Value, df : Value, g : Value, dg : Value, init_guess : Value) -> Value
+$colnew_appsln	defun	../share/colnew/colnew-if.lisp:110	d_colnew_appsln(x : Value, zlen : Value, fspace : Value, ispace : Value) -> Value
 intl::textdomain	macro	intl.lisp:509	intl_textdomain(domain : Value) -> Value
 intl::gettext	macro	intl.lisp:513	intl_gettext(string_ : Value) -> Value
 intl::ngettext	macro	intl.lisp:517	intl_ngettext(singular : Value, plural : Value, n : Value) -> Value

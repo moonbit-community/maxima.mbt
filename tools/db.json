@@ -334687,5 +334687,1183 @@ null
 }
 ],
 "lines": 268
+},
+{
+"file": "../share/hompack/hompack-interface",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "parse-equations",
+"pkg": "maxima",
+"ll": {
+"req": [
+"eqnlist",
+"varlist",
+"fname"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 10,
+"nvalues": 4
+},
+{
+"kind": "defun",
+"name": "convert-coef",
+"pkg": "maxima",
+"ll": {
+"req": [
+"coef"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 83,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "convert-kdeg",
+"pkg": "maxima",
+"ll": {
+"req": [
+"kdeg",
+"numt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 106,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$hompack_polsys",
+"pkg": "maxima",
+"ll": {
+"req": [
+"eqnlist",
+"varlist"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"iflg1",
+{
+"k": "int",
+"v": "0"
+}
+],
+[
+"epsbig",
+{
+"k": "float",
+"v": "0.0001"
+}
+],
+[
+"epssml",
+{
+"k": "float",
+"v": "1e-14"
+}
+],
+[
+"numrr",
+{
+"k": "int",
+"v": "10"
+}
+],
+[
+"iflg2",
+null
+],
+[
+"sspar",
+null
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 124,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "hompack::f",
+"pkg": "hompack",
+"ll": {
+"req": [
+"x",
+"v"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 292,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "hompack::fjac",
+"pkg": "hompack",
+"ll": {
+"req": [
+"x",
+"v",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 304,
+"nvalues": 3
+},
+{
+"kind": "defmfun",
+"name": "$hompack_fixpdf",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fcns",
+"varlist"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"iflag",
+{
+"k": "int",
+"v": "-1"
+}
+],
+[
+"arctol",
+{
+"k": "float",
+"v": "-1.0"
+}
+],
+[
+"eps",
+{
+"k": "float",
+"v": "1e-05"
+}
+],
+[
+"trace",
+{
+"k": "int",
+"v": "0"
+}
+],
+[
+"inita",
+null
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 314,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defmvar",
+"name": "$debug_hompack",
+"init": {
+"k": "nil"
+},
+"line": 7
+},
+{
+"kind": "defvar",
+"name": "*f-fun*",
+"init": {
+"k": "nil"
+},
+"line": 284
+},
+{
+"kind": "defvar",
+"name": "*fjac-fun*",
+"init": {
+"k": "nil"
+},
+"line": 285
+}
+],
+"specials": [
+"$debug_hompack",
+"*f-fun*",
+"*fjac-fun*"
+],
+"symbols": [
+"$%i",
+"$args",
+"$debug_hompack",
+"$expand",
+"$float",
+"$hipow",
+"$hompack_fixpdf",
+"$hompack_polsys",
+"$jacobian",
+"$length",
+"$op",
+"$polynomialp",
+"$transpose",
+"%%pretty-fname",
+"*",
+"1-",
+"=",
+"apply",
+"array",
+"cdr",
+"coerce",
+"coerce-float-fun",
+"declare",
+"double-float",
+"elt",
+"fj",
+"fjf",
+"fvs",
+"identity",
+"incf",
+"integer4",
+"integerp",
+"k",
+"lambda",
+"let",
+"let*",
+"list",
+"map-into",
+"max",
+"mequal",
+"mlist",
+"mul",
+"p",
+"power",
+"prod",
+"setf",
+"term",
+"term-deg",
+"type",
+"typep",
+"v",
+"v-list",
+"varlist",
+"x",
+"x-list"
+],
+"calls": {
+"in-package": 3,
+"defmvar": 1,
+"defun": 5,
+"eqnlist": 2,
+"let": 6,
+"vars": 1,
+"cdr": 10,
+"total-deg": 2,
+"dolist": 2,
+"eqn": 1,
+"when": 12,
+"displa": 2,
+"unless": 10,
+"$polynomialp": 1,
+"merror": 9,
+"push": 6,
+"length": 7,
+"term": 1,
+"let*": 5,
+"term-deg": 1,
+"deg": 1,
+"mapcar": 2,
+"c": 1,
+"$float": 4,
+"$expand": 1,
+"div": 1,
+"floatp": 1,
+"format": 11,
+"list*": 7,
+"setf": 10,
+"*": 14,
+"reduce": 4,
+"max": 4,
+"nreverse": 5,
+"values": 3,
+"coef": 1,
+"dim-k": 2,
+"$length": 5,
+"array": 4,
+"make-array": 28,
+"list": 4,
+"f2cl-array": 2,
+"loop": 6,
+"aref": 4,
+"1-": 5,
+":fref": 2,
+"j": 2,
+"kdeg": 1,
+"dim-l": 1,
+"1+": 13,
+"defmfun": 2,
+"iflg1": 1,
+"epsbig": 1,
+"epssml": 1,
+"numrr": 1,
+"=": 3,
+"and": 2,
+"listp": 2,
+"eq": 2,
+"caar": 2,
+"member": 1,
+"every": 2,
+"multiple-value-bind": 3,
+"parse-equations": 1,
+"integerp": 1,
+"mmaxt": 1,
+"lenwk": 1,
+"+": 2,
+"wk": 1,
+"leniwk": 1,
+"iwk": 1,
+"lamda": 1,
+"arclen": 2,
+"nfe": 2,
+"roots": 1,
+"iflg2": 1,
+"if": 2,
+"sspar": 1,
+"coef-array": 1,
+"convert-coef": 1,
+"kdeg-array": 1,
+"convert-kdeg": 1,
+"numt": 1,
+"ignore-n": 2,
+"hompack::polsys": 1,
+"declare": 4,
+"ignore": 2,
+"flet": 1,
+"r": 1,
+"maxify-roots": 1,
+"coerce": 4,
+"defvar": 2,
+"x": 2,
+"type": 3,
+"with-multi-array-data": 2,
+"v": 2,
+"funcall": 2,
+"integer4": 1,
+"fcns": 1,
+"iflag": 1,
+"arctol": 1,
+"eps": 1,
+"trace": 1,
+"y": 1,
+"ndima": 1,
+"a": 1,
+"yp": 1,
+"ypold": 1,
+"qr": 1,
+"alpha": 1,
+"tz": 1,
+"pivot": 1,
+"wt": 1,
+"phi": 1,
+"p": 1,
+"par": 1,
+"ipar": 1,
+"fvs": 1,
+"coerce-float-fun": 1,
+"fj": 1,
+"$transpose": 1,
+"*f-fun*": 1,
+"*fjac-fun*": 1,
+"hompack::fixpdf": 1
+},
+"toplevel": [],
+"lines": 391
+},
+{
+"file": "../share/minpack/minpack-interface",
+"module": "share",
+"functions": [
+{
+"kind": "defmfun",
+"name": "$minpack_lsquares",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fcns",
+"vars",
+"init-x"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"jacobian",
+{
+"k": "t"
+}
+],
+[
+"tolerance",
+{
+"k": "expr",
+"v": "#<read-eval (sqrt double-float-epsilon)>"
+}
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 10,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$minpack_solve",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fcns",
+"vars",
+"init-x"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"jacobian",
+{
+"k": "t"
+}
+],
+[
+"tolerance",
+{
+"k": "expr",
+"v": "#<read-eval (sqrt double-float-epsilon)>"
+}
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 163,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defmvar",
+"name": "$debug_minpack",
+"init": {
+"k": "nil"
+},
+"line": 7
+}
+],
+"specials": [
+"$debug_minpack"
+],
+"symbols": [
+"$debug_minpack",
+"$float",
+"$jacobian",
+"$minpack_lsquares",
+"$minpack_solve",
+"%%pretty-fname",
+"double-float",
+"fcn-and-jacobian",
+"float",
+"funcall",
+"fval",
+"integer4",
+"lambda",
+"list",
+"mlist",
+"z"
+],
+"calls": {
+"in-package": 1,
+"defmvar": 1,
+"defmfun": 2,
+"fcns": 2,
+"jacobian": 6,
+"tolerance": 2,
+"unless": 9,
+"and": 8,
+"listp": 6,
+"eq": 6,
+"caar": 6,
+"merror": 9,
+"setf": 3,
+"$float": 1,
+"realp": 2,
+"plusp": 2,
+"let*": 6,
+"m": 1,
+"length": 5,
+"cdr": 7,
+"x": 2,
+"make-array": 11,
+"mapcar": 2,
+"fvec": 2,
+"fjac": 2,
+"*": 2,
+"ldfjac": 2,
+"info": 2,
+"ipvt": 1,
+"fv": 2,
+"coerce-float-fun": 4,
+"fj": 2,
+"cond": 4,
+"meval": 1,
+"t": 4,
+"when": 2,
+"wa": 4,
+"labels": 4,
+"multiple-value-bind": 4,
+"var-0": 4,
+"minpack:lmder1": 1,
+"fcn-and-jacobian": 2,
+"declare": 4,
+"ignore": 4,
+"list": 4,
+"list*": 4,
+"coerce": 4,
+"minpack:enorm": 4,
+"minpack:lmdif1": 1,
+"fval": 2,
+"=": 1,
+"mfuncall": 1,
+"minpack:hybrj1": 1,
+"minpack:hybrd1": 1
+},
+"toplevel": [],
+"lines": 295
+},
+{
+"file": "../share/cobyla/cobyla-interface",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "cobyla::calcfc",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"m",
+"x",
+"f",
+"con"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 19,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$fmin_cobyla",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"vars",
+"init-x"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"constraints",
+null
+],
+[
+"rhobeg",
+{
+"k": "float",
+"v": "1.0"
+}
+],
+[
+"rhoend",
+{
+"k": "float",
+"v": "1e-06"
+}
+],
+[
+"iprint",
+{
+"k": "int",
+"v": "0"
+}
+],
+[
+"maxfun",
+{
+"k": "int",
+"v": "1000"
+}
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 23,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "*debug-cobyla*",
+"init": {
+"k": "nil"
+},
+"line": 8
+},
+{
+"kind": "defvar",
+"name": "*calcfc*",
+"init": null,
+"line": 13
+}
+],
+"specials": [
+"*calcfc*",
+"*debug-cobyla*"
+],
+"symbols": [
+"$float",
+"$fmin_cobyla",
+"$lhs",
+"$op",
+"$rhs",
+"%%pretty-fname",
+"*",
+":integer4",
+":start2",
+"apply",
+"array",
+"bad-cons",
+"c",
+"cdr",
+"coerce",
+"collect",
+"cv",
+"cval",
+"declare",
+"do",
+"double-float",
+"elt",
+"every",
+"f",
+"fixnum",
+"floatp",
+"for",
+"from",
+"fv",
+"if",
+"in",
+"index",
+"k",
+"lambda",
+"let",
+"let*",
+"list",
+"list*",
+"loop",
+"mequal",
+"merror",
+"mformat",
+"mlist",
+"mm",
+"msg",
+"nil",
+"nn",
+"normalized-constraints",
+"r",
+"replace",
+"t",
+"type",
+"unless",
+"val",
+"values",
+"var",
+"with-output-to-string",
+"x-list",
+"xval",
+"z"
+],
+"calls": {
+"in-package": 1,
+"defvar": 2,
+"defun": 1,
+"n": 1,
+"declare": 2,
+"ignore": 2,
+"funcall": 1,
+"defmfun": 1,
+"f": 1,
+"rhobeg": 1,
+"rhoend": 1,
+"iprint": 1,
+"maxfun": 1,
+"unless": 5,
+"listp": 2,
+"merror": 6,
+"=": 1,
+"length": 5,
+"cdr": 8,
+"and": 2,
+"integerp": 2,
+"<=": 1,
+"plusp": 1,
+"let": 2,
+"normalized-constraints": 1,
+"dolist": 1,
+"c": 1,
+"cond": 1,
+"push": 4,
+"sub": 4,
+"$lhs": 4,
+"$rhs": 4,
+"t": 1,
+"setf": 1,
+"list*": 2,
+"nreverse": 1,
+"when": 1,
+"mformat": 1,
+"let*": 2,
+"m": 1,
+"x": 1,
+"make-array": 3,
+"mapcar": 2,
+"w": 1,
+"+": 5,
+"*": 4,
+"iact": 1,
+"fv": 1,
+"coerce-float-fun": 2,
+"cv": 1,
+"*calcfc*": 1,
+"multiple-value-bind": 1,
+"null-0": 1,
+"cobyla:cobyla": 1,
+"soln": 1,
+"coerce": 1,
+"max-cv": 1,
+"aref": 1,
+"make-mlist": 1,
+"apply": 1,
+"if": 1,
+">": 1
+},
+"toplevel": [],
+"lines": 240
+},
+{
+"file": "../share/cobyla/bf-cobyla-interface",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "bigfloat::calcfc",
+"pkg": "bigfloat",
+"ll": {
+"req": [
+"n",
+"m",
+"x",
+"f",
+"con"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 18,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$bf_fmin_cobyla",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"vars",
+"init-x"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"constraints",
+null
+],
+[
+"rhobeg",
+{
+"k": "float",
+"v": "1.0"
+}
+],
+[
+"rhoend",
+{
+"k": "nil"
+}
+],
+[
+"iprint",
+{
+"k": "int",
+"v": "0"
+}
+],
+[
+"maxfun",
+{
+"k": "int",
+"v": "1000"
+}
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 27,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "*calcfc*",
+"init": null,
+"line": 10
+}
+],
+"specials": [
+"*calcfc*"
+],
+"symbols": [
+"$bf_fmin_cobyla",
+"$bfloat",
+"$bfloatp",
+"$fpprec",
+"$lhs",
+"$op",
+"$rhs",
+"%%pretty-fname",
+"*",
+":integer4",
+"apply",
+"array",
+"bad-cons",
+"bigfloat",
+"c",
+"cdr",
+"collect",
+"cv",
+"cval",
+"declare",
+"do",
+"elt",
+"f",
+"fixnum",
+"floatp",
+"for",
+"from",
+"fv",
+"in",
+"index",
+"k",
+"lambda",
+"let",
+"let*",
+"list",
+"list*",
+"loop",
+"map",
+"mapcar",
+"maybe-to",
+"mequal",
+"merror",
+"mformat",
+"mlist",
+"mm",
+"msg",
+"nil",
+"nn",
+"normalized-constraints",
+"or",
+"r",
+"replace",
+"setf",
+"t",
+"to",
+"type",
+"typep",
+"unless",
+"val",
+"values",
+"var",
+"when",
+"with-output-to-string",
+"x-list",
+"xval",
+"z"
+],
+"calls": {
+"in-package": 3,
+"defvar": 1,
+"defun": 1,
+"n": 1,
+"declare": 2,
+"ignore": 2,
+"funcall": 1,
+"defmfun": 1,
+"f": 1,
+"rhobeg": 1,
+"rhoend": 1,
+"iprint": 1,
+"maxfun": 1,
+"unless": 6,
+"listp": 2,
+"merror": 6,
+"=": 1,
+"length": 5,
+"cdr": 8,
+"and": 2,
+"integerp": 2,
+"<=": 1,
+"plusp": 1,
+"setf": 2,
+"sqrt": 1,
+"expt": 1,
+"bigfloat": 1,
+"-": 1,
+"let": 3,
+"normalized-constraints": 1,
+"dolist": 1,
+"c": 1,
+"cond": 1,
+"push": 4,
+"sub": 4,
+"$lhs": 4,
+"$rhs": 4,
+"t": 1,
+"list*": 2,
+"nreverse": 1,
+"let*": 1,
+"m": 1,
+"x": 1,
+"make-array": 3,
+"mapcar": 2,
+"w": 1,
+"+": 4,
+"*": 4,
+"iact": 1,
+"fv": 1,
+"coerce-bfloat-fun": 2,
+"cv": 1,
+"*calcfc*": 1,
+"multiple-value-bind": 1,
+"null-0": 1,
+"cobyla": 1,
+"to": 2,
+"make-mlist": 1,
+"coerce": 1,
+"apply": 1
+},
+"toplevel": [],
+"lines": 170
+},
+{
+"file": "../share/colnew/colnew-if",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$colnew_expert",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ncomp",
+"m",
+"aleft",
+"aright",
+"zeta",
+"ipar",
+"ltol",
+"tol",
+"fixpnt",
+"ispace",
+"fspace",
+"iflag",
+"f",
+"df",
+"g",
+"dg",
+"init-guess"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 8,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$colnew_appsln",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"zlen",
+"fspace",
+"ispace"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 110,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$colnew_appsln",
+"$colnew_expert",
+"$float",
+"+",
+"dfsub",
+"dgsub",
+"double-float",
+"fsub",
+"gsub",
+"guess",
+"integer4",
+"list",
+"mlist"
+],
+"calls": {
+"in-package": 1,
+"defun": 2,
+"ncomp": 1,
+"flet": 3,
+"convert-to-mlist": 5,
+"v": 2,
+"list*": 3,
+"coerce": 2,
+"let": 5,
+"a-zeta": 1,
+"convert-to-array": 8,
+"a-ipar": 1,
+"a-ltol": 1,
+"a-tol": 1,
+"a-fixpnt": 1,
+"a-ispace": 2,
+"a-fspace": 1,
+"f": 1,
+"coerce-float-fun": 4,
+"df": 1,
+"g": 1,
+"dg": 1,
+"nz": 1,
+"reduce": 1,
+"+": 1,
+"cdr": 7,
+"dfsub": 2,
+"x": 3,
+"declare": 6,
+"type": 6,
+"array": 4,
+"*": 4,
+"double-float": 2,
+"when": 1,
+"listp": 1,
+"loop": 5,
+"setf": 4,
+":fref": 1,
+"row": 1,
+"$float": 7,
+"values": 4,
+"gsub": 2,
+"i": 2,
+"ignore": 2,
+"dgsub": 2,
+"aref": 3,
+"guess": 2,
+"let*": 1,
+"new-z": 1,
+"second": 1,
+"new-d": 1,
+"third": 1,
+"multiple-value-bind": 1,
+"z-ncomp": 1,
+"colnew:colnew": 1,
+"fsub": 1,
+"list": 1,
+"z": 1,
+"make-array": 1,
+"result": 1,
+"dolist": 1,
+"pnt": 1,
+"colnew:appsln": 1,
+"push": 1,
+"nreverse": 1
+},
+"toplevel": [],
+"lines": 123
 }
 ]
