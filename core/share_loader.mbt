@@ -68,7 +68,7 @@ fn share_loader__core_source_p(path : String) -> Bool raise {
 /// A member of a loader group that is a Maxima file rather than a Lisp file
 /// (the loader does `($load "stem")` and Maxima finds `stem.mac` next to
 /// it): load it with $load. Members that are Lisp files without a port are
-/// skipped.
+/// loaded by the Lisp evaluator.
 fn share_loader__load_maxima_member(path : String, member : String) -> Unit raise {
   let dir = match path.rev_find("/") {
     Some(i) => path.substring(end=i)
@@ -78,7 +78,10 @@ fn share_loader__load_maxima_member(path : String, member : String) -> Unit rais
     Some(i) => member.substring(start=i + 1)
     None => member
   }
-  if probe_file(dir + "/" + stem + ".lisp") {
+  let lisp = dir + "/" + stem + ".lisp"
+  if probe_file(lisp) {
+    // a Lisp member without a MoonBit port: evaluate its source
+    lisp_load_file(lisp)
     return
   }
   let mac = dir + "/" + stem + ".mac"

@@ -1368,6 +1368,7 @@ fn share_load_vector_rebuild() -> Unit raise {
 ///|
 fn share_load_cartan_new() -> Unit raise {
   register_share_cartan_new()
+  init_share_cartan_new()
 }
 
 ///|
