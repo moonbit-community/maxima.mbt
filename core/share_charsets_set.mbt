@@ -2,35 +2,6 @@
 // sets (Barton Willis), used by the charsets package.
 
 ///|
-/// `(set-difference a b :test f)` with SBCL's element order: A itself when
-/// B is empty, else the surviving elements of A reversed.
-fn charsets_set__set_difference(
-  a : Value,
-  b : Value,
-  f : (Value, Value) -> Bool raise,
-) -> Value raise {
-  if b is Nil {
-    a
-  } else {
-    set_difference(a, b, pred2=f)
-  }
-}
-
-///|
-/// `(intersection a b :test f)`: NIL when either list is empty.
-fn charsets_set__intersection(
-  a : Value,
-  b : Value,
-  f : (Value, Value) -> Bool raise,
-) -> Value raise {
-  if a is Nil || b is Nil {
-    Nil
-  } else {
-    intersection(a, b, pred2=f)
-  }
-}
-
-///|
 fn charsets_set__elem_eq(x : Value, y : Value) -> Bool raise {
   d_charsets_elem_equalp(x, y).truthy()
 }
@@ -158,7 +129,7 @@ fn d_charsets_setdifference(a : Value, b : Value) -> Value raise {
   if d_listp(a).truthy() && d_listp(b).truthy() {
     cons(
       list1(q_mlist),
-      charsets_set__set_difference(margs(a), margs(b), charsets_set__elem_eq),
+      set_difference(margs(a), margs(b), pred2=charsets_set__elem_eq),
     )
   } else {
     merr("Both arguments to `setdifference' must be lists.", [])
@@ -175,10 +146,7 @@ fn d_charsets_intersection(a : Value) -> Value raise {
     let a = mapcar(x => margs(x), a)
     cons(
       list1(q_mlist),
-      reduce(
-        (x, y) => charsets_set__intersection(x, y, charsets_set__elem_eq),
-        a,
-      ),
+      reduce((x, y) => intersection(x, y, pred2=charsets_set__elem_eq), a),
     )
   }
 }
@@ -268,7 +236,7 @@ fn d_charsets_dupe(e : Value, n : Value) -> Value raise {
 fn d_charsets_disjointp(a : Value, b : Value) -> Value raise {
   if d_listp(a).truthy() && d_listp(b).truthy() {
     lbool(
-      charsets_set__intersection(margs(a), margs(b), charsets_set__elem_eq) is Nil,
+      intersection(margs(a), margs(b), pred2=charsets_set__elem_eq) is Nil,
     )
   } else {
     merr("Both arguments to `disjointp' must be lists.", [])

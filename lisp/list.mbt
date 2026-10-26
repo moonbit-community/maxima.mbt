@@ -1035,12 +1035,19 @@ pub fn adjoin(x : Value, l : Value) -> Value {
 ///|
 /// `(union a b)` with a test, reproducing SBCL's element order: the shorter
 /// list (the first on ties) is the base; elements of the other list not in
-/// it are pushed onto its front.
+/// it are pushed onto its front. When either list is empty, the other is
+/// returned unchanged.
 pub fn union_(
   a : Value,
   b : Value,
   pred2? : (Value, Value) -> Bool raise = (x, y) => eql(x, y),
 ) -> Value raise {
+  if a is Nil {
+    return b
+  }
+  if b is Nil {
+    return a
+  }
   let (short, long) = if length(b) < length(a) { (b, a) } else { (a, b) }
   let mut r = short
   for x in long.iter() {
@@ -1072,12 +1079,15 @@ pub fn intersection(
 
 ///|
 /// `(set-difference a b)` with a test, reproducing SBCL's element order
-/// (the surviving elements of `a`, reversed).
+/// (the surviving elements of `a`, reversed; `a` itself when `b` is empty).
 pub fn set_difference(
   a : Value,
   b : Value,
   pred2? : (Value, Value) -> Bool raise = (x, y) => eql(x, y),
 ) -> Value raise {
+  if b is Nil {
+    return a
+  }
   let mut r = Nil
   for x in a.iter() {
     if member_if_test(x, b, pred2) is Nil {
