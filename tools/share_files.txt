@@ -9,3 +9,12 @@ share/stringproc/sha1
 share/stringproc/sregex
 share/contrib/unwind_protect
 share/contrib/Grobner/grobner
+share/orthopoly/orthopoly
+share/trigonometry/trigrat
+share/linearalgebra/mring
+share/linearalgebra/lu
+share/linearalgebra/linalgcholesky
+share/linearalgebra/eigens-by-jacobi
+share/linearalgebra/linalg-extra
+share/linearalgebra/matrixexp
+share/linearalgebra/linalg-utilities

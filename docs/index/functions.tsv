@@ -6339,6 +6339,168 @@ $poly_polysaturation_extension	defmfun	../share/contrib/Grobner/grobner.lisp:229
 $poly_ideal_polysaturation1	defmfun	../share/contrib/Grobner/grobner.lisp:2297	d_poly_ideal_polysaturation1(f : Value, plist : Value, vars : Value) -> Value
 $poly_ideal_saturation	defmfun	../share/contrib/Grobner/grobner.lisp:2302	d_poly_ideal_saturation(f : Value, g : Value, vars : Value) -> Value
 $poly_ideal_polysaturation	defmfun	../share/contrib/Grobner/grobner.lisp:2307	d_poly_ideal_polysaturation(f : Value, ideal_list : Value, vars : Value) -> Value
+maxima-to-lisp-complex-float	defun	../share/orthopoly/orthopoly.lisp:22	maxima_to_lisp_complex_float(a : Value) -> Value
+xcomplexp	defun	../share/orthopoly/orthopoly.lisp:36	xcomplexp(a : Value) -> Value
+lisp-complex-to-maxima	defun	../share/orthopoly/orthopoly.lisp:43	lisp_complex_to_maxima(x : Value) -> Value
+orthopoly-return-handler	defun	../share/orthopoly/orthopoly.lisp:53	orthopoly_return_handler(d : Value, f : Value, e : Value) -> Value
+simp-unk	defun	../share/orthopoly/orthopoly.lisp:70	simp_unk(x : Value, y : Value, z : Value) -> Value
+simp-unit-step	defun	../share/orthopoly/orthopoly.lisp:83	simp_unit_step(a : Value, y : Value, z : Value) -> Value
+$intervalp	defun	../share/orthopoly/orthopoly.lisp:94	d_intervalp(a : Value) -> Value
+interval-mult	defun	../share/orthopoly/orthopoly.lisp:102	interval_mult(x : Value, a : Value, dx? : Value = Nil) -> Value
+tex-sub-and-super-scripted-function	defun	../share/orthopoly/orthopoly.lisp:122	tex_sub_and_super_scripted_function(fn_ : Value, sub : Value, b1 : Value, sup : Value, b2 : Value, i : Value, x : Value, l : Value, r : Value) -> Value
+dimension-sub-and-super-scripted-function	defun	../share/orthopoly/orthopoly.lisp:141	dimension_sub_and_super_scripted_function(fn_ : Value, sub : Value, sup : Value, b2 : Value, k : Value, x : Value) -> Value
+use-float	defun	../share/orthopoly/orthopoly.lisp:165	use_float(a : Value) -> Value
+$hypergeo11	defun	../share/orthopoly/orthopoly.lisp:187	d_hypergeo11(a : Value, b : Value, x : Value, n : Value) -> (Value, Value)
+$hypergeo21	defun	../share/orthopoly/orthopoly.lisp:220	d_hypergeo21(a : Value, b : Value, c : Value, x : Value, n : Value) -> (Value, Value)
+$pochhammer	defun	../share/orthopoly/orthopoly.lisp:268	d_pochhammer(x : Value, n : Value) -> Value
+bigfloat::pochhammer	defun	../share/orthopoly/orthopoly.lisp:274	bf_pochhammer(x : Value, n : Value) -> Value
+simp-pochhammer	defun	../share/orthopoly/orthopoly.lisp:282	simp_pochhammer(e : Value, y : Value, z : Value) -> Value
+tex-pochhammer	defun	../share/orthopoly/orthopoly.lisp:335	tex_pochhammer(x : Value, l : Value, r : Value) -> Value
+dimension-pochhammer	defun	../share/orthopoly/orthopoly.lisp:347	dimension_pochhammer(form : Value, result : Value) -> Value
+pochhammer-quotient	defun	../share/orthopoly/orthopoly.lisp:358	pochhammer_quotient(a : Value, b : Value, x : Value, n : Value) -> Value
+use-hypergeo	defun	../share/orthopoly/orthopoly.lisp:369	use_hypergeo(n : Value, x : Value) -> Value
+$jacobi_p	defun	../share/orthopoly/orthopoly.lisp:387	d_jacobi_p(n : Value, a : Value, b : Value, x : Value) -> Value
+jacobi_p-1	defun	../share/orthopoly/orthopoly.lisp:394	jacobi_p_1(n : Value, a : Value, b : Value, x : Value) -> Value
+tex-jacobi-poly	defun	../share/orthopoly/orthopoly.lisp:429	tex_jacobi_poly(x : Value, l : Value, r : Value) -> Value
+dimension-jacobi-p	defun	../share/orthopoly/orthopoly.lisp:434	dimension_jacobi_p(form : Value, result : Value) -> Value
+$ultraspherical	defun	../share/orthopoly/orthopoly.lisp:439	d_ultraspherical(n : Value, a : Value, x : Value) -> Value
+ultraspherical-1	defun	../share/orthopoly/orthopoly.lisp:451	ultraspherical_1(n : Value, a : Value, x : Value) -> Value
+tex-ultraspherical	defun	../share/orthopoly/orthopoly.lisp:479	tex_ultraspherical(x : Value, l : Value, r : Value) -> Value
+dimension-ultraspherical	defun	../share/orthopoly/orthopoly.lisp:484	dimension_ultraspherical(form : Value, result : Value) -> Value
+$chebyshev_t	defun	../share/orthopoly/orthopoly.lisp:489	d_chebyshev_t(n : Value, x : Value) -> Value
+tex-chebyshev-t	defun	../share/orthopoly/orthopoly.lisp:509	tex_chebyshev_t(x : Value, l : Value, r : Value) -> Value
+dimension-chebyshev-t	defun	../share/orthopoly/orthopoly.lisp:514	dimension_chebyshev_t(form : Value, result : Value) -> Value
+$chebyshev_u	defun	../share/orthopoly/orthopoly.lisp:521	d_chebyshev_u(n : Value, x : Value) -> Value
+tex-chebyshev-u	defun	../share/orthopoly/orthopoly.lisp:545	tex_chebyshev_u(x : Value, l : Value, r : Value) -> Value
+dimension-chebyshev-u	defun	../share/orthopoly/orthopoly.lisp:550	dimension_chebyshev_u(form : Value, result : Value) -> Value
+$legendre_p	defun	../share/orthopoly/orthopoly.lisp:558	d_legendre_p(n : Value, x : Value) -> Value
+tex-legendre-p	defun	../share/orthopoly/orthopoly.lisp:577	tex_legendre_p(x : Value, l : Value, r : Value) -> Value
+dimension-legendre-p	defun	../share/orthopoly/orthopoly.lisp:582	dimension_legendre_p(form : Value, result : Value) -> Value
+$legendre_q	defun	../share/orthopoly/orthopoly.lisp:587	d_legendre_q(n : Value, x : Value) -> Value
+tex-legendre-q	defun	../share/orthopoly/orthopoly.lisp:607	tex_legendre_q(x : Value, l : Value, r : Value) -> Value
+dimension-legendre-q	defun	../share/orthopoly/orthopoly.lisp:612	dimension_legendre_q(form : Value, result : Value) -> Value
+q0m	defun	../share/orthopoly/orthopoly.lisp:628	q0m(m : Value, x : Value) -> Value
+q1m	defun	../share/orthopoly/orthopoly.lisp:644	q1m(m : Value, x : Value) -> Value
+assoc-legendre-q-nn	defun	../share/orthopoly/orthopoly.lisp:669	assoc_legendre_q_nn(n : Value, x : Value) -> Value
+$assoc_legendre_q	defun	../share/orthopoly/orthopoly.lisp:684	d_assoc_legendre_q(n : Value, m : Value, x : Value) -> Value
+tex-assoc-legendre-q	defun	../share/orthopoly/orthopoly.lisp:725	tex_assoc_legendre_q(x : Value, l : Value, r : Value) -> Value
+dimension-assoc-legendre-q	defun	../share/orthopoly/orthopoly.lisp:730	dimension_assoc_legendre_q(form : Value, result : Value) -> Value
+$assoc_legendre_p	defun	../share/orthopoly/orthopoly.lisp:738	d_assoc_legendre_p(n : Value, m : Value, x : Value) -> Value
+tex-assoc-legendre-p	defun	../share/orthopoly/orthopoly.lisp:789	tex_assoc_legendre_p(x : Value, l : Value, r : Value) -> Value
+dimension-assoc-legendre-p	defun	../share/orthopoly/orthopoly.lisp:794	dimension_assoc_legendre_p(form : Value, result : Value) -> Value
+$hermite	defun	../share/orthopoly/orthopoly.lisp:801	d_hermite(n : Value, x : Value) -> Value
+tex-hermite	defun	../share/orthopoly/orthopoly.lisp:827	tex_hermite(x : Value, l : Value, r : Value) -> Value
+dimension-hermite	defun	../share/orthopoly/orthopoly.lisp:832	dimension_hermite(form : Value, result : Value) -> Value
+$gen_laguerre	defun	../share/orthopoly/orthopoly.lisp:840	d_gen_laguerre(n : Value, a : Value, x : Value) -> Value
+gen_laguerre-1	defun	../share/orthopoly/orthopoly.lisp:847	gen_laguerre_1(n : Value, a : Value, x : Value) -> Value
+tex-gen-laguerre	defun	../share/orthopoly/orthopoly.lisp:873	tex_gen_laguerre(x : Value, l : Value, r : Value) -> Value
+dimension-gen-laguerre	defun	../share/orthopoly/orthopoly.lisp:878	dimension_gen_laguerre(form : Value, result : Value) -> Value
+$laguerre	defun	../share/orthopoly/orthopoly.lisp:885	d_laguerre(n : Value, x : Value) -> Value
+tex-laguerre	defun	../share/orthopoly/orthopoly.lisp:905	tex_laguerre(x : Value, l : Value, r : Value) -> Value
+dimension-laguerre	defun	../share/orthopoly/orthopoly.lisp:910	dimension_laguerre(form : Value, result : Value) -> Value
+$spherical_hankel1	defun	../share/orthopoly/orthopoly.lisp:915	d_spherical_hankel1(n : Value, x : Value) -> Value
+tex-spherical-hankel-1	defun	../share/orthopoly/orthopoly.lisp:943	tex_spherical_hankel_1(x : Value, l : Value, r : Value) -> Value
+dimension-spherical-hankel-1	defun	../share/orthopoly/orthopoly.lisp:948	dimension_spherical_hankel_1(form : Value, result : Value) -> Value
+$spherical_hankel2	defun	../share/orthopoly/orthopoly.lisp:955	d_spherical_hankel2(n : Value, x : Value) -> Value
+tex-spherical-hankel-2	defun	../share/orthopoly/orthopoly.lisp:973	tex_spherical_hankel_2(x : Value, l : Value, r : Value) -> Value
+dimension-spherical-hankel-2	defun	../share/orthopoly/orthopoly.lisp:978	dimension_spherical_hankel_2(form : Value, result : Value) -> Value
+p-fun	defun	../share/orthopoly/orthopoly.lisp:986	p__fun(n : Value, x : Value) -> Value
+q-fun	defun	../share/orthopoly/orthopoly.lisp:999	q__fun(n : Value, x : Value) -> Value
+$spherical_bessel_j	defun	../share/orthopoly/orthopoly.lisp:1024	d_spherical_bessel_j(n : Value, x : Value) -> Value
+tex-spherical-bessel-j	defun	../share/orthopoly/orthopoly.lisp:1068	tex_spherical_bessel_j(x : Value, l : Value, r : Value) -> Value
+dimension-spherical-bessel-j	defun	../share/orthopoly/orthopoly.lisp:1073	dimension_spherical_bessel_j(form : Value, result : Value) -> Value
+$spherical_bessel_y	defun	../share/orthopoly/orthopoly.lisp:1079	d_spherical_bessel_y(n : Value, x : Value) -> Value
+tex-spherical-bessel-y	defun	../share/orthopoly/orthopoly.lisp:1118	tex_spherical_bessel_y(x : Value, l : Value, r : Value) -> Value
+dimension-spherical-bessel-y	defun	../share/orthopoly/orthopoly.lisp:1123	dimension_spherical_bessel_y(form : Value, result : Value) -> Value
+assoc-leg-cos	defun	../share/orthopoly/orthopoly.lisp:1136	assoc_leg_cos(n : Value, m : Value, x : Value) -> Value
+$spherical_harmonic	defun	../share/orthopoly/orthopoly.lisp:1141	d_spherical_harmonic(n : Value, m : Value, th : Value, p : Value) -> Value
+tex-spherical-harmonic	defun	../share/orthopoly/orthopoly.lisp:1160	tex_spherical_harmonic(x : Value, l : Value, r : Value) -> Value
+dimension-spherical-harmonic	defun	../share/orthopoly/orthopoly.lisp:1165	dimension_spherical_harmonic(form : Value, result : Value) -> Value
+maxima-float-to-lisp-float	defun	../share/orthopoly/orthopoly.lisp:1193	maxima_float_to_lisp_float(y : Value) -> Value
+lisp-float-to-maxima-float	defun	../share/orthopoly/orthopoly.lisp:1204	lisp_float_to_maxima_float(x : Value) -> Value
+hypergeo11-float	defun	../share/orthopoly/orthopoly.lisp:1209	hypergeo11_float(n : Value, b : Value, x : Value) -> (Value, Value)
+hypergeo21-float	defun	../share/orthopoly/orthopoly.lisp:1249	hypergeo21_float(n : Value, b : Value, c : Value, x : Value) -> (Value, Value)
+check-arg-length	defun	../share/orthopoly/orthopoly.lisp:1320	check_arg_length(fn_ : Value, n : Value, m : Value) -> Value
+$orthopoly_recur	defun	../share/orthopoly/orthopoly.lisp:1325	d_orthopoly_recur(fn_ : Value, arg : Value) -> Value
+$orthopoly_weight	defun	../share/orthopoly/orthopoly.lisp:1463	d_orthopoly_weight(fn_ : Value, arg : Value) -> Value
+$listofei	defun	../share/trigonometry/trigrat.lisp:3	d_listofei(e : Value) -> Value
+$require_ring	defun	../share/linearalgebra/mring.lisp:86	d_require_ring(ringname : Value, pos : Value, fun : Value) -> Value
+coerce-expr-to-clcomplex	defun	../share/linearalgebra/mring.lisp:117	coerce_expr_to_clcomplex(ex : Value) -> Value
+rational-square-root	defun	../share/linearalgebra/mring.lisp:152	rational_square_root(z : Value) -> Value
+fp-abs	defun	../share/linearalgebra/mring.lisp:352	fp_abs(a : Value) -> Value
+fp+	defun	../share/linearalgebra/mring.lisp:355	fp_plus(a : Value, b : Value) -> Value
+fp-	defun	../share/linearalgebra/mring.lisp:365	fp_(a : Value, b : Value) -> Value
+fp*	defun	../share/linearalgebra/mring.lisp:375	fp_star(a : Value, b : Value) -> Value
+fp/	defun	../share/linearalgebra/mring.lisp:379	fp_sl(a : Value, b : Value) -> Value
+$addmatrices	defun	../share/linearalgebra/mring.lisp:383	d_addmatrices(fn_ : Value, m : Value) -> Value
+ring-eval	defun	../share/linearalgebra/mring.lisp:455	ring_eval(e : Value, fld : Value) -> Value
+$ringeval	defmspec	../share/linearalgebra/mring.lisp:491	d_ringeval(e : Value) -> Value
+m-elem	defun	../share/linearalgebra/lu.lisp:16	m_elem(m : Value, p : Value, i : Value, j : Value) -> Value
+setmatelem	defun	../share/linearalgebra/lu.lisp:21	setmatelem(m : Value, x : Value, i : Value, j : Value) -> Value
+partial-matrix-prod	defun	../share/linearalgebra/lu.lisp:26	partial_matrix_prod(m : Value, p : Value, i : Value, k : Value, n : Value, fadd : Value, fsub : Value, fmult : Value, add_id : Value, fname : Value) -> Value
+partial-matrix-prod-float	defun	../share/linearalgebra/lu.lisp:37	partial_matrix_prod_float(m : Value, p : Value, i : Value, k : Value, n : Value) -> Value
+partial-matrix-prod-complex-float	defun	../share/linearalgebra/lu.lisp:45	partial_matrix_prod_complex_float(m : Value, p : Value, i : Value, k : Value, n : Value) -> Value
+array-infinity-norm	defun	../share/linearalgebra/lu.lisp:56	array_infinity_norm(mat : Value, fn_ : Value) -> Value
+$lu_factor	defun	../share/linearalgebra/lu.lisp:60	d_lu_factor(mat : Value, fld? : Value = q_d_generalring) -> Value
+$get_lu_factors	defun	../share/linearalgebra/lu.lisp:82	d_get_lu_factors(x : Value) -> Value
+lu-factor	defun	../share/linearalgebra/lu.lisp:108	lu_factor(m : Value, perm : Value, c : Value, fld : Value, cnd? : Value = Flo(1.0)) -> Value
+m-elem-reflect	defun	../share/linearalgebra/lu.lisp:154	m_elem_reflect(mat : Value, perm : Value, n : Value, r : Value, i : Value, j : Value) -> Value
+mat-cond-by-lu	defun	../share/linearalgebra/lu.lisp:165	mat_cond_by_lu(mat : Value, perm : Value, n : Value, fn_ : Value) -> (Value, Value)
+triangular-mat-cond	defun	../share/linearalgebra/lu.lisp:179	triangular_mat_cond(mat : Value, perm : Value, n : Value, fn_ : Value, r : Value) -> (Value, Value)
+$lu_backsub	defun	../share/linearalgebra/lu.lisp:195	d_lu_backsub(m : Value, b1 : Value) -> Value
+$invert_by_lu	defun	../share/linearalgebra/lu.lisp:249	d_invert_by_lu(m : Value, fld? : Value = q_d_generalring) -> Value
+invert-by-lu-with-determinant	defun	../share/linearalgebra/lu.lisp:254	invert_by_lu_with_determinant(m : Value, fld_name : Value) -> Value
+$determinant_by_lu	defun	../share/linearalgebra/lu.lisp:262	d_determinant_by_lu(m : Value, fld_name? : Value = q_d_generalring) -> Value
+determinant-by-lu-factors	defun	../share/linearalgebra/lu.lisp:271	determinant_by_lu_factors(m : Value, fld : Value) -> Value
+$mat_cond	defun	../share/linearalgebra/lu.lisp:291	d_mat_cond(m : Value, p : Value) -> Value
+$linsolve_by_lu	defun	../share/linearalgebra/lu.lisp:295	d_linsolve_by_lu(m : Value, b : Value, fld? : Value = q_d_generalring) -> Value
+invertible-matrixp	defun	../share/linearalgebra/lu.lisp:306	invertible_matrixp(mat : Value, fld : Value) -> Value
+$cholesky	defun	../share/linearalgebra/linalgcholesky.lisp:11	d_cholesky(m : Value, fld_name? : Value = q_d_generalring) -> Value
+$eigens_by_jacobi	defun	../share/linearalgebra/eigens-by-jacobi.lisp:27	d_eigens_by_jacobi(mm : Value, fld_name? : Value = q_d_floatfield) -> Value
+$circulant	defun	../share/linearalgebra/linalg-extra.lisp:13	d_circulant(lst : Value) -> Value
+$cauchy_matrix	defun	../share/linearalgebra/linalg-extra.lisp:25	d_cauchy_matrix(p : Value, q? : Value = Nil) -> Value
+$hessian	defun	../share/linearalgebra/linalg-extra.lisp:41	d_hessian(e : Value, vars : Value) -> Value
+$jacobian	defun	../share/linearalgebra/linalg-extra.lisp:51	d_jacobian(e : Value, vars : Value) -> Value
+$vandermonde_matrix	defun	../share/linearalgebra/linalg-extra.lisp:61	d_vandermonde_matrix(l : Value) -> Value
+matrix-sign-sylvester	defun	../share/linearalgebra/linalg-extra.lisp:82	matrix_sign_sylvester(m : Value) -> Value
+order-of-root	defun	../share/linearalgebra/linalg-extra.lisp:95	order_of_root(p : Value, x : Value, pt : Value) -> Value
+$matrix_sign	defun	../share/linearalgebra/linalg-extra.lisp:116	d_matrix_sign(mat : Value) -> Value
+$sylvester_matrix	defun	../share/linearalgebra/linalg-extra.lisp:144	d_sylvester_matrix(p : Value, q : Value, z : Value) -> Value
+$krylov_matrix	defun	../share/linearalgebra/linalg-extra.lisp:180	d_krylov_matrix(v : Value, mat : Value, n? : Value = q_no_value) -> Value
+rect-minus-one-power	defun	../share/linearalgebra/matrixexp.lisp:33	rect_minus_one_power(e : Value) -> Value
+final-simp	defun	../share/linearalgebra/matrixexp.lisp:47	final_simp(e : Value, depth? : Value = Fix(4L)) -> Value
+matrixexp-simp	defun	../share/linearalgebra/matrixexp.lisp:57	matrixexp_simp(e : Value, depth? : Value = Fix(4L)) -> Value
+$spectral_rep	defmfun	../share/linearalgebra/matrixexp.lisp:69	d_spectral_rep(mat : Value) -> Value
+nilpotent-p	defun	../share/linearalgebra/matrixexp.lisp:121	nilpotent_p(mat : Value) -> Value
+$matrixexp	defmfun	../share/linearalgebra/matrixexp.lisp:144	d_matrixexp(mat : Value, x? : Value = Fix(1L)) -> Value
+require-lambda	defun	../share/linearalgebra/matrixexp.lisp:172	require_lambda(e : Value, n : Value, pos : Value, fun_name : Value) -> Value
+$matrixfun	defmfun	../share/linearalgebra/matrixexp.lisp:180	d_matrixfun(lamexpr : Value, mat : Value) -> Value
+rational-residue	defun	../share/linearalgebra/matrixexp.lisp:214	rational_residue(e : Value, var_ : Value, pt : Value, ker : Value, ord : Value) -> Value
+inform	defun	../share/linearalgebra/linalg-utilities.lisp:12	inform(level : Value, pck : Value, msg : Value, arg : Value) -> Value
+$require_nonempty_matrix	defun	../share/linearalgebra/linalg-utilities.lisp:16	d_require_nonempty_matrix(m : Value, pos : Value, fun : Value) -> Value
+$blockmatrixp	defun	../share/linearalgebra/linalg-utilities.lisp:22	d_blockmatrixp(m : Value) -> Value
+$require_matrix	defun	../share/linearalgebra/linalg-utilities.lisp:25	d_require_matrix(m : Value, pos : Value, fun : Value) -> Value
+$require_unblockedmatrix	defun	../share/linearalgebra/linalg-utilities.lisp:29	d_require_unblockedmatrix(m : Value, pos : Value, fun : Value) -> Value
+$require_square_matrix	defun	../share/linearalgebra/linalg-utilities.lisp:33	d_require_square_matrix(m : Value, pos : Value, fun : Value) -> Value
+array-elem	defun	../share/linearalgebra/linalg-utilities.lisp:37	array_elem(m : Value, i : Value, j : Value) -> Value
+$require_symmetric_matrix	defun	../share/linearalgebra/linalg-utilities.lisp:40	d_require_symmetric_matrix(m : Value, pos : Value, fun : Value) -> Value
+$require_real_symmetric_matrix	defun	../share/linearalgebra/linalg-utilities.lisp:49	d_require_real_symmetric_matrix(m : Value, pos : Value, fun : Value) -> Value
+$require_selfadjoint_matrix	defun	../share/linearalgebra/linalg-utilities.lisp:57	d_require_selfadjoint_matrix(m : Value, fun : Value, pos : Value) -> Value
+$matrix_size	defun	../share/linearalgebra/linalg-utilities.lisp:70	d_matrix_size(m : Value) -> Value
+$require_list	defun	../share/linearalgebra/linalg-utilities.lisp:74	d_require_list(lst : Value, pos : Value, fun : Value) -> Value
+$require_posinteger	defun	../share/linearalgebra/linalg-utilities.lisp:78	d_require_posinteger(i : Value, pos : Value, fun : Value) -> Value
+matrix-map	defun	../share/linearalgebra/linalg-utilities.lisp:82	matrix_map(f : Value, mat : Value) -> Value
+full-matrix-map	defun	../share/linearalgebra/linalg-utilities.lisp:90	full_matrix_map(fn_ : Value, m : Value) -> Value
+$zerofor	defun	../share/linearalgebra/linalg-utilities.lisp:95	d_zerofor(mat : Value, fld_name? : Value = q_d_generalring) -> Value
+zerofor	defun	../share/linearalgebra/linalg-utilities.lisp:100	zerofor(mat : Value, zero : Value) -> Value
+$identfor	defun	../share/linearalgebra/linalg-utilities.lisp:111	d_identfor(mat : Value, fld_name? : Value = q_d_generalring) -> Value
+identfor	defun	../share/linearalgebra/linalg-utilities.lisp:117	identfor(mat : Value, zero : Value, one : Value) -> Value
+$ctranspose	defun	../share/linearalgebra/linalg-utilities.lisp:136	d_ctranspose(m : Value) -> Value
+$zeromatrixp	defun	../share/linearalgebra/linalg-utilities.lisp:139	d_zeromatrixp(m : Value) -> Value
+array-to-row-list	defun	../share/linearalgebra/linalg-utilities.lisp:143	array_to_row_list(mat : Value, fn_? : Value = q_identity) -> Value
+array-to-maxima-matrix	defun	../share/linearalgebra/linalg-utilities.lisp:155	array_to_maxima_matrix(mat : Value, fn_? : Value = q_identity) -> Value
+array-to-maxima-list	defun	../share/linearalgebra/linalg-utilities.lisp:158	array_to_maxima_list(ar : Value, fn_? : Value = q_identity) -> Value
+maxima-to-array	defun	../share/linearalgebra/linalg-utilities.lisp:161	maxima_to_array(mat : Value, fn_? : Value = q_identity, typ? : Value = Nil) -> Value
 intl::textdomain	macro	intl.lisp:509	intl_textdomain(domain : Value) -> Value
 intl::gettext	macro	intl.lisp:513	intl_gettext(string_ : Value) -> Value
 intl::ngettext	macro	intl.lisp:517	intl_ngettext(singular : Value, plural : Value, n : Value) -> Value

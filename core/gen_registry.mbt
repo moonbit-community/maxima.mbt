@@ -7751,3 +7751,204 @@ fn register_share_grobner() -> Unit {
   defun(q_d_poly_ideal_polysaturation, args => { check_arity_range("$poly_ideal_polysaturation", args, 3, 3); d_poly_ideal_polysaturation(arg(args, 0), arg(args, 1), arg(args, 2)) })
   putprop(q_d_poly_ideal_polysaturation, t, q_translated) |> ignore
 }
+
+///|
+fn register_share_orthopoly() -> Unit {
+  defun(q_maxima_to_lisp_complex_float, args => maxima_to_lisp_complex_float(arg(args, 0)))
+  defun(q_xcomplexp, args => xcomplexp(arg(args, 0)))
+  defun(q_lisp_complex_to_maxima, args => lisp_complex_to_maxima(arg(args, 0)))
+  defun(q_orthopoly_return_handler, args => orthopoly_return_handler(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_unk, args => simp_unk(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_simp_unit_step, args => simp_unit_step(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_intervalp, args => d_intervalp(arg(args, 0)))
+  defun(q_interval_mult, args => interval_mult(arg(args, 0), arg(args, 1), dx?=args.get(2)))
+  defun(q_tex_sub_and_super_scripted_function, args => tex_sub_and_super_scripted_function(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8)))
+  defun(q_dimension_sub_and_super_scripted_function, args => dimension_sub_and_super_scripted_function(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_use_float, args => use_float(rest_args(args, 0)))
+  defun(q_d_hypergeo11, args => d_hypergeo11(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)).0)
+  defun(q_d_hypergeo21, args => d_hypergeo21(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)).0)
+  defun(q_d_pochhammer, args => d_pochhammer(arg(args, 0), arg(args, 1)))
+  defun(q_bf_pochhammer, args => bf_pochhammer(arg(args, 0), arg(args, 1)))
+  defun(q_simp_pochhammer, args => simp_pochhammer(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_tex_pochhammer, args => tex_pochhammer(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_pochhammer, args => dimension_pochhammer(arg(args, 0), arg(args, 1)))
+  defun(q_pochhammer_quotient, args => pochhammer_quotient(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_use_hypergeo, args => use_hypergeo(arg(args, 0), arg(args, 1)))
+  defun(q_d_jacobi_p, args => d_jacobi_p(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_jacobi_p_1, args => jacobi_p_1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_tex_jacobi_poly, args => tex_jacobi_poly(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_jacobi_p, args => dimension_jacobi_p(arg(args, 0), arg(args, 1)))
+  defun(q_d_ultraspherical, args => d_ultraspherical(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_ultraspherical_1, args => ultraspherical_1(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_tex_ultraspherical, args => tex_ultraspherical(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_ultraspherical, args => dimension_ultraspherical(arg(args, 0), arg(args, 1)))
+  defun(q_d_chebyshev_t, args => d_chebyshev_t(arg(args, 0), arg(args, 1)))
+  defun(q_tex_chebyshev_t, args => tex_chebyshev_t(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_chebyshev_t, args => dimension_chebyshev_t(arg(args, 0), arg(args, 1)))
+  defun(q_d_chebyshev_u, args => d_chebyshev_u(arg(args, 0), arg(args, 1)))
+  defun(q_tex_chebyshev_u, args => tex_chebyshev_u(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_chebyshev_u, args => dimension_chebyshev_u(arg(args, 0), arg(args, 1)))
+  defun(q_d_legendre_p, args => d_legendre_p(arg(args, 0), arg(args, 1)))
+  defun(q_tex_legendre_p, args => tex_legendre_p(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_legendre_p, args => dimension_legendre_p(arg(args, 0), arg(args, 1)))
+  defun(q_d_legendre_q, args => d_legendre_q(arg(args, 0), arg(args, 1)))
+  defun(q_tex_legendre_q, args => tex_legendre_q(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_legendre_q, args => dimension_legendre_q(arg(args, 0), arg(args, 1)))
+  defun(q_q0m, args => q0m(arg(args, 0), arg(args, 1)))
+  defun(q_q1m, args => q1m(arg(args, 0), arg(args, 1)))
+  defun(q_assoc_legendre_q_nn, args => assoc_legendre_q_nn(arg(args, 0), arg(args, 1)))
+  defun(q_d_assoc_legendre_q, args => d_assoc_legendre_q(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_tex_assoc_legendre_q, args => tex_assoc_legendre_q(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_assoc_legendre_q, args => dimension_assoc_legendre_q(arg(args, 0), arg(args, 1)))
+  defun(q_d_assoc_legendre_p, args => d_assoc_legendre_p(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_tex_assoc_legendre_p, args => tex_assoc_legendre_p(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_assoc_legendre_p, args => dimension_assoc_legendre_p(arg(args, 0), arg(args, 1)))
+  defun(q_d_hermite, args => d_hermite(arg(args, 0), arg(args, 1)))
+  defun(q_tex_hermite, args => tex_hermite(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_hermite, args => dimension_hermite(arg(args, 0), arg(args, 1)))
+  defun(q_d_gen_laguerre, args => d_gen_laguerre(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_gen_laguerre_1, args => gen_laguerre_1(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_tex_gen_laguerre, args => tex_gen_laguerre(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_gen_laguerre, args => dimension_gen_laguerre(arg(args, 0), arg(args, 1)))
+  defun(q_d_laguerre, args => d_laguerre(arg(args, 0), arg(args, 1)))
+  defun(q_tex_laguerre, args => tex_laguerre(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_laguerre, args => dimension_laguerre(arg(args, 0), arg(args, 1)))
+  defun(q_d_spherical_hankel1, args => d_spherical_hankel1(arg(args, 0), arg(args, 1)))
+  defun(q_tex_spherical_hankel_1, args => tex_spherical_hankel_1(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_spherical_hankel_1, args => dimension_spherical_hankel_1(arg(args, 0), arg(args, 1)))
+  defun(q_d_spherical_hankel2, args => d_spherical_hankel2(arg(args, 0), arg(args, 1)))
+  defun(q_tex_spherical_hankel_2, args => tex_spherical_hankel_2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_spherical_hankel_2, args => dimension_spherical_hankel_2(arg(args, 0), arg(args, 1)))
+  defun(q_p__fun, args => p__fun(arg(args, 0), arg(args, 1)))
+  defun(q_q__fun, args => q__fun(arg(args, 0), arg(args, 1)))
+  defun(q_d_spherical_bessel_j, args => d_spherical_bessel_j(arg(args, 0), arg(args, 1)))
+  defun(q_tex_spherical_bessel_j, args => tex_spherical_bessel_j(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_spherical_bessel_j, args => dimension_spherical_bessel_j(arg(args, 0), arg(args, 1)))
+  defun(q_d_spherical_bessel_y, args => d_spherical_bessel_y(arg(args, 0), arg(args, 1)))
+  defun(q_tex_spherical_bessel_y, args => tex_spherical_bessel_y(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_spherical_bessel_y, args => dimension_spherical_bessel_y(arg(args, 0), arg(args, 1)))
+  defun(q_assoc_leg_cos, args => assoc_leg_cos(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_spherical_harmonic, args => d_spherical_harmonic(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_tex_spherical_harmonic, args => tex_spherical_harmonic(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_dimension_spherical_harmonic, args => dimension_spherical_harmonic(arg(args, 0), arg(args, 1)))
+  defun(q_maxima_float_to_lisp_float, args => maxima_float_to_lisp_float(arg(args, 0)))
+  defun(q_lisp_float_to_maxima_float, args => lisp_float_to_maxima_float(arg(args, 0)))
+  defun(q_hypergeo11_float, args => hypergeo11_float(arg(args, 0), arg(args, 1), arg(args, 2)).0)
+  defun(q_hypergeo21_float, args => hypergeo21_float(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)).0)
+  defun(q_check_arg_length, args => check_arg_length(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_orthopoly_recur, args => d_orthopoly_recur(arg(args, 0), arg(args, 1)))
+  defun(q_d_orthopoly_weight, args => d_orthopoly_weight(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_trigrat() -> Unit {
+  defun(q_d_listofei, args => d_listofei(arg(args, 0)))
+}
+
+///|
+fn register_share_mring() -> Unit {
+  defun(q_d_require_ring, args => d_require_ring(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_coerce_expr_to_clcomplex, args => coerce_expr_to_clcomplex(arg(args, 0)))
+  defun(q_rational_square_root, args => rational_square_root(arg(args, 0)))
+  defun(q_fp_abs, args => fp_abs(arg(args, 0)))
+  defun(q_fp_plus, args => fp_plus(arg(args, 0), arg(args, 1)))
+  defun(q_fp_, args => fp_(arg(args, 0), arg(args, 1)))
+  defun(q_fp_star, args => fp_star(arg(args, 0), arg(args, 1)))
+  defun(q_fp_sl, args => fp_sl(arg(args, 0), arg(args, 1)))
+  defun(q_d_addmatrices, args => d_addmatrices(arg(args, 0), rest_args(args, 1)))
+  defun(q_ring_eval, args => ring_eval(arg(args, 0), arg(args, 1)))
+  register_mspec(q_d_ringeval, d_ringeval)
+}
+
+///|
+fn register_share_lu() -> Unit {
+  defun(q_m_elem, args => m_elem(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_setmatelem, args => setmatelem(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_partial_matrix_prod, args => partial_matrix_prod(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7), arg(args, 8), arg(args, 9)))
+  defun(q_partial_matrix_prod_float, args => partial_matrix_prod_float(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_partial_matrix_prod_complex_float, args => partial_matrix_prod_complex_float(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_array_infinity_norm, args => array_infinity_norm(arg(args, 0), arg(args, 1)))
+  defun(q_d_lu_factor, args => d_lu_factor(arg(args, 0), fld?=args.get(1)))
+  defun(q_d_get_lu_factors, args => d_get_lu_factors(arg(args, 0)))
+  defun(q_lu_factor, args => lu_factor(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), cnd?=args.get(4)))
+  defun(q_m_elem_reflect, args => m_elem_reflect(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_mat_cond_by_lu, args => mat_cond_by_lu(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)).0)
+  defun(q_triangular_mat_cond, args => triangular_mat_cond(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)).0)
+  defun(q_d_lu_backsub, args => d_lu_backsub(arg(args, 0), arg(args, 1)))
+  defun(q_d_invert_by_lu, args => d_invert_by_lu(arg(args, 0), fld?=args.get(1)))
+  defun(q_invert_by_lu_with_determinant, args => invert_by_lu_with_determinant(arg(args, 0), arg(args, 1)))
+  defun(q_d_determinant_by_lu, args => d_determinant_by_lu(arg(args, 0), fld_name?=args.get(1)))
+  defun(q_determinant_by_lu_factors, args => determinant_by_lu_factors(arg(args, 0), arg(args, 1)))
+  defun(q_d_mat_cond, args => d_mat_cond(arg(args, 0), arg(args, 1)))
+  defun(q_d_linsolve_by_lu, args => d_linsolve_by_lu(arg(args, 0), arg(args, 1), fld?=args.get(2)))
+  defun(q_invertible_matrixp, args => invertible_matrixp(arg(args, 0), arg(args, 1)))
+}
+
+///|
+fn register_share_linalgcholesky() -> Unit {
+  defun(q_d_cholesky, args => d_cholesky(arg(args, 0), fld_name?=args.get(1)))
+}
+
+///|
+fn register_share_eigens_by_jacobi() -> Unit {
+  defun(q_d_eigens_by_jacobi, args => d_eigens_by_jacobi(arg(args, 0), fld_name?=args.get(1)))
+}
+
+///|
+fn register_share_linalg_extra() -> Unit {
+  defun(q_d_circulant, args => d_circulant(arg(args, 0)))
+  defun(q_d_cauchy_matrix, args => d_cauchy_matrix(arg(args, 0), q?=args.get(1)))
+  defun(q_d_hessian, args => d_hessian(arg(args, 0), arg(args, 1)))
+  defun(q_d_jacobian, args => d_jacobian(arg(args, 0), arg(args, 1)))
+  defun(q_d_vandermonde_matrix, args => d_vandermonde_matrix(arg(args, 0)))
+  defun(q_matrix_sign_sylvester, args => matrix_sign_sylvester(arg(args, 0)))
+  defun(q_order_of_root, args => order_of_root(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_matrix_sign, args => d_matrix_sign(arg(args, 0)))
+  defun(q_d_sylvester_matrix, args => d_sylvester_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_krylov_matrix, args => d_krylov_matrix(arg(args, 0), arg(args, 1), n?=args.get(2)))
+}
+
+///|
+fn register_share_matrixexp() -> Unit {
+  defun(q_rect_minus_one_power, args => rect_minus_one_power(arg(args, 0)))
+  defun(q_final_simp, args => final_simp(arg(args, 0), depth?=args.get(1)))
+  defun(q_matrixexp_simp, args => matrixexp_simp(arg(args, 0), depth?=args.get(1)))
+  defun(q_d_spectral_rep, args => { check_arity_range("$spectral_rep", args, 1, 1); d_spectral_rep(arg(args, 0)) })
+  putprop(q_d_spectral_rep, t, q_translated) |> ignore
+  defun(q_nilpotent_p, args => nilpotent_p(arg(args, 0)))
+  defun(q_d_matrixexp, args => { check_arity_range("$matrixexp", args, 1, 2); d_matrixexp(arg(args, 0), x?=args.get(1)) })
+  putprop(q_d_matrixexp, t, q_translated) |> ignore
+  defun(q_require_lambda, args => require_lambda(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_d_matrixfun, args => { check_arity_range("$matrixfun", args, 2, 2); d_matrixfun(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_matrixfun, t, q_translated) |> ignore
+  defun(q_rational_residue, args => rational_residue(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+}
+
+///|
+fn register_share_linalg_utilities() -> Unit {
+  defun(q_inform, args => inform(arg(args, 0), arg(args, 1), arg(args, 2), rest_args(args, 3)))
+  defun(q_d_require_nonempty_matrix, args => d_require_nonempty_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_blockmatrixp, args => d_blockmatrixp(arg(args, 0)))
+  defun(q_d_require_matrix, args => d_require_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_require_unblockedmatrix, args => d_require_unblockedmatrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_require_square_matrix, args => d_require_square_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_array_elem, args => array_elem(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_require_symmetric_matrix, args => d_require_symmetric_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_require_real_symmetric_matrix, args => d_require_real_symmetric_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_require_selfadjoint_matrix, args => d_require_selfadjoint_matrix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_matrix_size, args => d_matrix_size(arg(args, 0)))
+  defun(q_d_require_list, args => d_require_list(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_require_posinteger, args => d_require_posinteger(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_matrix_map, args => matrix_map(arg(args, 0), arg(args, 1)))
+  defun(q_full_matrix_map, args => full_matrix_map(arg(args, 0), arg(args, 1)))
+  defun(q_d_zerofor, args => d_zerofor(arg(args, 0), fld_name?=args.get(1)))
+  defun(q_zerofor, args => zerofor(arg(args, 0), arg(args, 1)))
+  defun(q_d_identfor, args => d_identfor(arg(args, 0), fld_name?=args.get(1)))
+  defun(q_identfor, args => identfor(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_ctranspose, args => d_ctranspose(arg(args, 0)))
+  defun(q_d_zeromatrixp, args => d_zeromatrixp(arg(args, 0)))
+  defun(q_array_to_row_list, args => array_to_row_list(arg(args, 0), fn_?=args.get(1)))
+  defun(q_array_to_maxima_matrix, args => array_to_maxima_matrix(arg(args, 0), fn_?=args.get(1)))
+  defun(q_array_to_maxima_list, args => array_to_maxima_list(arg(args, 0), fn_?=args.get(1)))
+  defun(q_maxima_to_array, args => maxima_to_array(arg(args, 0), fn_?=args.get(1), typ?=args.get(2)))
+}

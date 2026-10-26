@@ -176,6 +176,53 @@ fn share_load_grobner() -> Unit raise {
 }
 
 ///|
+fn share_load_orthopoly() -> Unit raise {
+  init_vars_n_dot_dot_share_orthopoly_orthopoly()
+  register_share_orthopoly()
+}
+
+///|
+fn share_load_trigrat() -> Unit raise {
+  register_share_trigrat()
+}
+
+///|
+fn share_load_mring() -> Unit raise {
+  init_vars_n_dot_dot_share_linearalgebra_mring()
+  register_share_mring()
+}
+
+///|
+fn share_load_lu() -> Unit raise {
+  register_share_lu()
+}
+
+///|
+fn share_load_linalgcholesky() -> Unit raise {
+  register_share_linalgcholesky()
+}
+
+///|
+fn share_load_eigens_by_jacobi() -> Unit raise {
+  register_share_eigens_by_jacobi()
+}
+
+///|
+fn share_load_linalg_extra() -> Unit raise {
+  register_share_linalg_extra()
+}
+
+///|
+fn share_load_matrixexp() -> Unit raise {
+  register_share_matrixexp()
+}
+
+///|
+fn share_load_linalg_utilities() -> Unit raise {
+  register_share_linalg_utilities()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
@@ -191,6 +238,15 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "sregex" => Some(share_load_sregex)
     "unwind_protect" => Some(share_load_unwind_protect)
     "grobner" => Some(share_load_grobner)
+    "orthopoly" => Some(share_load_orthopoly)
+    "trigrat" => Some(share_load_trigrat)
+    "mring" => Some(share_load_mring)
+    "lu" => Some(share_load_lu)
+    "linalgcholesky" => Some(share_load_linalgcholesky)
+    "eigens-by-jacobi" => Some(share_load_eigens_by_jacobi)
+    "linalg-extra" => Some(share_load_linalg_extra)
+    "matrixexp" => Some(share_load_matrixexp)
+    "linalg-utilities" => Some(share_load_linalg_utilities)
     _ => None
   }
 }

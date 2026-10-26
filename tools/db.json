@@ -214152,5 +214152,5342 @@ null
 }
 ],
 "lines": 2312
+},
+{
+"file": "../share/orthopoly/orthopoly",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "maxima-to-lisp-complex-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 22,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "xcomplexp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 36,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lisp-complex-to-maxima",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 43,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "orthopoly-return-handler",
+"pkg": "maxima",
+"ll": {
+"req": [
+"d",
+"f",
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 53,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "simp-unk",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"y",
+"z"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 70,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "simp-unit-step",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"y",
+"z"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 83,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$intervalp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 94,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "interval-mult",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"a"
+],
+"opt": [
+[
+"dx",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 102,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-sub-and-super-scripted-function",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"sub",
+"b1",
+"sup",
+"b2",
+"i",
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 122,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-sub-and-super-scripted-function",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"sub",
+"sup",
+"b2",
+"k",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 141,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "use-float",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "a",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 165,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$hypergeo11",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b",
+"x",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 187,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "$hypergeo21",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b",
+"c",
+"x",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 220,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "$pochhammer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 268,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "bigfloat::pochhammer",
+"pkg": "bigfloat",
+"ll": {
+"req": [
+"x",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 274,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "simp-pochhammer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"y",
+"z"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 282,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-pochhammer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 335,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-pochhammer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 347,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pochhammer-quotient",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b",
+"x",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 358,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "use-hypergeo",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 369,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$jacobi_p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"a",
+"b",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 387,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "jacobi_p-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"a",
+"b",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 394,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-jacobi-poly",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 429,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-jacobi-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 434,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$ultraspherical",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"a",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 439,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ultraspherical-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"a",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 451,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-ultraspherical",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 479,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-ultraspherical",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 484,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$chebyshev_t",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 489,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-chebyshev-t",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 509,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-chebyshev-t",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 514,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$chebyshev_u",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 521,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-chebyshev-u",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 545,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-chebyshev-u",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 550,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$legendre_p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 558,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-legendre-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 577,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-legendre-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 582,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$legendre_q",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 587,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-legendre-q",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 607,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-legendre-q",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 612,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "q0m",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 628,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "q1m",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 644,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "assoc-legendre-q-nn",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 669,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$assoc_legendre_q",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"m",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 684,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-assoc-legendre-q",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 725,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-assoc-legendre-q",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 730,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$assoc_legendre_p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"m",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 738,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-assoc-legendre-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 789,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-assoc-legendre-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 794,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$hermite",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 801,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-hermite",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 827,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-hermite",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 832,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$gen_laguerre",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"a",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 840,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "gen_laguerre-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"a",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 847,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-gen-laguerre",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 873,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-gen-laguerre",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 878,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$laguerre",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 885,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-laguerre",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 905,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-laguerre",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 910,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$spherical_hankel1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 915,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-spherical-hankel-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 943,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-spherical-hankel-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 948,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$spherical_hankel2",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 955,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-spherical-hankel-2",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 973,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-spherical-hankel-2",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 978,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "p-fun",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 986,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "q-fun",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 999,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$spherical_bessel_j",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1024,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-spherical-bessel-j",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1068,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-spherical-bessel-j",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1073,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$spherical_bessel_y",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1079,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-spherical-bessel-y",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1118,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-spherical-bessel-y",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1123,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "assoc-leg-cos",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"m",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1136,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$spherical_harmonic",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"m",
+"th",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1141,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tex-spherical-harmonic",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"l",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1160,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "dimension-spherical-harmonic",
+"pkg": "maxima",
+"ll": {
+"req": [
+"form",
+"result"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1165,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "maxima-float-to-lisp-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1193,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lisp-float-to-maxima-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1204,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "hypergeo11-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"b",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1209,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "hypergeo21-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"b",
+"c",
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1249,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "check-arg-length",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"n",
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1320,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$orthopoly_recur",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1325,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$orthopoly_weight",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1463,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defmvar",
+"name": "$orthopoly_returns_intervals",
+"init": {
+"k": "nil"
+},
+"line": 51
+},
+{
+"kind": "defmvar",
+"name": "$pochhammer_max_index",
+"init": {
+"k": "int",
+"v": "100"
+},
+"line": 256
+}
+],
+"specials": [
+"$orthopoly_returns_intervals",
+"$pochhammer_max_index"
+],
+"symbols": [
+"$%e",
+"$%i",
+"$%pi",
+"$C",
+"$H",
+"$J",
+"$L",
+"$P",
+"$Q",
+"$T",
+"$U",
+"$Y",
+"$assoc_legendre_p",
+"$assoc_legendre_q",
+"$bessel_j",
+"$bessel_y",
+"$bfloatp",
+"$chebyshev_t",
+"$chebyshev_u",
+"$evenp",
+"$exp",
+"$expand",
+"$expop",
+"$featurep",
+"$float",
+"$freeof",
+"$gen_laguerre",
+"$hermite",
+"$hypergeo11",
+"$hypergeo21",
+"$imagpart",
+"$inf",
+"$integer",
+"$interval",
+"$intervalp",
+"$jacobi_p",
+"$laguerre",
+"$legendre_p",
+"$legendre_q",
+"$listp",
+"$neg",
+"$numberp",
+"$nz",
+"$oddp",
+"$orthopoly",
+"$orthopoly_recur",
+"$orthopoly_returns_intervals",
+"$orthopoly_weight",
+"$pochhammer",
+"$pochhammer_max_index",
+"$pos",
+"$psi",
+"$put",
+"$rat",
+"$ratdisrep",
+"$ratp",
+"$ratprint",
+"$ratsimp",
+"$realpart",
+"$rectform",
+"$spherical_bessel_j",
+"$spherical_bessel_y",
+"$spherical_hankel1",
+"$spherical_hankel2",
+"$spherical_harmonic",
+"$substitute",
+"$subvarp",
+"$symbolp",
+"$taylor",
+"$taylorp",
+"$ultraspherical",
+"$unit_step",
+"$version",
+"$zero",
+"%cos",
+"%gamma",
+"%genfact",
+"%kron_delta",
+"%log",
+"%sin",
+"%sum",
+"a",
+"and",
+"arg",
+"array",
+"assign",
+"assoc_legendre_p",
+"assoc_legendre_q",
+"atom",
+"b",
+"car",
+"chebyshev_t",
+"chebyshev_u",
+"declare",
+"dimension",
+"dimension-assoc-legendre-p",
+"dimension-assoc-legendre-q",
+"dimension-chebyshev-t",
+"dimension-chebyshev-u",
+"dimension-gen-laguerre",
+"dimension-hermite",
+"dimension-jacobi-p",
+"dimension-laguerre",
+"dimension-legendre-p",
+"dimension-legendre-q",
+"dimension-pochhammer",
+"dimension-spherical-bessel-j",
+"dimension-spherical-bessel-y",
+"dimension-spherical-hankel-1",
+"dimension-spherical-hankel-2",
+"dimension-spherical-harmonic",
+"dimension-ultraspherical",
+"eq",
+"first",
+"gen_laguerre",
+"grad",
+"hermite",
+"if",
+"ignore",
+"integerp",
+"jacobi_p",
+"laguerre",
+"lambda",
+"last",
+"legendre_p",
+"m",
+"mabs",
+"mequal",
+"mexpt",
+"mfactorial",
+"mlist",
+"mplus",
+"mprogn",
+"mqapply",
+"mtell",
+"mtimes",
+"munbindp",
+"n",
+"nil",
+"not",
+"phi",
+"progn",
+"rat",
+"s",
+"second",
+"simp",
+"spherical_bessel_j",
+"spherical_bessel_y",
+"spherical_hankel1",
+"spherical_hankel2",
+"spherical_harmonic",
+"tex",
+"theta",
+"third",
+"ultrapsherical",
+"ultraspherical",
+"unk",
+"x"
+],
+"calls": {
+"in-package": 3,
+"$put": 1,
+"defun": 84,
+"a": 10,
+"let*": 4,
+"b": 3,
+"$rectform": 7,
+"br": 1,
+"$float": 9,
+"$realpart": 5,
+"bi": 1,
+"$imagpart": 5,
+"cond": 39,
+"if": 57,
+"=": 7,
+"float": 5,
+"complex": 4,
+"t": 36,
+"or": 9,
+"floatp": 11,
+"and": 11,
+"complexp": 3,
+"realpart": 3,
+"imagpart": 3,
+"x": 36,
+"add": 47,
+"mul": 81,
+"defmvar": 2,
+"d": 8,
+"let": 58,
+"ef": 1,
+"setq": 147,
+"lisp-complex-to-maxima": 1,
+"numberp": 3,
+"*": 44,
+"abs": 9,
+"defprop": 19,
+"declare": 3,
+"ignore": 3,
+"merror": 10,
+"nth": 33,
+"oneargcheck": 1,
+"simpcheck": 1,
+"cadr": 1,
+"consp": 2,
+"car": 5,
+"eq": 2,
+"caar": 1,
+"null": 1,
+"q": 2,
+"$expand": 4,
+"mult": 6,
+"simplify": 28,
+"fn": 5,
+"cdr": 3,
+"hi": 2,
+"s1": 1,
+"s2": 1,
+"dolist": 5,
+"i": 11,
+"cons": 4,
+"tex-list": 3,
+"nreverse": 4,
+"append": 2,
+"nthcdr": 2,
+"form": 18,
+"b2": 1,
+"&rest": 1,
+"xi": 4,
+"float-found": 1,
+"okay": 1,
+"$bfloatp": 4,
+"not": 7,
+"return": 1,
+"e": 11,
+"multiple-value-setq": 12,
+"f": 14,
+"hypergeo11-float": 1,
+"-": 63,
+"maxima-to-lisp-complex-float": 7,
+"values": 4,
+"cf": 2,
+"dotimes": 7,
+"div": 38,
+"+": 44,
+"list": 2,
+"inv": 4,
+"take": 18,
+"power": 20,
+"hypergeo21-float": 1,
+"setf": 26,
+"get": 18,
+"<": 10,
+"/": 12,
+"pochhammer": 2,
+"k": 4,
+"n": 27,
+"return-a-rat": 1,
+"twoargcheck": 1,
+"$ratp": 2,
+"second": 3,
+"simplifya": 4,
+"specrepcheck": 2,
+"third": 2,
+"$taylor": 1,
+"to": 3,
+"neg": 8,
+"$rat": 3,
+"$ratdisrep": 1,
+"putprop": 17,
+"mapcar": 1,
+"dimension-array": 1,
+"pochhammer-quotient": 4,
+"lisp-float-to-maxima-float": 3,
+"$pochhammer": 2,
+"integerp": 9,
+">": 2,
+"$featurep": 1,
+"<=": 6,
+"$ratsimp": 7,
+"$substitute": 3,
+"jacobi_p-1": 2,
+"$hypergeo21": 4,
+"orthopoly-return-handler": 9,
+"tex-sub-and-super-scripted-function": 16,
+"dimension-function": 16,
+"dimension-sub-and-super-scripted-function": 12,
+"ultraspherical-1": 2,
+"rat": 6,
+"$legendre_p": 1,
+"$jacobi_p": 1,
+"$assoc_legendre_q": 2,
+"m": 5,
+"sub": 22,
+"factorial": 14,
+"oddp": 16,
+"q0m": 2,
+"z": 4,
+"while": 6,
+"incf": 6,
+"expt": 1,
+"q1": 1,
+"q1m": 1,
+"use-rat": 1,
+"assoc-legendre-q-nn": 1,
+"dx": 1,
+"$assoc_legendre_p": 2,
+"$ultraspherical": 2,
+"interval-mult": 5,
+"$hypergeo11": 5,
+"gen_laguerre-1": 2,
+"$spherical_hankel1": 2,
+"w": 2,
+"n1": 2,
+"floor": 2,
+"x2": 2,
+"m2": 2,
+"xr": 3,
+"sqrt": 2,
+"$bessel_j": 1,
+"p-fun": 2,
+"q-fun": 2,
+"$spherical_bessel_y": 1,
+"$bessel_y": 1,
+"$spherical_bessel_j": 1,
+"$spherical_harmonic": 1,
+"$exp": 1,
+"assoc-leg-cos": 1,
+"y": 1,
+"fm1": 2,
+"dk": 2,
+"ak": 2,
+"bk": 2,
+"err": 2,
+"as": 2,
+"make-array": 6,
+"bs": 2,
+"fs": 2,
+"u": 2,
+"u0": 2,
+"um1": 2,
+"aref": 14,
+"$listp": 2,
+"check-arg-length": 18,
+"length": 18,
+"$symbolp": 1,
+"last": 4,
+"$subvarp": 1,
+"every": 1,
+"butlast": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 16,
+"text": "($put '$orthopoly 1.0 '$version)"
+},
+{
+"head": "defprop",
+"line": 69,
+"text": "(defprop unk simp-unk operators)"
+},
+{
+"head": "defprop",
+"line": 81,
+"text": "(defprop $unit_step \"\\\\Theta\" texword)"
+},
+{
+"head": "setf",
+"line": 260,
+"text": "(setf (get '$pochhammer_max_index 'assign) #'(lambda (a b) (declare (ignore a)) (if (not (and (atom b) (integerp b))) (progn (mtell \"The value of `pochhammer_max_index' must be an integer.~%\") 'munbin"
+},
+{
+"head": "putprop",
+"line": 324,
+"text": "(putprop '$pochhammer '((x n) ((mtimes) (($pochhammer) x n) ((mplus) ((mtimes) -1 ((mqapply) (($psi array) 0) x)) ((mqapply) (($psi array) 0) ((mplus) n x)))) ((mtimes) (($pochhammer) x n) ((mqapply) "
+},
+{
+"head": "defprop",
+"line": 333,
+"text": "(defprop $pochhammer tex-pochhammer tex)"
+},
+{
+"head": "setf",
+"line": 345,
+"text": "(setf (get '$pochhammer 'dimension) 'dimension-pochhammer)"
+},
+{
+"head": "putprop",
+"line": 406,
+"text": "(putprop '$jacobi_p '((n a b x) ((unk) first jacobi_p) ((unk) second jacobi_p) ((unk) third jacobi_p) ((mtimes) ((mexpt) ((mplus) a b ((mtimes) 2 n)) -1) ((mplus) ((mtimes) 2 (($unit_step) n) ((mplus)"
+},
+{
+"head": "defprop",
+"line": 427,
+"text": "(defprop $jacobi_p tex-jacobi-poly tex)"
+},
+{
+"head": "setf",
+"line": 432,
+"text": "(setf (get '$jacobi_p 'dimension) 'dimension-jacobi-p)"
+},
+{
+"head": "putprop",
+"line": 463,
+"text": "(putprop '$ultraspherical '((n a x) ((unk) first ultraspherical) ((unk) second ultrapsherical) ((mtimes) ((mplus) ((mtimes) (($unit_step) n) ((mplus) -1 ((mtimes) 2 a) n) (($ultraspherical) ((mplus) -"
+},
+{
+"head": "defprop",
+"line": 477,
+"text": "(defprop $ultraspherical tex-ultraspherical tex)"
+},
+{
+"head": "setf",
+"line": 482,
+"text": "(setf (get '$ultraspherical 'dimension) 'dimension-ultraspherical)"
+},
+{
+"head": "putprop",
+"line": 497,
+"text": "(putprop '$chebyshev_t '((n x) ((unk) first chebyshev_t) ((mtimes) ((mplus) ((mtimes) n (($chebyshev_t) ((mplus) -1 n) x)) ((mtimes) -1 n (($chebyshev_t) n x) x)) ((mexpt) ((mplus) 1 ((mtimes) -1 ((me"
+},
+{
+"head": "defprop",
+"line": 507,
+"text": "(defprop $chebyshev_t tex-chebyshev-t tex)"
+},
+{
+"head": "setf",
+"line": 512,
+"text": "(setf (get '$chebyshev_t 'dimension) 'dimension-chebyshev-t)"
+},
+{
+"head": "putprop",
+"line": 531,
+"text": "(putprop '$chebyshev_u '((n x) ((unk) first chebyshev_u) ((mtimes) ((mplus) ((mtimes) (($unit_step) n) ((mplus) 1 n) (($chebyshev_u) ((mplus) -1 n) x)) ((mtimes) -1 n (($chebyshev_u) n x) x)) ((mexpt)"
+},
+{
+"head": "defprop",
+"line": 543,
+"text": "(defprop $chebyshev_u tex-chebyshev-u tex)"
+},
+{
+"head": "setf",
+"line": 548,
+"text": "(setf (get '$chebyshev_u 'dimension) 'dimension-chebyshev-u)"
+},
+{
+"head": "putprop",
+"line": 565,
+"text": "(putprop '$legendre_p '((n x) ((unk) first legendre_p) ((mtimes) ((mplus) ((mtimes) n (($legendre_p) ((mplus) -1 n) x)) ((mtimes) -1 n (($legendre_p) n x) x)) ((mexpt) ((mplus) 1 ((mtimes) -1 ((mexpt)"
+},
+{
+"head": "defprop",
+"line": 575,
+"text": "(defprop $legendre_p tex-legendre-p tex)"
+},
+{
+"head": "setf",
+"line": 580,
+"text": "(setf (get '$legendre_p 'dimension) 'dimension-legendre-p)"
+},
+{
+"head": "putprop",
+"line": 592,
+"text": "(putprop '$legendre_q '((n x) ((unk) first legendre_p) ((mplus) ((mtimes) -1 ((%kron_delta) 0 n) ((mexpt) ((mplus) -1 ((mexpt) x 2)) -1)) ((mtimes) ((mplus) ((mtimes) n (($legendre_q) ((mplus) -1 n) x"
+},
+{
+"head": "defprop",
+"line": 605,
+"text": "(defprop $legendre_q tex-legendre-q tex)"
+},
+{
+"head": "setf",
+"line": 610,
+"text": "(setf (get '$legendre_q 'dimension) 'dimension-legendre-q)"
+},
+{
+"head": "putprop",
+"line": 708,
+"text": "(putprop '$assoc_legendre_q '((n m x) ((unk) first assoc_legendre_q) ((unk) second assoc_legendre_q) ((mplus) ((mtimes) ((mplus) ((mtimes) -1 ((mplus) 1 ((mtimes) -1 m) n) (($assoc_legendre_q) ((mplus"
+},
+{
+"head": "defprop",
+"line": 723,
+"text": "(defprop $assoc_legendre_q tex-assoc-legendre-q tex)"
+},
+{
+"head": "setf",
+"line": 728,
+"text": "(setf (get '$assoc_legendre_q 'dimension) 'dimension-assoc-legendre-q)"
+},
+{
+"head": "putprop",
+"line": 775,
+"text": "(putprop `$assoc_legendre_p '((n m x) ((unk) first assoc_legendre_p) ((unk) second assoc_legendre_p) ((mtimes simp) ((mplus simp) ((mtimes simp) -1 ((mplus simp) m n) (($unit_step) n) (($assoc_legendr"
+},
+{
+"head": "defprop",
+"line": 787,
+"text": "(defprop $assoc_legendre_p tex-assoc-legendre-p tex)"
+},
+{
+"head": "setf",
+"line": 792,
+"text": "(setf (get '$assoc_legendre_p 'dimension) 'dimension-assoc-legendre-p)"
+},
+{
+"head": "putprop",
+"line": 819,
+"text": "(putprop '$hermite '((n x) ((unk) first hermite) ((mtimes) 2 n (($hermite) ((mplus) -1 n) x))) 'grad)"
+},
+{
+"head": "defprop",
+"line": 825,
+"text": "(defprop $hermite tex-hermite tex)"
+},
+{
+"head": "setf",
+"line": 830,
+"text": "(setf (get '$hermite 'dimension) 'dimension-hermite)"
+},
+{
+"head": "putprop",
+"line": 859,
+"text": "(putprop '$gen_laguerre '((n a x) ((unk) first gen_laguerre) ((unk) second gen_laguerre) ((mtimes) ((mplus) ((mtimes) -1 ((mplus) a n) (($unit_step) n) (($gen_laguerre) ((mplus) -1 n) a x)) ((mtimes) "
+},
+{
+"head": "defprop",
+"line": 871,
+"text": "(defprop $gen_laguerre tex-gen-laguerre tex)"
+},
+{
+"head": "setf",
+"line": 876,
+"text": "(setf (get '$gen_laguerre 'dimension) 'dimension-gen-laguerre)"
+},
+{
+"head": "putprop",
+"line": 893,
+"text": "(putprop '$laguerre '((n x) ((unk) first laguerre) ((mtimes) ((mplus) ((mtimes) -1 n (($laguerre) ((mplus) -1 n) x)) ((mtimes) n (($laguerre) n x))) ((mexpt) x -1))) 'grad)"
+},
+{
+"head": "defprop",
+"line": 903,
+"text": "(defprop $laguerre tex-laguerre tex)"
+},
+{
+"head": "setf",
+"line": 908,
+"text": "(setf (get '$laguerre 'dimension) 'dimension-laguerre)"
+},
+{
+"head": "putprop",
+"line": 933,
+"text": "(putprop '$spherical_hankel1 '((n x) ((unk) first spherical_hankel1) ((mplus simp) (($spherical_hankel1) ((mplus) -1 n) x) ((mtimes simp) -1 ((mplus) 1 n) (($spherical_hankel1) n x) ((mexpt) x -1)))) "
+},
+{
+"head": "defprop",
+"line": 941,
+"text": "(defprop $spherical_hankel1 tex-spherical-hankel-1 tex)"
+},
+{
+"head": "setf",
+"line": 946,
+"text": "(setf (get '$spherical_hankel1 'dimension) 'dimension-spherical-hankel-1)"
+},
+{
+"head": "putprop",
+"line": 963,
+"text": "(putprop '$spherical_hankel2 '((n x) ((unk) first spherical_hankel2) ((mplus simp) (($spherical_hankel2) ((mplus) -1 n) x) ((mtimes simp) -1 ((mplus) 1 n) (($spherical_hankel2) n x) ((mexpt) x -1)))) "
+},
+{
+"head": "defprop",
+"line": 971,
+"text": "(defprop $spherical_hankel2 tex-spherical-hankel-2 tex)"
+},
+{
+"head": "setf",
+"line": 976,
+"text": "(setf (get '$spherical_hankel2 'dimension) 'dimension-spherical-hankel-2)"
+},
+{
+"head": "putprop",
+"line": 1056,
+"text": "(putprop '$spherical_bessel_j '((n x) ((unk) first spherical_bessel_j) ((mtimes) ((mexpt) ((mplus) 1 ((mtimes) 2 n)) -1) ((mplus) ((mtimes) n (($spherical_bessel_j) ((mplus) -1 n) x)) ((mtimes) -1 ((m"
+},
+{
+"head": "defprop",
+"line": 1066,
+"text": "(defprop $spherical_bessel_j tex-spherical-bessel-j tex)"
+},
+{
+"head": "setf",
+"line": 1071,
+"text": "(setf (get '$spherical_bessel_j 'dimension) 'dimension-spherical-bessel-j)"
+},
+{
+"head": "putprop",
+"line": 1106,
+"text": "(putprop '$spherical_bessel_y '((n x) ((unk) first spherical_bessel_y) ((mtimes) ((mexpt) ((mplus) 1 ((mtimes) 2 n)) -1) ((mplus) ((mtimes) n (($spherical_bessel_y) ((mplus) -1 n) x)) ((mtimes) -1 ((m"
+},
+{
+"head": "defprop",
+"line": 1116,
+"text": "(defprop $spherical_bessel_y tex-spherical-bessel-y tex)"
+},
+{
+"head": "setf",
+"line": 1121,
+"text": "(setf (get '$spherical_bessel_y 'dimension) 'dimension-spherical-bessel-y)"
+},
+{
+"head": "defprop",
+"line": 1158,
+"text": "(defprop $spherical_harmonic tex-spherical-harmonic tex)"
+},
+{
+"head": "setf",
+"line": 1163,
+"text": "(setf (get '$spherical_harmonic 'dimension) 'dimension-spherical-harmonic)"
+},
+{
+"head": "putprop",
+"line": 1170,
+"text": "(putprop '$spherical_harmonic '((n m theta phi) ((unk) first spherical_harmonic) ((unk) second spherical_harmonic) ((mplus) ((mtimes) ((rat) -1 2) ((mexpt) ((mtimes) ((mplus) ((mtimes) -1 m) n) ((mplu"
+}
+],
+"lines": 1551
+},
+{
+"file": "../share/trigonometry/trigrat",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$listofei",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 3,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [
+"$d2%",
+"$lexp",
+"$lg"
+],
+"symbols": [
+"$%e",
+"$%i",
+"$d2%",
+"$lexp",
+"$lg",
+"$listofei",
+"mlist",
+"mtimes"
+],
+"calls": {
+"in-package": 1,
+"defun": 1,
+"e": 1,
+"declare": 1,
+"special": 1,
+"setq": 10,
+"copy-tree": 1,
+"car": 3,
+"do": 1,
+"lg": 1,
+"cadddr": 1,
+"cdr": 2,
+"var": 1,
+"cons": 5,
+"cond": 1,
+"symbolconc": 1,
+"rplaca": 1
+},
+"toplevel": [],
+"lines": 53
+},
+{
+"file": "../share/linearalgebra/mring",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$require_ring",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ringname",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 86,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "coerce-expr-to-clcomplex",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ex"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 117,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "rational-square-root",
+"pkg": "maxima",
+"ll": {
+"req": [
+"z"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 152,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fp-abs",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 352,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fp+",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 355,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fp-",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 365,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fp*",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 375,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "fp/",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 379,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$addmatrices",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn"
+],
+"opt": [],
+"rest": "m",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 383,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ring-eval",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"fld"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 455,
+"nvalues": 0
+},
+{
+"kind": "defmspec",
+"name": "$ringeval",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 491,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defmvar",
+"name": "$%mrings",
+"init": {
+"k": "expr",
+"v": "`((mlist) $floatfield $complexfield $rationalfield $crering $generalring $bigfloatfield $runningerror $noncommutingring)"
+},
+"line": 80
+},
+{
+"kind": "defvar",
+"name": "*gf-rings*",
+"init": {
+"k": "quote",
+"v": "(gf-coeff-ring gf-ring ef-ring)"
+},
+"line": 80
+},
+{
+"kind": "defparameter",
+"name": "*floatfield*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$floatfield :coerce-to-lisp-float #'identity :abs #'abs :great #'> :add #'+ :div #'/ :rdiv #'/ :reciprocal #'/ :mult #'* :sub #'- :negate #'- :psqrt #'(lambda (s) (if (>= s 0) (sqrt s) nil)) :add-id #'(lambda () 0.0) :mult-id #'(lambda () 1.0) :fzerop #'(lambda (s) (< (abs s) (* 4 +flonum-epsilon+))) :adjoint #'identity :mring-to-maxima #'identity :maxima-to-mring #'(lambda (s) (setq s ($float s)) (if (floatp s) s (merror (gettext \"Unable to convert ~:M to a float\") s))))"
+},
+"line": 92
+},
+{
+"kind": "defparameter",
+"name": "*complexfield*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$complexfield :coerce-to-lisp-float #'identity :abs #'abs :great #'> :add #'+ :div #'/ :rdiv #'/ :reciprocal #'/ :mult #'* :sub #'- :negate #'- :psqrt #'(lambda (s) (if (and (= 0 (imagpart s)) (>= (realpart s) 0)) (sqrt s) nil)) :add-id #'(lambda () 0.0) :mult-id #'(lambda () 1.0) :fzerop #'(lambda (s) (< (abs s) (* 4 +flonum-epsilon+))) :adjoint #'conjugate :mring-to-maxima #'(lambda (s) (add (realpart s) (mul '$%i (imagpart s)))) :maxima-to-mring #'coerce-expr-to-clcomplex)"
+},
+"line": 129
+},
+{
+"kind": "defparameter",
+"name": "*rationalfield*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$rationalfield :coerce-to-lisp-float nil :abs #'abs :great #'(lambda (a b) (declare (ignore a)) (eql b 0)) :add #'+ :div #'/ :rdiv #'/ :reciprocal #'/ :mult #'* :sub #'- :negate #'- :psqrt #'rational-square-root :add-id #'(lambda () 0) :mult-id #'(lambda () 1) :fzerop #'(lambda (s) (eql s 0)) :adjoint #'identity :mring-to-maxima #'(lambda (s) (let ((re (realpart s)) (im (imagpart s))) (add (div (numerator re) (denominator re)) (mul '$%i (div (numerator im) (denominator im)))))) :maxima-to-mring #'(lambda (s) (setq s ($rationalize s)) (let* ((z (trisplit s)) (re (car z)) (im (cdr z))) (if (and ($ratnump re) ($ratnump im)) (complex (/ ($num re) ($denom re)) (/ ($num im) ($denom im))) (merror (gettext \"Unable to convert ~:M to a rational number\") s)))))"
+},
+"line": 165
+},
+{
+"kind": "defparameter",
+"name": "*crering*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$crering :coerce-to-lisp-float nil :abs #'$cabs :great #'(lambda (a b) (declare (ignore a)) (eq t (meqp b 0))) :add #'add :div #'div :rdiv #'div :reciprocal #'(lambda (s) (div 1 s)) :mult #'mult :sub #'sub :negate #'(lambda (s) (mul -1 s)) :psqrt #'(lambda (s) (ftake 'mexpt s (div 1 2))) :add-id #'(lambda () 0) :mult-id #'(lambda () 1) :fzerop #'(lambda (s) (eq t (meqp s 0))) :adjoint #'(lambda (s) (ftake '$conjugate s)) :mring-to-maxima #'identity :maxima-to-mring #'(lambda (s) ($rat s)))"
+},
+"line": 200
+},
+{
+"kind": "defparameter",
+"name": "*generalring*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$generalring :coerce-to-lisp-float nil :abs #'$cabs :great #'(lambda (a b) (declare (ignore a)) (eq t (meqp b 0))) :add #'(lambda (a b) (add a b)) :div #'(lambda (a b) (div a b)) :rdiv #'(lambda (a b) (div a b)) :reciprocal #'(lambda (s) (div 1 s)) :mult #'(lambda (a b) (mul a b)) :sub #'(lambda (a b) (sub a b)) :negate #'(lambda (a) (mul -1 a)) :psqrt #'(lambda (s) (ftake 'mexpt s (div 1 2))) :add-id #'(lambda () 0) :mult-id #'(lambda () 1) :fzerop #'(lambda (s) (eq t (meqp s 0))) :adjoint #'(lambda (s) (ftake '$conjugate s)) :mring-to-maxima #'identity :maxima-to-mring #'identity)"
+},
+"line": 223
+},
+{
+"kind": "defparameter",
+"name": "*bigfloatfield*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$bigfloatfield :coerce-to-lisp-float #'(lambda (s) (setq s ($rectform ($float s))) (complex ($realpart s) ($imagpart s))) :abs #'$cabs :great #'mgrp :add #'(lambda (a b) ($rectform (add a b))) :div #'(lambda (a b) ($rectform (div a b))) :rdiv #'(lambda (a b) ($rectform (div a b))) :reciprocal #'(lambda (s) (div 1 s)) :mult #'(lambda (a b) ($rectform (mul a b))) :sub #'(lambda (a b) ($rectform (sub a b))) :negate #'(lambda (a) (mul -1 a)) :psqrt #'(lambda (s) (if (mlsp s 0) nil (ftake '%sqrt s))) :add-id #'(lambda () *bigfloatzero*) :mult-id #'(lambda () *bigfloatone*) :fzerop #'(lambda (s) (like s *bigfloatzero*)) :adjoint #'identity :mring-to-maxima #'identity :maxima-to-mring #'(lambda (s) (setq s ($rectform ($bfloat s))) (if (complex-number-p s #'bigfloat-or-number-p) s (merror (gettext \"Unable to convert matrix entry to a big float\")))))"
+},
+"line": 246
+},
+{
+"kind": "defparameter",
+"name": "*gf-coeff-ring*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name 'gf-coeff-ring :coerce-to-lisp-float nil :abs #'gf-cmod :great #'(lambda (a b) (declare (ignore a)) (= 0 b)) :add #'gf-cplus-b :div #'(lambda (a b) (gf-ctimes a (gf-cinv b))) :rdiv #'(lambda (a b) (gf-ctimes a (gf-cinv b))) :reciprocal #'gf-cinv :mult #'gf-ctimes :sub #'(lambda (a b) (gf-cplus-b a (gf-cminus-b b))) :negate #'gf-cminus-b :psqrt #'(lambda (a) (let ((rs (zn-nrt a 2 *gf-char*))) (when rs (car rs)))) :add-id #'(lambda () 0) :mult-id #'(lambda () 1) :fzerop #'(lambda (s) (= 0 s)) :adjoint nil :mring-to-maxima #'identity :maxima-to-mring #'identity)"
+},
+"line": 277
+},
+{
+"kind": "defparameter",
+"name": "*gf-ring*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name 'gf-ring :coerce-to-lisp-float nil :abs #'gf-mod :great #'(lambda (a b) (declare (ignore a)) (null b)) :add #'gf-plus :div #'(lambda (a b) (gf-times a (gf-inv b *gf-red*) *gf-red*)) :rdiv #'(lambda (a b) (gf-times a (gf-inv b *gf-red*) *gf-red*)) :reciprocal #'(lambda (a) (gf-inv a *gf-red*)) :mult #'(lambda (a b) (gf-times a b *gf-red*)) :sub #'(lambda (a b) (gf-plus a (gf-minus b))) :negate #'gf-minus :psqrt #'(lambda (a) (let ((rs (gf-nrt-exit (gf-nrt a 2 *gf-red* *gf-ord*)))) (when rs (cadr rs)))) :add-id #'(lambda () nil) :mult-id #'(lambda () '(0 1)) :fzerop #'(lambda (s) (null s)) :adjoint nil :mring-to-maxima #'gf-x2p :maxima-to-mring #'gf-p2x)"
+},
+"line": 300
+},
+{
+"kind": "defparameter",
+"name": "*ef-ring*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name 'ef-ring :coerce-to-lisp-float nil :abs #'gf-mod :great #'(lambda (a b) (declare (ignore a)) (null b)) :add #'gf-plus :div #'(lambda (a b) (gf-times a (gf-inv b *ef-red*) *ef-red*)) :rdiv #'(lambda (a b) (gf-times a (gf-inv b *ef-red*) *ef-red*)) :reciprocal #'(lambda (a) (gf-inv a *ef-red*)) :mult #'(lambda (a b) (gf-times a b *ef-red*)) :sub #'(lambda (a b) (gf-plus a (gf-minus b))) :negate #'gf-minus :psqrt #'(lambda (a) (let ((rs (gf-nrt-exit (gf-nrt a 2 *ef-red* *ef-ord*)))) (when rs (cadr rs)))) :add-id #'(lambda () nil) :mult-id #'(lambda () '(0 1)) :fzerop #'(lambda (s) (null s)) :adjoint nil :mring-to-maxima #'gf-x2p :maxima-to-mring #'gf-p2x)"
+},
+"line": 325
+},
+{
+"kind": "defparameter",
+"name": "*runningerror*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$runningerror :coerce-to-lisp-float #'(lambda (s) (if (consp s) (first s) s)) :abs #'fp-abs :great #'(lambda (a b) (> (first a) (first b))) :add #'fp+ :div #'fp/ :rdiv #'fp/ :reciprocal #'(lambda (s) (fp/ (list 1 0) s)) :mult #'fp* :sub #'fp- :negate #'(lambda (s) (list (- (first s)) (second s))) :psqrt #'(lambda (s) (if (> (first s) 0) (list (sqrt (first s)) (+ 1 (second s))) nil)) :add-id #'(lambda () (list 0 0)) :mult-id #'(lambda () (list 1 0)) :fzerop #'(lambda (s) (like (first s) 0)) :adjoint #'identity :mring-to-maxima #'(lambda (s) `((mlist) ,@s)) :maxima-to-mring #'(lambda (s) (if ($listp s) (cdr s) (list ($float s) 1))))"
+},
+"line": 386
+},
+{
+"kind": "defparameter",
+"name": "*noncommutingring*",
+"init": {
+"k": "expr",
+"v": "(make-mring :name '$noncommutingring :coerce-to-lisp-float nil :abs #'$cabs :great #'(lambda (a b) (declare (ignore a)) (not (invertible-matrixp b '$noncommutingring))) :add #'(lambda (a b) (add a b)) :div #'(lambda (a b) (progn (let (($matrix_element_mult \".\") ($matrix_element_transpose '$transpose)) (setq b (if ($matrixp b) ($invert_by_lu b '$noncommutingring) (take '(mncexpt) b -1))) (take '(mnctimes) a b)))) :rdiv #'(lambda (a b) (progn (let (($matrix_element_mult \".\") ($matrix_element_transpose '$transpose)) (setq b (if ($matrixp b) ($invert_by_lu b '$noncommutingring) (take '(mncexpt) b -1))) (take '(mnctimes) b a)))) :reciprocal #'(lambda (s) (progn (let (($matrix_element_mult \".\") ($matrix_element_transpose '$transpose)) (if ($matrixp s) ($invert_by_lu s '$noncommutingring) (take '(mncexpt) s -1))))) :mult #'(lambda (a b) (progn (let (($matrix_element_mult \".\") ($matrix_element_transpose '$transpose)) (take '(mnctimes) a b)))) :sub #'(lambda (a b) (sub a b)) :negate #'(lambda (a) (mul -1 a)) :add-id #'(lambda () 0) :psqrt #'(lambda (s) (take '(%sqrt) s)) :mult-id #'(lambda () 1) :fzerop #'(lambda (s) (not (invertible-matrixp s '$noncommutingring))) :adjoint #'(lambda (s) ($transpose (take '($conjugate) s))) :mring-to-maxima #'identity :maxima-to-mring #'identity)"
+},
+"line": 409
+}
+],
+"specials": [
+"$%mrings",
+"$float",
+"$numer",
+"*bigfloatfield*",
+"*complexfield*",
+"*crering*",
+"*ef-ring*",
+"*floatfield*",
+"*generalring*",
+"*gf-coeff-ring*",
+"*gf-ring*",
+"*gf-rings*",
+"*noncommutingring*",
+"*rationalfield*",
+"*runningerror*"
+],
+"symbols": [
+"$%i",
+"$%mrings",
+"$addmatrices",
+"$apply",
+"$bfloat",
+"$bigfloatfield",
+"$cabs",
+"$complexfield",
+"$conjugate",
+"$crering",
+"$denom",
+"$float",
+"$floatfield",
+"$generalring",
+"$imagpart",
+"$invert_by_lu",
+"$listp",
+"$matrix_element_mult",
+"$matrix_element_transpose",
+"$matrixmap",
+"$matrixp",
+"$member",
+"$mring",
+"$noncommutingring",
+"$num",
+"$numberp",
+"$numer",
+"$put",
+"$rat",
+"$rationalfield",
+"$rationalize",
+"$ratnump",
+"$realpart",
+"$rectform",
+"$require_ring",
+"$ringeval",
+"$runningerror",
+"$transpose",
+"$version",
+"%sqrt",
+"*",
+"*bigfloatone*",
+"*bigfloatzero*",
+"*ef-ord*",
+"*ef-red*",
+"*gf-char*",
+"*gf-ord*",
+"*gf-red*",
+"+",
+"+flonum-epsilon+",
+"-",
+"/",
+"<",
+"=",
+">",
+">=",
+"a",
+"abs",
+"add",
+"and",
+"b",
+"bigfloat-or-number-p",
+"cadr",
+"car",
+"cdr",
+"coerce-expr-to-clcomplex",
+"complex",
+"complex-number-p",
+"conjugate",
+"consp",
+"declare",
+"denominator",
+"div",
+"ef-ring",
+"eq",
+"eql",
+"first",
+"fld",
+"floatp",
+"fp*",
+"fp+",
+"fp-",
+"fp-abs",
+"fp/",
+"ftake",
+"gettext",
+"gf-cinv",
+"gf-cminus-b",
+"gf-cmod",
+"gf-coeff-ring",
+"gf-cplus-b",
+"gf-ctimes",
+"gf-inv",
+"gf-minus",
+"gf-mod",
+"gf-nrt",
+"gf-nrt-exit",
+"gf-p2x",
+"gf-plus",
+"gf-ring",
+"gf-times",
+"gf-x2p",
+"identity",
+"if",
+"ignore",
+"im",
+"imagpart",
+"invertible-matrixp",
+"lambda",
+"let",
+"let*",
+"like",
+"list",
+"mabs",
+"meqp",
+"merror",
+"mexpt",
+"mgrp",
+"mlist",
+"mlsp",
+"mminus",
+"mncexpt",
+"mnctimes",
+"mplus",
+"mquotient",
+"mtimes",
+"mul",
+"mult",
+"nil",
+"not",
+"null",
+"numerator",
+"progn",
+"rational-square-root",
+"re",
+"realpart",
+"ring",
+"ring-eval",
+"rs",
+"s",
+"second",
+"setq",
+"sqrt",
+"sub",
+"t",
+"take",
+"trisplit",
+"when",
+"z",
+"zn-nrt"
+],
+"calls": {
+"in-package": 1,
+"eval-when": 2,
+":compile-toplevel": 2,
+"$put": 2,
+"defstruct": 1,
+"defmvar": 2,
+"defvar": 2,
+"defun": 10,
+"ringname": 1,
+"if": 6,
+"or": 2,
+"$member": 1,
+"member": 1,
+"get": 12,
+"merror": 5,
+"gettext": 5,
+"defparameter": 11,
+"make-mring": 11,
+"identity": 15,
+"abs": 8,
+">": 2,
+"+": 7,
+"/": 16,
+"*": 8,
+"-": 7,
+"setf": 11,
+"ex": 1,
+"let*": 1,
+"$float": 3,
+"split": 1,
+"risplit": 2,
+"re": 1,
+"car": 2,
+"im": 2,
+"cdr": 2,
+"declare": 1,
+"special": 1,
+"and": 1,
+"floatp": 2,
+"complex": 2,
+"conjugate": 1,
+"coerce-expr-to-clcomplex": 1,
+"z": 1,
+"let": 5,
+"imagpart": 1,
+"q": 1,
+"setq": 4,
+"div": 4,
+"$num": 4,
+"$denom": 4,
+"ftake": 1,
+"add": 2,
+"mul": 1,
+"cond": 4,
+"t": 4,
+"rational-square-root": 1,
+"$cabs": 4,
+"mult": 1,
+"sub": 1,
+"mgrp": 1,
+"gf-cmod": 1,
+"gf-cplus-b": 1,
+"gf-cinv": 1,
+"gf-ctimes": 1,
+"gf-cminus-b": 1,
+"gf-mod": 2,
+"gf-plus": 2,
+"gf-minus": 2,
+"gf-x2p": 2,
+"gf-p2x": 2,
+"a": 5,
+"list": 8,
+"first": 16,
+"second": 11,
+"=": 5,
+"ceiling": 2,
+"fn": 1,
+"mfuncall": 1,
+"fp-abs": 1,
+"fp+": 1,
+"fp/": 2,
+"fp*": 1,
+"fp-": 1,
+"e": 2,
+"fnegate": 1,
+"mring-negate": 1,
+"fmult": 1,
+"mring-mult": 1,
+"fdiv": 1,
+"mring-div": 1,
+"fabs": 1,
+"mring-abs": 1,
+"fconvert": 1,
+"mring-maxima-to-mring": 1,
+"funcall": 5,
+"meval": 1,
+"reduce": 2,
+"mapcar": 3,
+"margs": 7,
+"ring-eval": 5,
+"apply": 1,
+"gethash": 1,
+"mop": 1,
+"mring-name": 1,
+"defmspec": 1,
+"mring-mring-to-maxima": 1,
+"nth": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 30,
+"text": "($put '$mring 1 '$version)"
+},
+{
+"head": "defstruct",
+"line": 60,
+"text": "(defstruct mring name coerce-to-lisp-float abs great add div rdiv reciprocal mult sub negate psqrt add-id mult-id fzerop adjoint maxima-to-mring mring-to-maxima)"
+},
+{
+"head": "setf",
+"line": 115,
+"text": "(setf (get '$floatfield 'ring) *floatfield*)"
+},
+{
+"head": "setf",
+"line": 150,
+"text": "(setf (get '$complexfield 'ring) *complexfield*)"
+},
+{
+"head": "setf",
+"line": 198,
+"text": "(setf (get '$rationalfield 'ring) *rationalfield*)"
+},
+{
+"head": "setf",
+"line": 221,
+"text": "(setf (get '$crering 'ring) *crering*)"
+},
+{
+"head": "setf",
+"line": 244,
+"text": "(setf (get '$generalring 'ring) *generalring*)"
+},
+{
+"head": "setf",
+"line": 273,
+"text": "(setf (get '$bigfloatfield 'ring) *bigfloatfield*)"
+},
+{
+"head": "setf",
+"line": 298,
+"text": "(setf (get 'gf-coeff-ring 'ring) *gf-coeff-ring*)"
+},
+{
+"head": "setf",
+"line": 323,
+"text": "(setf (get 'gf-ring 'ring) *gf-ring*)"
+},
+{
+"head": "setf",
+"line": 348,
+"text": "(setf (get 'ef-ring 'ring) *ef-ring*)"
+},
+{
+"head": "setf",
+"line": 407,
+"text": "(setf (get '$runningerror 'ring) *runningerror*)"
+},
+{
+"head": "setf",
+"line": 453,
+"text": "(setf (get '$noncommutingring 'ring) *noncommutingring*)"
+}
+],
+"lines": 493
+},
+{
+"file": "../share/linearalgebra/lu",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "m-elem",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"p",
+"i",
+"j"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 16,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "setmatelem",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"x",
+"i",
+"j"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 21,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "partial-matrix-prod",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"p",
+"i",
+"k",
+"n",
+"fadd",
+"fsub",
+"fmult",
+"add-id",
+"fname"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 26,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "partial-matrix-prod-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"p",
+"i",
+"k",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 37,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "partial-matrix-prod-complex-float",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"p",
+"i",
+"k",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 45,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "array-infinity-norm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"fn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 56,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$lu_factor",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [
+[
+"fld",
+{
+"k": "quote",
+"v": "$generalring"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 60,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$get_lu_factors",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 82,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lu-factor",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"perm",
+"c",
+"fld"
+],
+"opt": [
+[
+"cnd",
+{
+"k": "float",
+"v": "1.0"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 108,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "m-elem-reflect",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"perm",
+"n",
+"r",
+"i",
+"j"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 154,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "mat-cond-by-lu",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"perm",
+"n",
+"fn"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 165,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "triangular-mat-cond",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"perm",
+"n",
+"fn",
+"r"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 179,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "$lu_backsub",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"b1"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 195,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$invert_by_lu",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [
+[
+"fld",
+{
+"k": "quote",
+"v": "$generalring"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 249,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "invert-by-lu-with-determinant",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"fld-name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 254,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$determinant_by_lu",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [
+[
+"fld-name",
+{
+"k": "quote",
+"v": "$generalring"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 262,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "determinant-by-lu-factors",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"fld"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 271,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$mat_cond",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 291,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$linsolve_by_lu",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"b"
+],
+"opt": [
+[
+"fld",
+{
+"k": "quote",
+"v": "$generalring"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 295,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "invertible-matrixp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"fld"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 306,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$args",
+"$complexfield",
+"$determinant_by_lu",
+"$ev",
+"$first",
+"$floatfield",
+"$generalring",
+"$get_lu_factors",
+"$identfor",
+"$inf",
+"$inpart",
+"$invert_by_lu",
+"$last",
+"$length",
+"$limit",
+"$linsolve_by_lu",
+"$listp",
+"$lu",
+"$lu_backsub",
+"$lu_factor",
+"$makelist",
+"$mat_cond",
+"$mat_norm",
+"$matrix",
+"$matrix_size",
+"$matrixp",
+"$put",
+"$require_list",
+"$require_matrix",
+"$require_nonempty_matrix",
+"$require_ring",
+"$require_square_matrix",
+"$second",
+"$third",
+"$transpose",
+"$version",
+"$zerofor",
+"$zeromatrixp",
+"+",
+"abs",
+"fadd",
+"fmult",
+"fn",
+"fsub",
+"funcall",
+"i",
+"lambda",
+"max",
+"mlist",
+"reduce",
+"ring",
+"s",
+"singular"
+],
+"calls": {
+"in-package": 1,
+"$put": 1,
+"defun": 20,
+"m": 13,
+"if": 11,
+"arrayp": 2,
+"aref": 27,
+"nth": 9,
+"setf": 9,
+"cond": 6,
+"partial-matrix-prod-float": 1,
+"partial-matrix-prod-complex-float": 1,
+"t": 6,
+"let": 11,
+"loop": 22,
+"setq": 63,
+"funcall": 25,
+"declare": 2,
+"type": 1,
+"+": 8,
+"*": 4,
+"-": 7,
+"mat": 6,
+"reduce": 1,
+"max": 3,
+"mapcar": 1,
+"array-to-row-list": 1,
+"fld": 5,
+"$require_nonempty_matrix": 1,
+"$require_square_matrix": 5,
+"$require_ring": 2,
+"let*": 4,
+"perm": 4,
+"make-array": 2,
+"cnd": 2,
+"fn": 1,
+"maxima-to-array": 1,
+"mring-maxima-to-mring": 4,
+"decf": 2,
+"mring-coerce-to-lisp-float": 2,
+"array-infinity-norm": 1,
+"lu-factor": 1,
+"x": 1,
+"mp": 1,
+"p": 1,
+"$second": 8,
+"r": 3,
+"c": 2,
+"id": 1,
+"lower": 1,
+"upper": 1,
+"zero": 1,
+"$matrix_size": 8,
+"$first": 12,
+"$args": 1,
+"$identfor": 3,
+"push": 4,
+"reverse": 2,
+"copy-tree": 5,
+"$zerofor": 1,
+"=": 3,
+"setmatelem": 7,
+">": 2,
+"<": 2,
+"$transpose": 2,
+"kp1": 1,
+"mx": 1,
+"lb": 2,
+"ub": 1,
+"save": 1,
+"fname": 1,
+"mring-name": 3,
+"add-id": 2,
+"mring-add-id": 2,
+"flet": 1,
+"fadd": 4,
+"a": 6,
+"mring-add": 2,
+"fsub": 4,
+"mring-sub": 2,
+"fabs": 4,
+"mring-abs": 1,
+"fmult": 5,
+"mring-mult": 3,
+"fdiv": 3,
+"mring-div": 1,
+"fgreat": 2,
+"mring-great": 1,
+"partial-matrix-prod": 2,
+"m-elem": 18,
+"when": 3,
+"not": 3,
+"fzerop": 1,
+"multiple-value-setq": 3,
+"mat-cond-by-lu": 1,
+"array-to-maxima-matrix": 2,
+"mring-mring-to-maxima": 5,
+"$limit": 4,
+"mul": 5,
+"array-to-maxima-list": 2,
+"ub0": 1,
+"lb1": 2,
+"ub1": 1,
+"lb0": 1,
+"triangular-mat-cond": 2,
+"values": 3,
+"d-max": 1,
+"z-max": 1,
+"s": 1,
+"d": 3,
+"catch": 1,
+"abs": 3,
+"m-elem-reflect": 2,
+"throw": 1,
+"/": 1,
+"incf": 1,
+"$require_list": 1,
+"$length": 1,
+"merror": 3,
+"gettext": 3,
+"n": 3,
+"bb": 1,
+"acc": 1,
+"id-perm": 1,
+"b": 1,
+"get": 2,
+"mfuncall": 4,
+"fourth": 2,
+"cc": 1,
+"mring-rdiv": 1,
+"matrix-map": 3,
+"eq": 1,
+"meqp": 1,
+"$lu_backsub": 3,
+"$lu_factor": 5,
+"m1": 1,
+"determinant-by-lu-factors": 2,
+"list": 1,
+"fld-name": 1,
+"fconvert": 1,
+"multiple-value-bind": 1,
+"perm-sorted": 1,
+"bbsort1": 1,
+"cdr": 1,
+"ignore": 1,
+"mring-negate": 1,
+"$invert_by_lu": 1,
+"$listp": 1,
+"$require_matrix": 1,
+"floatp": 1,
+"$last": 2,
+"$get_lu_factors": 1,
+"while": 1,
+"and": 2,
+"$zeromatrixp": 2,
+"$inpart": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 11,
+"text": "($put '$lu 3 '$version)"
+}
+],
+"lines": 319
+},
+{
+"file": "../share/linearalgebra/linalgcholesky",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$cholesky",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [
+[
+"fld-name",
+{
+"k": "quote",
+"v": "$generalring"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 11,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$cholesky",
+"$first",
+"$generalring",
+"$matrix",
+"$matrix_size",
+"$matrixp",
+"$put",
+"$require_nonempty_matrix",
+"$require_ring",
+"$require_selfadjoint_matrix",
+"$second",
+"$version",
+"$zerofor",
+"frevert",
+"mlist",
+"rest"
+],
+"calls": {
+"$put": 1,
+"defun": 1,
+"m": 1,
+"fld-name": 1,
+"$require_nonempty_matrix": 1,
+"$require_selfadjoint_matrix": 1,
+"let*": 1,
+"lii": 1,
+"lii-inv": 1,
+"l": 1,
+"acc": 1,
+"mat": 1,
+"row": 1,
+"fld": 1,
+"$require_ring": 1,
+"flet": 1,
+"fpsqrt": 2,
+"a": 7,
+"funcall": 7,
+"mring-psqrt": 1,
+"fsub": 3,
+"mring-sub": 1,
+"fmult": 4,
+"mring-mult": 1,
+"fadjoint": 4,
+"mring-adjoint": 1,
+"freciprocal": 2,
+"mring-reciprocal": 1,
+"frevert": 2,
+"mring-mring-to-maxima": 1,
+"fconvert": 2,
+"mring-maxima-to-mring": 1,
+"setq": 13,
+"$zerofor": 1,
+"make-array": 2,
+"list": 2,
+"mapcar": 2,
+"rest": 2,
+"margs": 2,
+"decf": 1,
+"loop": 8,
+"setf": 3,
+"aref": 11,
+"-": 2,
+"if": 3,
+"$matrixp": 1,
+"$cholesky": 1,
+"null": 1,
+"merror": 2,
+"cond": 1,
+"fzerop": 1,
+"+": 1,
+"push": 4,
+"full-matrix-map": 1,
+"reverse": 2
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 10,
+"text": "($put '$cholesky 1 '$version)"
+}
+],
+"lines": 70
+},
+{
+"file": "../share/linearalgebra/eigens-by-jacobi",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$eigens_by_jacobi",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mm"
+],
+"opt": [
+[
+"fld-name",
+{
+"k": "quote",
+"v": "$floatfield"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 27,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$bfloat",
+"$bigfloatfield",
+"$debug",
+"$eigens_by_jacobi",
+"$eigensbyjacobi",
+"$first",
+"$floatfield",
+"$linearalgebra",
+"$mat_fullunblocker",
+"$matrix",
+"$matrix_size",
+"$put",
+"$require_real_symmetric_matrix",
+"$require_ring",
+"$second",
+"$verbose",
+"$version",
+"fconvert",
+"list",
+"mlist",
+"rest"
+],
+"calls": {
+"eval-when": 1,
+":compile-toplevel": 1,
+"$put": 2,
+"defun": 1,
+"mm": 1,
+"fld-name": 1,
+"if": 6,
+"not": 1,
+"member": 1,
+"merror": 2,
+"setq": 29,
+"mfuncall": 1,
+"$require_real_symmetric_matrix": 1,
+"let*": 1,
+"g": 1,
+"h": 1,
+"sweeps": 1,
+"rotations": 1,
+"eps": 1,
+"change": 1,
+"theta": 1,
+"mpq": 1,
+"c": 1,
+"s": 1,
+"tee": 1,
+"tau": 1,
+"d": 1,
+"v": 1,
+"x": 1,
+"row": 1,
+"n": 1,
+"$first": 1,
+"$matrix_size": 1,
+"continue": 1,
+">": 2,
+"fld": 1,
+"$require_ring": 1,
+"one": 1,
+"funcall": 12,
+"mring-mult-id": 1,
+"zero": 1,
+"mring-add-id": 1,
+"flet": 1,
+"fabs": 4,
+"a": 10,
+"mring-abs": 1,
+"fnegate": 2,
+"mring-negate": 1,
+"fpsqrt": 3,
+"mring-psqrt": 1,
+"fadd": 14,
+"mring-add": 1,
+"fsub": 12,
+"mring-sub": 1,
+"fmult": 23,
+"mring-mult": 1,
+"fdiv": 6,
+"mring-div": 1,
+"fgreat": 4,
+"mring-great": 2,
+"fmax": 2,
+"fconvert": 2,
+"mring-maxima-to-mring": 1,
+"make-array": 3,
+"list": 2,
+"mapcar": 1,
+"rest": 1,
+"margs": 1,
+"matrix-map": 1,
+"eq": 1,
+"$bfloat": 1,
+"div": 1,
+"power": 1,
+"decf": 1,
+"loop": 10,
+"setf": 14,
+"aref": 31,
+"while": 1,
+"incf": 2,
+"+": 3,
+"cond": 1,
+"-": 2,
+"inform": 3,
+"push": 4,
+"reverse": 2,
+"coerce": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 10,
+"text": "($put '$eigensbyjacobi 1 '$version)"
+}
+],
+"lines": 145
+},
+{
+"file": "../share/linearalgebra/linalg-extra",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$circulant",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lst"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 13,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$cauchy_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [
+[
+"q",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 25,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$hessian",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 41,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$jacobian",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 51,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$vandermonde_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"l"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 61,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "matrix-sign-sylvester",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 82,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "order-of-root",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"x",
+"pt"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 95,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$matrix_sign",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 116,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sylvester_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q",
+"z"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 144,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$krylov_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"v",
+"mat"
+],
+"opt": [
+[
+"n",
+{
+"k": "quote",
+"v": "no-value"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 180,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$addcol",
+"$cauchy_matrix",
+"$charpoly",
+"$circulant",
+"$ctranspose",
+"$diff",
+"$expand",
+"$first",
+"$freeof",
+"$hessian",
+"$hipow",
+"$inf",
+"$jacobian",
+"$krylov_matrix",
+"$length",
+"$linalgextra",
+"$listp",
+"$matrix",
+"$matrix_sign",
+"$matrix_size",
+"$matrixp",
+"$minf",
+"$neg",
+"$nroots",
+"$nz",
+"$pnz",
+"$polynomialp",
+"$pos",
+"$put",
+"$pz",
+"$ratcoef",
+"$ratexpand",
+"$ratnump",
+"$require_list",
+"$require_posinteger",
+"$require_square_matrix",
+"$s",
+"$second",
+"$some",
+"$substitute",
+"$sylvester_matrix",
+"$third",
+"$transpose",
+"$vandermonde_matrix",
+"$version",
+"$zero",
+"$zeromatrixp",
+"c",
+"cons",
+"ei",
+"eq",
+"lambda",
+"mlist",
+"mnot",
+"no-value",
+"s",
+"z"
+],
+"calls": {
+"in-package": 1,
+"$put": 1,
+"defun": 10,
+"lst": 1,
+"$require_list": 3,
+"let": 10,
+"n": 4,
+"$length": 1,
+"setq": 41,
+"rest": 2,
+"list": 2,
+"decf": 2,
+"dotimes": 9,
+"i": 1,
+"car": 1,
+"push": 20,
+"mapcar": 3,
+"p": 4,
+"if": 4,
+"mat": 4,
+"margs": 5,
+"dolist": 4,
+"pj": 1,
+"qj": 1,
+"div": 2,
+"add": 2,
+"nreverse": 4,
+"e": 2,
+"cond": 6,
+"vi": 1,
+"$diff": 2,
+"cons": 8,
+"reverse": 3,
+"t": 6,
+"ei": 1,
+"l": 1,
+"q": 1,
+"row": 1,
+"acc": 1,
+"require-list": 1,
+"-": 4,
+"length": 1,
+"while": 2,
+"pop": 1,
+"j": 1,
+"mul": 2,
+"simplify": 2,
+"m": 1,
+"det": 1,
+"p-sgn": 1,
+"n-sgn": 1,
+"$first": 4,
+"$matrix_size": 5,
+"loop": 1,
+"ratdisrep": 1,
+"newdet": 1,
+"csign": 2,
+"power": 1,
+"$expand": 2,
+"and": 3,
+"alike1": 2,
+"$substitute": 1,
+"not": 4,
+"incf": 1,
+"nbr-zero-roots": 1,
+"nbr-neg-roots": 1,
+"nbr-pos-roots": 1,
+"$require_square_matrix": 2,
+"$ctranspose": 1,
+"matrix-sign-sylvester": 1,
+"$charpoly": 1,
+"order-of-root": 1,
+"$nroots": 2,
+"q-coeff": 1,
+"p-deg": 1,
+"q-deg": 1,
+"or": 1,
+"$polynomialp": 2,
+"merror": 2,
+"$ratexpand": 2,
+"$hipow": 2,
+"k": 7,
+"+": 2,
+"$ratcoef": 2,
+"butlast": 2,
+"v": 1,
+"$listp": 1,
+"$transpose": 1,
+"$matrixp": 1,
+"=": 1,
+"$second": 1,
+"eq": 1,
+"$require_posinteger": 1,
+"ncmul": 1,
+"$addcol": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 11,
+"text": "($put '$linalgextra 1 '$version)"
+}
+],
+"lines": 194
+},
+{
+"file": "../share/linearalgebra/matrixexp",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "rect-minus-one-power",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 33,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "final-simp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [
+[
+"depth",
+{
+"k": "int",
+"v": "4"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 47,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "matrixexp-simp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [
+[
+"depth",
+{
+"k": "int",
+"v": "4"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 57,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$spectral_rep",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 69,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "nilpotent-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 121,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$matrixexp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [
+[
+"x",
+{
+"k": "int",
+"v": "1"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 144,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "require-lambda",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"n",
+"pos",
+"fun-name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 172,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$matrixfun",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lamexpr",
+"mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 180,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "rational-residue",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e",
+"var",
+"pt",
+"ker",
+"ord"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 214,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [
+"$domain",
+"$matrix_element_add",
+"$matrix_element_mult",
+"genvar",
+"varlist"
+],
+"symbols": [
+"$%e",
+"$algebraic",
+"$args",
+"$complex",
+"$constantp",
+"$denom",
+"$diff",
+"$divide",
+"$domain",
+"$factor",
+"$first",
+"$gcd",
+"$ident",
+"$length",
+"$listp",
+"$m1pbranch",
+"$matrix_element_add",
+"$matrix_element_mult",
+"$matrixexp",
+"$matrixfun",
+"$multiplicities",
+"$newdet",
+"$num",
+"$put",
+"$quotient",
+"$radexpand",
+"$ratdisrep",
+"$ratfac",
+"$ratmx",
+"$ratnump",
+"$ratsimp",
+"$ratsimpexpons",
+"$ratvars",
+"$ratvarswitch",
+"$rectform",
+"$require_square_matrix",
+"$require_unblockedmatrix",
+"$resimplify",
+"$resultant",
+"$rhs",
+"$second",
+"$solve",
+"$spectral_rep",
+"$spmod",
+"$sqfr",
+"$subres",
+"$substitute",
+"$subvarp",
+"$third",
+"$version",
+"$zeromatrix",
+"+",
+"e",
+"expr",
+"ftake",
+"if",
+"lambda",
+"maxima-substitute",
+"mexpt",
+"mexptp",
+"mlist",
+"mnotequal",
+"mtimes",
+"mul",
+"nth",
+"or",
+"ord",
+"p",
+"rational-residue",
+"rect-minus-one-power",
+"s",
+"symbolp",
+"x",
+"z",
+"zi"
+],
+"calls": {
+"in-package": 1,
+"declare-top": 1,
+"special": 1,
+"$put": 1,
+"defun": 6,
+"e": 5,
+"cond": 4,
+"let": 9,
+"$rectform": 1,
+"fapply": 6,
+"caar": 1,
+"mapcar": 5,
+"rect-minus-one-power": 3,
+"cdr": 5,
+"t": 2,
+"depth": 2,
+"let*": 2,
+"$algebraic": 3,
+"$radexpand": 2,
+"ee": 2,
+"$resimplify": 2,
+"$factor": 2,
+"$ratsimp": 2,
+"if": 6,
+"or": 2,
+"alike1": 4,
+"<=": 2,
+"final-simp": 2,
+"-": 5,
+"$ratsimpexpons": 1,
+"$domain": 4,
+"$m1pbranch": 1,
+"$ratvarswitch": 1,
+"matrixexp-simp": 7,
+"defmfun": 3,
+"mat": 3,
+"$require_square_matrix": 3,
+"$require_unblockedmatrix": 3,
+"setq": 50,
+"$ratdisrep": 1,
+"$gcd": 3,
+"$resultant": 2,
+"ord": 1,
+"zi": 1,
+"$ratfac": 2,
+"z": 2,
+"gensym": 2,
+"res": 1,
+"m": 1,
+"n": 3,
+"$length": 3,
+"$args": 3,
+"p": 4,
+"p1": 1,
+"p2": 1,
+"sp": 3,
+"proj": 1,
+"$matrix_element_mult": 3,
+"$matrix_element_add": 3,
+"$newdet": 1,
+"sub": 4,
+"mul": 7,
+"$ident": 4,
+"oddp": 1,
+"$first": 3,
+"$divide": 1,
+"$diff": 4,
+"$sqfr": 1,
+"mminusp": 1,
+"mtimesp": 1,
+"margs": 1,
+"list": 2,
+"mtell": 1,
+"ftake": 2,
+"$solve": 1,
+"merror": 3,
+"ncpower": 1,
+"length": 4,
+"dotimes": 5,
+"i": 4,
+"nth": 10,
+"+": 4,
+"push": 1,
+"matrix-map": 1,
+"nreverse": 1,
+"zero": 1,
+"$zeromatrix": 1,
+"power": 2,
+"when": 2,
+"return-from": 2,
+"k": 1,
+"ncmul2": 7,
+"x": 1,
+"d": 2,
+"id": 1,
+"f": 3,
+"$ratvars": 1,
+"$spectral_rep": 2,
+"$second": 2,
+"$third": 2,
+"add": 2,
+"div": 4,
+"and": 1,
+"consp": 2,
+"car": 1,
+"eq": 1,
+"mop": 1,
+"=": 2,
+"$listp": 1,
+"every": 1,
+"lamexpr": 1,
+"$ratmx": 1,
+"expr": 1,
+"var": 1,
+"di": 1,
+"require-lambda": 1,
+"$substitute": 1,
+"factorial": 2,
+"q": 1,
+"sratsimp": 1,
+"$num": 1,
+"$denom": 1,
+"$quotient": 2,
+"maxima-substitute": 1
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 28,
+"text": "($put '$matrixexp 2026 '$version)"
+}
+],
+"lines": 230
+},
+{
+"file": "../share/linearalgebra/linalg-utilities",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "inform",
+"pkg": "maxima",
+"ll": {
+"req": [
+"level",
+"pck",
+"msg"
+],
+"opt": [],
+"rest": "arg",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 12,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_nonempty_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 16,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$blockmatrixp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 22,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 25,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_unblockedmatrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 29,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_square_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 33,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "array-elem",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"i",
+"j"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 37,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_symmetric_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 40,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_real_symmetric_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 49,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_selfadjoint_matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"fun",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 57,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$matrix_size",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 70,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lst",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 74,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$require_posinteger",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i",
+"pos",
+"fun"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 78,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "matrix-map",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"mat"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 82,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "full-matrix-map",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fn",
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 90,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$zerofor",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [
+[
+"fld-name",
+{
+"k": "quote",
+"v": "$generalring"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 95,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "zerofor",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"zero"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 100,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$identfor",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [
+[
+"fld-name",
+{
+"k": "quote",
+"v": "$generalring"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 111,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "identfor",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat",
+"zero",
+"one"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 117,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$ctranspose",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 136,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$zeromatrixp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 139,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "array-to-row-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [
+[
+"fn",
+{
+"k": "quote",
+"v": "identity"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 143,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "array-to-maxima-matrix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [
+[
+"fn",
+{
+"k": "quote",
+"v": "identity"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 155,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "array-to-maxima-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ar"
+],
+"opt": [
+[
+"fn",
+{
+"k": "quote",
+"v": "identity"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 158,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "maxima-to-array",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mat"
+],
+"opt": [
+[
+"fn",
+{
+"k": "quote",
+"v": "identity"
+},
+null
+],
+[
+"typ",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 161,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$args",
+"$blockmatrixp",
+"$conjugate",
+"$ctranspose",
+"$debug",
+"$done",
+"$emptyp",
+"$every",
+"$first",
+"$generalring",
+"$get",
+"$identfor",
+"$infolevel",
+"$length",
+"$linalgutilities",
+"$listp",
+"$matrix",
+"$matrix_size",
+"$matrixp",
+"$put",
+"$rectform",
+"$require_list",
+"$require_matrix",
+"$require_nonempty_matrix",
+"$require_posinteger",
+"$require_real_symmetric_matrix",
+"$require_ring",
+"$require_selfadjoint_matrix",
+"$require_square_matrix",
+"$require_symmetric_matrix",
+"$require_unblockedmatrix",
+"$second",
+"$silent",
+"$some",
+"$transpose",
+"$verbose",
+"$version",
+"$zero",
+"$zerofor",
+"$zeromatrixp",
+"cdr",
+"cons",
+"f",
+"fn",
+"full-matrix-map",
+"funcall",
+"identity",
+"lambda",
+"list",
+"mapcar",
+"mlist",
+"mtell",
+"nil",
+"s",
+"simp",
+"simplifya",
+"w",
+"zero",
+"zerofor"
+],
+"calls": {
+"$put": 1,
+"defun": 25,
+"level": 1,
+"if": 23,
+"member": 2,
+"$get": 1,
+"apply": 1,
+"m": 12,
+"not": 14,
+"and": 5,
+"$matrixp": 12,
+">": 3,
+"$length": 6,
+"$first": 7,
+"merror": 15,
+"$some": 1,
+"$every": 1,
+"or": 4,
+"$blockmatrixp": 1,
+"=": 5,
+"nth": 2,
+"let": 6,
+"$second": 4,
+"$zeromatrixp": 4,
+"sub": 4,
+"$transpose": 2,
+"take": 1,
+"$ctranspose": 1,
+"$require_matrix": 1,
+"$args": 3,
+"$emptyp": 1,
+"lst": 1,
+"$listp": 4,
+"i": 2,
+"integerp": 1,
+"f": 1,
+"setq": 16,
+"mapcar": 9,
+"cdr": 6,
+"fn": 5,
+"cons": 4,
+"car": 2,
+"funcall": 8,
+"mat": 7,
+"fld-name": 2,
+"let*": 2,
+"add-id": 2,
+"mring-mring-to-maxima": 3,
+"mring-add-id": 2,
+"zerofor": 2,
+"mult-id": 1,
+"mring-mult-id": 1,
+"identfor": 2,
+"acc": 1,
+"j": 2,
+"new-mat": 1,
+"rest": 2,
+"dolist": 2,
+"row": 2,
+"aij": 1,
+"push": 6,
+"cond": 1,
+"t": 1,
+"incf": 2,
+"mfuncall": 1,
+"full-matrix-map": 1,
+"every": 1,
+"eq": 1,
+"csign": 1,
+"$rectform": 1,
+"r": 1,
+"array-dimensions": 1,
+"c": 2,
+"second": 1,
+"first": 1,
+"dotimes": 2,
+"aref": 1,
+"reverse": 2,
+"array-to-row-list": 1,
+"ar": 1,
+"coerce": 1,
+"make-array": 2,
+"list": 2
+},
+"toplevel": [
+{
+"head": "$put",
+"line": 10,
+"text": "($put '$linalgutilities 2 '$version)"
+}
+],
+"lines": 168
 }
 ]

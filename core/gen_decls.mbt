@@ -25601,6 +25601,660 @@ declare fn d_poly_ideal_saturation(f : Value, g : Value, vars : Value) -> Value 
 /// defmfun $poly_ideal_polysaturation -- ../share/contrib/Grobner/grobner.lisp:2307
 declare fn d_poly_ideal_polysaturation(f : Value, ideal_list : Value, vars : Value) -> Value raise
 
+///|
+/// defun maxima-to-lisp-complex-float -- ../share/orthopoly/orthopoly.lisp:22
+declare fn maxima_to_lisp_complex_float(a : Value) -> Value raise
+
+///|
+/// defun xcomplexp -- ../share/orthopoly/orthopoly.lisp:36
+declare fn xcomplexp(a : Value) -> Value raise
+
+///|
+/// defun lisp-complex-to-maxima -- ../share/orthopoly/orthopoly.lisp:43
+declare fn lisp_complex_to_maxima(x : Value) -> Value raise
+
+///|
+/// defun orthopoly-return-handler -- ../share/orthopoly/orthopoly.lisp:53
+declare fn orthopoly_return_handler(d : Value, f : Value, e : Value) -> Value raise
+
+///|
+/// defun simp-unk -- ../share/orthopoly/orthopoly.lisp:70
+declare fn simp_unk(x : Value, y : Value, z : Value) -> Value raise
+
+///|
+/// defun simp-unit-step -- ../share/orthopoly/orthopoly.lisp:83
+declare fn simp_unit_step(a : Value, y : Value, z : Value) -> Value raise
+
+///|
+/// defun $intervalp -- ../share/orthopoly/orthopoly.lisp:94
+declare fn d_intervalp(a : Value) -> Value raise
+
+///|
+/// defun interval-mult -- ../share/orthopoly/orthopoly.lisp:102
+declare fn interval_mult(x : Value, a : Value, dx? : Value = Nil) -> Value raise
+
+///|
+/// defun tex-sub-and-super-scripted-function -- ../share/orthopoly/orthopoly.lisp:122
+declare fn tex_sub_and_super_scripted_function(fn_ : Value, sub : Value, b1 : Value, sup : Value, b2 : Value, i : Value, x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-sub-and-super-scripted-function -- ../share/orthopoly/orthopoly.lisp:141
+declare fn dimension_sub_and_super_scripted_function(fn_ : Value, sub : Value, sup : Value, b2 : Value, k : Value, x : Value) -> Value raise
+
+///|
+/// defun use-float -- ../share/orthopoly/orthopoly.lisp:165
+declare fn use_float(a : Value) -> Value raise
+
+///|
+/// defun $hypergeo11 -- ../share/orthopoly/orthopoly.lisp:187
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn d_hypergeo11(a : Value, b : Value, x : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun $hypergeo21 -- ../share/orthopoly/orthopoly.lisp:220
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn d_hypergeo21(a : Value, b : Value, c : Value, x : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun $pochhammer -- ../share/orthopoly/orthopoly.lisp:268
+declare fn d_pochhammer(x : Value, n : Value) -> Value raise
+
+///|
+/// defun bigfloat::pochhammer -- ../share/orthopoly/orthopoly.lisp:274
+declare fn bf_pochhammer(x : Value, n : Value) -> Value raise
+
+///|
+/// defun simp-pochhammer -- ../share/orthopoly/orthopoly.lisp:282
+declare fn simp_pochhammer(e : Value, y : Value, z : Value) -> Value raise
+
+///|
+/// defun tex-pochhammer -- ../share/orthopoly/orthopoly.lisp:335
+declare fn tex_pochhammer(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-pochhammer -- ../share/orthopoly/orthopoly.lisp:347
+declare fn dimension_pochhammer(form : Value, result : Value) -> Value raise
+
+///|
+/// defun pochhammer-quotient -- ../share/orthopoly/orthopoly.lisp:358
+declare fn pochhammer_quotient(a : Value, b : Value, x : Value, n : Value) -> Value raise
+
+///|
+/// defun use-hypergeo -- ../share/orthopoly/orthopoly.lisp:369
+declare fn use_hypergeo(n : Value, x : Value) -> Value raise
+
+///|
+/// defun $jacobi_p -- ../share/orthopoly/orthopoly.lisp:387
+declare fn d_jacobi_p(n : Value, a : Value, b : Value, x : Value) -> Value raise
+
+///|
+/// defun jacobi_p-1 -- ../share/orthopoly/orthopoly.lisp:394
+declare fn jacobi_p_1(n : Value, a : Value, b : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-jacobi-poly -- ../share/orthopoly/orthopoly.lisp:429
+declare fn tex_jacobi_poly(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-jacobi-p -- ../share/orthopoly/orthopoly.lisp:434
+declare fn dimension_jacobi_p(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $ultraspherical -- ../share/orthopoly/orthopoly.lisp:439
+declare fn d_ultraspherical(n : Value, a : Value, x : Value) -> Value raise
+
+///|
+/// defun ultraspherical-1 -- ../share/orthopoly/orthopoly.lisp:451
+declare fn ultraspherical_1(n : Value, a : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-ultraspherical -- ../share/orthopoly/orthopoly.lisp:479
+declare fn tex_ultraspherical(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-ultraspherical -- ../share/orthopoly/orthopoly.lisp:484
+declare fn dimension_ultraspherical(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $chebyshev_t -- ../share/orthopoly/orthopoly.lisp:489
+declare fn d_chebyshev_t(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-chebyshev-t -- ../share/orthopoly/orthopoly.lisp:509
+declare fn tex_chebyshev_t(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-chebyshev-t -- ../share/orthopoly/orthopoly.lisp:514
+declare fn dimension_chebyshev_t(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $chebyshev_u -- ../share/orthopoly/orthopoly.lisp:521
+declare fn d_chebyshev_u(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-chebyshev-u -- ../share/orthopoly/orthopoly.lisp:545
+declare fn tex_chebyshev_u(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-chebyshev-u -- ../share/orthopoly/orthopoly.lisp:550
+declare fn dimension_chebyshev_u(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $legendre_p -- ../share/orthopoly/orthopoly.lisp:558
+declare fn d_legendre_p(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-legendre-p -- ../share/orthopoly/orthopoly.lisp:577
+declare fn tex_legendre_p(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-legendre-p -- ../share/orthopoly/orthopoly.lisp:582
+declare fn dimension_legendre_p(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $legendre_q -- ../share/orthopoly/orthopoly.lisp:587
+declare fn d_legendre_q(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-legendre-q -- ../share/orthopoly/orthopoly.lisp:607
+declare fn tex_legendre_q(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-legendre-q -- ../share/orthopoly/orthopoly.lisp:612
+declare fn dimension_legendre_q(form : Value, result : Value) -> Value raise
+
+///|
+/// defun q0m -- ../share/orthopoly/orthopoly.lisp:628
+declare fn q0m(m : Value, x : Value) -> Value raise
+
+///|
+/// defun q1m -- ../share/orthopoly/orthopoly.lisp:644
+declare fn q1m(m : Value, x : Value) -> Value raise
+
+///|
+/// defun assoc-legendre-q-nn -- ../share/orthopoly/orthopoly.lisp:669
+declare fn assoc_legendre_q_nn(n : Value, x : Value) -> Value raise
+
+///|
+/// defun $assoc_legendre_q -- ../share/orthopoly/orthopoly.lisp:684
+declare fn d_assoc_legendre_q(n : Value, m : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-assoc-legendre-q -- ../share/orthopoly/orthopoly.lisp:725
+declare fn tex_assoc_legendre_q(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-assoc-legendre-q -- ../share/orthopoly/orthopoly.lisp:730
+declare fn dimension_assoc_legendre_q(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $assoc_legendre_p -- ../share/orthopoly/orthopoly.lisp:738
+declare fn d_assoc_legendre_p(n : Value, m : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-assoc-legendre-p -- ../share/orthopoly/orthopoly.lisp:789
+declare fn tex_assoc_legendre_p(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-assoc-legendre-p -- ../share/orthopoly/orthopoly.lisp:794
+declare fn dimension_assoc_legendre_p(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $hermite -- ../share/orthopoly/orthopoly.lisp:801
+declare fn d_hermite(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-hermite -- ../share/orthopoly/orthopoly.lisp:827
+declare fn tex_hermite(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-hermite -- ../share/orthopoly/orthopoly.lisp:832
+declare fn dimension_hermite(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $gen_laguerre -- ../share/orthopoly/orthopoly.lisp:840
+declare fn d_gen_laguerre(n : Value, a : Value, x : Value) -> Value raise
+
+///|
+/// defun gen_laguerre-1 -- ../share/orthopoly/orthopoly.lisp:847
+declare fn gen_laguerre_1(n : Value, a : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-gen-laguerre -- ../share/orthopoly/orthopoly.lisp:873
+declare fn tex_gen_laguerre(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-gen-laguerre -- ../share/orthopoly/orthopoly.lisp:878
+declare fn dimension_gen_laguerre(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $laguerre -- ../share/orthopoly/orthopoly.lisp:885
+declare fn d_laguerre(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-laguerre -- ../share/orthopoly/orthopoly.lisp:905
+declare fn tex_laguerre(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-laguerre -- ../share/orthopoly/orthopoly.lisp:910
+declare fn dimension_laguerre(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $spherical_hankel1 -- ../share/orthopoly/orthopoly.lisp:915
+declare fn d_spherical_hankel1(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-spherical-hankel-1 -- ../share/orthopoly/orthopoly.lisp:943
+declare fn tex_spherical_hankel_1(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-spherical-hankel-1 -- ../share/orthopoly/orthopoly.lisp:948
+declare fn dimension_spherical_hankel_1(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $spherical_hankel2 -- ../share/orthopoly/orthopoly.lisp:955
+declare fn d_spherical_hankel2(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-spherical-hankel-2 -- ../share/orthopoly/orthopoly.lisp:973
+declare fn tex_spherical_hankel_2(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-spherical-hankel-2 -- ../share/orthopoly/orthopoly.lisp:978
+declare fn dimension_spherical_hankel_2(form : Value, result : Value) -> Value raise
+
+///|
+/// defun p-fun -- ../share/orthopoly/orthopoly.lisp:986
+declare fn p__fun(n : Value, x : Value) -> Value raise
+
+///|
+/// defun q-fun -- ../share/orthopoly/orthopoly.lisp:999
+declare fn q__fun(n : Value, x : Value) -> Value raise
+
+///|
+/// defun $spherical_bessel_j -- ../share/orthopoly/orthopoly.lisp:1024
+declare fn d_spherical_bessel_j(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-spherical-bessel-j -- ../share/orthopoly/orthopoly.lisp:1068
+declare fn tex_spherical_bessel_j(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-spherical-bessel-j -- ../share/orthopoly/orthopoly.lisp:1073
+declare fn dimension_spherical_bessel_j(form : Value, result : Value) -> Value raise
+
+///|
+/// defun $spherical_bessel_y -- ../share/orthopoly/orthopoly.lisp:1079
+declare fn d_spherical_bessel_y(n : Value, x : Value) -> Value raise
+
+///|
+/// defun tex-spherical-bessel-y -- ../share/orthopoly/orthopoly.lisp:1118
+declare fn tex_spherical_bessel_y(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-spherical-bessel-y -- ../share/orthopoly/orthopoly.lisp:1123
+declare fn dimension_spherical_bessel_y(form : Value, result : Value) -> Value raise
+
+///|
+/// defun assoc-leg-cos -- ../share/orthopoly/orthopoly.lisp:1136
+declare fn assoc_leg_cos(n : Value, m : Value, x : Value) -> Value raise
+
+///|
+/// defun $spherical_harmonic -- ../share/orthopoly/orthopoly.lisp:1141
+declare fn d_spherical_harmonic(n : Value, m : Value, th : Value, p : Value) -> Value raise
+
+///|
+/// defun tex-spherical-harmonic -- ../share/orthopoly/orthopoly.lisp:1160
+declare fn tex_spherical_harmonic(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun dimension-spherical-harmonic -- ../share/orthopoly/orthopoly.lisp:1165
+declare fn dimension_spherical_harmonic(form : Value, result : Value) -> Value raise
+
+///|
+/// defun maxima-float-to-lisp-float -- ../share/orthopoly/orthopoly.lisp:1193
+declare fn maxima_float_to_lisp_float(y : Value) -> Value raise
+
+///|
+/// defun lisp-float-to-maxima-float -- ../share/orthopoly/orthopoly.lisp:1204
+declare fn lisp_float_to_maxima_float(x : Value) -> Value raise
+
+///|
+/// defun hypergeo11-float -- ../share/orthopoly/orthopoly.lisp:1209
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn hypergeo11_float(n : Value, b : Value, x : Value) -> (Value, Value) raise
+
+///|
+/// defun hypergeo21-float -- ../share/orthopoly/orthopoly.lisp:1249
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn hypergeo21_float(n : Value, b : Value, c : Value, x : Value) -> (Value, Value) raise
+
+///|
+/// defun check-arg-length -- ../share/orthopoly/orthopoly.lisp:1320
+declare fn check_arg_length(fn_ : Value, n : Value, m : Value) -> Value raise
+
+///|
+/// defun $orthopoly_recur -- ../share/orthopoly/orthopoly.lisp:1325
+declare fn d_orthopoly_recur(fn_ : Value, arg : Value) -> Value raise
+
+///|
+/// defun $orthopoly_weight -- ../share/orthopoly/orthopoly.lisp:1463
+declare fn d_orthopoly_weight(fn_ : Value, arg : Value) -> Value raise
+
+///|
+/// defun $listofei -- ../share/trigonometry/trigrat.lisp:3
+declare fn d_listofei(e : Value) -> Value raise
+
+///|
+/// defun $require_ring -- ../share/linearalgebra/mring.lisp:86
+declare fn d_require_ring(ringname : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun coerce-expr-to-clcomplex -- ../share/linearalgebra/mring.lisp:117
+declare fn coerce_expr_to_clcomplex(ex : Value) -> Value raise
+
+///|
+/// defun rational-square-root -- ../share/linearalgebra/mring.lisp:152
+declare fn rational_square_root(z : Value) -> Value raise
+
+///|
+/// defun fp-abs -- ../share/linearalgebra/mring.lisp:352
+declare fn fp_abs(a : Value) -> Value raise
+
+///|
+/// defun fp+ -- ../share/linearalgebra/mring.lisp:355
+declare fn fp_plus(a : Value, b : Value) -> Value raise
+
+///|
+/// defun fp- -- ../share/linearalgebra/mring.lisp:365
+declare fn fp_(a : Value, b : Value) -> Value raise
+
+///|
+/// defun fp* -- ../share/linearalgebra/mring.lisp:375
+declare fn fp_star(a : Value, b : Value) -> Value raise
+
+///|
+/// defun fp/ -- ../share/linearalgebra/mring.lisp:379
+declare fn fp_sl(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $addmatrices -- ../share/linearalgebra/mring.lisp:383
+declare fn d_addmatrices(fn_ : Value, m : Value) -> Value raise
+
+///|
+/// defun ring-eval -- ../share/linearalgebra/mring.lisp:455
+declare fn ring_eval(e : Value, fld : Value) -> Value raise
+
+///|
+/// defmspec $ringeval -- ../share/linearalgebra/mring.lisp:491
+declare fn d_ringeval(e : Value) -> Value raise
+
+///|
+/// defun m-elem -- ../share/linearalgebra/lu.lisp:16
+declare fn m_elem(m : Value, p : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun setmatelem -- ../share/linearalgebra/lu.lisp:21
+declare fn setmatelem(m : Value, x : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun partial-matrix-prod -- ../share/linearalgebra/lu.lisp:26
+declare fn partial_matrix_prod(m : Value, p : Value, i : Value, k : Value, n : Value, fadd : Value, fsub : Value, fmult : Value, add_id : Value, fname : Value) -> Value raise
+
+///|
+/// defun partial-matrix-prod-float -- ../share/linearalgebra/lu.lisp:37
+declare fn partial_matrix_prod_float(m : Value, p : Value, i : Value, k : Value, n : Value) -> Value raise
+
+///|
+/// defun partial-matrix-prod-complex-float -- ../share/linearalgebra/lu.lisp:45
+declare fn partial_matrix_prod_complex_float(m : Value, p : Value, i : Value, k : Value, n : Value) -> Value raise
+
+///|
+/// defun array-infinity-norm -- ../share/linearalgebra/lu.lisp:56
+declare fn array_infinity_norm(mat : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun $lu_factor -- ../share/linearalgebra/lu.lisp:60
+declare fn d_lu_factor(mat : Value, fld? : Value = q_d_generalring) -> Value raise
+
+///|
+/// defun $get_lu_factors -- ../share/linearalgebra/lu.lisp:82
+declare fn d_get_lu_factors(x : Value) -> Value raise
+
+///|
+/// defun lu-factor -- ../share/linearalgebra/lu.lisp:108
+declare fn lu_factor(m : Value, perm : Value, c : Value, fld : Value, cnd? : Value = Flo(1.0)) -> Value raise
+
+///|
+/// defun m-elem-reflect -- ../share/linearalgebra/lu.lisp:154
+declare fn m_elem_reflect(mat : Value, perm : Value, n : Value, r : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun mat-cond-by-lu -- ../share/linearalgebra/lu.lisp:165
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn mat_cond_by_lu(mat : Value, perm : Value, n : Value, fn_ : Value) -> (Value, Value) raise
+
+///|
+/// defun triangular-mat-cond -- ../share/linearalgebra/lu.lisp:179
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn triangular_mat_cond(mat : Value, perm : Value, n : Value, fn_ : Value, r : Value) -> (Value, Value) raise
+
+///|
+/// defun $lu_backsub -- ../share/linearalgebra/lu.lisp:195
+declare fn d_lu_backsub(m : Value, b1 : Value) -> Value raise
+
+///|
+/// defun $invert_by_lu -- ../share/linearalgebra/lu.lisp:249
+declare fn d_invert_by_lu(m : Value, fld? : Value = q_d_generalring) -> Value raise
+
+///|
+/// defun invert-by-lu-with-determinant -- ../share/linearalgebra/lu.lisp:254
+declare fn invert_by_lu_with_determinant(m : Value, fld_name : Value) -> Value raise
+
+///|
+/// defun $determinant_by_lu -- ../share/linearalgebra/lu.lisp:262
+declare fn d_determinant_by_lu(m : Value, fld_name? : Value = q_d_generalring) -> Value raise
+
+///|
+/// defun determinant-by-lu-factors -- ../share/linearalgebra/lu.lisp:271
+declare fn determinant_by_lu_factors(m : Value, fld : Value) -> Value raise
+
+///|
+/// defun $mat_cond -- ../share/linearalgebra/lu.lisp:291
+declare fn d_mat_cond(m : Value, p : Value) -> Value raise
+
+///|
+/// defun $linsolve_by_lu -- ../share/linearalgebra/lu.lisp:295
+declare fn d_linsolve_by_lu(m : Value, b : Value, fld? : Value = q_d_generalring) -> Value raise
+
+///|
+/// defun invertible-matrixp -- ../share/linearalgebra/lu.lisp:306
+declare fn invertible_matrixp(mat : Value, fld : Value) -> Value raise
+
+///|
+/// defun $cholesky -- ../share/linearalgebra/linalgcholesky.lisp:11
+declare fn d_cholesky(m : Value, fld_name? : Value = q_d_generalring) -> Value raise
+
+///|
+/// defun $eigens_by_jacobi -- ../share/linearalgebra/eigens-by-jacobi.lisp:27
+declare fn d_eigens_by_jacobi(mm : Value, fld_name? : Value = q_d_floatfield) -> Value raise
+
+///|
+/// defun $circulant -- ../share/linearalgebra/linalg-extra.lisp:13
+declare fn d_circulant(lst : Value) -> Value raise
+
+///|
+/// defun $cauchy_matrix -- ../share/linearalgebra/linalg-extra.lisp:25
+declare fn d_cauchy_matrix(p : Value, q? : Value = Nil) -> Value raise
+
+///|
+/// defun $hessian -- ../share/linearalgebra/linalg-extra.lisp:41
+declare fn d_hessian(e : Value, vars : Value) -> Value raise
+
+///|
+/// defun $jacobian -- ../share/linearalgebra/linalg-extra.lisp:51
+declare fn d_jacobian(e : Value, vars : Value) -> Value raise
+
+///|
+/// defun $vandermonde_matrix -- ../share/linearalgebra/linalg-extra.lisp:61
+declare fn d_vandermonde_matrix(l : Value) -> Value raise
+
+///|
+/// defun matrix-sign-sylvester -- ../share/linearalgebra/linalg-extra.lisp:82
+declare fn matrix_sign_sylvester(m : Value) -> Value raise
+
+///|
+/// defun order-of-root -- ../share/linearalgebra/linalg-extra.lisp:95
+declare fn order_of_root(p : Value, x : Value, pt : Value) -> Value raise
+
+///|
+/// defun $matrix_sign -- ../share/linearalgebra/linalg-extra.lisp:116
+declare fn d_matrix_sign(mat : Value) -> Value raise
+
+///|
+/// defun $sylvester_matrix -- ../share/linearalgebra/linalg-extra.lisp:144
+declare fn d_sylvester_matrix(p : Value, q : Value, z : Value) -> Value raise
+
+///|
+/// defun $krylov_matrix -- ../share/linearalgebra/linalg-extra.lisp:180
+declare fn d_krylov_matrix(v : Value, mat : Value, n? : Value = q_no_value) -> Value raise
+
+///|
+/// defun rect-minus-one-power -- ../share/linearalgebra/matrixexp.lisp:33
+declare fn rect_minus_one_power(e : Value) -> Value raise
+
+///|
+/// defun final-simp -- ../share/linearalgebra/matrixexp.lisp:47
+declare fn final_simp(e : Value, depth? : Value = Fix(4L)) -> Value raise
+
+///|
+/// defun matrixexp-simp -- ../share/linearalgebra/matrixexp.lisp:57
+declare fn matrixexp_simp(e : Value, depth? : Value = Fix(4L)) -> Value raise
+
+///|
+/// defmfun $spectral_rep -- ../share/linearalgebra/matrixexp.lisp:69
+declare fn d_spectral_rep(mat : Value) -> Value raise
+
+///|
+/// defun nilpotent-p -- ../share/linearalgebra/matrixexp.lisp:121
+declare fn nilpotent_p(mat : Value) -> Value raise
+
+///|
+/// defmfun $matrixexp -- ../share/linearalgebra/matrixexp.lisp:144
+declare fn d_matrixexp(mat : Value, x? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun require-lambda -- ../share/linearalgebra/matrixexp.lisp:172
+declare fn require_lambda(e : Value, n : Value, pos : Value, fun_name : Value) -> Value raise
+
+///|
+/// defmfun $matrixfun -- ../share/linearalgebra/matrixexp.lisp:180
+declare fn d_matrixfun(lamexpr : Value, mat : Value) -> Value raise
+
+///|
+/// defun rational-residue -- ../share/linearalgebra/matrixexp.lisp:214
+declare fn rational_residue(e : Value, var_ : Value, pt : Value, ker : Value, ord : Value) -> Value raise
+
+///|
+/// defun inform -- ../share/linearalgebra/linalg-utilities.lisp:12
+declare fn inform(level : Value, pck : Value, msg : Value, arg : Value) -> Value raise
+
+///|
+/// defun $require_nonempty_matrix -- ../share/linearalgebra/linalg-utilities.lisp:16
+declare fn d_require_nonempty_matrix(m : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun $blockmatrixp -- ../share/linearalgebra/linalg-utilities.lisp:22
+declare fn d_blockmatrixp(m : Value) -> Value raise
+
+///|
+/// defun $require_matrix -- ../share/linearalgebra/linalg-utilities.lisp:25
+declare fn d_require_matrix(m : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun $require_unblockedmatrix -- ../share/linearalgebra/linalg-utilities.lisp:29
+declare fn d_require_unblockedmatrix(m : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun $require_square_matrix -- ../share/linearalgebra/linalg-utilities.lisp:33
+declare fn d_require_square_matrix(m : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun array-elem -- ../share/linearalgebra/linalg-utilities.lisp:37
+declare fn array_elem(m : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun $require_symmetric_matrix -- ../share/linearalgebra/linalg-utilities.lisp:40
+declare fn d_require_symmetric_matrix(m : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun $require_real_symmetric_matrix -- ../share/linearalgebra/linalg-utilities.lisp:49
+declare fn d_require_real_symmetric_matrix(m : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun $require_selfadjoint_matrix -- ../share/linearalgebra/linalg-utilities.lisp:57
+declare fn d_require_selfadjoint_matrix(m : Value, fun : Value, pos : Value) -> Value raise
+
+///|
+/// defun $matrix_size -- ../share/linearalgebra/linalg-utilities.lisp:70
+declare fn d_matrix_size(m : Value) -> Value raise
+
+///|
+/// defun $require_list -- ../share/linearalgebra/linalg-utilities.lisp:74
+declare fn d_require_list(lst : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun $require_posinteger -- ../share/linearalgebra/linalg-utilities.lisp:78
+declare fn d_require_posinteger(i : Value, pos : Value, fun : Value) -> Value raise
+
+///|
+/// defun matrix-map -- ../share/linearalgebra/linalg-utilities.lisp:82
+declare fn matrix_map(f : Value, mat : Value) -> Value raise
+
+///|
+/// defun full-matrix-map -- ../share/linearalgebra/linalg-utilities.lisp:90
+declare fn full_matrix_map(fn_ : Value, m : Value) -> Value raise
+
+///|
+/// defun $zerofor -- ../share/linearalgebra/linalg-utilities.lisp:95
+declare fn d_zerofor(mat : Value, fld_name? : Value = q_d_generalring) -> Value raise
+
+///|
+/// defun zerofor -- ../share/linearalgebra/linalg-utilities.lisp:100
+declare fn zerofor(mat : Value, zero : Value) -> Value raise
+
+///|
+/// defun $identfor -- ../share/linearalgebra/linalg-utilities.lisp:111
+declare fn d_identfor(mat : Value, fld_name? : Value = q_d_generalring) -> Value raise
+
+///|
+/// defun identfor -- ../share/linearalgebra/linalg-utilities.lisp:117
+declare fn identfor(mat : Value, zero : Value, one : Value) -> Value raise
+
+///|
+/// defun $ctranspose -- ../share/linearalgebra/linalg-utilities.lisp:136
+declare fn d_ctranspose(m : Value) -> Value raise
+
+///|
+/// defun $zeromatrixp -- ../share/linearalgebra/linalg-utilities.lisp:139
+declare fn d_zeromatrixp(m : Value) -> Value raise
+
+///|
+/// defun array-to-row-list -- ../share/linearalgebra/linalg-utilities.lisp:143
+declare fn array_to_row_list(mat : Value, fn_? : Value = q_identity) -> Value raise
+
+///|
+/// defun array-to-maxima-matrix -- ../share/linearalgebra/linalg-utilities.lisp:155
+declare fn array_to_maxima_matrix(mat : Value, fn_? : Value = q_identity) -> Value raise
+
+///|
+/// defun array-to-maxima-list -- ../share/linearalgebra/linalg-utilities.lisp:158
+declare fn array_to_maxima_list(ar : Value, fn_? : Value = q_identity) -> Value raise
+
+///|
+/// defun maxima-to-array -- ../share/linearalgebra/linalg-utilities.lisp:161
+declare fn maxima_to_array(mat : Value, fn_? : Value = q_identity, typ? : Value = Nil) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -28460,4 +29114,40 @@ declare fn init_share_unwind_protect() -> Unit raise
 ///|
 /// top-level forms of ../share/contrib/Grobner/grobner.lisp
 declare fn init_share_grobner() -> Unit raise
+
+///|
+/// top-level forms of ../share/orthopoly/orthopoly.lisp
+declare fn init_share_orthopoly() -> Unit raise
+
+///|
+/// top-level forms of ../share/trigonometry/trigrat.lisp
+declare fn init_share_trigrat() -> Unit raise
+
+///|
+/// top-level forms of ../share/linearalgebra/mring.lisp
+declare fn init_share_mring() -> Unit raise
+
+///|
+/// top-level forms of ../share/linearalgebra/lu.lisp
+declare fn init_share_lu() -> Unit raise
+
+///|
+/// top-level forms of ../share/linearalgebra/linalgcholesky.lisp
+declare fn init_share_linalgcholesky() -> Unit raise
+
+///|
+/// top-level forms of ../share/linearalgebra/eigens-by-jacobi.lisp
+declare fn init_share_eigens_by_jacobi() -> Unit raise
+
+///|
+/// top-level forms of ../share/linearalgebra/linalg-extra.lisp
+declare fn init_share_linalg_extra() -> Unit raise
+
+///|
+/// top-level forms of ../share/linearalgebra/matrixexp.lisp
+declare fn init_share_matrixexp() -> Unit raise
+
+///|
+/// top-level forms of ../share/linearalgebra/linalg-utilities.lisp
+declare fn init_share_linalg_utilities() -> Unit raise
 
