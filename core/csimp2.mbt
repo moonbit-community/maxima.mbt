@@ -1389,6 +1389,9 @@ fn xrutout(
 
 ///|
 fn init_csimp2() -> Unit raise {
+  // defmvar's maybe-reset: record the initial values for reset().
+  defmvar(q_d_gammalim, val=Fix(10000L), Nil) |> ignore
+  defmvar(q_d_beta_args_sum_to_integer, val=Nil, Nil) |> ignore
   // Binomial has Mirror symmetry
   putprop(q_p_binomial, t, q_commutes_with_conjugate) |> ignore
   // gradient of binomial

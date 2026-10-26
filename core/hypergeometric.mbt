@@ -1182,6 +1182,14 @@ fn hyp_integral_3(a : Value, b : Value, z : Value) -> Value raise {
 
 ///|
 fn init_hypergeometric() -> Unit raise {
+  // defmvar's maybe-reset: record the initial values for reset().
+  // hyp.lisp has no other top-level forms, so its defmvars are recorded
+  // here as well.
+  defmvar(q_d_prefer_whittaker, val=Nil, Nil) |> ignore
+  defmvar(q_d_prefer_gamma_incomplete, val=Nil, Nil) |> ignore
+  defmvar(q_d_expand_polynomials, val=t, Nil) |> ignore
+  defmvar(q_d_max_fpprec, val=Fix(1000L), Nil) |> ignore
+  defmvar(q_d_expand_hypergeometric, val=Nil, Nil) |> ignore
   putprop(
     q_d_max_fpprec,
     lfunc("max_fpprec-assign", args => {
@@ -1219,6 +1227,7 @@ fn init_hypergeometric() -> Unit raise {
   )
   |> ignore
   putprop(q_d_multiple_values, q_simp_multiple_values, q_operators) |> ignore
+  defmvar(q_d_multiple_value_return, val=Nil, Nil) |> ignore
 
   // We don't want realpart and imagpart to think that hypergeometric
   // functions are real valued. So declare hypergeometric to be complex.
