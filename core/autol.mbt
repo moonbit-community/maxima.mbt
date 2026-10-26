@@ -1,16 +1,16 @@
 // Port of src/autol.lisp: helper functions for autoloading. The actual
 // autoloading data is in max_ext.mbt.
 //
-// The port has no Lisp loader: AALOAD of a Lisp file calls the registry
-// hook `autol__load_lisp_hook` (by default a Maxima error), while Maxima
-// (.mac) files are loaded with BATCHLOAD as in the Lisp source.
+// AALOAD of a Lisp file runs the ported share file if there is one, else
+// loads the source with the Lisp evaluator (`autol__load_lisp_hook`), while
+// Maxima (.mac) files are loaded with BATCHLOAD as in the Lisp source.
 
 ///|
 /// Loader for Lisp source files found by AALOAD (receives the path).
-let autol__load_lisp_hook : Ref[(String) -> Value raise] = Ref(path => merr(
-  "load: cannot load Lisp file ~A in this port",
-  [Str(path)],
-))
+let autol__load_lisp_hook : Ref[(String) -> Value raise] = Ref(path => {
+  lisp_load_file(path)
+  t
+})
 
 ///|
 /// CL `|_l|` (the rest-argument name in autoload stubs), as a port symbol.
@@ -18,7 +18,7 @@ let autol__q_l : Value = sym(invert_case("_l"))
 
 ///|
 fn aload(file : Value) -> Value raise {
-  // (*read-base* 10.) and *load-verbose* have no counterpart in the port.
+  // *load-verbose* has no counterpart in the port.
   let tem = with_special(q_d_system, list1(list1(q_mlist)), () => d_file_search1(
     file,
     list3(list1(q_mlist), q_d_file_search_lisp, q_d_system),
@@ -28,11 +28,11 @@ fn aload(file : Value) -> Value raise {
       Str(s) => s
       _ => princ_to_string(tem)
     }
-    if share_try_load(path) {
+    with_special(q_ear_read_base, Fix(10L), () => if share_try_load(path) {
       t
     } else {
       (autol__load_lisp_hook.val)(path)
-    }
+    })
   } else {
     Nil
   }

@@ -517,8 +517,8 @@ pub fn keywordp(x : Value) -> Bool {
 }
 
 ///|
-/// Keyword symbols are stored as ":name" with an alphabetic first character;
-/// Maxima operator symbols such as ":" and "::=" are ordinary symbols.
+/// Keyword symbols are stored as ":name"; Maxima operator symbols such as
+/// ":", ":=", "::" and "::=" are ordinary symbols.
 pub fn is_keyword_name(name : String) -> Bool {
-  name.length() > 1 && name[0] == ':' && name[1].to_int().unsafe_to_char().is_ascii_alphabetic()
+  name.length() > 1 && name[0] == ':' && name[1] != ':' && name[1] != '='
 }

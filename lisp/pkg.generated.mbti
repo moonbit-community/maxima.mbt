@@ -473,6 +473,12 @@ pub fn lread(String) -> Value raise LispError
 
 pub fn lread_all(String) -> Array[Value] raise LispError
 
+pub fn lread_from_string(String, start? : Int32, eof_error? : Bool, eof_value? : Value) -> (Value, Int32) raise LispError
+
+pub fn lread_source_all(String, (Value) -> Unit raise) -> Unit raise
+
+pub fn lread_stream(Value, eof_error? : Bool, eof_value? : Value) -> Value raise LispError
+
 pub fn lsin(Value) -> Value raise LispError
 
 pub fn lsinh(Value) -> Value raise LispError
@@ -663,6 +669,12 @@ pub fn push_special(Value, Value) -> Value
 
 pub fn putprop(Value, Value, Value) -> Value
 
+pub let q_quasiquote : Value
+
+pub let q_unquote : Value
+
+pub let q_unquote_splicing : Value
+
 pub fn rassoc(Value, Value) -> Value
 
 pub fn ratio_to_double(@bigint.BigInt, @bigint.BigInt) -> Double
@@ -677,13 +689,19 @@ pub fn ratiop(Value) -> Bool
 
 pub fn read_char(stream? : Value, eof_value? : Value) -> Value
 
+pub let read_eval_hook : @ref.Ref[(Value) -> Value raise]
+
 pub fn read_file(String) -> String raise LispError
 
 pub fn read_file_bytes(String) -> Bytes raise LispError
 
 pub fn read_line(stream? : Value) -> String?
 
+pub let read_maxima_hook : @ref.Ref[(String) -> Value raise]
+
 pub fn read_stdin_line() -> String?
+
+pub let reader_package : @ref.Ref[String]
 
 pub fn realp(Value) -> Bool
 

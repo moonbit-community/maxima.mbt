@@ -1169,9 +1169,17 @@ fn adjust_character_encoding() -> Value raise {
 }
 
 ///|
-/// The port has no Lisp read-eval-print loop.
 fn d_to_lisp() -> Value raise {
-  merr("to_lisp: not supported in this port", [])
+  format(t, "~&Type (to-maxima) to restart, ($quit) to quit Maxima.~%", [])
+  |> ignore
+  catch_tag(q_to_maxima, () => {
+    defer {
+      format(t, "Returning to Maxima~%", []) |> ignore catch {
+        _ => ()
+      }
+    }
+    maxima_read_eval_print_loop()
+  })
 }
 
 ///|
@@ -1181,15 +1189,49 @@ fn to_maxima() -> Value raise {
 
 ///|
 /// Evaluate FORM, returning whatever it returns but adjust ***, **, *, +++,
-/// ++, +, ///, //, /, and -. Lisp EVAL is not available in the port.
+/// ++, +, ///, //, /, and -.
 fn interactive_eval(form : Value) -> Value raise {
-  ignore(form)
-  merr("interactive-eval: Lisp evaluation is not supported in this port", [])
+  set(sym("-"), form) |> ignore
+  let results = list(lisp_eval_form_values(form))
+  set(sym("///"), symval(sym("//"))) |> ignore
+  set(sym("//"), symval(sym("/"))) |> ignore
+  set(sym("/"), results) |> ignore
+  set(sym("***"), symval(sym("**"))) |> ignore
+  set(sym("**"), symval(sym("*"))) |> ignore
+  set(sym("*"), car(results)) |> ignore
+  set(sym("+++"), symval(sym("++"))) |> ignore
+  set(sym("++"), symval(sym("+"))) |> ignore
+  set(sym("+"), symval(sym("-"))) |> ignore
+  symval(sym("/"))
 }
 
 ///|
 fn maxima_read_eval_print_loop() -> Value raise {
-  merr("to_lisp: the Lisp read-eval-print loop is not supported in this port", [])
+  let eof = gensym()
+  while true {
+    catch_tag(q_to_maxima_repl, () => {
+      format_prompt(t, Str("~%~A> "), list1(Str("MAXIMA"))) |> ignore
+      finish_output()
+      let input = lisp_read(symval(standard_input), eof)
+      // Return to Maxima on EOF
+      if physical_equal_value(input, eof) {
+        fresh_line() |> ignore
+        to_maxima() |> ignore
+      }
+      let results = interactive_eval(input) catch {
+        e if suprv1__control_transfer(e) => raise e
+        e =>
+          maxima_lisp_debugger_repl(
+            Str(suprv1__error_text(e)),
+            Nil,
+          )
+      }
+      format(t, "~{~&~S~}", [results]) |> ignore
+      Nil
+    })
+    |> ignore
+  }
+  Nil
 }
 
 ///|

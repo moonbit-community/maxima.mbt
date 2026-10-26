@@ -92,14 +92,32 @@ fn mlisp__int_indices(sub : Value) -> Array[Int] raise {
 }
 
 ///|
-/// Get the compiled function for the Lisp lambda expression FN. The port
-/// has no Lisp compiler, so Lisp lambda expressions cannot be applied.
+/// Get the compiled function for the Lisp lambda expression FN, using
+/// *LAMBDA-EXPR-FUNS* as a cache to reduce compiler invocations.
 fn lambda_expr_fun(fn_ : Value) -> Value raise {
-  raise LispError::SimpleError(
-    "lambda-expr-fun: applying the Lisp lambda expression " +
-    prin1_to_string(fn_) +
-    " is not supported in this port",
-  )
+  if num_eq(symval(q_ear_lambda_expr_funs_max), Fix(0L)) {
+    return lisp_function_of_lambda(fn_)
+  }
+  let table = symval(q_ear_lambda_expr_funs)
+  let (cached, found) = gethash2(fn_, table)
+  if found && cached.truthy() {
+    return cached
+  }
+  let n = hash_table_count(table)
+  if n >= to_int(symval(q_ear_lambda_expr_funs_max)) {
+    // Hash table at the limit - drop a random entry.
+    match table {
+      Hash(h) => {
+        let entries = h.entries()
+        let k = (wall_time_ms() % n.to_uint64()).to_int()
+        remhash(entries[k].0, table) |> ignore
+      }
+      _ => ()
+    }
+  }
+  let f = lisp_function_of_lambda(fn_)
+  sethash(fn_, table, f) |> ignore
+  f
 }
 
 ///|
@@ -533,11 +551,7 @@ fn meval1(form : Value) -> (Value, Value) raise {
           return (mlambda(cadr(u), cdr(form), op, symval(q_noevalargs), form), Nil)
         } else if eq(ty, q_macro) {
           set(q_noevalargs, Nil) |> ignore
-          raise LispError::SimpleError(
-            "meval1: evaluating the Lisp macro form " +
-            prin1_to_string(cons(op, cdr(form))) +
-            " is not supported in this port",
-          )
+          return (lisp_eval_form(cons(op, cdr(form))), Nil)
         } else {
           return (apply(cadr(u), mevalargs(cdr(form))), Nil)
         }
@@ -623,8 +637,9 @@ fn getl_lm_fcn_prop(sym_ : Value, props : Value) -> Value raise {
     typ = q_subr
   } else if !symbolp(sym_) {
     ()
+  } else if lisp_macro_p(sym_) {
+    typ = q_macro
   } else {
-    // (MACRO-FUNCTION SYM) is always false: the port has no Lisp macros.
     fn_ = get(sym_, q_array)
     if fn_.truthy() {
       typ = q_array

@@ -202,13 +202,35 @@ fn macsys__dbm_read(
         Some(l) => l
         None => ""
       }
+      macsys__need_prompt.val = true
+      // :lisp / :lisp-quiet (mdebug.lisp's LISP-EVAL and LISP-QUIET): the
+      // rest of the line is read as a list of forms and evaluated.
+      let cmd = string_downcase(
+        match line.find(" ") {
+          Some(i) => line.substring(end=i)
+          None => line
+        },
+      ).trim_end(chars=";$").to_string()
+      if cmd == ":lisp" || cmd == ":lisp-quiet" {
+        let all = lisp_read(
+          make_string_input_stream("(" + string_right_trim(";", line) + ")"),
+          Nil,
+        )
+        let vals = lisp_eval_form_values(cons(sym("progn"), cdr(all)))
+        if cmd == ":lisp" {
+          for v in vals {
+            fresh_line(stream=symval(standard_output)) |> ignore
+            princ(v) |> ignore
+          }
+        }
+        return list1(kw("_none"))
+      }
       suprv1__fmt(
         t,
         "~&Break commands are not supported in this port: ~A~%",
         [Str(line)],
       )
       |> ignore
-      macsys__need_prompt.val = true
       return list1(kw("_none"))
     }
     if c == '?' {
@@ -584,10 +606,15 @@ fn d_eval_string_lisp(string_ : Value) -> (Value, Value) raise {
   if !stringp(string_) {
     merr("eval_string_lisp: Expected a string, got ~M.", [string_]) |> ignore
   }
-  let forms = lread_all(lstring(string_))
   let mut values : Value = Nil
-  for f in forms {
-    values = list1(suprv1__lisp_eval(f))
+  let st = make_string_input_stream(lstring(string_))
+  let eof = cons(Fix(0L), Fix(0L))
+  while true {
+    let input = lisp_read(st, eof)
+    if physical_equal_value(input, eof) {
+      break
+    }
+    values = list(lisp_eval_form_values(input))
   }
   // Mark the list as simplified
   (cons(list2(q_mlist, q_simp), values), Nil)
