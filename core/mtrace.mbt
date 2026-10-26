@@ -453,7 +453,8 @@ fn trace_handler(fun : Value, largs : Value) -> (Value, Value) raise {
     ) {
     // We were called by the trace-handler or by $untrace and the function
     // fun is to be untraced.
-    return (trace_apply(fun, largs), Nil)
+    let vals = mtrace__trace_apply_mvl(fun, largs)
+    return (car(vals), cadr(vals))
   }
   let level_sym = trace_level(fun)
   with_specials(
@@ -490,7 +491,7 @@ fn trace_handler(fun : Value, largs : Value) -> (Value, Value) raise {
             }
           } else {
             continuation = q_exit
-            ret_vals = list1(trace_apply(fun, largs))
+            ret_vals = mtrace__trace_apply_mvl(fun, largs)
           }
           if eq(continuation, q_exit) {
             set(q_predicate_arglist, list([level, q_d_exit, fun, car(ret_vals)]))
@@ -816,25 +817,61 @@ fn macsyma_fsymeval_sub(fun : Value) -> Value raise {
 /// HANDLER, meval...
 fn make_trace_hook(fun : Value, type_ : Value, handler : Value) -> Value raise {
   ignore(type_)
-  lfunc("trace-hook", trace_args => funcall(handler, [fun, list(trace_args)]))
+  // The hook returns all the values of the handler (rules return two
+  // values, see matcom.mbt): the multiple-valued version is registered in
+  // matcom__mv_fns under the hook's unique name.
+  let call_mv = (trace_args : Array[Value]) => if eq(handler, q_trace_handler) {
+    trace_handler(fun, list(trace_args))
+  } else if eq(handler, q_timer_handler) {
+    let vals = mtrace__timer_handler_mvl(fun, list(trace_args))
+    (car(vals), cadr(vals))
+  } else {
+    (funcall(handler, [fun, list(trace_args)]), Nil)
+  }
+  matcom__fn_counter.val += 1
+  let id = "trace-hook-" + matcom__fn_counter.val.to_string()
+  matcom__mv_fns[id] = call_mv
+  lfunc(id, trace_args => call_mv(trace_args).0)
 }
 
 ///|
 fn trace_apply(fun : Value, largs : Value) -> Value raise {
+  car(mtrace__trace_apply_mvl(fun, largs))
+}
+
+///|
+/// `(multiple-value-list (trace-apply fun largs))`
+fn mtrace__trace_apply_mvl(fun : Value, largs : Value) -> Value raise {
   let prop = trace_fsymeval(fun)
   let type_ = trace_type(fun)
   with_special(q_return_to_trace_handle, Nil, () => {
     if eq(type_, q_mexpr) {
-      mapply(prop, largs, Str("A traced function"))
+      list1(mapply(prop, largs, Str("A traced function")))
     } else if eq(type_, q_expr) ||
       eq(type_, q_subr) ||
       eq(type_, q_lsubr) ||
       eq(type_, q_operators) {
-      apply(prop, largs)
+      let lf = match prop {
+        Func(lf) => Some(lf)
+        Sym({ func: Some(lf), .. }) => Some(lf)
+        _ => None
+      }
+      match lf {
+        Some(lf) =>
+          match matcom__mv_fns.get(lf.name) {
+            Some(g) => {
+              let (a, b) = g(list_to_array(largs))
+              return list2(a, b)
+            }
+            None => ()
+          }
+        None => ()
+      }
+      list1(apply(prop, largs))
     } else if eq(type_, q_mfexpr_star) || eq(type_, q_mfexpr_stars) {
-      funcall(prop, [car(largs)])
+      list1(funcall(prop, [car(largs)]))
     } else {
-      Nil
+      list1(Nil)
     }
   })
 }
@@ -1006,11 +1043,18 @@ fn d_timer_reset(maybe_funs : Value) -> Value raise {
 /// ERRSET ERROR and CATCH and THROW, as these are rare and the overhead
 /// for the unwind-protect is high.
 fn timer_handler(fun : Value, largs : Value) -> Value raise {
+  car(mtrace__timer_handler_mvl(fun, largs))
+}
+
+///|
+/// TIMER-HANDLER returning `(multiple-value-list ...)` of its
+/// MULTIPLE-VALUE-PROG1.
+fn mtrace__timer_handler_mvl(fun : Value, largs : Value) -> Value raise {
   let mut runtime = mtrace__get_internal_run_time()
   let mut gctime : Value = Fix(0L) // (status gctime) is 0
   let mut old_runtime_devalue = symval(q_runtime_devalue)
   let mut old_gctime_devalue = symval(q_gctime_devalue)
-  let result = trace_apply(fun, largs)
+  let result = mtrace__trace_apply_mvl(fun, largs)
   old_runtime_devalue = num_sub(symval(q_runtime_devalue), old_runtime_devalue)
   old_gctime_devalue = num_sub(symval(q_gctime_devalue), old_gctime_devalue)
   runtime = num_sub(
