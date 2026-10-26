@@ -7287,3 +7287,467 @@ fn register_generated_simplifiers() -> Unit {
   putprop(q_p_sinc, q_d_sinc, q_noun) |> ignore
   putprop(q_d_sinc, q_p_sinc, q_verb) |> ignore
 }
+
+///|
+fn register_share_eval_string() -> Unit {
+  defun(q_d_eval_string, args => d_eval_string(arg(args, 0)))
+  defun(q_d_parse_string, args => d_parse_string(arg(args, 0)))
+  defun(q_parse_string, args => parse_string(arg(args, 0)))
+  defun(q_ensure_terminator, args => ensure_terminator(arg(args, 0)))
+}
+
+///|
+fn register_share_unicode_sniffer() -> Unit {
+  defun(q_sniffer_match, args => sniffer_match(arg(args, 0), arg(args, 1)))
+  defun(q_sniffer_match_search, args => sniffer_match_search(arg(args, 0)))
+  defun(q_unicode_sniffer, args => unicode_sniffer(arg(args, 0)))
+  defun(q_d_inferred_encoding, args => d_inferred_encoding(arg(args, 0)))
+  defun(q_check_encoding, args => check_encoding(arg(args, 0)))
+  defun(q_check_encoding_sbcl, args => check_encoding_sbcl(arg(args, 0)))
+  defun(q_d_recognized_encoding_p, args => d_recognized_encoding_p(arg(args, 0)))
+}
+
+///|
+fn register_share_stringproc() -> Unit {
+  defun(q_init__starparse_utf_8_input_star, args => init__starparse_utf_8_input_star())
+  defun(q_string_to_raw_bytes, args => string_to_raw_bytes(arg(args, 0)))
+  defun(q_set__starparse_utf_8_input_star, args => set__starparse_utf_8_input_star(arg(args, 0), arg(args, 1)))
+  defun(q_io_error, args => io_error(arg(args, 0), arg(args, 1)))
+  defun(q_s_error1, args => s_error1(arg(args, 0), arg(args, 1)))
+  defun(q_s_error2, args => s_error2(arg(args, 0), arg(args, 1)))
+  defun(q_s_pos_error1, args => s_pos_error1(arg(args, 0), arg(args, 1)))
+  defun(q_s_pos_error2, args => s_pos_error2(arg(args, 0)))
+  defun(q_d_openw, args => d_openw(arg(args, 0), enc?=args.get(1)))
+  defun(q_d_opena, args => d_opena(arg(args, 0), enc?=args.get(1)))
+  defun(q_d_openr, args => d_openr(arg(args, 0), enc?=args.get(1)))
+  defun(q_d_make_string_input_stream, args => d_make_string_input_stream(arg(args, 0), start?=args.get(1), end?=args.get(2)))
+  defun(q_d_make_string_output_stream, args => d_make_string_output_stream())
+  defun(q_d_get_output_stream_string, args => d_get_output_stream_string(arg(args, 0)))
+  defun(q_d_close, args => d_close(arg(args, 0)))
+  defun(q_d_flush_output, args => d_flush_output(arg(args, 0)))
+  defun(q_d_flength, args => d_flength(arg(args, 0)))
+  defun(q_d_fposition, args => d_fposition(arg(args, 0), pos?=args.get(1)))
+  defun(q_d_readline, args => d_readline(arg(args, 0)))
+  defun(q_d_readchar, args => d_readchar(arg(args, 0)))
+  defun(q_d_readbyte, args => d_readbyte(arg(args, 0)))
+  defun(q_d_writebyte, args => d_writebyte(arg(args, 0), arg(args, 1)))
+  defun(q_d_freshline, args => d_freshline(stream?=args.get(0)))
+  defun(q_d_newline, args => d_newline(stream?=args.get(0)))
+  defun(q_get_encoding, args => get_encoding(arg(args, 0), arg(args, 1)))
+  defun(q_is_ignored, args => is_ignored(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_adjust_external_format, args => d_adjust_external_format())
+  defun(q_use_cp, args => use_cp(arg(args, 0), arg(args, 1)))
+  defun(q_d_charp, args => d_charp(arg(args, 0)))
+  defun(q_d_lchar, args => d_lchar(arg(args, 0)))
+  defun(q_l_char, args => l_char(arg(args, 0)))
+  defun(q_cunlisp, args => cunlisp(arg(args, 0)))
+  defun(q_d_lcharp, args => d_lcharp(arg(args, 0)))
+  defun(q_d_constituent, args => d_constituent(arg(args, 0)))
+  defun(q_d_alphanumericp, args => d_alphanumericp(arg(args, 0)))
+  defun(q_d_alphacharp, args => d_alphacharp(arg(args, 0)))
+  defun(q_d_lowercasep, args => d_lowercasep(arg(args, 0)))
+  defun(q_d_uppercasep, args => d_uppercasep(arg(args, 0)))
+  defun(q_d_digitcharp, args => d_digitcharp(arg(args, 0)))
+  defun(q_d_cint, args => d_cint(arg(args, 0)))
+  defun(q_mc2int, args => mc2int(arg(args, 0)))
+  defun(q_d_ascii, args => d_ascii(arg(args, 0)))
+  defun(q_d_unicode, args => d_unicode(arg(args, 0)))
+  defun(q_d_utf8_to_unicode, args => d_utf8_to_unicode(arg(args, 0)))
+  defun(q_d_unicode_to_utf8, args => d_unicode_to_utf8(arg(args, 0)))
+  defun(q_utf8_to_unicode_error, args => utf8_to_unicode_error())
+  defun(q_utf8_to_uc, args => utf8_to_uc(arg(args, 0)))
+  defun(q_uc_to_utf8, args => uc_to_utf8(arg(args, 0)))
+  defun(q_d_cequal, args => d_cequal(arg(args, 0), arg(args, 1)))
+  defun(q_d_clessp, args => d_clessp(arg(args, 0), arg(args, 1)))
+  defun(q_d_cgreaterp, args => d_cgreaterp(arg(args, 0), arg(args, 1)))
+  defun(q_d_cequalignore, args => d_cequalignore(arg(args, 0), arg(args, 1)))
+  defun(q_d_clesspignore, args => d_clesspignore(arg(args, 0), arg(args, 1)))
+  defun(q_d_cgreaterpignore, args => d_cgreaterpignore(arg(args, 0), arg(args, 1)))
+  defun(q_cequal, args => cequal(arg(args, 0), arg(args, 1)))
+  defun(q_clessp, args => clessp(arg(args, 0), arg(args, 1)))
+  defun(q_cgreaterp, args => cgreaterp(arg(args, 0), arg(args, 1)))
+  defun(q_cequalignore, args => cequalignore(arg(args, 0), arg(args, 1)))
+  defun(q_clesspignore, args => clesspignore(arg(args, 0), arg(args, 1)))
+  defun(q_cgreaterpignore, args => cgreaterpignore(arg(args, 0), arg(args, 1)))
+  defun(q_d_tab, args => d_tab())
+  defun(q_rm_first_utf_8_char, args => rm_first_utf_8_char(arg(args, 0)).0)
+  defun(q_utf_8_m_char, args => utf_8_m_char(arg(args, 0), arg(args, 1)))
+  defun(q_utf_8_pos_dec, args => utf_8_pos_dec(arg(args, 0), arg(args, 1)))
+  defun(q_utf_8_fix_start_end, args => utf_8_fix_start_end(arg(args, 0), arg(args, 1)))
+  defun(q_utf_8_pos_inc, args => utf_8_pos_inc(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_stringp, args => d_stringp(arg(args, 0)))
+  defun(q_d_scopy, args => d_scopy(arg(args, 0)))
+  defun(q_d_smake, args => d_smake(arg(args, 0), arg(args, 1)))
+  defun(q_d_charat, args => d_charat(arg(args, 0), arg(args, 1)))
+  defun(q_d_charlist, args => d_charlist(arg(args, 0)))
+  defun(q_utf_8_charlist, args => utf_8_charlist(arg(args, 0)))
+  defun(q_d_sexplode, args => d_sexplode(arg(args, 0)))
+  defun(q_d_tokens, args => d_tokens(arg(args, 0), test_?=args.get(1)))
+  defun(q_tokens, args => tokens(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_constituent, args => constituent(arg(args, 0)))
+  defun(q_alphacharp, args => alphacharp(arg(args, 0)))
+  defun(q_digitcharp, args => digitcharp(arg(args, 0)))
+  defun(q_lowercasep, args => lowercasep(arg(args, 0)))
+  defun(q_uppercasep, args => uppercasep(arg(args, 0)))
+  defun(q_charp, args => charp(arg(args, 0)))
+  defun(q_d_split, args => d_split(arg(args, 0), rest_args(args, 1)))
+  defun(q_split, args => split(arg(args, 0), arg(args, 1), multiple_q?=args.get(2)))
+  defun(q_d_simplode, args => d_simplode(arg(args, 0), ds?=args.get(1)))
+  defun(q_d_slength, args => d_slength(arg(args, 0)))
+  defun(q_utf_8_slength, args => utf_8_slength(arg(args, 0)))
+  defun(q_d_sposition, args => d_sposition(arg(args, 0), arg(args, 1)))
+  defun(q_d_sreverse, args => d_sreverse(arg(args, 0)))
+  defun(q_utf_8_sreverse, args => utf_8_sreverse(arg(args, 0)))
+  defun(q_d_substring, args => d_substring(arg(args, 0), arg(args, 1), end?=args.get(2)))
+  defun(q_d_sequal, args => d_sequal(arg(args, 0), arg(args, 1)))
+  defun(q_d_sequalignore, args => d_sequalignore(arg(args, 0), arg(args, 1)))
+  defun(q_d_slessp, args => d_slessp(arg(args, 0), arg(args, 1)))
+  defun(q_d_sgreaterp, args => d_sgreaterp(arg(args, 0), arg(args, 1)))
+  defun(q_d_slesspignore, args => d_slesspignore(arg(args, 0), arg(args, 1)))
+  defun(q_d_sgreaterpignore, args => d_sgreaterpignore(arg(args, 0), arg(args, 1)))
+  defun(q_scompare, args => scompare(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_chars_to_compare, args => chars_to_compare(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_parse_utf_8_header, args => parse_utf_8_header(arg(args, 0), arg(args, 1)))
+  defun(q_d_smismatch, args => d_smismatch(arg(args, 0), arg(args, 1), test_?=args.get(2)))
+  defun(q_d_ssearch, args => d_ssearch(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_ssearch, args => ssearch(arg(args, 0), arg(args, 1), test_?=args.get(2), start?=args.get(3), end?=args.get(4)))
+  defun(q_s_optional_args, args => s_optional_args(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_ssubstfirst, args => d_ssubstfirst(arg(args, 0), arg(args, 1), arg(args, 2), rest_args(args, 3)))
+  defun(q_ssubstfirst, args => ssubstfirst(arg(args, 0), arg(args, 1), arg(args, 2), test_?=args.get(3), start?=args.get(4), end?=args.get(5), matched_q?=args.get(6)))
+  defun(q_d_ssubst, args => d_ssubst(arg(args, 0), arg(args, 1), arg(args, 2), rest_args(args, 3)))
+  defun(q_ssubst, args => ssubst(arg(args, 0), arg(args, 1), arg(args, 2), test_?=args.get(3), start?=args.get(4), end?=args.get(5)))
+  defun(q_d_sremovefirst, args => d_sremovefirst(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_sremovefirst, args => sremovefirst(arg(args, 0), arg(args, 1), test_?=args.get(2), start?=args.get(3), end?=args.get(4)))
+  defun(q_d_sremove, args => d_sremove(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_sremove, args => sremove(arg(args, 0), arg(args, 1), test_?=args.get(2), start?=args.get(3), end?=args.get(4)))
+  defun(q_d_sinsert, args => d_sinsert(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_ssort, args => d_ssort(arg(args, 0), test_?=args.get(1)))
+  defun(q_utf_8_ssort, args => utf_8_ssort(arg(args, 0), test_?=args.get(1)))
+  defun(q_d_strim, args => d_strim(arg(args, 0), arg(args, 1)))
+  defun(q_d_striml, args => d_striml(arg(args, 0), arg(args, 1)))
+  defun(q_d_strimr, args => d_strimr(arg(args, 0), arg(args, 1)))
+  defun(q_d_supcase, args => d_supcase(arg(args, 0), start?=args.get(1), end?=args.get(2)))
+  defun(q_d_sdowncase, args => d_sdowncase(arg(args, 0), start?=args.get(1), end?=args.get(2)))
+  defun(q_change_case, args => change_case(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4)))
+  defun(q_d_sinvertcase, args => d_sinvertcase(arg(args, 0), start?=args.get(1), end?=args.get(2)))
+  defun(q_s_invert_case, args => s_invert_case(arg(args, 0)))
+  defun(q_c_invert_case, args => c_invert_case(arg(args, 0)))
+}
+
+///|
+fn register_share_printf() -> Unit {
+  defun(q_d_sprint, args => d_sprint(rest_args(args, 0)))
+  defun(q_reconstitute_tilde_m, args => reconstitute_tilde_m(arg(args, 0)))
+  defun(q_generate_tilde_m_placeholder, args => generate_tilde_m_placeholder())
+  defun(q_d_printf, args => d_printf(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_prepare_args, args => prepare_args(arg(args, 0), arg(args, 1), arg(args, 2), loop_?=args.get(3)))
+  defun(q_prepare_ctrls, args => prepare_ctrls(arg(args, 0)))
+  defun(q_spec_position, args => spec_position(arg(args, 0), arg(args, 1)))
+  defun(q_count_v, args => count_v(arg(args, 0)))
+  defun(q_check_v_hash, args => check_v_hash(arg(args, 0)))
+  defun(q_iter_positions, args => iter_positions(arg(args, 0), arg(args, 1)))
+  defun(q_split_at_comma, args => split_at_comma(arg(args, 0)))
+  defun(q_prepare_arg, args => prepare_arg(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_bprintf, args => bprintf(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5), arg(args, 6), arg(args, 7)))
+}
+
+///|
+fn register_share_cryptools() -> Unit {
+  defun(q_d_string_to_octets, args => d_string_to_octets(arg(args, 0), enc?=args.get(1)))
+  defun(q_string_to_octets, args => string_to_octets(arg(args, 0), enc?=args.get(1)))
+  defun(q_d_octets_to_string, args => d_octets_to_string(arg(args, 0), enc?=args.get(1)))
+  defun(q_octets_to_string, args => octets_to_string(arg(args, 0), enc?=args.get(1)))
+  defun(q_word_to_octets, args => word_to_octets(arg(args, 0)))
+  defun(q_number_to_octets, args => number_to_octets(arg(args, 0)))
+  defun(q_octets_to_number, args => octets_to_number(arg(args, 0)))
+  defun(q_d_number_to_octets, args => { check_arity_range("$number_to_octets", args, 1, 1); d_number_to_octets(arg(args, 0)) })
+  putprop(q_d_number_to_octets, t, q_translated) |> ignore
+  defun(q_d_octets_to_number, args => { check_arity_range("$octets_to_number", args, 1, 1); d_octets_to_number(arg(args, 0)) })
+  putprop(q_d_octets_to_number, t, q_translated) |> ignore
+  defun(q_oid_number_to_7bit, args => oid_number_to_7bit(arg(args, 0)))
+  defun(q_oid_to_octets, args => oid_to_octets(arg(args, 0)))
+  defun(q_d_oid_to_octets, args => { check_arity_range("$oid_to_octets", args, 1, 1); d_oid_to_octets(arg(args, 0)) })
+  putprop(q_d_oid_to_octets, t, q_translated) |> ignore
+  defun(q_oid_split, args => oid_split(arg(args, 0)).0)
+  defun(q_octets_to_oid_1, args => octets_to_oid_1(arg(args, 0)))
+  defun(q_octets_to_oid, args => octets_to_oid(arg(args, 0)))
+  defun(q_d_octets_to_oid, args => { check_arity_range("$octets_to_oid", args, 1, 1); d_octets_to_oid(arg(args, 0)) })
+  putprop(q_d_octets_to_oid, t, q_translated) |> ignore
+  defun(q_crc24sum, args => crc24sum(arg(args, 0)))
+  defun(q_d_crc24sum, args => { check_arity_range("$crc24sum", args, 1, 2); d_crc24sum(arg(args, 0), rtype?=args.get(1)) })
+  putprop(q_d_crc24sum, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_md5() -> Unit {
+  defun(q_md5_not, args => md5_not(arg(args, 0)))
+  defun(q_md5_plus, args => md5_plus(rest_args(args, 0)))
+  defun(q_md5_left_rotation, args => md5_left_rotation(arg(args, 0), arg(args, 1)))
+  defun(q_md5_worker, args => md5_worker())
+  defun(q_swap_endian64, args => swap_endian64(arg(args, 0)))
+  defun(q_swap_endian32, args => swap_endian32(arg(args, 0)))
+  defun(q_md5_words, args => md5_words(arg(args, 0)))
+  defun(q_md5_update, args => md5_update(arg(args, 0)))
+  defun(q_md5_final, args => md5_final(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_md5sum_return, args => md5sum_return(arg(args, 0)))
+  defun(q_md5sum_stream, args => md5sum_stream(arg(args, 0), arg(args, 1)))
+  defun(q_d_md5sum, args => { check_arity_range("$md5sum", args, 1, 2); d_md5sum(arg(args, 0), rtype?=args.get(1)) })
+  putprop(q_d_md5sum, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_base64() -> Unit {
+  defun(q_d_base64, args => { check_arity_range("$base64", args, 1, 1); d_base64(arg(args, 0)) })
+  putprop(q_d_base64, t, q_translated) |> ignore
+  defun(q_d_base64_decode, args => { check_arity_range("$base64_decode", args, 1, 2); d_base64_decode(arg(args, 0), rtype?=args.get(1)) })
+  putprop(q_d_base64_decode, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_sha1() -> Unit {
+  defun(q_sha_not, args => sha_not(arg(args, 0)))
+  defun(q_sha_plus, args => sha_plus(rest_args(args, 0)))
+  defun(q_sha_left_rotation, args => sha_left_rotation(arg(args, 0), arg(args, 1)))
+  defun(q_sha_right_rotation, args => sha_right_rotation(arg(args, 0), arg(args, 1)))
+  defun(q_sha256_words, args => sha256_words(arg(args, 0)))
+  defun(q_sha256_worker, args => sha256_worker())
+  defun(q_sha_update, args => sha_update(arg(args, 0), arg(args, 1)))
+  defun(q_sha_len64, args => sha_len64(arg(args, 0)))
+  defun(q_sha_final, args => sha_final(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_sha1_worker, args => sha1_worker())
+  defun(q_sha1_words, args => sha1_words(arg(args, 0)))
+  defun(q_d_sha1sum, args => { check_arity_range("$sha1sum", args, 1, 2); d_sha1sum(arg(args, 0), rtype?=args.get(1)) })
+  putprop(q_d_sha1sum, t, q_translated) |> ignore
+  defun(q_d_mgf1_sha1, args => { check_arity_range("$mgf1_sha1", args, 2, 3); d_mgf1_sha1(arg(args, 0), arg(args, 1), rtype?=args.get(2)) })
+  putprop(q_d_mgf1_sha1, t, q_translated) |> ignore
+  defun(q_d_sha256sum, args => { check_arity_range("$sha256sum", args, 1, 2); d_sha256sum(arg(args, 0), rtype?=args.get(1)) })
+  putprop(q_d_sha256sum, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_sregex() -> Unit {
+  defun(q_compiled_regex_print, args => compiled_regex_print(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_regex_compile, args => { check_arity_range("$regex_compile", args, 1, 1); d_regex_compile(arg(args, 0)) })
+  putprop(q_d_regex_compile, t, q_translated) |> ignore
+  defun(q_regex_check_and_maybe_coerce, args => regex_check_and_maybe_coerce(arg(args, 0), arg(args, 1), rest_args(args, 2)))
+  defun(q_regex_index_error, args => regex_index_error(arg(args, 0)))
+  defun(q_regex_utf_8_pos_dec, args => regex_utf_8_pos_dec(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_d_regex_match_pos, args => { check_arity_range("$regex_match_pos", args, 2, 4); d_regex_match_pos(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)) })
+  putprop(q_d_regex_match_pos, t, q_translated) |> ignore
+  defun(q_d_regex_match, args => { check_arity_range("$regex_match", args, 2, 4); d_regex_match(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)) })
+  putprop(q_d_regex_match, t, q_translated) |> ignore
+  defun(q_d_regex_split, args => { check_arity_range("$regex_split", args, 2, 2); d_regex_split(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_regex_split, t, q_translated) |> ignore
+  defun(q_d_regex_subst_first, args => { check_arity_range("$regex_subst_first", args, 3, 3); d_regex_subst_first(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_regex_subst_first, t, q_translated) |> ignore
+  defun(q_d_regex_subst, args => { check_arity_range("$regex_subst", args, 3, 3); d_regex_subst(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_regex_subst, t, q_translated) |> ignore
+  defun(q_d_string_to_regex, args => { check_arity_range("$string_to_regex", args, 1, 1); d_string_to_regex(arg(args, 0)) })
+  putprop(q_d_string_to_regex, t, q_translated) |> ignore
+}
+
+///|
+fn register_share_unwind_protect() -> Unit {
+  register_mspec(q_d_unwind_protect, d_unwind_protect)
+}
+
+///|
+fn register_share_grobner() -> Unit {
+  defun(q_monom_dimension, args => monom_dimension(arg(args, 0)))
+  defun(q_monom_total_degree, args => monom_total_degree(arg(args, 0), start?=args.get(1), end?=args.get(2)))
+  defun(q_monom_sugar, args => monom_sugar(arg(args, 0)))
+  defun(q_monom_div, args => monom_div(arg(args, 0), arg(args, 1)))
+  defun(q_monom_mul, args => monom_mul(arg(args, 0), arg(args, 1)))
+  defun(q_monom_divides_p, args => monom_divides_p(arg(args, 0), arg(args, 1)))
+  defun(q_monom_divides_monom_lcm_p, args => monom_divides_monom_lcm_p(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_monom_lcm_divides_monom_lcm_p, args => monom_lcm_divides_monom_lcm_p(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_monom_lcm_equal_monom_lcm_p, args => monom_lcm_equal_monom_lcm_p(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)))
+  defun(q_monom_divisible_by_p, args => monom_divisible_by_p(arg(args, 0), arg(args, 1)))
+  defun(q_monom_rel_prime_p, args => monom_rel_prime_p(arg(args, 0), arg(args, 1)))
+  defun(q_monom_equal_p, args => monom_equal_p(arg(args, 0), arg(args, 1)))
+  defun(q_monom_lcm, args => monom_lcm(arg(args, 0), arg(args, 1)))
+  defun(q_monom_gcd, args => monom_gcd(arg(args, 0), arg(args, 1)))
+  defun(q_monom_depends_p, args => monom_depends_p(arg(args, 0), arg(args, 1)))
+  defun(q_monom_exponents, args => monom_exponents(arg(args, 0)))
+  defun(q_lex_gt, args => lex_gt(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)).0)
+  defun(q_grlex_gt, args => grlex_gt(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)).0)
+  defun(q_grevlex_gt, args => grevlex_gt(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)).0)
+  defun(q_revlex_gt, args => revlex_gt(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)).0)
+  defun(q_invlex_gt, args => invlex_gt(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)).0)
+  defun(q_reverse_monomial_order, args => reverse_monomial_order(arg(args, 0), arg(args, 1)))
+  defun(q_elimination_order, args => elimination_order(arg(args, 0)))
+  defun(q_elimination_order_1, args => elimination_order_1(arg(args, 0), arg(args, 1), start?=args.get(2), end?=args.get(3)).0)
+  defun(q_priority_queue_make_heap, args => priority_queue_make_heap(element_type?=key_arg(args, 0, ":element-type")))
+  defun(q_make_priority_queue, args => make_priority_queue(element_type?=key_arg(args, 0, ":element-type"), test_?=key_arg(args, 0, ":test"), element_key?=key_arg(args, 0, ":element-key")))
+  defun(q_priority_queue_insert, args => priority_queue_insert(arg(args, 0), arg(args, 1)))
+  defun(q_priority_queue_remove, args => priority_queue_remove(arg(args, 0)))
+  defun(q_priority_queue_empty_p, args => priority_queue_empty_p(arg(args, 0)))
+  defun(q_priority_queue_size, args => priority_queue_size(arg(args, 0)))
+  defun(q_priority_queue_upheap, args => priority_queue_upheap(arg(args, 0), arg(args, 1), test_?=args.get(2)))
+  defun(q_priority_queue_heap_insert, args => priority_queue_heap_insert(arg(args, 0), arg(args, 1), test_?=args.get(2)))
+  defun(q_priority_queue_downheap, args => priority_queue_downheap(arg(args, 0), arg(args, 1), test_?=args.get(2)))
+  defun(q_priority_queue_heap_remove, args => priority_queue_heap_remove(arg(args, 0), test_?=args.get(1)).0)
+  defun(q_priority_queue_heap_empty_p, args => priority_queue_heap_empty_p(arg(args, 0)))
+  defun(q_make_term_variable, args => make_term_variable(arg(args, 0), arg(args, 1), arg(args, 2), power?=args.get(3), coeff?=args.get(4)))
+  defun(q_term_sugar, args => term_sugar(arg(args, 0)))
+  defun(q_termlist_sugar, args => termlist_sugar(arg(args, 0)))
+  defun(q_termlist_lm, args => termlist_lm(arg(args, 0)))
+  defun(q_termlist_lc, args => termlist_lc(arg(args, 0)))
+  defun(q_scalar_times_termlist, args => scalar_times_termlist(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_term_mul, args => term_mul(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_term_times_termlist, args => term_times_termlist(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_termlist_times_term, args => termlist_times_term(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_monom_times_term, args => monom_times_term(arg(args, 0), arg(args, 1)))
+  defun(q_monom_times_termlist, args => monom_times_termlist(arg(args, 0), arg(args, 1)))
+  defun(q_termlist_uminus, args => termlist_uminus(arg(args, 0), arg(args, 1)))
+  defun(q_termlist_add, args => termlist_add(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_termlist_sub, args => termlist_sub(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_termlist_mul, args => termlist_mul(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_termlist_unit, args => termlist_unit(arg(args, 0), arg(args, 1)))
+  defun(q_termlist_expt, args => termlist_expt(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_termlist_contract, args => termlist_contract(arg(args, 0), k?=args.get(1)))
+  defun(q_termlist_extend, args => termlist_extend(arg(args, 0), m?=args.get(1)))
+  defun(q_termlist_add_variables, args => termlist_add_variables(arg(args, 0), arg(args, 1)))
+  defun(q_poly_lm, args => poly_lm(arg(args, 0)))
+  defun(q_poly_second_lm, args => poly_second_lm(arg(args, 0)))
+  defun(q_poly_lc, args => poly_lc(arg(args, 0)))
+  defun(q_poly_second_lc, args => poly_second_lc(arg(args, 0)))
+  defun(q_poly_zerop, args => poly_zerop(arg(args, 0)))
+  defun(q_poly_length, args => poly_length(arg(args, 0)))
+  defun(q_scalar_times_poly, args => scalar_times_poly(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_monom_times_poly, args => monom_times_poly(arg(args, 0), arg(args, 1)))
+  defun(q_term_times_poly, args => term_times_poly(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_poly_add, args => poly_add(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_poly_sub, args => poly_sub(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_poly_uminus, args => poly_uminus(arg(args, 0), arg(args, 1)))
+  defun(q_poly_mul, args => poly_mul(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_poly_expt, args => poly_expt(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_poly_append, args => poly_append(rest_args(args, 0)))
+  defun(q_poly_nreverse, args => poly_nreverse(arg(args, 0)))
+  defun(q_poly_contract, args => poly_contract(arg(args, 0), k?=args.get(1)))
+  defun(q_poly_extend, args => poly_extend(arg(args, 0), m?=args.get(1)))
+  defun(q_poly_add_variables, args => poly_add_variables(arg(args, 0), arg(args, 1)))
+  defun(q_poly_list_add_variables, args => poly_list_add_variables(arg(args, 0), arg(args, 1)))
+  defun(q_poly_standard_extension, args => poly_standard_extension(arg(args, 0)))
+  defun(q_saturation_extension, args => saturation_extension(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_polysaturation_extension, args => polysaturation_extension(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_saturation_extension_1, args => saturation_extension_1(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_coerce_coeff, args => coerce_coeff(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_poly_eval, args => poly_eval(arg(args, 0), arg(args, 1), arg(args, 2), list_marker?=args.get(3)))
+  defun(q_spoly, args => spoly(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_poly_primitive_part, args => poly_primitive_part(arg(args, 0), arg(args, 1)).0)
+  defun(q_poly_content, args => poly_content(arg(args, 0), arg(args, 1)))
+  defun(q_grobner_op, args => grobner_op(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)))
+  defun(q_poly_pseudo_divide, args => poly_pseudo_divide(arg(args, 0), arg(args, 1), arg(args, 2)).0)
+  defun(q_poly_exact_divide, args => poly_exact_divide(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_normal_form_step, args => normal_form_step(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5)).0)
+  defun(q_normal_form, args => normal_form(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3)).0)
+  defun(q_buchberger_criterion, args => buchberger_criterion(arg(args, 0), arg(args, 1)))
+  defun(q_grobner_test, args => grobner_test(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_sugar_pair_key, args => sugar_pair_key(arg(args, 0), arg(args, 1)))
+  defun(q_sugar_order, args => sugar_order(arg(args, 0), arg(args, 1)))
+  defun(q_make_pair_queue, args => make_pair_queue())
+  defun(q_pair_queue_initialize, args => pair_queue_initialize(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_pair_queue_insert, args => pair_queue_insert(arg(args, 0), arg(args, 1)))
+  defun(q_pair_queue_remove, args => pair_queue_remove(arg(args, 0)))
+  defun(q_pair_queue_size, args => pair_queue_size(arg(args, 0)))
+  defun(q_pair_queue_empty_p, args => pair_queue_empty_p(arg(args, 0)))
+  defun(q_buchberger, args => buchberger(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3)))
+  defun(q_parallel_buchberger, args => parallel_buchberger(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3)))
+  defun(q_criterion_1, args => criterion_1(arg(args, 0)))
+  defun(q_criterion_2, args => criterion_2(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_gebauer_moeller, args => gebauer_moeller(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3)))
+  defun(q_gebauer_moeller_update, args => gebauer_moeller_update(arg(args, 0), arg(args, 1), arg(args, 2)).0)
+  defun(q_reduction, args => reduction(arg(args, 0), arg(args, 1)))
+  defun(q_minimization, args => minimization(arg(args, 0)))
+  defun(q_poly_normalize, args => poly_normalize(arg(args, 0), arg(args, 1)))
+  defun(q_poly_normalize_list, args => poly_normalize_list(arg(args, 0), arg(args, 1)))
+  defun(q_find_grobner_function, args => find_grobner_function(arg(args, 0)))
+  defun(q_grobner, args => grobner(arg(args, 0), arg(args, 1), start?=args.get(2), top_reduction_only?=args.get(3)))
+  defun(q_reduced_grobner, args => reduced_grobner(arg(args, 0), arg(args, 1), start?=args.get(2), top_reduction_only?=args.get(3)))
+  defun(q_set_pair_heuristic, args => set_pair_heuristic(arg(args, 0)))
+  defun(q_term_depends_p, args => term_depends_p(arg(args, 0), arg(args, 1)))
+  defun(q_poly_depends_p, args => poly_depends_p(arg(args, 0), arg(args, 1)))
+  defun(q_ring_intersection, args => ring_intersection(arg(args, 0), arg(args, 1)))
+  defun(q_elimination_ideal, args => elimination_ideal(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3), start?=args.get(4)))
+  defun(q_colon_ideal, args => colon_ideal(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3)))
+  defun(q_colon_ideal_1, args => colon_ideal_1(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3)))
+  defun(q_ideal_intersection, args => ideal_intersection(arg(args, 0), arg(args, 1), arg(args, 2), top_reduction_only?=args.get(3)))
+  defun(q_poly_lcm, args => poly_lcm(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_grobner_equal, args => grobner_equal(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_grobner_subsetp, args => grobner_subsetp(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_grobner_member, args => grobner_member(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_ideal_saturation_1, args => ideal_saturation_1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), top_reduction_only?=args.get(4)))
+  defun(q_ideal_polysaturation_1, args => ideal_polysaturation_1(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), top_reduction_only?=args.get(4)))
+  defun(q_ideal_saturation, args => ideal_saturation(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), top_reduction_only?=args.get(4)))
+  defun(q_ideal_polysaturation, args => ideal_polysaturation(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), top_reduction_only?=args.get(4)))
+  defun(q_coerce_to_infix, args => coerce_to_infix(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_equal_test_p, args => equal_test_p(arg(args, 0), arg(args, 1)))
+  defun(q_coerce_maxima_list, args => coerce_maxima_list(arg(args, 0)))
+  defun(q_free_of_vars, args => free_of_vars(arg(args, 0), arg(args, 1)))
+  defun(q_parse_poly, args => parse_poly(arg(args, 0), arg(args, 1)))
+  defun(q_parse_poly1, args => parse_poly1(arg(args, 0), arg(args, 1)))
+  defun(q_parse_poly_list, args => parse_poly_list(arg(args, 0), arg(args, 1)))
+  defun(q_parse_poly_list_list, args => parse_poly_list_list(arg(args, 0), arg(args, 1)))
+  defun(q_find_order, args => find_order(arg(args, 0)))
+  defun(q_find_ring, args => find_ring(arg(args, 0)))
+  defun(q_maxima_head, args => maxima_head())
+  defun(q_coerce_to_maxima, args => coerce_to_maxima(arg(args, 0), arg(args, 1), arg(args, 2)))
+  defun(q_remzero, args => remzero(arg(args, 0)))
+  defun(q_d_poly_expand, args => { check_arity_range("$poly_expand", args, 2, 2); d_poly_expand(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_expand, t, q_translated) |> ignore
+  defun(q_d_poly_expt, args => { check_arity_range("$poly_expt", args, 3, 3); d_poly_expt(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_expt, t, q_translated) |> ignore
+  defun(q_d_poly_content, args => { check_arity_range("$poly_content", args, 2, 2); d_poly_content(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_content, t, q_translated) |> ignore
+  defun(q_d_poly_pseudo_divide, args => { check_arity_range("$poly_pseudo_divide", args, 3, 3); d_poly_pseudo_divide(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_pseudo_divide, t, q_translated) |> ignore
+  defun(q_d_poly_exact_divide, args => { check_arity_range("$poly_exact_divide", args, 3, 3); d_poly_exact_divide(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_exact_divide, t, q_translated) |> ignore
+  defun(q_d_poly_normal_form, args => { check_arity_range("$poly_normal_form", args, 3, 3); d_poly_normal_form(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_normal_form, t, q_translated) |> ignore
+  defun(q_d_poly_buchberger_criterion, args => { check_arity_range("$poly_buchberger_criterion", args, 2, 2); d_poly_buchberger_criterion(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_buchberger_criterion, t, q_translated) |> ignore
+  defun(q_d_poly_buchberger, args => { check_arity_range("$poly_buchberger", args, 2, 2); d_poly_buchberger(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_buchberger, t, q_translated) |> ignore
+  defun(q_d_poly_reduction, args => { check_arity_range("$poly_reduction", args, 2, 2); d_poly_reduction(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_reduction, t, q_translated) |> ignore
+  defun(q_d_poly_minimization, args => { check_arity_range("$poly_minimization", args, 2, 2); d_poly_minimization(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_minimization, t, q_translated) |> ignore
+  defun(q_d_poly_normalize_list, args => { check_arity_range("$poly_normalize_list", args, 2, 2); d_poly_normalize_list(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_normalize_list, t, q_translated) |> ignore
+  defun(q_d_poly_grobner, args => { check_arity_range("$poly_grobner", args, 2, 2); d_poly_grobner(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_grobner, t, q_translated) |> ignore
+  defun(q_d_poly_reduced_grobner, args => { check_arity_range("$poly_reduced_grobner", args, 2, 2); d_poly_reduced_grobner(arg(args, 0), arg(args, 1)) })
+  putprop(q_d_poly_reduced_grobner, t, q_translated) |> ignore
+  defun(q_d_poly_depends_p, args => { check_arity_range("$poly_depends_p", args, 3, 3); d_poly_depends_p(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_depends_p, t, q_translated) |> ignore
+  defun(q_d_poly_elimination_ideal, args => { check_arity_range("$poly_elimination_ideal", args, 3, 3); d_poly_elimination_ideal(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_elimination_ideal, t, q_translated) |> ignore
+  defun(q_d_poly_colon_ideal, args => { check_arity_range("$poly_colon_ideal", args, 3, 3); d_poly_colon_ideal(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_colon_ideal, t, q_translated) |> ignore
+  defun(q_d_poly_ideal_intersection, args => { check_arity_range("$poly_ideal_intersection", args, 3, 3); d_poly_ideal_intersection(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_ideal_intersection, t, q_translated) |> ignore
+  defun(q_d_poly_lcm, args => { check_arity_range("$poly_lcm", args, 3, 3); d_poly_lcm(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_lcm, t, q_translated) |> ignore
+  defun(q_d_poly_gcd, args => { check_arity_range("$poly_gcd", args, 3, 3); d_poly_gcd(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_gcd, t, q_translated) |> ignore
+  defun(q_d_poly_grobner_equal, args => { check_arity_range("$poly_grobner_equal", args, 3, 3); d_poly_grobner_equal(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_grobner_equal, t, q_translated) |> ignore
+  defun(q_d_poly_grobner_subsetp, args => { check_arity_range("$poly_grobner_subsetp", args, 3, 3); d_poly_grobner_subsetp(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_grobner_subsetp, t, q_translated) |> ignore
+  defun(q_d_poly_grobner_member, args => { check_arity_range("$poly_grobner_member", args, 3, 3); d_poly_grobner_member(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_grobner_member, t, q_translated) |> ignore
+  defun(q_d_poly_ideal_saturation1, args => { check_arity_range("$poly_ideal_saturation1", args, 3, 3); d_poly_ideal_saturation1(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_ideal_saturation1, t, q_translated) |> ignore
+  defun(q_d_poly_saturation_extension, args => { check_arity_range("$poly_saturation_extension", args, 4, 4); d_poly_saturation_extension(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_poly_saturation_extension, t, q_translated) |> ignore
+  defun(q_d_poly_polysaturation_extension, args => { check_arity_range("$poly_polysaturation_extension", args, 4, 4); d_poly_polysaturation_extension(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3)) })
+  putprop(q_d_poly_polysaturation_extension, t, q_translated) |> ignore
+  defun(q_d_poly_ideal_polysaturation1, args => { check_arity_range("$poly_ideal_polysaturation1", args, 3, 3); d_poly_ideal_polysaturation1(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_ideal_polysaturation1, t, q_translated) |> ignore
+  defun(q_d_poly_ideal_saturation, args => { check_arity_range("$poly_ideal_saturation", args, 3, 3); d_poly_ideal_saturation(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_ideal_saturation, t, q_translated) |> ignore
+  defun(q_d_poly_ideal_polysaturation, args => { check_arity_range("$poly_ideal_polysaturation", args, 3, 3); d_poly_ideal_polysaturation(arg(args, 0), arg(args, 1), arg(args, 2)) })
+  putprop(q_d_poly_ideal_polysaturation, t, q_translated) |> ignore
+}

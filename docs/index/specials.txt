@@ -245,6 +245,7 @@ $myoptions
 $nalgfac
 $negdistrib
 $negsumdispflag
+$newline
 $niceindicespref
 $nointegrate
 $nolabels
@@ -275,6 +276,15 @@ $pollard_pm1_tests
 $pollard_rho_limit
 $pollard_rho_limit_step
 $pollard_rho_tests
+$poly_coefficient_ring
+$poly_elimination_order
+$poly_grobner_algorithm
+$poly_grobner_debug
+$poly_monomial_order
+$poly_primary_elimination_order
+$poly_return_term_list
+$poly_secondary_elimination_order
+$poly_top_reduction_only
 $polyfactor
 $powerdisp
 $prederror
@@ -328,9 +338,13 @@ $solvefactors
 $solvenullwarn
 $solveradcan
 $solvetrigwarn
+$space
 $sparse
 $sqrtdispflag
 $stardisp
+$stderr
+$stdin
+$stdout
 $strdisp
 $stringdisp
 $structures
@@ -339,6 +353,7 @@ $subnumsimp
 $sumexpand
 $sumsplitfact
 $system
+$tab
 $taylor_logexpand
 $taylor_order_coefficients
 $taylor_simplifier
@@ -366,6 +381,7 @@ $true
 $ttyoff
 $u
 $url_base
+$us_ascii_only
 $use_fast_arrays
 $useminmax
 $v
@@ -452,6 +468,7 @@ $zn_primroot_verbose
 *checkagain
 *checkcoefsignlist*
 *checkfactors*
+*chr64*
 *chrps*
 *ci*
 *coef
@@ -525,6 +542,7 @@ $zn_primroot_verbose
 *ef-red*
 *ef-red?*
 *ef-x^q-powers*
+*elimination-order*
 *eu*
 *exp
 *exp*
@@ -535,6 +553,7 @@ $zn_primroot_verbose
 *expint-maxit*
 *expintflag*
 *exploden-strip-float-zeros*
+*expression-ring*
 *exptrlsw*
 *extended-reals*
 *f*
@@ -586,6 +605,9 @@ $zn_primroot_verbose
 *globalcareflag*
 *grind-charlist*
 *h*
+*h1*
+*h2*
+*h5*
 *has*var
 *help-display-function*
 *hi-sl*
@@ -623,6 +645,8 @@ $zn_primroot_verbose
 *ivar*
 *j*
 *jm*
+*k2*
+*k5*
 *lab-high-lab*
 *labindex*
 *labs*
@@ -684,6 +708,7 @@ $zn_primroot_verbose
 *maxima-prefix*
 *maxima-prolog*
 *maxima-quiet*
+*maxima-ring*
 *maxima-run-string*
 *maxima-sharedir*
 *maxima-srcdir*
@@ -698,6 +723,7 @@ $zn_primroot_verbose
 *minor1*
 *mlambda-call-stack*
 *mobjects*
+*monomial-order*
 *mopl*
 *mosesflag
 *mre*
@@ -727,6 +753,7 @@ $zn_primroot_verbose
 *nounl*
 *nounsflag*
 *num
+*num64*
 *nz*
 *odr*
 *old-base*
@@ -737,10 +764,13 @@ $zn_primroot_verbose
 *opr-table*
 *optimcount*
 *p*
+*pair-key-function*
+*pair-order*
 *parse-stream*
 *parse-stream-eof*
 *parse-string-input-stream*
 *parse-tyi*
+*parse-utf-8-input*
 *parse-window*
 *pcprntd*
 *pi-sl*
@@ -752,11 +782,13 @@ $zn_primroot_verbose
 *pr-sl*
 *preserve-direction*
 *prev_prime_ar*
+*primary-elimination-order*
 *prime
 *prime-diffs*
 *prime-diffs-limit*
 *prime-diffs-maxdiff*
 *prime-diffs-maxindex*
+*priority-queue-allocation-size*
 *prompt-on-read-hang*
 *prompt-prefix*
 *prompt-suffix*
@@ -783,6 +815,7 @@ $zn_primroot_verbose
 *real-infinities*
 *refchkl*
 *resultlist
+*ring-of-integers*
 *risch-use-triginv-all*
 *risplit-domain*
 *root-rewrites*
@@ -795,11 +828,13 @@ $zn_primroot_verbose
 *running-error-op*
 *s*
 *s12*
+*s5*
 *sc^ndisp*
 *scan-string-buffer*
 *scflag*
 *schatc-ans*
 *schatfactor*
+*secondary-elimination-order*
 *semirat*
 *setqs*
 *sharp-read-buffer*
@@ -817,6 +852,7 @@ $zn_primroot_verbose
 *splist*
 *sr*
 *stop*
+*str64*
 *stream-alist*
 *subexp*
 *suppress-input-echo*
@@ -829,6 +865,9 @@ $zn_primroot_verbose
 *this-row*
 *threshold*
 *ti*
+*tilde-m-args*
+*tilde-m-params*
+*tilde-m-placeholders*
 *timesinp*
 *tmarrays*
 *todo*
@@ -858,6 +897,9 @@ $zn_primroot_verbose
 *variable-initial-values*
 *verify-html-index*
 *vi*
+*w1*
+*w2*
+*w5*
 *want-open-compiled-mformat*
 *warn-deprecated-defmvar-options*
 *which-factor*
@@ -1144,6 +1186,10 @@ numer
 nvar
 nx
 odds
+old-ibase-base64
+old-ibase-cryptools
+old-ibase-md5
+old-ibase-sha1
 old-ivars
 old-tlist
 oldcol
@@ -1246,6 +1292,7 @@ ttyheight
 tvar-limits
 tvars
 ulabs
+unicode-signatures
 usexp
 uu*
 v

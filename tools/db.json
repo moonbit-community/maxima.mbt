@@ -203881,5 +203881,10276 @@ null
 }
 ],
 "lines": 995
+},
+{
+"file": "../share/stringproc/eval_string",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$eval_string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 25,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$parse_string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 40,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parse-string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 50,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ensure-terminator",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 61,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [
+"*mread-prompt*",
+"*parse-string-input-stream*"
+],
+"symbols": [
+"$eval_string",
+"$parse_string",
+"string"
+],
+"calls": {
+"in-package": 1,
+"defun": 4,
+"s": 4,
+"cond": 2,
+"meval": 1,
+"parse-string": 2,
+"t": 2,
+"merror": 2,
+"declare": 1,
+"special": 1,
+"setq": 1,
+"make-string-input-stream": 1,
+"ensure-terminator": 1,
+"let": 1,
+"third": 1,
+"mread": 1,
+"concatenate": 1
+},
+"toplevel": [],
+"lines": 62
+},
+{
+"file": "../share/stringproc/unicode-sniffer",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "sniffer-match",
+"pkg": "maxima",
+"ll": {
+"req": [
+"initial-bytes",
+"signature-bytes"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 45,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sniffer-match-search",
+"pkg": "maxima",
+"ll": {
+"req": [
+"initial-bytes"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 55,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "unicode-sniffer",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 64,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$inferred_encoding",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 75,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "check-encoding",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 85,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "check-encoding-sbcl",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 98,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$recognized_encoding_p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 121,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defparameter",
+"name": "unicode-signatures",
+"init": {
+"k": "expr",
+"v": "(stable-sort '(((239 187 191) . :utf-8) ((254 255) . :utf-16be) ((255 254) . :utf-16le) ((0 0 254 255) . :utf-32be) ((255 254 0 0) . :utf-32le) ((43 47 118 56) . :utf-7) ((43 47 118 57) . :utf-7) ((43 47 118 43) . :utf-7) ((43 47 118 47) . :utf-7) ((43 47 118 56 45) . :utf-7) ((247 100 76) . :utf-1) ((221 115 102 115) . :utf-ebcdic) ((14 254 255) . :scsu) ((251 238 40) . :bocu-1) ((132 49 149 51) . :cp936)) #'(lambda (a b) (> (length (car a)) (length (car b)))))"
+},
+"line": 6
+}
+],
+"specials": [
+"unicode-signatures"
+],
+"symbols": [
+"$inferred_encoding",
+"$recognized_encoding_p",
+":bocu-1",
+":cp936",
+":scsu",
+":utf-1",
+":utf-16be",
+":utf-16le",
+":utf-32be",
+":utf-32le",
+":utf-7",
+":utf-8",
+":utf-ebcdic",
+">",
+"a",
+"b",
+"car",
+"identity",
+"lambda",
+"length",
+"list",
+"max",
+"unknown",
+"unsigned-byte",
+"x"
+],
+"calls": {
+"defparameter": 1,
+"stable-sort": 1,
+"defun": 7,
+"initial-bytes": 3,
+"let*": 2,
+"initial-bytes-subseq": 1,
+"subseq": 1,
+"byte-pairs": 1,
+"mapcar": 2,
+"loop": 4,
+"if": 3,
+"not": 3,
+"equal": 1,
+"first": 1,
+"second": 1,
+"return-from": 2,
+"sniffer-match": 1,
+"car": 1,
+"cdr": 1,
+"f": 2,
+"with-open-file": 1,
+"s": 1,
+"read-byte": 1,
+"sniffer-match-search": 1,
+"let": 5,
+"symbol-name": 1,
+"e": 3,
+"check-encoding-sbcl": 1,
+"cond": 2,
+"gethash": 1,
+"some": 1,
+"identity": 1,
+"lambda": 1,
+"l": 1,
+"member": 1,
+"external-format-p": 1,
+"ef-names": 1,
+"t": 2,
+"merror": 2,
+"e-down": 1,
+"string-downcase": 1,
+"or": 1,
+"null": 2,
+"string=": 1,
+"when": 1,
+"gettext": 1
+},
+"toplevel": [],
+"lines": 135
+},
+{
+"file": "../share/stringproc/stringproc",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "init-*parse-utf-8-input*",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 59,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "string-to-raw-bytes",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 81,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "set-*parse-utf-8-input*",
+"pkg": "maxima",
+"ll": {
+"req": [
+"assign-var",
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 94,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "io-error",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name",
+"which"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 103,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "s-error1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name",
+"which"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 106,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "s-error2",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name",
+"which"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 109,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "s-pos-error1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 112,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "s-pos-error2",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 115,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$openw",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file"
+],
+"opt": [
+[
+"enc",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 133,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$opena",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file"
+],
+"opt": [
+[
+"enc",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 143,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$openr",
+"pkg": "maxima",
+"ll": {
+"req": [
+"file"
+],
+"opt": [
+[
+"enc",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 165,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$make_string_input_stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "1"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 194,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$make_string_output_stream",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 203,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$get_output_stream_string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 210,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$close",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 215,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$flush_output",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 220,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$flength",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 225,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$fposition",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [
+[
+"pos",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 230,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$readline",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 241,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$readchar",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 251,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$readbyte",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 257,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$writebyte",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i",
+"stream"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 264,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$freshline",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [
+[
+"stream",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 271,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$newline",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [
+[
+"stream",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 276,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "get-encoding",
+"pkg": "maxima",
+"ll": {
+"req": [
+"enc",
+"name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 286,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "is-ignored",
+"pkg": "maxima",
+"ll": {
+"req": [
+"enc",
+"name",
+"adds"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 361,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$adjust_external_format",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 429,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "use-cp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name",
+"id"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 517,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$charp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"obj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 532,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$lchar",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 539,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "l-char",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 542,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "cunlisp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 550,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$lcharp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"obj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 558,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$constituent",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 567,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$alphanumericp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 568,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$alphacharp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 569,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$lowercasep",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 570,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$uppercasep",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 571,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$digitcharp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 573,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$cint",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 598,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "mc2int",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 603,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$ascii",
+"pkg": "maxima",
+"ll": {
+"req": [
+"int"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 609,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$unicode",
+"pkg": "maxima",
+"ll": {
+"req": [
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 622,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$utf8_to_unicode",
+"pkg": "maxima",
+"ll": {
+"req": [
+"utf8"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 640,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$unicode_to_utf8",
+"pkg": "maxima",
+"ll": {
+"req": [
+"uc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 644,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf8_to_unicode-error",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 649,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf8-to-uc",
+"pkg": "maxima",
+"ll": {
+"req": [
+"u"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 653,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "uc-to-utf8",
+"pkg": "maxima",
+"ll": {
+"req": [
+"uc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 676,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$cequal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc1",
+"mc2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 697,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$clessp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc1",
+"mc2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 702,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$cgreaterp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc1",
+"mc2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 707,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$cequalignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc1",
+"mc2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 716,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$clesspignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc1",
+"mc2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 717,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$cgreaterpignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc1",
+"mc2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 718,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "cequal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"c1",
+"c2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 723,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "clessp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"c1",
+"c2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 724,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "cgreaterp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"c1",
+"c2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 725,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "cequalignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"c1",
+"c2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 727,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "clesspignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"c1",
+"c2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 728,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "cgreaterpignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"c1",
+"c2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 729,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$tab",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 752,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "rm-first-utf-8-char",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ol"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 767,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "utf-8-m-char",
+"pkg": "maxima",
+"ll": {
+"req": [
+"len",
+"ol"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 780,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf-8-pos-dec",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 790,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf-8-fix-start-end",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ov",
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 799,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf-8-pos-inc",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ov",
+"off",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 814,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$stringp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"obj"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 831,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$scopy",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 834,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$smake",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n",
+"mc"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 839,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$charat",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 849,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$charlist",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 863,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf-8-charlist",
+"pkg": "maxima",
+"ll": {
+"req": [
+"cl"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 869,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sexplode",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 883,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$tokens",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$constituent"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 891,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "tokens",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"test",
+"start"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 900,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "constituent",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 912,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "alphacharp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 916,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "digitcharp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 917,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lowercasep",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 918,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "uppercasep",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 919,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "charp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 920,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$split",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 928,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "split",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"ds"
+],
+"opt": [
+[
+"multiple?",
+{
+"k": "t"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 941,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$simplode",
+"pkg": "maxima",
+"ll": {
+"req": [
+"li"
+],
+"opt": [
+[
+"ds",
+{
+"k": "str",
+"v": ""
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 965,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$slength",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 986,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf-8-slength",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 991,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sposition",
+"pkg": "maxima",
+"ll": {
+"req": [
+"mc",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1001,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sreverse",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1014,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf-8-sreverse",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1018,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$substring",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"start"
+],
+"opt": [
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1027,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sequal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1044,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sequalignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1045,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$slessp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1047,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sgreaterp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1048,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$slesspignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1050,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sgreaterpignore",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1051,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "scompare",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2",
+"name",
+"test",
+"lessp?",
+"ccomp"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1053,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "chars-to-compare",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1061,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parse-utf-8-header",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"start"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1072,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$smismatch",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s1",
+"s2"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$sequal"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1084,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$ssearch",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1101,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ssearch",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$sequal"
+},
+null
+],
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1113,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "s-optional-args",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name",
+"str",
+"args"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1120,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$ssubstfirst",
+"pkg": "maxima",
+"ll": {
+"req": [
+"new",
+"old",
+"str"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1143,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ssubstfirst",
+"pkg": "maxima",
+"ll": {
+"req": [
+"new",
+"old",
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$sequal"
+},
+null
+],
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+],
+[
+"matched?",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1151,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$ssubst",
+"pkg": "maxima",
+"ll": {
+"req": [
+"new",
+"old",
+"str"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1159,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ssubst",
+"pkg": "maxima",
+"ll": {
+"req": [
+"new",
+"old",
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$sequal"
+},
+null
+],
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1167,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sremovefirst",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1176,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sremovefirst",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$sequal"
+},
+null
+],
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1184,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sremove",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1192,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sremove",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$sequal"
+},
+null
+],
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1199,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sinsert",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1208,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$ssort",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "$clessp"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1220,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "utf-8-ssort",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"test",
+{
+"k": "quote",
+"v": "clessp"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1236,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$strim",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1248,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$striml",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1252,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$strimr",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seq",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1256,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$supcase",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "1"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1261,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sdowncase",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "1"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1264,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "change-case",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str",
+"name",
+"sfun",
+"start",
+"end"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1267,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$sinvertcase",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "1"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1280,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "s-invert-case",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1296,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "c-invert-case",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ch"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1301,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "*parse-utf-8-input*",
+"init": {
+"k": "expr",
+"v": "(init-*parse-utf-8-input*)"
+},
+"line": 74
+},
+{
+"kind": "defvar",
+"name": "$us_ascii_only",
+"init": {
+"k": "nil"
+},
+"line": 90
+},
+{
+"kind": "defmvar",
+"name": "$newline",
+"init": {
+"k": "expr",
+"v": "(string #\\Newline)"
+},
+"line": 734,
+"opts": "(:setting-predicate #'(lambda (x) (values (stringp x) \"must be a string\")))"
+},
+{
+"kind": "defmvar",
+"name": "$tab",
+"init": {
+"k": "expr",
+"v": "(string #\\Tab)"
+},
+"line": 740,
+"opts": "(:setting-predicate #'(lambda (x) (values (stringp x) \"must be a string\")))"
+},
+{
+"kind": "defmvar",
+"name": "$space",
+"init": {
+"k": "expr",
+"v": "(string #\\Space)"
+},
+"line": 746,
+"opts": "(:setting-predicate #'(lambda (x) (values (stringp x) \"must be a string\")))"
+}
+],
+"specials": [
+"$newline",
+"$space",
+"$tab",
+"$us_ascii_only",
+"*parse-utf-8-input*"
+],
+"symbols": [
+"$adjust_external_format",
+"$alphacharp",
+"$alphanumericp",
+"$ascii",
+"$cequal",
+"$cequalignore",
+"$cgreaterp",
+"$cgreaterpignore",
+"$charat",
+"$charlist",
+"$charp",
+"$cint",
+"$clessp",
+"$clesspignore",
+"$close",
+"$constituent",
+"$digitcharp",
+"$flength",
+"$flush_output",
+"$fposition",
+"$freshline",
+"$get_output_stream_string",
+"$lchar",
+"$lcharp",
+"$lowercasep",
+"$make_string_input_stream",
+"$make_string_output_stream",
+"$newline",
+"$opena",
+"$openr",
+"$openw",
+"$readbyte",
+"$readchar",
+"$readline",
+"$sconcat",
+"$scopy",
+"$sdowncase",
+"$sequal",
+"$sequalignore",
+"$sexplode",
+"$sgreaterp",
+"$sgreaterpignore",
+"$simplode",
+"$sinsert",
+"$sinvertcase",
+"$slength",
+"$slessp",
+"$slesspignore",
+"$smake",
+"$smismatch",
+"$space",
+"$split",
+"$sposition",
+"$sremove",
+"$sremovefirst",
+"$sreverse",
+"$ssearch",
+"$ssort",
+"$ssubst",
+"$ssubstfirst",
+"$strim",
+"$striml",
+"$strimr",
+"$stringp",
+"$substring",
+"$supcase",
+"$tab",
+"$tokens",
+"$unicode",
+"$unicode_to_utf8",
+"$uppercasep",
+"$us_ascii_only",
+"$utf8_to_unicode",
+"$writebyte",
+"<",
+">",
+"alphacharp",
+"alphanumericp",
+"assign",
+"c-invert-case",
+"ch",
+"char-code",
+"character",
+"charp",
+"clessp",
+"code-char",
+"concatenate",
+"constituent",
+"digitcharp",
+"funcall",
+"lambda",
+"list",
+"lowercasep",
+"mlist",
+"n",
+"nil",
+"not",
+"s",
+"s0",
+"s1",
+"set-*parse-utf-8-input*",
+"simp",
+"sremove",
+"sremovefirst",
+"ssearch",
+"ssubst",
+"ssubstfirst",
+"string",
+"string-downcase",
+"string-upcase",
+"stringp",
+"t",
+"test",
+"unknown",
+"unsigned-byte",
+"uppercasep",
+"values",
+"x"
+],
+"calls": {
+"in-package": 1,
+"declare-top": 1,
+"special": 1,
+"eval-when": 1,
+":load-toplevel": 1,
+"defun": 123,
+"progn": 5,
+"defvar": 2,
+"init-*parse-utf-8-input*": 2,
+"str": 23,
+":string-to-octets": 1,
+"putprop": 1,
+"assign-var": 1,
+"declare": 3,
+"ignore": 1,
+"setq": 43,
+"if": 41,
+"name": 7,
+"gf-merror": 28,
+"gettext": 32,
+"file": 3,
+"unless": 58,
+"stringp": 42,
+"s-error1": 17,
+"open": 2,
+"get-encoding": 5,
+"let": 38,
+"encoding-to-use": 2,
+"ignorable": 2,
+"unicode-sniffer": 2,
+"when": 32,
+"null": 4,
+"merror": 2,
+"eq": 2,
+"mtell": 4,
+"probe-file": 1,
+"eql": 1,
+"peek-char": 1,
+"read-char": 1,
+"start": 10,
+"end": 12,
+"decf": 12,
+"or": 13,
+"ignore-errors": 16,
+"make-string-input-stream": 1,
+"s-pos-error2": 10,
+"make-string-output-stream": 1,
+"stream": 11,
+"streamp": 11,
+"io-error": 9,
+"get-output-stream-string": 1,
+"close": 1,
+"not": 4,
+"finish-output": 1,
+"file-length": 1,
+"file-position": 2,
+"1-": 3,
+"1+": 12,
+"s-pos-error1": 3,
+"string-right-trim": 2,
+"list": 8,
+"code-char": 5,
+"string": 10,
+"and": 23,
+"equal": 3,
+"stream-element-type": 2,
+"read-byte": 1,
+"i": 6,
+"write-byte": 1,
+"&optional": 2,
+"fresh-line": 1,
+"terpri": 1,
+"enc": 3,
+"cond": 10,
+"string=": 6,
+"return-from": 2,
+"intern": 1,
+"string-upcase": 2,
+"t": 10,
+"format": 10,
+"string-downcase": 2,
+"symbol-name": 1,
+"cmd": 1,
+"with-open-file": 1,
+"combine-path": 1,
+"obj": 3,
+"=": 11,
+"utf-8-slength": 2,
+"length": 12,
+"mc": 11,
+"l-char": 18,
+"character": 3,
+"lc": 1,
+"characterp": 3,
+"constituent": 1,
+"alphanumericp": 1,
+"alpha-char-p": 2,
+"lower-case-p": 2,
+"upper-case-p": 3,
+">": 3,
+"<": 4,
+"$charp": 2,
+"mc2int": 7,
+"utf8-to-uc": 3,
+"coerce": 2,
+"string-to-raw-bytes": 3,
+"char-code": 2,
+"int": 1,
+"integerp": 3,
+"arg": 1,
+"utf-8-m-char": 3,
+"concatenate": 6,
+"$ssubst": 1,
+"eval": 1,
+"read": 1,
+"utf8": 2,
+"listp": 2,
+"utf8_to_unicode-error": 6,
+"cdr": 4,
+"uc": 2,
+"cons": 5,
+"uc-to-utf8": 1,
+"u": 1,
+"logbitp": 9,
+"car": 10,
+"ldb": 18,
+"byte": 18,
+"logior": 9,
+"ash": 6,
+"cadr": 7,
+"caddr": 7,
+"cadddr": 1,
+"push": 15,
+"dolist": 4,
+"mc1": 6,
+"char=": 3,
+"char<": 2,
+"char>": 2,
+"char-equal": 2,
+"char-lessp": 2,
+"char-greaterp": 2,
+"c1": 6,
+"defmvar": 3,
+"ol": 4,
+"values": 4,
+"cddddr": 1,
+"firstn": 4,
+"cdddr": 1,
+"cddr": 2,
+"len": 2,
+"map-into": 1,
+"make-string": 2,
+"do": 8,
+"n": 4,
+"logand": 3,
+"aref": 3,
+"incf": 9,
+"ov": 2,
+"utf-8-pos-inc": 3,
+"rplaca": 2,
+"pos0": 1,
+"-": 4,
+"s": 1,
+"copy-seq": 1,
+"reduce": 5,
+"$sconcat": 5,
+"make-list": 1,
+"let*": 5,
+"args": 4,
+"utf-8-fix-start-end": 5,
+"subseq": 14,
+"utf-8-charlist": 1,
+"mapcar": 2,
+"cl": 1,
+"nreverse": 3,
+"multiple-value-setq": 3,
+"rm-first-utf-8-char": 3,
+"$charlist": 2,
+"test": 9,
+"stripdollar": 2,
+"member": 4,
+"tokens": 2,
+"ch": 7,
+"graphic-char-p": 1,
+"digit-char-p": 1,
+"multiple?": 2,
+"a": 2,
+"split": 1,
+"+": 7,
+"search": 6,
+"li": 1,
+"ds": 1,
+"acc": 1,
+"pop": 1,
+"return": 1,
+"do*": 1,
+"array-dimension": 1,
+"/=": 1,
+"$slength": 1,
+"$ssearch": 1,
+"utf-8-sreverse": 1,
+"reverse": 1,
+"s1": 9,
+"string-equal": 1,
+"scompare": 4,
+"$clessp": 1,
+"$cgreaterp": 1,
+"$clesspignore": 1,
+"$cgreaterpignore": 1,
+"s-error2": 11,
+"apply": 5,
+"chars-to-compare": 1,
+"l2": 1,
+"while": 2,
+"elt": 1,
+"parse-utf-8-header": 2,
+"utf-8-pos-dec": 2,
+"seq": 10,
+"s-optional-args": 5,
+"new": 4,
+"every": 2,
+"ssubstfirst": 2,
+"matched?": 1,
+"pos": 2,
+"ssubst": 1,
+"o": 1,
+"sremovefirst": 2,
+"sq1": 1,
+"sq2": 3,
+"sremove": 1,
+"utf-8-ssort": 1,
+"stable-sort": 1,
+"string-trim": 1,
+"string-left-trim": 1,
+"change-case": 2,
+"funcall": 2,
+"s-invert-case": 1,
+"sq3": 1,
+"char-downcase": 1,
+"char-upcase": 1
+},
+"toplevel": [
+{
+"head": "putprop",
+"line": 92,
+"text": "(putprop '$us_ascii_only 'set-*parse-utf-8-input* 'assign)"
+}
+],
+"lines": 1307
+},
+{
+"file": "../share/stringproc/printf",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$sprint",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 35,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "reconstitute-tilde-m",
+"pkg": "maxima",
+"ll": {
+"req": [
+"param"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 55,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "generate-tilde-m-placeholder",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 58,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$printf",
+"pkg": "maxima",
+"ll": {
+"req": [
+"stream",
+"ctrls"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 64,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "prepare-args",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ctrls",
+"todo",
+"done"
+],
+"opt": [
+[
+"loop",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 89,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "prepare-ctrls",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ctrls"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 313,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "spec-position",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ctrls",
+"pos1"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 335,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "count-v",
+"pkg": "maxima",
+"ll": {
+"req": [
+"params"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 345,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "check-v#",
+"pkg": "maxima",
+"ll": {
+"req": [
+"params"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 357,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "iter-positions",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ctrls",
+"start"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 368,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "split-at-comma",
+"pkg": "maxima",
+"ll": {
+"req": [
+"params"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 381,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "prepare-arg",
+"pkg": "maxima",
+"ll": {
+"req": [
+"params",
+"spec",
+"arg"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 400,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "bprintf",
+"pkg": "maxima",
+"ll": {
+"req": [
+"bf",
+"wd",
+"dd",
+"ed",
+"xp",
+"ov",
+"pc",
+"at"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 483,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "$stderr",
+"init": null,
+"line": 41
+},
+{
+"kind": "defvar",
+"name": "$stdout",
+"init": null,
+"line": 42
+},
+{
+"kind": "defvar",
+"name": "$stdin",
+"init": null,
+"line": 43
+},
+{
+"kind": "defvar",
+"name": "*tilde-m-args*",
+"init": null,
+"line": 51
+},
+{
+"kind": "defvar",
+"name": "*tilde-m-params*",
+"init": null,
+"line": 52
+},
+{
+"kind": "defvar",
+"name": "*tilde-m-placeholders*",
+"init": null,
+"line": 53
+}
+],
+"specials": [
+"$stderr",
+"$stdin",
+"$stdout",
+"*tilde-m-args*",
+"*tilde-m-params*",
+"*tilde-m-placeholders*"
+],
+"symbols": [
+"$%i",
+"$bfloat",
+"$constantp",
+"$digitcharp",
+"$float",
+"$freeof",
+"$listp",
+"$numberp",
+"$printf",
+"$random",
+"$sconcat",
+"$sprint",
+"$stderr",
+"$stdin",
+"$stdout",
+"$string",
+"$truncate",
+"%round",
+"aformat",
+"code-char",
+"concatenate",
+"digit-char-p",
+"format",
+"if",
+"lambda",
+"list",
+"listp",
+"mlist",
+"nil",
+"quote",
+"string",
+"string-equal",
+"t",
+"values",
+"x"
+],
+"calls": {
+"in-package": 1,
+"defun": 13,
+"&rest": 1,
+"loop": 5,
+"$printf": 1,
+"car": 11,
+"defvar": 6,
+"setq": 95,
+"param": 1,
+"$sconcat": 5,
+"coerce": 1,
+"mapcar": 1,
+"code-char": 1,
+"if": 17,
+"eq": 1,
+"$random": 3,
+"+": 6,
+"-": 13,
+"stream": 1,
+"cond": 17,
+"gf-merror": 10,
+"gettext": 10,
+"let": 15,
+"*tilde-m-args*": 1,
+"prepare-args": 6,
+"prepare-ctrls": 1,
+"let*": 2,
+"second-pass": 1,
+"ssubst": 2,
+"third-pass": 1,
+"reconstitute-tilde-m": 1,
+"apply": 2,
+"reverse": 6,
+"eval": 1,
+"ctrls": 4,
+"skip": 1,
+"loops": 1,
+"index": 1,
+"do": 11,
+"search": 12,
+"when": 18,
+"spec-position": 4,
+"subseq": 34,
+"1-": 12,
+"and": 20,
+"zerop": 4,
+"or": 9,
+"not": 5,
+"prog": 1,
+"unless": 8,
+"t": 11,
+"push": 16,
+"go": 11,
+"1+": 10,
+"string-equal": 4,
+"string/=": 10,
+"n": 4,
+"len": 7,
+"length": 15,
+"$digitcharp": 1,
+"concatenate": 14,
+"parse-integer": 8,
+"<": 4,
+">": 10,
+"count-v": 2,
+"stringp": 2,
+"character": 5,
+"cdr": 12,
+"incf": 10,
+"decf": 3,
+"prepare-arg": 4,
+"check-v#": 1,
+"new-params": 1,
+"dolist": 1,
+"p": 1,
+"prog1": 1,
+"string=": 10,
+"cadr": 5,
+"iter-positions": 4,
+"append": 2,
+"list": 3,
+"cons": 5,
+"butlast": 2,
+"max": 2,
+"nthcdr": 2,
+"pos1": 2,
+"pos2": 1,
+"new-ctrls": 1,
+"return": 2,
+"params": 4,
+"end": 1,
+"prms": 1,
+"prm": 1,
+"bigfloatp": 1,
+"$bfloat": 2,
+"multiple-value-setq": 1,
+"wd": 1,
+"values": 1,
+"=": 5,
+"dd": 1,
+"ed": 1,
+"xp": 1,
+"bprintf": 1,
+"floatp": 1,
+"$float": 1,
+"integerp": 2,
+"$truncate": 2,
+"bf": 1,
+"labels": 1,
+"ms*": 10,
+"make-string": 1,
+"declare": 1,
+"inline": 1,
+"bcons": 3,
+"minusp": 1,
+"fptimes*": 2,
+"intofp": 3,
+"expt": 2,
+"fpquotient": 2,
+"meval": 1,
+"sgn": 1,
+"signum": 1,
+"part1": 1,
+"pos": 1,
+"position": 1,
+"part2": 1,
+"string-right-trim": 2,
+"pow": 1,
+"cs*": 13,
+"xps": 1,
+"mfuncall": 1
+},
+"toplevel": [
+{
+"head": "setq",
+"line": 47,
+"text": "(setq $stderr *error-output* $stdout *standard-output* $stdin *standard-input*)"
+}
+],
+"lines": 553
+},
+{
+"file": "../share/stringproc/cryptools",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "$string_to_octets",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"enc",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 125,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "string-to-octets",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [
+[
+"enc",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 130,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "$octets_to_string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ol"
+],
+"opt": [
+[
+"enc",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 151,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "octets-to-string",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ol"
+],
+"opt": [
+[
+"enc",
+null,
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 157,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "word-to-octets",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 177,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "number-to-octets",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 183,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "octets-to-number",
+"pkg": "maxima",
+"ll": {
+"req": [
+"octs"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 189,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$number_to_octets",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 192,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$octets_to_number",
+"pkg": "maxima",
+"ll": {
+"req": [
+"octs"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 198,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "oid-number-to-7bit",
+"pkg": "maxima",
+"ll": {
+"req": [
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 215,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "oid-to-octets",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 226,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$oid_to_octets",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 238,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "oid-split",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lst"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 243,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "octets-to-oid-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lst"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 251,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "octets-to-oid",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lst"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 258,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$octets_to_oid",
+"pkg": "maxima",
+"ll": {
+"req": [
+"octets"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 269,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "crc24sum",
+"pkg": "maxima",
+"ll": {
+"req": [
+"lst"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 275,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$crc24sum",
+"pkg": "maxima",
+"ll": {
+"req": [
+"octets"
+],
+"opt": [
+[
+"rtype",
+{
+"k": "quote",
+"v": "$string"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 284,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "old-ibase-cryptools",
+"init": {
+"k": "expr",
+"v": "*read-base*"
+},
+"line": 117
+}
+],
+"specials": [
+"old-ibase-cryptools"
+],
+"symbols": [
+"$crc24sum",
+"$list",
+"$listp",
+"$number",
+"$number_to_octets",
+"$octets_to_number",
+"$octets_to_oid",
+"$octets_to_string",
+"$oid_to_octets",
+"$sconcat",
+"$string",
+"$string_to_octets",
+"a",
+"ash",
+"identity",
+"lambda",
+"list",
+"logior",
+"mlist",
+"read",
+"s",
+"simp",
+"unsigned-byte",
+"with-input-from-string",
+"x",
+"y"
+],
+"calls": {
+"in-package": 1,
+"eval-when": 2,
+":compile-toplevel": 2,
+"defvar": 2,
+"setq": 22,
+"defun": 13,
+"str": 5,
+"unless": 5,
+"stringp": 1,
+"gf-merror": 7,
+"gettext": 7,
+"cons": 7,
+"string-to-octets": 1,
+"get-encoding": 2,
+"let": 7,
+"coerce": 1,
+"ol": 2,
+"$listp": 3,
+"octets-to-string": 1,
+"cdr": 6,
+":octets-to-string": 1,
+"n": 6,
+"do": 5,
+"push": 2,
+"logand": 4,
+"ash": 6,
+"octs": 3,
+"when": 5,
+"=": 3,
+"return": 4,
+"reduce": 1,
+"defmfun": 5,
+"and": 1,
+"integerp": 1,
+">=": 1,
+"number-to-octets": 2,
+"octets-to-number": 1,
+"lst": 6,
+"nreverse": 2,
+"list": 2,
+"car": 4,
+"dolist": 4,
+"bit7": 1,
+"logior": 2,
+"let*": 1,
+"mapcar": 1,
+"split": 1,
+"<": 1,
+"length": 2,
+"+": 1,
+"*": 1,
+"cadr": 1,
+"cddr": 1,
+"append": 1,
+"oid-number-to-7bit": 1,
+"oid-to-octets": 1,
+"res": 1,
+"or": 1,
+"null": 1,
+"not": 1,
+"logbitp": 3,
+"values": 1,
+"if": 2,
+"tmp": 2,
+"*print-base*": 1,
+"multiple-value-bind": 1,
+"q": 1,
+"truncate": 1,
+"$sconcat": 2,
+"multiple-value-setq": 1,
+"oid-split": 1,
+"octets-to-oid-1": 1,
+"octets": 2,
+"octets-to-oid": 1,
+"poly": 1,
+"oct": 1,
+"logxor": 2,
+"dotimes": 1,
+"i": 1,
+"rtype": 1,
+"cond": 1,
+"nstring-downcase": 1,
+"format": 1,
+"t": 1
+},
+"toplevel": [
+{
+"head": "setq",
+"line": 117,
+"text": "(setq *read-base* 10)"
+},
+{
+"head": "setq",
+"line": 301,
+"text": "(setq *read-base* old-ibase-cryptools)"
+}
+],
+"lines": 303
+},
+{
+"file": "../share/stringproc/md5",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "md5-not",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i32"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 101,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5+",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 104,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5-left-rotation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i32",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 107,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5-worker",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 111,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "swap-endian64",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i64"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 139,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "swap-endian32",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i32"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 145,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5-words",
+"pkg": "maxima",
+"ll": {
+"req": [
+"vec"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 152,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5-update",
+"pkg": "maxima",
+"ll": {
+"req": [
+"bytes"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 163,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5-final",
+"pkg": "maxima",
+"ll": {
+"req": [
+"bytes",
+"off",
+"len"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 167,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5sum-return",
+"pkg": "maxima",
+"ll": {
+"req": [
+"rtype"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 180,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "md5sum-stream",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s",
+"rtype"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 193,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$md5sum",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [
+[
+"rtype",
+{
+"k": "quote",
+"v": "$string"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 206,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "old-ibase-md5",
+"init": {
+"k": "expr",
+"v": "*read-base*"
+},
+"line": 78
+},
+{
+"kind": "defvar",
+"name": "*h5*",
+"init": {
+"k": "nil"
+},
+"line": 84
+},
+{
+"kind": "defvar",
+"name": "*w5*",
+"init": {
+"k": "nil"
+},
+"line": 85
+},
+{
+"kind": "defvar",
+"name": "*k5*",
+"init": {
+"k": "expr",
+"v": "(make-array 64 :element-type 'integer :initial-element 0)"
+},
+"line": 87
+},
+{
+"kind": "defvar",
+"name": "*s5*",
+"init": {
+"k": "expr",
+"v": "#(7 12 17 22 7 12 17 22 7 12 17 22 7 12 17 22 5 9 14 20 5 9 14 20 5 9 14 20 5 9 14 20 4 11 16 23 4 11 16 23 4 11 16 23 4 11 16 23 6 10 15 21 6 10 15 21 6 10 15 21 6 10 15 21)"
+},
+"line": 92
+}
+],
+"specials": [
+"*h5*",
+"*k5*",
+"*s5*",
+"*w5*",
+"old-ibase-md5"
+],
+"symbols": [
+"$list",
+"$listp",
+"$md5sum",
+"$number",
+"$string",
+"+",
+"ash",
+"integer",
+"lambda",
+"logior",
+"md5+",
+"mlist",
+"nconc",
+"simp",
+"swap-endian32",
+"values",
+"vector",
+"word-to-octets",
+"x",
+"y"
+],
+"calls": {
+"in-package": 1,
+"eval-when": 2,
+":compile-toplevel": 2,
+"defvar": 6,
+"setq": 24,
+"make-array": 1,
+"do": 6,
+"setf": 2,
+"svref": 9,
+"floor": 1,
+"*": 4,
+"abs": 1,
+"sin": 1,
+"+": 6,
+"declaim": 1,
+"inline": 1,
+"defun": 11,
+"i32": 3,
+"logand": 15,
+"lognot": 1,
+"&rest": 1,
+"apply": 2,
+"logior": 6,
+"ash": 10,
+"-": 5,
+"multiple-value-bind": 1,
+"a": 1,
+"values": 1,
+"let": 5,
+"f": 1,
+"cond": 3,
+"md5-not": 3,
+"logxor": 2,
+"t": 3,
+"md5+": 3,
+"md5-left-rotation": 1,
+"mapcar": 4,
+"list": 1,
+"i64": 1,
+"sh": 1,
+"nreverse": 1,
+"push": 1,
+"vec": 1,
+"inc": 1,
+"incf": 4,
+"bytes": 3,
+"md5-words": 1,
+"coerce": 1,
+"md5-worker": 1,
+"when": 2,
+"append": 3,
+"=": 1,
+"if": 1,
+"<=": 1,
+"let*": 1,
+"len64": 1,
+"swap-endian64": 1,
+"pad": 1,
+"make-list": 1,
+"md5-update": 4,
+"md5-final": 3,
+"rtype": 2,
+"cons": 1,
+"reduce": 2,
+"nconc": 1,
+"word-to-octets": 1,
+"nstring-downcase": 1,
+"format": 1,
+"gf-merror": 2,
+"gettext": 2,
+"s": 2,
+"len": 1,
+"butlast": 2,
+"length": 2,
+"read-sequence": 1,
+"swap-endian32": 2,
+"md5sum-return": 2,
+"defmfun": 1,
+"string-to-octets": 1,
+"number-to-octets": 1,
+"cdr": 1,
+"return-from": 1,
+"md5sum-stream": 1,
+"last": 1
+},
+"toplevel": [
+{
+"head": "setq",
+"line": 78,
+"text": "(setq *read-base* 10)"
+},
+{
+"head": "do",
+"line": 88,
+"text": "(do ((i 0 (1+ i))) ((= i 64)) (setf (svref *k5* i) (floor (* (abs (sin (+ i 1.0))) 4294967296))))"
+},
+{
+"head": "setq",
+"line": 230,
+"text": "(setq *read-base* old-ibase-md5)"
+}
+],
+"lines": 232
+},
+{
+"file": "../share/stringproc/base64",
+"module": "share",
+"functions": [
+{
+"kind": "defmfun",
+"name": "$base64",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 76,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$base64_decode",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [
+[
+"rtype",
+{
+"k": "quote",
+"v": "$string"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 111,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "old-ibase-base64",
+"init": {
+"k": "expr",
+"v": "*read-base*"
+},
+"line": 47
+},
+{
+"kind": "defvar",
+"name": "*str64*",
+"init": {
+"k": "str",
+"v": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+},
+"line": 53
+},
+{
+"kind": "defvar",
+"name": "*chr64*",
+"init": {
+"k": "expr",
+"v": "(make-array 64 :element-type 'character :initial-element #\\0)"
+},
+"line": 58
+},
+{
+"kind": "defvar",
+"name": "*num64*",
+"init": {
+"k": "expr",
+"v": "(make-array 123 :element-type 'integer :initial-element -1)"
+},
+"line": 69
+}
+],
+"specials": [
+"*chr64*",
+"*num64*",
+"*str64*",
+"old-ibase-base64"
+],
+"symbols": [
+"$base64",
+"$base64_decode",
+"$list",
+"$listp",
+"$number",
+"$string",
+"ash",
+"c",
+"char-code",
+"char=",
+"character",
+"integer",
+"lambda",
+"list",
+"logior",
+"mlist",
+"simp",
+"string",
+"x",
+"y"
+],
+"calls": {
+"in-package": 1,
+"eval-when": 2,
+":compile-toplevel": 2,
+"defvar": 5,
+"setq": 12,
+"make-array": 5,
+"do": 4,
+"ch": 1,
+"coerce": 4,
+"cdr": 2,
+"setf": 11,
+"char": 6,
+"car": 1,
+"svref": 23,
+"char-code": 2,
+"defmfun": 2,
+"s": 2,
+"let": 2,
+"bytes": 2,
+"cond": 2,
+"string-to-octets": 1,
+"number-to-octets": 1,
+"t": 2,
+"gf-merror": 2,
+"gettext": 2,
+"length": 1,
+"*": 2,
+"floor": 1,
+"+": 1,
+"incf": 4,
+"mod": 1,
+"unless": 2,
+"=": 9,
+"decf": 2,
+"when": 8,
+"rtype": 1,
+"stringp": 1,
+"merror": 5,
+"let*": 1,
+"nrof=": 1,
+"count-if": 1,
+"subseq": 1,
+"-": 2,
+"size": 1,
+"ash": 6,
+"res": 1,
+"w": 1,
+"mapcar": 1,
+"or": 2,
+">": 1,
+"/=": 1,
+"logand": 4,
+"prog": 1,
+"pop": 4,
+"logior": 3,
+"return": 3,
+"go": 1,
+"cons": 1,
+"reduce": 1,
+"octets-to-string": 1
+},
+"toplevel": [
+{
+"head": "setq",
+"line": 47,
+"text": "(setq *read-base* 10)"
+},
+{
+"head": "do",
+"line": 60,
+"text": "(do ((i 0 (1+ i)) (ch (coerce *str64* 'list) (cdr ch))) ((= i 64)) (setf (char *chr64* i) (car ch)))"
+},
+{
+"head": "do",
+"line": 71,
+"text": "(do ((i 0 (1+ i))) ((= i 64)) (setf (svref *num64* (char-code (char *chr64* i))) i))"
+},
+{
+"head": "setq",
+"line": 153,
+"text": "(setq *read-base* old-ibase-base64)"
+}
+],
+"lines": 155
+},
+{
+"file": "../share/stringproc/sha1",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "sha-not",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i32"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 109,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha+",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 112,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha-left-rotation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i32",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 115,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha-right-rotation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"i32",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 118,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha256-words",
+"pkg": "maxima",
+"ll": {
+"req": [
+"vec"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 131,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha256-worker",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 155,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha-update",
+"pkg": "maxima",
+"ll": {
+"req": [
+"bytes",
+"nr"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 180,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha-len64",
+"pkg": "maxima",
+"ll": {
+"req": [
+"bits"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 190,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha-final",
+"pkg": "maxima",
+"ll": {
+"req": [
+"bytes",
+"off",
+"len",
+"nr"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 196,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha1-worker",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 214,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sha1-words",
+"pkg": "maxima",
+"ll": {
+"req": [
+"vec"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 240,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$sha1sum",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [
+[
+"rtype",
+{
+"k": "quote",
+"v": "$string"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 261,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$mgf1_sha1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"seed",
+"len"
+],
+"opt": [
+[
+"rtype",
+{
+"k": "quote",
+"v": "$number"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 297,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$sha256sum",
+"pkg": "maxima",
+"ll": {
+"req": [
+"s"
+],
+"opt": [
+[
+"rtype",
+{
+"k": "quote",
+"v": "$string"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 320,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [
+{
+"kind": "defvar",
+"name": "old-ibase-sha1",
+"init": {
+"k": "expr",
+"v": "*read-base*"
+},
+"line": 101
+},
+{
+"kind": "defvar",
+"name": "*k2*",
+"init": {
+"k": "expr",
+"v": "(coerce (mapcar #'(lambda (i) (floor (* (rem (expt (coerce i 'double-float) 1/3) 1.0) 4294967296))) (subseq *small-primes* 0 64)) 'vector)"
+},
+"line": 122
+},
+{
+"kind": "defvar",
+"name": "*h2*",
+"init": {
+"k": "nil"
+},
+"line": 128
+},
+{
+"kind": "defvar",
+"name": "*w2*",
+"init": {
+"k": "nil"
+},
+"line": 129
+},
+{
+"kind": "defvar",
+"name": "*h1*",
+"init": {
+"k": "nil"
+},
+"line": 211
+},
+{
+"kind": "defvar",
+"name": "*w1*",
+"init": {
+"k": "nil"
+},
+"line": 212
+}
+],
+"specials": [
+"*h1*",
+"*h2*",
+"*k2*",
+"*w1*",
+"*w2*",
+"old-ibase-sha1"
+],
+"symbols": [
+"$list",
+"$listp",
+"$mgf1_sha1",
+"$number",
+"$sha1sum",
+"$sha256sum",
+"$string",
+"*",
+"+",
+"ash",
+"coerce",
+"double-float",
+"expt",
+"floor",
+"i",
+"integer",
+"lambda",
+"logior",
+"mlist",
+"nconc",
+"rem",
+"sha+",
+"simp",
+"values",
+"vector",
+"word-to-octets",
+"x",
+"y"
+],
+"calls": {
+"in-package": 1,
+"eval-when": 2,
+":compile-toplevel": 2,
+"defvar": 7,
+"setq": 36,
+"declaim": 1,
+"inline": 1,
+"defun": 11,
+"i32": 3,
+"logand": 15,
+"lognot": 1,
+"&rest": 1,
+"apply": 3,
+"+": 1,
+"logior": 6,
+"ash": 13,
+"-": 14,
+"coerce": 2,
+"mapcar": 5,
+"subseq": 2,
+"vec": 2,
+"make-array": 2,
+"do": 10,
+"inc": 2,
+"setf": 4,
+"svref": 23,
+"incf": 8,
+"logxor": 9,
+"sha-right-rotation": 10,
+"sha+": 8,
+"multiple-value-bind": 2,
+"a": 2,
+"values": 2,
+"let": 6,
+"s1": 1,
+"sha-not": 2,
+"list": 2,
+"bytes": 4,
+"cond": 8,
+"sha1-words": 1,
+"sha1-worker": 1,
+"sha256-words": 1,
+"sha256-worker": 1,
+"bits": 1,
+"nil": 1,
+"push": 1,
+"when": 3,
+"=": 2,
+"return": 1,
+"append": 4,
+"if": 1,
+"<=": 1,
+"let*": 1,
+"len64": 1,
+"sha-len64": 1,
+"pad": 1,
+"make-list": 1,
+"sha-update": 4,
+"sha-final": 3,
+"f": 1,
+"t": 7,
+"sha-left-rotation": 3,
+"defmfun": 3,
+"s": 2,
+"rtype": 3,
+"string-to-octets": 2,
+"number-to-octets": 3,
+"cdr": 4,
+"gf-merror": 7,
+"gettext": 5,
+"length": 2,
+"butlast": 2,
+"last": 2,
+"cons": 4,
+"reduce": 4,
+"nconc": 3,
+"word-to-octets": 3,
+"nstring-downcase": 2,
+"format": 2,
+"seed": 1,
+"unless": 1,
+"and": 1,
+"integerp": 1,
+">": 1,
+"ii": 1,
+"ceiling": 1,
+"/": 1,
+"$sha1sum": 1,
+"octets-to-number": 1
+},
+"toplevel": [
+{
+"head": "setq",
+"line": 101,
+"text": "(setq *read-base* 10)"
+},
+{
+"head": "setq",
+"line": 353,
+"text": "(setq *read-base* old-ibase-sha1)"
+}
+],
+"lines": 355
+},
+{
+"file": "../share/stringproc/sregex",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "compiled-regex-print",
+"pkg": "maxima",
+"ll": {
+"req": [
+"struct",
+"stream",
+"i"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 93,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$regex_compile",
+"pkg": "maxima",
+"ll": {
+"req": [
+"regex"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 101,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "regex-check-and-maybe-coerce",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name",
+"regex"
+],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 107,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "regex-index-error",
+"pkg": "maxima",
+"ll": {
+"req": [
+"name"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 118,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "regex-utf-8-pos-dec",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ov",
+"off",
+"pos"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 126,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$regex_match_pos",
+"pkg": "maxima",
+"ll": {
+"req": [
+"regex",
+"str"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "1"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 134,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$regex_match",
+"pkg": "maxima",
+"ll": {
+"req": [
+"regex",
+"str"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "1"
+},
+null
+],
+[
+"end",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 158,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$regex_split",
+"pkg": "maxima",
+"ll": {
+"req": [
+"regex",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 174,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$regex_subst_first",
+"pkg": "maxima",
+"ll": {
+"req": [
+"replacement",
+"regex",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 179,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$regex_subst",
+"pkg": "maxima",
+"ll": {
+"req": [
+"replacement",
+"regex",
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 186,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$string_to_regex",
+"pkg": "maxima",
+"ll": {
+"req": [
+"str"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 191,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [
+"*parse-utf-8-input*"
+],
+"symbols": [
+"$regex_compile",
+"$regex_match",
+"$regex_match_pos",
+"$regex_split",
+"$regex_subst",
+"$regex_subst_first",
+"$string_to_regex",
+"mlist",
+"simp",
+"stringp"
+],
+"calls": {
+"in-package": 1,
+"declare-top": 1,
+"special": 1,
+"defstruct": 1,
+"compiled-regex": 1,
+":print-function": 1,
+"defun": 4,
+"struct": 1,
+"declare": 1,
+"ignore": 1,
+"format": 1,
+"compiled-regex-pattern": 1,
+"defmfun": 7,
+"regex": 4,
+"make-compiled-regex": 1,
+"pregexp:pregexp": 1,
+"name": 2,
+"cond": 1,
+"setq": 9,
+"compiled-regex-parse-tree": 1,
+"gf-merror": 4,
+"gettext": 4,
+"unless": 2,
+"every": 1,
+"stringp": 2,
+"ov": 2,
+"do": 1,
+"n": 1,
+"when": 5,
+"=": 1,
+"logand": 1,
+"aref": 1,
+"incf": 1,
+"start": 2,
+"end": 2,
+"regex-check-and-maybe-coerce": 5,
+"decf": 4,
+"let": 5,
+"or": 2,
+"ignore-errors": 2,
+"string-to-raw-bytes": 1,
+"cadr": 2,
+"caddr": 2,
+"pos-mlist": 1,
+"if": 2,
+"dolist": 1,
+"pos": 1,
+"cons": 3,
+"nreverse": 1,
+"cdr": 3,
+"+": 1,
+"regex-utf-8-pos-dec": 1,
+"car": 3,
+"push": 1,
+"1+": 2,
+"return-from": 2,
+"regex-index-error": 2,
+"let*": 1,
+"args": 1,
+"utf-8-fix-start-end": 1,
+"list": 1,
+"pregexp:pregexp-split": 1,
+"replacement": 2,
+"pregexp:pregexp-replace": 1,
+"pregexp:pregexp-replace*": 1,
+"str": 1,
+"pregexp:pregexp-quote": 1
+},
+"toplevel": [
+{
+"head": "defstruct",
+"line": 86,
+"text": "(defstruct (compiled-regex (:print-function compiled-regex-print)) parse-tree pattern)"
+}
+],
+"lines": 195
+},
+{
+"file": "../share/contrib/unwind_protect",
+"module": "share",
+"functions": [
+{
+"kind": "defmspec",
+"name": "$unwind_protect",
+"pkg": "maxima",
+"ll": {
+"req": [
+"e"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1,
+"nvalues": 0
+}
+],
+"macros": [],
+"vars": [],
+"specials": [],
+"symbols": [
+"$unwind_protect",
+"meval"
+],
+"calls": {
+"defmspec": 1,
+"e": 1,
+"setq": 1,
+"margs": 1,
+"unwind-protect": 1,
+"meval": 2,
+"first": 1,
+"mapcar": 1,
+"rest": 1
+},
+"toplevel": [],
+"lines": 3
+},
+{
+"file": "../share/contrib/Grobner/grobner",
+"module": "share",
+"functions": [
+{
+"kind": "defun",
+"name": "monom-dimension",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 131,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-total-degree",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "expr",
+"v": "(length m)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 135,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-sugar",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 141,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-div",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 147,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-mul",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 152,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-divides-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 157,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-divides-monom-lcm-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2",
+"m3"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 162,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-lcm-divides-monom-lcm-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2",
+"m3",
+"m4"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 167,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-lcm-equal-monom-lcm-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2",
+"m3",
+"m4"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 172,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-divisible-by-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 177,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-rel-prime-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 182,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-equal-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 187,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-lcm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 192,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-gcd",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 197,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-depends-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 202,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-exponents",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 216,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "lex>",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "expr",
+"v": "(monom-dimension p)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 228,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "grlex>",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "expr",
+"v": "(monom-dimension p)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 242,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "grevlex>",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "expr",
+"v": "(monom-dimension p)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 256,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "revlex>",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "expr",
+"v": "(monom-dimension p)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 270,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "invlex>",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "expr",
+"v": "(monom-dimension p)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 287,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "reverse-monomial-order",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 315,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "elimination-order",
+"pkg": "maxima",
+"ll": {
+"req": [
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 328,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "elimination-order-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"end",
+{
+"k": "expr",
+"v": "(monom-dimension p)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 342,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "priority-queue-make-heap",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [
+[
+"element-type",
+{
+"k": "quote",
+"v": "fixnum"
+}
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 361,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-priority-queue",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [
+[
+"element-type",
+{
+"k": "quote",
+"v": "fixnum"
+}
+],
+[
+"test",
+{
+"k": "expr",
+"v": "#'<="
+}
+],
+[
+"element-key",
+{
+"k": "expr",
+"v": "#'identity"
+}
+]
+],
+"aux": [],
+"dotted": false
+},
+"line": 369,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-insert",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pq",
+"item"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 376,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-remove",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pq"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 379,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-empty-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pq"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 382,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-size",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pq"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 385,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-upheap",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"k"
+],
+"opt": [
+[
+"test",
+{
+"k": "expr",
+"v": "#'<="
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 388,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-heap-insert",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"item"
+],
+"opt": [
+[
+"test",
+{
+"k": "expr",
+"v": "#'<="
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 405,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-downheap",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a",
+"k"
+],
+"opt": [
+[
+"test",
+{
+"k": "expr",
+"v": "#'<="
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 409,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "priority-queue-heap-remove",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [
+[
+"test",
+{
+"k": "expr",
+"v": "#'<="
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 427,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "priority-queue-heap-empty-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"a"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 433,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-term-variable",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"nvars",
+"pos"
+],
+"opt": [
+[
+"power",
+{
+"k": "int",
+"v": "1"
+},
+null
+],
+[
+"coeff",
+{
+"k": "expr",
+"v": "(funcall (ring-unit ring))"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 542,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "term-sugar",
+"pkg": "maxima",
+"ll": {
+"req": [
+"term"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 552,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-sugar",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 555,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-lm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 570,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-lc",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 571,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "scalar-times-termlist",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"c",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 577,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "term-mul",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"term1",
+"term2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 590,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "term-times-termlist",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"term",
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 600,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-times-term",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"term"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 606,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-times-term",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"term"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 611,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-times-termlist",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 616,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-uminus",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 624,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-add",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"q"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 631,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-sub",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"q"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 657,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-mul",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"q"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 687,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-unit",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"dimension"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 702,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-expt",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"poly",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 707,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-contract",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [
+[
+"k",
+{
+"k": "int",
+"v": "1"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 726,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-extend",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [
+[
+"m",
+{
+"k": "expr",
+"v": "(make-monom 1 :initial-element 0)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 732,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "termlist-add-variables",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 739,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-lm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 780,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-second-lm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 783,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-lc",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 786,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-second-lc",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 789,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-zerop",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 792,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-length",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 795,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "scalar-times-poly",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"c",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 799,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "monom-times-poly",
+"pkg": "maxima",
+"ll": {
+"req": [
+"m",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 804,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "term-times-poly",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"term",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 809,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-add",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"q"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 814,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-sub",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"q"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 817,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-uminus",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 822,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-mul",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"q"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 825,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-expt",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"n"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 830,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-append",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": "plist",
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 833,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-nreverse",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 839,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-contract",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [
+[
+"k",
+{
+"k": "int",
+"v": "1"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 845,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-extend",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [
+[
+"m",
+{
+"k": "expr",
+"v": "(make-monom 1 :initial-element 0)"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 851,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-add-variables",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 856,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-list-add-variables",
+"pkg": "maxima",
+"ll": {
+"req": [
+"plist",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 860,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-standard-extension",
+"pkg": "maxima",
+"ll": {
+"req": [
+"plist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 863,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "saturation-extension",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"plist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 874,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "polysaturation-extension",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"plist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 886,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "saturation-extension-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 895,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "coerce-coeff",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"expr",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 905,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-eval",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"expr",
+"vars"
+],
+"opt": [
+[
+"list-marker",
+{
+"k": "quote",
+"v": "["
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 912,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "spoly",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"g"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 970,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-primitive-part",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 986,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "poly-content",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1001,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "grobner-op",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"c1",
+"c2",
+"m",
+"f",
+"g"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1016,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-pseudo-divide",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"fl"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1028,
+"nvalues": 4
+},
+{
+"kind": "defun",
+"name": "poly-exact-divide",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"g"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1071,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "normal-form-step",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"fl",
+"p",
+"r",
+"c",
+"division-count"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1095,
+"nvalues": 4
+},
+{
+"kind": "defun",
+"name": "normal-form",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"fl"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1121,
+"nvalues": 3
+},
+{
+"kind": "defun",
+"name": "buchberger-criterion",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"g"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1151,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "grobner-test",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"g",
+"f"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1161,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sugar-pair-key",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"q"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1184,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "sugar-order",
+"pkg": "maxima",
+"ll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1207,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "make-pair-queue",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1222,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pair-queue-initialize",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pq",
+"f",
+"start"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1229,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pair-queue-insert",
+"pkg": "maxima",
+"ll": {
+"req": [
+"b",
+"pair"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1243,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pair-queue-remove",
+"pkg": "maxima",
+"ll": {
+"req": [
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1246,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pair-queue-size",
+"pkg": "maxima",
+"ll": {
+"req": [
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1249,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "pair-queue-empty-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"b"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1252,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "buchberger",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"start"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1261,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parallel-buchberger",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"start"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1312,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "criterion-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pair"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1400,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "criterion-2",
+"pkg": "maxima",
+"ll": {
+"req": [
+"pair",
+"b-done",
+"partial-basis"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1411,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "gebauer-moeller",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"start"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1455,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "gebauer-moeller-update",
+"pkg": "maxima",
+"ll": {
+"req": [
+"g",
+"b",
+"h"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1495,
+"nvalues": 2
+},
+{
+"kind": "defun",
+"name": "reduction",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"plist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1564,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "minimization",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1585,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-normalize",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1601,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-normalize-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"plist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1612,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "find-grobner-function",
+"pkg": "maxima",
+"ll": {
+"req": [
+"algorithm"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1623,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "grobner",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"top-reduction-only",
+{
+"k": "nil"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1632,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "reduced-grobner",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f"
+],
+"opt": [
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+],
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1638,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "set-pair-heuristic",
+"pkg": "maxima",
+"ll": {
+"req": [
+"method"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1641,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "term-depends-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"term",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1673,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-depends-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1678,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ring-intersection",
+"pkg": "maxima",
+"ll": {
+"req": [
+"plist",
+"k"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1682,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "elimination-ideal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"flist",
+"k"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+],
+[
+"start",
+{
+"k": "int",
+"v": "0"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1692,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "colon-ideal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"g"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1699,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "colon-ideal-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"g"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1722,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ideal-intersection",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"g"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1728,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "poly-lcm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"g"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1745,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "grobner-equal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"g1",
+"g2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1767,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "grobner-subsetp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"g1",
+"g2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1772,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "grobner-member",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"p",
+"g"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1778,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ideal-saturation-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"p",
+"start"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1784,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ideal-polysaturation-1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"plist",
+"start"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1806,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ideal-saturation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"g",
+"start"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1816,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "ideal-polysaturation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring",
+"f",
+"ideal-list",
+"start"
+],
+"opt": [
+[
+"top-reduction-only",
+{
+"k": "expr",
+"v": "$poly_top_reduction_only"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1838,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "coerce-to-infix",
+"pkg": "maxima",
+"ll": {
+"req": [
+"poly-type",
+"object",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1878,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "equal-test-p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr1",
+"expr2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1937,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "coerce-maxima-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1940,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "free-of-vars",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1946,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parse-poly",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1949,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parse-poly1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1952,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parse-poly-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"expr",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1991,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "parse-poly-list-list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"poly-list-list",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 1996,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "find-order",
+"pkg": "maxima",
+"ll": {
+"req": [
+"order"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2005,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "find-ring",
+"pkg": "maxima",
+"ll": {
+"req": [
+"ring"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2022,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "maxima-head",
+"pkg": "maxima",
+"ll": {
+"req": [],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2061,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "coerce-to-maxima",
+"pkg": "maxima",
+"ll": {
+"req": [
+"poly-type",
+"object",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2066,
+"nvalues": 0
+},
+{
+"kind": "defun",
+"name": "remzero",
+"pkg": "maxima",
+"ll": {
+"req": [
+"plist"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2146,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_expand",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2170,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_expt",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"n",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2178,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_content",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2182,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_pseudo_divide",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"fl",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2186,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_exact_divide",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2198,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_normal_form",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"fl",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2202,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_buchberger_criterion",
+"pkg": "maxima",
+"ll": {
+"req": [
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2208,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_buchberger",
+"pkg": "maxima",
+"ll": {
+"req": [
+"fl",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2212,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_reduction",
+"pkg": "maxima",
+"ll": {
+"req": [
+"plist",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2216,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_minimization",
+"pkg": "maxima",
+"ll": {
+"req": [
+"plist",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2221,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_normalize_list",
+"pkg": "maxima",
+"ll": {
+"req": [
+"plist",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2226,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_grobner",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2231,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_reduced_grobner",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2236,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_depends_p",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"var",
+"mvars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2241,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_elimination_ideal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"flist",
+"k",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2248,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_colon_ideal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2253,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_ideal_intersection",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2257,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_lcm",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2261,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_gcd",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2265,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_grobner_equal",
+"pkg": "maxima",
+"ll": {
+"req": [
+"g1",
+"g2",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2268,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_grobner_subsetp",
+"pkg": "maxima",
+"ll": {
+"req": [
+"g1",
+"g2",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2272,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_grobner_member",
+"pkg": "maxima",
+"ll": {
+"req": [
+"p",
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2276,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_ideal_saturation1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"p",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2280,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_saturation_extension",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"plist",
+"vars",
+"new-vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2285,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_polysaturation_extension",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"plist",
+"vars",
+"new-vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2291,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_ideal_polysaturation1",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"plist",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2297,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_ideal_saturation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"g",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2302,
+"nvalues": 0
+},
+{
+"kind": "defmfun",
+"name": "$poly_ideal_polysaturation",
+"pkg": "maxima",
+"ll": {
+"req": [
+"f",
+"ideal-list",
+"vars"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+},
+"line": 2307,
+"nvalues": 0
+}
+],
+"macros": [
+{
+"name": "grobner-makelist-1",
+"ll": "(expr var lo hi &optional (step 1))",
+"line": 48,
+"simple": true,
+"pll": {
+"req": [
+"expr",
+"var",
+"lo",
+"hi"
+],
+"opt": [
+[
+"step",
+{
+"k": "int",
+"v": "1"
+},
+null
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "grobner-makelist",
+"ll": "(expr (var lo hi &optional (step 1)) &rest more)",
+"line": 55,
+"simple": false,
+"pll": null
+},
+{
+"name": "make-monom",
+"ll": "(dim &key (initial-contents nil initial-contents-supplied-p) (initial-element 0 initial-element-supplied-p))",
+"line": 108,
+"simple": true,
+"pll": {
+"req": [
+"dim"
+],
+"opt": [],
+"rest": null,
+"key": [
+[
+"initial-contents",
+{
+"k": "nil"
+}
+],
+[
+"initial-element",
+{
+"k": "int",
+"v": "0"
+}
+]
+],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "monom-elt",
+"ll": "(m index)",
+"line": 127,
+"simple": true,
+"pll": {
+"req": [
+"m",
+"index"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "monom-map",
+"ll": "(fun m &rest ml &aux (result `(copy-seq ,m)))",
+"line": 207,
+"simple": true,
+"pll": {
+"req": [
+"fun",
+"m"
+],
+"opt": [],
+"rest": "ml",
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "monom-append",
+"ll": "(m1 m2)",
+"line": 210,
+"simple": true,
+"pll": {
+"req": [
+"m1",
+"m2"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "monom-contract",
+"ll": "(k m)",
+"line": 213,
+"simple": true,
+"pll": {
+"req": [
+"k",
+"m"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "monomial-order",
+"ll": "(x y)",
+"line": 312,
+"simple": true,
+"pll": {
+"req": [
+"x",
+"y"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "termlist-lt",
+"ll": "(p)",
+"line": 569,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "poly-lt",
+"ll": "(p)",
+"line": 774,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "poly-second-lt",
+"ll": "(p)",
+"line": 777,
+"simple": true,
+"pll": {
+"req": [
+"p"
+],
+"opt": [],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "debug-cgb",
+"ll": "(&rest args)",
+"line": 961,
+"simple": true,
+"pll": {
+"req": [],
+"opt": [],
+"rest": "args",
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "with-monomial-order",
+"ll": "((order) &body body)",
+"line": 2036,
+"simple": false,
+"pll": null
+},
+{
+"name": "with-coefficient-ring",
+"ll": "((ring) &body body)",
+"line": 2041,
+"simple": false,
+"pll": null
+},
+{
+"name": "with-elimination-orders",
+"ll": "((primary secondary elimination-order) &body body)",
+"line": 2046,
+"simple": false,
+"pll": null
+},
+{
+"name": "with-parsed-polynomials",
+"ll": "(((maxima-vars &optional (maxima-new-vars nil new-vars-supplied-p)) &key (polynomials nil) (poly-lists nil) (poly-list-lists nil) (value-type nil)) &body body &aux (vars (gensym)) (new-vars (gensym)))",
+"line": 2087,
+"simple": false,
+"pll": null
+},
+{
+"name": "define-unop",
+"ll": "(maxima-name fun-name &optional (documentation nil documentation-supplied-p))",
+"line": 2117,
+"simple": true,
+"pll": {
+"req": [
+"maxima-name",
+"fun-name"
+],
+"opt": [
+[
+"documentation",
+{
+"k": "nil"
+},
+"documentation-supplied-p"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+},
+{
+"name": "define-binop",
+"ll": "(maxima-name fun-name &optional (documentation nil documentation-supplied-p))",
+"line": 2127,
+"simple": true,
+"pll": {
+"req": [
+"maxima-name",
+"fun-name"
+],
+"opt": [
+[
+"documentation",
+{
+"k": "nil"
+},
+"documentation-supplied-p"
+]
+],
+"rest": null,
+"key": [],
+"aux": [],
+"dotted": false
+}
+}
+],
+"vars": [
+{
+"kind": "defvar",
+"name": "*monomial-order*",
+"init": {
+"k": "expr",
+"v": "#'lex>"
+},
+"line": 309
+},
+{
+"kind": "defvar",
+"name": "*primary-elimination-order*",
+"init": {
+"k": "expr",
+"v": "#'lex>"
+},
+"line": 318
+},
+{
+"kind": "defvar",
+"name": "*secondary-elimination-order*",
+"init": {
+"k": "expr",
+"v": "#'lex>"
+},
+"line": 320
+},
+{
+"kind": "defvar",
+"name": "*elimination-order*",
+"init": {
+"k": "nil"
+},
+"line": 322
+},
+{
+"kind": "defparameter",
+"name": "*priority-queue-allocation-size*",
+"init": {
+"k": "int",
+"v": "16"
+},
+"line": 359
+},
+{
+"kind": "defmvar",
+"name": "$poly_monomial_order",
+"init": {
+"k": "quote",
+"v": "$lex"
+},
+"line": 444
+},
+{
+"kind": "defmvar",
+"name": "$poly_coefficient_ring",
+"init": {
+"k": "quote",
+"v": "$expression_ring"
+},
+"line": 448
+},
+{
+"kind": "defmvar",
+"name": "$poly_primary_elimination_order",
+"init": {
+"k": "nil"
+},
+"line": 454
+},
+{
+"kind": "defmvar",
+"name": "$poly_secondary_elimination_order",
+"init": {
+"k": "nil"
+},
+"line": 458
+},
+{
+"kind": "defmvar",
+"name": "$poly_elimination_order",
+"init": {
+"k": "nil"
+},
+"line": 462
+},
+{
+"kind": "defmvar",
+"name": "$poly_return_term_list",
+"init": {
+"k": "nil"
+},
+"line": 468
+},
+{
+"kind": "defmvar",
+"name": "$poly_grobner_debug",
+"init": {
+"k": "nil"
+},
+"line": 472
+},
+{
+"kind": "defmvar",
+"name": "$poly_grobner_algorithm",
+"init": {
+"k": "quote",
+"v": "$buchberger"
+},
+"line": 475
+},
+{
+"kind": "defmvar",
+"name": "$poly_top_reduction_only",
+"init": {
+"k": "nil"
+},
+"line": 478
+},
+{
+"kind": "defparameter",
+"name": "*ring-of-integers*",
+"init": {
+"k": "expr",
+"v": "(make-ring :parse #'identity :unit #'(lambda () 1) :zerop #'zerop :add #'+ :sub #'- :uminus #'- :mul #'* :div #'/ :lcm #'lcm :ezgcd #'(lambda (x y &aux (c (gcd x y))) (values c (/ x c) (/ y c))) :gcd #'gcd)"
+},
+"line": 510
+},
+{
+"kind": "defvar",
+"name": "*pair-key-function*",
+"init": {
+"k": "expr",
+"v": "#'sugar-pair-key"
+},
+"line": 1215
+},
+{
+"kind": "defvar",
+"name": "*pair-order*",
+"init": {
+"k": "expr",
+"v": "#'sugar-order"
+},
+"line": 1219
+},
+{
+"kind": "defparameter",
+"name": "*expression-ring*",
+"init": {
+"k": "expr",
+"v": "(make-ring :parse #'(lambda (expr) (when modulus (setf expr ($rat expr))) expr) :unit #'(lambda () (if modulus ($rat 1) 1)) :zerop #'(lambda (expr) (cond ((numberp expr) (= expr 0)) ((atom expr) nil) (t (case (caar expr) (mrat (eql ($ratdisrep expr) 0)) (otherwise (eql (sratsimp expr) 0)))))) :add #'(lambda (x y) (sratsimp (m+ x y))) :sub #'(lambda (x y) (sratsimp (m- x y))) :uminus #'(lambda (x) (m- x)) :mul #'(lambda (x y) (m* x y)) :div #'(lambda (x y) (sratsimp (m// x y))) :lcm #'(lambda (x y) (sratsimp (m// (m* x y) (second ($ezgcd x y))))) :ezgcd #'(lambda (x y) (apply #'values (cdr ($ezgcd x y)))) :gcd #'(lambda (x y) (second ($ezgcd x y))))"
+},
+"line": 1900
+},
+{
+"kind": "defvar",
+"name": "*maxima-ring*",
+"init": {
+"k": "expr",
+"v": "*expression-ring*"
+},
+"line": 1926
+}
+],
+"specials": [
+"$poly_coefficient_ring",
+"$poly_elimination_order",
+"$poly_grobner_algorithm",
+"$poly_grobner_debug",
+"$poly_monomial_order",
+"$poly_primary_elimination_order",
+"$poly_return_term_list",
+"$poly_secondary_elimination_order",
+"$poly_top_reduction_only",
+"*elimination-order*",
+"*expression-ring*",
+"*maxima-ring*",
+"*monomial-order*",
+"*pair-key-function*",
+"*pair-order*",
+"*primary-elimination-order*",
+"*priority-queue-allocation-size*",
+"*ring-of-integers*",
+"*secondary-elimination-order*"
+],
+"symbols": [
+"$buchberger",
+"$divide",
+"$expression_ring",
+"$ezgcd",
+"$first",
+"$freeof",
+"$gebauer_moeller",
+"$grevlex",
+"$grlex",
+"$invlex",
+"$lex",
+"$minimal_lcm",
+"$minimal_length",
+"$minimal_total_degree",
+"$num",
+"$outofpois",
+"$parallel_buchberger",
+"$poly_add",
+"$poly_buchberger",
+"$poly_buchberger_criterion",
+"$poly_coefficient_ring",
+"$poly_colon_ideal",
+"$poly_content",
+"$poly_depends_p",
+"$poly_elimination_ideal",
+"$poly_elimination_order",
+"$poly_exact_divide",
+"$poly_expand",
+"$poly_expt",
+"$poly_gcd",
+"$poly_grobner",
+"$poly_grobner_algorithm",
+"$poly_grobner_debug",
+"$poly_grobner_equal",
+"$poly_grobner_member",
+"$poly_grobner_subsetp",
+"$poly_ideal_intersection",
+"$poly_ideal_polysaturation",
+"$poly_ideal_polysaturation1",
+"$poly_ideal_saturation",
+"$poly_ideal_saturation1",
+"$poly_lcm",
+"$poly_minimization",
+"$poly_monomial_order",
+"$poly_multiply",
+"$poly_normal_form",
+"$poly_normalize",
+"$poly_normalize_list",
+"$poly_polysaturation_extension",
+"$poly_primary_elimination_order",
+"$poly_primitive_part",
+"$poly_pseudo_divide",
+"$poly_reduced_grobner",
+"$poly_reduction",
+"$poly_return_term_list",
+"$poly_s_polynomial",
+"$poly_saturation_extension",
+"$poly_secondary_elimination_order",
+"$poly_subtract",
+"$poly_top_reduction_only",
+"$rat",
+"$ratdisrep",
+"$ring_of_integers",
+"$sugar",
+"&aux",
+"&optional",
+"*",
+"*elimination-order*",
+"*maxima-ring*",
+"*monomial-order*",
+"*pair-key-function*",
+"*primary-elimination-order*",
+"*secondary-elimination-order*",
+"*terminal-io*",
+"+",
+"-",
+"/",
+":element-type",
+":initial-contents",
+":initial-element",
+":polynomial",
+":term",
+"<",
+"<=",
+"=",
+">",
+">=",
+"[",
+"append",
+"apply",
+"atom",
+"buchberger",
+"c",
+"c1",
+"caar",
+"cadar",
+"car",
+"case",
+"cdr",
+"coerce-maxima-list",
+"coerce-to-infix",
+"coerce-to-maxima",
+"concatenate",
+"cond",
+"cons",
+"copy-seq",
+"d",
+"declare",
+"defmfun",
+"defun",
+"do",
+"element-key",
+"elimination-order-1",
+"elt",
+"end",
+"eql",
+"equal",
+"equal-test-p",
+"equalp",
+"exponent",
+"expr",
+"expt",
+"find-order",
+"find-ring",
+"fixnum",
+"format",
+"funcall",
+"g",
+"g1",
+"g2",
+"gcd",
+"gebauer-moeller",
+"grevlex>",
+"grlex>",
+"grobner-makelist-1",
+"grobner-member",
+"h",
+"i",
+"identity",
+"if",
+"invlex>",
+"k",
+"lambda",
+"lcm",
+"let",
+"lex>",
+"list",
+"m",
+"m*",
+"m+",
+"m-",
+"m//",
+"make-array",
+"make-monom",
+"make-term",
+"map-into",
+"max",
+"mexpt",
+"min",
+"mlist",
+"modulus",
+"monom",
+"monom-append",
+"monom-contract",
+"monom-dimension",
+"monom-divides-p",
+"monom-divisible-by-p",
+"monom-lcm",
+"monom-lcm-divides-monom-lcm-p",
+"monom-times-term",
+"monom-total-degree",
+"mplus",
+"mrat",
+"mtimes",
+"multiple-value-bind",
+"n",
+"nconc",
+"nil",
+"numberp",
+"or",
+"otherwise",
+"p",
+"p-add",
+"p-eval",
+"pair",
+"pair-first",
+"pair-second",
+"parallel-buchberger",
+"parse",
+"parse-poly",
+"parse-poly-list",
+"parse-poly-list-list",
+"poly-add",
+"poly-add-variables",
+"poly-append",
+"poly-contract",
+"poly-depends-p",
+"poly-exact-divide",
+"poly-extend",
+"poly-length",
+"poly-lm",
+"poly-mul",
+"poly-normalize",
+"poly-nreverse",
+"poly-primitive-part",
+"poly-sugar",
+"poly-termlist",
+"poly-uminus",
+"poly-zerop",
+"power",
+"primary",
+"q",
+"reverse",
+"reverse-monomial-order",
+"ring",
+"ring-div",
+"ring-mul",
+"ring-uminus",
+"ring-unit",
+"ring-zerop",
+"scalar-times-poly",
+"second",
+"setf",
+"simple-array",
+"sratsimp",
+"start",
+"subseq",
+"sugar-order",
+"sugar-pair-key",
+"t",
+"term",
+"term-coeff",
+"term-depends-p",
+"term-f",
+"term-monom",
+"term-mul",
+"test",
+"type",
+"unless",
+"values",
+"var",
+"vars",
+"w",
+"when",
+"with-coefficient-ring",
+"with-elimination-orders",
+"with-monomial-order",
+"x",
+"y",
+"z",
+"zerop"
+],
+"calls": {
+"in-package": 1,
+"macsyma-module": 1,
+"defmacro": 18,
+"expr": 7,
+"step": 2,
+"let": 28,
+"var": 1,
+"if": 11,
+"endp": 5,
+"let*": 5,
+"deftype": 2,
+"&optional": 1,
+"declaim": 24,
+"ftype": 27,
+"function": 27,
+"monom": 13,
+"member": 4,
+"dim": 2,
+"initial-contents": 1,
+"initial-element": 1,
+"when": 20,
+"m": 11,
+"defun": 141,
+"length": 25,
+"start": 11,
+"end": 8,
+"declare": 67,
+"type": 73,
+"fixnum": 13,
+"reduce": 7,
+"+": 11,
+"monom-total-degree": 5,
+"m1": 12,
+"result": 5,
+"copy-seq": 4,
+"map-into": 4,
+"-": 7,
+"every": 11,
+"<=": 9,
+">=": 1,
+"=": 2,
+"max": 7,
+"min": 1,
+"plusp": 4,
+"elt": 12,
+"fun": 1,
+"k": 8,
+"coerce": 1,
+"p": 42,
+"monom-dimension": 9,
+"do": 22,
+"values": 24,
+"cond": 29,
+"return-from": 12,
+"d2": 2,
+"t": 25,
+"lex>": 5,
+"revlex>": 1,
+"defvar": 7,
+"x": 6,
+"monomial-order": 1,
+"funcall": 20,
+"1+": 4,
+"integer": 1,
+"defparameter": 3,
+"&key": 2,
+"element-type": 2,
+"make-array": 1,
+"defstruct": 5,
+"priority-queue": 1,
+":constructor": 7,
+"heap": 1,
+"priority-queue-make-heap": 2,
+"test": 5,
+"element-key": 1,
+"identity": 13,
+"priority-queue-construct": 1,
+"pq": 5,
+"priority-queue-heap-insert": 1,
+"priority-queue-heap": 4,
+"priority-queue-test": 2,
+"priority-queue-heap-remove": 1,
+"priority-queue-heap-empty-p": 1,
+"fill-pointer": 6,
+"a": 6,
+"v": 3,
+"aref": 14,
+"assert": 1,
+"<": 6,
+"loop": 2,
+"zerop": 6,
+"return": 6,
+"unless": 11,
+"setf": 39,
+"vector-push-extend": 1,
+"priority-queue-upheap": 1,
+"1-": 8,
+"j": 4,
+"n": 1,
+"ash": 2,
+"and": 4,
+"not": 3,
+"incf": 3,
+"error": 6,
+"vector-pop": 1,
+"priority-queue-downheap": 1,
+"defmvar": 9,
+"ring": 71,
+"parse": 7,
+"unit": 1,
+"add": 1,
+"sub": 1,
+"uminus": 1,
+"mul": 1,
+"div": 1,
+"lcm": 3,
+"ezgcd": 1,
+"gcd": 3,
+"make-ring": 2,
+"*": 3,
+"/": 1,
+"term": 4,
+"make-monom": 8,
+"coeff": 2,
+"power": 2,
+"ring-unit": 7,
+"monom-elt": 1,
+"make-term": 8,
+"monom-sugar": 6,
+"term-monom": 10,
+"sugar": 8,
+"dolist": 8,
+"term-sugar": 3,
+"termlist-lt": 2,
+"term-coeff": 7,
+"define-modify-macro": 1,
+"c": 6,
+"mapcan": 3,
+"ring-zerop": 1,
+"list": 29,
+"monom-mul": 2,
+"mapcar": 30,
+"r": 2,
+"term-times-termlist": 3,
+"car": 16,
+"termlist-times-term": 1,
+"tail": 1,
+"termlist-add": 2,
+"cdr": 14,
+"termlist-mul": 4,
+"nconc": 5,
+"termlist-lm": 1,
+"termlist-unit": 3,
+"q": 1,
+"logand": 1,
+"poly": 4,
+"termlist": 5,
+"termlist-sugar": 1,
+"&aux": 1,
+"make-term-variable": 1,
+"poly-lt": 4,
+"poly-second-lt": 2,
+"null": 3,
+"poly-termlist": 32,
+"make-poly-from-termlist": 14,
+"scalar-times-termlist": 1,
+"poly-sugar": 20,
+"monom-times-termlist": 1,
+"termlist-sub": 1,
+"termlist-uminus": 1,
+"termlist-expt": 1,
+"&rest": 2,
+"apply": 4,
+"append": 4,
+"nreverse": 1,
+"termlist-contract": 1,
+"termlist-extend": 1,
+"termlist-add-variables": 1,
+"plist": 10,
+"labels": 3,
+"poly-list-add-variables": 3,
+"dotimes": 4,
+"i": 8,
+"incf-power": 1,
+"nth": 1,
+"d": 3,
+"poly-lm": 30,
+"poly-standard-extension": 2,
+"poly-append": 1,
+"last": 1,
+"ring-uminus": 1,
+"polysaturation-extension": 3,
+"ring-parse": 1,
+"list-marker": 1,
+"p-eval-list": 5,
+"args": 2,
+"p-eval": 7,
+"p-add": 3,
+"poly-add": 1,
+"make-poly-zero": 5,
+"make-variable": 4,
+"coerce-coeff": 6,
+"cons": 2,
+"case": 8,
+"poly-uminus": 2,
+"cadr": 6,
+"poly-sub": 4,
+"caddr": 5,
+"otherwise": 7,
+"cddr": 3,
+"expt": 1,
+"poly-expt": 3,
+"mf": 1,
+"monom-div": 2,
+"mg": 1,
+"multiple-value-bind": 7,
+"ring-ezgcd": 2,
+"poly-lc": 8,
+"ignore": 6,
+"scalar-times-poly": 6,
+"monom-times-poly": 3,
+"poly-zerop": 12,
+"ring-gcd": 1,
+"rest": 5,
+"make-list": 1,
+"division-count": 3,
+"debug-cgb": 24,
+"poly-nreverse": 3,
+"b": 6,
+"quot": 2,
+"poly-pseudo-divide": 2,
+"g": 12,
+"find": 1,
+"monom-divisible-by-p": 1,
+"ring-mul": 1,
+"grobner-op": 1,
+"push": 5,
+"pop": 2,
+"top-reduction-only": 14,
+"progn": 1,
+"nreconc": 1,
+"multiple-value-setq": 4,
+"f": 32,
+"normal-form-step": 2,
+"grobner-makelist": 4,
+"normal-form": 6,
+"spoly": 3,
+"stat1": 1,
+"buchberger-criterion": 2,
+"stat2": 1,
+"copy-tree": 1,
+"monom-lcm": 1,
+"pair": 4,
+"first": 4,
+"sugar-pair-key": 3,
+"division-data": 2,
+"second": 3,
+"or": 7,
+"sugar-order": 2,
+"make-priority-queue": 1,
+"s": 1,
+"make-pair": 6,
+"priority-queue-insert": 2,
+"priority-queue-remove": 1,
+"priority-queue-size": 1,
+"priority-queue-empty-p": 1,
+"b-done": 2,
+"make-hash-table": 2,
+"equal": 2,
+"gethash": 4,
+"poly-primitive-part": 8,
+"h": 5,
+"pair-queue-insert": 5,
+"pair-sugar": 4,
+"pair-queue-size": 3,
+"hash-table-count": 2,
+"pair-first": 6,
+"pair-second": 7,
+"pair-division-data": 2,
+"sp": 1,
+"third": 2,
+"fourth": 2,
+"monom-rel-prime-p": 3,
+"place": 1,
+"subseq": 2,
+"f1": 1,
+"gebauer-moeller-update": 2,
+"g1": 6,
+"g2": 2,
+"b-new": 1,
+"make-pair-queue": 1,
+"notany": 2,
+"monom-divides-monom-lcm-p": 1,
+"monom-lcm-equal-monom-lcm-p": 2,
+"g3": 1,
+"monom-divides-p": 1,
+"found": 2,
+"member-if": 1,
+"mapc": 1,
+"algorithm": 1,
+"ecase": 2,
+"buchberger": 2,
+"parallel-buchberger": 1,
+"gebauer-moeller": 1,
+"find-grobner-function": 1,
+"reduction": 2,
+"grobner": 2,
+"method": 1,
+"reverse-monomial-order": 1,
+"monom-depends-p": 1,
+"some": 1,
+"remove-if": 1,
+"*monomial-order*": 4,
+"elimination-order": 2,
+"ring-intersection": 4,
+"reduced-grobner": 6,
+"make-poly": 1,
+"find-if-not": 1,
+"colon-ideal-1": 2,
+"ideal-intersection": 4,
+"colon-ideal": 2,
+"elimination-order-1": 3,
+"poly-contract": 2,
+"ring-lcm": 2,
+"grobner-subsetp": 3,
+"saturation-extension-1": 1,
+"ideal-polysaturation-1": 2,
+"ideal-polysaturation": 2,
+"poly-type": 2,
+":termlist": 1,
+":polynomial": 2,
+"coerce-to-infix": 1,
+":poly-list": 2,
+":term": 2,
+"monom-exponents": 2,
+"expr1": 1,
+"alike1": 1,
+"$freeof": 1,
+"parse-poly1": 1,
+"$num": 1,
+"sratsimp": 1,
+"vars": 4,
+"coerce-maxima-list": 4,
+"parse-list": 3,
+"caar": 2,
+"mplus": 1,
+"mminus": 1,
+"mtimes": 1,
+"mexpt": 1,
+"mtell": 5,
+"mrat": 1,
+"$ratdisrep": 1,
+"mpois": 1,
+"$outofpois": 1,
+"mlist": 1,
+"merror": 2,
+"poly-list-list": 1,
+"order": 1,
+"grlex>": 1,
+"grevlex>": 1,
+"invlex>": 1,
+"maxima-head": 1,
+"gensym": 2,
+"new-vars": 1,
+"maxima-name": 2,
+"documentation": 2,
+"remove": 1,
+"define-binop": 4,
+"define-unop": 2,
+"defmfun": 28,
+"with-parsed-polynomials": 25,
+"poly-content": 1,
+"parse-poly": 2,
+"fl": 4,
+"parse-poly-list": 1,
+"coerce-to-maxima": 2,
+"poly-exact-divide": 1,
+"remzero": 4,
+"minimization": 1,
+"poly-normalize-list": 1,
+"pos": 1,
+"position": 1,
+"poly-depends-p": 1,
+"flist": 2,
+"elimination-ideal": 1,
+"poly-lcm": 1,
+"$first": 1,
+"$divide": 1,
+"m*": 1,
+"$poly_lcm": 1,
+"grobner-equal": 1,
+"grobner-member": 1,
+"ideal-saturation-1": 1,
+"saturation-extension": 1,
+"ideal-saturation": 1,
+"ideal-list": 1
+},
+"toplevel": [
+{
+"head": "deftype",
+"line": 83,
+"text": "(deftype exponent () \"Type of exponent in a monomial.\" 'fixnum)"
+},
+{
+"head": "deftype",
+"line": 87,
+"text": "(deftype monom (&optional dim) \"Type of monomial.\" `(simple-array exponent (,dim)))"
+},
+{
+"head": "defstruct",
+"line": 365,
+"text": "(defstruct (priority-queue (:constructor priority-queue-construct)) (heap (priority-queue-make-heap)) test)"
+},
+{
+"head": "defstruct",
+"line": 495,
+"text": "(defstruct (ring) (parse #'identity :type function) (unit #'identity :type function) (zerop #'identity :type function) (add #'identity :type function) (sub #'identity :type function) (uminus #'identit"
+},
+{
+"head": "defstruct",
+"line": 535,
+"text": "(defstruct (term (:constructor make-term (monom coeff))) (monom (make-monom 0) :type monom) (coeff nil))"
+},
+{
+"head": "define-modify-macro",
+"line": 573,
+"text": "(define-modify-macro scalar-mul (c) coeff-mul)"
+},
+{
+"head": "defstruct",
+"line": 756,
+"text": "(defstruct (poly (:constructor make-poly-from-termlist (termlist &optional (sugar (termlist-sugar termlist)))) (:constructor make-poly-zero (&aux (termlist nil) (sugar -1))) (:constructor make-variabl"
+},
+{
+"head": "defstruct",
+"line": 1194,
+"text": "(defstruct (pair (:constructor make-pair (first second &aux (sugar (car (sugar-pair-key first second))) (division-data nil)))) (first nil :type poly) (second nil :type poly) (sugar 0 :type fixnum) (di"
+},
+{
+"head": "define-binop",
+"line": 2150,
+"text": "(define-binop $poly_add poly-add \"Adds two polynomials P and Q\")"
+},
+{
+"head": "define-binop",
+"line": 2153,
+"text": "(define-binop $poly_subtract poly-sub \"Subtracts a polynomial Q from P.\")"
+},
+{
+"head": "define-binop",
+"line": 2156,
+"text": "(define-binop $poly_multiply poly-mul \"Returns the product of polynomials P and Q.\")"
+},
+{
+"head": "define-binop",
+"line": 2159,
+"text": "(define-binop $poly_s_polynomial spoly \"Returns the syzygy polynomial (S-polynomial) of two polynomials P and Q.\")"
+},
+{
+"head": "define-unop",
+"line": 2162,
+"text": "(define-unop $poly_primitive_part poly-primitive-part \"Returns the polynomial P divided by GCD of its coefficients.\")"
+},
+{
+"head": "define-unop",
+"line": 2165,
+"text": "(define-unop $poly_normalize poly-normalize \"Returns the polynomial P divided by the leading coefficient.\")"
+}
+],
+"lines": 2312
 }
 ]

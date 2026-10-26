@@ -203,6 +203,10 @@ class Reader:
                     self.next()
                     tail = self.read()
                     self.skip_ws()
+                    while self.peek() == "#" and self.s[self.i + 1] in "+-":
+                        if self.read1() is not SKIP:
+                            self.err("bad dotted list")
+                        self.skip_ws()
                     if self.peek() != ")":
                         self.err("bad dotted list")
                     self.next()

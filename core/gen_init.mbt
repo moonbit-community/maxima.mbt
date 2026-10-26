@@ -111,3 +111,83 @@ fn init_generated() -> Unit raise {
   init_max_ext()
   init_init_cl()
 }
+
+///|
+fn share_load_eval_string() -> Unit raise {
+  register_share_eval_string()
+}
+
+///|
+fn share_load_unicode_sniffer() -> Unit raise {
+  register_share_unicode_sniffer()
+}
+
+///|
+fn share_load_stringproc() -> Unit raise {
+  init_vars_n_dot_dot_share_stringproc_stringproc()
+  register_share_stringproc()
+}
+
+///|
+fn share_load_printf() -> Unit raise {
+  register_share_printf()
+}
+
+///|
+fn share_load_cryptools() -> Unit raise {
+  register_share_cryptools()
+}
+
+///|
+fn share_load_md5() -> Unit raise {
+  init_vars_n_dot_dot_share_stringproc_md5()
+  register_share_md5()
+}
+
+///|
+fn share_load_base64() -> Unit raise {
+  init_vars_n_dot_dot_share_stringproc_base64()
+  register_share_base64()
+}
+
+///|
+fn share_load_sha1() -> Unit raise {
+  init_vars_n_dot_dot_share_stringproc_sha1()
+  register_share_sha1()
+}
+
+///|
+fn share_load_sregex() -> Unit raise {
+  register_share_sregex()
+}
+
+///|
+fn share_load_unwind_protect() -> Unit raise {
+  register_share_unwind_protect()
+}
+
+///|
+fn share_load_grobner() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib__cg_robner_grobner()
+  register_share_grobner()
+}
+
+///|
+/// The ported share Lisp file named `stem` (file name without directory
+/// and extension), if any.
+fn share_module_loader(stem : String) -> (() -> Unit raise)? {
+  match stem {
+    "eval_string" => Some(share_load_eval_string)
+    "unicode-sniffer" => Some(share_load_unicode_sniffer)
+    "stringproc" => Some(share_load_stringproc)
+    "printf" => Some(share_load_printf)
+    "cryptools" => Some(share_load_cryptools)
+    "md5" => Some(share_load_md5)
+    "base64" => Some(share_load_base64)
+    "sha1" => Some(share_load_sha1)
+    "sregex" => Some(share_load_sregex)
+    "unwind_protect" => Some(share_load_unwind_protect)
+    "grobner" => Some(share_load_grobner)
+    _ => None
+  }
+}

@@ -301,9 +301,11 @@ def main():
     seen = {}
     index_lines = []
     simp_verbs = []
+    share_regs = {}
     for d in db:
         if d["file"] in excluded:
             continue
+        target = reg_lines if d.get("module") != "share" else share_regs.setdefault(d["file"], [])
         for f in d["functions"]:
             name = f["name"]
             if not name:
@@ -330,24 +332,24 @@ def main():
             # registration
             q = sym_const(name)
             if kind == "defmspec":
-                reg_lines.append("  register_mspec(%s, %s)" % (q, mn))
+                target.append("  register_mspec(%s, %s)" % (q, mn))
                 continue
             call = gen_call(mn, info, rt, check=(name if kind == "defmfun" else None))
             if kind == "simplifier":
-                reg_lines.append("  register_simplifier(%s, args => %s)" % (q, call))
+                target.append("  register_simplifier(%s, args => %s)" % (q, call))
                 base = f["base"]
                 opts = f.get("opts", "")
-                simp_verbs.append((base, f["args"], opts))
+                simp_verbs.append((base, f["args"], opts, target))
                 continue
-            reg_lines.append("  defun(%s, args => %s)" % (q, call))
+            target.append("  defun(%s, args => %s)" % (q, call))
             if kind == "defmfun":
                 symbols.add("translated")
-                reg_lines.append("  putprop(%s, t, q_translated) |> ignore" % q)
+                target.append("  putprop(%s, t, q_translated) |> ignore" % q)
                 m = re.search(r":properties \(((?:\([a-z-]+ t\) ?)+)\)", f.get("opts", ""))
                 if m:
                     for pname in re.findall(r"\(([a-z-]+) t\)", m.group(1)):
                         symbols.add(pname)
-                        reg_lines.append("  putprop(%s, t, %s) |> ignore" % (q, sym_const(pname)))
+                        target.append("  putprop(%s, t, %s) |> ignore" % (q, sym_const(pname)))
     reg_lines.append("}")
     reg_lines.append("")
     # function-like macros: declared so their port can be shared
@@ -378,7 +380,7 @@ def main():
     for d in db:
         if d["file"] in excluded:
             continue
-        nm = "init_" + mangle(d["file"].split("/")[-1])
+        nm = ("init_share_" if d.get("module") == "share" else "init_") + mangle(d["file"].split("/")[-1])
         decl_lines.append("///|")
         decl_lines.append("/// top-level forms of %s.lisp" % d["file"])
         decl_lines.append("declare fn %s() -> Unit raise" % nm)
@@ -386,7 +388,8 @@ def main():
     # def-simplifier verb functions and properties
     reg_lines.append("///|")
     reg_lines.append("fn register_generated_simplifiers() -> Unit {")
-    for base, args, opts in simp_verbs:
+    for base, args, opts, vtarget in simp_verbs:
+        out = reg_lines if vtarget is reg_lines else vtarget
         noun = "%" + base
         verb = "$" + base
         simp = "simp-%" + base
@@ -399,22 +402,28 @@ def main():
         skips = skip.group(1).split() if skip else []
         subfun = ":subfun-arglist" in opts
         if subfun:
-            reg_lines.append("  putprop(%s, %s, q_specsimp) |> ignore" % (sym_const(verb), sym_const(simp)))
+            out.append("  putprop(%s, %s, q_specsimp) |> ignore" % (sym_const(verb), sym_const(simp)))
             symbols.add("specsimp")
             continue
         if not custom:
             n = len(args)
-            reg_lines.append("  defun(%s, args => { check_arity(%s, args, %d); ftake(%s, args) })"
+            out.append("  defun(%s, args => { check_arity(%s, args, %d); ftake(%s, args) })"
                              % (sym_const(verb), moon_str(verb), n, sym_const(noun)))
         if "alias" not in skips:
-            reg_lines.append("  putprop(%s, %s, q_alias) |> ignore" % (sym_const(verb), sym_const(noun)))
+            out.append("  putprop(%s, %s, q_alias) |> ignore" % (sym_const(verb), sym_const(noun)))
         if "reversealias" not in skips:
-            reg_lines.append("  putprop(%s, %s, q_reversealias) |> ignore" % (sym_const(noun), sym_const(verb)))
-        reg_lines.append("  putprop(%s, %s, q_operators) |> ignore" % (sym_const(noun), sym_const(simp)))
-        reg_lines.append("  putprop(%s, %s, q_noun) |> ignore" % (sym_const(noun), sym_const(verb)))
-        reg_lines.append("  putprop(%s, %s, q_verb) |> ignore" % (sym_const(verb), sym_const(noun)))
+            out.append("  putprop(%s, %s, q_reversealias) |> ignore" % (sym_const(noun), sym_const(verb)))
+        out.append("  putprop(%s, %s, q_operators) |> ignore" % (sym_const(noun), sym_const(simp)))
+        out.append("  putprop(%s, %s, q_noun) |> ignore" % (sym_const(noun), sym_const(verb)))
+        out.append("  putprop(%s, %s, q_verb) |> ignore" % (sym_const(verb), sym_const(noun)))
     reg_lines.append("}")
 
+    for fname, lines in share_regs.items():
+        reg_lines.append("")
+        reg_lines.append("///|")
+        reg_lines.append("fn register_share_%s() -> Unit {" % mangle(fname.split("/")[-1]))
+        reg_lines.extend(lines)
+        reg_lines.append("}")
     # variables
     var_lines = ["// GENERATED by tools/gen.py -- do not edit.", ""]
     init_lines = ["// GENERATED by tools/gen.py -- do not edit.", "",
@@ -450,7 +459,8 @@ def main():
             var_lines.extend(body)
             var_lines.append("}")
             var_lines.append("")
-            init_lines.append("  %s()" % fnm)
+            if d.get("module") != "share":
+                init_lines.append("  %s()" % fnm)
     init_lines.append("}")
     var_lines.extend(init_lines)
 

@@ -28,7 +28,11 @@ fn aload(file : Value) -> Value raise {
       Str(s) => s
       _ => princ_to_string(tem)
     }
-    (autol__load_lisp_hook.val)(path)
+    if share_try_load(path) {
+      t
+    } else {
+      (autol__load_lisp_hook.val)(path)
+    }
   } else {
     Nil
   }

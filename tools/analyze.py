@@ -391,6 +391,10 @@ def analyze_file(module, rel):
 
 def main():
     files = system_files()
+    sf = os.path.join(os.path.dirname(__file__), "share_files.txt")
+    if os.path.exists(sf):
+        for line in open(sf).read().split():
+            files.append(("share", "../" + line))
     db = []
     for module, rel in files:
         try:

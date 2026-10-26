@@ -343,6 +343,9 @@ fn suprv1__lisp_builtin(name : String, args : Value) -> Value? raise {
 ///|
 /// LOAD of a Lisp source file, by way of SUPRV1__LISP-EVAL.
 fn suprv1__load_lisp_file(path : String) -> Value raise {
+  if share_try_load(path) {
+    return t
+  }
   let forms = lread_all(read_file(path))
   for f in forms {
     suprv1__lisp_eval(f) |> ignore

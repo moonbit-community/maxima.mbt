@@ -1,0 +1,11 @@
+share/stringproc/eval_string
+share/stringproc/unicode-sniffer
+share/stringproc/stringproc
+share/stringproc/printf
+share/stringproc/cryptools
+share/stringproc/md5
+share/stringproc/base64
+share/stringproc/sha1
+share/stringproc/sregex
+share/contrib/unwind_protect
+share/contrib/Grobner/grobner

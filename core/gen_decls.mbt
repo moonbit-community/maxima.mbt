@@ -24091,6 +24091,1516 @@ declare fn maxima_objdir_base() -> Value raise
 /// defun maxima-load-pathname-directory -- init-cl.lisp:991
 declare fn maxima_load_pathname_directory() -> Value raise
 
+///|
+/// defun $eval_string -- ../share/stringproc/eval_string.lisp:25
+declare fn d_eval_string(s : Value) -> Value raise
+
+///|
+/// defun $parse_string -- ../share/stringproc/eval_string.lisp:40
+declare fn d_parse_string(s : Value) -> Value raise
+
+///|
+/// defun parse-string -- ../share/stringproc/eval_string.lisp:50
+declare fn parse_string(s : Value) -> Value raise
+
+///|
+/// defun ensure-terminator -- ../share/stringproc/eval_string.lisp:61
+declare fn ensure_terminator(s : Value) -> Value raise
+
+///|
+/// defun sniffer-match -- ../share/stringproc/unicode-sniffer.lisp:45
+declare fn sniffer_match(initial_bytes : Value, signature_bytes : Value) -> Value raise
+
+///|
+/// defun sniffer-match-search -- ../share/stringproc/unicode-sniffer.lisp:55
+declare fn sniffer_match_search(initial_bytes : Value) -> Value raise
+
+///|
+/// defun unicode-sniffer -- ../share/stringproc/unicode-sniffer.lisp:64
+declare fn unicode_sniffer(f : Value) -> Value raise
+
+///|
+/// defun $inferred_encoding -- ../share/stringproc/unicode-sniffer.lisp:75
+declare fn d_inferred_encoding(f : Value) -> Value raise
+
+///|
+/// defun check-encoding -- ../share/stringproc/unicode-sniffer.lisp:85
+declare fn check_encoding(e : Value) -> Value raise
+
+///|
+/// defun check-encoding-sbcl -- ../share/stringproc/unicode-sniffer.lisp:98
+declare fn check_encoding_sbcl(e : Value) -> Value raise
+
+///|
+/// defun $recognized_encoding_p -- ../share/stringproc/unicode-sniffer.lisp:121
+declare fn d_recognized_encoding_p(e : Value) -> Value raise
+
+///|
+/// defun init-*parse-utf-8-input* -- ../share/stringproc/stringproc.lisp:59
+declare fn init__starparse_utf_8_input_star() -> Value raise
+
+///|
+/// defun string-to-raw-bytes -- ../share/stringproc/stringproc.lisp:81
+declare fn string_to_raw_bytes(str : Value) -> Value raise
+
+///|
+/// defun set-*parse-utf-8-input* -- ../share/stringproc/stringproc.lisp:94
+declare fn set__starparse_utf_8_input_star(assign_var : Value, arg : Value) -> Value raise
+
+///|
+/// defun io-error -- ../share/stringproc/stringproc.lisp:103
+declare fn io_error(name : Value, which : Value) -> Value raise
+
+///|
+/// defun s-error1 -- ../share/stringproc/stringproc.lisp:106
+declare fn s_error1(name : Value, which : Value) -> Value raise
+
+///|
+/// defun s-error2 -- ../share/stringproc/stringproc.lisp:109
+declare fn s_error2(name : Value, which : Value) -> Value raise
+
+///|
+/// defun s-pos-error1 -- ../share/stringproc/stringproc.lisp:112
+declare fn s_pos_error1(name : Value, pos : Value) -> Value raise
+
+///|
+/// defun s-pos-error2 -- ../share/stringproc/stringproc.lisp:115
+declare fn s_pos_error2(name : Value) -> Value raise
+
+///|
+/// defun $openw -- ../share/stringproc/stringproc.lisp:133
+declare fn d_openw(file : Value, enc? : Value = Nil) -> Value raise
+
+///|
+/// defun $opena -- ../share/stringproc/stringproc.lisp:143
+declare fn d_opena(file : Value, enc? : Value = Nil) -> Value raise
+
+///|
+/// defun $openr -- ../share/stringproc/stringproc.lisp:165
+declare fn d_openr(file : Value, enc? : Value = Nil) -> Value raise
+
+///|
+/// defun $make_string_input_stream -- ../share/stringproc/stringproc.lisp:194
+declare fn d_make_string_input_stream(str : Value, start? : Value = Fix(1L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun $make_string_output_stream -- ../share/stringproc/stringproc.lisp:203
+declare fn d_make_string_output_stream() -> Value raise
+
+///|
+/// defun $get_output_stream_string -- ../share/stringproc/stringproc.lisp:210
+declare fn d_get_output_stream_string(stream : Value) -> Value raise
+
+///|
+/// defun $close -- ../share/stringproc/stringproc.lisp:215
+declare fn d_close(stream : Value) -> Value raise
+
+///|
+/// defun $flush_output -- ../share/stringproc/stringproc.lisp:220
+declare fn d_flush_output(stream : Value) -> Value raise
+
+///|
+/// defun $flength -- ../share/stringproc/stringproc.lisp:225
+declare fn d_flength(stream : Value) -> Value raise
+
+///|
+/// defun $fposition -- ../share/stringproc/stringproc.lisp:230
+declare fn d_fposition(stream : Value, pos? : Value = Nil) -> Value raise
+
+///|
+/// defun $readline -- ../share/stringproc/stringproc.lisp:241
+declare fn d_readline(stream : Value) -> Value raise
+
+///|
+/// defun $readchar -- ../share/stringproc/stringproc.lisp:251
+declare fn d_readchar(stream : Value) -> Value raise
+
+///|
+/// defun $readbyte -- ../share/stringproc/stringproc.lisp:257
+declare fn d_readbyte(stream : Value) -> Value raise
+
+///|
+/// defun $writebyte -- ../share/stringproc/stringproc.lisp:264
+declare fn d_writebyte(i : Value, stream : Value) -> Value raise
+
+///|
+/// defun $freshline -- ../share/stringproc/stringproc.lisp:271
+declare fn d_freshline(stream? : Value = Nil) -> Value raise
+
+///|
+/// defun $newline -- ../share/stringproc/stringproc.lisp:276
+declare fn d_newline(stream? : Value = Nil) -> Value raise
+
+///|
+/// defun get-encoding -- ../share/stringproc/stringproc.lisp:286
+declare fn get_encoding(enc : Value, name : Value) -> Value raise
+
+///|
+/// defun is-ignored -- ../share/stringproc/stringproc.lisp:361
+declare fn is_ignored(enc : Value, name : Value, adds : Value) -> Value raise
+
+///|
+/// defun $adjust_external_format -- ../share/stringproc/stringproc.lisp:429
+declare fn d_adjust_external_format() -> Value raise
+
+///|
+/// defun use-cp -- ../share/stringproc/stringproc.lisp:517
+declare fn use_cp(name : Value, id : Value) -> Value raise
+
+///|
+/// defun $charp -- ../share/stringproc/stringproc.lisp:532
+declare fn d_charp(obj : Value) -> Value raise
+
+///|
+/// defun $lchar -- ../share/stringproc/stringproc.lisp:539
+declare fn d_lchar(mc : Value) -> Value raise
+
+///|
+/// defun l-char -- ../share/stringproc/stringproc.lisp:542
+declare fn l_char(mc : Value) -> Value raise
+
+///|
+/// defun cunlisp -- ../share/stringproc/stringproc.lisp:550
+declare fn cunlisp(lc : Value) -> Value raise
+
+///|
+/// defun $lcharp -- ../share/stringproc/stringproc.lisp:558
+declare fn d_lcharp(obj : Value) -> Value raise
+
+///|
+/// defun $constituent -- ../share/stringproc/stringproc.lisp:567
+declare fn d_constituent(mc : Value) -> Value raise
+
+///|
+/// defun $alphanumericp -- ../share/stringproc/stringproc.lisp:568
+declare fn d_alphanumericp(mc : Value) -> Value raise
+
+///|
+/// defun $alphacharp -- ../share/stringproc/stringproc.lisp:569
+declare fn d_alphacharp(mc : Value) -> Value raise
+
+///|
+/// defun $lowercasep -- ../share/stringproc/stringproc.lisp:570
+declare fn d_lowercasep(mc : Value) -> Value raise
+
+///|
+/// defun $uppercasep -- ../share/stringproc/stringproc.lisp:571
+declare fn d_uppercasep(mc : Value) -> Value raise
+
+///|
+/// defun $digitcharp -- ../share/stringproc/stringproc.lisp:573
+declare fn d_digitcharp(mc : Value) -> Value raise
+
+///|
+/// defun $cint -- ../share/stringproc/stringproc.lisp:598
+declare fn d_cint(mc : Value) -> Value raise
+
+///|
+/// defun mc2int -- ../share/stringproc/stringproc.lisp:603
+declare fn mc2int(mc : Value) -> Value raise
+
+///|
+/// defun $ascii -- ../share/stringproc/stringproc.lisp:609
+declare fn d_ascii(int_ : Value) -> Value raise
+
+///|
+/// defun $unicode -- ../share/stringproc/stringproc.lisp:622
+declare fn d_unicode(arg : Value) -> Value raise
+
+///|
+/// defun $utf8_to_unicode -- ../share/stringproc/stringproc.lisp:640
+declare fn d_utf8_to_unicode(utf8 : Value) -> Value raise
+
+///|
+/// defun $unicode_to_utf8 -- ../share/stringproc/stringproc.lisp:644
+declare fn d_unicode_to_utf8(uc : Value) -> Value raise
+
+///|
+/// defun utf8_to_unicode-error -- ../share/stringproc/stringproc.lisp:649
+declare fn utf8_to_unicode_error() -> Value raise
+
+///|
+/// defun utf8-to-uc -- ../share/stringproc/stringproc.lisp:653
+declare fn utf8_to_uc(u : Value) -> Value raise
+
+///|
+/// defun uc-to-utf8 -- ../share/stringproc/stringproc.lisp:676
+declare fn uc_to_utf8(uc : Value) -> Value raise
+
+///|
+/// defun $cequal -- ../share/stringproc/stringproc.lisp:697
+declare fn d_cequal(mc1 : Value, mc2 : Value) -> Value raise
+
+///|
+/// defun $clessp -- ../share/stringproc/stringproc.lisp:702
+declare fn d_clessp(mc1 : Value, mc2 : Value) -> Value raise
+
+///|
+/// defun $cgreaterp -- ../share/stringproc/stringproc.lisp:707
+declare fn d_cgreaterp(mc1 : Value, mc2 : Value) -> Value raise
+
+///|
+/// defun $cequalignore -- ../share/stringproc/stringproc.lisp:716
+declare fn d_cequalignore(mc1 : Value, mc2 : Value) -> Value raise
+
+///|
+/// defun $clesspignore -- ../share/stringproc/stringproc.lisp:717
+declare fn d_clesspignore(mc1 : Value, mc2 : Value) -> Value raise
+
+///|
+/// defun $cgreaterpignore -- ../share/stringproc/stringproc.lisp:718
+declare fn d_cgreaterpignore(mc1 : Value, mc2 : Value) -> Value raise
+
+///|
+/// defun cequal -- ../share/stringproc/stringproc.lisp:723
+declare fn cequal(c1 : Value, c2 : Value) -> Value raise
+
+///|
+/// defun clessp -- ../share/stringproc/stringproc.lisp:724
+declare fn clessp(c1 : Value, c2 : Value) -> Value raise
+
+///|
+/// defun cgreaterp -- ../share/stringproc/stringproc.lisp:725
+declare fn cgreaterp(c1 : Value, c2 : Value) -> Value raise
+
+///|
+/// defun cequalignore -- ../share/stringproc/stringproc.lisp:727
+declare fn cequalignore(c1 : Value, c2 : Value) -> Value raise
+
+///|
+/// defun clesspignore -- ../share/stringproc/stringproc.lisp:728
+declare fn clesspignore(c1 : Value, c2 : Value) -> Value raise
+
+///|
+/// defun cgreaterpignore -- ../share/stringproc/stringproc.lisp:729
+declare fn cgreaterpignore(c1 : Value, c2 : Value) -> Value raise
+
+///|
+/// defun $tab -- ../share/stringproc/stringproc.lisp:752
+declare fn d_tab() -> Value raise
+
+///|
+/// defun rm-first-utf-8-char -- ../share/stringproc/stringproc.lisp:767
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rm_first_utf_8_char(ol : Value) -> (Value, Value) raise
+
+///|
+/// defun utf-8-m-char -- ../share/stringproc/stringproc.lisp:780
+declare fn utf_8_m_char(len : Value, ol : Value) -> Value raise
+
+///|
+/// defun utf-8-pos-dec -- ../share/stringproc/stringproc.lisp:790
+declare fn utf_8_pos_dec(str : Value, pos : Value) -> Value raise
+
+///|
+/// defun utf-8-fix-start-end -- ../share/stringproc/stringproc.lisp:799
+declare fn utf_8_fix_start_end(ov : Value, args : Value) -> Value raise
+
+///|
+/// defun utf-8-pos-inc -- ../share/stringproc/stringproc.lisp:814
+declare fn utf_8_pos_inc(ov : Value, off : Value, pos : Value) -> Value raise
+
+///|
+/// defun $stringp -- ../share/stringproc/stringproc.lisp:831
+declare fn d_stringp(obj : Value) -> Value raise
+
+///|
+/// defun $scopy -- ../share/stringproc/stringproc.lisp:834
+declare fn d_scopy(s : Value) -> Value raise
+
+///|
+/// defun $smake -- ../share/stringproc/stringproc.lisp:839
+declare fn d_smake(n : Value, mc : Value) -> Value raise
+
+///|
+/// defun $charat -- ../share/stringproc/stringproc.lisp:849
+declare fn d_charat(str : Value, pos : Value) -> Value raise
+
+///|
+/// defun $charlist -- ../share/stringproc/stringproc.lisp:863
+declare fn d_charlist(str : Value) -> Value raise
+
+///|
+/// defun utf-8-charlist -- ../share/stringproc/stringproc.lisp:869
+declare fn utf_8_charlist(cl : Value) -> Value raise
+
+///|
+/// defun $sexplode -- ../share/stringproc/stringproc.lisp:883
+declare fn d_sexplode(str : Value) -> Value raise
+
+///|
+/// defun $tokens -- ../share/stringproc/stringproc.lisp:891
+declare fn d_tokens(str : Value, test_? : Value = q_d_constituent) -> Value raise
+
+///|
+/// defun tokens -- ../share/stringproc/stringproc.lisp:900
+declare fn tokens(str : Value, test_ : Value, start : Value) -> Value raise
+
+///|
+/// defun constituent -- ../share/stringproc/stringproc.lisp:912
+declare fn constituent(ch : Value) -> Value raise
+
+///|
+/// defun alphacharp -- ../share/stringproc/stringproc.lisp:916
+declare fn alphacharp(ch : Value) -> Value raise
+
+///|
+/// defun digitcharp -- ../share/stringproc/stringproc.lisp:917
+declare fn digitcharp(ch : Value) -> Value raise
+
+///|
+/// defun lowercasep -- ../share/stringproc/stringproc.lisp:918
+declare fn lowercasep(ch : Value) -> Value raise
+
+///|
+/// defun uppercasep -- ../share/stringproc/stringproc.lisp:919
+declare fn uppercasep(ch : Value) -> Value raise
+
+///|
+/// defun charp -- ../share/stringproc/stringproc.lisp:920
+declare fn charp(ch : Value) -> Value raise
+
+///|
+/// defun $split -- ../share/stringproc/stringproc.lisp:928
+declare fn d_split(str : Value, args : Value) -> Value raise
+
+///|
+/// defun split -- ../share/stringproc/stringproc.lisp:941
+declare fn split(str : Value, ds : Value, multiple_q? : Value = t) -> Value raise
+
+///|
+/// defun $simplode -- ../share/stringproc/stringproc.lisp:965
+declare fn d_simplode(li : Value, ds? : Value = Str("")) -> Value raise
+
+///|
+/// defun $slength -- ../share/stringproc/stringproc.lisp:986
+declare fn d_slength(str : Value) -> Value raise
+
+///|
+/// defun utf-8-slength -- ../share/stringproc/stringproc.lisp:991
+declare fn utf_8_slength(str : Value) -> Value raise
+
+///|
+/// defun $sposition -- ../share/stringproc/stringproc.lisp:1001
+declare fn d_sposition(mc : Value, str : Value) -> Value raise
+
+///|
+/// defun $sreverse -- ../share/stringproc/stringproc.lisp:1014
+declare fn d_sreverse(str : Value) -> Value raise
+
+///|
+/// defun utf-8-sreverse -- ../share/stringproc/stringproc.lisp:1018
+declare fn utf_8_sreverse(str : Value) -> Value raise
+
+///|
+/// defun $substring -- ../share/stringproc/stringproc.lisp:1027
+declare fn d_substring(str : Value, start : Value, end? : Value = Nil) -> Value raise
+
+///|
+/// defun $sequal -- ../share/stringproc/stringproc.lisp:1044
+declare fn d_sequal(s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun $sequalignore -- ../share/stringproc/stringproc.lisp:1045
+declare fn d_sequalignore(s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun $slessp -- ../share/stringproc/stringproc.lisp:1047
+declare fn d_slessp(s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun $sgreaterp -- ../share/stringproc/stringproc.lisp:1048
+declare fn d_sgreaterp(s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun $slesspignore -- ../share/stringproc/stringproc.lisp:1050
+declare fn d_slesspignore(s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun $sgreaterpignore -- ../share/stringproc/stringproc.lisp:1051
+declare fn d_sgreaterpignore(s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun scompare -- ../share/stringproc/stringproc.lisp:1053
+declare fn scompare(s1 : Value, s2 : Value, name : Value, test_ : Value, lessp_q : Value, ccomp : Value) -> Value raise
+
+///|
+/// defun chars-to-compare -- ../share/stringproc/stringproc.lisp:1061
+declare fn chars_to_compare(s1 : Value, s2 : Value, pos : Value) -> Value raise
+
+///|
+/// defun parse-utf-8-header -- ../share/stringproc/stringproc.lisp:1072
+declare fn parse_utf_8_header(str : Value, start : Value) -> Value raise
+
+///|
+/// defun $smismatch -- ../share/stringproc/stringproc.lisp:1084
+declare fn d_smismatch(s1 : Value, s2 : Value, test_? : Value = q_d_sequal) -> Value raise
+
+///|
+/// defun $ssearch -- ../share/stringproc/stringproc.lisp:1101
+declare fn d_ssearch(seq : Value, str : Value, args : Value) -> Value raise
+
+///|
+/// defun ssearch -- ../share/stringproc/stringproc.lisp:1113
+declare fn ssearch(seq : Value, str : Value, test_? : Value = q_d_sequal, start? : Value = Fix(0L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun s-optional-args -- ../share/stringproc/stringproc.lisp:1120
+declare fn s_optional_args(name : Value, str : Value, args : Value) -> Value raise
+
+///|
+/// defun $ssubstfirst -- ../share/stringproc/stringproc.lisp:1143
+declare fn d_ssubstfirst(new_ : Value, old : Value, str : Value, args : Value) -> Value raise
+
+///|
+/// defun ssubstfirst -- ../share/stringproc/stringproc.lisp:1151
+declare fn ssubstfirst(new_ : Value, old : Value, str : Value, test_? : Value = q_d_sequal, start? : Value = Fix(0L), end? : Value = Nil, matched_q? : Value = Nil) -> Value raise
+
+///|
+/// defun $ssubst -- ../share/stringproc/stringproc.lisp:1159
+declare fn d_ssubst(new_ : Value, old : Value, str : Value, args : Value) -> Value raise
+
+///|
+/// defun ssubst -- ../share/stringproc/stringproc.lisp:1167
+declare fn ssubst(new_ : Value, old : Value, str : Value, test_? : Value = q_d_sequal, start? : Value = Fix(0L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun $sremovefirst -- ../share/stringproc/stringproc.lisp:1176
+declare fn d_sremovefirst(seq : Value, str : Value, args : Value) -> Value raise
+
+///|
+/// defun sremovefirst -- ../share/stringproc/stringproc.lisp:1184
+declare fn sremovefirst(seq : Value, str : Value, test_? : Value = q_d_sequal, start? : Value = Fix(0L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun $sremove -- ../share/stringproc/stringproc.lisp:1192
+declare fn d_sremove(seq : Value, str : Value, args : Value) -> Value raise
+
+///|
+/// defun sremove -- ../share/stringproc/stringproc.lisp:1199
+declare fn sremove(seq : Value, str : Value, test_? : Value = q_d_sequal, start? : Value = Fix(0L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun $sinsert -- ../share/stringproc/stringproc.lisp:1208
+declare fn d_sinsert(seq : Value, str : Value, pos : Value) -> Value raise
+
+///|
+/// defun $ssort -- ../share/stringproc/stringproc.lisp:1220
+declare fn d_ssort(str : Value, test_? : Value = q_d_clessp) -> Value raise
+
+///|
+/// defun utf-8-ssort -- ../share/stringproc/stringproc.lisp:1236
+declare fn utf_8_ssort(str : Value, test_? : Value = q_clessp) -> Value raise
+
+///|
+/// defun $strim -- ../share/stringproc/stringproc.lisp:1248
+declare fn d_strim(seq : Value, str : Value) -> Value raise
+
+///|
+/// defun $striml -- ../share/stringproc/stringproc.lisp:1252
+declare fn d_striml(seq : Value, str : Value) -> Value raise
+
+///|
+/// defun $strimr -- ../share/stringproc/stringproc.lisp:1256
+declare fn d_strimr(seq : Value, str : Value) -> Value raise
+
+///|
+/// defun $supcase -- ../share/stringproc/stringproc.lisp:1261
+declare fn d_supcase(str : Value, start? : Value = Fix(1L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun $sdowncase -- ../share/stringproc/stringproc.lisp:1264
+declare fn d_sdowncase(str : Value, start? : Value = Fix(1L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun change-case -- ../share/stringproc/stringproc.lisp:1267
+declare fn change_case(str : Value, name : Value, sfun : Value, start : Value, end : Value) -> Value raise
+
+///|
+/// defun $sinvertcase -- ../share/stringproc/stringproc.lisp:1280
+declare fn d_sinvertcase(str : Value, start? : Value = Fix(1L), end? : Value = Nil) -> Value raise
+
+///|
+/// defun s-invert-case -- ../share/stringproc/stringproc.lisp:1296
+declare fn s_invert_case(str : Value) -> Value raise
+
+///|
+/// defun c-invert-case -- ../share/stringproc/stringproc.lisp:1301
+declare fn c_invert_case(ch : Value) -> Value raise
+
+///|
+/// defun $sprint -- ../share/stringproc/printf.lisp:35
+declare fn d_sprint(args : Value) -> Value raise
+
+///|
+/// defun reconstitute-tilde-m -- ../share/stringproc/printf.lisp:55
+declare fn reconstitute_tilde_m(param : Value) -> Value raise
+
+///|
+/// defun generate-tilde-m-placeholder -- ../share/stringproc/printf.lisp:58
+declare fn generate_tilde_m_placeholder() -> Value raise
+
+///|
+/// defun $printf -- ../share/stringproc/printf.lisp:64
+declare fn d_printf(stream : Value, ctrls : Value, args : Value) -> Value raise
+
+///|
+/// defun prepare-args -- ../share/stringproc/printf.lisp:89
+declare fn prepare_args(ctrls : Value, todo_ : Value, done : Value, loop_? : Value = Nil) -> Value raise
+
+///|
+/// defun prepare-ctrls -- ../share/stringproc/printf.lisp:313
+declare fn prepare_ctrls(ctrls : Value) -> Value raise
+
+///|
+/// defun spec-position -- ../share/stringproc/printf.lisp:335
+declare fn spec_position(ctrls : Value, pos1 : Value) -> Value raise
+
+///|
+/// defun count-v -- ../share/stringproc/printf.lisp:345
+declare fn count_v(params : Value) -> Value raise
+
+///|
+/// defun check-v# -- ../share/stringproc/printf.lisp:357
+declare fn check_v_hash(params : Value) -> Value raise
+
+///|
+/// defun iter-positions -- ../share/stringproc/printf.lisp:368
+declare fn iter_positions(ctrls : Value, start : Value) -> Value raise
+
+///|
+/// defun split-at-comma -- ../share/stringproc/printf.lisp:381
+declare fn split_at_comma(params : Value) -> Value raise
+
+///|
+/// defun prepare-arg -- ../share/stringproc/printf.lisp:400
+declare fn prepare_arg(params : Value, spec : Value, arg : Value) -> Value raise
+
+///|
+/// defun bprintf -- ../share/stringproc/printf.lisp:483
+declare fn bprintf(bf : Value, wd : Value, dd : Value, ed : Value, xp : Value, ov : Value, pc : Value, at : Value) -> Value raise
+
+///|
+/// defun $string_to_octets -- ../share/stringproc/cryptools.lisp:125
+declare fn d_string_to_octets(str : Value, enc? : Value = Nil) -> Value raise
+
+///|
+/// defun string-to-octets -- ../share/stringproc/cryptools.lisp:130
+declare fn string_to_octets(str : Value, enc? : Value = Nil) -> Value raise
+
+///|
+/// defun $octets_to_string -- ../share/stringproc/cryptools.lisp:151
+declare fn d_octets_to_string(ol : Value, enc? : Value = Nil) -> Value raise
+
+///|
+/// defun octets-to-string -- ../share/stringproc/cryptools.lisp:157
+declare fn octets_to_string(ol : Value, enc? : Value = Nil) -> Value raise
+
+///|
+/// defun word-to-octets -- ../share/stringproc/cryptools.lisp:177
+declare fn word_to_octets(n : Value) -> Value raise
+
+///|
+/// defun number-to-octets -- ../share/stringproc/cryptools.lisp:183
+declare fn number_to_octets(n : Value) -> Value raise
+
+///|
+/// defun octets-to-number -- ../share/stringproc/cryptools.lisp:189
+declare fn octets_to_number(octs : Value) -> Value raise
+
+///|
+/// defmfun $number_to_octets -- ../share/stringproc/cryptools.lisp:192
+declare fn d_number_to_octets(n : Value) -> Value raise
+
+///|
+/// defmfun $octets_to_number -- ../share/stringproc/cryptools.lisp:198
+declare fn d_octets_to_number(octs : Value) -> Value raise
+
+///|
+/// defun oid-number-to-7bit -- ../share/stringproc/cryptools.lisp:215
+declare fn oid_number_to_7bit(n : Value) -> Value raise
+
+///|
+/// defun oid-to-octets -- ../share/stringproc/cryptools.lisp:226
+declare fn oid_to_octets(str : Value) -> Value raise
+
+///|
+/// defmfun $oid_to_octets -- ../share/stringproc/cryptools.lisp:238
+declare fn d_oid_to_octets(str : Value) -> Value raise
+
+///|
+/// defun oid-split -- ../share/stringproc/cryptools.lisp:243
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn oid_split(lst : Value) -> (Value, Value) raise
+
+///|
+/// defun octets-to-oid-1 -- ../share/stringproc/cryptools.lisp:251
+declare fn octets_to_oid_1(lst : Value) -> Value raise
+
+///|
+/// defun octets-to-oid -- ../share/stringproc/cryptools.lisp:258
+declare fn octets_to_oid(lst : Value) -> Value raise
+
+///|
+/// defmfun $octets_to_oid -- ../share/stringproc/cryptools.lisp:269
+declare fn d_octets_to_oid(octets : Value) -> Value raise
+
+///|
+/// defun crc24sum -- ../share/stringproc/cryptools.lisp:275
+declare fn crc24sum(lst : Value) -> Value raise
+
+///|
+/// defmfun $crc24sum -- ../share/stringproc/cryptools.lisp:284
+declare fn d_crc24sum(octets : Value, rtype? : Value = q_d_string) -> Value raise
+
+///|
+/// defun md5-not -- ../share/stringproc/md5.lisp:101
+declare fn md5_not(i32 : Value) -> Value raise
+
+///|
+/// defun md5+ -- ../share/stringproc/md5.lisp:104
+declare fn md5_plus(args : Value) -> Value raise
+
+///|
+/// defun md5-left-rotation -- ../share/stringproc/md5.lisp:107
+declare fn md5_left_rotation(i32 : Value, k : Value) -> Value raise
+
+///|
+/// defun md5-worker -- ../share/stringproc/md5.lisp:111
+declare fn md5_worker() -> Value raise
+
+///|
+/// defun swap-endian64 -- ../share/stringproc/md5.lisp:139
+declare fn swap_endian64(i64 : Value) -> Value raise
+
+///|
+/// defun swap-endian32 -- ../share/stringproc/md5.lisp:145
+declare fn swap_endian32(i32 : Value) -> Value raise
+
+///|
+/// defun md5-words -- ../share/stringproc/md5.lisp:152
+declare fn md5_words(vec : Value) -> Value raise
+
+///|
+/// defun md5-update -- ../share/stringproc/md5.lisp:163
+declare fn md5_update(bytes : Value) -> Value raise
+
+///|
+/// defun md5-final -- ../share/stringproc/md5.lisp:167
+declare fn md5_final(bytes : Value, off : Value, len : Value) -> Value raise
+
+///|
+/// defun md5sum-return -- ../share/stringproc/md5.lisp:180
+declare fn md5sum_return(rtype : Value) -> Value raise
+
+///|
+/// defun md5sum-stream -- ../share/stringproc/md5.lisp:193
+declare fn md5sum_stream(s : Value, rtype : Value) -> Value raise
+
+///|
+/// defmfun $md5sum -- ../share/stringproc/md5.lisp:206
+declare fn d_md5sum(s : Value, rtype? : Value = q_d_string) -> Value raise
+
+///|
+/// defmfun $base64 -- ../share/stringproc/base64.lisp:76
+declare fn d_base64(s : Value) -> Value raise
+
+///|
+/// defmfun $base64_decode -- ../share/stringproc/base64.lisp:111
+declare fn d_base64_decode(s : Value, rtype? : Value = q_d_string) -> Value raise
+
+///|
+/// defun sha-not -- ../share/stringproc/sha1.lisp:109
+declare fn sha_not(i32 : Value) -> Value raise
+
+///|
+/// defun sha+ -- ../share/stringproc/sha1.lisp:112
+declare fn sha_plus(args : Value) -> Value raise
+
+///|
+/// defun sha-left-rotation -- ../share/stringproc/sha1.lisp:115
+declare fn sha_left_rotation(i32 : Value, k : Value) -> Value raise
+
+///|
+/// defun sha-right-rotation -- ../share/stringproc/sha1.lisp:118
+declare fn sha_right_rotation(i32 : Value, k : Value) -> Value raise
+
+///|
+/// defun sha256-words -- ../share/stringproc/sha1.lisp:131
+declare fn sha256_words(vec : Value) -> Value raise
+
+///|
+/// defun sha256-worker -- ../share/stringproc/sha1.lisp:155
+declare fn sha256_worker() -> Value raise
+
+///|
+/// defun sha-update -- ../share/stringproc/sha1.lisp:180
+declare fn sha_update(bytes : Value, nr : Value) -> Value raise
+
+///|
+/// defun sha-len64 -- ../share/stringproc/sha1.lisp:190
+declare fn sha_len64(bits : Value) -> Value raise
+
+///|
+/// defun sha-final -- ../share/stringproc/sha1.lisp:196
+declare fn sha_final(bytes : Value, off : Value, len : Value, nr : Value) -> Value raise
+
+///|
+/// defun sha1-worker -- ../share/stringproc/sha1.lisp:214
+declare fn sha1_worker() -> Value raise
+
+///|
+/// defun sha1-words -- ../share/stringproc/sha1.lisp:240
+declare fn sha1_words(vec : Value) -> Value raise
+
+///|
+/// defmfun $sha1sum -- ../share/stringproc/sha1.lisp:261
+declare fn d_sha1sum(s : Value, rtype? : Value = q_d_string) -> Value raise
+
+///|
+/// defmfun $mgf1_sha1 -- ../share/stringproc/sha1.lisp:297
+declare fn d_mgf1_sha1(seed : Value, len : Value, rtype? : Value = q_d_number) -> Value raise
+
+///|
+/// defmfun $sha256sum -- ../share/stringproc/sha1.lisp:320
+declare fn d_sha256sum(s : Value, rtype? : Value = q_d_string) -> Value raise
+
+///|
+/// defun compiled-regex-print -- ../share/stringproc/sregex.lisp:93
+declare fn compiled_regex_print(struct_ : Value, stream : Value, i : Value) -> Value raise
+
+///|
+/// defmfun $regex_compile -- ../share/stringproc/sregex.lisp:101
+declare fn d_regex_compile(regex : Value) -> Value raise
+
+///|
+/// defun regex-check-and-maybe-coerce -- ../share/stringproc/sregex.lisp:107
+declare fn regex_check_and_maybe_coerce(name : Value, regex : Value, args : Value) -> Value raise
+
+///|
+/// defun regex-index-error -- ../share/stringproc/sregex.lisp:118
+declare fn regex_index_error(name : Value) -> Value raise
+
+///|
+/// defun regex-utf-8-pos-dec -- ../share/stringproc/sregex.lisp:126
+declare fn regex_utf_8_pos_dec(ov : Value, off : Value, pos : Value) -> Value raise
+
+///|
+/// defmfun $regex_match_pos -- ../share/stringproc/sregex.lisp:134
+declare fn d_regex_match_pos(regex : Value, str : Value, start? : Value = Fix(1L), end? : Value = Nil) -> Value raise
+
+///|
+/// defmfun $regex_match -- ../share/stringproc/sregex.lisp:158
+declare fn d_regex_match(regex : Value, str : Value, start? : Value = Fix(1L), end? : Value = Nil) -> Value raise
+
+///|
+/// defmfun $regex_split -- ../share/stringproc/sregex.lisp:174
+declare fn d_regex_split(regex : Value, str : Value) -> Value raise
+
+///|
+/// defmfun $regex_subst_first -- ../share/stringproc/sregex.lisp:179
+declare fn d_regex_subst_first(replacement : Value, regex : Value, str : Value) -> Value raise
+
+///|
+/// defmfun $regex_subst -- ../share/stringproc/sregex.lisp:186
+declare fn d_regex_subst(replacement : Value, regex : Value, str : Value) -> Value raise
+
+///|
+/// defmfun $string_to_regex -- ../share/stringproc/sregex.lisp:191
+declare fn d_string_to_regex(str : Value) -> Value raise
+
+///|
+/// defmspec $unwind_protect -- ../share/contrib/unwind_protect.lisp:1
+declare fn d_unwind_protect(e : Value) -> Value raise
+
+///|
+/// defun monom-dimension -- ../share/contrib/Grobner/grobner.lisp:131
+declare fn monom_dimension(m : Value) -> Value raise
+
+///|
+/// defun monom-total-degree -- ../share/contrib/Grobner/grobner.lisp:135
+declare fn monom_total_degree(m : Value, start? : Value = Fix(0L), end? : Value) -> Value raise
+
+///|
+/// defun monom-sugar -- ../share/contrib/Grobner/grobner.lisp:141
+declare fn monom_sugar(m : Value) -> Value raise
+
+///|
+/// defun monom-div -- ../share/contrib/Grobner/grobner.lisp:147
+declare fn monom_div(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-mul -- ../share/contrib/Grobner/grobner.lisp:152
+declare fn monom_mul(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-divides-p -- ../share/contrib/Grobner/grobner.lisp:157
+declare fn monom_divides_p(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-divides-monom-lcm-p -- ../share/contrib/Grobner/grobner.lisp:162
+declare fn monom_divides_monom_lcm_p(m1 : Value, m2 : Value, m3 : Value) -> Value raise
+
+///|
+/// defun monom-lcm-divides-monom-lcm-p -- ../share/contrib/Grobner/grobner.lisp:167
+declare fn monom_lcm_divides_monom_lcm_p(m1 : Value, m2 : Value, m3 : Value, m4 : Value) -> Value raise
+
+///|
+/// defun monom-lcm-equal-monom-lcm-p -- ../share/contrib/Grobner/grobner.lisp:172
+declare fn monom_lcm_equal_monom_lcm_p(m1 : Value, m2 : Value, m3 : Value, m4 : Value) -> Value raise
+
+///|
+/// defun monom-divisible-by-p -- ../share/contrib/Grobner/grobner.lisp:177
+declare fn monom_divisible_by_p(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-rel-prime-p -- ../share/contrib/Grobner/grobner.lisp:182
+declare fn monom_rel_prime_p(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-equal-p -- ../share/contrib/Grobner/grobner.lisp:187
+declare fn monom_equal_p(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-lcm -- ../share/contrib/Grobner/grobner.lisp:192
+declare fn monom_lcm(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-gcd -- ../share/contrib/Grobner/grobner.lisp:197
+declare fn monom_gcd(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun monom-depends-p -- ../share/contrib/Grobner/grobner.lisp:202
+declare fn monom_depends_p(m : Value, k : Value) -> Value raise
+
+///|
+/// defun monom-exponents -- ../share/contrib/Grobner/grobner.lisp:216
+declare fn monom_exponents(m : Value) -> Value raise
+
+///|
+/// defun lex> -- ../share/contrib/Grobner/grobner.lisp:228
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn lex_gt(p : Value, q : Value, start? : Value = Fix(0L), end? : Value) -> (Value, Value) raise
+
+///|
+/// defun grlex> -- ../share/contrib/Grobner/grobner.lisp:242
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn grlex_gt(p : Value, q : Value, start? : Value = Fix(0L), end? : Value) -> (Value, Value) raise
+
+///|
+/// defun grevlex> -- ../share/contrib/Grobner/grobner.lisp:256
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn grevlex_gt(p : Value, q : Value, start? : Value = Fix(0L), end? : Value) -> (Value, Value) raise
+
+///|
+/// defun revlex> -- ../share/contrib/Grobner/grobner.lisp:270
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn revlex_gt(p : Value, q : Value, start? : Value = Fix(0L), end? : Value) -> (Value, Value) raise
+
+///|
+/// defun invlex> -- ../share/contrib/Grobner/grobner.lisp:287
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn invlex_gt(p : Value, q : Value, start? : Value = Fix(0L), end? : Value) -> (Value, Value) raise
+
+///|
+/// defun reverse-monomial-order -- ../share/contrib/Grobner/grobner.lisp:315
+declare fn reverse_monomial_order(x : Value, y : Value) -> Value raise
+
+///|
+/// defun elimination-order -- ../share/contrib/Grobner/grobner.lisp:328
+declare fn elimination_order(k : Value) -> Value raise
+
+///|
+/// defun elimination-order-1 -- ../share/contrib/Grobner/grobner.lisp:342
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn elimination_order_1(p : Value, q : Value, start? : Value = Fix(0L), end? : Value) -> (Value, Value) raise
+
+///|
+/// defun priority-queue-make-heap -- ../share/contrib/Grobner/grobner.lisp:361
+declare fn priority_queue_make_heap(element_type? : Value = q_fixnum) -> Value raise
+
+///|
+/// defun make-priority-queue -- ../share/contrib/Grobner/grobner.lisp:369
+declare fn make_priority_queue(element_type? : Value = q_fixnum, test_? : Value, element_key? : Value) -> Value raise
+
+///|
+/// defun priority-queue-insert -- ../share/contrib/Grobner/grobner.lisp:376
+declare fn priority_queue_insert(pq : Value, item : Value) -> Value raise
+
+///|
+/// defun priority-queue-remove -- ../share/contrib/Grobner/grobner.lisp:379
+declare fn priority_queue_remove(pq : Value) -> Value raise
+
+///|
+/// defun priority-queue-empty-p -- ../share/contrib/Grobner/grobner.lisp:382
+declare fn priority_queue_empty_p(pq : Value) -> Value raise
+
+///|
+/// defun priority-queue-size -- ../share/contrib/Grobner/grobner.lisp:385
+declare fn priority_queue_size(pq : Value) -> Value raise
+
+///|
+/// defun priority-queue-upheap -- ../share/contrib/Grobner/grobner.lisp:388
+declare fn priority_queue_upheap(a : Value, k : Value, test_? : Value) -> Value raise
+
+///|
+/// defun priority-queue-heap-insert -- ../share/contrib/Grobner/grobner.lisp:405
+declare fn priority_queue_heap_insert(a : Value, item : Value, test_? : Value) -> Value raise
+
+///|
+/// defun priority-queue-downheap -- ../share/contrib/Grobner/grobner.lisp:409
+declare fn priority_queue_downheap(a : Value, k : Value, test_? : Value) -> Value raise
+
+///|
+/// defun priority-queue-heap-remove -- ../share/contrib/Grobner/grobner.lisp:427
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn priority_queue_heap_remove(a : Value, test_? : Value) -> (Value, Value) raise
+
+///|
+/// defun priority-queue-heap-empty-p -- ../share/contrib/Grobner/grobner.lisp:433
+declare fn priority_queue_heap_empty_p(a : Value) -> Value raise
+
+///|
+/// defun make-term-variable -- ../share/contrib/Grobner/grobner.lisp:542
+declare fn make_term_variable(ring : Value, nvars : Value, pos : Value, power? : Value = Fix(1L), coeff? : Value) -> Value raise
+
+///|
+/// defun term-sugar -- ../share/contrib/Grobner/grobner.lisp:552
+declare fn term_sugar(term : Value) -> Value raise
+
+///|
+/// defun termlist-sugar -- ../share/contrib/Grobner/grobner.lisp:555
+declare fn termlist_sugar(p : Value) -> Value raise
+
+///|
+/// defun termlist-lm -- ../share/contrib/Grobner/grobner.lisp:570
+declare fn termlist_lm(p : Value) -> Value raise
+
+///|
+/// defun termlist-lc -- ../share/contrib/Grobner/grobner.lisp:571
+declare fn termlist_lc(p : Value) -> Value raise
+
+///|
+/// defun scalar-times-termlist -- ../share/contrib/Grobner/grobner.lisp:577
+declare fn scalar_times_termlist(ring : Value, c : Value, p : Value) -> Value raise
+
+///|
+/// defun term-mul -- ../share/contrib/Grobner/grobner.lisp:590
+declare fn term_mul(ring : Value, term1 : Value, term2 : Value) -> Value raise
+
+///|
+/// defun term-times-termlist -- ../share/contrib/Grobner/grobner.lisp:600
+declare fn term_times_termlist(ring : Value, term : Value, f : Value) -> Value raise
+
+///|
+/// defun termlist-times-term -- ../share/contrib/Grobner/grobner.lisp:606
+declare fn termlist_times_term(ring : Value, f : Value, term : Value) -> Value raise
+
+///|
+/// defun monom-times-term -- ../share/contrib/Grobner/grobner.lisp:611
+declare fn monom_times_term(m : Value, term : Value) -> Value raise
+
+///|
+/// defun monom-times-termlist -- ../share/contrib/Grobner/grobner.lisp:616
+declare fn monom_times_termlist(m : Value, f : Value) -> Value raise
+
+///|
+/// defun termlist-uminus -- ../share/contrib/Grobner/grobner.lisp:624
+declare fn termlist_uminus(ring : Value, f : Value) -> Value raise
+
+///|
+/// defun termlist-add -- ../share/contrib/Grobner/grobner.lisp:631
+declare fn termlist_add(ring : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun termlist-sub -- ../share/contrib/Grobner/grobner.lisp:657
+declare fn termlist_sub(ring : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun termlist-mul -- ../share/contrib/Grobner/grobner.lisp:687
+declare fn termlist_mul(ring : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun termlist-unit -- ../share/contrib/Grobner/grobner.lisp:702
+declare fn termlist_unit(ring : Value, dimension : Value) -> Value raise
+
+///|
+/// defun termlist-expt -- ../share/contrib/Grobner/grobner.lisp:707
+declare fn termlist_expt(ring : Value, poly : Value, n : Value) -> Value raise
+
+///|
+/// defun termlist-contract -- ../share/contrib/Grobner/grobner.lisp:726
+declare fn termlist_contract(p : Value, k? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun termlist-extend -- ../share/contrib/Grobner/grobner.lisp:732
+declare fn termlist_extend(p : Value, m? : Value) -> Value raise
+
+///|
+/// defun termlist-add-variables -- ../share/contrib/Grobner/grobner.lisp:739
+declare fn termlist_add_variables(p : Value, n : Value) -> Value raise
+
+///|
+/// defun poly-lm -- ../share/contrib/Grobner/grobner.lisp:780
+declare fn poly_lm(p : Value) -> Value raise
+
+///|
+/// defun poly-second-lm -- ../share/contrib/Grobner/grobner.lisp:783
+declare fn poly_second_lm(p : Value) -> Value raise
+
+///|
+/// defun poly-lc -- ../share/contrib/Grobner/grobner.lisp:786
+declare fn poly_lc(p : Value) -> Value raise
+
+///|
+/// defun poly-second-lc -- ../share/contrib/Grobner/grobner.lisp:789
+declare fn poly_second_lc(p : Value) -> Value raise
+
+///|
+/// defun poly-zerop -- ../share/contrib/Grobner/grobner.lisp:792
+declare fn poly_zerop(p : Value) -> Value raise
+
+///|
+/// defun poly-length -- ../share/contrib/Grobner/grobner.lisp:795
+declare fn poly_length(p : Value) -> Value raise
+
+///|
+/// defun scalar-times-poly -- ../share/contrib/Grobner/grobner.lisp:799
+declare fn scalar_times_poly(ring : Value, c : Value, p : Value) -> Value raise
+
+///|
+/// defun monom-times-poly -- ../share/contrib/Grobner/grobner.lisp:804
+declare fn monom_times_poly(m : Value, p : Value) -> Value raise
+
+///|
+/// defun term-times-poly -- ../share/contrib/Grobner/grobner.lisp:809
+declare fn term_times_poly(ring : Value, term : Value, p : Value) -> Value raise
+
+///|
+/// defun poly-add -- ../share/contrib/Grobner/grobner.lisp:814
+declare fn poly_add(ring : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun poly-sub -- ../share/contrib/Grobner/grobner.lisp:817
+declare fn poly_sub(ring : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun poly-uminus -- ../share/contrib/Grobner/grobner.lisp:822
+declare fn poly_uminus(ring : Value, p : Value) -> Value raise
+
+///|
+/// defun poly-mul -- ../share/contrib/Grobner/grobner.lisp:825
+declare fn poly_mul(ring : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun poly-expt -- ../share/contrib/Grobner/grobner.lisp:830
+declare fn poly_expt(ring : Value, p : Value, n : Value) -> Value raise
+
+///|
+/// defun poly-append -- ../share/contrib/Grobner/grobner.lisp:833
+declare fn poly_append(plist : Value) -> Value raise
+
+///|
+/// defun poly-nreverse -- ../share/contrib/Grobner/grobner.lisp:839
+declare fn poly_nreverse(p : Value) -> Value raise
+
+///|
+/// defun poly-contract -- ../share/contrib/Grobner/grobner.lisp:845
+declare fn poly_contract(p : Value, k? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun poly-extend -- ../share/contrib/Grobner/grobner.lisp:851
+declare fn poly_extend(p : Value, m? : Value) -> Value raise
+
+///|
+/// defun poly-add-variables -- ../share/contrib/Grobner/grobner.lisp:856
+declare fn poly_add_variables(p : Value, k : Value) -> Value raise
+
+///|
+/// defun poly-list-add-variables -- ../share/contrib/Grobner/grobner.lisp:860
+declare fn poly_list_add_variables(plist : Value, k : Value) -> Value raise
+
+///|
+/// defun poly-standard-extension -- ../share/contrib/Grobner/grobner.lisp:863
+declare fn poly_standard_extension(plist : Value) -> Value raise
+
+///|
+/// defun saturation-extension -- ../share/contrib/Grobner/grobner.lisp:874
+declare fn saturation_extension(ring : Value, f : Value, plist : Value) -> Value raise
+
+///|
+/// defun polysaturation-extension -- ../share/contrib/Grobner/grobner.lisp:886
+declare fn polysaturation_extension(ring : Value, f : Value, plist : Value) -> Value raise
+
+///|
+/// defun saturation-extension-1 -- ../share/contrib/Grobner/grobner.lisp:895
+declare fn saturation_extension_1(ring : Value, f : Value, p : Value) -> Value raise
+
+///|
+/// defun coerce-coeff -- ../share/contrib/Grobner/grobner.lisp:905
+declare fn coerce_coeff(ring : Value, expr : Value, vars : Value) -> Value raise
+
+///|
+/// defun poly-eval -- ../share/contrib/Grobner/grobner.lisp:912
+declare fn poly_eval(ring : Value, expr : Value, vars : Value, list_marker? : Value = q_op_lb) -> Value raise
+
+///|
+/// defun spoly -- ../share/contrib/Grobner/grobner.lisp:970
+declare fn spoly(ring : Value, f : Value, g : Value) -> Value raise
+
+///|
+/// defun poly-primitive-part -- ../share/contrib/Grobner/grobner.lisp:986
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn poly_primitive_part(ring : Value, p : Value) -> (Value, Value) raise
+
+///|
+/// defun poly-content -- ../share/contrib/Grobner/grobner.lisp:1001
+declare fn poly_content(ring : Value, p : Value) -> Value raise
+
+///|
+/// defun grobner-op -- ../share/contrib/Grobner/grobner.lisp:1016
+declare fn grobner_op(ring : Value, c1 : Value, c2 : Value, m : Value, f : Value, g : Value) -> Value raise
+
+///|
+/// defun poly-pseudo-divide -- ../share/contrib/Grobner/grobner.lisp:1028
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn poly_pseudo_divide(ring : Value, f : Value, fl : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun poly-exact-divide -- ../share/contrib/Grobner/grobner.lisp:1071
+declare fn poly_exact_divide(ring : Value, f : Value, g : Value) -> Value raise
+
+///|
+/// defun normal-form-step -- ../share/contrib/Grobner/grobner.lisp:1095
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn normal_form_step(ring : Value, fl : Value, p : Value, r : Value, c : Value, division_count : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun normal-form -- ../share/contrib/Grobner/grobner.lisp:1121
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn normal_form(ring : Value, f : Value, fl : Value, top_reduction_only? : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun buchberger-criterion -- ../share/contrib/Grobner/grobner.lisp:1151
+declare fn buchberger_criterion(ring : Value, g : Value) -> Value raise
+
+///|
+/// defun grobner-test -- ../share/contrib/Grobner/grobner.lisp:1161
+declare fn grobner_test(ring : Value, g : Value, f : Value) -> Value raise
+
+///|
+/// defun sugar-pair-key -- ../share/contrib/Grobner/grobner.lisp:1184
+declare fn sugar_pair_key(p : Value, q : Value) -> Value raise
+
+///|
+/// defun sugar-order -- ../share/contrib/Grobner/grobner.lisp:1207
+declare fn sugar_order(x : Value, y : Value) -> Value raise
+
+///|
+/// defun make-pair-queue -- ../share/contrib/Grobner/grobner.lisp:1222
+declare fn make_pair_queue() -> Value raise
+
+///|
+/// defun pair-queue-initialize -- ../share/contrib/Grobner/grobner.lisp:1229
+declare fn pair_queue_initialize(pq : Value, f : Value, start : Value) -> Value raise
+
+///|
+/// defun pair-queue-insert -- ../share/contrib/Grobner/grobner.lisp:1243
+declare fn pair_queue_insert(b : Value, pair : Value) -> Value raise
+
+///|
+/// defun pair-queue-remove -- ../share/contrib/Grobner/grobner.lisp:1246
+declare fn pair_queue_remove(b : Value) -> Value raise
+
+///|
+/// defun pair-queue-size -- ../share/contrib/Grobner/grobner.lisp:1249
+declare fn pair_queue_size(b : Value) -> Value raise
+
+///|
+/// defun pair-queue-empty-p -- ../share/contrib/Grobner/grobner.lisp:1252
+declare fn pair_queue_empty_p(b : Value) -> Value raise
+
+///|
+/// defun buchberger -- ../share/contrib/Grobner/grobner.lisp:1261
+declare fn buchberger(ring : Value, f : Value, start : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun parallel-buchberger -- ../share/contrib/Grobner/grobner.lisp:1312
+declare fn parallel_buchberger(ring : Value, f : Value, start : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun criterion-1 -- ../share/contrib/Grobner/grobner.lisp:1400
+declare fn criterion_1(pair : Value) -> Value raise
+
+///|
+/// defun criterion-2 -- ../share/contrib/Grobner/grobner.lisp:1411
+declare fn criterion_2(pair : Value, b_done : Value, partial_basis : Value) -> Value raise
+
+///|
+/// defun gebauer-moeller -- ../share/contrib/Grobner/grobner.lisp:1455
+declare fn gebauer_moeller(ring : Value, f : Value, start : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun gebauer-moeller-update -- ../share/contrib/Grobner/grobner.lisp:1495
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn gebauer_moeller_update(g : Value, b : Value, h : Value) -> (Value, Value) raise
+
+///|
+/// defun reduction -- ../share/contrib/Grobner/grobner.lisp:1564
+declare fn reduction(ring : Value, plist : Value) -> Value raise
+
+///|
+/// defun minimization -- ../share/contrib/Grobner/grobner.lisp:1585
+declare fn minimization(p : Value) -> Value raise
+
+///|
+/// defun poly-normalize -- ../share/contrib/Grobner/grobner.lisp:1601
+declare fn poly_normalize(ring : Value, p : Value) -> Value raise
+
+///|
+/// defun poly-normalize-list -- ../share/contrib/Grobner/grobner.lisp:1612
+declare fn poly_normalize_list(ring : Value, plist : Value) -> Value raise
+
+///|
+/// defun find-grobner-function -- ../share/contrib/Grobner/grobner.lisp:1623
+declare fn find_grobner_function(algorithm : Value) -> Value raise
+
+///|
+/// defun grobner -- ../share/contrib/Grobner/grobner.lisp:1632
+declare fn grobner(ring : Value, f : Value, start? : Value = Fix(0L), top_reduction_only? : Value = Nil) -> Value raise
+
+///|
+/// defun reduced-grobner -- ../share/contrib/Grobner/grobner.lisp:1638
+declare fn reduced_grobner(ring : Value, f : Value, start? : Value = Fix(0L), top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun set-pair-heuristic -- ../share/contrib/Grobner/grobner.lisp:1641
+declare fn set_pair_heuristic(method_ : Value) -> Value raise
+
+///|
+/// defun term-depends-p -- ../share/contrib/Grobner/grobner.lisp:1673
+declare fn term_depends_p(term : Value, k : Value) -> Value raise
+
+///|
+/// defun poly-depends-p -- ../share/contrib/Grobner/grobner.lisp:1678
+declare fn poly_depends_p(p : Value, k : Value) -> Value raise
+
+///|
+/// defun ring-intersection -- ../share/contrib/Grobner/grobner.lisp:1682
+declare fn ring_intersection(plist : Value, k : Value) -> Value raise
+
+///|
+/// defun elimination-ideal -- ../share/contrib/Grobner/grobner.lisp:1692
+declare fn elimination_ideal(ring : Value, flist : Value, k : Value, top_reduction_only? : Value, start? : Value = Fix(0L)) -> Value raise
+
+///|
+/// defun colon-ideal -- ../share/contrib/Grobner/grobner.lisp:1699
+declare fn colon_ideal(ring : Value, f : Value, g : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun colon-ideal-1 -- ../share/contrib/Grobner/grobner.lisp:1722
+declare fn colon_ideal_1(ring : Value, f : Value, g : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun ideal-intersection -- ../share/contrib/Grobner/grobner.lisp:1728
+declare fn ideal_intersection(ring : Value, f : Value, g : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun poly-lcm -- ../share/contrib/Grobner/grobner.lisp:1745
+declare fn poly_lcm(ring : Value, f : Value, g : Value) -> Value raise
+
+///|
+/// defun grobner-equal -- ../share/contrib/Grobner/grobner.lisp:1767
+declare fn grobner_equal(ring : Value, g1 : Value, g2 : Value) -> Value raise
+
+///|
+/// defun grobner-subsetp -- ../share/contrib/Grobner/grobner.lisp:1772
+declare fn grobner_subsetp(ring : Value, g1 : Value, g2 : Value) -> Value raise
+
+///|
+/// defun grobner-member -- ../share/contrib/Grobner/grobner.lisp:1778
+declare fn grobner_member(ring : Value, p : Value, g : Value) -> Value raise
+
+///|
+/// defun ideal-saturation-1 -- ../share/contrib/Grobner/grobner.lisp:1784
+declare fn ideal_saturation_1(ring : Value, f : Value, p : Value, start : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun ideal-polysaturation-1 -- ../share/contrib/Grobner/grobner.lisp:1806
+declare fn ideal_polysaturation_1(ring : Value, f : Value, plist : Value, start : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun ideal-saturation -- ../share/contrib/Grobner/grobner.lisp:1816
+declare fn ideal_saturation(ring : Value, f : Value, g : Value, start : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun ideal-polysaturation -- ../share/contrib/Grobner/grobner.lisp:1838
+declare fn ideal_polysaturation(ring : Value, f : Value, ideal_list : Value, start : Value, top_reduction_only? : Value) -> Value raise
+
+///|
+/// defun coerce-to-infix -- ../share/contrib/Grobner/grobner.lisp:1878
+declare fn coerce_to_infix(poly_type : Value, object_ : Value, vars : Value) -> Value raise
+
+///|
+/// defun equal-test-p -- ../share/contrib/Grobner/grobner.lisp:1937
+declare fn equal_test_p(expr1 : Value, expr2 : Value) -> Value raise
+
+///|
+/// defun coerce-maxima-list -- ../share/contrib/Grobner/grobner.lisp:1940
+declare fn coerce_maxima_list(expr : Value) -> Value raise
+
+///|
+/// defun free-of-vars -- ../share/contrib/Grobner/grobner.lisp:1946
+declare fn free_of_vars(expr : Value, vars : Value) -> Value raise
+
+///|
+/// defun parse-poly -- ../share/contrib/Grobner/grobner.lisp:1949
+declare fn parse_poly(expr : Value, vars : Value) -> Value raise
+
+///|
+/// defun parse-poly1 -- ../share/contrib/Grobner/grobner.lisp:1952
+declare fn parse_poly1(expr : Value, vars : Value) -> Value raise
+
+///|
+/// defun parse-poly-list -- ../share/contrib/Grobner/grobner.lisp:1991
+declare fn parse_poly_list(expr : Value, vars : Value) -> Value raise
+
+///|
+/// defun parse-poly-list-list -- ../share/contrib/Grobner/grobner.lisp:1996
+declare fn parse_poly_list_list(poly_list_list : Value, vars : Value) -> Value raise
+
+///|
+/// defun find-order -- ../share/contrib/Grobner/grobner.lisp:2005
+declare fn find_order(order : Value) -> Value raise
+
+///|
+/// defun find-ring -- ../share/contrib/Grobner/grobner.lisp:2022
+declare fn find_ring(ring : Value) -> Value raise
+
+///|
+/// defun maxima-head -- ../share/contrib/Grobner/grobner.lisp:2061
+declare fn maxima_head() -> Value raise
+
+///|
+/// defun coerce-to-maxima -- ../share/contrib/Grobner/grobner.lisp:2066
+declare fn coerce_to_maxima(poly_type : Value, object_ : Value, vars : Value) -> Value raise
+
+///|
+/// defun remzero -- ../share/contrib/Grobner/grobner.lisp:2146
+declare fn remzero(plist : Value) -> Value raise
+
+///|
+/// defmfun $poly_expand -- ../share/contrib/Grobner/grobner.lisp:2170
+declare fn d_poly_expand(p : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_expt -- ../share/contrib/Grobner/grobner.lisp:2178
+declare fn d_poly_expt(p : Value, n : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_content -- ../share/contrib/Grobner/grobner.lisp:2182
+declare fn d_poly_content(p : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_pseudo_divide -- ../share/contrib/Grobner/grobner.lisp:2186
+declare fn d_poly_pseudo_divide(f : Value, fl : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_exact_divide -- ../share/contrib/Grobner/grobner.lisp:2198
+declare fn d_poly_exact_divide(f : Value, g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_normal_form -- ../share/contrib/Grobner/grobner.lisp:2202
+declare fn d_poly_normal_form(f : Value, fl : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_buchberger_criterion -- ../share/contrib/Grobner/grobner.lisp:2208
+declare fn d_poly_buchberger_criterion(g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_buchberger -- ../share/contrib/Grobner/grobner.lisp:2212
+declare fn d_poly_buchberger(fl : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_reduction -- ../share/contrib/Grobner/grobner.lisp:2216
+declare fn d_poly_reduction(plist : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_minimization -- ../share/contrib/Grobner/grobner.lisp:2221
+declare fn d_poly_minimization(plist : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_normalize_list -- ../share/contrib/Grobner/grobner.lisp:2226
+declare fn d_poly_normalize_list(plist : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_grobner -- ../share/contrib/Grobner/grobner.lisp:2231
+declare fn d_poly_grobner(f : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_reduced_grobner -- ../share/contrib/Grobner/grobner.lisp:2236
+declare fn d_poly_reduced_grobner(f : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_depends_p -- ../share/contrib/Grobner/grobner.lisp:2241
+declare fn d_poly_depends_p(p : Value, var_ : Value, mvars : Value) -> Value raise
+
+///|
+/// defmfun $poly_elimination_ideal -- ../share/contrib/Grobner/grobner.lisp:2248
+declare fn d_poly_elimination_ideal(flist : Value, k : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_colon_ideal -- ../share/contrib/Grobner/grobner.lisp:2253
+declare fn d_poly_colon_ideal(f : Value, g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_ideal_intersection -- ../share/contrib/Grobner/grobner.lisp:2257
+declare fn d_poly_ideal_intersection(f : Value, g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_lcm -- ../share/contrib/Grobner/grobner.lisp:2261
+declare fn d_poly_lcm(f : Value, g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_gcd -- ../share/contrib/Grobner/grobner.lisp:2265
+declare fn d_poly_gcd(f : Value, g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_grobner_equal -- ../share/contrib/Grobner/grobner.lisp:2268
+declare fn d_poly_grobner_equal(g1 : Value, g2 : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_grobner_subsetp -- ../share/contrib/Grobner/grobner.lisp:2272
+declare fn d_poly_grobner_subsetp(g1 : Value, g2 : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_grobner_member -- ../share/contrib/Grobner/grobner.lisp:2276
+declare fn d_poly_grobner_member(p : Value, g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_ideal_saturation1 -- ../share/contrib/Grobner/grobner.lisp:2280
+declare fn d_poly_ideal_saturation1(f : Value, p : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_saturation_extension -- ../share/contrib/Grobner/grobner.lisp:2285
+declare fn d_poly_saturation_extension(f : Value, plist : Value, vars : Value, new_vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_polysaturation_extension -- ../share/contrib/Grobner/grobner.lisp:2291
+declare fn d_poly_polysaturation_extension(f : Value, plist : Value, vars : Value, new_vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_ideal_polysaturation1 -- ../share/contrib/Grobner/grobner.lisp:2297
+declare fn d_poly_ideal_polysaturation1(f : Value, plist : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_ideal_saturation -- ../share/contrib/Grobner/grobner.lisp:2302
+declare fn d_poly_ideal_saturation(f : Value, g : Value, vars : Value) -> Value raise
+
+///|
+/// defmfun $poly_ideal_polysaturation -- ../share/contrib/Grobner/grobner.lisp:2307
+declare fn d_poly_ideal_polysaturation(f : Value, ideal_list : Value, vars : Value) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -25713,6 +27223,58 @@ declare fn push_todo(m : Value, n : Value) -> Value raise
 /// macro table (i) -- todd-coxeter.lisp:53
 declare fn table(i : Value) -> Value raise
 
+///|
+/// macro grobner-makelist-1 (expr var lo hi &optional (step 1)) -- ../share/contrib/Grobner/grobner.lisp:48
+declare fn grobner_makelist_1(expr : Value, var_ : Value, lo : Value, hi : Value, step? : Value = Fix(1L)) -> Value raise
+
+///|
+/// macro make-monom (dim &key (initial-contents nil initial-contents-supplied-p) (initial-element 0 initial-element-supplied-p)) -- ../share/contrib/Grobner/grobner.lisp:108
+declare fn make_monom(dim : Value, initial_contents? : Value = Nil, initial_element? : Value = Fix(0L)) -> Value raise
+
+///|
+/// macro monom-elt (m index) -- ../share/contrib/Grobner/grobner.lisp:127
+declare fn monom_elt(m : Value, index : Value) -> Value raise
+
+///|
+/// macro monom-map (fun m &rest ml &aux (result `(copy-seq ,m))) -- ../share/contrib/Grobner/grobner.lisp:207
+declare fn monom_map(fun : Value, m : Value, ml : Value) -> Value raise
+
+///|
+/// macro monom-append (m1 m2) -- ../share/contrib/Grobner/grobner.lisp:210
+declare fn monom_append(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// macro monom-contract (k m) -- ../share/contrib/Grobner/grobner.lisp:213
+declare fn monom_contract(k : Value, m : Value) -> Value raise
+
+///|
+/// macro monomial-order (x y) -- ../share/contrib/Grobner/grobner.lisp:312
+declare fn monomial_order(x : Value, y : Value) -> Value raise
+
+///|
+/// macro termlist-lt (p) -- ../share/contrib/Grobner/grobner.lisp:569
+declare fn termlist_lt(p : Value) -> Value raise
+
+///|
+/// macro poly-lt (p) -- ../share/contrib/Grobner/grobner.lisp:774
+declare fn poly_lt(p : Value) -> Value raise
+
+///|
+/// macro poly-second-lt (p) -- ../share/contrib/Grobner/grobner.lisp:777
+declare fn poly_second_lt(p : Value) -> Value raise
+
+///|
+/// macro debug-cgb (&rest args) -- ../share/contrib/Grobner/grobner.lisp:961
+declare fn debug_cgb(args : Value) -> Value raise
+
+///|
+/// macro define-unop (maxima-name fun-name &optional (documentation nil documentation-supplied-p)) -- ../share/contrib/Grobner/grobner.lisp:2117
+declare fn define_unop(maxima_name : Value, fun_name : Value, documentation? : Value) -> Value raise
+
+///|
+/// macro define-binop (maxima-name fun-name &optional (documentation nil documentation-supplied-p)) -- ../share/contrib/Grobner/grobner.lisp:2127
+declare fn define_binop(maxima_name : Value, fun_name : Value, documentation? : Value) -> Value raise
+
 // ---- Per-file initialization (top-level forms of each Lisp file)
 
 ///|
@@ -26854,4 +28416,48 @@ declare fn init_max_ext() -> Unit raise
 ///|
 /// top-level forms of init-cl.lisp
 declare fn init_init_cl() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/eval_string.lisp
+declare fn init_share_eval_string() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/unicode-sniffer.lisp
+declare fn init_share_unicode_sniffer() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/stringproc.lisp
+declare fn init_share_stringproc() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/printf.lisp
+declare fn init_share_printf() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/cryptools.lisp
+declare fn init_share_cryptools() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/md5.lisp
+declare fn init_share_md5() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/base64.lisp
+declare fn init_share_base64() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/sha1.lisp
+declare fn init_share_sha1() -> Unit raise
+
+///|
+/// top-level forms of ../share/stringproc/sregex.lisp
+declare fn init_share_sregex() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/unwind_protect.lisp
+declare fn init_share_unwind_protect() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/Grobner/grobner.lisp
+declare fn init_share_grobner() -> Unit raise
 

@@ -191,3 +191,25 @@ $opproperties	asum.lisp:19	(list* '(mlist simp) '($linear $additive $multiplicat
 *eu*	combin.lisp:331	(make-array 11 :adjustable t :element-type 'integer :initial-contents '(-1 5 -61 1385 -50521 2702765 -199360981 19391512145 -2404879675441 370371188237525 -69348874393137901))
 *todo*	todd-coxeter.lisp:24	(make-array 10 :element-type 'coset :fill-pointer 0 :adjustable t :initial-element 0)
 *names*	todd-coxeter.lisp:293	(nil x y z)
+unicode-signatures	../share/stringproc/unicode-sniffer.lisp:6	(stable-sort '(((239 187 191) . :utf-8) ((254 255) . :utf-16be) ((255 254) . :utf-16le) ((0 0 254 255) . :utf-32be) ((255 254 0 0) . :utf-32le) ((43 47 118 56) . :utf-7) ((43 47 118 57) . :utf-7) ((43 47 118 43) . :utf-7) ((43 47 118 47) . :utf-7) ((43 47 118 56 45) . :utf-7) ((247 100 76) . :utf-1) ((221 115 102 115) . :utf-ebcdic) ((14 254 255) . :scsu) ((251 238 40) . :bocu-1) ((132 49 149 51) . :cp936)) #'(lambda (a b) (> (length (car a)) (length (car b)))))
+*parse-utf-8-input*	../share/stringproc/stringproc.lisp:74	(init-*parse-utf-8-input*)
+$newline	../share/stringproc/stringproc.lisp:734	(string #\Newline)
+$tab	../share/stringproc/stringproc.lisp:740	(string #\Tab)
+$space	../share/stringproc/stringproc.lisp:746	(string #\Space)
+old-ibase-cryptools	../share/stringproc/cryptools.lisp:117	*read-base*
+old-ibase-md5	../share/stringproc/md5.lisp:78	*read-base*
+*k5*	../share/stringproc/md5.lisp:87	(make-array 64 :element-type 'integer :initial-element 0)
+*s5*	../share/stringproc/md5.lisp:92	#(7 12 17 22 7 12 17 22 7 12 17 22 7 12 17 22 5 9 14 20 5 9 14 20 5 9 14 20 5 9 14 20 4 11 16 23 4 11 16 23 4 11 16 23 4 11 16 23 6 10 15 21 6 10 15 21 6 10 15 21 6 10 15 21)
+old-ibase-base64	../share/stringproc/base64.lisp:47	*read-base*
+*chr64*	../share/stringproc/base64.lisp:58	(make-array 64 :element-type 'character :initial-element #\0)
+*num64*	../share/stringproc/base64.lisp:69	(make-array 123 :element-type 'integer :initial-element -1)
+old-ibase-sha1	../share/stringproc/sha1.lisp:101	*read-base*
+*k2*	../share/stringproc/sha1.lisp:122	(coerce (mapcar #'(lambda (i) (floor (* (rem (expt (coerce i 'double-float) 1/3) 1.0) 4294967296))) (subseq *small-primes* 0 64)) 'vector)
+*monomial-order*	../share/contrib/Grobner/grobner.lisp:309	#'lex>
+*primary-elimination-order*	../share/contrib/Grobner/grobner.lisp:318	#'lex>
+*secondary-elimination-order*	../share/contrib/Grobner/grobner.lisp:320	#'lex>
+*ring-of-integers*	../share/contrib/Grobner/grobner.lisp:510	(make-ring :parse #'identity :unit #'(lambda () 1) :zerop #'zerop :add #'+ :sub #'- :uminus #'- :mul #'* :div #'/ :lcm #'lcm :ezgcd #'(lambda (x y &aux (c (gcd x y))) (values c (/ x c) (/ y c))) :gcd #'gcd)
+*pair-key-function*	../share/contrib/Grobner/grobner.lisp:1215	#'sugar-pair-key
+*pair-order*	../share/contrib/Grobner/grobner.lisp:1219	#'sugar-order
+*expression-ring*	../share/contrib/Grobner/grobner.lisp:1900	(make-ring :parse #'(lambda (expr) (when modulus (setf expr ($rat expr))) expr) :unit #'(lambda () (if modulus ($rat 1) 1)) :zerop #'(lambda (expr) (cond ((numberp expr) (= expr 0)) ((atom expr) nil) (t (case (caar expr) (mrat (eql ($ratdisrep expr) 0)) (otherwise (eql (sratsimp expr) 0)))))) :add #'(lambda (x y) (sratsimp (m+ x y))) :sub #'(lambda (x y) (sratsimp (m- x y))) :uminus #'(lambda (x) (m- x)) :mul #'(lambda (x y) (m* x y)) :div #'(lambda (x y) (sratsimp (m// x y))) :lcm #'(lambda (x y) (sratsimp (m// (m* x y) (second ($ezgcd x y))))) :ezgcd #'(lambda (x y) (apply #'values (cdr ($ezgcd x y)))) :gcd #'(lambda (x y) (second ($ezgcd x y))))
+*maxima-ring*	../share/contrib/Grobner/grobner.lisp:1926	*expression-ring*
