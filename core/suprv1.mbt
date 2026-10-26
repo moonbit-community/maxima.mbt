@@ -738,7 +738,8 @@ fn kill1_atom(x : Value) -> Value raise {
     ),
   )
   |> ignore
-  let y = find_if(e => equal(x, car(e)), cdr(symval(q_d_structures)))
+  // ASSOC-IF applies its predicate to the CAR of each element.
+  let y = find_if(e => equal(x, caar(e)), cdr(symval(q_d_structures)))
   if y.truthy() {
     remprop(x, q_dimension) |> ignore
     remprop(x, q_defstruct_template) |> ignore
