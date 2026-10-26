@@ -1277,7 +1277,22 @@ fn init_share_polyc() -> Unit raise {
       Nil,
     ),
   )
-  register_mspec(q_d_homework, form => polyc__homework(cadr(form)))
+  // (defquote $homework (a-list &aux answer work) ...) defines the macro
+  // $homework taking A-LIST and as many more arguments as there are
+  // symbols after it in the lambda list (3), which it passes to the
+  // one-argument $HOMEWORK-AUX: every call fails.
+  register_mspec(q_d_homework, form => {
+    if length(cddr(form)) != 3 {
+      raise LispError::SimpleError("wrong number of args to $HOMEWORK")
+    }
+    if length(cdr(form)) == 1 {
+      polyc__homework(cadr(form))
+    } else {
+      raise LispError::SimpleError(
+        "invalid number of arguments: " + length(cdr(form)).to_string(),
+      )
+    }
+  })
   defun(q_d_numberp, args => polyc__numberp(arg(args, 0)), name="$numberp")
   defun(
     q_lastn,
