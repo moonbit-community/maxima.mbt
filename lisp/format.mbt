@@ -285,61 +285,9 @@ fn fmt_run(st : FmtState, end : Int) -> Bool raise {
           _ => st.out.write_string(princ_to_string(arg))
         }
       }
-      'f' => {
-        let arg = st.next_arg()
-        let w = match p0 {
-          Some(Fix(n)) => Some(n.to_int())
-          _ => None
-        }
-        let dd = match params.get(1).unwrap_or(None) {
-          Some(Fix(n)) => Some(n.to_int())
-          _ => None
-        }
-        let s = if realp(arg) {
-          format_fixed(to_double(arg), w, dd, at)
-        } else {
-          princ_to_string(arg)
-        }
-        match w {
-          Some(wn) => st.out.write_string(" ".repeat((wn - s.length()).max(0)))
-          None => ()
-        }
-        st.out.write_string(s)
-      }
-      'g' => {
-        let arg = st.next_arg()
-        let w = match p0 {
-          Some(Fix(n)) => Some(n.to_int())
-          _ => None
-        }
-        let dd = match params.get(1).unwrap_or(None) {
-          Some(Fix(n)) => Some(n.to_int())
-          _ => None
-        }
-        if realp(arg) {
-          st.out.write_string(format_general(to_double(arg), w, dd))
-        } else {
-          st.out.write_string(princ_to_string(arg))
-        }
-      }
-      'e' => {
-        let arg = st.next_arg()
-        let dd = match params.get(1).unwrap_or(None) {
-          Some(Fix(n)) => Some(n.to_int())
-          _ => None
-        }
-        let s = if realp(arg) {
-          format_exp(to_double(arg), dd)
-        } else {
-          princ_to_string(arg)
-        }
-        let w = match p0 {
-          Some(Fix(n)) => n.to_int()
-          _ => 0
-        }
-        st.out.write_string(" ".repeat((w - s.length()).max(0)))
-        st.out.write_string(s)
-      }
+      'f' => fmt_directive_f(st.out, st.next_arg(), params, at)
+      'g' => fmt_directive_g(st.out, st.next_arg(), params, at)
+      'e' => fmt_directive_e(st.out, st.next_arg(), params, at)
       '$' => {
         let arg = st.next_arg()
         let dd = match p0 {
