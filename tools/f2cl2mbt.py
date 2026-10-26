@@ -12,7 +12,7 @@ the original Lisp under SBCL (see gen_reference_test).  SRC_DIR defaults to
 .repos/maxima/src/numerical/slatec, OUT_DIR to slatec/.
 
 --lib=NAME translates the f2cl code of a share package into the package
-NAME/ (lbfgs: share/lbfgs; odepack: the DLSODE subset of share/odepack/src;
+NAME/ (lbfgs: share/lbfgs; odepack: share/odepack/src;
 lapack: share/lapack/blas and share/lapack/lapack), which uses the runtime
 package f2cl/ (complex arithmetic as SBCL does it, Fortran strings, FFORMAT
 output).  With --reference-test it writes NAME/sbcl_reference_wbtest.mbt
@@ -20,6 +20,14 @@ from the SHARE_REF cases (see gen_share_reference_test).  Beyond what
 SLATEC needs, these libraries use COMMON blocks (DEFSTRUCT + SYMBOL-MACROLET,
 displaced arrays), BLOCK DATA, statement functions (LABELS), CHARACTER
 variables, COMPLEX*16 and formatted WRITEs.
+
+--lib=hompack (share/hompack/lisp with the BLAS it uses) and --lib=colnew
+(share/colnew/lisp) add Fortran ENTRY points (multi-entry LABELS), user
+routines called by name (HOMPACK's F, FJAC, ...: settable hooks, see
+emit_hooks) and single-float arrays; all of ODEPACK adds ASSIGNed GOTOs,
+EQUIVALENCEd locals, routines generic in the type of a function parameter
+they only pass on (TVARS), and arrays passed with the wrong element type
+(a TYPE-ERROR in the Lisp, a raised error here).
 
 The input files are the machine-generated output of f2cl (Fortran -> Common
 Lisp).  Each file holds one DEFUN, optionally wrapped in a LET that holds the
