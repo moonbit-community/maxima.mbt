@@ -1,44 +1,18 @@
 // Port of share/tensor/symtry.lisp (symmetrization module for itensor):
-// DECSYM, DISPSYM, REMSYM and CANFORM.
-//
-// symtry.lisp is not part of the generated share contract; itensor.lisp
-// autoloads it (AUTOF '$DECSYM / '$CANFORM '|symtry|), so it is ported here
-// with private names and "loaded" by share_itensor__load_symtry, which
-// installs its Maxima functions in their function cells.
+// DECSYM, DISPSYM, REMSYM and CANFORM. itensor.lisp autoloads it
+// (AUTOF '$DECSYM / '$CANFORM '|symtry|).
 
 ///|
-let share_itensor__q_symtypes : Value = sym("symtypes")
-
-///|
-let share_itensor__q_dispsym : Value = sym("$dispsym")
-
-///|
-let share_itensor__q_remsym : Value = sym("$remsym")
-
-///|
-/// Load symtry: its top-level forms and function definitions.
-fn share_itensor__load_symtry() -> Unit raise {
-  defun(q_d_decsym, args => {
-    check_arity_range("$decsym", args, 5, 5)
-    share_itensor__d_decsym(
-      arg(args, 0),
-      arg(args, 1),
-      arg(args, 2),
-      arg(args, 3),
-      arg(args, 4),
-    )
-  })
-  defun(share_itensor__q_dispsym, args => {
-    check_arity_range("$dispsym", args, 3, 3)
-    share_itensor__d_dispsym(arg(args, 0), arg(args, 1), arg(args, 2))
-  })
-  defun(share_itensor__q_remsym, args => {
-    check_arity_range("$remsym", args, 3, 3)
-    share_itensor__d_remsym(arg(args, 0), arg(args, 1), arg(args, 2))
-  })
-  defun(q_d_canform, args => share_itensor__d_canform(list(args)))
-  set(share_itensor__q_symtypes, list3(q_d_sym, q_d_anti, q_d_cyc)) |> ignore
+/// Top-level forms of symtry.lisp.
+fn init_share_symtry() -> Unit raise {
+  set(q_symtypes, list3(q_d_sym, q_d_anti, q_d_cyc)) |> ignore
   set(q_d_symmetries, share_itensor__empty_ml()) |> ignore
+}
+
+///|
+/// `($canform e f)`.
+fn symtry__canform2(e : Value, f : Value) -> Value raise {
+  d_canform(list2(e, f))
 }
 
 // $SYMMETRIES is a list of indexed objects with declared symmetries
@@ -46,7 +20,7 @@ fn share_itensor__load_symtry() -> Unit raise {
 
 ///|
 /// DEClare SYMmetries
-fn share_itensor__d_decsym(
+fn d_decsym(
   name : Value,
   ncov : Value,
   ncontr : Value,
@@ -75,7 +49,7 @@ fn share_itensor__d_decsym(
     |> ignore
   }
   let tensor = share_itensor__symname(name, ncov, ncontr)
-  let symtypes = symval(share_itensor__q_symtypes)
+  let symtypes = symval(q_symtypes)
   for carl in cdr(covl).iter() {
     let prop = caar(carl)
     let arglist = if member_equal(prop, symtypes) is Nil {
@@ -83,7 +57,7 @@ fn share_itensor__d_decsym(
     } else if cddr(carl) is Nil && eq(cadr(carl), q_d_all) {
       interval(Fix(1L), ncov)
     } else {
-      share_itensor__check_symargs(cdr(carl), one_plus(ncov))
+      check_symargs(cdr(carl), one_plus(ncov))
     }
     let old = zl_get(tensor, prop)
     putprop(tensor, cons(cons(arglist, car(old)), cdr(old)), prop) |> ignore
@@ -95,7 +69,7 @@ fn share_itensor__d_decsym(
     } else if cddr(carl) is Nil && eq(cadr(carl), q_d_all) {
       interval(Fix(1L), ncontr)
     } else {
-      share_itensor__check_symargs(cdr(carl), one_plus(ncontr))
+      check_symargs(cdr(carl), one_plus(ncontr))
     }
     let old = zl_get(tensor, prop)
     putprop(tensor, cons(car(old), cons(arglist, cdr(old))), prop) |> ignore
@@ -107,7 +81,7 @@ fn share_itensor__d_decsym(
 ///|
 /// Returns an ascending list of the unique elements of LL and checks that
 /// they are integers between 0 and N
-fn share_itensor__check_symargs(ll : Value, n : Value) -> Value raise {
+fn check_symargs(ll : Value, n : Value) -> Value raise {
   let mut ans : Value = Nil
   for c in ll.iter() {
     if !(fixnump(c) && num_lt(Fix(0L), c) && num_lt(c, n)) {
@@ -125,7 +99,7 @@ fn share_itensor__check_symargs(ll : Value, n : Value) -> Value raise {
 
 ///|
 /// DISPlay SYMmetries
-fn share_itensor__d_dispsym(
+fn d_dispsym(
   name : Value,
   ncov : Value,
   ncontr : Value,
@@ -135,7 +109,7 @@ fn share_itensor__d_dispsym(
     return list1(share_itensor__sm())
   }
   let mut l : Value = Nil
-  for q in symval(share_itensor__q_symtypes).iter() {
+  for q in symval(q_symtypes).iter() {
     let prop = zl_get(tensor, q)
     if prop.truthy() {
       l = append(
@@ -156,7 +130,7 @@ fn share_itensor__d_dispsym(
 }
 
 ///|
-fn share_itensor__d_remsym(
+fn d_remsym(
   name : Value,
   ncov : Value,
   ncontr : Value,
@@ -175,14 +149,8 @@ fn share_itensor__d_remsym(
 }
 
 ///|
-/// `($canform e f)` with the Lisp argument list.
-fn share_itensor__canform2(e : Value, f : Value) -> Value raise {
-  share_itensor__d_canform(list2(e, f))
-}
-
-///|
 /// Convert E into CANonical FORM
-fn share_itensor__d_canform(args : Value) -> Value raise {
+fn d_canform(args : Value) -> Value raise {
   let f = if length(args) == 1 {
     t
   } else if length(args) == 2 {
@@ -194,27 +162,27 @@ fn share_itensor__d_canform(args : Value) -> Value raise {
   if atom(e) {
     e
   } else if eq(caar(e), q_mequal) {
-    let a = share_itensor__canform2(cadr(e), f)
-    mysubst0(list3(car(e), a, share_itensor__canform2(caddr(e), f)), e)
+    let a = symtry__canform2(cadr(e), f)
+    mysubst0(list3(car(e), a, symtry__canform2(caddr(e), f)), e)
   } else if eq(caar(e), q_mplus) {
     mysubst0(
       simplus(
-        cons(list1(q_mplus), mapcar(ee => share_itensor__canform2(ee, f), cdr(e))),
+        cons(list1(q_mplus), mapcar(ee => symtry__canform2(ee, f), cdr(e))),
         Fix(1L),
         Nil,
       ),
       e,
     )
   } else if eq(caar(e), q_mtimes) {
-    mysubst0(simplifya(share_itensor__canprod(e, f), Nil), e)
+    mysubst0(simplifya(canprod(e, f), Nil), e)
   } else if rpobj(e).truthy() {
-    share_itensor__canten(e, f)
+    canten(e, f)
   } else {
     mysubst0(
       simplifya(
         cons(
           list1(caar(e)),
-          mapcar(ee => share_itensor__canform2(ee, f), cdr(e)),
+          mapcar(ee => symtry__canform2(ee, f), cdr(e)),
         ),
         t,
       ),
@@ -225,11 +193,11 @@ fn share_itensor__d_canform(args : Value) -> Value raise {
 
 ///|
 /// CANonical TENsor. NFPRPOBJS is Not From Product of RP (indexed) OBJects.
-fn share_itensor__canten(e : Value, nfprpobjs : Value) -> Value raise {
+fn canten(e : Value, nfprpobjs : Value) -> Value raise {
   let mut e = e
   let dummy = nonumber(cdaddr(d_indices(e)))
   if nfprpobjs.truthy() && dummy.truthy() {
-    e = share_itensor__rename1(e, dummy)
+    e = rename1(e, dummy)
   }
   let mut cov = copy_tree(cdadr(e))
   let mut contr = copy_tree(cdaddr(e))
@@ -243,23 +211,23 @@ fn share_itensor__canten(e : Value, nfprpobjs : Value) -> Value raise {
     eq(op, q_p_levi_civita) ||
     eq(op, q_d_kdelta) ||
     eq(op, q_p_kdelta) {
-    cov = share_itensor__antisort(cov)
-    contr = share_itensor__antisort(contr)
+    cov = antisort(cov)
+    contr = antisort(contr)
   } else if symval(q_d_allsym).truthy() || eq(op, q_d_kdels) || eq(op, q_p_kdels) {
     cov = itensor_sort(cov)
     contr = itensor_sort(contr)
   } else if member_equal(d_verbify(tensor0), cdr(symval(q_d_symmetries))).truthy() {
-    for type_ in symval(share_itensor__q_symtypes).iter() {
+    for type_ in symval(q_symtypes).iter() {
       for p in car(zl_get(d_verbify(tensor0), type_)).iter() {
-        cov = share_itensor__inserts(
-          share_itensor__symsort(share_itensor__extract_elements(p, cov), type_),
+        cov = inserts(
+          symsort(extract_elements(p, cov), type_),
           cov,
           p,
         )
       }
       for p in cdr(zl_get(d_verbify(tensor0), type_)).iter() {
-        contr = share_itensor__inserts(
-          share_itensor__symsort(share_itensor__extract_elements(p, contr), type_),
+        contr = inserts(
+          symsort(extract_elements(p, contr), type_),
           contr,
           p,
         )
@@ -275,7 +243,7 @@ fn share_itensor__canten(e : Value, nfprpobjs : Value) -> Value raise {
     let d1 = d_idummy()
     let d2 = d_idummy()
     let sg : Value = if symval(q_csign).truthy() { Fix(1L) } else { Fix(-1L) }
-    return share_itensor__canform2(
+    return symtry__canform2(
       list([
         list2(q_mtimes, q_simp),
         sg,
@@ -320,7 +288,7 @@ fn share_itensor__canten(e : Value, nfprpobjs : Value) -> Value raise {
       share_itensor__msl([d1, d2]),
       ders,
     )
-    return share_itensor__canform2(
+    return symtry__canform2(
       list4(
         list2(q_mplus, q_simp),
         list([
@@ -367,12 +335,12 @@ fn share_itensor__canten(e : Value, nfprpobjs : Value) -> Value raise {
 
 ///|
 /// Renames dummy indices in a consistent manner
-fn share_itensor__rename1(e : Value, dummy : Value) -> Value raise {
-  sublis(share_itensor__cleanup0(dummy), e)
+fn rename1(e : Value, dummy : Value) -> Value raise {
+  sublis(cleanup0(dummy), e)
 }
 
 ///|
-fn share_itensor__cleanup0(a : Value) -> Value raise {
+fn cleanup0(a : Value) -> Value raise {
   let mut l : Value = Nil
   let mut n = 1
   for b in a.iter() {
@@ -388,7 +356,7 @@ fn share_itensor__cleanup0(a : Value) -> Value raise {
 ///|
 /// Extracts the elements from B specified by the indices in A, i.e.
 /// (EXTRACT-elements '(2 5) '(A B C D E F)) yields (B E)
-fn share_itensor__extract_elements(a : Value, b : Value) -> Value raise {
+fn extract_elements(a : Value, b : Value) -> Value raise {
   let mut a = a
   let mut b = b
   let mut n = 1
@@ -406,7 +374,7 @@ fn share_itensor__extract_elements(a : Value, b : Value) -> Value raise {
 
 ///|
 /// Substitutes A into B with respect to the index specification C
-fn share_itensor__inserts(a : Value, b : Value, c : Value) -> Value raise {
+fn inserts(a : Value, b : Value, c : Value) -> Value raise {
   let mut a = a
   let mut b = b
   let mut c = c
@@ -427,21 +395,21 @@ fn share_itensor__inserts(a : Value, b : Value, c : Value) -> Value raise {
 }
 
 ///|
-fn share_itensor__symsort(l : Value, type_ : Value) -> Value raise {
+fn symsort(l : Value, type_ : Value) -> Value raise {
   if eq(type_, q_d_sym) {
     // SORT SYMmetric indices
     sort_list(l, share_itensor__less_p)
   } else if eq(type_, q_d_anti) {
-    share_itensor__antisort(l)
+    antisort(l)
   } else {
-    share_itensor__cycsort(l)
+    cycsort(l)
   }
 }
 
 ///|
 /// SORT ANTIsymmetric indices and set CSIGN as needed
-fn share_itensor__antisort(l : Value) -> Value raise {
-  let q = sort_list(share_itensor__index(l), (a, b) => share_itensor__less_p(
+fn antisort(l : Value) -> Value raise {
+  let q = sort_list(index(l), (a, b) => share_itensor__less_p(
     car(a),
     car(b),
   ))
@@ -453,7 +421,7 @@ fn share_itensor__antisort(l : Value) -> Value raise {
 
 ///|
 /// (INDEX '(A B C)) yields ((A . 1) (B . 2) (C . 3))
-fn share_itensor__index(l : Value) -> Value raise {
+fn index(l : Value) -> Value raise {
   let mut q : Value = Nil
   let mut n = 1
   for x in l.iter() {
@@ -465,8 +433,8 @@ fn share_itensor__index(l : Value) -> Value raise {
 
 ///|
 /// SORT CYClic indices
-fn share_itensor__cycsort(l : Value) -> Value raise {
-  let n = to_int(cdr(share_itensor__least(l))) - 1
+fn cycsort(l : Value) -> Value raise {
+  let n = to_int(cdr(least(l))) - 1
   if n == 0 {
     l
   } else {
@@ -477,7 +445,7 @@ fn share_itensor__cycsort(l : Value) -> Value raise {
 ///|
 /// Returns a dotted pair containing the alphanumerically least element in L
 /// in the car and its index in L in the cdr
-fn share_itensor__least(l : Value) -> Value raise {
+fn least(l : Value) -> Value raise {
   let mut a = cons(car(l), Fix(1L))
   let mut n = 2
   for x in cdr(l).iter() {
@@ -490,7 +458,7 @@ fn share_itensor__least(l : Value) -> Value raise {
 }
 
 ///|
-fn share_itensor__canprod(e : Value, f : Value) -> Value raise {
+fn canprod(e : Value, f : Value) -> Value raise {
   let mut scalars : Value = Nil
   let mut indexed : Value = Nil
   let mut has_sum = false
@@ -508,7 +476,7 @@ fn share_itensor__canprod(e : Value, f : Value) -> Value raise {
     }
   }
   if has_sum {
-    return share_itensor__canform2(d_expand(e), f)
+    return symtry__canform2(d_expand(e), f)
   }
   scalars = nreverse(scalars)
   indexed = nreverse(indexed)
@@ -518,15 +486,15 @@ fn share_itensor__canprod(e : Value, f : Value) -> Value raise {
     nconc_n([
       list1(list1(q_mtimes)),
       scalars,
-      list1(share_itensor__canten(car(indexed), t)),
+      list1(canten(car(indexed), t)),
     ])
   } else {
     let free_indices = nonumber(cdadr(d_indices(e)))
     let described = mapcar(
-      x => share_itensor__describe_tensor(free_indices, x),
+      x => describe_tensor(free_indices, x),
       indexed,
     )
-    let sorted = sort_list(described, (a, b) => share_itensor__tensorpred(
+    let sorted = sort_list(described, (a, b) => tensorpred(
         car(a),
         car(b),
       ).truthy())
@@ -537,7 +505,7 @@ fn share_itensor__canprod(e : Value, f : Value) -> Value raise {
     }
     let q = mapcar(x => cdr(x), sorted)
     let q = if f.truthy() {
-      share_itensor__rename1(
+      rename1(
         q,
         nonumber(cdaddr(d_indices2(cons(list1(q_mtimes), reverse(q))))),
       )
@@ -547,13 +515,13 @@ fn share_itensor__canprod(e : Value, f : Value) -> Value raise {
     nconc_n([
       list1(list1(q_mtimes)),
       scalars,
-      mapcar(z => share_itensor__canten(z, Nil), q),
+      mapcar(z => canten(z, Nil), q),
     ])
   }
 }
 
 ///|
-fn share_itensor__tensorpred(x : Value, y : Value) -> Value raise {
+fn tensorpred(x : Value, y : Value) -> Value raise {
   let mut x = x
   let mut y = y
   while x.truthy() {
@@ -563,7 +531,7 @@ fn share_itensor__tensorpred(x : Value, y : Value) -> Value raise {
       return if fixnump(a) {
         lbool(num_lt(a, b))
       } else if listp(a) && listp(b) {
-        share_itensor__tensorpred(a, b)
+        tensorpred(a, b)
       } else if a is Nil {
         t
       } else if b is Nil {
@@ -579,19 +547,19 @@ fn share_itensor__tensorpred(x : Value, y : Value) -> Value raise {
 }
 
 ///|
-fn share_itensor__describe_tensor(free_indices : Value, f : Value) -> Value raise {
-  cons(share_itensor__tdescript(free_indices, f), f)
+fn describe_tensor(free_indices : Value, f : Value) -> Value raise {
+  cons(tdescript(free_indices, f), f)
 }
 
 ///|
-fn share_itensor__tdescript(free_indices : Value, f : Value) -> Value raise {
+fn tdescript(free_indices : Value, f : Value) -> Value raise {
   let name = caar(f)
   let indices = append_n([cdadr(f), cdaddr(f), cdddr(f)])
   let lcov = length(cdadr(f))
   let lcontr = length(cdaddr(f))
   let lderiv = length(cdddr(f))
   list([
-    car(share_itensor__least(intersect(indices, free_indices))),
+    car(least(intersect(indices, free_indices))),
     int(lcov + lcontr + lderiv),
     int(lderiv),
     int(lcov),

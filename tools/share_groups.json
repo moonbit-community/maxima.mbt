@@ -93,5 +93,11 @@
  ],
  "gentran/gentran": [
   "gentran/allgentran"
+ ],
+ "nelder_mead/load-neldermead": [
+  "nelder_mead/defpackage",
+  "nelder_mead/la",
+  "nelder_mead/neldermead",
+  "nelder_mead/nm-maxima"
  ]
 }
