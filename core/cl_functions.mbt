@@ -203,6 +203,14 @@ fn register_cl_functions() -> Unit {
   } else {
     subseq(arg(a, 0), to_int(arg(a, 1)))
   })
+  cl__def("search", a => {
+    let i = string_search(lstring(arg(a, 0)), lstring(arg(a, 1)))
+    if i < 0 {
+      Nil
+    } else {
+      int(i)
+    }
+  })
   cl__def("lisp-implementation-type", _ => Str("MoonBit"))
   cl__def("lisp-implementation-version", _ => Str("0.1"))
 }

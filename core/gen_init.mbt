@@ -241,17 +241,20 @@ fn share_load_linalg_utilities() -> Unit raise {
 fn share_load_pwilt() -> Unit raise {
   init_vars_n_dot_dot_share_diffequations_pwilt()
   register_share_pwilt()
+  init_share_pwilt()
 }
 
 ///|
 fn share_load_encode_decode_float() -> Unit raise {
   init_vars_n_dot_dot_share_numericalio_encode_decode_float()
   register_share_encode_decode_float()
+  init_share_encode_decode_float()
 }
 
 ///|
 fn share_load_numericalio() -> Unit raise {
   register_share_numericalio()
+  init_share_numericalio()
 }
 
 ///|
@@ -279,6 +282,9 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "linalg-extra" => Some(share_load_linalg_extra)
     "matrixexp" => Some(share_load_matrixexp)
     "linalg-utilities" => Some(share_load_linalg_utilities)
+    "pwilt" => Some(share_load_pwilt)
+    "encode-decode-float" => Some(share_load_encode_decode_float)
+    "numericalio" => Some(share_load_numericalio)
     _ => None
   }
 }
