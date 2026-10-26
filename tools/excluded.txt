@@ -1,5 +1,1 @@
-maxima-package pregexp cl-info transm command-line getopt server wxmx
-transl transs trans1 trans2 trans3 trans4 trans5 transf troper trutil trmode
-trdata trpred transq trprop mdefun verify-html-index mdebug
-numerical/f2cl-lib-package numerical/f2cl-lib gnuplot_def xmaxima_def
-geomview_def plotcolors plot macdes
+maxima-package numerical/f2cl-lib-package numerical/f2cl-lib

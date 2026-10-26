@@ -62,6 +62,7 @@ cdr
 cdr_strict
 ceiling1
 cexp
+change_directory
 char_at
 char_code
 char_downcase
@@ -87,6 +88,7 @@ copy_seq
 copy_tree
 count_if
 cpu_time
+current_directory
 dacos
 dacosh
 dasin
@@ -128,6 +130,9 @@ exit_process
 expt
 fail_with
 fboundp
+fd_close
+fd_read_string
+fd_write_string
 fifth
 fill_pointer
 find
@@ -146,6 +151,7 @@ fmakunbound
 format
 format_exp
 format_fixed
+format_general
 format_to_string
 fourth
 fresh_line
@@ -315,6 +321,7 @@ princ_to_string
 print
 print_value
 probe_file
+process_id
 progv
 push_ref
 push_special
@@ -346,6 +353,7 @@ reverse
 round1
 rplaca
 rplacd
+run_shell_command
 scale_float
 second
 set
@@ -356,6 +364,7 @@ setf_car
 setf_cdr
 setf_get
 sethash
+shell_command_output
 signum
 some
 some_value
@@ -398,6 +407,7 @@ symbolp
 symval
 t
 tailp
+tcp_connect
 terminal_io
 terpri
 third
@@ -423,6 +433,7 @@ with_special
 with_specials
 write_char
 write_file
+write_stderr
 write_stdout
 write_string
 zerop

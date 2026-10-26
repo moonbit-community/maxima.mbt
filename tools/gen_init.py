@@ -44,7 +44,7 @@ lines.append("}")
 share = [d for d in db if d.get("module") == "share"]
 src_vars = open(os.path.join(ROOT, "core", "gen_vars.mbt")).read()
 for d in share:
-    base = gen.mangle(d["file"].split("/")[-1])
+    base = gen.share_base(d["file"], db)
     lines.append("")
     lines.append("///|")
     lines.append("fn share_load_%s() -> Unit raise {" % base)
@@ -71,7 +71,7 @@ for d in share:
     if not is_ported(d):
         continue
     key = "/".join(d["file"].split("/")[-2:])
-    lines.append("    %s => Some(share_load_%s)" % (gen.moon_str(key), gen.mangle(d["file"].split("/")[-1])))
+    lines.append("    %s => Some(share_load_%s)" % (gen.moon_str(key), gen.share_base(d["file"], db)))
 lines.append("    _ => None")
 lines.append("  }")
 lines.append("}")

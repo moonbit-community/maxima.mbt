@@ -10,7 +10,6 @@ pub fn initialize() -> Unit raise {
     api__initialized.val = true
     init_cl_specials()
     init_generated()
-    init_macdes()
     globals__record_other_defmvars()
     register_cl_functions()
     init_translate_compat()

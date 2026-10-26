@@ -70,6 +70,7 @@ fn init_generated() -> Unit raise {
   init_grind()
   init_displa()
   init_spgcd()
+  init_macdes()
   init_rand_mt19937()
   init_asum()
   init_fortra()
@@ -703,6 +704,617 @@ fn share_load_abs_integrate() -> Unit raise {
 }
 
 ///|
+fn share_load_specfun() -> Unit raise {
+  register_share_specfun()
+}
+
+///|
+fn share_load_n_cm__cy__ct__co__cp__ci__cc__index() -> Unit raise {
+  register_share_n_cm__cy__ct__co__cp__ci__cc__index()
+}
+
+///|
+fn share_load_tri() -> Unit raise {
+  register_share_tri()
+}
+
+///|
+fn share_load_compile() -> Unit raise {
+  register_share_compile()
+}
+
+///|
+fn share_load_load_sym_lisp_files() -> Unit raise {
+  register_share_load_sym_lisp_files()
+}
+
+///|
+fn share_load_isequal() -> Unit raise {
+  register_share_isequal()
+}
+
+///|
+fn share_load_hompack_package() -> Unit raise {
+  register_share_hompack_package()
+}
+
+///|
+fn share_load_plotdf() -> Unit raise {
+  register_share_plotdf()
+}
+
+///|
+fn share_load_complex_dynamics() -> Unit raise {
+  register_share_complex_dynamics()
+}
+
+///|
+fn share_load_visualization() -> Unit raise {
+  register_share_visualization()
+}
+
+///|
+fn share_load_fftpack5_fftpack5() -> Unit raise {
+  register_share_fftpack5_fftpack5()
+}
+
+///|
+fn share_load_fftpack5_interface() -> Unit raise {
+  register_share_fftpack5_interface()
+}
+
+///|
+fn share_load_fftpack5_lisp_fftpack5() -> Unit raise {
+  register_share_fftpack5_lisp_fftpack5()
+}
+
+///|
+fn share_load_lapack_lapack_package() -> Unit raise {
+  register_share_lapack_lapack_package()
+}
+
+///|
+fn share_load_blas_package() -> Unit raise {
+  register_share_blas_package()
+}
+
+///|
+fn share_load_lapack_lapack_lapack_package() -> Unit raise {
+  register_share_lapack_lapack_lapack_package()
+}
+
+///|
+fn share_load_minpack_package() -> Unit raise {
+  register_share_minpack_package()
+}
+
+///|
+fn share_load_cobyla_package() -> Unit raise {
+  register_share_cobyla_package()
+}
+
+///|
+fn share_load_topoly() -> Unit raise {
+  register_share_topoly()
+}
+
+///|
+fn share_load_logic() -> Unit raise {
+  init_vars_n_dot_dot_share_logic_logic()
+  register_share_logic()
+}
+
+///|
+fn share_load_n_ck_simplifier() -> Unit raise {
+  register_share_n_ck_simplifier()
+}
+
+///|
+fn share_load_colnew_package() -> Unit raise {
+  register_share_colnew_package()
+}
+
+///|
+fn share_load_mactex_utilities() -> Unit raise {
+  register_share_mactex_utilities()
+}
+
+///|
+fn share_load_sloop() -> Unit raise {
+  register_share_sloop()
+}
+
+///|
+fn share_load_tocl() -> Unit raise {
+  register_share_tocl()
+}
+
+///|
+fn share_load_timeout() -> Unit raise {
+  register_share_timeout()
+}
+
+///|
+fn share_load_implicit_plot() -> Unit raise {
+  register_share_implicit_plot()
+}
+
+///|
+fn share_load_f90() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_f90()
+  register_share_f90()
+}
+
+///|
+fn share_load_tex2ooo() -> Unit raise {
+  register_share_tex2ooo()
+}
+
+///|
+fn share_load_cgrind() -> Unit raise {
+  register_share_cgrind()
+}
+
+///|
+fn share_load_ratpow() -> Unit raise {
+  register_share_ratpow()
+}
+
+///|
+fn share_load_graph2d() -> Unit raise {
+  register_share_graph2d()
+}
+
+///|
+fn share_load_colorterm() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_colorterm()
+  register_share_colorterm()
+}
+
+///|
+fn share_load_lll() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_lll()
+  register_share_lll()
+}
+
+///|
+fn share_load_maxima_server() -> Unit raise {
+  register_share_maxima_server()
+}
+
+///|
+fn share_load_chebformax() -> Unit raise {
+  register_share_chebformax()
+}
+
+///|
+fn share_load_binsplit() -> Unit raise {
+  register_share_binsplit()
+}
+
+///|
+fn share_load_testodelin() -> Unit raise {
+  register_share_testodelin()
+}
+
+///|
+fn share_load_gauss() -> Unit raise {
+  register_share_gauss()
+}
+
+///|
+fn share_load_lazysolver() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_diffequations_lazysolver()
+  register_share_lazysolver()
+}
+
+///|
+fn share_load_spherodialwave() -> Unit raise {
+  register_share_spherodialwave()
+}
+
+///|
+fn share_load_kummer() -> Unit raise {
+  register_share_kummer()
+}
+
+///|
+fn share_load_odeutils() -> Unit raise {
+  register_share_odeutils()
+}
+
+///|
+fn share_load_extrabessel() -> Unit raise {
+  register_share_extrabessel()
+}
+
+///|
+fn share_load_sqfr() -> Unit raise {
+  register_share_sqfr()
+}
+
+///|
+fn share_load_unit_functions() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_unit_unit_functions()
+  register_share_unit_functions()
+}
+
+///|
+fn share_load_asksign1() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_noninteractive_asksign1()
+  register_share_asksign1()
+}
+
+///|
+fn share_load_noninteractive() -> Unit raise {
+  register_share_noninteractive()
+}
+
+///|
+fn share_load_n_cc_t_cm_ath_cm__cl_() -> Unit raise {
+  register_share_n_cc_t_cm_ath_cm__cl_()
+}
+
+///|
+fn share_load_mathml_maxima() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_maxima_cm_ath_cm__cl__mathml_maxima()
+  register_share_mathml_maxima()
+}
+
+///|
+fn share_load_maxima_cm_ath_cm__cl_() -> Unit raise {
+  register_share_maxima_cm_ath_cm__cl_()
+}
+
+///|
+fn share_load_mathmldisplay() -> Unit raise {
+  register_share_mathmldisplay()
+}
+
+///|
+fn share_load_n_cp_r_cm_ath_cm__cl_() -> Unit raise {
+  register_share_n_cp_r_cm_ath_cm__cl_()
+}
+
+///|
+fn share_load_mathml() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_lurkmathml_mathml()
+  register_share_mathml()
+}
+
+///|
+fn share_load_allgentran() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_gentran_allgentran()
+  register_share_allgentran()
+}
+
+///|
+fn share_load_readfile() -> Unit raise {
+  register_share_readfile()
+}
+
+///|
+fn share_load_symplectic_ode() -> Unit raise {
+  register_share_symplectic_ode()
+}
+
+///|
+fn share_load_elliptic_curves() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_elliptic_curves_elliptic_curves()
+  register_share_elliptic_curves()
+}
+
+///|
+fn share_load_modular_polynomials() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_elliptic_curves_modular_polynomials()
+  register_share_modular_polynomials()
+}
+
+///|
+fn share_load_ec2() -> Unit raise {
+  register_share_ec2()
+}
+
+///|
+fn share_load_altsimp() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_altsimp_altsimp()
+  register_share_altsimp()
+}
+
+///|
+fn share_load_tex_display() -> Unit raise {
+  register_share_tex_display()
+}
+
+///|
+fn share_load_alt_display() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_alt_display_alt_display()
+  register_share_alt_display()
+}
+
+///|
+fn share_load_unicodedata() -> Unit raise {
+  register_share_unicodedata()
+}
+
+///|
+fn share_load_unicodedata_txt() -> Unit raise {
+  register_share_unicodedata_txt()
+}
+
+///|
+fn share_load_grind_patch() -> Unit raise {
+  register_share_grind_patch()
+}
+
+///|
+fn share_load_smath() -> Unit raise {
+  init_vars_n_dot_dot_share_contrib_smath_smath()
+  register_share_smath()
+}
+
+///|
+fn share_load_polya() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_polya()
+  register_share_polya()
+}
+
+///|
+fn share_load_compat() -> Unit raise {
+  register_share_compat()
+}
+
+///|
+fn share_load_modsimp() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_modsimp()
+  register_share_modsimp()
+}
+
+///|
+fn share_load_sheafa() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_sheafa()
+  register_share_sheafa()
+}
+
+///|
+fn share_load_dim_3() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_dim_3()
+  register_share_dim_3()
+}
+
+///|
+fn share_load_polysmp() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_polysmp()
+  register_share_polysmp()
+}
+
+///|
+fn share_load_amacros() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_amacros()
+  register_share_amacros()
+}
+
+///|
+fn share_load_sysdef() -> Unit raise {
+  register_share_sysdef()
+}
+
+///|
+fn share_load_ndotsimp() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_ndotsimp()
+  register_share_ndotsimp()
+}
+
+///|
+fn share_load_sub_proj() -> Unit raise {
+  register_share_sub_proj()
+}
+
+///|
+fn share_load_new_rat() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_new_rat()
+  register_share_new_rat()
+}
+
+///|
+fn share_load_sys_declaim() -> Unit raise {
+  register_share_sys_declaim()
+}
+
+///|
+fn share_load_sparsemat() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_sparsemat()
+  register_share_sparsemat()
+}
+
+///|
+fn share_load_polyd() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_polyd()
+  register_share_polyd()
+}
+
+///|
+fn share_load_aquotient() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_aquotient()
+  register_share_aquotient()
+}
+
+///|
+fn share_load_polyc() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_polyc()
+  register_share_polyc()
+}
+
+///|
+fn share_load_sheafb() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_sheafb()
+  register_share_sheafb()
+}
+
+///|
+fn share_load_dim4_help() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_dim4_help()
+  register_share_dim4_help()
+}
+
+///|
+fn share_load_polybas() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_polybas()
+  register_share_polybas()
+}
+
+///|
+fn share_load_affine() -> Unit raise {
+  register_share_affine()
+}
+
+///|
+fn share_load_sheafc() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_sheafc()
+  register_share_sheafc()
+}
+
+///|
+fn share_load_polyb() -> Unit raise {
+  init_vars_n_dot_dot_share_affine_polyb()
+  register_share_polyb()
+}
+
+///|
+fn share_load_brmbrg() -> Unit raise {
+  init_vars_n_dot_dot_share_numeric_brmbrg()
+  register_share_brmbrg()
+}
+
+///|
+fn share_load_expense() -> Unit raise {
+  init_vars_n_dot_dot_share_numeric_expense()
+  register_share_expense()
+}
+
+///|
+fn share_load_defpackage() -> Unit raise {
+  register_share_defpackage()
+}
+
+///|
+fn share_load_nm_maxima() -> Unit raise {
+  register_share_nm_maxima()
+}
+
+///|
+fn share_load_la() -> Unit raise {
+  register_share_la()
+}
+
+///|
+fn share_load_neldermead() -> Unit raise {
+  init_vars_n_dot_dot_share_nelder_mead_neldermead()
+  register_share_neldermead()
+}
+
+///|
+fn share_load_canten() -> Unit raise {
+  init_vars_n_dot_dot_share_tensor_canten()
+  register_share_canten()
+}
+
+///|
+fn share_load_tentex() -> Unit raise {
+  register_share_tentex()
+}
+
+///|
+fn share_load_gener() -> Unit raise {
+  register_share_gener()
+}
+
+///|
+fn share_load_symtry() -> Unit raise {
+  register_share_symtry()
+}
+
+///|
+fn share_load_odepack_package() -> Unit raise {
+  register_share_odepack_package()
+}
+
+///|
+fn share_load_maxima_odepack() -> Unit raise {
+  register_share_maxima_odepack()
+}
+
+///|
+fn share_load_odepack_src_package() -> Unit raise {
+  register_share_odepack_src_package()
+}
+
+///|
+fn share_load_qualsp() -> Unit raise {
+  register_share_qualsp()
+}
+
+///|
+fn share_load_cartan() -> Unit raise {
+  register_share_cartan()
+}
+
+///|
+fn share_load_sound() -> Unit raise {
+  init_vars_n_dot_dot_share_sound_sound()
+  register_share_sound()
+}
+
+///|
+fn share_load_vector_rebuild() -> Unit raise {
+  init_vars_n_dot_dot_share_vector_vector_rebuild()
+  register_share_vector_rebuild()
+}
+
+///|
+fn share_load_cartan_new() -> Unit raise {
+  register_share_cartan_new()
+}
+
+///|
+fn share_load_grob1() -> Unit raise {
+  init_vars_n_dot_dot_share_algebra_grob1()
+  register_share_grob1()
+}
+
+///|
+fn share_load_charsets_powers() -> Unit raise {
+  register_share_charsets_powers()
+}
+
+///|
+fn share_load_fateman_len() -> Unit raise {
+  register_share_fateman_len()
+}
+
+///|
+fn share_load_charsets_set() -> Unit raise {
+  init_vars_n_dot_dot_share_algebra_charsets_charsets_set()
+  register_share_charsets_set()
+}
+
+///|
+fn share_load_charsets_length() -> Unit raise {
+  register_share_charsets_length()
+}
+
+///|
+fn share_load_scifac() -> Unit raise {
+  register_share_scifac()
+}
+
+///|
+fn share_load_rducon() -> Unit raise {
+  init_vars_n_dot_dot_share_simplification_rducon()
+  register_share_rducon()
+}
+
+///|
 /// The ported share Lisp file named `stem` (file name without directory
 /// and extension), if any.
 fn share_module_loader(stem : String) -> (() -> Unit raise)? {
@@ -801,6 +1413,51 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "stats/inference_result" => Some(share_load_inference_result)
     "stats/numstats" => Some(share_load_numstats)
     "integration/abs_integrate" => Some(share_load_abs_integrate)
+    "share/specfun" => Some(share_load_specfun)
+    "share/MYTOPIC-index" => Some(share_load_n_cm__cy__ct__co__cp__ci__cc__index)
+    "sym/compile" => Some(share_load_compile)
+    "sym/load-sym-lisp-files" => Some(share_load_load_sym_lisp_files)
+    "lisp/hompack-package" => Some(share_load_hompack_package)
+    "lapack/lapack-package" => Some(share_load_lapack_lapack_package)
+    "blas/blas-package" => Some(share_load_blas_package)
+    "lapack/lapack-package" => Some(share_load_lapack_lapack_lapack_package)
+    "minpack/minpack-package" => Some(share_load_minpack_package)
+    "cobyla/cobyla-package" => Some(share_load_cobyla_package)
+    "to_poly_solve/topoly" => Some(share_load_topoly)
+    "colnew/colnew-package" => Some(share_load_colnew_package)
+    "utils/mactex-utilities" => Some(share_load_mactex_utilities)
+    "utils/sloop" => Some(share_load_sloop)
+    "contrib/tex2ooo" => Some(share_load_tex2ooo)
+    "contrib/lll" => Some(share_load_lll)
+    "diffequations/gauss" => Some(share_load_gauss)
+    "diffequations/spherodialwave" => Some(share_load_spherodialwave)
+    "diffequations/kummer" => Some(share_load_kummer)
+    "diffequations/extrabessel" => Some(share_load_extrabessel)
+    "unit/unit-functions" => Some(share_load_unit_functions)
+    "noninteractive/asksign1" => Some(share_load_asksign1)
+    "noninteractive/noninteractive" => Some(share_load_noninteractive)
+    "maximaMathML/maximaMathML" => Some(share_load_maxima_cm_ath_cm__cl_)
+    "maximaMathML/mathmldisplay" => Some(share_load_mathmldisplay)
+    "elliptic_curves/modular_polynomials" => Some(share_load_modular_polynomials)
+    "altsimp/altsimp" => Some(share_load_altsimp)
+    "unicodedata/unicodedata" => Some(share_load_unicodedata)
+    "unicodedata/unicodedata-txt" => Some(share_load_unicodedata_txt)
+    "unicodedata/grind-patch" => Some(share_load_grind_patch)
+    "affine/polya" => Some(share_load_polya)
+    "affine/sysdef" => Some(share_load_sysdef)
+    "affine/sub-proj" => Some(share_load_sub_proj)
+    "affine/new-rat" => Some(share_load_new_rat)
+    "affine/sys-declaim" => Some(share_load_sys_declaim)
+    "affine/aquotient" => Some(share_load_aquotient)
+    "affine/polyc" => Some(share_load_polyc)
+    "affine/affine" => Some(share_load_affine)
+    "affine/polyb" => Some(share_load_polyb)
+    "nelder_mead/defpackage" => Some(share_load_defpackage)
+    "odepack/package" => Some(share_load_odepack_package)
+    "odepack/maxima-odepack" => Some(share_load_maxima_odepack)
+    "src/package" => Some(share_load_odepack_src_package)
+    "diff_form/cartan_new" => Some(share_load_cartan_new)
+    "algebra/grob1" => Some(share_load_grob1)
     _ => None
   }
 }

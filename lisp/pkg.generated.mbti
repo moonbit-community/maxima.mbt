@@ -135,6 +135,8 @@ pub fn ceiling1(Value) -> Value raise LispError
 
 pub fn cexp(Value) -> Value raise LispError
 
+pub fn change_directory(String) -> Bool
+
 pub fn char_at(String, Int32) -> Char raise LispError
 
 pub fn char_code(Char) -> Int32
@@ -184,6 +186,8 @@ pub fn copy_tree(Value) -> Value
 pub fn count_if((Value) -> Bool raise, Value) -> Int32 raise
 
 pub fn cpu_time() -> Double
+
+pub fn current_directory() -> String
 
 pub fn dacos(Double) -> Double
 
@@ -266,6 +270,12 @@ pub fn expt(Value, Value) -> Value raise LispError
 pub fn[T] fail_with(String) -> T raise LispError
 
 pub fn fboundp(Value) -> Bool
+
+pub fn fd_close(Int32) -> Unit
+
+pub fn fd_read_string(Int32, max? : Int32) -> String
+
+pub fn fd_write_string(Int32, String) -> Int32
 
 pub fn fifth(Value) -> Value
 
@@ -643,6 +653,8 @@ pub fn print_value(StringBuilder, Value, Bool) -> Unit
 
 pub fn probe_file(String) -> Bool
 
+pub fn process_id() -> Int32
+
 pub fn[T] progv(Value, Value, () -> T raise) -> T raise
 
 pub fn push_ref(Value, @ref.Ref[Value]) -> Value
@@ -705,6 +717,8 @@ pub fn rplaca(Value, Value) -> Value
 
 pub fn rplacd(Value, Value) -> Value
 
+pub fn run_shell_command(String) -> Int32
+
 pub fn scale_float(Double, Int32) -> Double
 
 pub fn second(Value) -> Value
@@ -724,6 +738,8 @@ pub fn setf_cdr(Value, Value) -> Value
 pub fn setf_get(Value, Value, Value) -> Value
 
 pub fn sethash(Value, Value, Value) -> Value raise LispError
+
+pub fn shell_command_output(String) -> (Int32, String)
 
 pub fn signum(Value) -> Value raise LispError
 
@@ -808,6 +824,8 @@ pub fn symval(Value) -> Value
 pub let t : Value
 
 pub fn tailp(Value, Value) -> Bool
+
+pub fn tcp_connect(String, Int32) -> Int32
 
 pub let terminal_io : Value
 

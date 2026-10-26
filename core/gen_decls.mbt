@@ -121,6 +121,213 @@ declare fn lisp_implementation_version1() -> Value raise
 declare fn maxima_version1() -> Value raise
 
 ///|
+/// defun pregexp::pregexp-read-pattern -- pregexp.lisp:16
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_pattern(s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-branch -- pregexp.lisp:29
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_branch(s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-piece -- pregexp.lisp:40
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_piece(s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-escaped-number -- pregexp.lisp:88
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_escaped_number(s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-escaped-char -- pregexp.lisp:100
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_escaped_char(s : Value, i : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-posix-char-class -- pregexp.lisp:118
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_posix_char_class(s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-cluster-type -- pregexp.lisp:139
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_cluster_type(s : Value, i : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-subpattern -- pregexp.lisp:169
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_subpattern(s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-wrap-quantifier-if-any -- pregexp.lisp:184
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_wrap_quantifier_if_any(re : Value, s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-whitespacep -- pregexp.lisp:215
+declare fn rx_pregexp_whitespacep(c : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-read-nums -- pregexp.lisp:219
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_nums(s : Value, i : Value, n : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-read-char-list -- pregexp.lisp:243
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rx_pregexp_read_char_list(s : Value, i : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defun pregexp::pregexp-string-match -- pregexp.lisp:280
+declare fn rx_pregexp_string_match(s1 : Value, s : Value, i : Value, n : Value, sk : Value, fk : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-char-word? -- pregexp.lisp:293
+declare fn rx_pregexp_char_word_q(c : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-at-word-boundary-p -- pregexp.lisp:296
+declare fn rx_pregexp_at_word_boundary_p(s : Value, i : Value, n : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-check-if-in-char-class-p -- pregexp.lisp:306
+declare fn rx_pregexp_check_if_in_char_class_p(c : Value, char_class : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-make-backref-list -- pregexp.lisp:331
+declare fn rx_pregexp_make_backref_list(re : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-match-positions-aux -- pregexp.lisp:340
+declare fn rx_pregexp_match_positions_aux(re : Value, s : Value, sn : Value, start : Value, n : Value, i : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-replace-aux -- pregexp.lisp:524
+declare fn rx_pregexp_replace_aux(str : Value, ins : Value, n : Value, backrefs : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp -- pregexp.lisp:547
+declare fn rx_pregexp(s : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-match-positions -- pregexp.lisp:551
+declare fn rx_pregexp_match_positions(pat : Value, str : Value, start? : Value = Nil, end? : Value = Nil) -> Value raise
+
+///|
+/// defun pregexp::pregexp-match -- pregexp.lisp:567
+declare fn rx_pregexp_match(pat : Value, str : Value, start? : Value = Nil, end? : Value = Nil) -> Value raise
+
+///|
+/// defun pregexp::pregexp-split -- pregexp.lisp:577
+declare fn rx_pregexp_split(pat : Value, str : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-replace -- pregexp.lisp:596
+declare fn rx_pregexp_replace(pat : Value, str : Value, ins : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-replace* -- pregexp.lisp:608
+declare fn rx_pregexp_replace_star(pat : Value, str : Value, ins : Value) -> Value raise
+
+///|
+/// defun pregexp::pregexp-quote -- pregexp.lisp:632
+declare fn rx_pregexp_quote(s : Value) -> Value raise
+
+///|
+/// defun cl-info::print-prompt -- cl-info.lisp:13
+declare fn info_print_prompt(prompt_count : Value) -> Value raise
+
+///|
+/// defun cl-info::parse-user-choice -- cl-info.lisp:24
+declare fn info_parse_user_choice(nitems : Value) -> Value raise
+
+///|
+/// defun cl-info::select-info-items -- cl-info.lisp:45
+declare fn info_select_info_items(selection : Value, items : Value) -> Value raise
+
+///|
+/// defun cl-info::combine-path -- cl-info.lisp:60
+declare fn info_combine_path(list_ : Value) -> Value raise
+
+///|
+/// defun cl-info::load-primary-index -- cl-info.lisp:75
+declare fn info_load_primary_index() -> Value raise
+
+///|
+/// defun cl-info::info-exact -- cl-info.lisp:102
+declare fn info_info_exact(x : Value) -> Value raise
+
+///|
+/// defun cl-info::some-exact -- cl-info.lisp:115
+declare fn info_some_exact(x : Value, matches : Value) -> Value raise
+
+///|
+/// defun cl-info::some-inexact -- cl-info.lisp:118
+declare fn info_some_inexact(x : Value, matches : Value) -> Value raise
+
+///|
+/// defun cl-info::flatten-matches -- cl-info.lisp:121
+declare fn info_flatten_matches(x : Value, matches : Value) -> Value raise
+
+///|
+/// defun cl-info::exact-topic-match -- cl-info.lisp:125
+declare fn info_exact_topic_match(topic : Value) -> Value raise
+
+///|
+/// defun cl-info::exact-topic-match-1 -- cl-info.lisp:130
+declare fn info_exact_topic_match_1(topic : Value, d : Value) -> Value raise
+
+///|
+/// defun cl-info::info-inexact -- cl-info.lisp:142
+declare fn info_info_inexact(x : Value) -> Value raise
+
+///|
+/// defun cl-info::rearrange-matches -- cl-info.lisp:151
+declare fn info_rearrange_matches(matches : Value) -> Value raise
+
+///|
+/// defun cl-info::display-items -- cl-info.lisp:154
+declare fn info_display_items(items : Value) -> Value raise
+
+///|
+/// defun cl-info::inexact-topic-match -- cl-info.lisp:201
+declare fn info_inexact_topic_match(topic : Value) -> Value raise
+
+///|
+/// defun cl-info::inexact-topic-match-1 -- cl-info.lisp:207
+declare fn info_inexact_topic_match_1(topic : Value, d : Value) -> Value raise
+
+///|
+/// defun cl-info::strip-quotes -- cl-info.lisp:217
+declare fn info_strip_quotes(s : Value) -> Value raise
+
+///|
+/// defun cl-info::regex-sanitize -- cl-info.lisp:226
+declare fn info_regex_sanitize(s : Value) -> Value raise
+
+///|
+/// defun cl-info::find-regex-matches -- cl-info.lisp:230
+declare fn info_find_regex_matches(regex_string : Value, hashtable : Value) -> Value raise
+
+///|
+/// defun cl-info::read-info-text -- cl-info.lisp:246
+declare fn info_read_info_text(dir_name : Value, parameters : Value) -> Value raise
+
+///|
+/// defun cl-info::load-info-hashtables -- cl-info.lisp:268
+declare fn info_load_info_hashtables(dir_name : Value, deffn_defvr_pairs : Value, section_pairs : Value) -> Value raise
+
+///|
+/// defun cl-info::ensure-info-tables -- cl-info.lisp:278
+declare fn info_ensure_info_tables(dir_name : Value) -> Value raise
+
+///|
+/// defun cl-info::load-html-index -- cl-info.lisp:285
+declare fn info_load_html_index(entries : Value) -> Value raise
+
+///|
 /// defun make-unspecial -- lmdcls.lisp:23
 declare fn make_unspecial(symbol : Value) -> Value raise
 
@@ -571,6 +778,70 @@ declare fn functionp_(x : Value) -> Value raise
 ///|
 /// defun symbolconc -- compat.lisp:17
 declare fn symbolconc(args : Value) -> Value raise
+
+///|
+/// defun tr-format -- transm.lisp:75
+declare fn tr_format(sstring : Value, argl : Value) -> Value raise
+
+///|
+/// defun command-line::cl-option-description -- command-line.lisp:35
+declare fn cmdline_cl_option_description(name : Value, arg : Value) -> Value raise
+
+///|
+/// defun command-line::print-help-string -- command-line.lisp:45
+declare fn cmdline_print_help_string(help_string : Value) -> Value raise
+
+///|
+/// defun command-line::list-cl-options -- command-line.lisp:63
+declare fn cmdline_list_cl_options(cl_option_list : Value, texi_table_form? : Value = Nil) -> Value raise
+
+///|
+/// defun command-line::process-args -- command-line.lisp:101
+declare fn cmdline_process_args(args : Value, cl_option_list : Value) -> Value raise
+
+///|
+/// defun command-line::get-application-args -- command-line.lisp:149
+declare fn cmdline_get_application_args() -> Value raise
+
+///|
+/// defun getopt::is-short-option -- getopt.lisp:62
+declare fn getopt_is_short_option(arg : Value) -> Value raise
+
+///|
+/// defun getopt::is-option-terminator -- getopt.lisp:67
+declare fn getopt_is_option_terminator(arg : Value) -> Value raise
+
+///|
+/// defun getopt::is-long-option -- getopt.lisp:72
+declare fn getopt_is_long_option(arg : Value) -> Value raise
+
+///|
+/// defun getopt::decompose-arg -- getopt.lisp:78
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn getopt_decompose_arg(arg : Value, option_type : Value) -> (Value, Value) raise
+
+///|
+/// defun getopt::analyze-arg -- getopt.lisp:88
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn getopt_analyze_arg(arg : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun getopt::find-option -- getopt.lisp:99
+declare fn getopt_find_option(name : Value, options : Value, allow_exact_match? : Value = Nil) -> Value raise
+
+///|
+/// defun getopt::match-option -- getopt.lisp:106
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn getopt_match_option(arg : Value, options : Value, allow_exact_match? : Value = Nil) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun getopt::match-unique-abbreviation -- getopt.lisp:115
+declare fn getopt_match_unique_abbreviation(abbr : Value, strings : Value, allow_exact_match? : Value = Nil) -> Value raise
+
+///|
+/// defun getopt::getopt -- getopt.lisp:135
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn getopt_getopt(args : Value, options : Value, allow_exact_match? : Value = Nil) -> (Value, Value, Value) raise
 
 ///|
 /// defun make-parser-fun-def -- defcal.lisp:18
@@ -5564,6 +5835,34 @@ declare fn bf_format_f(stream : Value, number : Value, colonp : Value, atp : Val
 declare fn bf_format_g(stream : Value, number : Value, colonp : Value, atp : Value, w? : Value = Nil, d? : Value = Nil, e? : Value = Nil, k? : Value = Nil, overflowchar? : Value = Nil, padchar? : Value = Nil, marker? : Value = Nil) -> Value raise
 
 ///|
+/// defun setup-client -- server.lisp:26
+declare fn setup_client(port : Value, host? : Value = Str("localhost")) -> Value raise
+
+///|
+/// defun close-client -- server.lisp:61
+declare fn close_client() -> Value raise
+
+///|
+/// defun open-socket -- server.lisp:70
+declare fn open_socket(host : Value, port : Value, bin? : Value = Nil) -> Value raise
+
+///|
+/// defun start-client -- server.lisp:114
+declare fn start_client(port : Value, host? : Value = Str("localhost")) -> Value raise
+
+///|
+/// defun getpid-from-environment -- server.lisp:120
+declare fn getpid_from_environment() -> Value raise
+
+///|
+/// defun getpid -- server.lisp:127
+declare fn getpid() -> Value raise
+
+///|
+/// defun xchdir -- server.lisp:142
+declare fn xchdir(w : Value) -> Value raise
+
+///|
 /// defun format-prompt -- prompt-util.lisp:39
 declare fn format_prompt(destination : Value, control_string : Value, arguments : Value) -> Value raise
 
@@ -5955,6 +6254,62 @@ declare fn d_elapsed_run_time() -> Value raise
 ///|
 /// defmfun $garbage_collect -- macsys.lisp:684
 declare fn d_garbage_collect() -> Value raise
+
+///|
+/// defun wxmx-read-u16 -- wxmx.lisp:22
+declare fn wxmx_read_u16(stream : Value) -> Value raise
+
+///|
+/// defun wxmx-read-u32 -- wxmx.lisp:28
+declare fn wxmx_read_u32(stream : Value) -> Value raise
+
+///|
+/// defun wxmx-read-octets -- wxmx.lisp:34
+declare fn wxmx_read_octets(stream : Value, count : Value) -> Value raise
+
+///|
+/// defun wxmx-skip -- wxmx.lisp:44
+declare fn wxmx_skip(stream : Value, count : Value) -> Value raise
+
+///|
+/// defun wxmx-member-name -- wxmx.lisp:50
+declare fn wxmx_member_name(octets : Value) -> Value raise
+
+///|
+/// defun wxmx-stored-member -- wxmx.lisp:56
+declare fn wxmx_stored_member(stream : Value, name : Value, filename : Value) -> Value raise
+
+///|
+/// defun wxmx-code-char -- wxmx.lisp:99
+declare fn wxmx_code_char(code : Value) -> Value raise
+
+///|
+/// defun wxmx-utf-8-string -- wxmx.lisp:110
+declare fn wxmx_utf_8_string(octets : Value) -> Value raise
+
+///|
+/// defun wxmx-parse-integer -- wxmx.lisp:147
+declare fn wxmx_parse_integer(digits : Value, radix : Value) -> Value raise
+
+///|
+/// defun wxmx-push-reference -- wxmx.lisp:151
+declare fn wxmx_push_reference(name : Value, string_ : Value) -> Value raise
+
+///|
+/// defun wxmx-push-text -- wxmx.lisp:178
+declare fn wxmx_push_text(xml : Value, start : Value, end : Value, string_ : Value) -> Value raise
+
+///|
+/// defun wxmx-push-lines -- wxmx.lisp:193
+declare fn wxmx_push_lines(xml : Value, start : Value, end : Value, string_ : Value) -> Value raise
+
+///|
+/// defun wxmx-content-input -- wxmx.lisp:206
+declare fn wxmx_content_input(xml : Value) -> Value raise
+
+///|
+/// defun wxmx-input-string -- wxmx.lisp:223
+declare fn wxmx_input_string(filename : Value) -> Value raise
 
 ///|
 /// defun load-and-tell -- mload.lisp:15
@@ -9086,6 +9441,698 @@ declare fn d_ratdiff(p : Value, ratout_x : Value) -> Value raise
 declare fn d_pfet(m : Value) -> Value raise
 
 ///|
+/// defun tr-abort -- transl.lisp:201
+declare fn tr_abort() -> Value raise
+
+///|
+/// defun barfo -- transl.lisp:205
+declare fn barfo(msg : Value) -> Value raise
+
+///|
+/// defun specialp -- transl.lisp:213
+declare fn specialp(var_ : Value) -> Value raise
+
+///|
+/// defun tr-warnp -- transl.lisp:248
+declare fn tr_warnp(val : Value) -> Value raise
+
+///|
+/// defun warn-undefined-variable -- transl.lisp:259
+declare fn warn_undefined_variable(form : Value) -> Value raise
+
+///|
+/// defun warn-undeclared -- transl.lisp:267
+declare fn warn_undeclared(form : Value, comment? : Value = Nil) -> Value raise
+
+///|
+/// defun warn-meval -- transl.lisp:281
+declare fn warn_meval(form : Value, comment? : Value = Nil) -> Value raise
+
+///|
+/// defun warn-mode -- transl.lisp:291
+declare fn warn_mode(var_ : Value, mode : Value, newmode : Value, comment? : Value = Nil) -> Value raise
+
+///|
+/// defun warn-fexpr -- transl.lisp:305
+declare fn warn_fexpr(form : Value, comment? : Value = Nil) -> Value raise
+
+///|
+/// defun macsyma-special-macro-p -- transl.lisp:318
+declare fn macsyma_special_macro_p(fcn : Value) -> Value raise
+
+///|
+/// defun macsyma-special-op-p -- transl.lisp:321
+declare fn macsyma_special_op_p(f : Value) -> Value raise
+
+///|
+/// defun tr-local-exp -- transl.lisp:330
+declare fn tr_local_exp(exp_ : Value, vars_modes : Value) -> Value raise
+
+///|
+/// defun translate-args/union-mode -- transl.lisp:348
+declare fn translate_args_slunion_mode(args : Value) -> Value raise
+
+///|
+/// defun tr-args -- transl.lisp:357
+declare fn tr_args(form : Value) -> Value raise
+
+///|
+/// defun dtranslate -- transl.lisp:360
+declare fn dtranslate(form : Value) -> Value raise
+
+///|
+/// defun dconv -- transl.lisp:362
+declare fn dconv(x : Value, mode : Value) -> Value raise
+
+///|
+/// defun dconvx -- transl.lisp:367
+declare fn dconvx(x : Value) -> Value raise
+
+///|
+/// defun dconv-$float -- transl.lisp:372
+declare fn dconv__dolfloat(x : Value) -> Value raise
+
+///|
+/// defun dconv-$cre -- transl.lisp:383
+declare fn dconv__dolcre(x : Value) -> Value raise
+
+///|
+/// defun covers -- transl.lisp:390
+declare fn covers(mode1 : Value, mode2 : Value) -> Value raise
+
+///|
+/// defun tr-mfun -- transl.lisp:398
+declare fn tr_mfun(name : Value) -> Value raise
+
+///|
+/// defun tr-mdefine-toplevel -- transl.lisp:412
+declare fn tr_mdefine_toplevel(form : Value) -> Value raise
+
+///|
+/// defun translate-function -- transl.lisp:512
+declare fn translate_function(name : Value) -> Value raise
+
+///|
+/// defun punt-to-meval -- transl.lisp:531
+declare fn punt_to_meval(form : Value, mode? : Value = q_d_any) -> Value raise
+
+///|
+/// defun trfail -- transl.lisp:534
+declare fn trfail(x : Value, msg? : Value = Nil) -> Value raise
+
+///|
+/// defun translate-and-eval-macsyma-expression -- transl.lisp:540
+declare fn translate_and_eval_macsyma_expression(form : Value) -> Value raise
+
+///|
+/// defun translator-eval -- transl.lisp:548
+declare fn translator_eval(x : Value) -> Value raise
+
+///|
+/// defun tr-eval-when-situation -- transl.lisp:551
+declare fn tr_eval_when_situation(situation : Value) -> Value raise
+
+///|
+/// defun translate-macexpr-toplevel -- transl.lisp:565
+declare fn translate_macexpr_toplevel(form : Value) -> Value raise
+
+///|
+/// defun toplevel-optimize -- transl.lisp:632
+declare fn toplevel_optimize(form : Value) -> Value raise
+
+///|
+/// defun toplevel-optimize-1 -- transl.lisp:661
+declare fn toplevel_optimize_1(form : Value) -> Value raise
+
+///|
+/// defun translate -- transl.lisp:694
+declare fn translate(form : Value) -> Value raise
+
+///|
+/// defun translate-atom -- transl.lisp:706
+declare fn translate_atom(form : Value) -> Value raise
+
+///|
+/// defun translate-form -- transl.lisp:736
+declare fn translate_form(form : Value) -> Value raise
+
+///|
+/// defun tr-macsyma-user-function-call -- transl.lisp:770
+declare fn tr_macsyma_user_function_call(function : Value, args : Value, form : Value) -> Value raise
+
+///|
+/// defun attempt-translate-random-macro-op -- transl.lisp:800
+declare fn attempt_translate_random_macro_op(form : Value) -> Value raise
+
+///|
+/// defun attempt-translate-random-special-op -- transl.lisp:804
+declare fn attempt_translate_random_special_op(form : Value) -> Value raise
+
+///|
+/// defun tr-lisp-function-call -- transl.lisp:809
+declare fn tr_lisp_function_call(form : Value, type_ : Value) -> Value raise
+
+///|
+/// defun get-lisp-fun-type -- transl.lisp:821
+declare fn get_lisp_fun_type(fun : Value) -> Value raise
+
+///|
+/// defun tr-infamous-noun-form -- transl.lisp:838
+declare fn tr_infamous_noun_form(form : Value) -> Value raise
+
+///|
+/// defun implied-quotep -- transl.lisp:851
+declare fn implied_quotep(x : Value) -> Value raise
+
+///|
+/// defun self-evaluating-lisp-object-p -- transl.lisp:854
+declare fn self_evaluating_lisp_object_p(x : Value) -> Value raise
+
+///|
+/// defun tr-nosimpp -- transl.lisp:863
+declare fn tr_nosimpp(op : Value) -> Value raise
+
+///|
+/// defun call-and-simp -- transl.lisp:868
+declare fn call_and_simp(mode : Value, fun : Value, args : Value) -> Value raise
+
+///|
+/// defmspec $declare_translated -- transl.lisp:875
+declare fn d_declare_translated(fns : Value) -> Value raise
+
+///|
+/// defun tr-lambda -- transl.lisp:915
+declare fn tr_lambda(form : Value, tr_body? : Value, tr_body_argl : Value) -> Value raise
+
+///|
+/// defun make-declares -- transl.lisp:987
+declare fn make_declares(varlist : Value, localp : Value) -> Value raise
+
+///|
+/// defun tr-seq -- transl.lisp:1012
+declare fn tr_seq(l : Value) -> Value raise
+
+///|
+/// defun go-tag-p -- transl.lisp:1025
+declare fn go_tag_p(e : Value) -> Value raise
+
+///|
+/// defun tr-mprog-body -- transl.lisp:1062
+declare fn tr_mprog_body(body : Value, val_list : Value, arglist : Value) -> Value raise
+
+///|
+/// defun mcond-eval-symbols-tr -- transl.lisp:1171
+declare fn mcond_eval_symbols_tr(form : Value) -> Value raise
+
+///|
+/// defun lambda-wrap1 -- transl.lisp:1286
+declare fn lambda_wrap1(tn : Value, val : Value, form : Value) -> Value raise
+
+///|
+/// defun translate-$max-$min -- transl.lisp:1332
+declare fn translate__dolmax__dolmin(form : Value) -> Value raise
+
+///|
+/// defun tr-class -- transl.lisp:1364
+declare fn tr_class(x : Value) -> Value raise
+
+///|
+/// defun *union-mode -- transl.lisp:1372
+declare fn n_starunion_mode(mode1 : Value, mode2 : Value) -> Value raise
+
+///|
+/// defun value-mode -- transl.lisp:1389
+declare fn value_mode(var_ : Value) -> Value raise
+
+///|
+/// defun decmode-arrayfun -- transl.lisp:1395
+declare fn decmode_arrayfun(f : Value, m : Value) -> Value raise
+
+///|
+/// defun array-mode -- transl.lisp:1398
+declare fn array_mode(ar : Value) -> Value raise
+
+///|
+/// defun arrayfun-mode -- transl.lisp:1401
+declare fn arrayfun_mode(ar : Value) -> Value raise
+
+///|
+/// defun function-mode -- transl.lisp:1404
+declare fn function_mode(f : Value) -> Value raise
+
+///|
+/// defun function-mode-@ -- transl.lisp:1407
+declare fn function_mode__at(f : Value) -> Value raise
+
+///|
+/// defun array-mode-@ -- transl.lisp:1410
+declare fn array_mode__at(f : Value) -> Value raise
+
+///|
+/// defun tr-get-mode -- transl.lisp:1431
+declare fn tr_get_mode(a : Value) -> Value raise
+
+///|
+/// defun setf-tr-get-mode -- transl.lisp:1437
+declare fn setf_tr_get_mode(b : Value, a : Value) -> Value raise
+
+///|
+/// defun tr-get-val-modes -- transl.lisp:1449
+declare fn tr_get_val_modes(a : Value) -> Value raise
+
+///|
+/// defun setf-tr-get-val-modes -- transl.lisp:1455
+declare fn setf_tr_get_val_modes(b : Value, a : Value) -> Value raise
+
+///|
+/// defun tr-get-special -- transl.lisp:1467
+declare fn tr_get_special(a : Value) -> Value raise
+
+///|
+/// defun setf-tr-get-special -- transl.lisp:1473
+declare fn setf_tr_get_special(b : Value, a : Value) -> Value raise
+
+///|
+/// defun variable-p -- transl.lisp:1490
+declare fn variable_p(var_ : Value) -> Value raise
+
+///|
+/// defun bad-var-warn -- transl.lisp:1493
+declare fn bad_var_warn(var_ : Value) -> Value raise
+
+///|
+/// defun tbind -- transl.lisp:1496
+declare fn tbind(var_ : Value) -> Value raise
+
+///|
+/// defun tunbind -- transl.lisp:1523
+declare fn tunbind(var_ : Value) -> Value raise
+
+///|
+/// defun putprop1 -- transl.lisp:1535
+declare fn putprop1(name : Value, value : Value, key : Value) -> Value raise
+
+///|
+/// defun tunbinds -- transl.lisp:1544
+declare fn tunbinds(l : Value) -> Value raise
+
+///|
+/// defun tboundp -- transl.lisp:1550
+declare fn tboundp(var_ : Value) -> Value raise
+
+///|
+/// defun teval -- transl.lisp:1554
+declare fn teval(var_ : Value) -> Value raise
+
+///|
+/// defmspec $compfile -- transs.lisp:46
+declare fn d_compfile(forms : Value) -> Value raise
+
+///|
+/// defun compile-function -- transs.lisp:84
+declare fn compile_function(f : Value) -> Value raise
+
+///|
+/// defmfun $compile_file -- transs.lisp:90
+declare fn d_compile_file(input_file : Value, bin_file? : Value = Nil, translation_output_file? : Value = Nil) -> Value raise
+
+///|
+/// defun maxima-string -- transs.lisp:115
+declare fn maxima_string(symb : Value) -> Value raise
+
+///|
+/// defmfun $translate_file -- transs.lisp:118
+declare fn d_translate_file(input_file : Value, output_file? : Value = Nil) -> Value raise
+
+///|
+/// defun pprint-defmtrfun -- transs.lisp:127
+declare fn pprint_defmtrfun(stream : Value, s : Value) -> Value raise
+
+///|
+/// defun call-batch1 -- transs.lisp:144
+declare fn call_batch1(in_stream : Value, out_stream : Value) -> Value raise
+
+///|
+/// defun alter-pathname -- transs.lisp:160
+declare fn alter_pathname(pathname : Value, options : Value) -> Value raise
+
+///|
+/// defun delete-with-side-effects-if -- transs.lisp:163
+declare fn delete_with_side_effects_if(test_ : Value, list_ : Value) -> Value raise
+
+///|
+/// defun insert-necessary-function-declares -- transs.lisp:177
+declare fn insert_necessary_function_declares(stream : Value) -> Value raise
+
+///|
+/// defun print-transl-herald -- transs.lisp:212
+declare fn print_transl_herald(stream : Value) -> Value raise
+
+///|
+/// defun translate-file -- transs.lisp:236
+declare fn translate_file(in_file_name : Value, out_file_name : Value) -> Value raise
+
+///|
+/// defun print* -- transs.lisp:263
+declare fn print_star(p : Value) -> Value raise
+
+///|
+/// defun print-abort-msg -- transs.lisp:269
+declare fn print_abort_msg(fun : Value, from : Value) -> Value raise
+
+///|
+/// defmspec $translate -- transs.lisp:274
+declare fn d_translate(functs : Value) -> Value raise
+
+///|
+/// defmspec $compile -- transs.lisp:291
+declare fn d_compile(form : Value) -> Value raise
+
+///|
+/// defun quoted-symbolp -- trans1.lisp:24
+declare fn quoted_symbolp(form : Value) -> Value raise
+
+///|
+/// defun for-eval-then-mquote-simp-argl -- trans1.lisp:104
+declare fn for_eval_then_mquote_simp_argl(l : Value) -> Value raise
+
+///|
+/// defun substpart-translation -- trans1.lisp:115
+declare fn substpart_translation(form : Value, flag1 : Value, flag2 : Value, flag3 : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun tr-maset -- trans2.lisp:57
+declare fn tr_maset(ar : Value, val : Value, inds : Value) -> Value raise
+
+///|
+/// defun maset1 -- trans2.lisp:63
+declare fn maset1(val : Value, ar : Value, inds : Value) -> Value raise
+
+///|
+/// defun tr-maref -- trans2.lisp:120
+declare fn tr_maref(ar : Value, inds : Value) -> Value raise
+
+///|
+/// defun maref1 -- trans2.lisp:123
+declare fn maref1(ar : Value, inds : Value) -> Value raise
+
+///|
+/// defun tr-arraycall -- trans2.lisp:144
+declare fn tr_arraycall(form : Value) -> Value raise
+
+///|
+/// defun tr-arraysetq -- trans2.lisp:157
+declare fn tr_arraysetq(array_ref : Value, value : Value) -> Value raise
+
+///|
+/// defun free-lisp-vars -- trans3.lisp:36
+declare fn free_lisp_vars(exp_ : Value) -> Value raise
+
+///|
+/// defun free-lisp-vars-of-argl -- trans3.lisp:59
+declare fn free_lisp_vars_of_argl(argl : Value) -> Value raise
+
+///|
+/// defun reduce-var-set&op -- trans3.lisp:65
+declare fn reduce_var_set_ampop(var_set : Value, op : Value) -> Value raise
+
+///|
+/// defun reduce-var-set -- trans3.lisp:78
+declare fn reduce_var_set(var_set : Value) -> Value raise
+
+///|
+/// defun difference-var-sets -- trans3.lisp:83
+declare fn difference_var_sets(s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun union-var-set -- trans3.lisp:94
+declare fn union_var_set(set_of_var_sets : Value) -> Value raise
+
+///|
+/// defun sum-var-sets -- trans3.lisp:99
+declare fn sum_var_sets(l : Value) -> Value raise
+
+///|
+/// defun make-var-set -- trans3.lisp:102
+declare fn make_var_set(vars : Value) -> Value raise
+
+///|
+/// defun free-lisp-vars-m-tlambda -- trans3.lisp:224
+declare fn free_lisp_vars_m_tlambda(form : Value) -> Value raise
+
+///|
+/// defun free-lisp-vars-m-tlambda&env -- trans3.lisp:231
+declare fn free_lisp_vars_m_tlambda_ampenv(form : Value) -> Value raise
+
+///|
+/// defun tbound-free-vars -- trans3.lisp:240
+declare fn tbound_free_vars(free_varl : Value) -> Value raise
+
+///|
+/// defun side-effect-free-check -- trans3.lisp:254
+declare fn side_effect_free_check(varl : Value, form : Value) -> Value raise
+
+///|
+/// defun gen-tr-lambda -- trans3.lisp:312
+declare fn gen_tr_lambda(form : Value) -> Value raise
+
+///|
+/// defun yuk-su-meta-prop -- trans4.lisp:51
+declare fn yuk_su_meta_prop(f : Value, form : Value) -> Value raise
+
+///|
+/// defun patch-up-meval-in-fset -- trans4.lisp:89
+declare fn patch_up_meval_in_fset(form : Value) -> Value raise
+
+///|
+/// defun lisp->lisp-tr-lambda -- trans4.lisp:113
+declare fn lisp__gtlisp_tr_lambda(l : Value) -> Value raise
+
+///|
+/// defun tr-lisp->lisp -- trans4.lisp:123
+declare fn tr_lisp__gtlisp(exp_ : Value) -> Value raise
+
+///|
+/// defun tr-lisp->lisp-default -- trans4.lisp:133
+declare fn tr_lisp__gtlisp_default(exp_ : Value) -> Value raise
+
+///|
+/// defun tr-lisp->lisp-fun -- trans4.lisp:140
+declare fn tr_lisp__gtlisp_fun(exp_ : Value) -> Value raise
+
+///|
+/// defun maptr-lisp->lisp -- trans4.lisp:143
+declare fn maptr_lisp__gtlisp(l : Value) -> Value raise
+
+///|
+/// defun make-values -- trans5.lisp:67
+declare fn make_values(expr_args : Value) -> Value raise
+
+///|
+/// defun object-for-display-hack -- trans5.lisp:81
+declare fn object_for_display_hack(exp_ : Value) -> Value raise
+
+///|
+/// defun tr-exp-to-display -- trans5.lisp:114
+declare fn tr_exp_to_display(exp_ : Value) -> Value raise
+
+///|
+/// defun untrans-op -- trans5.lisp:125
+declare fn untrans_op(op : Value) -> Value raise
+
+///|
+/// defun translate-with-flonum-op -- transf.lisp:25
+declare fn translate_with_flonum_op(form : Value, can_branch_p : Value) -> Value raise
+
+///|
+/// defun tr-gensym -- trutil.lisp:15
+declare fn tr_gensym() -> Value raise
+
+///|
+/// defun push-defvar -- trutil.lisp:18
+declare fn push_defvar(var_ : Value, val : Value) -> Value raise
+
+///|
+/// defun push-pre-transl-form -- trutil.lisp:42
+declare fn push_pre_transl_form(form : Value) -> Value raise
+
+///|
+/// defun tr-nargs-check -- trutil.lisp:52
+declare fn tr_nargs_check(form : Value, args_p? : Value = Nil, nargs? : Value) -> Value raise
+
+///|
+/// defun mseemingly-unbound -- trmode.lisp:21
+declare fn mseemingly_unbound(x : Value) -> Value raise
+
+///|
+/// defun assign-mode-check -- trmode.lisp:24
+declare fn assign_mode_check(var_ : Value, value : Value) -> Value raise
+
+///|
+/// defmspec $define_variable -- trmode.lisp:71
+declare fn d_define_variable(l : Value) -> Value raise
+
+///|
+/// defmspec $mode_identity -- trmode.lisp:85
+declare fn d_mode_identity(l : Value) -> Value raise
+
+///|
+/// defun ir-or-extend -- trmode.lisp:97
+declare fn ir_or_extend(x : Value) -> Value raise
+
+///|
+/// defun ass-eq-ref -- trmode.lisp:120
+declare fn ass_eq_ref(table : Value, key : Value, dflt? : Value = Nil) -> Value raise
+
+///|
+/// defun ass-eq-set -- trmode.lisp:126
+declare fn ass_eq_set(val : Value, table : Value, key : Value) -> Value raise
+
+///|
+/// defmspec $modedeclare -- trmode.lisp:141
+declare fn d_modedeclare(x : Value) -> Value raise
+
+///|
+/// defun tr-declare-varmode -- trmode.lisp:150
+declare fn tr_declare_varmode(variable : Value, mode : Value) -> Value raise
+
+///|
+/// defun declmode -- trmode.lisp:156
+declare fn declmode(form : Value, mode : Value, trflag : Value) -> Value raise
+
+///|
+/// defun declvalue -- trmode.lisp:188
+declare fn declvalue(v : Value, mode : Value, trflag : Value) -> Value raise
+
+///|
+/// defun chekvalue -- trmode.lisp:193
+declare fn chekvalue(my_v : Value, mode : Value, val? : Value) -> Value raise
+
+///|
+/// defun signal-mode-error -- trmode.lisp:216
+declare fn signal_mode_error(object_ : Value, mode : Value, value : Value) -> Value raise
+
+///|
+/// defun put-mode -- trmode.lisp:222
+declare fn put_mode(name : Value, mode : Value, type_ : Value) -> Value raise
+
+///|
+/// defun declarray -- trmode.lisp:227
+declare fn declarray(ar : Value, mode : Value) -> Value raise
+
+///|
+/// defun declfun -- trmode.lisp:230
+declare fn declfun(f : Value, mode : Value) -> Value raise
+
+///|
+/// defun udm-err -- trmode.lisp:235
+declare fn udm_err(mode : Value) -> Value raise
+
+///|
+/// defun wrap-pred -- trpred.lisp:18
+declare fn wrap_pred(form : Value, evalp? : Value = t) -> Value raise
+
+///|
+/// defun tr-is/maybe -- trpred.lisp:25
+declare fn tr_is_slmaybe(wrap_type : Value, form : Value) -> Value raise
+
+///|
+/// defun translate-predicate -- trpred.lisp:64
+declare fn translate_predicate(form : Value) -> Value raise
+
+///|
+/// defun trp-with-boolean-convert -- trpred.lisp:90
+declare fn trp_with_boolean_convert(form : Value) -> Value raise
+
+///|
+/// defun trp-mnot -- trpred.lisp:100
+declare fn trp_mnot(form : Value) -> Value raise
+
+///|
+/// defun mand/mor_tr -- trpred.lisp:114
+declare fn mand_slmor_tr(mop : Value, operands : Value, top : Value, bot : Value) -> Value raise
+
+///|
+/// defun simplify-mand/mor-operands_tr -- trpred.lisp:142
+declare fn simplify_mand_slmor_operands_tr(operands : Value, top : Value, bot : Value) -> Value raise
+
+///|
+/// defun map-trp -- trpred.lisp:145
+declare fn map_trp(l : Value) -> Value raise
+
+///|
+/// defun trp-mand/mor -- trpred.lisp:153
+declare fn trp_mand_slmor(operands : Value, lisp_op : Value, max_op : Value, top : Value, bot : Value) -> Value raise
+
+///|
+/// defun trp-mand -- trpred.lisp:165
+declare fn trp_mand(form : Value) -> Value raise
+
+///|
+/// defun trp-mor -- trpred.lisp:168
+declare fn trp_mor(form : Value) -> Value raise
+
+///|
+/// defun trp-inequality -- trpred.lisp:173
+declare fn trp_inequality(args : Value, lisp_op : Value, max_op : Value) -> Value raise
+
+///|
+/// defun trp-mlessp -- trpred.lisp:186
+declare fn trp_mlessp(form : Value) -> Value raise
+
+///|
+/// defun trp-mgreaterp -- trpred.lisp:189
+declare fn trp_mgreaterp(form : Value) -> Value raise
+
+///|
+/// defun trp-mgeqp -- trpred.lisp:192
+declare fn trp_mgeqp(form : Value) -> Value raise
+
+///|
+/// defun trp-mleqp -- trpred.lisp:195
+declare fn trp_mleqp(form : Value) -> Value raise
+
+///|
+/// defun trp-mequal -- trpred.lisp:199
+declare fn trp_mequal(form : Value) -> Value raise
+
+///|
+/// defun trp-mnotequal -- trpred.lisp:207
+declare fn trp_mnotequal(form : Value) -> Value raise
+
+///|
+/// defun trp-$equality -- trpred.lisp:210
+declare fn trp__dolequality(args : Value, lisp_op : Value, max_op : Value) -> Value raise
+
+///|
+/// defun trp-$equal -- trpred.lisp:221
+declare fn trp__dolequal(form : Value) -> Value raise
+
+///|
+/// defun trp-$notequal -- trpred.lisp:224
+declare fn trp__dolnotequal(form : Value) -> Value raise
+
+///|
+/// defun skip-declare-exprs -- transq.lisp:57
+declare fn skip_declare_exprs(l : Value) -> Value raise
+
+///|
+/// defun vanilla-lambda -- transq.lisp:63
+declare fn vanilla_lambda(bvl : Value, body : Value) -> Value raise
+
+///|
+/// defun rest-arg-lambda -- transq.lisp:68
+declare fn rest_arg_lambda(bvl : Value, body : Value) -> Value raise
+
+///|
+/// defun lambda-with-free-vars -- transq.lisp:76
+declare fn lambda_with_free_vars(bvl : Value, fvl : Value, cfvl : Value, lambda_header : Value, body : Value) -> Value raise
+
+///|
+/// defun make-tlambda -- transq.lisp:87
+declare fn make_tlambda(bvl : Value, fvl : Value, cfvl : Value, rest_p : Value, body : Value) -> Value raise
+
+///|
 /// defun interval-error -- acall.lisp:25
 declare fn interval_error(fun : Value, low : Value, high : Value) -> Value raise
 
@@ -9216,6 +10263,26 @@ declare fn maybe_msymeval(var_ : Value) -> Value raise
 ///|
 /// defmspec $eval_when -- evalw.lisp:25
 declare fn d_eval_when(argl : Value) -> Value raise
+
+///|
+/// defun meta-output -- trprop.lisp:23
+declare fn meta_output(form : Value) -> Value raise
+
+///|
+/// defun meta-add2lnc -- trprop.lisp:29
+declare fn meta_add2lnc(item : Value, ssymbol : Value) -> Value raise
+
+///|
+/// defun meta-putprop -- trprop.lisp:34
+declare fn meta_putprop(ssymbol : Value, item : Value, key : Value) -> Value raise
+
+///|
+/// defun meta-mputprop -- trprop.lisp:39
+declare fn meta_mputprop(ssymbol : Value, item : Value, key : Value) -> Value raise
+
+///|
+/// defun meta-fset -- trprop.lisp:44
+declare fn meta_fset(ssymbol : Value, definition : Value) -> Value raise
 
 ///|
 /// defun float-or-rational-p -- numerical-utils.lisp:26
@@ -10621,6 +11688,82 @@ declare fn noterms(p : Value) -> Value raise
 ///|
 /// defun fastcont -- ezgcd.lisp:374
 declare fn fastcont(p : Value) -> Value raise
+
+///|
+/// defun handle-special-chars -- verify-html-index.lisp:69
+declare fn handle_special_chars(item : Value) -> Value raise
+
+///|
+/// defun get-html-topics -- verify-html-index.lisp:83
+declare fn get_html_topics() -> Value raise
+
+///|
+/// defun get-text-topics -- verify-html-index.lisp:94
+declare fn get_text_topics() -> Value raise
+
+///|
+/// defun verify-html-index -- verify-html-index.lisp:105
+declare fn verify_html_index() -> Value raise
+
+///|
+/// defmfun $verify_html_index -- verify-html-index.lisp:167
+declare fn d_verify_html_index(timep? : Value = Nil) -> Value raise
+
+///|
+/// defmspec $example -- macdes.lisp:16
+declare fn d_example(l : Value) -> Value raise
+
+///|
+/// defun mread-noprompt -- macdes.lisp:80
+declare fn mread_noprompt(read_args : Value) -> Value raise
+
+///|
+/// defmspec $create_list -- macdes.lisp:89
+declare fn d_create_list(l : Value) -> Value raise
+
+///|
+/// defun create-list1 -- macdes.lisp:92
+declare fn create_list1(form : Value, l : Value) -> Value raise
+
+///|
+/// defmspec $describe -- macdes.lisp:121
+declare fn d_describe(x : Value) -> Value raise
+
+///|
+/// defmspec $apropos -- macdes.lisp:128
+declare fn d_apropos(s : Value) -> Value raise
+
+///|
+/// defun needs-encoding-p -- macdes.lisp:151
+declare fn needs_encoding_p(char_ : Value) -> Value raise
+
+///|
+/// defun encode-char -- macdes.lisp:152
+declare fn encode_char(char_ : Value) -> Value raise
+
+///|
+/// defun url-encode -- macdes.lisp:153
+declare fn url_encode(url : Value) -> Value raise
+
+///|
+/// defun display-html-help -- macdes.lisp:163
+declare fn display_html_help(x : Value) -> Value raise
+
+///|
+/// defun display-html-topics -- macdes.lisp:202
+declare fn display_html_topics(wanted : Value) -> Value raise
+
+///|
+/// defun display-text-topics -- macdes.lisp:208
+declare fn display_text_topics(wanted : Value) -> Value raise
+
+///|
+/// defun display-frontend-topics -- macdes.lisp:247
+declare fn display_frontend_topics(wanted : Value) -> Value raise
+
+///|
+/// defun set-output-format-for-help -- macdes.lisp:255
+declare fn set_output_format_for_help(assign_var : Value, val : Value) -> Value raise
 
 ///|
 /// defmfun $unknown -- inmis.lisp:18
@@ -20030,6 +21173,152 @@ declare fn d_timer_reset(maybe_funs : Value) -> Value raise
 declare fn timer_handler(fun : Value, largs : Value) -> Value raise
 
 ///|
+/// defun frame-info -- mdebug.lisp:33
+/// Returns 6 values (CL multiple values) as a tuple.
+declare fn frame_info(n : Value) -> (Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun print-one-frame -- mdebug.lisp:53
+/// Returns 6 values (CL multiple values) as a tuple.
+declare fn print_one_frame(n : Value, print_frame_number : Value) -> (Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun break-call -- mdebug.lisp:77
+declare fn break_call(key : Value, args : Value, prop : Value) -> Value raise
+
+///|
+/// defun complete-prop -- mdebug.lisp:77
+declare fn complete_prop(sym_ : Value, package_ : Value, prop : Value, return_list? : Value = Nil) -> Value raise
+
+///|
+/// defmfun $backtrace -- mdebug.lisp:127
+declare fn d_backtrace(n? : Value) -> Value raise
+
+///|
+/// defun init-break-points -- mdebug.lisp:144
+declare fn init_break_points() -> Value raise
+
+///|
+/// defun step-into -- mdebug.lisp:151
+declare fn step_into(ignored? : Value = Nil) -> Value raise
+
+///|
+/// defun step-next -- mdebug.lisp:157
+declare fn step_next(n? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun maybe-break -- mdebug.lisp:164
+declare fn maybe_break(form : Value, line_info : Value, fun : Value, env : Value) -> Value raise
+
+///|
+/// defun break-step-into -- mdebug.lisp:175
+declare fn break_step_into(form : Value, env? : Value = Nil) -> Value raise
+
+///|
+/// defun break-step-next -- mdebug.lisp:181
+declare fn break_step_next(form : Value, env? : Value = Nil) -> Value raise
+
+///|
+/// defun set-full-lineinfo -- mdebug.lisp:193
+declare fn set_full_lineinfo(fname : Value) -> Value raise
+
+///|
+/// defun walk-get-lineinfo -- mdebug.lisp:208
+declare fn walk_get_lineinfo(form : Value, ar : Value) -> Value raise
+
+///|
+/// defun first-form-line -- mdebug.lisp:228
+declare fn first_form_line(form : Value, line : Value) -> Value raise
+
+///|
+/// defun split-string -- mdebug.lisp:240
+declare fn split_string_(string_ : Value, bag : Value, start? : Value = Fix(0L)) -> Value raise
+
+///|
+/// defun dbm-read -- mdebug.lisp:266
+declare fn dbm_read(stream? : Value, eof_error_p? : Value = t, eof_value? : Value = Nil, repeat_if_newline? : Value = Nil) -> Value raise
+
+///|
+/// defun set-env -- mdebug.lisp:382
+declare fn set_env(bkpt : Value) -> Value raise
+
+///|
+/// defun break-dbm-loop -- mdebug.lisp:394
+declare fn break_dbm_loop(at : Value) -> Value raise
+
+///|
+/// defun break-quit -- mdebug.lisp:437
+declare fn break_quit(level? : Value = Fix(0L)) -> Value raise
+
+///|
+/// defun break-current -- mdebug.lisp:446
+declare fn break_current() -> Value raise
+
+///|
+/// defun def-break -- mdebug.lisp:454
+declare fn def_break(keyword : Value, fun : Value, doc : Value) -> Value raise
+
+///|
+/// defun break-help -- mdebug.lisp:458
+declare fn break_help(key? : Value = Nil) -> Value raise
+
+///|
+/// defun *break-points* -- mdebug.lisp:503
+declare fn ear_break_points(form : Value) -> Value raise
+
+///|
+/// defun break-function -- mdebug.lisp:512
+declare fn break_function(fun : Value, li? : Value = Fix(0L), absolute? : Value = Nil) -> Value raise
+
+///|
+/// defun make-break-point -- mdebug.lisp:561
+declare fn make_break_point(fun : Value, ar : Value, i : Value) -> Value raise
+
+///|
+/// defun dbm-up -- mdebug.lisp:567
+declare fn dbm_up(n : Value) -> Value raise
+
+///|
+/// defun insert-break-point -- mdebug.lisp:577
+declare fn insert_break_point(bpt : Value) -> Value raise
+
+///|
+/// defun short-name -- mdebug.lisp:587
+declare fn short_name(name : Value) -> Value raise
+
+///|
+/// defun show-break-point -- mdebug.lisp:591
+declare fn show_break_point(n : Value) -> Value raise
+
+///|
+/// defun relative-line -- mdebug.lisp:604
+declare fn relative_line(fun : Value, l : Value) -> Value raise
+
+///|
+/// defun iterate-over-bkpts -- mdebug.lisp:609
+declare fn iterate_over_bkpts(l : Value, action : Value) -> Value raise
+
+///|
+/// defun current-step-fun -- mdebug.lisp:638
+declare fn current_step_fun() -> Value raise
+
+///|
+/// defun get-lineinfo -- mdebug.lisp:717
+declare fn get_lineinfo(form : Value) -> Value raise
+
+///|
+/// defun restore-bindings -- mdebug.lisp:727
+declare fn restore_bindings() -> Value raise
+
+///|
+/// defun remove-bindings -- mdebug.lisp:731
+declare fn remove_bindings(the_bindlist : Value) -> Value raise
+
+///|
+/// defun break-frame -- mdebug.lisp:745
+declare fn break_frame(n? : Value = Fix(0L), print_frame_number? : Value = t) -> Value raise
+
+///|
 /// defun conjugate-expintegral-e -- expintegral.lisp:142
 declare fn conjugate_expintegral_e(args : Value) -> Value raise
 
@@ -23948,6 +25237,452 @@ declare fn dcheck_tables() -> Value raise
 ///|
 /// defun dprint-state -- todd-coxeter.lisp:326
 declare fn dprint_state() -> Value raise
+
+///|
+/// defun ensure-string -- plotcolors.lisp:24
+declare fn ensure_string(x : Value) -> Value raise
+
+///|
+/// defun coerce-float -- plotcolors.lisp:30
+declare fn coerce_float(x : Value) -> Value raise
+
+///|
+/// defun real01p -- plotcolors.lisp:32
+declare fn real01p(x : Value) -> Value raise
+
+///|
+/// defun atom-to-downcased-string -- plotcolors.lisp:36
+declare fn atom_to_downcased_string(val : Value) -> Value raise
+
+///|
+/// defun plotcolorp -- plotcolors.lisp:211
+declare fn plotcolorp(clr : Value) -> Value raise
+
+///|
+/// defun hex-to-numeric-list -- plotcolors.lisp:227
+declare fn hex_to_numeric_list(str : Value) -> Value raise
+
+///|
+/// defun numeric-list-to-rgb -- plotcolors.lisp:238
+declare fn numeric_list_to_rgb(c : Value) -> Value raise
+
+///|
+/// defun rgb-color -- plotcolors.lisp:246
+declare fn rgb_color(clr : Value) -> Value raise
+
+///|
+/// defun interpolate-color -- plotcolors.lisp:259
+declare fn interpolate_color(f : Value, rgb1 : Value, rgb2 : Value, rgb : Value) -> Value raise
+
+///|
+/// defmfun $hsv -- plotcolors.lisp:275
+declare fn d_hsv(hue : Value, sat : Value, val : Value) -> Value raise
+
+///|
+/// defun string-predicate -- plot.lisp:9
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn string_predicate(val : Value) -> (Value, Value) raise
+
+///|
+/// defmfun $join -- plot.lisp:77
+declare fn d_join(x : Value, y : Value) -> Value raise
+
+///|
+/// defun maybe-realpart -- plot.lisp:101
+declare fn maybe_realpart(x : Value) -> Value raise
+
+///|
+/// defmfun $get_plot_option -- plot.lisp:114
+declare fn d_get_plot_option(name? : Value = Nil, n? : Value = Nil) -> Value raise
+
+///|
+/// defun quote-strings -- plot.lisp:132
+declare fn quote_strings(opt : Value) -> Value raise
+
+///|
+/// defun get-plot-option-string -- plot.lisp:140
+declare fn get_plot_option_string(option : Value, index? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defmfun $set_plot_option -- plot.lisp:147
+declare fn d_set_plot_option(value : Value) -> Value raise
+
+///|
+/// defmfun $reset_plot_options -- plot.lisp:151
+declare fn d_reset_plot_options() -> Value raise
+
+///|
+/// defmfun $remove_plot_option -- plot.lisp:166
+declare fn d_remove_plot_option(name : Value) -> Value raise
+
+///|
+/// defun get-gnuplot-term -- plot.lisp:169
+declare fn get_gnuplot_term(term : Value) -> Value raise
+
+///|
+/// defun print-pt1 -- plot.lisp:179
+declare fn print_pt1(f : Value, str : Value) -> Value raise
+
+///|
+/// defun vertices-matrix -- plot.lisp:204
+declare fn vertices_matrix(points : Value, nxint : Value, nyint : Value) -> Value raise
+
+///|
+/// defun polygons -- plot.lisp:230
+declare fn polygons(matrix : Value) -> Value raise
+
+///|
+/// defun draw3d -- plot.lisp:252
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn draw3d(f : Value, minx : Value, maxx : Value, miny : Value, maxy : Value, nxint : Value, nyint : Value) -> (Value, Value) raise
+
+///|
+/// defun make-grid-vertices -- plot.lisp:301
+declare fn make_grid_vertices(nx : Value, ny : Value) -> Value raise
+
+///|
+/// defmfun $rotation1 -- plot.lisp:336
+declare fn d_rotation1(phi : Value, th : Value) -> Value raise
+
+///|
+/// defmfun $get_range -- plot.lisp:350
+declare fn d_get_range(pts : Value, k : Value) -> Value raise
+
+///|
+/// defmfun $polar_to_xy -- plot.lisp:359
+declare fn d_polar_to_xy(pts : Value) -> Value raise
+
+///|
+/// defmfun $spherical_to_xyz -- plot.lisp:375
+declare fn d_spherical_to_xyz(pts : Value) -> Value raise
+
+///|
+/// defmfun $make_transform -- plot.lisp:397
+declare fn d_make_transform(lvars : Value, fx : Value, fy : Value, fz : Value) -> Value raise
+
+///|
+/// defun %coerce-float-fun-check-args -- plot.lisp:416
+declare fn p_coerce_float_fun_check_args(actuals : Value, nargs : Value) -> Value raise
+
+///|
+/// defun %coerce-float-fun -- plot.lisp:439
+declare fn p_coerce_float_fun(float_fun : Value, expr : Value, rest_ : Value) -> Value raise
+
+///|
+/// defun coerce-float-fun -- plot.lisp:557
+declare fn coerce_float_fun(expr : Value, rest_ : Value) -> Value raise
+
+///|
+/// defun coerce-bfloat-fun -- plot.lisp:586
+declare fn coerce_bfloat_fun(expr : Value, rest_ : Value) -> Value raise
+
+///|
+/// defun coerce-maxima-function-or-maxima-lambda -- plot.lisp:611
+declare fn coerce_maxima_function_or_maxima_lambda(args : Value, expr : Value, float_fun? : Value = q_d_float) -> Value raise
+
+///|
+/// defun coerce-lisp-function-or-lisp-lambda -- plot.lisp:633
+declare fn coerce_lisp_function_or_lisp_lambda(args : Value, expr : Value, float_fun? : Value = q_d_float) -> Value raise
+
+///|
+/// defun sort-ngons -- plot.lisp:656
+declare fn sort_ngons(points : Value, edges : Value, n : Value) -> Value raise
+
+///|
+/// defun copy-array-portion -- plot.lisp:699
+declare fn copy_array_portion(ar1 : Value, ar2 : Value, i1 : Value, i2 : Value, n1 : Value) -> Value raise
+
+///|
+/// defmfun $concat_polygons -- plot.lisp:706
+declare fn d_concat_polygons(pl1 : Value, pl2 : Value) -> Value raise
+
+///|
+/// defmfun $copy_pts -- plot.lisp:733
+declare fn d_copy_pts(lis : Value, vec : Value, start : Value) -> Value raise
+
+///|
+/// defun draw2d-implicit -- plot.lisp:750
+declare fn draw2d_implicit(expr : Value, options : Value) -> Value raise
+
+///|
+/// defun draw2d-parametric-adaptive -- plot.lisp:1148
+declare fn draw2d_parametric_adaptive(param : Value, options : Value) -> Value raise
+
+///|
+/// defun draw2d-discrete -- plot.lisp:1266
+declare fn draw2d_discrete(f : Value) -> Value raise
+
+///|
+/// defun parse-points-x-y -- plot.lisp:1317
+declare fn parse_points_x_y(x : Value, y : Value) -> Value raise
+
+///|
+/// defun parse-points-y -- plot.lisp:1333
+declare fn parse_points_y(y : Value) -> Value raise
+
+///|
+/// defun parse-points-xy -- plot.lisp:1348
+declare fn parse_points_xy(xy : Value) -> Value raise
+
+///|
+/// defun slow-oscillation-p -- plot.lisp:1371
+declare fn slow_oscillation_p(f0 : Value, f1 : Value, f2 : Value, f3 : Value, f4 : Value) -> Value raise
+
+///|
+/// defun smooth-enough-p -- plot.lisp:1392
+declare fn smooth_enough_p(f_a : Value, f_a1 : Value, f_b : Value, f_b1 : Value, f_c : Value, eps : Value) -> Value raise
+
+///|
+/// defun adaptive-plot -- plot.lisp:1427
+declare fn adaptive_plot(fcn : Value, a : Value, b : Value, c : Value, f_a : Value, f_b : Value, f_c : Value, depth : Value, eps : Value) -> Value raise
+
+///|
+/// defun adaptive-parametric-plot -- plot.lisp:1460
+declare fn adaptive_parametric_plot(x_fcn : Value, y_fcn : Value, a : Value, b : Value, c : Value, x_a : Value, x_b : Value, x_c : Value, y_a : Value, y_b : Value, y_c : Value, depth : Value, eps : Value) -> Value raise
+
+///|
+/// defun draw2d -- plot.lisp:1511
+declare fn draw2d(fcn : Value, range : Value, plot_options : Value) -> Value raise
+
+///|
+/// defun get-range -- plot.lisp:1653
+declare fn get_range(lis : Value) -> Value raise
+
+///|
+/// defun random-name -- plot.lisp:1682
+declare fn random_name(count : Value) -> Value raise
+
+///|
+/// defun plot-temp-file0 -- plot.lisp:1689
+declare fn plot_temp_file0(file : Value, preserve_file? : Value = Nil) -> Value raise
+
+///|
+/// defun plot-temp-file -- plot.lisp:1699
+declare fn plot_temp_file(file : Value, preserve_file? : Value = Nil, plot_options? : Value = Nil) -> Value raise
+
+///|
+/// defun plot-file-path -- plot.lisp:1716
+declare fn plot_file_path(file : Value, preserve_file? : Value = Nil, plot_options? : Value = Nil) -> Value raise
+
+///|
+/// defun plot-options-parser -- plot.lisp:1730
+declare fn plot_options_parser(maxopts : Value, options : Value) -> Value raise
+
+///|
+/// defun naturalp -- plot.lisp:2002
+declare fn naturalp(n : Value) -> Value raise
+
+///|
+/// defun realpositivep -- plot.lisp:2005
+declare fn realpositivep(x : Value) -> Value raise
+
+///|
+/// defun axesoptionp -- plot.lisp:2008
+declare fn axesoptionp(o : Value) -> Value raise
+
+///|
+/// defun pointtypep -- plot.lisp:2011
+declare fn pointtypep(p : Value) -> Value raise
+
+///|
+/// defun parse-azimuth -- plot.lisp:2016
+declare fn parse_azimuth(az : Value) -> Value raise
+
+///|
+/// defun parse-elevation -- plot.lisp:2019
+declare fn parse_elevation(el : Value) -> Value raise
+
+///|
+/// defun check-option -- plot.lisp:2026
+declare fn check_option(option : Value, test_ : Value, type_ : Value, count? : Value = Nil) -> Value raise
+
+///|
+/// defun check-option-b -- plot.lisp:2043
+declare fn check_option_b(option : Value, test_ : Value, type_ : Value, count? : Value = Nil) -> Value raise
+
+///|
+/// defun check-option-boole -- plot.lisp:2075
+declare fn check_option_boole(option : Value) -> Value raise
+
+///|
+/// defun check-option-label -- plot.lisp:2086
+declare fn check_option_label(option : Value) -> Value raise
+
+///|
+/// defun check-option-format -- plot.lisp:2101
+declare fn check_option_format(option : Value) -> Value raise
+
+///|
+/// defun check-option-palette -- plot.lisp:2110
+declare fn check_option_palette(option : Value) -> Value raise
+
+///|
+/// defun check-option-style -- plot.lisp:2162
+declare fn check_option_style(option : Value) -> Value raise
+
+///|
+/// defun check-option-transform -- plot.lisp:2181
+declare fn check_option_transform(option : Value) -> Value raise
+
+///|
+/// defun check-option-levels -- plot.lisp:2191
+declare fn check_option_levels(option : Value) -> Value raise
+
+///|
+/// defun getlevels -- plot.lisp:2204
+declare fn getlevels(fmin : Value, fmax : Value, n : Value) -> Value raise
+
+///|
+/// defmfun $plot2d -- plot.lisp:2239
+declare fn d_plot2d(fun : Value, xrange? : Value = Nil, extra_options : Value) -> Value raise
+
+///|
+/// defun msymbolp -- plot.lisp:2412
+declare fn msymbolp(x : Value) -> Value raise
+
+///|
+/// defun check-range -- plot.lisp:2415
+declare fn check_range(range : Value) -> Value raise
+
+///|
+/// defmfun $zero_fun -- plot.lisp:2430
+declare fn d_zero_fun(x : Value, y : Value) -> Value raise
+
+///|
+/// defun output-points -- plot.lisp:2432
+declare fn output_points(points : Value, m? : Value = Nil) -> Value raise
+
+///|
+/// defmfun $contour_plot -- plot.lisp:2450
+declare fn d_contour_plot(expr : Value, optional_args : Value) -> Value raise
+
+///|
+/// defmfun $plot3d -- plot.lisp:2485
+declare fn d_plot3d(fun : Value, extra_options : Value) -> Value raise
+
+///|
+/// defun check-list-plot3d -- plot.lisp:2669
+declare fn check_list_plot3d(lis : Value) -> Value raise
+
+///|
+/// defun gnuplot-color -- gnuplot_def.lisp:29
+declare fn gnuplot_color(colors : Value, c : Value) -> Value raise
+
+///|
+/// defun gnuplot-pointtype -- gnuplot_def.lisp:36
+declare fn gnuplot_pointtype(type_ : Value) -> Value raise
+
+///|
+/// defun gnuplot-pointtypes -- gnuplot_def.lisp:42
+declare fn gnuplot_pointtypes(types : Value, n : Value) -> Value raise
+
+///|
+/// defun gnuplot-curve-style -- gnuplot_def.lisp:63
+declare fn gnuplot_curve_style(style : Value, colors : Value, types : Value, i : Value) -> Value raise
+
+///|
+/// defun gnuplot-palette -- gnuplot_def.lisp:115
+declare fn gnuplot_palette(palette : Value) -> Value raise
+
+///|
+/// defun gnuplot-plot3d-command -- gnuplot_def.lisp:161
+declare fn gnuplot_plot3d_command(file : Value, palette : Value, gstyles : Value, meshcolor : Value, titles : Value, n : Value) -> Value raise
+
+///|
+/// defun gnuplot-terminal-and-file -- gnuplot_def.lisp:178
+declare fn gnuplot_terminal_and_file(plot_options : Value) -> Value raise
+
+///|
+/// defun gnuplot-process -- gnuplot_def.lisp:697
+declare fn gnuplot_process(plot_options : Value, file? : Value = Nil, out_file? : Value = Nil) -> Value raise
+
+///|
+/// defun start-gnuplot-process -- gnuplot_def.lisp:729
+declare fn start_gnuplot_process(path : Value) -> Value raise
+
+///|
+/// defun check-gnuplot-process -- gnuplot_def.lisp:766
+declare fn check_gnuplot_process() -> Value raise
+
+///|
+/// defmfun $gnuplot_close -- gnuplot_def.lisp:770
+declare fn d_gnuplot_close() -> Value raise
+
+///|
+/// defmfun $gnuplot_start -- gnuplot_def.lisp:774
+declare fn d_gnuplot_start() -> Value raise
+
+///|
+/// defmfun $gnuplot_restart -- gnuplot_def.lisp:778
+declare fn d_gnuplot_restart() -> Value raise
+
+///|
+/// defmfun $gnuplot_send -- gnuplot_def.lisp:782
+declare fn d_gnuplot_send(command : Value) -> Value raise
+
+///|
+/// defun stop-gnuplot-process -- gnuplot_def.lisp:785
+declare fn stop_gnuplot_process() -> Value raise
+
+///|
+/// defun send-gnuplot-command -- gnuplot_def.lisp:791
+declare fn send_gnuplot_command(command : Value, recursive? : Value = Nil) -> Value raise
+
+///|
+/// defmfun $gnuplot_reset -- gnuplot_def.lisp:807
+declare fn d_gnuplot_reset() -> Value raise
+
+///|
+/// defmfun $gnuplot_replot -- gnuplot_def.lisp:811
+declare fn d_gnuplot_replot(s? : Value = Nil) -> Value raise
+
+///|
+/// defun plot-set-gnuplot-script-file-name -- gnuplot_def.lisp:823
+declare fn plot_set_gnuplot_script_file_name(options : Value) -> Value raise
+
+///|
+/// defun xmaxima-color -- xmaxima_def.lisp:25
+declare fn xmaxima_color(colors : Value, c : Value) -> Value raise
+
+///|
+/// defun xmaxima-curve-style -- xmaxima_def.lisp:48
+declare fn xmaxima_curve_style(style : Value, colors : Value, i : Value) -> Value raise
+
+///|
+/// defun xmaxima-palette -- xmaxima_def.lisp:88
+declare fn xmaxima_palette(palette : Value) -> Value raise
+
+///|
+/// defmfun $tcl_output -- xmaxima_def.lisp:395
+declare fn d_tcl_output(lis : Value, i : Value, skip? : Value = Fix(2L)) -> Value raise
+
+///|
+/// defun tcl-output-list -- xmaxima_def.lisp:416
+declare fn tcl_output_list(st : Value, lis : Value) -> Value raise
+
+///|
+/// defun output-points-tcl -- xmaxima_def.lisp:430
+declare fn output_points_tcl(st : Value, ar : Value, m : Value) -> Value raise
+
+///|
+/// defun geomview-palette -- geomview_def.lisp:21
+declare fn geomview_palette(palette : Value) -> Value raise
+
+///|
+/// defun geomview-z-color -- geomview_def.lisp:58
+declare fn geomview_z_color(z : Value, colors : Value) -> Value raise
+
+///|
+/// defun check-3dfun -- geomview_def.lisp:217
+declare fn check_3dfun(fun : Value, x : Value, y : Value) -> Value raise
+
+///|
+/// defun geomview-matrix -- geomview_def.lisp:231
+declare fn geomview_matrix(st : Value, az : Value, el : Value) -> Value raise
+
+///|
+/// defun geomview-bbox -- geomview_def.lisp:246
+declare fn geomview_bbox(st : Value) -> Value raise
 
 ///|
 /// defun aload -- autol.lisp:7
@@ -32173,6 +33908,9335 @@ declare fn d_test_normality(x : Value, n1? : Value = Nil) -> Value raise
 /// defmfun $integration_depth -- ../share/contrib/integration/abs_integrate.lisp:24
 declare fn d_integration_depth() -> Value raise
 
+///|
+/// defun $lexicographique? -- ../share/sym/tri.lisp:3
+declare fn d_lexicographique_q(d_a : Value, d_b : Value) -> Value raise
+
+///|
+/// defun $longueur? -- ../share/sym/tri.lisp:6
+declare fn d_longueur_q(d_a : Value, d_b : Value) -> Value raise
+
+///|
+/// defun longueur? -- ../share/sym/tri.lisp:9
+declare fn longueur_q(tt1 : Value, t2 : Value) -> Value raise
+
+///|
+/// defun $simplifie_dist -- ../share/sym/tri.lisp:20
+declare fn d_simplifie_dist(d_polynome : Value) -> Value raise
+
+///|
+/// defun simplifie_dist -- ../share/sym/tri.lisp:24
+declare fn simplifie_dist(polynome : Value, d_monome : Value) -> Value raise
+
+///|
+/// defun $insert -- ../share/sym/tri.lisp:34
+declare fn d_insert(d_monome : Value, d_polynome : Value) -> Value raise
+
+///|
+/// defun insert -- ../share/sym/tri.lisp:38
+declare fn insert(d_monome : Value, polynome : Value) -> Value raise
+
+///|
+/// defmfun $isequal -- ../share/gamma_simp/isequal.lisp:1
+declare fn d_isequal(a : Value, b : Value) -> Value raise
+
+///|
+/// defmfun $isunequal -- ../share/gamma_simp/isequal.lisp:4
+declare fn d_isunequal(a : Value, b : Value) -> Value raise
+
+///|
+/// defun plotdf-option-to-tcl -- ../share/dynamics/plotdf.lisp:30
+declare fn plotdf_option_to_tcl(value : Value, s1 : Value, s2 : Value) -> Value raise
+
+///|
+/// defun expr_to_str -- ../share/dynamics/plotdf.lisp:90
+declare fn expr_to_str(fun : Value) -> Value raise
+
+///|
+/// defun $plotdf -- ../share/dynamics/plotdf.lisp:96
+declare fn d_plotdf(ode : Value, options : Value) -> Value raise
+
+///|
+/// defun $ploteq -- ../share/dynamics/plotdf.lisp:160
+declare fn d_ploteq(fun : Value, options : Value) -> Value raise
+
+///|
+/// defmfun $mandelbrot -- ../share/dynamics/complex_dynamics.lisp:27
+declare fn d_mandelbrot(extra_options : Value) -> Value raise
+
+///|
+/// defmfun $julia -- ../share/dynamics/complex_dynamics.lisp:93
+declare fn d_julia(x : Value, y : Value, extra_options : Value) -> Value raise
+
+///|
+/// defmfun $rk -- ../share/dynamics/complex_dynamics.lisp:163
+declare fn d_rk(exprs : Value, vars : Value, initial : Value, domain : Value) -> Value raise
+
+///|
+/// defun tcl-vtk-option-value -- ../share/dynamics/visualization.lisp:24
+declare fn tcl_vtk_option_value(name : Value, values : Value) -> Value raise
+
+///|
+/// defun tcl-output-number-list -- ../share/dynamics/visualization.lisp:46
+declare fn tcl_output_number_list(maxlist : Value) -> Value raise
+
+///|
+/// defun hexrgb-to-decimal -- ../share/dynamics/visualization.lisp:64
+declare fn hexrgb_to_decimal(color : Value) -> Value raise
+
+///|
+/// defun scene-option-to-tcl -- ../share/dynamics/visualization.lisp:70
+declare fn scene_option_to_tcl(option : Value) -> Value raise
+
+///|
+/// defun $scene -- ../share/dynamics/visualization.lisp:100
+declare fn d_scene(arguments : Value) -> Value raise
+
+///|
+/// defun fftpack5::get-wsave-entry -- ../share/fftpack5/fftpack5.lisp:22
+declare fn fftpack5_get_wsave_entry(n : Value) -> Value raise
+
+///|
+/// defun fftpack5::convert-rfft -- ../share/fftpack5/fftpack5.lisp:41
+declare fn fftpack5_convert_rfft(x : Value) -> Value raise
+
+///|
+/// defun fftpack5::convert-inverse-rfft -- ../share/fftpack5/fftpack5.lisp:69
+declare fn fftpack5_convert_inverse_rfft(x : Value, n : Value) -> Value raise
+
+///|
+/// defun fftpack5::rfft -- ../share/fftpack5/fftpack5.lisp:89
+declare fn fftpack5_rfft(x : Value) -> Value raise
+
+///|
+/// defun fftpack5::inverse-rfft -- ../share/fftpack5/fftpack5.lisp:115
+declare fn fftpack5_inverse_rfft(x : Value, n : Value) -> Value raise
+
+///|
+/// defun fftpack5::test-rfft -- ../share/fftpack5/fftpack5.lisp:144
+declare fn fftpack5_test_rfft(n : Value, verbose? : Value = Nil) -> Value raise
+
+///|
+/// defun fftpack5::get-double-wsave-entry -- ../share/fftpack5/fftpack5.lisp:202
+declare fn fftpack5_get_double_wsave_entry(n : Value) -> Value raise
+
+///|
+/// defun fftpack5::cfft -- ../share/fftpack5/fftpack5.lisp:221
+declare fn fftpack5_cfft(x : Value) -> Value raise
+
+///|
+/// defun fftpack5::inverse-cfft -- ../share/fftpack5/fftpack5.lisp:248
+declare fn fftpack5_inverse_cfft(x : Value) -> Value raise
+
+///|
+/// defun fftpack5::test-cfft -- ../share/fftpack5/fftpack5.lisp:266
+declare fn fftpack5_test_cfft(n : Value, verbose? : Value = Nil) -> Value raise
+
+///|
+/// defun fftpack5::mlist->complex-cl-vector -- ../share/fftpack5/fftpack5-interface.lisp:7
+declare fn fftpack5_mlist__gtcomplex_cl_vector(object_ : Value) -> Value raise
+
+///|
+/// defun fftpack5::complex-cl-vector->mlist -- ../share/fftpack5/fftpack5-interface.lisp:19
+declare fn fftpack5_complex_cl_vector__gtmlist(array : Value) -> Value raise
+
+///|
+/// defun fftpack5::array->complex-cl-vector -- ../share/fftpack5/fftpack5-interface.lisp:28
+declare fn fftpack5_array__gtcomplex_cl_vector(array : Value) -> Value raise
+
+///|
+/// defun fftpack5::complex-cl-vector->vector -- ../share/fftpack5/fftpack5-interface.lisp:38
+declare fn fftpack5_complex_cl_vector__gtvector(array : Value) -> Value raise
+
+///|
+/// defun fftpack5::find-complex-fft-converters -- ../share/fftpack5/fftpack5-interface.lisp:50
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn fftpack5_find_complex_fft_converters(object_ : Value, maxima_function_name? : Value = Str("fftpack5")) -> (Value, Value) raise
+
+///|
+/// defun fftpack5::mlist->rfft-vector -- ../share/fftpack5/fftpack5-interface.lisp:83
+declare fn fftpack5_mlist__gtrfft_vector(object_ : Value) -> Value raise
+
+///|
+/// defun fftpack5::array->rfft-vector -- ../share/fftpack5/fftpack5-interface.lisp:95
+declare fn fftpack5_array__gtrfft_vector(array : Value) -> Value raise
+
+///|
+/// defun fftpack5::find-rfft-converters -- ../share/fftpack5/fftpack5-interface.lisp:108
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn fftpack5_find_rfft_converters(object_ : Value) -> (Value, Value) raise
+
+///|
+/// defun fftpack5::find-irfft-converters -- ../share/fftpack5/fftpack5-interface.lisp:143
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn fftpack5_find_irfft_converters(object_ : Value) -> (Value, Value) raise
+
+///|
+/// defmfun $fftpack5_fft -- ../share/fftpack5/fftpack5-interface.lisp:174
+declare fn d_fftpack5_fft(input : Value) -> Value raise
+
+///|
+/// defmfun $fftpack5_inverse_fft -- ../share/fftpack5/fftpack5-interface.lisp:196
+declare fn d_fftpack5_inverse_fft(input : Value) -> Value raise
+
+///|
+/// defmfun $fftpack5_real_fft -- ../share/fftpack5/fftpack5-interface.lisp:218
+declare fn d_fftpack5_real_fft(input : Value) -> Value raise
+
+///|
+/// defmfun $fftpack5_inverse_real_fft -- ../share/fftpack5/fftpack5-interface.lisp:242
+declare fn d_fftpack5_inverse_real_fft(input : Value, len : Value) -> Value raise
+
+///|
+/// defun get-maxima-operator -- ../share/logic/logic.lisp:69
+declare fn get_maxima_operator(expr : Value) -> Value raise
+
+///|
+/// defun contains-operator -- ../share/logic/logic.lisp:74
+declare fn contains_operator(expr : Value, op : Value) -> Value raise
+
+///|
+/// defun replicate -- ../share/logic/logic.lisp:85
+declare fn replicate(n : Value, e : Value) -> Value raise
+
+///|
+/// defun zip -- ../share/logic/logic.lisp:90
+declare fn zip(l1 : Value, l2 : Value) -> Value raise
+
+///|
+/// defun remove-nth -- ../share/logic/logic.lisp:97
+declare fn remove_h_nth(n : Value, l : Value) -> Value raise
+
+///|
+/// defun multiset-to-hash -- ../share/logic/logic.lisp:103
+declare fn multiset_to_hash(l : Value) -> Value raise
+
+///|
+/// defun hash-to-multiset -- ../share/logic/logic.lisp:108
+declare fn hash_to_multiset(h : Value) -> Value raise
+
+///|
+/// defun cancel-pairs-in-hash -- ../share/logic/logic.lisp:111
+declare fn cancel_pairs_in_hash(h : Value) -> Value raise
+
+///|
+/// defun cancel-pairs -- ../share/logic/logic.lisp:114
+declare fn cancel_pairs(l : Value) -> Value raise
+
+///|
+/// defun subst-recursive -- ../share/logic/logic.lisp:117
+declare fn subst_recursive(expr : Value, pairs : Value) -> Value raise
+
+///|
+/// defun disjoin-list -- ../share/logic/logic.lisp:123
+declare fn disjoin_list(pred : Value, lst : Value) -> Value raise
+
+///|
+/// defun booleanp -- ../share/logic/logic.lisp:134
+declare fn booleanp(x : Value) -> Value raise
+
+///|
+/// defun logic-sort-comparator -- ../share/logic/logic.lisp:137
+declare fn logic_sort_comparator(x : Value, y : Value) -> Value raise
+
+///|
+/// defun sort-symbols -- ../share/logic/logic.lisp:147
+declare fn sort_symbols(seq : Value) -> Value raise
+
+///|
+/// defun flatten-nested -- ../share/logic/logic.lisp:154
+declare fn flatten_nested(args : Value, op : Value) -> Value raise
+
+///|
+/// defun simp-implies -- ../share/logic/logic.lisp:176
+declare fn simp_implies(x : Value, y : Value) -> Value raise
+
+///|
+/// defun simp-nor -- ../share/logic/logic.lisp:184
+declare fn simp_nor(args : Value) -> Value raise
+
+///|
+/// defun simp-nand -- ../share/logic/logic.lisp:195
+declare fn simp_nand(args : Value) -> Value raise
+
+///|
+/// defun simp-eq -- ../share/logic/logic.lisp:206
+declare fn simp_eq(args : Value) -> Value raise
+
+///|
+/// defun simp-xor -- ../share/logic/logic.lisp:214
+declare fn simp_xor(args : Value) -> Value raise
+
+///|
+/// defun x-not-x -- ../share/logic/logic.lisp:223
+declare fn x_not_x(args : Value) -> Value raise
+
+///|
+/// defun simp-and -- ../share/logic/logic.lisp:234
+declare fn simp_and(args : Value) -> Value raise
+
+///|
+/// defun simp-or -- ../share/logic/logic.lisp:249
+declare fn simp_or(args : Value) -> Value raise
+
+///|
+/// defun simp-not -- ../share/logic/logic.lisp:264
+declare fn simp_not(x : Value) -> Value raise
+
+///|
+/// defun apply-op -- ../share/logic/logic.lisp:271
+declare fn apply_op(op : Value, args : Value) -> Value raise
+
+///|
+/// defun logic-simp -- ../share/logic/logic.lisp:283
+declare fn logic_simp(expr : Value) -> Value raise
+
+///|
+/// defun $logic_simp -- ../share/logic/logic.lisp:291
+declare fn d_logic_simp(expr : Value) -> Value raise
+
+///|
+/// defun all-charfuns -- ../share/logic/logic.lisp:308
+declare fn all_charfuns(n : Value) -> Value raise
+
+///|
+/// defun characteristic-vector -- ../share/logic/logic.lisp:321
+declare fn characteristic_vector(expr : Value, args : Value) -> Value raise
+
+///|
+/// defun list-of-variables -- ../share/logic/logic.lisp:330
+declare fn list_of_variables(expr : Value) -> Value raise
+
+///|
+/// defun $characteristic_vector -- ../share/logic/logic.lisp:333
+declare fn d_characteristic_vector(expr : Value, args : Value) -> Value raise
+
+///|
+/// defun zhegalkin-basis-substitute -- ../share/logic/logic.lisp:339
+declare fn zhegalkin_basis_substitute(expr : Value) -> Value raise
+
+///|
+/// defun zhegalkin-basis-expand -- ../share/logic/logic.lisp:385
+declare fn zhegalkin_basis_expand(expr : Value) -> Value raise
+
+///|
+/// defun $zhegalkin_form -- ../share/logic/logic.lisp:410
+declare fn d_zhegalkin_form(expr : Value) -> Value raise
+
+///|
+/// defun $logic_equiv -- ../share/logic/logic.lisp:415
+declare fn d_logic_equiv(expr1 : Value, expr2 : Value) -> Value raise
+
+///|
+/// defun subst-not -- ../share/logic/logic.lisp:422
+declare fn subst_not(expr : Value) -> Value raise
+
+///|
+/// defun $dual_function -- ../share/logic/logic.lisp:430
+declare fn d_dual_function(expr : Value) -> Value raise
+
+///|
+/// defun $self_dual -- ../share/logic/logic.lisp:434
+declare fn d_self_dual(expr : Value) -> Value raise
+
+///|
+/// defun closed-under -- ../share/logic/logic.lisp:439
+declare fn closed_under(expr : Value, x : Value) -> Value raise
+
+///|
+/// defun $closed_under_f -- ../share/logic/logic.lisp:447
+declare fn d_closed_under_f(expr : Value) -> Value raise
+
+///|
+/// defun $closed_under_t -- ../share/logic/logic.lisp:451
+declare fn d_closed_under_t(expr : Value) -> Value raise
+
+///|
+/// defun $monotonic -- ../share/logic/logic.lisp:456
+declare fn d_monotonic(expr : Value, args : Value) -> Value raise
+
+///|
+/// defun $linear -- ../share/logic/logic.lisp:476
+declare fn d_linear(expr : Value) -> Value raise
+
+///|
+/// defun post-table -- ../share/logic/logic.lisp:483
+declare fn post_table(expressions : Value) -> Value raise
+
+///|
+/// defun functionally-complete -- ../share/logic/logic.lisp:488
+declare fn functionally_complete(table : Value) -> Value raise
+
+///|
+/// defun $functionally_complete -- ../share/logic/logic.lisp:499
+declare fn d_functionally_complete(expressions : Value) -> Value raise
+
+///|
+/// defun $logic_basis -- ../share/logic/logic.lisp:503
+declare fn d_logic_basis(expressions : Value) -> Value raise
+
+///|
+/// defun diff-zhegalkin-form -- ../share/logic/logic.lisp:551
+declare fn diff_zhegalkin_form(expr : Value, x : Value) -> Value raise
+
+///|
+/// defun $logic_diff -- ../share/logic/logic.lisp:564
+declare fn d_logic_diff(expr : Value, x : Value) -> Value raise
+
+///|
+/// defun boolean-basis-substitute -- ../share/logic/logic.lisp:570
+declare fn boolean_basis_substitute(expr : Value) -> Value raise
+
+///|
+/// defun $boolean_form -- ../share/logic/logic.lisp:614
+declare fn d_boolean_form(expr : Value) -> Value raise
+
+///|
+/// defun $demorgan -- ../share/logic/logic.lisp:620
+declare fn d_demorgan(expr : Value) -> Value raise
+
+///|
+/// defun elementary-conjunct-disjunct -- ../share/logic/logic.lisp:638
+declare fn elementary_conjunct_disjunct(vars_vals : Value, b : Value) -> Value raise
+
+///|
+/// defun pdnf-pcnf -- ../share/logic/logic.lisp:647
+declare fn pdnf_pcnf(expr : Value, b : Value) -> Value raise
+
+///|
+/// defun $pdnf -- ../share/logic/logic.lisp:664
+declare fn d_pdnf(expr : Value) -> Value raise
+
+///|
+/// defun $pcnf -- ../share/logic/logic.lisp:668
+declare fn d_pcnf(expr : Value) -> Value raise
+
+///|
+/// defun is-adjacent -- ../share/logic/Ksimplifier.lisp:1
+declare fn is_adjacent(form1 : Value, form2 : Value) -> Value raise
+
+///|
+/// defun common-expression -- ../share/logic/Ksimplifier.lisp:18
+declare fn common_expression(minterm1 : Value, minterm2 : Value) -> Value raise
+
+///|
+/// defun combine-neighbours -- ../share/logic/Ksimplifier.lisp:29
+declare fn combine_neighbours(minterm : Value, minterms : Value) -> Value raise
+
+///|
+/// defun reduce-to-prime-implicants -- ../share/logic/Ksimplifier.lisp:49
+declare fn reduce_to_prime_implicants(numvar : Value, minterms : Value) -> Value raise
+
+///|
+/// defun is-covered-by-implicant -- ../share/logic/Ksimplifier.lisp:62
+declare fn is_covered_by_implicant(minterm : Value, prime_implicant : Value) -> Value raise
+
+///|
+/// defun is-covered-by-set-of-implicants -- ../share/logic/Ksimplifier.lisp:75
+declare fn is_covered_by_set_of_implicants(minterm : Value, prime_implicants : Value) -> Value raise
+
+///|
+/// defun select-maximum-reduced-prime-implicants -- ../share/logic/Ksimplifier.lisp:80
+declare fn select_maximum_reduced_prime_implicants(implicant_by_minterms : Value) -> Value raise
+
+///|
+/// defun reduce-to-minimum-cover -- ../share/logic/Ksimplifier.lisp:89
+declare fn reduce_to_minimum_cover(numvar : Value, minterms : Value) -> Value raise
+
+///|
+/// defun decimal-to-binary -- ../share/logic/Ksimplifier.lisp:101
+declare fn decimal_to_binary(numvar : Value, number : Value) -> Value raise
+
+///|
+/// defun maxima-expression -- ../share/logic/Ksimplifier.lisp:113
+declare fn maxima_expression(minimum_cover : Value, list_of_variables : Value) -> Value raise
+
+///|
+/// defun transform-to-intermediate -- ../share/logic/Ksimplifier.lisp:135
+declare fn transform_to_intermediate(expr : Value, substitution_table : Value) -> Value raise
+
+///|
+/// defun substitute-intermediate -- ../share/logic/Ksimplifier.lisp:147
+declare fn substitute_intermediate(expr : Value, substitution_table : Value) -> Value raise
+
+///|
+/// defun $logic_simplify -- ../share/logic/Ksimplifier.lisp:155
+declare fn d_logic_simplify(expr : Value) -> Value raise
+
+///|
+/// defun $common_lisp -- ../share/contrib/tocl.lisp:56
+declare fn d_common_lisp(e : Value) -> Value raise
+
+///|
+/// defun $to_cl -- ../share/contrib/tocl.lisp:63
+declare fn d_to_cl(e : Value) -> Value raise
+
+///|
+/// defun $cl_eval -- ../share/contrib/tocl.lisp:67
+declare fn d_cl_eval(e : Value) -> Value raise
+
+///|
+/// defun lambda-tr -- ../share/contrib/tocl.lisp:92
+declare fn lambda_tr(f : Value) -> Value raise
+
+///|
+/// defun block-tr -- ../share/contrib/tocl.lisp:95
+declare fn block_tr(f : Value) -> Value raise
+
+///|
+/// defun cond-tr -- ../share/contrib/tocl.lisp:103
+declare fn cond_tr(f : Value) -> Value raise
+
+///|
+/// defun mdefine-tr -- ../share/contrib/tocl.lisp:111
+declare fn mdefine_tr(f : Value) -> Value raise
+
+///|
+/// defun mdo-tr -- ../share/contrib/tocl.lisp:114
+declare fn mdo_tr(f : Value) -> Value raise
+
+///|
+/// defun mapatom-expr-to-cl -- ../share/contrib/tocl.lisp:131
+declare fn mapatom_expr_to_cl(e : Value) -> Value raise
+
+///|
+/// defun expr-to-cl -- ../share/contrib/tocl.lisp:141
+declare fn expr_to_cl(e : Value) -> Value raise
+
+///|
+/// defmspec $stopme -- ../share/contrib/timeout.lisp:12
+declare fn d_stopme(args : Value) -> Value raise
+
+///|
+/// defmspec $time_constrained -- ../share/contrib/timeout.lisp:27
+declare fn d_time_constrained(args : Value) -> Value raise
+
+///|
+/// defun implicit_plot-fix-up-non-equations -- ../share/contrib/implicit_plot.lisp:1
+declare fn implicit_plot_fix_up_non_equations(expr : Value) -> Value raise
+
+///|
+/// defmfun $implicit_plot -- ../share/contrib/implicit_plot.lisp:8
+declare fn d_implicit_plot(expr : Value, optional_args : Value) -> Value raise
+
+///|
+/// defun f90-print -- ../share/contrib/f90.lisp:46
+declare fn f90_print(x : Value) -> Value raise
+
+///|
+/// defmfun $f90mx -- ../share/contrib/f90.lisp:105
+declare fn d_f90mx(name : Value, mat : Value) -> Value raise
+
+///|
+/// defmspec $f90 -- ../share/contrib/f90.lisp:123
+declare fn d_f90(expr : Value) -> Value raise
+
+///|
+/// defmspec $cgrind -- ../share/contrib/cgrind.lisp:21
+declare fn d_cgrind(l : Value) -> Value raise
+
+///|
+/// defun c-print -- ../share/contrib/cgrind.lisp:32
+declare fn c_print(x : Value, stream? : Value) -> Value raise
+
+///|
+/// defun msz-cmexpt -- ../share/contrib/cgrind.lisp:62
+declare fn msz_cmexpt(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defmfun $cgrindmx -- ../share/contrib/cgrind.lisp:78
+declare fn d_cgrindmx(name : Value, mat : Value, stream? : Value) -> Value raise
+
+///|
+/// defun scanforc -- ../share/contrib/cgrind.lisp:99
+declare fn scanforc(e : Value) -> Value raise
+
+///|
+/// defun scanforc-mtimes -- ../share/contrib/cgrind.lisp:133
+declare fn scanforc_mtimes(e : Value) -> Value raise
+
+///|
+/// defun $ratp_hipow -- ../share/contrib/ratpow.lisp:20
+declare fn d_ratp_hipow(e : Value, v : Value) -> Value raise
+
+///|
+/// defun $ratp_lopow -- ../share/contrib/ratpow.lisp:25
+declare fn d_ratp_lopow(e : Value, v : Value) -> Value raise
+
+///|
+/// defun $ratp_coeffs -- ../share/contrib/ratpow.lisp:30
+declare fn d_ratp_coeffs(e : Value, v : Value) -> Value raise
+
+///|
+/// defun $ratp_dense_coeffs -- ../share/contrib/ratpow.lisp:35
+declare fn d_ratp_dense_coeffs(e : Value, v : Value) -> Value raise
+
+///|
+/// defun $ratp_dense_coeffs_lo -- ../share/contrib/ratpow.lisp:40
+declare fn d_ratp_dense_coeffs_lo(e : Value, v : Value) -> Value raise
+
+///|
+/// defun ratp_pow -- ../share/contrib/ratpow.lisp:43
+declare fn ratp_pow(e : Value, v : Value, func : Value) -> Value raise
+
+///|
+/// defun part-rat -- ../share/contrib/ratpow.lisp:87
+declare fn part_rat(mrat : Value, expr : Value) -> Value raise
+
+///|
+/// defun $graph2d -- ../share/contrib/graph2d.lisp:3
+declare fn d_graph2d(lis : Value) -> Value raise
+
+///|
+/// defun $colorterm -- ../share/contrib/colorterm.lisp:45
+declare fn d_colorterm() -> Value raise
+
+///|
+/// defun $latticereduce -- ../share/contrib/lll.lisp:4
+declare fn d_latticereduce(l : Value) -> Value raise
+
+///|
+/// defun $integerrelations -- ../share/contrib/lll.lisp:23
+declare fn d_integerrelations(l : Value) -> Value raise
+
+///|
+/// defun $floatrelations -- ../share/contrib/lll.lisp:28
+declare fn d_floatrelations(l : Value) -> Value raise
+
+///|
+/// defun $recognize -- ../share/contrib/lll.lisp:33
+declare fn d_recognize(x : Value) -> Value raise
+
+///|
+/// defun norm2 -- ../share/contrib/lll.lisp:38
+declare fn norm2(a : Value) -> Value raise
+
+///|
+/// defun vadd -- ../share/contrib/lll.lisp:44
+declare fn vadd(a : Value, b : Value) -> Value raise
+
+///|
+/// defun vsub -- ../share/contrib/lll.lisp:55
+declare fn vsub(a : Value, b : Value) -> Value raise
+
+///|
+/// defun smul -- ../share/contrib/lll.lisp:66
+declare fn smul(s : Value, a : Value) -> Value raise
+
+///|
+/// defun gso -- ../share/contrib/lll.lisp:87
+declare fn gso(f : Value, mu : Value) -> Value raise
+
+///|
+/// defun lll -- ../share/contrib/lll.lisp:106
+declare fn lll(f : Value) -> Value raise
+
+///|
+/// defun nint -- ../share/contrib/lll.lisp:138
+declare fn nint(q : Value) -> Value raise
+
+///|
+/// defun test1 -- ../share/contrib/lll.lisp:141
+declare fn test1() -> Value raise
+
+///|
+/// defun test2 -- ../share/contrib/lll.lisp:144
+declare fn test2() -> Value raise
+
+///|
+/// defun test3 -- ../share/contrib/lll.lisp:147
+declare fn test3() -> Value raise
+
+///|
+/// defun test4 -- ../share/contrib/lll.lisp:150
+declare fn test4() -> Value raise
+
+///|
+/// defun integerrelations -- ../share/contrib/lll.lisp:153
+declare fn integerrelations(l : Value) -> Value raise
+
+///|
+/// defun test5 -- ../share/contrib/lll.lisp:182
+declare fn test5() -> Value raise
+
+///|
+/// defun nkomma -- ../share/contrib/lll.lisp:187
+declare fn nkomma(a : Value) -> Value raise
+
+///|
+/// defun floatrelations -- ../share/contrib/lll.lisp:191
+declare fn floatrelations(x : Value, digits? : Value = Fix(10L)) -> Value raise
+
+///|
+/// defun test6 -- ../share/contrib/lll.lisp:208
+declare fn test6() -> Value raise
+
+///|
+/// defun mkdif -- ../share/contrib/lll.lisp:212
+declare fn mkdif(a : Value, b : Value) -> Value raise
+
+///|
+/// defun mksum -- ../share/contrib/lll.lisp:213
+declare fn mksum(a : Value, b : Value) -> Value raise
+
+///|
+/// defun mkprod -- ../share/contrib/lll.lisp:214
+declare fn mkprod(a : Value, b : Value) -> Value raise
+
+///|
+/// defun mkexpt -- ../share/contrib/lll.lisp:215
+declare fn mkexpt(a : Value, b : Value) -> Value raise
+
+///|
+/// defun mkeq -- ../share/contrib/lll.lisp:216
+declare fn mkeq(a : Value, b : Value) -> Value raise
+
+///|
+/// defun max2str -- ../share/contrib/lll.lisp:218
+declare fn max2str(expr : Value) -> Value raise
+
+///|
+/// defun convert2algnum -- ../share/contrib/lll.lisp:222
+declare fn convert2algnum(x : Value, digits? : Value = Fix(10L)) -> Value raise
+
+///|
+/// defun test7 -- ../share/contrib/lll.lisp:258
+declare fn test7() -> Value raise
+
+///|
+/// defun test8 -- ../share/contrib/lll.lisp:262
+declare fn test8() -> Value raise
+
+///|
+/// defun test9 -- ../share/contrib/lll.lisp:266
+declare fn test9() -> Value raise
+
+///|
+/// defun server-run -- ../share/contrib/maxima-server.lisp:54
+declare fn server_run() -> Value raise
+
+///|
+/// defun $tocheb -- ../share/contrib/chebformax.lisp:8
+declare fn d_tocheb(f : Value, n : Value) -> Value raise
+
+///|
+/// defun ajs -- ../share/contrib/chebformax.lisp:13
+declare fn ajs(f : Value, n : Value) -> Value raise
+
+///|
+/// defun cachecos -- ../share/contrib/chebformax.lisp:22
+declare fn cachecos(r : Value) -> Value raise
+
+///|
+/// defun aj -- ../share/contrib/chebformax.lisp:24
+declare fn aj(f : Value, j : Value, n : Value) -> Value raise
+
+///|
+/// defun $cheb_call -- ../share/contrib/chebformax.lisp:32
+declare fn d_cheb_call(a : Value, x : Value) -> Value raise
+
+///|
+/// defun $chebadd -- ../share/contrib/chebformax.lisp:54
+declare fn d_chebadd(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $chebmul -- ../share/contrib/chebformax.lisp:70
+declare fn d_chebmul(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $chebcomp -- ../share/contrib/chebformax.lisp:95
+declare fn d_chebcomp(f : Value, g : Value, n : Value) -> Value raise
+
+///|
+/// defun $chebplus -- ../share/contrib/chebformax.lisp:102
+declare fn d_chebplus(f : Value, g : Value) -> Value raise
+
+///|
+/// defun $chebtimes -- ../share/contrib/chebformax.lisp:109
+declare fn d_chebtimes(f : Value, g : Value) -> Value raise
+
+///|
+/// defun $chebinv -- ../share/contrib/chebformax.lisp:116
+declare fn d_chebinv(f : Value, n : Value) -> Value raise
+
+///|
+/// defun $chebapply -- ../share/contrib/chebformax.lisp:123
+declare fn d_chebapply(fun : Value, cs : Value, n : Value) -> Value raise
+
+///|
+/// defun $chebint -- ../share/contrib/chebformax.lisp:132
+declare fn d_chebint(a : Value) -> Value raise
+
+///|
+/// defun $bs_asin -- ../share/contrib/binsplit/binsplit.lisp:33
+declare fn d_bs_asin(x : Value) -> Value raise
+
+///|
+/// defun $bs_acos -- ../share/contrib/binsplit/binsplit.lisp:34
+declare fn d_bs_acos(x : Value) -> Value raise
+
+///|
+/// defun $bs_atan -- ../share/contrib/binsplit/binsplit.lisp:35
+declare fn d_bs_atan(x : Value) -> Value raise
+
+///|
+/// defun $bs_acot -- ../share/contrib/binsplit/binsplit.lisp:36
+declare fn d_bs_acot(x : Value) -> Value raise
+
+///|
+/// defun bs-asincos -- ../share/contrib/binsplit/binsplit.lisp:38
+declare fn bs_asincos(x : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun bs-carg1 -- ../share/contrib/binsplit/binsplit.lisp:78
+declare fn bs_carg1(re_z : Value, im_z : Value, prec : Value) -> Value raise
+
+///|
+/// defun bs-carg11 -- ../share/contrib/binsplit/binsplit.lisp:96
+declare fn bs_carg11(z : Value, prec : Value) -> Value raise
+
+///|
+/// defun complex-exp-%i*u/2^2k -- ../share/contrib/binsplit/binsplit.lisp:111
+declare fn complex_exp__pcti_staru_sl2_hat2k(u : Value, k : Value, prec : Value) -> Value raise
+
+///|
+/// defun split-bs-exp-u/2^z -- ../share/contrib/binsplit/binsplit.lisp:118
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn split_bs_exp_u_sl2_hatz(i : Value, j : Value, u : Value, z : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun complex-fptimes* -- ../share/contrib/binsplit/binsplit.lisp:139
+declare fn complex_fptimes_star(a : Value, b : Value) -> Value raise
+
+///|
+/// defun complex-fpsquare -- ../share/contrib/binsplit/binsplit.lisp:146
+declare fn complex_fpsquare(a : Value) -> Value raise
+
+///|
+/// defun $bs_sin -- ../share/contrib/binsplit/binsplit.lisp:159
+declare fn d_bs_sin(x : Value) -> Value raise
+
+///|
+/// defun $bs_cos -- ../share/contrib/binsplit/binsplit.lisp:160
+declare fn d_bs_cos(x : Value) -> Value raise
+
+///|
+/// defun $bs_tan -- ../share/contrib/binsplit/binsplit.lisp:161
+declare fn d_bs_tan(x : Value) -> Value raise
+
+///|
+/// defun $bs_cot -- ../share/contrib/binsplit/binsplit.lisp:162
+declare fn d_bs_cot(x : Value) -> Value raise
+
+///|
+/// defun bs-sincos -- ../share/contrib/binsplit/binsplit.lisp:164
+declare fn bs_sincos(x : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun bs-exp-%i*x -- ../share/contrib/binsplit/binsplit.lisp:192
+declare fn bs_exp__pcti_starx(x : Value, prec : Value) -> Value raise
+
+///|
+/// defun complex-exp-%i*u/2^2^k -- ../share/contrib/binsplit/binsplit.lisp:216
+declare fn complex_exp__pcti_staru_sl2_hat2_hatk(u : Value, k : Value, prec : Value) -> Value raise
+
+///|
+/// defun complex-exp-%i*u/2^z -- ../share/contrib/binsplit/binsplit.lisp:223
+declare fn complex_exp__pcti_staru_sl2_hatz(u : Value, z : Value, kk : Value, prec : Value) -> Value raise
+
+///|
+/// defun $bs_expm1 -- ../share/contrib/binsplit/binsplit.lisp:250
+declare fn d_bs_expm1(x : Value) -> Value raise
+
+///|
+/// defun bs-expm1 -- ../share/contrib/binsplit/binsplit.lisp:252
+declare fn bs_expm1(x : Value) -> Value raise
+
+///|
+/// defun $bs_exp -- ../share/contrib/binsplit/binsplit.lisp:264
+declare fn d_bs_exp(x : Value) -> Value raise
+
+///|
+/// defun bs-exp -- ../share/contrib/binsplit/binsplit.lisp:266
+declare fn bs_exp(x : Value) -> Value raise
+
+///|
+/// defun bs-exp-u/2^2^k -- ../share/contrib/binsplit/binsplit.lisp:287
+declare fn bs_exp_u_sl2_hat2_hatk(u : Value, k : Value, prec : Value) -> Value raise
+
+///|
+/// defun bs-exp-u/2^z-series-size -- ../share/contrib/binsplit/binsplit.lisp:302
+declare fn bs_exp_u_sl2_hatz_series_size(kk : Value, prec : Value) -> Value raise
+
+///|
+/// defun bs-exp-u/2^z -- ../share/contrib/binsplit/binsplit.lisp:310
+declare fn bs_exp_u_sl2_hatz(u : Value, z : Value, kk : Value, prec : Value) -> Value raise
+
+///|
+/// defun $bs_log1p -- ../share/contrib/binsplit/binsplit.lisp:328
+declare fn d_bs_log1p(eps : Value) -> Value raise
+
+///|
+/// defun bs-log1p -- ../share/contrib/binsplit/binsplit.lisp:330
+declare fn bs_log1p(eps : Value) -> Value raise
+
+///|
+/// defun $bs_log -- ../share/contrib/binsplit/binsplit.lisp:346
+declare fn d_bs_log(x : Value) -> Value raise
+
+///|
+/// defun bs-log -- ../share/contrib/binsplit/binsplit.lisp:348
+declare fn bs_log(x : Value) -> Value raise
+
+///|
+/// defun bs-log1 -- ../share/contrib/binsplit/binsplit.lisp:368
+declare fn bs_log1(x : Value, prec : Value) -> Value raise
+
+///|
+/// defun bs-exp-u/2^2k -- ../share/contrib/binsplit/binsplit.lisp:388
+declare fn bs_exp_u_sl2_hat2k(u : Value, k : Value, prec : Value) -> Value raise
+
+///|
+/// defun $testodelin -- ../share/contrib/diffequations/testodelin.lisp:18
+declare fn d_testodelin(fn_ : Value) -> Value raise
+
+///|
+/// defun variablep -- ../share/contrib/diffequations/lazysolver.lisp:23
+declare fn variablep(e : Value) -> Value raise
+
+///|
+/// defun $checksolution -- ../share/contrib/diffequations/lazysolver.lisp:28
+declare fn d_checksolution(sol : Value, eqs : Value, nz? : Value) -> Value raise
+
+///|
+/// defun my-expr-size -- ../share/contrib/diffequations/lazysolver.lisp:45
+declare fn my_expr_size(e : Value) -> Value raise
+
+///|
+/// defun xmy-expr-size -- ../share/contrib/diffequations/lazysolver.lisp:48
+declare fn xmy_expr_size(e : Value) -> Value raise
+
+///|
+/// defun my-freeof -- ../share/contrib/diffequations/lazysolver.lisp:51
+declare fn my_freeof(unks : Value, q : Value) -> Value raise
+
+///|
+/// defun $checkedalgsys -- ../share/contrib/diffequations/lazysolver.lisp:61
+declare fn d_checkedalgsys(eqs : Value, vars : Value, nz? : Value) -> Value raise
+
+///|
+/// defun nonconstant-factors -- ../share/contrib/diffequations/lazysolver.lisp:80
+declare fn nonconstant_factors(e : Value, vars : Value) -> Value raise
+
+///|
+/// defun unks-in-eq -- ../share/contrib/diffequations/lazysolver.lisp:105
+declare fn unks_in_eq(eq_ : Value, unks : Value) -> Value raise
+
+///|
+/// defun $aalgsys -- ../share/contrib/diffequations/lazysolver.lisp:109
+declare fn d_aalgsys(e_eqs : Value, eqs : Value, unks : Value, nz? : Value) -> Value raise
+
+///|
+/// defun mbag-map -- ../share/contrib/diffequations/odeutils.lisp:30
+declare fn mbag_map(f : Value, bag : Value) -> Value raise
+
+///|
+/// defun number-of-unks -- ../share/contrib/diffequations/odeutils.lisp:33
+declare fn number_of_unks(p : Value, unks : Value) -> Value raise
+
+///|
+/// defun require-symbol -- ../share/contrib/diffequations/sqfr.lisp:25
+declare fn require_symbol(x : Value, f : Value, a? : Value = Nil) -> Value raise
+
+///|
+/// defun $strictmysqfr -- ../share/contrib/diffequations/sqfr.lisp:32
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn d_strictmysqfr(p : Value, x : Value) -> (Value, Value) raise
+
+///|
+/// defun $mysqfr -- ../share/contrib/diffequations/sqfr.lisp:69
+declare fn d_mysqfr(p : Value, x : Value) -> Value raise
+
+///|
+/// defun notunitfree -- ../share/contrib/unit/unit-functions.lisp:110
+declare fn notunitfree(form : Value) -> Value raise
+
+///|
+/// defun unitmember -- ../share/contrib/unit/unit-functions.lisp:122
+declare fn unitmember(form : Value, list1 : Value) -> Value raise
+
+///|
+/// defun groupbyaddlisp -- ../share/contrib/unit/unit-functions.lisp:127
+declare fn groupbyaddlisp(form : Value) -> Value raise
+
+///|
+/// defun groupadd -- ../share/contrib/unit/unit-functions.lisp:138
+declare fn groupadd(form : Value) -> Value raise
+
+///|
+/// defun onlyunits -- ../share/contrib/unit/unit-functions.lisp:146
+declare fn onlyunits(form : Value) -> Value raise
+
+///|
+/// defun getunits -- ../share/contrib/unit/unit-functions.lisp:154
+declare fn getunits(form : Value) -> Value raise
+
+///|
+/// defun nonunits -- ../share/contrib/unit/unit-functions.lisp:168
+declare fn nonunits(form : Value) -> Value raise
+
+///|
+/// defun unitmtimeswrapper -- ../share/contrib/unit/unit-functions.lisp:182
+declare fn unitmtimeswrapper(form : Value) -> Value raise
+
+///|
+/// defmfun meval*n -- ../share/contrib/noninteractive/asksign1.lisp:18
+declare fn meval_starn(l : Value) -> Value raise
+
+///|
+/// defmspec $assuming -- ../share/contrib/noninteractive/noninteractive.lisp:8
+declare fn d_assuming(e : Value) -> Value raise
+
+///|
+/// defun extract-assumptions -- ../share/contrib/noninteractive/noninteractive.lisp:18
+declare fn extract_assumptions(x : Value) -> Value raise
+
+///|
+/// defmfun $delete_noninteractive_stuff_from_infolists -- ../share/contrib/noninteractive/noninteractive.lisp:28
+declare fn d_delete_noninteractive_stuff_from_infolists() -> Value raise
+
+///|
+/// defmfun $ctmathml -- ../share/contrib/maximaMathML/CtMathML.lisp:29
+declare fn d_ctmathml(margs : Value) -> Value raise
+
+///|
+/// defun masymbol -- ../share/contrib/maximaMathML/CtMathML.lisp:79
+declare fn masymbol(op : Value, l : Value) -> Value raise
+
+///|
+/// defun mpsymbol -- ../share/contrib/maximaMathML/CtMathML.lisp:84
+declare fn mpsymbol(op : Value, l : Value) -> Value raise
+
+///|
+/// defun ctmathml -- ../share/contrib/maximaMathML/CtMathML.lisp:91
+declare fn ctmathml(exp_ : Value) -> Value raise
+
+///|
+/// defun op2ml -- ../share/contrib/maximaMathML/CtMathML.lisp:105
+declare fn op2ml(op : Value, args : Value) -> Value raise
+
+///|
+/// defun ctarray -- ../share/contrib/maximaMathML/CtMathML.lisp:119
+declare fn ctarray(a : Value) -> Value raise
+
+///|
+/// defun a2ml -- ../share/contrib/maximaMathML/CtMathML.lisp:125
+declare fn a2ml(a : Value) -> Value raise
+
+///|
+/// defun cpxp -- ../share/contrib/maximaMathML/CtMathML.lisp:151
+declare fn cpxp(a : Value) -> Value raise
+
+///|
+/// defun fractionp -- ../share/contrib/maximaMathML/CtMathML.lisp:164
+declare fn fractionp(a : Value) -> Value raise
+
+///|
+/// defun ctlist -- ../share/contrib/maximaMathML/CtMathML.lisp:177
+declare fn ctlist(op : Value, args : Value) -> Value raise
+
+///|
+/// defun ctset -- ../share/contrib/maximaMathML/CtMathML.lisp:183
+declare fn ctset(op : Value, args : Value) -> Value raise
+
+///|
+/// defun matrixrow -- ../share/contrib/maximaMathML/CtMathML.lisp:188
+declare fn matrixrow(args : Value) -> Value raise
+
+///|
+/// defun ctmatrix -- ../share/contrib/maximaMathML/CtMathML.lisp:195
+declare fn ctmatrix(op : Value, args : Value) -> Value raise
+
+///|
+/// defun ctvector -- ../share/contrib/maximaMathML/CtMathML.lisp:201
+declare fn ctvector(op : Value, args : Value) -> Value raise
+
+///|
+/// defun relation -- ../share/contrib/maximaMathML/CtMathML.lisp:207
+declare fn relation(op : Value, args : Value) -> Value raise
+
+///|
+/// defun sumprod -- ../share/contrib/maximaMathML/CtMathML.lisp:214
+declare fn sumprod(op : Value, args : Value) -> Value raise
+
+///|
+/// defun ctlimit -- ../share/contrib/maximaMathML/CtMathML.lisp:235
+declare fn ctlimit(op : Value, args : Value) -> Value raise
+
+///|
+/// defun ctdiff -- ../share/contrib/maximaMathML/CtMathML.lisp:256
+declare fn ctdiff(op : Value, args : Value) -> Value raise
+
+///|
+/// defun diffvar -- ../share/contrib/maximaMathML/CtMathML.lisp:274
+declare fn diffvar(v : Value, d : Value) -> Value raise
+
+///|
+/// defun ctintegrate -- ../share/contrib/maximaMathML/CtMathML.lisp:282
+declare fn ctintegrate(op : Value, args : Value) -> Value raise
+
+///|
+/// defun lamd -- ../share/contrib/maximaMathML/CtMathML.lisp:296
+declare fn lamd(vars : Value, def : Value) -> Value raise
+
+///|
+/// defun def-fun -- ../share/contrib/maximaMathML/CtMathML.lisp:306
+declare fn def_fun(op : Value, args : Value) -> Value raise
+
+///|
+/// defun $mathml -- ../share/contrib/maximaMathML/mathml-maxima.lisp:34
+declare fn d_mathml() -> Value raise
+
+///|
+/// defun mltoma -- ../share/contrib/maximaMathML/mathml-maxima.lisp:37
+declare fn mltoma(ear_in? : Value = Nil) -> Value raise
+
+///|
+/// defun ml2ma -- ../share/contrib/maximaMathML/mathml-maxima.lisp:46
+declare fn ml2ma() -> Value raise
+
+///|
+/// defun ml-apply -- ../share/contrib/maximaMathML/mathml-maxima.lisp:58
+declare fn ml_apply() -> Value raise
+
+///|
+/// defun mctdiff -- ../share/contrib/maximaMathML/mathml-maxima.lisp:77
+declare fn mctdiff() -> Value raise
+
+///|
+/// defun mctintegrate -- ../share/contrib/maximaMathML/mathml-maxima.lisp:82
+declare fn mctintegrate() -> Value raise
+
+///|
+/// defun get-bvar -- ../share/contrib/maximaMathML/mathml-maxima.lisp:101
+declare fn get_bvar() -> Value raise
+
+///|
+/// defun diff-bvar -- ../share/contrib/maximaMathML/mathml-maxima.lisp:110
+declare fn diff_bvar() -> Value raise
+
+///|
+/// defun ml-cn -- ../share/contrib/maximaMathML/mathml-maxima.lisp:122
+declare fn ml_cn(attributes : Value) -> Value raise
+
+///|
+/// defun ml-ci -- ../share/contrib/maximaMathML/mathml-maxima.lisp:138
+declare fn ml_ci(attributes : Value) -> Value raise
+
+///|
+/// defun mathml-constant-to-maxima-constant -- ../share/contrib/maximaMathML/mathml-maxima.lisp:151
+declare fn mathml_constant_to_maxima_constant(name_string : Value) -> Value raise
+
+///|
+/// defun get-number -- ../share/contrib/maximaMathML/mathml-maxima.lisp:162
+declare fn get_number() -> Value raise
+
+///|
+/// defun next-char -- ../share/contrib/maximaMathML/mathml-maxima.lisp:167
+declare fn next_char() -> Value raise
+
+///|
+/// defun get-tag -- ../share/contrib/maximaMathML/mathml-maxima.lisp:176
+declare fn get_tag(endc? : Value = Char('>')) -> Value raise
+
+///|
+/// defun get-atag -- ../share/contrib/maximaMathML/mathml-maxima.lisp:183
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn get_atag(endc? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun split-attribute -- ../share/contrib/maximaMathML/mathml-maxima.lisp:196
+declare fn split_attribute(attr_string : Value) -> Value raise
+
+///|
+/// defun dequotify -- ../share/contrib/maximaMathML/mathml-maxima.lisp:209
+declare fn dequotify(s : Value) -> Value raise
+
+///|
+/// defun find-attribute -- ../share/contrib/maximaMathML/mathml-maxima.lisp:222
+declare fn find_attribute(attr : Value, attrs_list : Value) -> Value raise
+
+///|
+/// defun get-str -- ../share/contrib/maximaMathML/mathml-maxima.lisp:225
+declare fn get_str(endc? : Value = Nil) -> Value raise
+
+///|
+/// defun get-token -- ../share/contrib/maximaMathML/mathml-maxima.lisp:235
+declare fn get_token(endc? : Value = Nil) -> Value raise
+
+///|
+/// defun get-op -- ../share/contrib/maximaMathML/mathml-maxima.lisp:245
+declare fn get_op() -> Value raise
+
+///|
+/// defun set-table -- ../share/contrib/maximaMathML/mathml-maxima.lisp:274
+declare fn set_table(arg : Value) -> Value raise
+
+///|
+/// defmfun $prmathml -- ../share/contrib/maximaMathML/PrMathML.lisp:28
+declare fn d_prmathml(margs : Value) -> Value raise
+
+///|
+/// defun mpr_engine -- ../share/contrib/maximaMathML/PrMathML.lisp:127
+declare fn mpr_engine(mexpress : Value, lop : Value, rop : Value) -> Value raise
+
+///|
+/// defun row-begin -- ../share/contrib/maximaMathML/PrMathML.lisp:161
+declare fn row_begin(str : Value) -> Value raise
+
+///|
+/// defun myindent -- ../share/contrib/maximaMathML/PrMathML.lisp:167
+declare fn myindent() -> Value raise
+
+///|
+/// defun row-end -- ../share/contrib/maximaMathML/PrMathML.lisp:173
+declare fn row_end(str : Value) -> Value raise
+
+///|
+/// defun tpchar -- ../share/contrib/maximaMathML/PrMathML.lisp:179
+declare fn tpchar(c : Value) -> Value raise
+
+///|
+/// defun tprinc -- ../share/contrib/maximaMathML/PrMathML.lisp:186
+declare fn tprinc(chstr : Value) -> Value raise
+
+///|
+/// defun myterpri -- ../share/contrib/maximaMathML/PrMathML.lisp:200
+declare fn myterpri() -> Value raise
+
+///|
+/// defun lastelementp -- ../share/contrib/maximaMathML/PrMathML.lisp:209
+declare fn lastelementp(l : Value) -> Value raise
+
+///|
+/// defun getsymbol -- ../share/contrib/maximaMathML/PrMathML.lisp:214
+declare fn getsymbol(atom_ : Value) -> Value raise
+
+///|
+/// defun setup -- ../share/contrib/maximaMathML/PrMathML.lisp:224
+declare fn setup(arg : Value) -> Value raise
+
+///|
+/// defun mpr-lbp -- ../share/contrib/maximaMathML/PrMathML.lisp:233
+declare fn mpr_lbp(x : Value) -> Value raise
+
+///|
+/// defun mpr-rbp -- ../share/contrib/maximaMathML/PrMathML.lisp:235
+declare fn mpr_rbp(x : Value) -> Value raise
+
+///|
+/// defun $lessparen -- ../share/contrib/maximaMathML/PrMathML.lisp:238
+declare fn d_lessparen() -> Value raise
+
+///|
+/// defun $parenback -- ../share/contrib/maximaMathML/PrMathML.lisp:243
+declare fn d_parenback() -> Value raise
+
+///|
+/// defun mpr-abs -- ../share/contrib/maximaMathML/PrMathML.lisp:250
+declare fn mpr_abs(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-conjugate -- ../share/contrib/maximaMathML/PrMathML.lisp:255
+declare fn mpr_conjugate(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-arr-power -- ../share/contrib/maximaMathML/PrMathML.lisp:264
+declare fn mpr_arr_power(b : Value, e : Value) -> Value raise
+
+///|
+/// defun mpr-array -- ../share/contrib/maximaMathML/PrMathML.lisp:282
+declare fn mpr_array(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-at -- ../share/contrib/maximaMathML/PrMathML.lisp:292
+declare fn mpr_at(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-at-difference -- ../share/contrib/maximaMathML/PrMathML.lisp:302
+declare fn mpr_at_difference(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-atom -- ../share/contrib/maximaMathML/PrMathML.lisp:321
+declare fn mpr_atom(chr : Value) -> Value raise
+
+///|
+/// defun rm -- ../share/contrib/maximaMathML/PrMathML.lisp:334
+declare fn rm(a : Value, list_ : Value) -> Value raise
+
+///|
+/// defun handle_rsw -- ../share/contrib/maximaMathML/PrMathML.lisp:340
+declare fn handle_rsw(c : Value) -> Value raise
+
+///|
+/// defun mpr-binomial -- ../share/contrib/maximaMathML/PrMathML.lisp:350
+declare fn mpr_binomial(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-det -- ../share/contrib/maximaMathML/PrMathML.lisp:361
+declare fn mpr_det(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-diff -- ../share/contrib/maximaMathML/PrMathML.lisp:369
+declare fn mpr_diff(mexpress : Value) -> Value raise
+
+///|
+/// defun powerof_d -- ../share/contrib/maximaMathML/PrMathML.lisp:380
+declare fn powerof_d(l : Value) -> Value raise
+
+///|
+/// defun denopart -- ../share/contrib/maximaMathML/PrMathML.lisp:401
+declare fn denopart(l : Value) -> Value raise
+
+///|
+/// defun mpr-expt -- ../share/contrib/maximaMathML/PrMathML.lisp:453
+declare fn mpr_expt(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-fname -- ../share/contrib/maximaMathML/PrMathML.lisp:494
+declare fn mpr_fname(f : Value) -> Value raise
+
+///|
+/// defun mpr-function -- ../share/contrib/maximaMathML/PrMathML.lisp:500
+declare fn mpr_function(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-gamma -- ../share/contrib/maximaMathML/PrMathML.lisp:505
+declare fn mpr_gamma(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-infix -- ../share/contrib/maximaMathML/PrMathML.lisp:518
+declare fn mpr_infix(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-infix1 -- ../share/contrib/maximaMathML/PrMathML.lisp:529
+declare fn mpr_infix1(moperator : Value, moperands : Value) -> Value raise
+
+///|
+/// defun p-op-oprd -- ../share/contrib/maximaMathML/PrMathML.lisp:541
+declare fn p__op_oprd(moperator : Value, moperand : Value) -> Value raise
+
+///|
+/// defun p-op -- ../share/contrib/maximaMathML/PrMathML.lisp:556
+declare fn p__op(symbol : Value) -> Value raise
+
+///|
+/// defun mpr-integrate -- ../share/contrib/maximaMathML/PrMathML.lisp:568
+declare fn mpr_integrate(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-limit -- ../share/contrib/maximaMathML/PrMathML.lisp:593
+declare fn mpr_limit(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-list -- ../share/contrib/maximaMathML/PrMathML.lisp:610
+declare fn mpr_list(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-listparen -- ../share/contrib/maximaMathML/PrMathML.lisp:619
+declare fn mpr_listparen(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-matrix -- ../share/contrib/maximaMathML/PrMathML.lisp:626
+declare fn mpr_matrix(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-mqapply -- ../share/contrib/maximaMathML/PrMathML.lisp:639
+declare fn mpr_mqapply(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-num -- ../share/contrib/maximaMathML/PrMathML.lisp:647
+declare fn mpr_num(atom_ : Value) -> Value raise
+
+///|
+/// defun mpr-paren -- ../share/contrib/maximaMathML/PrMathML.lisp:665
+declare fn mpr_paren(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-plus -- ../share/contrib/maximaMathML/PrMathML.lisp:672
+declare fn mpr_plus(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-plus1 -- ../share/contrib/maximaMathML/PrMathML.lisp:685
+declare fn mpr_plus1(moperands : Value, flag_trunc : Value) -> Value raise
+
+///|
+/// defun print_op_oprd -- ../share/contrib/maximaMathML/PrMathML.lisp:692
+declare fn print_op_oprd(moperand : Value) -> Value raise
+
+///|
+/// defun mpr-postfix -- ../share/contrib/maximaMathML/PrMathML.lisp:702
+declare fn mpr_postfix(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-prefix -- ../share/contrib/maximaMathML/PrMathML.lisp:710
+declare fn mpr_prefix(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-quotient -- ../share/contrib/maximaMathML/PrMathML.lisp:718
+declare fn mpr_quotient(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-rat -- ../share/contrib/maximaMathML/PrMathML.lisp:726
+declare fn mpr_rat(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-sqrt -- ../share/contrib/maximaMathML/PrMathML.lisp:740
+declare fn mpr_sqrt(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-sumprod -- ../share/contrib/maximaMathML/PrMathML.lisp:751
+declare fn mpr_sumprod(mexpress : Value) -> Value raise
+
+///|
+/// defun mpr-times -- ../share/contrib/maximaMathML/PrMathML.lisp:768
+declare fn mpr_times(mexpress : Value) -> Value raise
+
+///|
+/// defun mathml-presentation-lambda -- ../share/contrib/maximaMathML/PrMathML.lisp:771
+declare fn mathml_presentation_lambda(mexpress : Value) -> Value raise
+
+///|
+/// defun mathml-presentation-buildinfo -- ../share/contrib/maximaMathML/PrMathML.lisp:787
+declare fn mathml_presentation_buildinfo(mexpress : Value) -> Value raise
+
+///|
+/// defun get-mathml-mathspace -- ../share/contrib/lurkmathml/mathml.lisp:54
+declare fn get_mathml_mathspace(sym_ : Value) -> Value raise
+
+///|
+/// defun $xml_sanitize -- ../share/contrib/lurkmathml/mathml.lisp:72
+declare fn d_xml_sanitize(x : Value, strings? : Value = Str("'\"<>&;#")) -> Value raise
+
+///|
+/// defun mathml1 -- ../share/contrib/lurkmathml/mathml.lisp:86
+declare fn mathml1(mexplabel : Value, filename? : Value = Nil) -> Value raise
+
+///|
+/// defun mathml -- ../share/contrib/lurkmathml/mathml.lisp:138
+declare fn mathml(x : Value, l : Value, r : Value, lop : Value, rop : Value) -> Value raise
+
+///|
+/// defun mathml-atom -- ../share/contrib/lurkmathml/mathml.lisp:161
+declare fn mathml_atom(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathmlnumformat -- ../share/contrib/lurkmathml/mathml.lisp:182
+declare fn mathmlnumformat(atom_ : Value) -> Value raise
+
+///|
+/// defun mathml-stripdollar -- ../share/contrib/lurkmathml/mathml.lisp:213
+declare fn mathml_stripdollar(sym_ : Value) -> Value raise
+
+///|
+/// defun mathml-stripdollar-default -- ../share/contrib/lurkmathml/mathml.lisp:263
+declare fn mathml_stripdollar_default(sym_ : Value) -> Value raise
+
+///|
+/// defun mathml-paren -- ../share/contrib/lurkmathml/mathml.lisp:281
+declare fn mathml_paren(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-array -- ../share/contrib/lurkmathml/mathml.lisp:284
+declare fn mathml_array(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-list -- ../share/contrib/lurkmathml/mathml.lisp:299
+declare fn mathml_list(x : Value, l : Value, r : Value, sym_ : Value) -> Value raise
+
+///|
+/// defun mathml-function -- ../share/contrib/lurkmathml/mathml.lisp:311
+declare fn mathml_function(x : Value, l : Value, r : Value, op : Value) -> Value raise
+
+///|
+/// defun mathml-prefix -- ../share/contrib/lurkmathml/mathml.lisp:318
+declare fn mathml_prefix(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-infix -- ../share/contrib/lurkmathml/mathml.lisp:321
+declare fn mathml_infix(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-postfix -- ../share/contrib/lurkmathml/mathml.lisp:327
+declare fn mathml_postfix(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-nary -- ../share/contrib/lurkmathml/mathml.lisp:330
+declare fn mathml_nary(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-nofix -- ../share/contrib/lurkmathml/mathml.lisp:340
+declare fn mathml_nofix(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-matchfix -- ../share/contrib/lurkmathml/mathml.lisp:342
+declare fn mathml_matchfix(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathmlsym -- ../share/contrib/lurkmathml/mathml.lisp:350
+declare fn mathmlsym(x : Value) -> Value raise
+
+///|
+/// defun mathmlword -- ../share/contrib/lurkmathml/mathml.lisp:353
+declare fn mathmlword(x : Value) -> Value raise
+
+///|
+/// defun mathml-bigfloat -- ../share/contrib/lurkmathml/mathml.lisp:357
+declare fn mathml_bigfloat(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-mlabox -- ../share/contrib/lurkmathml/mathml.lisp:391
+declare fn mathml_mlabox(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-mqapply -- ../share/contrib/lurkmathml/mathml.lisp:401
+declare fn mathml_mqapply(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-mexpt -- ../share/contrib/lurkmathml/mathml.lisp:478
+declare fn mathml_mexpt(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-sqrt -- ../share/contrib/lurkmathml/mathml.lisp:545
+declare fn mathml_sqrt(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-cubrt -- ../share/contrib/lurkmathml/mathml.lisp:553
+declare fn mathml_cubrt(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-mquotient -- ../share/contrib/lurkmathml/mathml.lisp:561
+declare fn mathml_mquotient(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-matrix -- ../share/contrib/lurkmathml/mathml.lisp:569
+declare fn mathml_matrix(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-lsum -- ../share/contrib/lurkmathml/mathml.lisp:585
+declare fn mathml_lsum(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-sum -- ../share/contrib/lurkmathml/mathml.lisp:595
+declare fn mathml_sum(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-int -- ../share/contrib/lurkmathml/mathml.lisp:609
+declare fn mathml_int(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-limit -- ../share/contrib/lurkmathml/mathml.lisp:627
+declare fn mathml_limit(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-at -- ../share/contrib/lurkmathml/mathml.lisp:636
+declare fn mathml_at(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-at-difference -- ../share/contrib/lurkmathml/mathml.lisp:645
+declare fn mathml_at_difference(e : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-choose -- ../share/contrib/lurkmathml/mathml.lisp:666
+declare fn mathml_choose(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-rat -- ../share/contrib/lurkmathml/mathml.lisp:679
+declare fn mathml_rat(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-mplus -- ../share/contrib/lurkmathml/mathml.lisp:685
+declare fn mathml_mplus(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-setup -- ../share/contrib/lurkmathml/mathml.lisp:760
+declare fn mathml_setup(x : Value) -> Value raise
+
+///|
+/// defun mathml-derivative -- ../share/contrib/lurkmathml/mathml.lisp:821
+declare fn mathml_derivative(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-d -- ../share/contrib/lurkmathml/mathml.lisp:824
+declare fn mathml_d(x : Value, dsym : Value) -> Value raise
+
+///|
+/// defun mathml-mcond -- ../share/contrib/lurkmathml/mathml.lisp:841
+declare fn mathml_mcond(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-lbp -- ../share/contrib/lurkmathml/mathml.lisp:857
+declare fn mathml_lbp(x : Value) -> Value raise
+
+///|
+/// defun mathml-rbp -- ../share/contrib/lurkmathml/mathml.lisp:858
+declare fn mathml_rbp(x : Value) -> Value raise
+
+///|
+/// defun mathml-mdo -- ../share/contrib/lurkmathml/mathml.lisp:862
+declare fn mathml_mdo(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathml-mdoin -- ../share/contrib/lurkmathml/mathml.lisp:865
+declare fn mathml_mdoin(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun mathmlmdo -- ../share/contrib/lurkmathml/mathml.lisp:868
+declare fn mathmlmdo(x : Value) -> Value raise
+
+///|
+/// defun mathmlmdoin -- ../share/contrib/lurkmathml/mathml.lisp:882
+declare fn mathmlmdoin(x : Value) -> Value raise
+
+///|
+/// defun caaaddr -- ../share/contrib/gentran/allgentran.lisp:84
+declare fn caaaddr(p : Value) -> Value raise
+
+///|
+/// defun cadaddr -- ../share/contrib/gentran/allgentran.lisp:86
+declare fn cadaddr(x : Value) -> Value raise
+
+///|
+/// defun caddaddr -- ../share/contrib/gentran/allgentran.lisp:88
+declare fn caddaddr(x : Value) -> Value raise
+
+///|
+/// defun cadddddddr -- ../share/contrib/gentran/allgentran.lisp:90
+declare fn cadddddddr(x : Value) -> Value raise
+
+///|
+/// defun caddddddr -- ../share/contrib/gentran/allgentran.lisp:93
+declare fn caddddddr(x : Value) -> Value raise
+
+///|
+/// defun cadddddr -- ../share/contrib/gentran/allgentran.lisp:95
+declare fn cadddddr(x : Value) -> Value raise
+
+///|
+/// defun cdadaddr -- ../share/contrib/gentran/allgentran.lisp:97
+declare fn cdadaddr(x : Value) -> Value raise
+
+///|
+/// defun caddddr -- ../share/contrib/gentran/allgentran.lisp:99
+declare fn caddddr(x : Value) -> Value raise
+
+///|
+/// defun compress -- ../share/contrib/gentran/allgentran.lisp:101
+declare fn compress(m : Value) -> Value raise
+
+///|
+/// defun append1 -- ../share/contrib/gentran/allgentran.lisp:107
+declare fn append1(x : Value, y : Value) -> Value raise
+
+///|
+/// defun explode2 -- ../share/contrib/gentran/allgentran.lisp:116
+declare fn explode2(m : Value) -> Value raise
+
+///|
+/// defun flagp -- ../share/contrib/gentran/allgentran.lisp:133
+declare fn flagp(var_ : Value, fname : Value) -> Value raise
+
+///|
+/// defun geq -- ../share/contrib/gentran/allgentran.lisp:140
+declare fn geq(n1 : Value, n2 : Value) -> Value raise
+
+///|
+/// defun idp -- ../share/contrib/gentran/allgentran.lisp:147
+declare fn idp(m : Value) -> Value raise
+
+///|
+/// defun mkfil -- ../share/contrib/gentran/allgentran.lisp:154
+declare fn mkfil(m : Value) -> Value raise
+
+///|
+/// defun posn -- ../share/contrib/gentran/allgentran.lisp:161
+declare fn posn() -> Value raise
+
+///|
+/// defun put -- ../share/contrib/gentran/allgentran.lisp:179
+declare fn put(id : Value, proptype : Value, propval : Value) -> Value raise
+
+///|
+/// defun rederr -- ../share/contrib/gentran/allgentran.lisp:190
+declare fn rederr(m : Value) -> Value raise
+
+///|
+/// defun procforttem -- ../share/contrib/gentran/allgentran.lisp:244
+declare fn procforttem() -> Value raise
+
+///|
+/// defun procfortcomm -- ../share/contrib/gentran/allgentran.lisp:276
+declare fn procfortcomm() -> Value raise
+
+///|
+/// defun procrattem -- ../share/contrib/gentran/allgentran.lisp:294
+declare fn procrattem() -> Value raise
+
+///|
+/// defun procratcomm -- ../share/contrib/gentran/allgentran.lisp:320
+declare fn procratcomm() -> Value raise
+
+///|
+/// defun procctem -- ../share/contrib/gentran/allgentran.lisp:333
+declare fn procctem() -> Value raise
+
+///|
+/// defun procccomm -- ../share/contrib/gentran/allgentran.lisp:360
+declare fn procccomm() -> Value raise
+
+///|
+/// defun procactive -- ../share/contrib/gentran/allgentran.lisp:384
+declare fn procactive() -> Value raise
+
+///|
+/// defun $readvexp -- ../share/contrib/gentran/allgentran.lisp:397
+declare fn d_readvexp(in_ : Value) -> Value raise
+
+///|
+/// defun concat2 -- ../share/contrib/gentran/allgentran.lisp:489
+declare fn concat2(str1 : Value, str2 : Value) -> Value raise
+
+///|
+/// defun outpath -- ../share/contrib/gentran/allgentran.lisp:492
+declare fn outpath(fname : Value) -> Value raise
+
+///|
+/// defun fsearch -- ../share/contrib/gentran/allgentran.lisp:497
+declare fn fsearch(inf : Value) -> Value raise
+
+///|
+/// defun tempvar -- ../share/contrib/gentran/allgentran.lisp:570
+declare fn tempvar(type_ : Value) -> Value raise
+
+///|
+/// defun markvar -- ../share/contrib/gentran/allgentran.lisp:607
+declare fn markvar(var_ : Value) -> Value raise
+
+///|
+/// defun markedvarp -- ../share/contrib/gentran/allgentran.lisp:614
+declare fn markedvarp(var_ : Value) -> Value raise
+
+///|
+/// defun unmarkvar -- ../share/contrib/gentran/allgentran.lisp:617
+declare fn unmarkvar(var_ : Value) -> Value raise
+
+///|
+/// defun recurunmark -- ../share/contrib/gentran/allgentran.lisp:621
+declare fn recurunmark(exp_ : Value) -> Value raise
+
+///|
+/// defun genstmtno -- ../share/contrib/gentran/allgentran.lisp:630
+declare fn genstmtno() -> Value raise
+
+///|
+/// defun symtabput -- ../share/contrib/gentran/allgentran.lisp:638
+declare fn symtabput(name : Value, type_ : Value, value : Value) -> Value raise
+
+///|
+/// defun symtabget -- ../share/contrib/gentran/allgentran.lisp:670
+declare fn symtabget(name : Value, type_ : Value) -> Value raise
+
+///|
+/// defun symtabrem -- ../share/contrib/gentran/allgentran.lisp:690
+declare fn symtabrem(name : Value, type_ : Value) -> Value raise
+
+///|
+/// defun getvartype -- ../share/contrib/gentran/allgentran.lisp:717
+declare fn getvartype(var_ : Value) -> Value raise
+
+///|
+/// defun $setgentranlang -- ../share/contrib/gentran/allgentran.lisp:733
+declare fn d_setgentranlang(a : Value) -> Value raise
+
+///|
+/// defun imptype -- ../share/contrib/gentran/allgentran.lisp:739
+declare fn imptype(var_ : Value) -> Value raise
+
+///|
+/// defun arrayeltp -- ../share/contrib/gentran/allgentran.lisp:743
+declare fn arrayeltp(exp_ : Value) -> Value raise
+
+///|
+/// defun delinstk -- ../share/contrib/gentran/allgentran.lisp:752
+declare fn delinstk(pr : Value) -> Value raise
+
+///|
+/// defun delstk -- ../share/contrib/gentran/allgentran.lisp:757
+declare fn delstk(pr : Value) -> Value raise
+
+///|
+/// defun flisteqp -- ../share/contrib/gentran/allgentran.lisp:762
+declare fn flisteqp(flist1 : Value, flist2 : Value) -> Value raise
+
+///|
+/// defun filpr -- ../share/contrib/gentran/allgentran.lisp:768
+declare fn filpr(fname : Value, stk : Value) -> Value raise
+
+///|
+/// defun mkfilpr -- ../share/contrib/gentran/allgentran.lisp:775
+declare fn mkfilpr(fname : Value) -> Value raise
+
+///|
+/// defun pfilpr -- ../share/contrib/gentran/allgentran.lisp:781
+declare fn pfilpr(flist : Value, stk : Value) -> Value raise
+
+///|
+/// defun popinstk -- ../share/contrib/gentran/allgentran.lisp:788
+declare fn popinstk() -> Value raise
+
+///|
+/// defun popstk -- ../share/contrib/gentran/allgentran.lisp:791
+declare fn popstk(pr : Value) -> Value raise
+
+///|
+/// defun pushinstk -- ../share/contrib/gentran/allgentran.lisp:805
+declare fn pushinstk(pr : Value) -> Value raise
+
+///|
+/// defun pushstk -- ../share/contrib/gentran/allgentran.lisp:809
+declare fn pushstk(pr : Value) -> Value raise
+
+///|
+/// defun resetstk -- ../share/contrib/gentran/allgentran.lisp:814
+declare fn resetstk(stk : Value) -> Value raise
+
+///|
+/// defun resetstkvars -- ../share/contrib/gentran/allgentran.lisp:834
+declare fn resetstkvars() -> Value raise
+
+///|
+/// defun mkassign -- ../share/contrib/gentran/allgentran.lisp:850
+declare fn mkassign(var_ : Value, exp_ : Value) -> Value raise
+
+///|
+/// defun mkcond -- ../share/contrib/gentran/allgentran.lisp:853
+declare fn mkcond(pairs : Value) -> Value raise
+
+///|
+/// defun mkdef -- ../share/contrib/gentran/allgentran.lisp:856
+declare fn mkdef(name : Value, params : Value, body : Value) -> Value raise
+
+///|
+/// defun mkdo -- ../share/contrib/gentran/allgentran.lisp:859
+declare fn mkdo(var_ : Value, exitcond : Value, body : Value) -> Value raise
+
+///|
+/// defun mkreturn -- ../share/contrib/gentran/allgentran.lisp:862
+declare fn mkreturn(exp_ : Value) -> Value raise
+
+///|
+/// defun mkstmtgp -- ../share/contrib/gentran/allgentran.lisp:865
+declare fn mkstmtgp(vars : Value, stmts : Value) -> Value raise
+
+///|
+/// defun mkterpri -- ../share/contrib/gentran/allgentran.lisp:869
+declare fn mkterpri() -> Value raise
+
+///|
+/// defun lispassignp -- ../share/contrib/gentran/allgentran.lisp:878
+declare fn lispassignp(stmt : Value) -> Value raise
+
+///|
+/// defun lispbreakp -- ../share/contrib/gentran/allgentran.lisp:882
+declare fn lispbreakp(form : Value) -> Value raise
+
+///|
+/// defun lispcallp -- ../share/contrib/gentran/allgentran.lisp:885
+declare fn lispcallp(form : Value) -> Value raise
+
+///|
+/// defun lispcondp -- ../share/contrib/gentran/allgentran.lisp:888
+declare fn lispcondp(stmt : Value) -> Value raise
+
+///|
+/// defun lispdefp -- ../share/contrib/gentran/allgentran.lisp:892
+declare fn lispdefp(form : Value) -> Value raise
+
+///|
+/// defun lispdop -- ../share/contrib/gentran/allgentran.lisp:896
+declare fn lispdop(stmt : Value) -> Value raise
+
+///|
+/// defun lispexpp -- ../share/contrib/gentran/allgentran.lisp:900
+declare fn lispexpp(form : Value) -> Value raise
+
+///|
+/// defun lispendp -- ../share/contrib/gentran/allgentran.lisp:906
+declare fn lispendp(form : Value) -> Value raise
+
+///|
+/// defun lispgop -- ../share/contrib/gentran/allgentran.lisp:910
+declare fn lispgop(form : Value) -> Value raise
+
+///|
+/// defun lisplabelp -- ../share/contrib/gentran/allgentran.lisp:913
+declare fn lisplabelp(form : Value) -> Value raise
+
+///|
+/// defun lisplogexpp -- ../share/contrib/gentran/allgentran.lisp:916
+declare fn lisplogexpp(form : Value) -> Value raise
+
+///|
+/// defun lispprintp -- ../share/contrib/gentran/allgentran.lisp:922
+declare fn lispprintp(form : Value) -> Value raise
+
+///|
+/// defun lispreadp -- ../share/contrib/gentran/allgentran.lisp:925
+declare fn lispreadp(form : Value) -> Value raise
+
+///|
+/// defun lispreturnp -- ../share/contrib/gentran/allgentran.lisp:930
+declare fn lispreturnp(stmt : Value) -> Value raise
+
+///|
+/// defun lispstmtp -- ../share/contrib/gentran/allgentran.lisp:934
+declare fn lispstmtp(form : Value) -> Value raise
+
+///|
+/// defun lispstmtgpp -- ../share/contrib/gentran/allgentran.lisp:942
+declare fn lispstmtgpp(form : Value) -> Value raise
+
+///|
+/// defun lispstopp -- ../share/contrib/gentran/allgentran.lisp:946
+declare fn lispstopp(form : Value) -> Value raise
+
+///|
+/// defun gfunctionp -- ../share/contrib/gentran/allgentran.lisp:955
+declare fn gfunctionp(stmt : Value, name : Value) -> Value raise
+
+///|
+/// defun implicitp -- ../share/contrib/gentran/allgentran.lisp:965
+declare fn implicitp(type_ : Value) -> Value raise
+
+///|
+/// defun inttypep -- ../share/contrib/gentran/allgentran.lisp:980
+declare fn inttypep(type_ : Value) -> Value raise
+
+///|
+/// defun complexdop -- ../share/contrib/gentran/allgentran.lisp:997
+declare fn complexdop(dostmt : Value) -> Value raise
+
+///|
+/// defun formtypelists -- ../share/contrib/gentran/allgentran.lisp:1002
+declare fn formtypelists(varlists : Value) -> Value raise
+
+///|
+/// defun insertcommas -- ../share/contrib/gentran/allgentran.lisp:1020
+declare fn insertcommas(lst : Value) -> Value raise
+
+///|
+/// defun noerrmevalp -- ../share/contrib/gentran/allgentran.lisp:1030
+declare fn noerrmevalp(pred : Value) -> Value raise
+
+///|
+/// defun simplifydo -- ../share/contrib/gentran/allgentran.lisp:1036
+declare fn simplifydo(dostmt : Value) -> Value raise
+
+///|
+/// defun seqtogp -- ../share/contrib/gentran/allgentran.lisp:1057
+declare fn seqtogp(lst : Value) -> Value raise
+
+///|
+/// defun stripdollar1 -- ../share/contrib/gentran/allgentran.lisp:1065
+declare fn stripdollar1(x : Value) -> Value raise
+
+///|
+/// defun princ-invert-case -- ../share/contrib/gentran/allgentran.lisp:1093
+declare fn princ_invert_case(sym_ : Value) -> Value raise
+
+///|
+/// defun formatfort -- ../share/contrib/gentran/allgentran.lisp:1098
+declare fn formatfort(lst : Value) -> Value raise
+
+///|
+/// defun formatfort1 -- ../share/contrib/gentran/allgentran.lisp:1103
+declare fn formatfort1(lst : Value) -> Value raise
+
+///|
+/// defun fortcontline -- ../share/contrib/gentran/allgentran.lisp:1113
+declare fn fortcontline() -> Value raise
+
+///|
+/// defun forttab -- ../share/contrib/gentran/allgentran.lisp:1120
+declare fn forttab(n : Value) -> Value raise
+
+///|
+/// defun formatrat -- ../share/contrib/gentran/allgentran.lisp:1127
+declare fn formatrat(lst : Value) -> Value raise
+
+///|
+/// defun formatrat1 -- ../share/contrib/gentran/allgentran.lisp:1132
+declare fn formatrat1(lst : Value) -> Value raise
+
+///|
+/// defun ratcontline -- ../share/contrib/gentran/allgentran.lisp:1143
+declare fn ratcontline() -> Value raise
+
+///|
+/// defun rattab -- ../share/contrib/gentran/allgentran.lisp:1149
+declare fn rattab(n : Value) -> Value raise
+
+///|
+/// defun formatc -- ../share/contrib/gentran/allgentran.lisp:1156
+declare fn formatc(lst : Value) -> Value raise
+
+///|
+/// defun formatc1 -- ../share/contrib/gentran/allgentran.lisp:1161
+declare fn formatc1(lst : Value) -> Value raise
+
+///|
+/// defun ccontline -- ../share/contrib/gentran/allgentran.lisp:1172
+declare fn ccontline() -> Value raise
+
+///|
+/// defun ctab -- ../share/contrib/gentran/allgentran.lisp:1178
+declare fn ctab(n : Value) -> Value raise
+
+///|
+/// defun pprin2 -- ../share/contrib/gentran/allgentran.lisp:1189
+declare fn pprin2(arg : Value) -> Value raise
+
+///|
+/// defun gentranerr -- ../share/contrib/gentran/allgentran.lisp:1201
+declare fn gentranerr(msgtype : Value, exp_ : Value, msg1 : Value) -> Value raise
+
+///|
+/// defun safe-car -- ../share/contrib/gentran/allgentran.lisp:1228
+declare fn safe_car(x : Value) -> Value raise
+
+///|
+/// defun safe-caar -- ../share/contrib/gentran/allgentran.lisp:1229
+declare fn safe_caar(x : Value) -> Value raise
+
+///|
+/// defun franz -- ../share/contrib/gentran/allgentran.lisp:1231
+declare fn franz(form : Value) -> Value raise
+
+///|
+/// defun franzexp -- ../share/contrib/gentran/allgentran.lisp:1242
+declare fn franzexp(exp_ : Value, ind : Value, context : Value) -> Value raise
+
+///|
+/// defun exptype -- ../share/contrib/gentran/allgentran.lisp:1355
+declare fn exptype(exp_ : Value) -> Value raise
+
+///|
+/// defun itemtype -- ../share/contrib/gentran/allgentran.lisp:1386
+declare fn itemtype(item : Value) -> Value raise
+
+///|
+/// defun dfix -- ../share/contrib/gentran/allgentran.lisp:1400
+declare fn dfix(c : Value) -> Value raise
+
+///|
+/// defun double -- ../share/contrib/gentran/allgentran.lisp:1404
+declare fn double(num : Value) -> Value raise
+
+///|
+/// defun gcomplex -- ../share/contrib/gentran/allgentran.lisp:1415
+declare fn gcomplex(num : Value) -> Value raise
+
+///|
+/// defun simptimes1 -- ../share/contrib/gentran/allgentran.lisp:1426
+declare fn simptimes1(terms : Value) -> Value raise
+
+///|
+/// defun simptimes2 -- ../share/contrib/gentran/allgentran.lisp:1452
+declare fn simptimes2(terms : Value) -> Value raise
+
+///|
+/// defun franzstmt -- ../share/contrib/gentran/allgentran.lisp:1458
+declare fn franzstmt(stmt : Value) -> Value raise
+
+///|
+/// defun mac$literalp -- ../share/contrib/gentran/allgentran.lisp:1484
+declare fn mac_dolliteralp(stmt : Value) -> Value raise
+
+///|
+/// defun franzliteral -- ../share/contrib/gentran/allgentran.lisp:1488
+declare fn franzliteral(fn_ : Value, stmt : Value) -> Value raise
+
+///|
+/// defun franzlabel -- ../share/contrib/gentran/allgentran.lisp:1495
+declare fn franzlabel(label : Value) -> Value raise
+
+///|
+/// defun franzstmtgp -- ../share/contrib/gentran/allgentran.lisp:1499
+declare fn franzstmtgp(stmtgp : Value) -> Value raise
+
+///|
+/// defun franzdef -- ../share/contrib/gentran/allgentran.lisp:1503
+declare fn franzdef(def : Value) -> Value raise
+
+///|
+/// defun franzread -- ../share/contrib/gentran/allgentran.lisp:1534
+declare fn franzread(stmt : Value) -> Value raise
+
+///|
+/// defun franzmatassign -- ../share/contrib/gentran/allgentran.lisp:1557
+declare fn franzmatassign(stmt : Value) -> Value raise
+
+///|
+/// defun franznestassign -- ../share/contrib/gentran/allgentran.lisp:1570
+declare fn franznestassign(stmt : Value) -> Value raise
+
+///|
+/// defun franzassign -- ../share/contrib/gentran/allgentran.lisp:1583
+declare fn franzassign(stmt : Value) -> Value raise
+
+///|
+/// defun franzif -- ../share/contrib/gentran/allgentran.lisp:1588
+declare fn franzif(stmt : Value) -> Value raise
+
+///|
+/// defun franzfor -- ../share/contrib/gentran/allgentran.lisp:1600
+declare fn franzfor(stmt : Value) -> Value raise
+
+///|
+/// defun franzforin -- ../share/contrib/gentran/allgentran.lisp:1649
+declare fn franzforin(stmt : Value) -> Value raise
+
+///|
+/// defun franzgo -- ../share/contrib/gentran/allgentran.lisp:1690
+declare fn franzgo(stmt : Value) -> Value raise
+
+///|
+/// defun franzret -- ../share/contrib/gentran/allgentran.lisp:1694
+declare fn franzret(stmt : Value) -> Value raise
+
+///|
+/// defun franzprint -- ../share/contrib/gentran/allgentran.lisp:1699
+declare fn franzprint(stmt : Value) -> Value raise
+
+///|
+/// defun franzstop -- ../share/contrib/gentran/allgentran.lisp:1706
+declare fn franzstop() -> Value raise
+
+///|
+/// defun franzend -- ../share/contrib/gentran/allgentran.lisp:1710
+declare fn franzend() -> Value raise
+
+///|
+/// defun franzcall -- ../share/contrib/gentran/allgentran.lisp:1714
+declare fn franzcall(exp_ : Value) -> Value raise
+
+///|
+/// defun macexpp -- ../share/contrib/gentran/allgentran.lisp:1726
+declare fn macexpp(exp_ : Value) -> Value raise
+
+///|
+/// defun maclogexpp -- ../share/contrib/gentran/allgentran.lisp:1735
+declare fn maclogexpp(exp_ : Value) -> Value raise
+
+///|
+/// defun macstmtp -- ../share/contrib/gentran/allgentran.lisp:1745
+declare fn macstmtp(stmt : Value) -> Value raise
+
+///|
+/// defun macstmtgpp -- ../share/contrib/gentran/allgentran.lisp:1754
+declare fn macstmtgpp(stmt : Value) -> Value raise
+
+///|
+/// defun macdefp -- ../share/contrib/gentran/allgentran.lisp:1759
+declare fn macdefp(stmt : Value) -> Value raise
+
+///|
+/// defun macassignp -- ../share/contrib/gentran/allgentran.lisp:1769
+declare fn macassignp(stmt : Value) -> Value raise
+
+///|
+/// defun macnestassignp -- ../share/contrib/gentran/allgentran.lisp:1773
+declare fn macnestassignp(stmt : Value) -> Value raise
+
+///|
+/// defun macmatassignp -- ../share/contrib/gentran/allgentran.lisp:1780
+declare fn macmatassignp(stmt : Value) -> Value raise
+
+///|
+/// defun macifp -- ../share/contrib/gentran/allgentran.lisp:1787
+declare fn macifp(stmt : Value) -> Value raise
+
+///|
+/// defun macforp -- ../share/contrib/gentran/allgentran.lisp:1791
+declare fn macforp(stmt : Value) -> Value raise
+
+///|
+/// defun macforinp -- ../share/contrib/gentran/allgentran.lisp:1795
+declare fn macforinp(stmt : Value) -> Value raise
+
+///|
+/// defun macgop -- ../share/contrib/gentran/allgentran.lisp:1799
+declare fn macgop(stmt : Value) -> Value raise
+
+///|
+/// defun maclabelp -- ../share/contrib/gentran/allgentran.lisp:1803
+declare fn maclabelp(stmt : Value) -> Value raise
+
+///|
+/// defun macretp -- ../share/contrib/gentran/allgentran.lisp:1812
+declare fn macretp(stmt : Value) -> Value raise
+
+///|
+/// defun macreadp -- ../share/contrib/gentran/allgentran.lisp:1816
+declare fn macreadp(stmt : Value) -> Value raise
+
+///|
+/// defun macprintp -- ../share/contrib/gentran/allgentran.lisp:1823
+declare fn macprintp(stmt : Value) -> Value raise
+
+///|
+/// defun macstopp -- ../share/contrib/gentran/allgentran.lisp:1827
+declare fn macstopp(stmt : Value) -> Value raise
+
+///|
+/// defun macendp -- ../share/contrib/gentran/allgentran.lisp:1831
+declare fn macendp(stmt : Value) -> Value raise
+
+///|
+/// defun gentranparse -- ../share/contrib/gentran/allgentran.lisp:1847
+declare fn gentranparse(forms : Value) -> Value raise
+
+///|
+/// defun pmexp -- ../share/contrib/gentran/allgentran.lisp:1854
+declare fn pmexp(s : Value) -> Value raise
+
+///|
+/// defun pmexp1 -- ../share/contrib/gentran/allgentran.lisp:1883
+declare fn pmexp1(s : Value) -> Value raise
+
+///|
+/// defun pmlogexp -- ../share/contrib/gentran/allgentran.lisp:1889
+declare fn pmlogexp(s : Value) -> Value raise
+
+///|
+/// defun pmlogexp1 -- ../share/contrib/gentran/allgentran.lisp:1924
+declare fn pmlogexp1(s : Value) -> Value raise
+
+///|
+/// defun pmstmt -- ../share/contrib/gentran/allgentran.lisp:1930
+declare fn pmstmt(s : Value) -> Value raise
+
+///|
+/// defun pmstmt1 -- ../share/contrib/gentran/allgentran.lisp:2015
+declare fn pmstmt1(s : Value) -> Value raise
+
+///|
+/// defun pmmsetq1 -- ../share/contrib/gentran/allgentran.lisp:2021
+declare fn pmmsetq1(s : Value) -> Value raise
+
+///|
+/// defun pmmsetq2 -- ../share/contrib/gentran/allgentran.lisp:2034
+declare fn pmmsetq2(s : Value) -> Value raise
+
+///|
+/// defun pmmsetq3 -- ../share/contrib/gentran/allgentran.lisp:2044
+declare fn pmmsetq3(s : Value) -> Value raise
+
+///|
+/// defun pmmsetq4 -- ../share/contrib/gentran/allgentran.lisp:2054
+declare fn pmmsetq4(s : Value) -> Value raise
+
+///|
+/// defun pmmcond1 -- ../share/contrib/gentran/allgentran.lisp:2073
+declare fn pmmcond1(s : Value) -> Value raise
+
+///|
+/// defun pmidop -- ../share/contrib/gentran/allgentran.lisp:2078
+declare fn pmidop(s : Value) -> Value raise
+
+///|
+/// defun pmmminusop -- ../share/contrib/gentran/allgentran.lisp:2082
+declare fn pmmminusop(s : Value) -> Value raise
+
+///|
+/// defun pmmquotientop -- ../share/contrib/gentran/allgentran.lisp:2086
+declare fn pmmquotientop(s : Value) -> Value raise
+
+///|
+/// defun pmratop -- ../share/contrib/gentran/allgentran.lisp:2090
+declare fn pmratop(s : Value) -> Value raise
+
+///|
+/// defun pmmexptop -- ../share/contrib/gentran/allgentran.lisp:2094
+declare fn pmmexptop(s : Value) -> Value raise
+
+///|
+/// defun pmmplusop -- ../share/contrib/gentran/allgentran.lisp:2098
+declare fn pmmplusop(s : Value) -> Value raise
+
+///|
+/// defun pmmtimesop -- ../share/contrib/gentran/allgentran.lisp:2102
+declare fn pmmtimesop(s : Value) -> Value raise
+
+///|
+/// defun pmmgreaterpop -- ../share/contrib/gentran/allgentran.lisp:2106
+declare fn pmmgreaterpop(s : Value) -> Value raise
+
+///|
+/// defun pmmequalop -- ../share/contrib/gentran/allgentran.lisp:2110
+declare fn pmmequalop(s : Value) -> Value raise
+
+///|
+/// defun pmmnotequalop -- ../share/contrib/gentran/allgentran.lisp:2114
+declare fn pmmnotequalop(s : Value) -> Value raise
+
+///|
+/// defun pmmlesspop -- ../share/contrib/gentran/allgentran.lisp:2118
+declare fn pmmlesspop(s : Value) -> Value raise
+
+///|
+/// defun pmmgeqpop -- ../share/contrib/gentran/allgentran.lisp:2122
+declare fn pmmgeqpop(s : Value) -> Value raise
+
+///|
+/// defun pmmleqpop -- ../share/contrib/gentran/allgentran.lisp:2126
+declare fn pmmleqpop(s : Value) -> Value raise
+
+///|
+/// defun pmmnotop -- ../share/contrib/gentran/allgentran.lisp:2130
+declare fn pmmnotop(s : Value) -> Value raise
+
+///|
+/// defun pmmandop -- ../share/contrib/gentran/allgentran.lisp:2134
+declare fn pmmandop(s : Value) -> Value raise
+
+///|
+/// defun pmmorop -- ../share/contrib/gentran/allgentran.lisp:2138
+declare fn pmmorop(s : Value) -> Value raise
+
+///|
+/// defun pmmsetqop -- ../share/contrib/gentran/allgentran.lisp:2142
+declare fn pmmsetqop(s : Value) -> Value raise
+
+///|
+/// defun pmmcondop -- ../share/contrib/gentran/allgentran.lisp:2146
+declare fn pmmcondop(s : Value) -> Value raise
+
+///|
+/// defun pmmdoop -- ../share/contrib/gentran/allgentran.lisp:2150
+declare fn pmmdoop(s : Value) -> Value raise
+
+///|
+/// defun pmmdoinop -- ../share/contrib/gentran/allgentran.lisp:2154
+declare fn pmmdoinop(s : Value) -> Value raise
+
+///|
+/// defun pmmgoop -- ../share/contrib/gentran/allgentran.lisp:2158
+declare fn pmmgoop(s : Value) -> Value raise
+
+///|
+/// defun pmmreturnop -- ../share/contrib/gentran/allgentran.lisp:2162
+declare fn pmmreturnop(s : Value) -> Value raise
+
+///|
+/// defun pm$stopop -- ../share/contrib/gentran/allgentran.lisp:2166
+declare fn pm_dolstopop(s : Value) -> Value raise
+
+///|
+/// defun pm$endop -- ../share/contrib/gentran/allgentran.lisp:2170
+declare fn pm_dolendop(s : Value) -> Value raise
+
+///|
+/// defun pm$printop -- ../share/contrib/gentran/allgentran.lisp:2174
+declare fn pm_dolprintop(s : Value) -> Value raise
+
+///|
+/// defun pm$declare_typeop -- ../share/contrib/gentran/allgentran.lisp:2178
+declare fn pm_doldeclare_typeop(s : Value) -> Value raise
+
+///|
+/// defun pmmprogop -- ../share/contrib/gentran/allgentran.lisp:2182
+declare fn pmmprogop(s : Value) -> Value raise
+
+///|
+/// defun pmmprognop -- ../share/contrib/gentran/allgentran.lisp:2186
+declare fn pmmprognop(s : Value) -> Value raise
+
+///|
+/// defun pm$evop -- ../share/contrib/gentran/allgentran.lisp:2190
+declare fn pm_dolevop(s : Value) -> Value raise
+
+///|
+/// defun pmmdefineop -- ../share/contrib/gentran/allgentran.lisp:2194
+declare fn pmmdefineop(s : Value) -> Value raise
+
+///|
+/// defun pm$readonlyop -- ../share/contrib/gentran/allgentran.lisp:2198
+declare fn pm_dolreadonlyop(s : Value) -> Value raise
+
+///|
+/// defun pmlambdaop -- ../share/contrib/gentran/allgentran.lisp:2202
+declare fn pmlambdaop(s : Value) -> Value raise
+
+///|
+/// defun pm$matrixop -- ../share/contrib/gentran/allgentran.lisp:2206
+declare fn pm_dolmatrixop(s : Value) -> Value raise
+
+///|
+/// defun pmmlistop -- ../share/contrib/gentran/allgentran.lisp:2210
+declare fn pmmlistop(s : Value) -> Value raise
+
+///|
+/// defun pmidparamop -- ../share/contrib/gentran/allgentran.lisp:2214
+declare fn pmidparamop(s : Value) -> Value raise
+
+///|
+/// defun pmmdefine1 -- ../share/contrib/gentran/allgentran.lisp:2219
+declare fn pmmdefine1(s : Value) -> Value raise
+
+///|
+/// defun pmid1 -- ../share/contrib/gentran/allgentran.lisp:2225
+declare fn pmid1(s : Value) -> Value raise
+
+///|
+/// defun pmvar -- ../share/contrib/gentran/allgentran.lisp:2231
+declare fn pmvar(s : Value) -> Value raise
+
+///|
+/// defun pmvarnil -- ../share/contrib/gentran/allgentran.lisp:2242
+declare fn pmvarnil(s : Value) -> Value raise
+
+///|
+/// defun pmretexp -- ../share/contrib/gentran/allgentran.lisp:2247
+declare fn pmretexp(s : Value) -> Value raise
+
+///|
+/// defun pmparams1 -- ../share/contrib/gentran/allgentran.lisp:2254
+declare fn pmparams1(s : Value) -> Value raise
+
+///|
+/// defun pmlist -- ../share/contrib/gentran/allgentran.lisp:2264
+declare fn pmlist(s : Value) -> Value raise
+
+///|
+/// defun pmlist2 -- ../share/contrib/gentran/allgentran.lisp:2270
+declare fn pmlist2(s : Value) -> Value raise
+
+///|
+/// defun pmlist1 -- ../share/contrib/gentran/allgentran.lisp:2276
+declare fn pmlist1(s : Value) -> Value raise
+
+///|
+/// defun pmconst -- ../share/contrib/gentran/allgentran.lisp:2282
+declare fn pmconst(s : Value) -> Value raise
+
+///|
+/// defun pmstring -- ../share/contrib/gentran/allgentran.lisp:2287
+declare fn pmstring(s : Value) -> Value raise
+
+///|
+/// defun pmid -- ../share/contrib/gentran/allgentran.lisp:2290
+declare fn pmid(s : Value) -> Value raise
+
+///|
+/// defun seg -- ../share/contrib/gentran/allgentran.lisp:2309
+declare fn seg(forms : Value) -> Value raise
+
+///|
+/// defun segexp -- ../share/contrib/gentran/allgentran.lisp:2337
+declare fn segexp(exp_ : Value, type_ : Value) -> Value raise
+
+///|
+/// defun segexp1 -- ../share/contrib/gentran/allgentran.lisp:2348
+declare fn segexp1(exp_ : Value, type_ : Value) -> Value raise
+
+///|
+/// defun segexp2 -- ../share/contrib/gentran/allgentran.lisp:2362
+declare fn segexp2(exp_ : Value, type_ : Value) -> Value raise
+
+///|
+/// defun segstmt -- ../share/contrib/gentran/allgentran.lisp:2421
+declare fn segstmt(stmt : Value) -> Value raise
+
+///|
+/// defun segassign -- ../share/contrib/gentran/allgentran.lisp:2453
+declare fn segassign(stmt : Value) -> Value raise
+
+///|
+/// defun segcond -- ../share/contrib/gentran/allgentran.lisp:2463
+declare fn segcond(cond : Value) -> Value raise
+
+///|
+/// defun segdo -- ../share/contrib/gentran/allgentran.lisp:2491
+declare fn segdo(stmt : Value) -> Value raise
+
+///|
+/// defun segreturn -- ../share/contrib/gentran/allgentran.lisp:2541
+declare fn segreturn(ret : Value) -> Value raise
+
+///|
+/// defun seggroup -- ../share/contrib/gentran/allgentran.lisp:2548
+declare fn seggroup(stmtgp : Value) -> Value raise
+
+///|
+/// defun segdef -- ../share/contrib/gentran/allgentran.lisp:2561
+declare fn segdef(def : Value) -> Value raise
+
+///|
+/// defun toolongexpp -- ../share/contrib/gentran/allgentran.lisp:2573
+declare fn toolongexpp(exp_ : Value) -> Value raise
+
+///|
+/// defun toolongstmtp -- ../share/contrib/gentran/allgentran.lisp:2576
+declare fn toolongstmtp(stmt : Value) -> Value raise
+
+///|
+/// defun toolongassignp -- ../share/contrib/gentran/allgentran.lisp:2593
+declare fn toolongassignp(assign : Value) -> Value raise
+
+///|
+/// defun toolongcondp -- ../share/contrib/gentran/allgentran.lisp:2596
+declare fn toolongcondp(cond : Value) -> Value raise
+
+///|
+/// defun toolongdop -- ../share/contrib/gentran/allgentran.lisp:2604
+declare fn toolongdop(dostmt : Value) -> Value raise
+
+///|
+/// defun toolongreturnp -- ../share/contrib/gentran/allgentran.lisp:2613
+declare fn toolongreturnp(ret : Value) -> Value raise
+
+///|
+/// defun toolongstmtgpp -- ../share/contrib/gentran/allgentran.lisp:2616
+declare fn toolongstmtgpp(stmtgp : Value) -> Value raise
+
+///|
+/// defun toolongdefp -- ../share/contrib/gentran/allgentran.lisp:2620
+declare fn toolongdefp(def : Value) -> Value raise
+
+///|
+/// defun numprintlen -- ../share/contrib/gentran/allgentran.lisp:2634
+declare fn numprintlen(exp_ : Value) -> Value raise
+
+///|
+/// defun fortcode -- ../share/contrib/gentran/allgentran.lisp:2702
+declare fn fortcode(forms : Value) -> Value raise
+
+///|
+/// defun fortsubprog -- ../share/contrib/gentran/allgentran.lisp:2728
+declare fn fortsubprog(def : Value) -> Value raise
+
+///|
+/// defun fortdecs -- ../share/contrib/gentran/allgentran.lisp:2768
+declare fn fortdecs(decs : Value) -> Value raise
+
+///|
+/// defun dbl -- ../share/contrib/gentran/allgentran.lisp:2775
+declare fn dbl(n : Value) -> Value raise
+
+///|
+/// defun fortexp -- ../share/contrib/gentran/allgentran.lisp:2780
+declare fn fortexp(exp_ : Value) -> Value raise
+
+///|
+/// defun fortexp1 -- ../share/contrib/gentran/allgentran.lisp:2784
+declare fn fortexp1(exp_ : Value, wtin : Value) -> Value raise
+
+///|
+/// defun fortranname -- ../share/contrib/gentran/allgentran.lisp:2825
+declare fn fortranname(name : Value) -> Value raise
+
+///|
+/// defun fortranop -- ../share/contrib/gentran/allgentran.lisp:2829
+declare fn fortranop(op : Value) -> Value raise
+
+///|
+/// defun fortranprecedence -- ../share/contrib/gentran/allgentran.lisp:2832
+declare fn fortranprecedence(op : Value) -> Value raise
+
+///|
+/// defun fortstmt -- ../share/contrib/gentran/allgentran.lisp:2837
+declare fn fortstmt(stmt : Value) -> Value raise
+
+///|
+/// defun fortassign -- ../share/contrib/gentran/allgentran.lisp:2857
+declare fn fortassign(stmt : Value) -> Value raise
+
+///|
+/// defun fortbreak -- ../share/contrib/gentran/allgentran.lisp:2860
+declare fn fortbreak(stmt : Value) -> Value raise
+
+///|
+/// defun fortcall -- ../share/contrib/gentran/allgentran.lisp:2872
+declare fn fortcall(stmt : Value) -> Value raise
+
+///|
+/// defun fortdo -- ../share/contrib/gentran/allgentran.lisp:2875
+declare fn fortdo(var_ : Value, lo : Value, nextexp : Value, exitcond : Value, body : Value) -> Value raise
+
+///|
+/// defun fortend -- ../share/contrib/gentran/allgentran.lisp:2893
+declare fn fortend(stmt : Value) -> Value raise
+
+///|
+/// defun fortfor -- ../share/contrib/gentran/allgentran.lisp:2897
+declare fn fortfor(var_ : Value, lo : Value, nextexp : Value, exitcond : Value, body : Value) -> Value raise
+
+///|
+/// defun fortgoto -- ../share/contrib/gentran/allgentran.lisp:2925
+declare fn fortgoto(stmt : Value) -> Value raise
+
+///|
+/// defun fortif -- ../share/contrib/gentran/allgentran.lisp:2931
+declare fn fortif(stmt : Value) -> Value raise
+
+///|
+/// defun fortliteral -- ../share/contrib/gentran/allgentran.lisp:2965
+declare fn fortliteral(stmt : Value) -> Value raise
+
+///|
+/// defun fortdata -- ../share/contrib/gentran/allgentran.lisp:2973
+declare fn fortdata(stmt : Value) -> Value raise
+
+///|
+/// defun addcom -- ../share/contrib/gentran/allgentran.lisp:2981
+declare fn addcom(nl : Value) -> Value raise
+
+///|
+/// defun fortloop -- ../share/contrib/gentran/allgentran.lisp:2988
+declare fn fortloop(stmt : Value) -> Value raise
+
+///|
+/// defun fortread -- ../share/contrib/gentran/allgentran.lisp:3019
+declare fn fortread(stmt : Value) -> Value raise
+
+///|
+/// defun fortrepeat -- ../share/contrib/gentran/allgentran.lisp:3022
+declare fn fortrepeat(body : Value, exitcond : Value) -> Value raise
+
+///|
+/// defun fortreturn -- ../share/contrib/gentran/allgentran.lisp:3038
+declare fn fortreturn(stmt : Value) -> Value raise
+
+///|
+/// defun fortstmtgp -- ../share/contrib/gentran/allgentran.lisp:3050
+declare fn fortstmtgp(stmtgp : Value) -> Value raise
+
+///|
+/// defun fortstmtno -- ../share/contrib/gentran/allgentran.lisp:3058
+declare fn fortstmtno(label : Value) -> Value raise
+
+///|
+/// defun fortstop -- ../share/contrib/gentran/allgentran.lisp:3064
+declare fn fortstop(stmt : Value) -> Value raise
+
+///|
+/// defun fortwhile -- ../share/contrib/gentran/allgentran.lisp:3068
+declare fn fortwhile(exitcond : Value, body : Value) -> Value raise
+
+///|
+/// defun fortwrite -- ../share/contrib/gentran/allgentran.lisp:3086
+declare fn fortwrite(stmt : Value) -> Value raise
+
+///|
+/// defun mkffortassign -- ../share/contrib/gentran/allgentran.lisp:3097
+declare fn mkffortassign(lhs : Value, rhs : Value) -> Value raise
+
+///|
+/// defun mkffortcall -- ../share/contrib/gentran/allgentran.lisp:3102
+declare fn mkffortcall(fname : Value, params : Value) -> Value raise
+
+///|
+/// defun mkffortcontinue -- ../share/contrib/gentran/allgentran.lisp:3113
+declare fn mkffortcontinue(stmtno : Value) -> Value raise
+
+///|
+/// defun mkffortdec -- ../share/contrib/gentran/allgentran.lisp:3116
+declare fn mkffortdec(type_ : Value, varlist : Value) -> Value raise
+
+///|
+/// defun mkffortdo -- ../share/contrib/gentran/allgentran.lisp:3129
+declare fn mkffortdo(stmtno : Value, var_ : Value, lo : Value, hi : Value, incr : Value) -> Value raise
+
+///|
+/// defun mkffortend -- ../share/contrib/gentran/allgentran.lisp:3142
+declare fn mkffortend() -> Value raise
+
+///|
+/// defun mkffortgo -- ../share/contrib/gentran/allgentran.lisp:3145
+declare fn mkffortgo(stmtno : Value) -> Value raise
+
+///|
+/// defun mkffortifgo -- ../share/contrib/gentran/allgentran.lisp:3148
+declare fn mkffortifgo(exp_ : Value, stmtno : Value) -> Value raise
+
+///|
+/// defun mkffortread -- ../share/contrib/gentran/allgentran.lisp:3154
+declare fn mkffortread(var_ : Value) -> Value raise
+
+///|
+/// defun mkffortreturn -- ../share/contrib/gentran/allgentran.lisp:3159
+declare fn mkffortreturn() -> Value raise
+
+///|
+/// defun mkffortstop -- ../share/contrib/gentran/allgentran.lisp:3162
+declare fn mkffortstop() -> Value raise
+
+///|
+/// defun mkffortsubprogdec -- ../share/contrib/gentran/allgentran.lisp:3165
+declare fn mkffortsubprogdec(type_ : Value, stype : Value, name : Value, params : Value) -> Value raise
+
+///|
+/// defun quotstring -- ../share/contrib/gentran/allgentran.lisp:3180
+declare fn quotstring(arg : Value) -> Value raise
+
+///|
+/// defun mkffortwrite -- ../share/contrib/gentran/allgentran.lisp:3182
+declare fn mkffortwrite(arglist : Value) -> Value raise
+
+///|
+/// defun mkforttab -- ../share/contrib/gentran/allgentran.lisp:3189
+declare fn mkforttab() -> Value raise
+
+///|
+/// defun indentfortlevel -- ../share/contrib/gentran/allgentran.lisp:3192
+declare fn indentfortlevel(n : Value) -> Value raise
+
+///|
+/// defun ratcode -- ../share/contrib/gentran/allgentran.lisp:3239
+declare fn ratcode(forms : Value) -> Value raise
+
+///|
+/// defun ratsubprog -- ../share/contrib/gentran/allgentran.lisp:3265
+declare fn ratsubprog(def : Value) -> Value raise
+
+///|
+/// defun ratdecs -- ../share/contrib/gentran/allgentran.lisp:3305
+declare fn ratdecs(decs : Value) -> Value raise
+
+///|
+/// defun ratexpgen -- ../share/contrib/gentran/allgentran.lisp:3310
+declare fn ratexpgen(exp_ : Value) -> Value raise
+
+///|
+/// defun ratexpgen1 -- ../share/contrib/gentran/allgentran.lisp:3314
+declare fn ratexpgen1(exp_ : Value, wtin : Value) -> Value raise
+
+///|
+/// defun ratforname -- ../share/contrib/gentran/allgentran.lisp:3354
+declare fn ratforname(name : Value) -> Value raise
+
+///|
+/// defun ratforop -- ../share/contrib/gentran/allgentran.lisp:3357
+declare fn ratforop(op : Value) -> Value raise
+
+///|
+/// defun ratforprecedence -- ../share/contrib/gentran/allgentran.lisp:3360
+declare fn ratforprecedence(op : Value) -> Value raise
+
+///|
+/// defun ratstmt -- ../share/contrib/gentran/allgentran.lisp:3365
+declare fn ratstmt(stmt : Value) -> Value raise
+
+///|
+/// defun ratassign -- ../share/contrib/gentran/allgentran.lisp:3385
+declare fn ratassign(stmt : Value) -> Value raise
+
+///|
+/// defun ratbreak -- ../share/contrib/gentran/allgentran.lisp:3388
+declare fn ratbreak(stmt : Value) -> Value raise
+
+///|
+/// defun ratcall -- ../share/contrib/gentran/allgentran.lisp:3392
+declare fn ratcall(stmt : Value) -> Value raise
+
+///|
+/// defun ratdo -- ../share/contrib/gentran/allgentran.lisp:3395
+declare fn ratdo(var_ : Value, lo : Value, nextexp : Value, exitcond : Value, body : Value) -> Value raise
+
+///|
+/// defun ratend -- ../share/contrib/gentran/allgentran.lisp:3406
+declare fn ratend(stmt : Value) -> Value raise
+
+///|
+/// defun ratforfor -- ../share/contrib/gentran/allgentran.lisp:3410
+declare fn ratforfor(var_ : Value, lo : Value, nextexp : Value, cond : Value, body : Value) -> Value raise
+
+///|
+/// defun ratgoto -- ../share/contrib/gentran/allgentran.lisp:3425
+declare fn ratgoto(stmt : Value) -> Value raise
+
+///|
+/// defun ratif -- ../share/contrib/gentran/allgentran.lisp:3431
+declare fn ratif(stmt : Value) -> Value raise
+
+///|
+/// defun ratliteral -- ../share/contrib/gentran/allgentran.lisp:3467
+declare fn ratliteral(stmt : Value) -> Value raise
+
+///|
+/// defun ratloop -- ../share/contrib/gentran/allgentran.lisp:3470
+declare fn ratloop(stmt : Value) -> Value raise
+
+///|
+/// defun ratread -- ../share/contrib/gentran/allgentran.lisp:3501
+declare fn ratread(stmt : Value) -> Value raise
+
+///|
+/// defun ratrepeat -- ../share/contrib/gentran/allgentran.lisp:3504
+declare fn ratrepeat(body : Value, exitcond : Value) -> Value raise
+
+///|
+/// defun ratreturn -- ../share/contrib/gentran/allgentran.lisp:3512
+declare fn ratreturn(stmt : Value) -> Value raise
+
+///|
+/// defun ratstmtgp -- ../share/contrib/gentran/allgentran.lisp:3515
+declare fn ratstmtgp(stmtgp : Value) -> Value raise
+
+///|
+/// defun ratstmtno -- ../share/contrib/gentran/allgentran.lisp:3527
+declare fn ratstmtno(label : Value) -> Value raise
+
+///|
+/// defun ratstop -- ../share/contrib/gentran/allgentran.lisp:3533
+declare fn ratstop(stmt : Value) -> Value raise
+
+///|
+/// defun ratwhile -- ../share/contrib/gentran/allgentran.lisp:3537
+declare fn ratwhile(cond : Value, body : Value) -> Value raise
+
+///|
+/// defun ratwrite -- ../share/contrib/gentran/allgentran.lisp:3547
+declare fn ratwrite(stmt : Value) -> Value raise
+
+///|
+/// defun mkfratassign -- ../share/contrib/gentran/allgentran.lisp:3558
+declare fn mkfratassign(lhs : Value, rhs : Value) -> Value raise
+
+///|
+/// defun mkfratbegingp -- ../share/contrib/gentran/allgentran.lisp:3563
+declare fn mkfratbegingp() -> Value raise
+
+///|
+/// defun mkfratbreak -- ../share/contrib/gentran/allgentran.lisp:3566
+declare fn mkfratbreak() -> Value raise
+
+///|
+/// defun mkfratcall -- ../share/contrib/gentran/allgentran.lisp:3569
+declare fn mkfratcall(fname : Value, params : Value) -> Value raise
+
+///|
+/// defun mkfratcontinue -- ../share/contrib/gentran/allgentran.lisp:3581
+declare fn mkfratcontinue(stmtno : Value) -> Value raise
+
+///|
+/// defun mkfratdec -- ../share/contrib/gentran/allgentran.lisp:3584
+declare fn mkfratdec(type_ : Value, varlist : Value) -> Value raise
+
+///|
+/// defun mkfratdo -- ../share/contrib/gentran/allgentran.lisp:3595
+declare fn mkfratdo(var_ : Value, lo : Value, hi : Value, incr : Value) -> Value raise
+
+///|
+/// defun mkfratelse -- ../share/contrib/gentran/allgentran.lisp:3608
+declare fn mkfratelse() -> Value raise
+
+///|
+/// defun mkfratelseif -- ../share/contrib/gentran/allgentran.lisp:3611
+declare fn mkfratelseif(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfratend -- ../share/contrib/gentran/allgentran.lisp:3616
+declare fn mkfratend() -> Value raise
+
+///|
+/// defun mkfratendgp -- ../share/contrib/gentran/allgentran.lisp:3619
+declare fn mkfratendgp() -> Value raise
+
+///|
+/// defun mkfratfor -- ../share/contrib/gentran/allgentran.lisp:3622
+declare fn mkfratfor(var1 : Value, lo : Value, cond : Value, var2 : Value, nextexp : Value) -> Value raise
+
+///|
+/// defun mkfratgo -- ../share/contrib/gentran/allgentran.lisp:3636
+declare fn mkfratgo(stmtno : Value) -> Value raise
+
+///|
+/// defun mkfratif -- ../share/contrib/gentran/allgentran.lisp:3639
+declare fn mkfratif(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfratliteral -- ../share/contrib/gentran/allgentran.lisp:3644
+declare fn mkfratliteral(args : Value) -> Value raise
+
+///|
+/// defun mkfratread -- ../share/contrib/gentran/allgentran.lisp:3651
+declare fn mkfratread(var_ : Value) -> Value raise
+
+///|
+/// defun mkfratrepeat -- ../share/contrib/gentran/allgentran.lisp:3655
+declare fn mkfratrepeat() -> Value raise
+
+///|
+/// defun mkfratreturn -- ../share/contrib/gentran/allgentran.lisp:3658
+declare fn mkfratreturn(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfratstop -- ../share/contrib/gentran/allgentran.lisp:3665
+declare fn mkfratstop() -> Value raise
+
+///|
+/// defun mkfratsubprogdec -- ../share/contrib/gentran/allgentran.lisp:3668
+declare fn mkfratsubprogdec(type_ : Value, stype : Value, name : Value, params : Value) -> Value raise
+
+///|
+/// defun mkfratuntil -- ../share/contrib/gentran/allgentran.lisp:3682
+declare fn mkfratuntil(logexp : Value) -> Value raise
+
+///|
+/// defun mkfratwhile -- ../share/contrib/gentran/allgentran.lisp:3686
+declare fn mkfratwhile(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfratwrite -- ../share/contrib/gentran/allgentran.lisp:3691
+declare fn mkfratwrite(arglist : Value) -> Value raise
+
+///|
+/// defun mkrattab -- ../share/contrib/gentran/allgentran.lisp:3698
+declare fn mkrattab() -> Value raise
+
+///|
+/// defun indentratlevel -- ../share/contrib/gentran/allgentran.lisp:3701
+declare fn indentratlevel(n : Value) -> Value raise
+
+///|
+/// defun ccode -- ../share/contrib/gentran/allgentran.lisp:3745
+declare fn ccode(forms : Value) -> Value raise
+
+///|
+/// defun cproc -- ../share/contrib/gentran/allgentran.lisp:3766
+declare fn cproc(def : Value) -> Value raise
+
+///|
+/// defun cdecs -- ../share/contrib/gentran/allgentran.lisp:3805
+declare fn cdecs(decs : Value) -> Value raise
+
+///|
+/// defun cexp -- ../share/contrib/gentran/allgentran.lisp:3810
+declare fn cexp_(exp_ : Value) -> Value raise
+
+///|
+/// defun cexp1 -- ../share/contrib/gentran/allgentran.lisp:3814
+declare fn cexp1(exp_ : Value, wtin : Value) -> Value raise
+
+///|
+/// defun cname -- ../share/contrib/gentran/allgentran.lisp:3862
+declare fn cname(name : Value) -> Value raise
+
+///|
+/// defun cop -- ../share/contrib/gentran/allgentran.lisp:3865
+declare fn cop(op : Value) -> Value raise
+
+///|
+/// defun cprecedence -- ../share/contrib/gentran/allgentran.lisp:3868
+declare fn cprecedence(op : Value) -> Value raise
+
+///|
+/// defun cstmt -- ../share/contrib/gentran/allgentran.lisp:3873
+declare fn cstmt(stmt : Value) -> Value raise
+
+///|
+/// defun cassign -- ../share/contrib/gentran/allgentran.lisp:3890
+declare fn cassign(stmt : Value) -> Value raise
+
+///|
+/// defun cbreak -- ../share/contrib/gentran/allgentran.lisp:3893
+declare fn cbreak(stmt : Value) -> Value raise
+
+///|
+/// defun cexit -- ../share/contrib/gentran/allgentran.lisp:3897
+declare fn cexit(stmt : Value) -> Value raise
+
+///|
+/// defun cexpstmt -- ../share/contrib/gentran/allgentran.lisp:3901
+declare fn cexpstmt(exp_ : Value) -> Value raise
+
+///|
+/// defun cfor -- ../share/contrib/gentran/allgentran.lisp:3905
+declare fn cfor(var_ : Value, lo : Value, nextexp : Value, cond : Value, body : Value) -> Value raise
+
+///|
+/// defun cgoto -- ../share/contrib/gentran/allgentran.lisp:3919
+declare fn cgoto(stmt : Value) -> Value raise
+
+///|
+/// defun cif -- ../share/contrib/gentran/allgentran.lisp:3922
+declare fn cif(stmt : Value) -> Value raise
+
+///|
+/// defun clabel -- ../share/contrib/gentran/allgentran.lisp:3958
+declare fn clabel(label : Value) -> Value raise
+
+///|
+/// defun cliteral -- ../share/contrib/gentran/allgentran.lisp:3961
+declare fn cliteral(stmt : Value) -> Value raise
+
+///|
+/// defun cloop -- ../share/contrib/gentran/allgentran.lisp:3964
+declare fn cloop(stmt : Value) -> Value raise
+
+///|
+/// defun crepeat -- ../share/contrib/gentran/allgentran.lisp:3987
+declare fn crepeat(body : Value, logexp : Value) -> Value raise
+
+///|
+/// defun creturn -- ../share/contrib/gentran/allgentran.lisp:3995
+declare fn creturn(stmt : Value) -> Value raise
+
+///|
+/// defun cstmtgp -- ../share/contrib/gentran/allgentran.lisp:3998
+declare fn cstmtgp(stmtgp : Value) -> Value raise
+
+///|
+/// defun cwhile -- ../share/contrib/gentran/allgentran.lisp:4010
+declare fn cwhile(cond : Value, body : Value) -> Value raise
+
+///|
+/// defun mkfcassign -- ../share/contrib/gentran/allgentran.lisp:4027
+declare fn mkfcassign(lhs : Value, rhs : Value) -> Value raise
+
+///|
+/// defun mkfcbegingp -- ../share/contrib/gentran/allgentran.lisp:4032
+declare fn mkfcbegingp() -> Value raise
+
+///|
+/// defun mkfcbreak -- ../share/contrib/gentran/allgentran.lisp:4035
+declare fn mkfcbreak() -> Value raise
+
+///|
+/// defun mkfcdec -- ../share/contrib/gentran/allgentran.lisp:4038
+declare fn mkfcdec(type_ : Value, varlist : Value) -> Value raise
+
+///|
+/// defun mkfcdo -- ../share/contrib/gentran/allgentran.lisp:4052
+declare fn mkfcdo() -> Value raise
+
+///|
+/// defun mkfcdowhile -- ../share/contrib/gentran/allgentran.lisp:4055
+declare fn mkfcdowhile(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfcelse -- ../share/contrib/gentran/allgentran.lisp:4060
+declare fn mkfcelse() -> Value raise
+
+///|
+/// defun mkfcelseif -- ../share/contrib/gentran/allgentran.lisp:4063
+declare fn mkfcelseif(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfcendgp -- ../share/contrib/gentran/allgentran.lisp:4067
+declare fn mkfcendgp() -> Value raise
+
+///|
+/// defun mkfcexit -- ../share/contrib/gentran/allgentran.lisp:4070
+declare fn mkfcexit() -> Value raise
+
+///|
+/// defun mkfcfor -- ../share/contrib/gentran/allgentran.lisp:4073
+declare fn mkfcfor(var1 : Value, lo : Value, cond : Value, var2 : Value, nextexp : Value) -> Value raise
+
+///|
+/// defun mkfcgo -- ../share/contrib/gentran/allgentran.lisp:4083
+declare fn mkfcgo(label : Value) -> Value raise
+
+///|
+/// defun mkfcif -- ../share/contrib/gentran/allgentran.lisp:4086
+declare fn mkfcif(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfclabel -- ../share/contrib/gentran/allgentran.lisp:4091
+declare fn mkfclabel(label : Value) -> Value raise
+
+///|
+/// defun mkfcliteral -- ../share/contrib/gentran/allgentran.lisp:4094
+declare fn mkfcliteral(args : Value) -> Value raise
+
+///|
+/// defun mkfcprocdec -- ../share/contrib/gentran/allgentran.lisp:4101
+declare fn mkfcprocdec(type_ : Value, name : Value, params : Value) -> Value raise
+
+///|
+/// defun mkfcreturn -- ../share/contrib/gentran/allgentran.lisp:4112
+declare fn mkfcreturn(exp_ : Value) -> Value raise
+
+///|
+/// defun mkfcwhile -- ../share/contrib/gentran/allgentran.lisp:4119
+declare fn mkfcwhile(exp_ : Value) -> Value raise
+
+///|
+/// defun mkctab -- ../share/contrib/gentran/allgentran.lisp:4126
+declare fn mkctab() -> Value raise
+
+///|
+/// defun indentclevel -- ../share/contrib/gentran/allgentran.lisp:4129
+declare fn indentclevel(n : Value) -> Value raise
+
+///|
+/// defmspec $gentran -- ../share/contrib/gentran/allgentran.lisp:4149
+declare fn d_gentran(forms : Value) -> Value raise
+
+///|
+/// defmfun $gentranout -- ../share/contrib/gentran/allgentran.lisp:4167
+declare fn d_gentranout(flist : Value) -> Value raise
+
+///|
+/// defun gentranout -- ../share/contrib/gentran/allgentran.lisp:4173
+declare fn gentranout(flist : Value) -> Value raise
+
+///|
+/// defmfun $gentranshut -- ../share/contrib/gentran/allgentran.lisp:4180
+declare fn d_gentranshut(flist : Value) -> Value raise
+
+///|
+/// defmfun $gentranpush -- ../share/contrib/gentran/allgentran.lisp:4187
+declare fn d_gentranpush(flist : Value) -> Value raise
+
+///|
+/// defun gentranpush -- ../share/contrib/gentran/allgentran.lisp:4193
+declare fn gentranpush(flist : Value) -> Value raise
+
+///|
+/// defmfun $gentranpop -- ../share/contrib/gentran/allgentran.lisp:4200
+declare fn d_gentranpop(flist : Value) -> Value raise
+
+///|
+/// defmfun $gentranin -- ../share/contrib/gentran/allgentran.lisp:4207
+declare fn d_gentranin(forms : Value) -> Value raise
+
+///|
+/// defun $gentraninshut -- ../share/contrib/gentran/allgentran.lisp:4224
+declare fn d_gentraninshut() -> Value raise
+
+///|
+/// defmfun $gentran_on -- ../share/contrib/gentran/allgentran.lisp:4227
+declare fn d_gentran_on(flaglist : Value) -> Value raise
+
+///|
+/// defun on -- ../share/contrib/gentran/allgentran.lisp:4235
+declare fn on(flaglist : Value) -> Value raise
+
+///|
+/// defmfun $gentran_off -- ../share/contrib/gentran/allgentran.lisp:4242
+declare fn d_gentran_off(flaglist : Value) -> Value raise
+
+///|
+/// defun gentran_off -- ../share/contrib/gentran/allgentran.lisp:4250
+declare fn gentran_off(flaglist : Value) -> Value raise
+
+///|
+/// defun gentran -- ../share/contrib/gentran/allgentran.lisp:4266
+declare fn gentran(forms : Value, flist : Value) -> Value raise
+
+///|
+/// defun gentranoutpush -- ../share/contrib/gentran/allgentran.lisp:4291
+declare fn gentranoutpush(flist : Value, outp : Value) -> Value raise
+
+///|
+/// defun gentranshut -- ../share/contrib/gentran/allgentran.lisp:4321
+declare fn gentranshut(flist : Value) -> Value raise
+
+///|
+/// defun gentranpop -- ../share/contrib/gentran/allgentran.lisp:4352
+declare fn gentranpop(flist : Value) -> Value raise
+
+///|
+/// defun gentranin -- ../share/contrib/gentran/allgentran.lisp:4378
+declare fn gentranin(inlist : Value, outlist : Value) -> Value raise
+
+///|
+/// defun onoff -- ../share/contrib/gentran/allgentran.lisp:4432
+declare fn onoff(flags : Value, onp : Value) -> Value raise
+
+///|
+/// defun $tempvar -- ../share/contrib/gentran/allgentran.lisp:4444
+declare fn d_tempvar(type_ : Value) -> Value raise
+
+///|
+/// defun $markvar -- ../share/contrib/gentran/allgentran.lisp:4448
+declare fn d_markvar(var_ : Value) -> Value raise
+
+///|
+/// defun $markedvarp -- ../share/contrib/gentran/allgentran.lisp:4453
+declare fn d_markedvarp(var_ : Value) -> Value raise
+
+///|
+/// defun $unmarkvar -- ../share/contrib/gentran/allgentran.lisp:4457
+declare fn d_unmarkvar(var_ : Value) -> Value raise
+
+///|
+/// defun $recurunmark -- ../share/contrib/gentran/allgentran.lisp:4462
+declare fn d_recurunmark(exp_ : Value) -> Value raise
+
+///|
+/// defun $gendecs -- ../share/contrib/gentran/allgentran.lisp:4468
+declare fn d_gendecs(name : Value) -> Value raise
+
+///|
+/// defun fargstonames -- ../share/contrib/gentran/allgentran.lisp:4475
+declare fn fargstonames(args : Value, openp : Value) -> Value raise
+
+///|
+/// defun gentranswitch -- ../share/contrib/gentran/allgentran.lisp:4516
+declare fn gentranswitch(lang : Value) -> Value raise
+
+///|
+/// defun gentranswitch1 -- ../share/contrib/gentran/allgentran.lisp:4532
+declare fn gentranswitch1(exp_ : Value) -> Value raise
+
+///|
+/// defun gentranswitch2 -- ../share/contrib/gentran/allgentran.lisp:4538
+declare fn gentranswitch2(exp_ : Value) -> Value raise
+
+///|
+/// defun gendecs -- ../share/contrib/gentran/allgentran.lisp:4549
+declare fn gendecs(name : Value) -> Value raise
+
+///|
+/// defun gentranpairs -- ../share/contrib/gentran/allgentran.lisp:4571
+declare fn gentranpairs(prs : Value) -> Value raise
+
+///|
+/// defun preproc -- ../share/contrib/gentran/allgentran.lisp:4593
+declare fn preproc(exp_ : Value) -> Value raise
+
+///|
+/// defun preproc1 -- ../share/contrib/gentran/allgentran.lisp:4600
+declare fn preproc1(exp_ : Value) -> Value raise
+
+///|
+/// defun preprocdec -- ../share/contrib/gentran/allgentran.lisp:4741
+declare fn preprocdec(arg : Value) -> Value raise
+
+///|
+/// defun process-type -- ../share/contrib/state/readfile.lisp:38
+declare fn process_type(s : Value) -> Value raise
+
+///|
+/// defun process-line -- ../share/contrib/state/readfile.lisp:61
+declare fn process_line(l : Value) -> Value raise
+
+///|
+/// defun mcoerce -- ../share/contrib/symplectic_ode/symplectic_ode.lisp:17
+declare fn mcoerce(x : Value, ntype : Value) -> Value raise
+
+///|
+/// defun expr-to-compiled-fun -- ../share/contrib/symplectic_ode/symplectic_ode.lisp:48
+declare fn expr_to_compiled_fun(e : Value, ntype : Value, args : Value) -> Value raise
+
+///|
+/// defun $poisson_bracket -- ../share/contrib/symplectic_ode/symplectic_ode.lisp:61
+declare fn d_poisson_bracket(f : Value, g : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun $symplectic_ode -- ../share/contrib/symplectic_ode/symplectic_ode.lisp:211
+declare fn d_symplectic_ode(ham : Value, p : Value, q : Value, po : Value, qo : Value, dt : Value, nn : Value, sym_method? : Value = q_d_symplectic_euler, ntype? : Value = q_d_float) -> Value raise
+
+///|
+/// defmfun $ec_set_curve -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:81
+declare fn d_ec_set_curve(p : Value, a : Value, b : Value) -> Value raise
+
+///|
+/// defun ec-set? -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:96
+declare fn ec_set_q(fun : Value) -> Value raise
+
+///|
+/// defun ec-m2l -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:103
+declare fn ec_m2l(pt_m : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun ec-l2m -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:114
+declare fn ec_l2m(pt : Value) -> Value raise
+
+///|
+/// defun ec-balance -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:119
+declare fn ec_balance(pt : Value) -> Value raise
+
+///|
+/// defmfun $ec_add -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:127
+declare fn d_ec_add(pt : Value, qt : Value) -> Value raise
+
+///|
+/// defmfun $ec_mult -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:137
+declare fn d_ec_mult(n : Value, pt : Value) -> Value raise
+
+///|
+/// defun ec-add -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:150
+declare fn ec_add(pt : Value, qt : Value) -> Value raise
+
+///|
+/// defun ec-double -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:164
+declare fn ec_double(pt : Value) -> Value raise
+
+///|
+/// defun ec-mult -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:175
+declare fn ec_mult(n : Value, pt : Value) -> Value raise
+
+///|
+/// defun ec-neg -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:189
+declare fn ec_neg(pt : Value) -> Value raise
+
+///|
+/// defun ec-projectify -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:195
+declare fn ec_projectify(pt : Value) -> Value raise
+
+///|
+/// defun ec-affinify -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:200
+declare fn ec_affinify(pt : Value) -> Value raise
+
+///|
+/// defun ec-pdouble -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:209
+declare fn ec_pdouble(pt : Value) -> Value raise
+
+///|
+/// defun ec-padd -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:227
+declare fn ec_padd(pt : Value, qt : Value) -> Value raise
+
+///|
+/// defun ec-pmult -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:256
+declare fn ec_pmult(n : Value, pt : Value) -> Value raise
+
+///|
+/// defun ec-pneg -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:272
+declare fn ec_pneg(pt : Value) -> Value raise
+
+///|
+/// defun ec-pmult-sliding-window -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:275
+declare fn ec_pmult_sliding_window(n : Value, pt : Value) -> Value raise
+
+///|
+/// defun ec-pmult-table -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:300
+declare fn ec_pmult_table(pt : Value, k : Value) -> Value raise
+
+///|
+/// defmfun $ec_random -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:317
+declare fn d_ec_random() -> Value raise
+
+///|
+/// defun ec-random -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:321
+declare fn ec_random() -> Value raise
+
+///|
+/// defun $ec_point_p -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:336
+declare fn d_ec_point_p(pt : Value) -> Value raise
+
+///|
+/// defun ec-point-p -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:343
+declare fn ec_point_p(pt : Value) -> Value raise
+
+///|
+/// defmfun $ec_point_order -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:352
+declare fn d_ec_point_order(pt : Value, ord : Value, fs_ord? : Value = Nil) -> Value raise
+
+///|
+/// defun ec-point-order -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:371
+declare fn ec_point_order(pt : Value, ord : Value, fs_ord : Value) -> Value raise
+
+///|
+/// defmfun $ec_log -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:387
+declare fn d_ec_log(pt : Value, gen : Value) -> Value raise
+
+///|
+/// defun ec-dlog-baby-giant -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:397
+declare fn ec_dlog_baby_giant(pt : Value, gen : Value, p : Value) -> Value raise
+
+///|
+/// defmfun $ec_twist_curve -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:427
+declare fn d_ec_twist_curve() -> Value raise
+
+///|
+/// defun ec-twist-curve -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:431
+declare fn ec_twist_curve() -> Value raise
+
+///|
+/// defmfun $ec_trace -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:444
+declare fn d_ec_trace() -> Value raise
+
+///|
+/// defmfun $ec_j_invariant -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:462
+declare fn d_ec_j_invariant() -> Value raise
+
+///|
+/// defun ec-j-invariant -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:466
+declare fn ec_j_invariant(a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-sea-data? -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:476
+declare fn ec_sea_data_q() -> Value raise
+
+///|
+/// defmfun $ec_mueller_7_3 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:486
+declare fn d_ec_mueller_7_3(l : Value, g : Value) -> Value raise
+
+///|
+/// defun ec-mueller-7-3 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:501
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn ec_mueller_7_3(l : Value, gl : Value, g : Value, j : Value, a : Value, b : Value, p : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun ec-at-y -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:574
+declare fn ec_at_y(f : Value, x_q : Value, y : Value) -> Value raise
+
+///|
+/// defun ec-at-x -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:584
+declare fn ec_at_x(f : Value, x : Value, y_q : Value) -> Value raise
+
+///|
+/// defun ec-at-xy -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:599
+declare fn ec_at_xy(f : Value, x : Value, y : Value) -> Value raise
+
+///|
+/// defun ec-dx -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:605
+declare fn ec_dx(f : Value) -> Value raise
+
+///|
+/// defun ec-dy -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:614
+declare fn ec_dy(f : Value) -> Value raise
+
+///|
+/// defun ec-isogenous-from-atkin -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:628
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn ec_isogenous_from_atkin(l : Value, gl : Value, g : Value, j : Value, a : Value, b : Value, p : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun ec-compute-u -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:664
+declare fn ec_compute_u(gp : Value, glxxg : Value, glxyg : Value, glyyg : Value, j : Value, glygj : Value, glxgj : Value, q : Value, e4 : Value, e6 : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-glg-roots -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:677
+declare fn ec_glg_roots(gl : Value, g : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-set-div-poly-mod -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:691
+declare fn ec_set_div_poly_mod(cap : Value, n : Value, red : Value, a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-set-div-poly-mod1 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:720
+declare fn ec_set_div_poly_mod1(n : Value, cap : Value) -> Value raise
+
+///|
+/// defun ec-set-psi -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:725
+declare fn ec_set_psi(i : Value, cap : Value) -> Value raise
+
+///|
+/// defun gf-ktimes -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:766
+declare fn gf_ktimes(x : Value, y : Value, red : Value) -> Value raise
+
+///|
+/// defun gf-nktimes -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:777
+declare fn gf_nktimes(x : Value, y : Value, n : Value, red : Value) -> Value raise
+
+///|
+/// defun gf-ksq -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:798
+declare fn gf_ksq(x : Value, red : Value) -> Value raise
+
+///|
+/// defun gf-nksq -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:809
+declare fn gf_nksq(x : Value, n : Value, red : Value) -> Value raise
+
+///|
+/// defun gf-nsplit -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:829
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn gf_nsplit(x : Value, n : Value) -> (Value, Value) raise
+
+///|
+/// defmfun $ec_mueller_7_8 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:856
+declare fn d_ec_mueller_7_8(l : Value, at : Value, bt : Value, p1 : Value) -> Value raise
+
+///|
+/// defun ec-mueller-7-8 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:862
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn ec_mueller_7_8(l : Value, at : Value, bt : Value, p1 : Value, ck : Value, wpv : Value, a : Value, b : Value, p : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun ec-ck -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:879
+declare fn ec_ck(ll : Value, a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-wpv -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:897
+declare fn ec_wpv(d1 : Value, l3 : Value, ck : Value) -> Value raise
+
+///|
+/// defun ec-weierstrass -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:909
+declare fn ec_weierstrass(l : Value, ck : Value) -> Value raise
+
+///|
+/// defun ec-hlp -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:919
+declare fn ec_hlp(l : Value, l3 : Value, ck : Value, ctk : Value, p1 : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-h-init -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:932
+declare fn ec_h_init(d1 : Value, hlp : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-fc -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:945
+declare fn ec_fc(d : Value, h : Value, wpv : Value, p : Value) -> Value raise
+
+///|
+/// defmfun $ec_mueller_7_9 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:961
+declare fn d_ec_mueller_7_9(l : Value, fc : Value) -> Value raise
+
+///|
+/// defun ec-mueller-7-9 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:970
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn ec_mueller_7_9(l : Value, fc : Value, p : Value) -> (Value, Value) raise
+
+///|
+/// defun ec-rx -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1002
+declare fn ec_rx(n : Value, cub : Value, fc : Value) -> Value raise
+
+///|
+/// defun ec-ry -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1013
+declare fn ec_ry(n : Value, cub : Value, fc : Value) -> Value raise
+
+///|
+/// defun gf-pow-sliding-window -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1027
+declare fn gf_pow_sliding_window(x : Value, e : Value, red : Value) -> Value raise
+
+///|
+/// defun gf-pow-sliding-window-table -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1052
+declare fn gf_pow_sliding_window_table(x : Value, k : Value, red : Value) -> Value raise
+
+///|
+/// defun ec-elkies-l^i -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1070
+declare fn ec_elkies_l_hati(i : Value, n : Value, l : Value, l1 : Value, gl : Value, tau1 : Value, i1_m : Value, iso1 : Value, a0 : Value, b0 : Value, a1 : Value, b1 : Value, a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-k1 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1125
+declare fn ec_k1(l : Value, a : Value, b : Value, at : Value, bt : Value, h1 : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-c-mod-l^i -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1152
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn ec_c_mod_l_hati(l_hati : Value, l : Value, alpha : Value, gt : Value, a0 : Value, b0 : Value, p : Value) -> (Value, Value) raise
+
+///|
+/// defun ec-mueller-9-2 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1188
+declare fn ec_mueller_9_2(p : Value) -> Value raise
+
+///|
+/// defun ec-mueller-9-5 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1193
+declare fn ec_mueller_9_5(b : Value, p : Value) -> Value raise
+
+///|
+/// defmfun $cornacchia -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1213
+declare fn d_cornacchia(d : Value, p : Value) -> Value raise
+
+///|
+/// defun cornacchia -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1217
+declare fn cornacchia(d : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-check-trace -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1235
+declare fn ec_check_trace(tr : Value, p : Value) -> Value raise
+
+///|
+/// defmfun $ec_mueller_10_1 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1252
+declare fn d_ec_mueller_10_1(l : Value) -> Value raise
+
+///|
+/// defun ec-mueller-10-1 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1262
+declare fn ec_mueller_10_1(l : Value, j : Value, a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defmfun $ec_glj_roots -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1294
+declare fn d_ec_glj_roots(l : Value) -> Value raise
+
+///|
+/// defun ec-glj-roots -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1307
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn ec_glj_roots(l : Value, j : Value, p : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun ec-gl-mod-p -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1324
+declare fn ec_gl_mod_p(gl : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-extract-roots -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1331
+declare fn ec_extract_roots(factors : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-elkies -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1342
+declare fn ec_elkies(k : Value, l : Value, gl : Value, rts : Value, j : Value, a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-one-root -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1383
+declare fn ec_one_root(l : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-lp1-roots -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1392
+declare fn ec_lp1_roots(l : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-atkin -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1403
+declare fn ec_atkin(l : Value, glj : Value, x_hatp : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-comp-d -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1454
+declare fn ec_comp_d(l : Value, glj : Value, x_hatp : Value, p : Value) -> Value raise
+
+///|
+/// defun zn-nrank -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1473
+declare fn zn_nrank(m : Value, p : Value) -> Value raise
+
+///|
+/// defun zn-ncrow -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1494
+declare fn zn_ncrow(row : Value, c : Value, p : Value) -> Value raise
+
+///|
+/// defun zn-naddrows -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1499
+declare fn zn_naddrows(row : Value, c : Value, piv : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-champions -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1525
+declare fn ec_champions(cost : Value, profit : Value, atkin_bound : Value) -> Value raise
+
+///|
+/// defun ec-pattern2val -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1577
+declare fn ec_pattern2val(pattern : Value, vec : Value, k : Value) -> Value raise
+
+///|
+/// defun ec-cm12 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1588
+/// Returns 6 values (CL multiple values) as a tuple.
+declare fn ec_cm12(atkin : Value) -> (Value, Value, Value, Value, Value, Value) raise
+
+///|
+/// defun ec-combine-init -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1630
+declare fn ec_combine_init(l : Value) -> Value raise
+
+///|
+/// defun ec-combine -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1633
+declare fn ec_combine(l1 : Value, l2 : Value) -> Value raise
+
+///|
+/// defun ec-mueller-10-4 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1641
+declare fn ec_mueller_10_4(elkies : Value, atkin : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-binary-pt-search -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1792
+declare fn ec_binary_pt_search(pt : Value, a : Value) -> Value raise
+
+///|
+/// defun ec-mult-by-table -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1815
+declare fn ec_mult_by_table(n : Value, pt : Value, pt_star2i : Value) -> Value raise
+
+///|
+/// defun ec-mult-table -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1828
+declare fn ec_mult_table(pt : Value, range : Value) -> Value raise
+
+///|
+/// defmfun $ec_mueller_10_5 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1844
+declare fn d_ec_mueller_10_5() -> Value raise
+
+///|
+/// defun ec-mueller-10-5 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1850
+declare fn ec_mueller_10_5(a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-elkies-fallback -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1936
+declare fn ec_elkies_fallback(elkies : Value, j : Value, a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-trace-mod-2 -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1948
+declare fn ec_trace_mod_2(a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-trace-naive -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1957
+declare fn ec_trace_naive(a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defmfun $ec_shanks_mestre -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1971
+declare fn d_ec_shanks_mestre() -> Value raise
+
+///|
+/// defun ec-shanks-mestre -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:1977
+declare fn ec_shanks_mestre(a : Value, b : Value, p : Value) -> Value raise
+
+///|
+/// defun ec-baby-giant -- ../share/contrib/elliptic_curves/elliptic_curves.lisp:2018
+declare fn ec_baby_giant(pt : Value, m : Value, bb : Value, p : Value) -> Value raise
+
+///|
+/// defmfun $ec2_set_curve -- ../share/contrib/elliptic_curves/ec2.lisp:82
+declare fn d_ec2_set_curve(red : Value, a : Value, b : Value) -> Value raise
+
+///|
+/// defun ec2-set? -- ../share/contrib/elliptic_curves/ec2.lisp:99
+declare fn ec2_set_q(fun : Value) -> Value raise
+
+///|
+/// defmfun $ec2_reduction -- ../share/contrib/elliptic_curves/ec2.lisp:105
+declare fn d_ec2_reduction(rtype? : Value = Nil) -> Value raise
+
+///|
+/// defun ec2-m2l -- ../share/contrib/elliptic_curves/ec2.lisp:113
+declare fn ec2_m2l(pt_m : Value, fn_ : Value) -> Value raise
+
+///|
+/// defun ec2-l2m -- ../share/contrib/elliptic_curves/ec2.lisp:126
+declare fn ec2_l2m(pt : Value) -> Value raise
+
+///|
+/// defmfun $ec2_add -- ../share/contrib/elliptic_curves/ec2.lisp:134
+declare fn d_ec2_add(pt : Value, qt : Value) -> Value raise
+
+///|
+/// defmfun $ec2_mult -- ../share/contrib/elliptic_curves/ec2.lisp:140
+declare fn d_ec2_mult(n : Value, pt : Value) -> Value raise
+
+///|
+/// defun ec2-add -- ../share/contrib/elliptic_curves/ec2.lisp:148
+declare fn ec2_add(pt : Value, qt : Value) -> Value raise
+
+///|
+/// defun ec2-double -- ../share/contrib/elliptic_curves/ec2.lisp:165
+declare fn ec2_double(pt : Value) -> Value raise
+
+///|
+/// defun ec2-mult -- ../share/contrib/elliptic_curves/ec2.lisp:179
+declare fn ec2_mult(n : Value, pt : Value) -> Value raise
+
+///|
+/// defun ec2-neg -- ../share/contrib/elliptic_curves/ec2.lisp:193
+declare fn ec2_neg(pt : Value) -> Value raise
+
+///|
+/// defmfun $ec2_random -- ../share/contrib/elliptic_curves/ec2.lisp:203
+declare fn d_ec2_random() -> Value raise
+
+///|
+/// defun ec2-random -- ../share/contrib/elliptic_curves/ec2.lisp:207
+declare fn ec2_random() -> Value raise
+
+///|
+/// defun ec2-comp-y -- ../share/contrib/elliptic_curves/ec2.lisp:223
+declare fn ec2_comp_y(x : Value, a : Value, b : Value, n : Value) -> Value raise
+
+///|
+/// defmfun $f2_solve_quadratic -- ../share/contrib/elliptic_curves/ec2.lisp:240
+declare fn d_f2_solve_quadratic(beta : Value, n : Value) -> Value raise
+
+///|
+/// defun f2-trace -- ../share/contrib/elliptic_curves/ec2.lisp:256
+declare fn f2_trace(b : Value, n : Value) -> Value raise
+
+///|
+/// defun f2-solve-even -- ../share/contrib/elliptic_curves/ec2.lisp:269
+declare fn f2_solve_even(d : Value, b : Value, n : Value) -> Value raise
+
+///|
+/// defun f2-solve-even-table -- ../share/contrib/elliptic_curves/ec2.lisp:284
+declare fn f2_solve_even_table(d : Value, n : Value) -> Value raise
+
+///|
+/// defun $ec2_point_p -- ../share/contrib/elliptic_curves/ec2.lisp:300
+declare fn d_ec2_point_p(pt : Value) -> Value raise
+
+///|
+/// defun ec2-point-p -- ../share/contrib/elliptic_curves/ec2.lisp:307
+declare fn ec2_point_p(pt : Value) -> Value raise
+
+///|
+/// defmfun $ec2_point_order -- ../share/contrib/elliptic_curves/ec2.lisp:318
+declare fn d_ec2_point_order(pt : Value, ord : Value, fs_ord? : Value = Nil) -> Value raise
+
+///|
+/// defun ec2-point-order -- ../share/contrib/elliptic_curves/ec2.lisp:337
+declare fn ec2_point_order(pt : Value, ord : Value, fs_ord : Value) -> Value raise
+
+///|
+/// defun mzerop -- ../share/contrib/altsimp/altsimp.lisp:122
+declare fn mzerop(z : Value) -> Value raise
+
+///|
+/// defun surd-p -- ../share/contrib/altsimp/altsimp.lisp:129
+declare fn surd_p(x : Value) -> Value raise
+
+///|
+/// defun generalized-surd-p -- ../share/contrib/altsimp/altsimp.lisp:133
+declare fn generalized_surd_p(x : Value) -> Value raise
+
+///|
+/// defun surd-convert -- ../share/contrib/altsimp/altsimp.lisp:138
+declare fn surd_convert(x : Value) -> Value raise
+
+///|
+/// defun convert-to-coeff-form -- ../share/contrib/altsimp/altsimp.lisp:160
+declare fn convert_to_coeff_form(x : Value) -> Value raise
+
+///|
+/// defun number-times-expr -- ../share/contrib/altsimp/altsimp.lisp:191
+declare fn number_times_expr(cf : Value, e : Value) -> Value raise
+
+///|
+/// defun add-expr-mequal -- ../share/contrib/altsimp/altsimp.lisp:195
+declare fn add_expr_mequal(x : Value, l : Value) -> Value raise
+
+///|
+/// defun add-expr-mrat -- ../share/contrib/altsimp/altsimp.lisp:201
+declare fn add_expr_mrat(x : Value, l : Value) -> Value raise
+
+///|
+/// defun add-expr-taylor -- ../share/contrib/altsimp/altsimp.lisp:204
+declare fn add_expr_taylor(x : Value, l : Value) -> Value raise
+
+///|
+/// defun add-expr-mlist -- ../share/contrib/altsimp/altsimp.lisp:207
+declare fn add_expr_mlist(x : Value, l : Value) -> Value raise
+
+///|
+/// defun add-expr-interval -- ../share/contrib/altsimp/altsimp.lisp:216
+declare fn add_expr_interval(x : Value, l : Value) -> Value raise
+
+///|
+/// defun add-expr-matrix -- ../share/contrib/altsimp/altsimp.lisp:224
+declare fn add_expr_matrix(x : Value, l : Value) -> Value raise
+
+///|
+/// defun add-extended-real -- ../share/contrib/altsimp/altsimp.lisp:266
+declare fn add_extended_real(a : Value, b : Value) -> Value raise
+
+///|
+/// defun add-expr-infinities -- ../share/contrib/altsimp/altsimp.lisp:271
+declare fn add_expr_infinities(x : Value, l : Value) -> Value raise
+
+///|
+/// defun get-tex-environment* -- ../share/contrib/alt-display/tex-display.lisp:7
+declare fn get_tex_environment_star(x : Value) -> Value raise
+
+///|
+/// defun $tex_displa -- ../share/contrib/alt-display/tex-display.lisp:14
+declare fn d_tex_displa(x : Value) -> Value raise
+
+///|
+/// defun $alt_display_output_type -- ../share/contrib/alt-display/alt-display.lisp:11
+declare fn d_alt_display_output_type(form? : Value = Nil) -> Value raise
+
+///|
+/// defun $set_prompt -- ../share/contrib/alt-display/alt-display.lisp:28
+declare fn d_set_prompt(type_ : Value, value : Value, args : Value) -> Value raise
+
+///|
+/// defun $reset_prompts -- ../share/contrib/alt-display/alt-display.lisp:42
+declare fn d_reset_prompts() -> Value raise
+
+///|
+/// defun $set_alt_display -- ../share/contrib/alt-display/alt-display.lisp:47
+declare fn d_set_alt_display(type_ : Value, f? : Value = Nil, warn? : Value = Nil) -> Value raise
+
+///|
+/// defun $smath_displa -- ../share/contrib/smath/smath.lisp:12
+declare fn d_smath_displa(form : Value, sm_rules? : Value) -> Value raise
+
+///|
+/// defun $to_sm_display -- ../share/contrib/smath/smath.lisp:27
+declare fn d_to_sm_display() -> Value raise
+
+///|
+/// defun $to_mx_display -- ../share/contrib/smath/smath.lisp:33
+declare fn d_to_mx_display() -> Value raise
+
+///|
+/// defun $smkill -- ../share/contrib/smath/smath.lisp:39
+declare fn d_smkill(s? : Value = Nil) -> Value raise
+
+///|
+/// defun macsyma-display -- ../share/affine/polya.lisp:82
+declare fn macsyma_display(form : Value) -> Value raise
+
+///|
+/// defun gt -- ../share/affine/polya.lisp:86
+declare fn gt(form : Value) -> Value raise
+
+///|
+/// defun list-terms -- ../share/affine/polya.lisp:89
+declare fn list_terms(poly : Value) -> Value raise
+
+///|
+/// defun numerical-coefficient-and-monomial -- ../share/affine/polya.lisp:109
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn numerical_coefficient_and_monomial(term : Value) -> (Value, Value) raise
+
+///|
+/// defun make-monomial -- ../share/affine/polya.lisp:152
+declare fn make_monomial(premonomial : Value) -> Value raise
+
+///|
+/// defun make-premonomial -- ../share/affine/polya.lisp:164
+declare fn make_premonomial(monomial : Value) -> Value raise
+
+///|
+/// defun macsyma-list -- ../share/affine/polya.lisp:168
+declare fn macsyma_list(l : Value) -> Value raise
+
+///|
+/// defun show-coeff -- ../share/affine/polya.lisp:171
+declare fn show_coeff(poly : Value) -> Value raise
+
+///|
+/// defun convert-polynomial-to-vector -- ../share/affine/polya.lisp:183
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn convert_polynomial_to_vector(polynomial : Value, hash_table : Value, last_column_number? : Value = Nil, parts_of_monomial? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun mac-add* -- ../share/affine/polya.lisp:217
+declare fn mac_add_star(l : Value) -> Value raise
+
+///|
+/// defun collect-coefficients -- ../share/affine/polya.lisp:222
+declare fn collect_coefficients(a_row : Value) -> Value raise
+
+///|
+/// defun sc_and_nc_parts -- ../share/affine/polya.lisp:236
+declare fn sc_and_nc_parts(monomial : Value) -> Value raise
+
+///|
+/// defun $list_terms -- ../share/affine/polya.lisp:239
+declare fn d_list_terms(f : Value) -> Value raise
+
+///|
+/// defun get-key -- ../share/affine/polya.lisp:243
+declare fn get_key(table : Value, value : Value) -> Value raise
+
+///|
+/// defun convert-polynomial-row -- ../share/affine/polya.lisp:264
+declare fn convert_polynomial_row(row : Value, hash_table : Value) -> Value raise
+
+///|
+/// defun make-one-dimensional -- ../share/affine/polya.lisp:278
+declare fn make_one_dimensional(an_array : Value) -> Value raise
+
+///|
+/// defun total-dimension -- ../share/affine/polya.lisp:283
+declare fn total_dimension(an_array : Value) -> Value raise
+
+///|
+/// defun pv-get-rows-from-macsyma-equations -- ../share/affine/polya.lisp:291
+declare fn pv_get_rows_from_macsyma_equations(self_ : Value, equations : Value) -> Value raise
+
+///|
+/// defun pv-set-up-sparse-matrix-from-rows -- ../share/affine/polya.lisp:309
+declare fn pv_set_up_sparse_matrix_from_rows(self_ : Value) -> Value raise
+
+///|
+/// defun pv-reduce -- ../share/affine/polya.lisp:322
+declare fn pv_reduce(self_ : Value) -> Value raise
+
+///|
+/// defun poly-identity -- ../share/affine/polya.lisp:336
+declare fn poly_identity(x : Value) -> Value raise
+
+///|
+/// defun pv-solve-suitable-to-sublis -- ../share/affine/polya.lisp:340
+declare fn pv_solve_suitable_to_sublis(self_ : Value) -> Value raise
+
+///|
+/// defun pv-get-rows-from-list-of-polynomials -- ../share/affine/polya.lisp:397
+declare fn pv_get_rows_from_list_of_polynomials(self_ : Value, mac_list : Value, parts_of_monomial? : Value = Nil) -> Value raise
+
+///|
+/// defun $find_rank_of_list_of_polynomials -- ../share/affine/polya.lisp:403
+declare fn d_find_rank_of_list_of_polynomials(a_list : Value) -> Value raise
+
+///|
+/// defun pv-get-rows-from-array-of-polynomials -- ../share/affine/polya.lisp:415
+declare fn pv_get_rows_from_array_of_polynomials(self_ : Value, an_array : Value, parts_of_monomial? : Value = Nil, last_column_number? : Value = Nil) -> Value raise
+
+///|
+/// defun check-conversion -- ../share/affine/polya.lisp:472
+declare fn check_conversion(polynomial : Value, row : Value, table : Value) -> Value raise
+
+///|
+/// defun pv-check-type-of-entries -- ../share/affine/polya.lisp:480
+declare fn pv_check_type_of_entries(self_ : Value) -> Value raise
+
+///|
+/// defun pv-set-up-hash-tables -- ../share/affine/polya.lisp:492
+declare fn pv_set_up_hash_tables(self_ : Value) -> Value raise
+
+///|
+/// defun $my_sum -- ../share/affine/polya.lisp:504
+declare fn d_my_sum(quote_form : Value, quote_index : Value, start : Value, end? : Value = Nil) -> Value raise
+
+///|
+/// defun $list_dot -- ../share/affine/polya.lisp:520
+declare fn d_list_dot(l : Value, ll : Value) -> Value raise
+
+///|
+/// defun permutations -- ../share/affine/polya.lisp:524
+declare fn permutations(a_list : Value, size? : Value) -> Value raise
+
+///|
+/// defun sign-of-permutation -- ../share/affine/polya.lisp:537
+declare fn sign_of_permutation(perm_of_first_n_non_negative_integers : Value) -> Value raise
+
+///|
+/// defun nsign-of-permutation -- ../share/affine/polya.lisp:541
+declare fn nsign_of_permutation(perm : Value) -> Value raise
+
+///|
+/// defun $make_art_q -- ../share/affine/polya.lisp:549
+declare fn d_make_art_q(indices : Value) -> Value raise
+
+///|
+/// defun $first_variable -- ../share/affine/polya.lisp:552
+declare fn d_first_variable(monomial : Value) -> Value raise
+
+///|
+/// defun m. -- ../share/affine/polya.lisp:567
+declare fn m_dot(l : Value) -> Value raise
+
+///|
+/// defun $convert_right_to_left -- ../share/affine/polya.lisp:571
+declare fn d_convert_right_to_left(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $split_into_x_and_y -- ../share/affine/polya.lisp:582
+declare fn d_split_into_x_and_y(f : Value) -> Value raise
+
+///|
+/// defun $matrix_entry -- ../share/affine/polya.lisp:592
+declare fn d_matrix_entry(x : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun initial-equal -- ../share/affine/polya.lisp:594
+declare fn initial_equal(list_a : Value, list_b : Value) -> Value raise
+
+///|
+/// defun initial-sublist -- ../share/affine/polya.lisp:599
+declare fn initial_sublist(lista : Value, biglist : Value) -> Value raise
+
+///|
+/// defun $replace_the_pattern -- ../share/affine/polya.lisp:605
+declare fn d_replace_the_pattern(adp : Value, pattern : Value, replacement : Value) -> Value raise
+
+///|
+/// defun dotsimp-one-term -- ../share/affine/polya.lisp:620
+declare fn dotsimp_one_term(monom : Value, coeff : Value, ignor : Value) -> Value raise
+
+///|
+/// defun dotsimp-atom -- ../share/affine/polya.lisp:623
+declare fn dotsimp_atom(expr : Value) -> Value raise
+
+///|
+/// defun check-rat-order -- ../share/affine/polya.lisp:630
+declare fn check_rat_order(expr : Value, variables? : Value) -> Value raise
+
+///|
+/// defun get-varlist -- ../share/affine/polya.lisp:664
+declare fn get_varlist(expr : Value) -> Value raise
+
+///|
+/// defun varlist -- ../share/affine/polya.lisp:684
+declare fn varlist(expr : Value) -> Value raise
+
+///|
+/// defun genvar -- ../share/affine/polya.lisp:686
+declare fn genvar(expr : Value) -> Value raise
+
+///|
+/// defun nil-radicalp -- ../share/affine/polya.lisp:695
+declare fn nil_radicalp(monom : Value) -> Value raise
+
+///|
+/// defun in-nth-power-radical -- ../share/affine/polya.lisp:706
+declare fn in_nth_power_radical(monom : Value, n : Value) -> Value raise
+
+///|
+/// defun dot-show -- ../share/affine/polya.lisp:713
+declare fn dot_show(nc_list : Value) -> Value raise
+
+///|
+/// defun new-rat-dotsimp -- ../share/affine/polya.lisp:719
+declare fn new_rat_dotsimp(expr : Value) -> Value raise
+
+///|
+/// defun rat-dotsimp -- ../share/affine/polya.lisp:767
+declare fn rat_dotsimp(expr : Value) -> Value raise
+
+///|
+/// defun $dotsimp -- ../share/affine/polya.lisp:801
+declare fn d_dotsimp(expr : Value) -> Value raise
+
+///|
+/// defun remove_nth -- ../share/affine/polya.lisp:864
+declare fn remove_nth(n : Value, a_list : Value) -> Value raise
+
+///|
+/// defun $simp_ncmuln -- ../share/affine/polya.lisp:871
+declare fn d_simp_ncmuln(a_list : Value, flag : Value) -> Value raise
+
+///|
+/// defun $simp_ncmul -- ../share/affine/polya.lisp:875
+declare fn d_simp_ncmul(a_list : Value) -> Value raise
+
+///|
+/// defun $dncmul -- ../share/affine/polya.lisp:883
+declare fn d_dncmul(f : Value, g : Value) -> Value raise
+
+///|
+/// defun dotsimp2 -- ../share/affine/polya.lisp:895
+declare fn dotsimp2(expression : Value) -> Value raise
+
+///|
+/// defun dotsimp1 -- ../share/affine/polya.lisp:901
+declare fn dotsimp1(expression : Value) -> Value raise
+
+///|
+/// defun $dot_simp_monomial -- ../share/affine/polya.lisp:909
+declare fn d_dot_simp_monomial(monom : Value) -> Value raise
+
+///|
+/// defun $dot_productp -- ../share/affine/polya.lisp:971
+declare fn d_dot_productp(x : Value) -> Value raise
+
+///|
+/// defun $dot -- ../share/affine/polya.lisp:990
+declare fn d_dot(l : Value) -> Value raise
+
+///|
+/// defun $my_coeff -- ../share/affine/polya.lisp:992
+declare fn d_my_coeff(f : Value, x : Value) -> Value raise
+
+///|
+/// defun $ncoeff -- ../share/affine/polya.lisp:1007
+declare fn d_ncoeff(f : Value, x : Value, exponent? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun $matrix_equationp -- ../share/affine/polya.lisp:1043
+declare fn d_matrix_equationp(expr : Value) -> Value raise
+
+///|
+/// defun $extract_linear_equations -- ../share/affine/polya.lisp:1050
+declare fn d_extract_linear_equations(equations : Value, independent_monomials? : Value) -> Value raise
+
+///|
+/// defun extract-linear-equations -- ../share/affine/polya.lisp:1091
+declare fn extract_linear_equations(list_eqns : Value, tem? : Value = Nil, all_ind_mons? : Value = Nil) -> Value raise
+
+///|
+/// defun member-even -- ../share/affine/polya.lisp:1112
+declare fn member_even(item : Value, a_list : Value) -> Value raise
+
+///|
+/// defun initial-segment-is-replaced -- ../share/affine/polya.lisp:1123
+declare fn initial_segment_is_replaced(a_list : Value) -> Value raise
+
+///|
+/// defun $extract_nc_part -- ../share/affine/polya.lisp:1158
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn d_extract_nc_part(monomial : Value) -> (Value, Value) raise
+
+///|
+/// defun extract_nc_and_sc_parts -- ../share/affine/polya.lisp:1197
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn extract_nc_and_sc_parts(monomial : Value) -> (Value, Value) raise
+
+///|
+/// defun $extract_nc_and_sc_parts -- ../share/affine/polya.lisp:1206
+declare fn d_extract_nc_and_sc_parts(monomial : Value) -> Value raise
+
+///|
+/// defun $setfy -- ../share/affine/polya.lisp:1223
+declare fn d_setfy(a_list : Value) -> Value raise
+
+///|
+/// defun $list_nc_monomials -- ../share/affine/polya.lisp:1229
+declare fn d_list_nc_monomials(expr : Value) -> Value raise
+
+///|
+/// defun $reverse_equation -- ../share/affine/polya.lisp:1247
+declare fn d_reverse_equation(eqn : Value) -> Value raise
+
+///|
+/// defun nc-monomial-table -- ../share/affine/polya.lisp:1254
+declare fn nc_monomial_table(monom : Value) -> Value raise
+
+///|
+/// defun new-rat-ncmul -- ../share/affine/polya.lisp:1266
+declare fn new_rat_ncmul(list_of_terms : Value) -> Value raise
+
+///|
+/// defun rat-ncmul -- ../share/affine/polya.lisp:1280
+declare fn rat_ncmul(list_of_terms : Value) -> Value raise
+
+///|
+/// defun ncmul1 -- ../share/affine/polya.lisp:1291
+declare fn ncmul1(mon : Value, expr : Value, mon1 : Value) -> Value raise
+
+///|
+/// defun mysub -- ../share/affine/polya.lisp:1300
+declare fn mysub(expr : Value, replacement_function : Value) -> Value raise
+
+///|
+/// defun mysub1 -- ../share/affine/polya.lisp:1302
+declare fn mysub1(vv : Value, h : Value) -> Value raise
+
+///|
+/// defun max-for-pred -- ../share/affine/polya.lisp:1311
+declare fn max_for_pred(a_list : Value, pred : Value) -> Value raise
+
+///|
+/// defun $nc_rat -- ../share/affine/polya.lisp:1360
+declare fn d_nc_rat(expr : Value) -> Value raise
+
+///|
+/// defun $re_rat_the_dot_simplifications -- ../share/affine/polya.lisp:1364
+declare fn d_re_rat_the_dot_simplifications() -> Value raise
+
+///|
+/// defun show-genvar -- ../share/affine/polya.lisp:1380
+declare fn show_genvar(a_list? : Value) -> Value raise
+
+///|
+/// defun find-worst-nc-monomial -- ../share/affine/polya.lisp:1385
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn find_worst_nc_monomial(expr : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun $my_nc_coef -- ../share/affine/polya.lisp:1439
+declare fn d_my_nc_coef(expr : Value, var_ : Value) -> Value raise
+
+///|
+/// defun $sump -- ../share/affine/polya.lisp:1453
+declare fn d_sump(x : Value) -> Value raise
+
+///|
+/// defun $nc_coeff -- ../share/affine/polya.lisp:1456
+declare fn d_nc_coeff(expr : Value, monom : Value, deg? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun number-and-zerop -- ../share/affine/polya.lisp:1487
+declare fn number_and_zerop(x : Value) -> Value raise
+
+///|
+/// defun ncsimp -- ../share/affine/polya.lisp:1528
+declare fn ncsimp(expr : Value) -> Value raise
+
+///|
+/// defun $independent_linsolve -- ../share/affine/polya.lisp:1543
+declare fn d_independent_linsolve(eqns : Value, independent_monomials : Value, unknowns? : Value = Nil) -> Value raise
+
+///|
+/// defun $extr_eqns -- ../share/affine/polya.lisp:1551
+declare fn d_extr_eqns(eqns : Value, independent_monomials : Value, unknowns? : Value = Nil) -> Value raise
+
+///|
+/// defun $nc_coefficients -- ../share/affine/polya.lisp:1556
+declare fn d_nc_coefficients(eqns : Value) -> Value raise
+
+///|
+/// defun $find_relations_in_free_ring -- ../share/affine/polya.lisp:1566
+declare fn d_find_relations_in_free_ring(a_list : Value) -> Value raise
+
+///|
+/// defun $list_of_variables -- ../share/affine/polya.lisp:1579
+declare fn d_list_of_variables(l : Value) -> Value raise
+
+///|
+/// defun aux_to_list_of_variables -- ../share/affine/polya.lisp:1585
+declare fn aux_to_list_of_variables(l : Value, var1 : Value) -> Value raise
+
+///|
+/// defun create-list2 -- ../share/affine/polya.lisp:1601
+declare fn create_list2(form : Value, l : Value) -> Value raise
+
+///|
+/// defun $general_sum -- ../share/affine/polya.lisp:1604
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn d_general_sum(terms : Value, coefficients? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun a-less -- ../share/affine/polya.lisp:1616
+declare fn a_less(u : Value, v : Value) -> Value raise
+
+///|
+/// defun degree -- ../share/affine/polya.lisp:1647
+declare fn degree(a_list : Value, type_of_weight? : Value = q_kw_weight) -> Value raise
+
+///|
+/// defun $commutative_dot_monomials -- ../share/affine/polya.lisp:1657
+declare fn d_commutative_dot_monomials(a_list : Value, degree : Value) -> Value raise
+
+///|
+/// defun $declare_scalar_list -- ../share/affine/polya.lisp:1662
+declare fn d_declare_scalar_list(l : Value) -> Value raise
+
+///|
+/// defun $plusp -- ../share/affine/polya.lisp:1669
+declare fn d_plusp(x : Value) -> Value raise
+
+///|
+/// defun $list_nc_parts -- ../share/affine/polya.lisp:1672
+declare fn d_list_nc_parts(f : Value) -> Value raise
+
+///|
+/// defun $constant_term -- ../share/affine/polya.lisp:1690
+declare fn d_constant_term(expr : Value, variables : Value) -> Value raise
+
+///|
+/// defun pv-get-rows-from-macsyma-equations-and-variables -- ../share/affine/polya.lisp:1718
+declare fn pv_get_rows_from_macsyma_equations_and_variables(self_ : Value, equations : Value, the_variables : Value) -> Value raise
+
+///|
+/// defun fast-linsolve -- ../share/affine/polya.lisp:1831
+declare fn fast_linsolve(poly_eqns : Value, variables : Value) -> Value raise
+
+///|
+/// defun $fast_linsolve -- ../share/affine/polya.lisp:1853
+declare fn d_fast_linsolve(eqn : Value, variables? : Value = Nil) -> Value raise
+
+///|
+/// defun $nexp -- ../share/affine/polya.lisp:1878
+declare fn d_nexp(u : Value, n : Value) -> Value raise
+
+///|
+/// defun $collect -- ../share/affine/polya.lisp:1886
+declare fn d_collect(expr : Value) -> Value raise
+
+///|
+/// defun $subtract_monomial -- ../share/affine/polya.lisp:1890
+declare fn d_subtract_monomial(expr : Value, mon : Value) -> Value raise
+
+///|
+/// defun replace-dot-simplifications -- ../share/affine/polya.lisp:1895
+declare fn replace_dot_simplifications(expr : Value) -> Value raise
+
+///|
+/// defun test_pattern -- ../share/affine/polya.lisp:1908
+declare fn test_pattern(adp : Value, pattern : Value, replacement : Value) -> Value raise
+
+///|
+/// defun $nsdot -- ../share/affine/polya.lisp:1919
+declare fn d_nsdot(l : Value) -> Value raise
+
+///|
+/// defun $sort_mono -- ../share/affine/polya.lisp:1922
+declare fn d_sort_mono(variables : Value, degree : Value) -> Value raise
+
+///|
+/// defun tail-alphalessp -- ../share/affine/polya.lisp:1925
+declare fn tail_alphalessp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun unreplaced-monomials-in-dot-simplifications -- ../share/affine/polya.lisp:1941
+declare fn unreplaced_monomials_in_dot_simplifications(macsyma_list? : Value) -> Value raise
+
+///|
+/// defun ordered-sublist -- ../share/affine/polya.lisp:1955
+declare fn ordered_sublist(small : Value, big : Value) -> Value raise
+
+///|
+/// defun $set_dot_simplifications -- ../share/affine/polya.lisp:1972
+declare fn d_set_dot_simplifications(l : Value) -> Value raise
+
+///|
+/// defun $generate_array_of_relations -- ../share/affine/polya.lisp:1994
+declare fn d_generate_array_of_relations(variables : Value, degree : Value, relations : Value) -> Value raise
+
+///|
+/// defun $find_rank -- ../share/affine/polya.lisp:2031
+declare fn d_find_rank(nc_polynomials : Value) -> Value raise
+
+///|
+/// defun $find_simplifications -- ../share/affine/polya.lisp:2039
+declare fn d_find_simplifications(nc_polynomial_relations : Value) -> Value raise
+
+///|
+/// defun join-arrays -- ../share/affine/polya.lisp:2045
+declare fn join_arrays(l : Value) -> Value raise
+
+///|
+/// defun $com -- ../share/affine/polya.lisp:2057
+declare fn d_com(x : Value, y : Value, zet? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun set-up-graded-relations -- ../share/affine/polya.lisp:2070
+declare fn set_up_graded_relations(the_variables : Value, deg : Value, new_relations : Value) -> Value raise
+
+///|
+/// defun $find_central_elements -- ../share/affine/polya.lisp:2094
+declare fn d_find_central_elements(variables : Value, degree : Value, relations? : Value) -> Value raise
+
+///|
+/// defun pv-get-basis -- ../share/affine/polya.lisp:2134
+declare fn pv_get_basis(self_ : Value) -> Value raise
+
+///|
+/// defun $express_in_terms_of_basis -- ../share/affine/polya.lisp:2158
+declare fn d_express_in_terms_of_basis(variables : Value, form : Value, relations? : Value) -> Value raise
+
+///|
+/// defun $test -- ../share/affine/polya.lisp:2176
+declare fn d_test(d_generators : Value) -> Value raise
+
+///|
+/// defun $find_rank_of_relations -- ../share/affine/polya.lisp:2178
+declare fn d_find_rank_of_relations(var_ : Value, deg : Value, relat? : Value) -> Value raise
+
+///|
+/// defun $nc_degree -- ../share/affine/polya.lisp:2183
+declare fn d_nc_degree(f : Value, type_of_weight? : Value = q_kw_weight) -> Value raise
+
+///|
+/// defun free-ncmul -- ../share/affine/polya.lisp:2225
+declare fn free_ncmul(l : Value) -> Value raise
+
+///|
+/// defun $mono -- ../share/affine/polya.lisp:2229
+declare fn d_mono(variables : Value, n : Value, reset? : Value = Nil) -> Value raise
+
+///|
+/// defun $separate_parameters -- ../share/affine/polya.lisp:2385
+declare fn d_separate_parameters(expression : Value, parameters : Value) -> Value raise
+
+///|
+/// defun pv-clean-up -- ../share/affine/polya.lisp:2403
+declare fn pv_clean_up(self_ : Value) -> Value raise
+
+///|
+/// defun $find_relation -- ../share/affine/polya.lisp:2412
+declare fn d_find_relation(variables : Value, degree : Value, monoms : Value, relations? : Value) -> Value raise
+
+///|
+/// defun $determinant_of_equations -- ../share/affine/polya.lisp:2448
+declare fn d_determinant_of_equations(eqn : Value, variables? : Value = Nil) -> Value raise
+
+///|
+/// defun $special_find_central_elements -- ../share/affine/polya.lisp:2470
+declare fn d_special_find_central_elements(vari : Value, deg : Value, infinites : Value) -> Value raise
+
+///|
+/// defun $solve_nc_coefficients -- ../share/affine/polya.lisp:2497
+declare fn d_solve_nc_coefficients(d_list_eqns : Value, variable_strings : Value) -> Value raise
+
+///|
+/// defun gencoeff -- ../share/affine/polya.lisp:2503
+declare fn gencoeff(form : Value, mon : Value, vars_to_exclude? : Value) -> Value raise
+
+///|
+/// defun poly-data-from-nc-matrix -- ../share/affine/polya.lisp:2513
+declare fn poly_data_from_nc_matrix(nc_matrix : Value) -> Value raise
+
+///|
+/// defun segment-interval -- ../share/affine/polya.lisp:2567
+declare fn segment_interval(segments : Value, spot : Value) -> Value raise
+
+///|
+/// defun pd-convert-to-maxima-format -- ../share/affine/polya.lisp:2574
+declare fn pd_convert_to_maxima_format(pd : Value) -> Value raise
+
+///|
+/// defun id -- ../share/affine/polya.lisp:2589
+declare fn id(mat : Value) -> Value raise
+
+///|
+/// defun reduce-poly-data -- ../share/affine/polya.lisp:2593
+declare fn reduce_poly_data(pd : Value) -> Value raise
+
+///|
+/// defun $nc_matrix_row_reduce -- ../share/affine/polya.lisp:2599
+declare fn d_nc_matrix_row_reduce(mat : Value) -> Value raise
+
+///|
+/// defun $nc_matrix_quotient -- ../share/affine/polya.lisp:2608
+declare fn d_nc_matrix_quotient(mat1 : Value, modulo_mat : Value) -> Value raise
+
+///|
+/// defun tilde-q-fsh -- ../share/affine/compat.lisp:9
+declare fn tilde_q_fsh(stream : Value, arg : Value, colonp : Value, at_p : Value) -> Value raise
+
+///|
+/// defun nn+ -- ../share/affine/modsimp.lisp:10
+declare fn nn_plus(l : Value) -> Value raise
+
+///|
+/// defun n. -- ../share/affine/modsimp.lisp:29
+declare fn n_dot(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $find_sygy -- ../share/affine/modsimp.lisp:62
+declare fn d_find_sygy(degn : Value) -> Value raise
+
+///|
+/// defun matrix-column -- ../share/affine/modsimp.lisp:115
+declare fn matrix_column(mat : Value, n : Value) -> Value raise
+
+///|
+/// defun $find_kernel -- ../share/affine/modsimp.lisp:120
+declare fn d_find_kernel(in_deg : Value, matrix : Value, multiply_on_left? : Value = Nil) -> Value raise
+
+///|
+/// defun $find_basis -- ../share/affine/modsimp.lisp:154
+declare fn d_find_basis(list_vectors : Value) -> Value raise
+
+///|
+/// defun $scalar_sum -- ../share/affine/modsimp.lisp:162
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn d_scalar_sum(prefix : Value, monoms : Value) -> (Value, Value) raise
+
+///|
+/// defun replace-parameters-by -- ../share/affine/modsimp.lisp:169
+declare fn replace_parameters_by(expr : Value, prefix : Value) -> Value raise
+
+///|
+/// defun $leftsocle -- ../share/affine/modsimp.lisp:182
+declare fn d_leftsocle(in_degree : Value, module_relations : Value, rad : Value) -> Value raise
+
+///|
+/// defun $try_bezout -- ../share/affine/modsimp.lisp:223
+declare fn d_try_bezout(f : Value, g : Value, linears? : Value) -> Value raise
+
+///|
+/// defun $intersect_principals_variety -- ../share/affine/modsimp.lisp:246
+declare fn d_intersect_principals_variety(d_f1 : Value, d_f2 : Value, in_deg : Value, in_free_ring? : Value = Nil) -> Value raise
+
+///|
+/// defun $intersect_principals -- ../share/affine/modsimp.lisp:257
+declare fn d_intersect_principals(d_f1 : Value, d_f2 : Value, in_deg : Value, modulo_free_ring? : Value = Nil) -> Value raise
+
+///|
+/// defun module-monom-must-replacep -- ../share/affine/modsimp.lisp:285
+declare fn module_monom_must_replacep(monom : Value) -> Value raise
+
+///|
+/// defun module-must-replacep -- ../share/affine/modsimp.lisp:304
+declare fn module_must_replacep(poly : Value) -> Value raise
+
+///|
+/// defun rat-simplifications -- ../share/affine/modsimp.lisp:312
+declare fn rat_simplifications(simps : Value) -> Value raise
+
+///|
+/// defun module-simp -- ../share/affine/modsimp.lisp:317
+declare fn module_simp(fun : Value) -> Value raise
+
+///|
+/// defun delete-from-simps -- ../share/affine/modsimp.lisp:339
+declare fn delete_from_simps(simps : Value, mon : Value, repl : Value) -> Value raise
+
+///|
+/// defun make-relation -- ../share/affine/modsimp.lisp:368
+declare fn make_relation(monom : Value, repl : Value) -> Value raise
+
+///|
+/// defun sort-simps-by-degree -- ../share/affine/modsimp.lisp:378
+declare fn sort_simps_by_degree(simps : Value) -> Value raise
+
+///|
+/// defun module-and-dot-simp -- ../share/affine/modsimp.lisp:387
+declare fn module_and_dot_simp(pol : Value) -> Value raise
+
+///|
+/// defun gen-dot-check-associative -- ../share/affine/modsimp.lisp:398
+declare fn gen_dot_check_associative(a : Value, b : Value, c : Value, simplifier? : Value = q_module_and_dot_simp) -> Value raise
+
+///|
+/// defun coerce-nctimes -- ../share/affine/modsimp.lisp:432
+declare fn coerce_nctimes(a : Value) -> Value raise
+
+///|
+/// defun $lastn_ncdegree -- ../share/affine/modsimp.lisp:448
+declare fn d_lastn_ncdegree(mon : Value, n : Value) -> Value raise
+
+///|
+/// defun $firstn_ncdegree -- ../share/affine/modsimp.lisp:464
+declare fn d_firstn_ncdegree(mon : Value, n : Value) -> Value raise
+
+///|
+/// defun $find_right_lap -- ../share/affine/modsimp.lisp:481
+declare fn d_find_right_lap(left : Value, right : Value, tot_deg : Value) -> Value raise
+
+///|
+/// defun initial-seg -- ../share/affine/modsimp.lisp:541
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn initial_seg(seg : Value, lis : Value) -> (Value, Value) raise
+
+///|
+/// defun plain-add-to-module-simps -- ../share/affine/modsimp.lisp:555
+declare fn plain_add_to_module_simps(poly : Value) -> Value raise
+
+///|
+/// defun make-simp -- ../share/affine/modsimp.lisp:574
+declare fn make_simp(relat : Value) -> Value raise
+
+///|
+/// defun dot-right-quotient -- ../share/affine/modsimp.lisp:586
+declare fn dot_right_quotient(a : Value, b : Value) -> Value raise
+
+///|
+/// defun simplify-module-simps -- ../share/affine/modsimp.lisp:608
+declare fn simplify_module_simps(to_deg : Value) -> Value raise
+
+///|
+/// defun type-i-simp -- ../share/affine/modsimp.lisp:621
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn type_i_simp(ignore_ : Value) -> (Value, Value) raise
+
+///|
+/// defun dotsimp -- ../share/affine/modsimp.lisp:648
+declare fn dotsimp(ratl_or_poly : Value) -> Value raise
+
+///|
+/// defun ratl-function-id -- ../share/affine/modsimp.lisp:652
+declare fn ratl_function_id(number_or_rational_function : Value) -> Value raise
+
+///|
+/// defun type-ii-simp -- ../share/affine/modsimp.lisp:663
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn type_ii_simp(from_deg : Value, to_deg : Value) -> (Value, Value) raise
+
+///|
+/// defun fake-header -- ../share/affine/modsimp.lisp:717
+declare fn fake_header(form : Value) -> Value raise
+
+///|
+/// defun $modsimp -- ../share/affine/modsimp.lisp:722
+declare fn d_modsimp(form : Value) -> Value raise
+
+///|
+/// defun $cyclic_module_basis -- ../share/affine/modsimp.lisp:730
+declare fn d_cyclic_module_basis(degree : Value, variables? : Value) -> Value raise
+
+///|
+/// defun $module_replacements -- ../share/affine/modsimp.lisp:733
+declare fn d_module_replacements(module_simps? : Value) -> Value raise
+
+///|
+/// defun $module_dimensions -- ../share/affine/modsimp.lisp:753
+declare fn d_module_dimensions(to_n : Value, variables? : Value) -> Value raise
+
+///|
+/// defun $set_up_module_simplifications -- ../share/affine/modsimp.lisp:762
+declare fn d_set_up_module_simplifications(relations : Value, to_deg? : Value = Nil) -> Value raise
+
+///|
+/// defun $shift_sequence -- ../share/affine/modsimp.lisp:776
+declare fn d_shift_sequence(seq : Value, n : Value) -> Value raise
+
+///|
+/// defun $euler_sum -- ../share/affine/modsimp.lisp:783
+declare fn d_euler_sum(deg_seq : Value, size_of_module : Value, map_degs : Value) -> Value raise
+
+///|
+/// defun $solve_sp -- ../share/affine/modsimp.lisp:795
+declare fn d_solve_sp(try_ : Value, eqns : Value) -> Value raise
+
+///|
+/// defun $nc_linear_factor -- ../share/affine/modsimp.lisp:806
+declare fn d_nc_linear_factor(pol : Value) -> Value raise
+
+///|
+/// defun $degless -- ../share/affine/modsimp.lisp:837
+declare fn d_degless(u : Value, v : Value) -> Value raise
+
+///|
+/// defun update -- ../share/affine/sheafa.lisp:15
+declare fn update(ldata : Value) -> Value raise
+
+///|
+/// defun zl-pairlis -- ../share/affine/sheafa.lisp:193
+declare fn zl_pairlis(a : Value, b : Value) -> Value raise
+
+///|
+/// defun remove-common-factors -- ../share/affine/sheafa.lisp:265
+declare fn remove_common_factors(from_poly : Value, divisor : Value) -> Value raise
+
+///|
+/// defun strings-search -- ../share/affine/sheafa.lisp:271
+declare fn strings_search(keys : Value, sstring : Value) -> Value raise
+
+///|
+/// defun replace-genvar -- ../share/affine/sheafa.lisp:276
+declare fn replace_genvar(strings : Value) -> Value raise
+
+///|
+/// defun describe-components -- ../share/affine/sheafa.lisp:292
+declare fn describe_components(comp : Value) -> Value raise
+
+///|
+/// defun tableaux-lessp -- ../share/affine/sheafa.lisp:310
+declare fn tableaux_lessp(a : Value, b : Value) -> Value raise
+
+///|
+/// defun last-string -- ../share/affine/sheafa.lisp:318
+declare fn last_string(x : Value) -> Value raise
+
+///|
+/// defun $list_tableaux -- ../share/affine/sheafa.lisp:332
+declare fn d_list_tableaux(length_ : Value, dimension : Value) -> Value raise
+
+///|
+/// defun $sub_matrix -- ../share/affine/sheafa.lisp:337
+declare fn d_sub_matrix(mat : Value, rows_to_take : Value, cols_to_take : Value) -> Value raise
+
+///|
+/// defun $sub_matrix_columns -- ../share/affine/sheafa.lisp:349
+declare fn d_sub_matrix_columns(mat : Value, cols_to_take : Value) -> Value raise
+
+///|
+/// defun $plucker -- ../share/affine/sheafa.lisp:360
+declare fn d_plucker(vector_list : Value) -> Value raise
+
+///|
+/// defun $remove_number -- ../share/affine/sheafa.lisp:369
+declare fn d_remove_number(llist : Value) -> Value raise
+
+///|
+/// defun $sort_solution_tree -- ../share/affine/sheafa.lisp:377
+declare fn d_sort_solution_tree() -> Value raise
+
+///|
+/// defun $dichotomy -- ../share/affine/sheafa.lisp:399
+declare fn d_dichotomy(polynomials : Value, dich : Value, add_to_tree? : Value = Nil) -> Value raise
+
+///|
+/// defun constant-term -- ../share/affine/sheafa.lisp:428
+declare fn constant_term(poly : Value) -> Value raise
+
+///|
+/// defun gone-prepared -- ../share/affine/sheafa.lisp:437
+declare fn gone_prepared(poly : Value, inequal? : Value = Fix(1L), linear_variables? : Value = Nil) -> Value raise
+
+///|
+/// defun degree-one-variables -- ../share/affine/sheafa.lisp:450
+declare fn degree_one_variables(poly : Value) -> Value raise
+
+///|
+/// defun one-prepared -- ../share/affine/sheafa.lisp:455
+declare fn one_prepared(poly : Value, linear_variables? : Value = Nil) -> Value raise
+
+///|
+/// defun gm-all-prepared -- ../share/affine/sheafa.lisp:495
+declare fn gm_all_prepared(poly : Value, m? : Value = Nil, inequal? : Value = Fix(1L), linear_variables? : Value = Nil) -> Value raise
+
+///|
+/// defun gm-prepared -- ../share/affine/sheafa.lisp:521
+declare fn gm_prepared(poly : Value, m? : Value = Nil, inequal? : Value = Fix(1L), linear_variables? : Value = Nil) -> Value raise
+
+///|
+/// defun m-prepared -- ../share/affine/sheafa.lisp:546
+declare fn m_prepared(poly : Value, m? : Value = Nil, linear_variables? : Value = Nil) -> Value raise
+
+///|
+/// defun non-constant-factors -- ../share/affine/sheafa.lisp:563
+declare fn non_constant_factors(poly : Value, invert? : Value = Nil) -> Value raise
+
+///|
+/// defun gen-ptimes -- ../share/affine/sheafa.lisp:575
+declare fn gen_ptimes(l : Value) -> Value raise
+
+///|
+/// defun find-good-dichotomy -- ../share/affine/sheafa.lisp:581
+declare fn find_good_dichotomy(ldata : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun order-dichotomy -- ../share/affine/sheafa.lisp:664
+declare fn order_dichotomy(dich : Value) -> Value raise
+
+///|
+/// defun any-linearp -- ../share/affine/sheafa.lisp:710
+declare fn any_linearp(f : Value, g : Value, variables_to_exclude? : Value = Nil, among_variables? : Value = Nil) -> Value raise
+
+///|
+/// defun any-invertible-leading-coefficient -- ../share/affine/sheafa.lisp:719
+declare fn any_invertible_leading_coefficient(f : Value, g : Value) -> Value raise
+
+///|
+/// defun invertible-leading-coefficient -- ../share/affine/sheafa.lisp:732
+declare fn invertible_leading_coefficient(poly : Value, var_ : Value, inequal : Value) -> Value raise
+
+///|
+/// defun plength-order -- ../share/affine/sheafa.lisp:735
+declare fn plength_order(u : Value, v : Value) -> Value raise
+
+///|
+/// defun replace-functions -- ../share/affine/sheafa.lisp:757
+declare fn replace_functions(list_to_replace : Value, f : Value, var_ : Value, general_leading_cof? : Value = Nil, invertible_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun any-gm-prepared -- ../share/affine/sheafa.lisp:782
+declare fn any_gm_prepared(poly : Value, gg : Value) -> Value raise
+
+///|
+/// defun check-for-gm-prepared -- ../share/affine/sheafa.lisp:790
+declare fn check_for_gm_prepared(list_eqns : Value, gg : Value) -> Value raise
+
+///|
+/// defun ldata-simplifications -- ../share/affine/sheafa.lisp:824
+declare fn ldata_simplifications(ldata : Value, open_g? : Value = Fix(1L), error_check_containments? : Value = Nil, recursive_p? : Value = Nil) -> Value raise
+
+///|
+/// defun any-irreducible -- ../share/affine/sheafa.lisp:946
+declare fn any_irreducible(f : Value, gg : Value) -> Value raise
+
+///|
+/// defun leading-cof -- ../share/affine/sheafa.lisp:951
+declare fn leading_cof(poly : Value, var_ : Value) -> Value raise
+
+///|
+/// defun find-variable-with-simple-lc -- ../share/affine/sheafa.lisp:955
+declare fn find_variable_with_simple_lc(f : Value, fns : Value, gg : Value) -> Value raise
+
+///|
+/// defun ldata-unused -- ../share/affine/sheafa.lisp:962
+declare fn ldata_unused(ld : Value) -> Value raise
+
+///|
+/// defun make-dichotomy -- ../share/affine/sheafa.lisp:1059
+declare fn make_dichotomy(ldata : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun order-variables-by-occurence -- ../share/affine/sheafa.lisp:1145
+declare fn order_variables_by_occurence(list_eqns : Value) -> Value raise
+
+///|
+/// defun simp-lead -- ../share/affine/sheafa.lisp:1160
+declare fn simp_lead(eqns : Value, open_g? : Value = Fix(1L), variables? : Value = Nil) -> Value raise
+
+///|
+/// defun test-simp-lead -- ../share/affine/sheafa.lisp:1177
+declare fn test_simp_lead(eqns : Value) -> Value raise
+
+///|
+/// defun simp-lead1 -- ../share/affine/sheafa.lisp:1188
+declare fn simp_lead1(eqns : Value, open_g? : Value = Fix(1L), variables? : Value = Nil) -> Value raise
+
+///|
+/// defun affine-open -- ../share/affine/sheafa.lisp:1244
+declare fn affine_open(list_vars : Value, inequal? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun construct-pre-ldata-sheaves -- ../share/affine/sheafa.lisp:1258
+declare fn construct_pre_ldata_sheaves(s_var? : Value = Nil, data? : Value = Nil, opens? : Value = Nil) -> Value raise
+
+///|
+/// defun grobner-remember -- ../share/affine/sheafa.lisp:1278
+declare fn grobner_remember(basis : Value) -> Value raise
+
+///|
+/// defun variety-ldata-subset -- ../share/affine/sheafa.lisp:1307
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn variety_ldata_subset(ld1 : Value, ld2 : Value, open_g? : Value = Fix(1L), ignore_ldata_inequalities? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun delete-redundant-ldata -- ../share/affine/sheafa.lisp:1402
+declare fn delete_redundant_ldata(list_ld : Value, open_g? : Value = Fix(1L), gg? : Value = Fix(1L), ignore_ldata_inequalities? : Value = Nil) -> Value raise
+
+///|
+/// defun describe-ldata -- ../share/affine/sheafa.lisp:1431
+declare fn describe_ldata(ld : Value) -> Value raise
+
+///|
+/// defun $add_to_solution_tree -- ../share/affine/sheafa.lisp:1451
+declare fn d_add_to_solution_tree(a_list : Value) -> Value raise
+
+///|
+/// defun $simplify_relative -- ../share/affine/sheafa.lisp:1473
+declare fn d_simplify_relative(system : Value, poly : Value) -> Value raise
+
+///|
+/// defun $list_irreducible_factors -- ../share/affine/sheafa.lisp:1478
+declare fn d_list_irreducible_factors(poly : Value) -> Value raise
+
+///|
+/// defun $show_solution_tree -- ../share/affine/sheafa.lisp:1501
+declare fn d_show_solution_tree(full_format? : Value = Nil) -> Value raise
+
+///|
+/// defun $eliminate_nonzero_factors -- ../share/affine/sheafa.lisp:1515
+declare fn d_eliminate_nonzero_factors(system : Value, l : Value) -> Value raise
+
+///|
+/// defun $cancel_factors_and_denominators -- ../share/affine/sheafa.lisp:1525
+declare fn d_cancel_factors_and_denominators(variety : Value, factors_to_elim : Value, homogeneous? : Value = Nil) -> Value raise
+
+///|
+/// defun $blowup_chart -- ../share/affine/sheafa.lisp:1583
+declare fn d_blowup_chart(chart : Value, variety : Value, homogeneous? : Value = Nil) -> Value raise
+
+///|
+/// defun my-minor -- ../share/affine/sheafa.lisp:1609
+declare fn my_minor(mat : Value, rows_to_take : Value, cols_to_take : Value) -> Value raise
+
+///|
+/// defun $wedge_matrix -- ../share/affine/sheafa.lisp:1612
+declare fn d_wedge_matrix(mat : Value, n : Value) -> Value raise
+
+///|
+/// defun $sublis_and_add -- ../share/affine/sheafa.lisp:1623
+declare fn d_sublis_and_add(eqns : Value, expr : Value, elimin : Value) -> Value raise
+
+///|
+/// defun $remove_linears -- ../share/affine/sheafa.lisp:1671
+declare fn d_remove_linears(eqns : Value) -> Value raise
+
+///|
+/// defun find-good-variable-order -- ../share/affine/sheafa.lisp:1748
+declare fn find_good_variable_order(ideal : Value) -> Value raise
+
+///|
+/// defun may-invertp -- ../share/affine/sheafa.lisp:1757
+declare fn may_invertp(poly : Value, invertible_poly : Value) -> Value raise
+
+///|
+/// defun poly-linearp -- ../share/affine/sheafa.lisp:1765
+declare fn poly_linearp(poly : Value, var_ : Value, may_invert : Value) -> Value raise
+
+///|
+/// defun remove-linears -- ../share/affine/sheafa.lisp:1780
+declare fn remove_linears(eqns : Value, may_invert? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun $ritt_set -- ../share/affine/sheafa.lisp:1797
+declare fn d_ritt_set(ideal_generators : Value, may_invert? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun eliminate-factors -- ../share/affine/sheafa.lisp:1841
+declare fn eliminate_factors(good : Value, factors_to_elim : Value) -> Value raise
+
+///|
+/// defun header-fake -- ../share/affine/sheafa.lisp:1850
+declare fn header_fake(expr : Value) -> Value raise
+
+///|
+/// defun fake-disrep -- ../share/affine/sheafa.lisp:1857
+declare fn fake_disrep(pol : Value) -> Value raise
+
+///|
+/// defun $disrep_ideal -- ../share/affine/sheafa.lisp:1860
+declare fn d_disrep_ideal(ideal : Value) -> Value raise
+
+///|
+/// defun square-free -- ../share/affine/sheafa.lisp:1881
+declare fn square_free(p : Value) -> Value raise
+
+///|
+/// defun $square_free_numerators -- ../share/affine/sheafa.lisp:1890
+declare fn d_square_free_numerators(expr : Value) -> Value raise
+
+///|
+/// defun add-to-chain -- ../share/affine/sheafa.lisp:1904
+declare fn add_to_chain(poly : Value, chain : Value) -> Value raise
+
+///|
+/// defun order-variables -- ../share/affine/sheafa.lisp:1922
+declare fn order_variables(list_of_vars : Value) -> Value raise
+
+///|
+/// defun must-ritt-reducep -- ../share/affine/sheafa.lisp:1972
+declare fn must_ritt_reducep(poly : Value, ch_set : Value) -> Value raise
+
+///|
+/// defun ritt-reduce -- ../share/affine/sheafa.lisp:1981
+declare fn ritt_reduce(poly : Value, ch_set : Value) -> Value raise
+
+///|
+/// defmfun my-testdivide -- ../share/affine/sheafa.lisp:2005
+declare fn my_testdivide(x : Value, y : Value) -> Value raise
+
+///|
+/// defun new-testdivide -- ../share/affine/sheafa.lisp:2008
+declare fn new_testdivide(f : Value, g : Value) -> Value raise
+
+///|
+/// defun eliminate-highest-power-dividing-homogeneously -- ../share/affine/sheafa.lisp:2015
+declare fn eliminate_highest_power_dividing_homogeneously(list_fns : Value, divisor : Value, highest_deg? : Value = Fix(10000L)) -> Value raise
+
+///|
+/// defun sort-remember -- ../share/affine/sheafa.lisp:2049
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn sort_remember(list_ : Value, predicate : Value, key? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun un-sort -- ../share/affine/sheafa.lisp:2059
+declare fn un_sort(list_ : Value, ordering : Value) -> Value raise
+
+///|
+/// defun sort-by-ordering -- ../share/affine/sheafa.lisp:2065
+declare fn sort_by_ordering(list_ : Value, ordering : Value) -> Value raise
+
+///|
+/// defun copy-sort -- ../share/affine/sheafa.lisp:2069
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn copy_sort(list_ : Value, predicate : Value, key? : Value = Nil, slow_key? : Value = Nil, remember? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun eliminate-common-factors -- ../share/affine/sheafa.lisp:2081
+declare fn eliminate_common_factors(list_functions : Value) -> Value raise
+
+///|
+/// defun reduce-rational-map-old -- ../share/affine/sheafa.lisp:2110
+declare fn reduce_rational_map_old(rmap : Value) -> Value raise
+
+///|
+/// defun reduce-rational-map -- ../share/affine/sheafa.lisp:2125
+declare fn reduce_rational_map(rmap : Value) -> Value raise
+
+///|
+/// defun convert-rmap-to-new -- ../share/affine/sheafa.lisp:2134
+declare fn convert_rmap_to_new(name : Value) -> Value raise
+
+///|
+/// defun new-rmap-p -- ../share/affine/sheafa.lisp:2143
+declare fn new_rmap_p(rmap : Value) -> Value raise
+
+///|
+/// defun my-pairlis -- ../share/affine/sheafa.lisp:2154
+declare fn my_pairlis(l : Value, g : Value) -> Value raise
+
+///|
+/// defun construct-rmap -- ../share/affine/sheafa.lisp:2169
+declare fn construct_rmap(list_funs : Value) -> Value raise
+
+///|
+/// defun describe-rmap -- ../share/affine/sheafa.lisp:2182
+declare fn describe_rmap(rmap : Value) -> Value raise
+
+///|
+/// defun describe-zopen -- ../share/affine/sheafa.lisp:2191
+declare fn describe_zopen(op : Value) -> Value raise
+
+///|
+/// defun xxx -- ../share/affine/sheafa.lisp:2201
+declare fn xxx(i : Value) -> Value raise
+
+///|
+/// defun ichart -- ../share/affine/sheafa.lisp:2207
+declare fn ichart(i : Value, firstk : Value, dim : Value) -> Value raise
+
+///|
+/// defun des -- ../share/affine/sheafa.lisp:2226
+declare fn des(obj : Value, stream? : Value) -> Value raise
+
+///|
+/// defun describe-pls -- ../share/affine/sheafa.lisp:2282
+declare fn describe_pls(pls : Value) -> Value raise
+
+///|
+/// defun make-component-history -- ../share/affine/sheafa.lisp:2310
+declare fn make_component_history(pls : Value, add_to_open_history? : Value = t) -> Value raise
+
+///|
+/// defun zopen-dim -- ../share/affine/sheafa.lisp:2326
+declare fn zopen_dim(zop : Value) -> Value raise
+
+///|
+/// defun point-of-tensors -- ../share/affine/dim-3.lisp:10
+declare fn point_of_tensors(special_tensor : Value, standard_tensor : Value, nc_monomials? : Value) -> Value raise
+
+///|
+/// defun gen-matrix-rows -- ../share/affine/dim-3.lisp:26
+declare fn gen_matrix_rows(mat : Value) -> Value raise
+
+///|
+/// defun point-of-algebras -- ../share/affine/dim-3.lisp:31
+declare fn point_of_algebras(special_tensor : Value, standard_tensor : Value, q : Value, standard_q : Value) -> Value raise
+
+///|
+/// defun $dimensions_for_replacements -- ../share/affine/dim-3.lisp:38
+declare fn d_dimensions_for_replacements(d_repl_list : Value, degree? : Value = Fix(7L)) -> Value raise
+
+///|
+/// defun $normalizing_element_p -- ../share/affine/dim-3.lisp:49
+declare fn d_normalizing_element_p(elmt : Value) -> Value raise
+
+///|
+/// defun collect-atoms -- ../share/affine/dim-3.lisp:65
+declare fn collect_atoms(tree : Value, pred? : Value) -> Value raise
+
+///|
+/// defun collect-atoms1 -- ../share/affine/dim-3.lisp:69
+declare fn collect_atoms1(tree : Value, pred : Value) -> Value raise
+
+///|
+/// defun $find_coefficients_for_linear_combination -- ../share/affine/dim-3.lisp:79
+declare fn d_find_coefficients_for_linear_combination(items : Value, in_terms_of : Value, monoms : Value, cofs? : Value) -> Value raise
+
+///|
+/// defun $generate_matrix -- ../share/affine/dim-3.lisp:95
+declare fn d_generate_matrix(fun : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun gen-matrix-row-plus -- ../share/affine/dim-3.lisp:103
+declare fn gen_matrix_row_plus(row1 : Value, row2 : Value, row1_multiple? : Value = Nil, row2_multiple? : Value = Nil) -> Value raise
+
+///|
+/// defun $interchange_matrix_columns -- ../share/affine/dim-3.lisp:114
+declare fn d_interchange_matrix_columns(matrix : Value, i : Value, j : Value, copy_? : Value = Nil) -> Value raise
+
+///|
+/// defun $interchange_matrix_rows -- ../share/affine/dim-3.lisp:125
+declare fn d_interchange_matrix_rows(matrix : Value, i : Value, j : Value, copy_? : Value = Nil) -> Value raise
+
+///|
+/// defun $multiply_row -- ../share/affine/dim-3.lisp:135
+declare fn d_multiply_row(list_ : Value, factor : Value) -> Value raise
+
+///|
+/// defun $decompose_symmetric_matrix -- ../share/affine/dim-3.lisp:139
+declare fn d_decompose_symmetric_matrix(matrix : Value) -> Value raise
+
+///|
+/// defun $new_disrep -- ../share/affine/dim-3.lisp:167
+declare fn d_new_disrep(item : Value) -> Value raise
+
+///|
+/// defun $symbol_matrix -- ../share/affine/dim-3.lisp:172
+declare fn d_symbol_matrix(symbol : Value, rows : Value, columns : Value) -> Value raise
+
+///|
+/// defun replace-symbols -- ../share/affine/dim-3.lisp:182
+declare fn replace_symbols(form : Value, containing_string : Value, prefix? : Value = Nil, replacements? : Value = Nil) -> Value raise
+
+///|
+/// defun check-cases -- ../share/affine/dim-3.lisp:193
+declare fn check_cases(roots_of_one : Value) -> Value raise
+
+///|
+/// defun check-centrals -- ../share/affine/dim-3.lisp:203
+declare fn check_centrals(in_degree : Value, relations? : Value = Nil, set_up? : Value = Nil) -> Value raise
+
+///|
+/// defun $check_transpose_condition_2_1 -- ../share/affine/dim-3.lisp:213
+declare fn d_check_transpose_condition_2_1(mm : Value, q : Value, variables? : Value) -> Value raise
+
+///|
+/// defun $m_from_f -- ../share/affine/dim-3.lisp:217
+declare fn d_m_from_f(f : Value) -> Value raise
+
+///|
+/// defun $diagonal -- ../share/affine/dim-3.lisp:233
+declare fn d_diagonal(lis : Value) -> Value raise
+
+///|
+/// defun $dim3_relations -- ../share/affine/dim-3.lisp:279
+declare fn d_dim3_relations(type_ : Value, number_variables : Value) -> Value raise
+
+///|
+/// defun $maybe_ldata_solve -- ../share/affine/dim-3.lisp:313
+declare fn d_maybe_ldata_solve(eqns : Value, inequality? : Value = Fix(1L), yes? : Value = Nil) -> Value raise
+
+///|
+/// defun $normalizing_conditions -- ../share/affine/dim-3.lisp:327
+declare fn d_normalizing_conditions(deg_or_element : Value, auto_data? : Value = Nil) -> Value raise
+
+///|
+/// defun $ldata_disrep -- ../share/affine/dim-3.lisp:353
+declare fn d_ldata_disrep(lis : Value) -> Value raise
+
+///|
+/// defun $linear_automorphism_group -- ../share/affine/dim-3.lisp:361
+declare fn d_linear_automorphism_group(relations? : Value, set_up_simps? : Value = Nil, variables? : Value) -> Value raise
+
+///|
+/// defun $algebra_trace -- ../share/affine/dim-3.lisp:393
+declare fn d_algebra_trace(element : Value, basis : Value) -> Value raise
+
+///|
+/// defun poly-scalar-p -- ../share/affine/dim-3.lisp:411
+declare fn poly_scalar_p(poly : Value) -> Value raise
+
+///|
+/// defun set-up-trace-subs -- ../share/affine/dim-3.lisp:414
+declare fn set_up_trace_subs(basis : Value) -> Value raise
+
+///|
+/// defun $algebra_trace_matrix -- ../share/affine/dim-3.lisp:421
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn d_algebra_trace_matrix(basis : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun $trace_general_element -- ../share/affine/dim-3.lisp:438
+declare fn d_trace_general_element(elt_ : Value, basis : Value, basis_trace : Value) -> Value raise
+
+///|
+/// defun maxima-matrix-from-array -- ../share/affine/dim-3.lisp:444
+declare fn maxima_matrix_from_array(ar : Value) -> Value raise
+
+///|
+/// defun make-pairing-function -- ../share/affine/dim-3.lisp:450
+declare fn make_pairing_function(domain : Value, range : Value, test_? : Value = q_alike) -> Value raise
+
+///|
+/// defun apply-linear-function -- ../share/affine/dim-3.lisp:458
+declare fn apply_linear_function(fn_ : Value, expr : Value) -> Value raise
+
+///|
+/// defun dual-basis-element -- ../share/affine/dim-3.lisp:479
+declare fn dual_basis_element(number_of_element_in_basis : Value, trace_matrix : Value, basis? : Value) -> Value raise
+
+///|
+/// defun $linear_variables -- ../share/affine/dim-3.lisp:495
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn d_linear_variables(eqns : Value, constants? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun $fast_linsolve_inconsistent_equations -- ../share/affine/dim-3.lisp:517
+declare fn d_fast_linsolve_inconsistent_equations(disrep? : Value = t) -> Value raise
+
+///|
+/// defun find-extra-conditions -- ../share/affine/dim-3.lisp:522
+declare fn find_extra_conditions(sp_mat : Value) -> Value raise
+
+///|
+/// defun $my_phi -- ../share/affine/dim-3.lisp:528
+declare fn d_my_phi(form : Value) -> Value raise
+
+///|
+/// defun rota1 -- ../share/affine/dim-3.lisp:532
+declare fn rota1(form : Value) -> Value raise
+
+///|
+/// defun $central_rels -- ../share/affine/dim-3.lisp:538
+declare fn d_central_rels(lis : Value) -> Value raise
+
+///|
+/// defun $centralize_rels -- ../share/affine/dim-3.lisp:546
+declare fn d_centralize_rels(lis1 : Value, lis2 : Value) -> Value raise
+
+///|
+/// defun $set_up -- ../share/affine/dim-3.lisp:554
+declare fn d_set_up(rels : Value, n? : Value = Nil) -> Value raise
+
+///|
+/// defun $half_quantum_rels -- ../share/affine/dim-3.lisp:563
+declare fn d_half_quantum_rels(rel3 : Value, m : Value) -> Value raise
+
+///|
+/// defun list-ordered-pairs-with-repeat-count -- ../share/affine/dim-3.lisp:592
+declare fn list_ordered_pairs_with_repeat_count(i : Value, j : Value, n : Value, nrepeats : Value) -> Value raise
+
+///|
+/// defun repeat-ok1 -- ../share/affine/dim-3.lisp:598
+declare fn repeat_ok1(i : Value, j : Value, lis : Value, nrepeats : Value) -> Value raise
+
+///|
+/// defun list-ordered-pairs-with-repeat-count1 -- ../share/affine/dim-3.lisp:610
+declare fn list_ordered_pairs_with_repeat_count1(i : Value, j : Value, number_pairs : Value, number_repeats : Value) -> Value raise
+
+///|
+/// defun extract_cof1 -- ../share/affine/dim-3.lisp:625
+declare fn extract_cof1(f : Value, vars : Value) -> Value raise
+
+///|
+/// defun $extract_linear_from_commutative -- ../share/affine/dim-3.lisp:634
+declare fn d_extract_linear_from_commutative(form : Value, vars : Value) -> Value raise
+
+///|
+/// defun get-altq -- ../share/affine/polysmp.lisp:10
+declare fn get_altq(item : Value, a_list : Value) -> Value raise
+
+///|
+/// defun mdegree -- ../share/affine/polysmp.lisp:15
+declare fn mdegree(monom : Value, var_ : Value) -> Value raise
+
+///|
+/// defun part-above-degree -- ../share/affine/polysmp.lisp:23
+declare fn part_above_degree(poly : Value, monomial_degs : Value) -> Value raise
+
+///|
+/// defun part-above -- ../share/affine/polysmp.lisp:51
+declare fn part_above(poly : Value, monom : Value) -> Value raise
+
+///|
+/// defun part-above1 -- ../share/affine/polysmp.lisp:56
+declare fn part_above1(poly : Value, monom : Value) -> Value raise
+
+///|
+/// defun pcoeff -- ../share/affine/polysmp.lisp:105
+declare fn pcoeff(poly : Value, monom : Value, variables_to_exclude_from_cof? : Value) -> Value raise
+
+///|
+/// defun pcoeff1 -- ../share/affine/polysmp.lisp:117
+declare fn pcoeff1(poly : Value, monom : Value, variables_to_exclude_from_cof? : Value) -> Value raise
+
+///|
+/// defun replacements -- ../share/affine/polysmp.lisp:151
+declare fn replacements(simps? : Value) -> Value raise
+
+///|
+/// defun occurs-in -- ../share/affine/polysmp.lisp:158
+declare fn occurs_in(poly : Value, seq : Value) -> Value raise
+
+///|
+/// defun occurs-in1 -- ../share/affine/polysmp.lisp:163
+declare fn occurs_in1(poly : Value, seq : Value) -> Value raise
+
+///|
+/// defun convert-deg-sequence-to-monomial -- ../share/affine/polysmp.lisp:180
+declare fn convert_deg_sequence_to_monomial(sequ : Value) -> Value raise
+
+///|
+/// defun constant-deg-sequencep -- ../share/affine/polysmp.lisp:188
+declare fn constant_deg_sequencep(seq : Value) -> Value raise
+
+///|
+/// defun $declare_constant_list -- ../share/affine/polysmp.lisp:194
+declare fn d_declare_constant_list(ll : Value) -> Value raise
+
+///|
+/// defun declare-constant -- ../share/affine/polysmp.lisp:197
+declare fn declare_constant(l : Value) -> Value raise
+
+///|
+/// defun show-constants -- ../share/affine/polysmp.lisp:204
+declare fn show_constants() -> Value raise
+
+///|
+/// defun remove-constant-property -- ../share/affine/polysmp.lisp:208
+declare fn remove_constant_property(a_list : Value) -> Value raise
+
+///|
+/// defun constant-functionp -- ../share/affine/polysmp.lisp:217
+declare fn constant_functionp(poly : Value) -> Value raise
+
+///|
+/// defun find-main-monomial -- ../share/affine/polysmp.lisp:224
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn find_main_monomial(poly : Value) -> (Value, Value) raise
+
+///|
+/// defun find-least-main-monomial -- ../share/affine/polysmp.lisp:234
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn find_least_main_monomial(poly : Value) -> (Value, Value) raise
+
+///|
+/// defun deg-sequence -- ../share/affine/polysmp.lisp:254
+declare fn deg_sequence(variables : Value, degrees : Value) -> Value raise
+
+///|
+/// defun factor-out-monomial -- ../share/affine/polysmp.lisp:262
+declare fn factor_out_monomial(poly : Value, monomial_degs : Value, copy_ : Value) -> Value raise
+
+///|
+/// defun replace-monomial -- ../share/affine/polysmp.lisp:280
+declare fn replace_monomial(poly : Value, replacement : Value, monomial_degs : Value, part_above? : Value = Nil) -> Value raise
+
+///|
+/// defun replace-monomial-rat -- ../share/affine/polysmp.lisp:310
+declare fn replace_monomial_rat(poly : Value, replacement : Value, monomial_degs : Value, part_above? : Value = Nil) -> Value raise
+
+///|
+/// defun maybe-ratreduce -- ../share/affine/polysmp.lisp:343
+declare fn maybe_ratreduce(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $add_to_poly_simplifications -- ../share/affine/polysmp.lisp:345
+declare fn d_add_to_poly_simplifications(rat_monom : Value) -> Value raise
+
+///|
+/// defun add-to-poly-simplifications -- ../share/affine/polysmp.lisp:355
+declare fn add_to_poly_simplifications(rat_monom : Value, simplify? : Value = t) -> Value raise
+
+///|
+/// defun grobner-basis -- ../share/affine/polysmp.lisp:397
+declare fn grobner_basis(list_polys : Value, homogeneous? : Value = Nil) -> Value raise
+
+///|
+/// defun ideal-subsetp -- ../share/affine/polysmp.lisp:415
+declare fn ideal_subsetp(id1 : Value, id2 : Value, verbose? : Value = t, reset_basis? : Value = t) -> Value raise
+
+///|
+/// defun $set_up_poly_simplifications -- ../share/affine/polysmp.lisp:425
+declare fn d_set_up_poly_simplifications(a_list : Value) -> Value raise
+
+///|
+/// defun $show_simps -- ../share/affine/polysmp.lisp:433
+declare fn d_show_simps() -> Value raise
+
+///|
+/// defun must-replacep -- ../share/affine/polysmp.lisp:438
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn must_replacep(poly : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun monomial-finish-replace -- ../share/affine/polysmp.lisp:451
+declare fn monomial_finish_replace() -> Value raise
+
+///|
+/// defun sort-poly-simplifications -- ../share/affine/polysmp.lisp:455
+declare fn sort_poly_simplifications() -> Value raise
+
+///|
+/// defun check-simp -- ../share/affine/polysmp.lisp:463
+declare fn check_simp(a : Value, simped : Value, tag? : Value = q_simps_not_equal) -> Value raise
+
+///|
+/// defun conclusionp -- ../share/affine/polysmp.lisp:467
+declare fn conclusionp() -> Value raise
+
+///|
+/// defun new-zerop -- ../share/affine/polysmp.lisp:475
+declare fn new_zerop(x : Value) -> Value raise
+
+///|
+/// defun simplify-poly-simplifications -- ../share/affine/polysmp.lisp:481
+declare fn simplify_poly_simplifications() -> Value raise
+
+///|
+/// defun seq-op -- ../share/affine/polysmp.lisp:551
+declare fn seq_op(seqa : Value, seqb : Value, op? : Value) -> Value raise
+
+///|
+/// defun seq-lessp -- ../share/affine/polysmp.lisp:562
+declare fn seq_lessp(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun seq-minus -- ../share/affine/polysmp.lisp:569
+declare fn seq_minus(seqa : Value) -> Value raise
+
+///|
+/// defun basis_from_simps -- ../share/affine/polysmp.lisp:602
+declare fn basis_from_simps(simps? : Value) -> Value raise
+
+///|
+/// defun convert-poly-simplifications-to-macsyma-form -- ../share/affine/polysmp.lisp:607
+declare fn convert_poly_simplifications_to_macsyma_form(simps : Value) -> Value raise
+
+///|
+/// defun overlap-degree -- ../share/affine/polysmp.lisp:614
+declare fn overlap_degree(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun overlap -- ../share/affine/polysmp.lisp:622
+declare fn overlap(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun degree-of-deg-sequence -- ../share/affine/polysmp.lisp:629
+declare fn degree_of_deg_sequence(seq : Value) -> Value raise
+
+///|
+/// defun replacement-sequences -- ../share/affine/polysmp.lisp:633
+declare fn replacement_sequences() -> Value raise
+
+///|
+/// defun show-replacements -- ../share/affine/polysmp.lisp:635
+declare fn show_replacements() -> Value raise
+
+///|
+/// defun $poly_replacements -- ../share/affine/polysmp.lisp:637
+declare fn d_poly_replacements() -> Value raise
+
+///|
+/// defun degree-of-worst-monomial -- ../share/affine/polysmp.lisp:642
+declare fn degree_of_worst_monomial(poly : Value) -> Value raise
+
+///|
+/// defun show-simps -- ../share/affine/polysmp.lisp:644
+declare fn show_simps(simps? : Value) -> Value raise
+
+///|
+/// defun timedbasis -- ../share/affine/polysmp.lisp:651
+declare fn timedbasis(initial_time : Value) -> Value raise
+
+///|
+/// defun check-overlaps -- ../share/affine/polysmp.lisp:663
+declare fn check_overlaps(deg : Value, reset? : Value = Nil, homogeneous? : Value = Nil, from_degree? : Value = Fix(1L), add_to_simps? : Value = t, maybe_reset? : Value = t, initial_time? : Value) -> Value raise
+
+///|
+/// defun $polysimp -- ../share/affine/polysmp.lisp:714
+declare fn d_polysimp(f : Value) -> Value raise
+
+///|
+/// defun check-associative -- ../share/affine/polysmp.lisp:726
+declare fn check_associative(a : Value, overlap : Value, b : Value) -> Value raise
+
+///|
+/// defun reverse-z-order-sequence -- ../share/affine/polysmp.lisp:760
+declare fn reverse_z_order_sequence(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun z-order-sequence -- ../share/affine/polysmp.lisp:763
+declare fn z_order_sequence(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun n** -- ../share/affine/polysmp.lisp:771
+declare fn n_star_star(l : Value) -> Value raise
+
+///|
+/// defun xyz-order-sequence -- ../share/affine/polysmp.lisp:779
+declare fn xyz_order_sequence(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun degree-of-sequence -- ../share/affine/polysmp.lisp:794
+declare fn degree_of_sequence(seq : Value) -> Value raise
+
+///|
+/// defun xyz-and-degree -- ../share/affine/polysmp.lisp:797
+declare fn xyz_and_degree(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun remove-0 -- ../share/affine/polysmp.lisp:803
+declare fn remove_0(lis : Value) -> Value raise
+
+///|
+/// defun reverse-xyz-order-sequence -- ../share/affine/polysmp.lisp:821
+declare fn reverse_xyz_order_sequence(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun zero-modulo-simplifications -- ../share/affine/polysmp.lisp:851
+declare fn zero_modulo_simplifications(poly : Value) -> Value raise
+
+///|
+/// defun polysimp-ignore-denominator -- ../share/affine/polysmp.lisp:855
+declare fn polysimp_ignore_denominator(poly : Value) -> Value raise
+
+///|
+/// defun polysimp -- ../share/affine/polysmp.lisp:875
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn polysimp(poly : Value) -> (Value, Value) raise
+
+///|
+/// defun convert-monomial-to-deg-sequence -- ../share/affine/polysmp.lisp:926
+declare fn convert_monomial_to_deg_sequence(monom : Value) -> Value raise
+
+///|
+/// defun $current_grobner_basis -- ../share/affine/polysmp.lisp:974
+declare fn d_current_grobner_basis(simps? : Value) -> Value raise
+
+///|
+/// defun $grobner_basis -- ../share/affine/polysmp.lisp:986
+declare fn d_grobner_basis(ideal : Value, no_concl? : Value = Nil, homogeneous? : Value = Nil, upto? : Value = Fix(100L)) -> Value raise
+
+///|
+/// defun delete-pair -- ../share/affine/polysmp.lisp:996
+declare fn delete_pair(first_item : Value, a_list : Value) -> Value raise
+
+///|
+/// defun seq-subset -- ../share/affine/polysmp.lisp:1006
+declare fn seq_subset(seqa : Value, seqb : Value) -> Value raise
+
+///|
+/// defun substitute-real-symbols-for-genvar -- ../share/affine/polysmp.lisp:1019
+declare fn substitute_real_symbols_for_genvar(a_list? : Value = Nil) -> Value raise
+
+///|
+/// defun $nilpotent -- ../share/affine/polysmp.lisp:1041
+declare fn d_nilpotent(d_f : Value) -> Value raise
+
+///|
+/// defun rat-variable -- ../share/affine/polysmp.lisp:1051
+declare fn rat_variable(a_var : Value) -> Value raise
+
+///|
+/// defun must-replace-monom -- ../share/affine/polysmp.lisp:1059
+declare fn must_replace_monom(monom : Value, repl : Value) -> Value raise
+
+///|
+/// defun sort-list-of-monomials -- ../share/affine/polysmp.lisp:1064
+declare fn sort_list_of_monomials(a_list : Value) -> Value raise
+
+///|
+/// defun $poly_monomial_dimensions -- ../share/affine/polysmp.lisp:1099
+declare fn d_poly_monomial_dimensions(variables : Value, to_deg : Value) -> Value raise
+
+///|
+/// defun $grobner_monomials -- ../share/affine/polysmp.lisp:1151
+declare fn d_grobner_monomials(variables : Value, n : Value, replacements? : Value, reset? : Value = Nil) -> Value raise
+
+///|
+/// defun $list_relations -- ../share/affine/polysmp.lisp:1157
+declare fn d_list_relations(l : Value) -> Value raise
+
+///|
+/// defun rat-degree -- ../share/affine/polysmp.lisp:1167
+declare fn rat_degree(poly : Value, var_ : Value) -> Value raise
+
+///|
+/// defun rational-sub -- ../share/affine/polysmp.lisp:1173
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn rational_sub(poly : Value, var_ : Value, new_denom : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun rational-sub1 -- ../share/affine/polysmp.lisp:1180
+declare fn rational_sub1(poly : Value, var_ : Value, new_denom : Value, degree : Value) -> Value raise
+
+///|
+/// defun $te -- ../share/affine/polysmp.lisp:1192
+declare fn d_te(poly : Value, var_ : Value, repl : Value) -> Value raise
+
+///|
+/// defun $contract_to_variables -- ../share/affine/polysmp.lisp:1198
+declare fn d_contract_to_variables(a_list : Value, upto_variable : Value, before_var? : Value = Nil) -> Value raise
+
+///|
+/// defun st-rat -- ../share/affine/polysmp.lisp:1237
+declare fn st_rat(x : Value) -> Value raise
+
+///|
+/// defun st-rat1 -- ../share/affine/polysmp.lisp:1242
+declare fn st_rat1(x : Value) -> Value raise
+
+///|
+/// defun get-genvar -- ../share/affine/polysmp.lisp:1251
+declare fn get_genvar(var_ : Value) -> Value raise
+
+///|
+/// defun $ideal_intersection -- ../share/affine/polysmp.lisp:1257
+declare fn d_ideal_intersection(ideal1 : Value, ideal2 : Value) -> Value raise
+
+///|
+/// defun $grobner_basis_of_slice -- ../share/affine/polysmp.lisp:1272
+declare fn d_grobner_basis_of_slice(slices : Value, original_relations : Value) -> Value raise
+
+///|
+/// defun display -- ../share/affine/polysmp.lisp:1415
+declare fn display(expr : Value) -> Value raise
+
+///|
+/// defun ldata-simplifications-write -- ../share/affine/polysmp.lisp:1423
+declare fn ldata_simplifications_write(ldata : Value, open_g? : Value = Fix(1L), pathname? : Value = Str("haskell:>wfs>answer.lisp")) -> Value raise
+
+///|
+/// defun alphagreatp -- ../share/affine/amacros.lisp:13
+declare fn alphagreatp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $monomial_alphalessp -- ../share/affine/amacros.lisp:16
+declare fn d_monomial_alphalessp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $monomial_alphagreatp -- ../share/affine/amacros.lisp:29
+declare fn d_monomial_alphagreatp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $power_series_monomial_alphalessp -- ../share/affine/amacros.lisp:32
+declare fn d_power_series_monomial_alphalessp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $polynomial_monomial_alphalessp -- ../share/affine/amacros.lisp:42
+declare fn d_polynomial_monomial_alphalessp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun fix-optional -- ../share/affine/amacros.lisp:52
+declare fn fix_optional(args : Value) -> Value raise
+
+///|
+/// defun delete-from-&aux -- ../share/affine/amacros.lisp:69
+declare fn delete_from__ampaux(list_ : Value) -> Value raise
+
+///|
+/// defun clear-memory-function -- ../share/affine/amacros.lisp:75
+declare fn clear_memory_function(f : Value) -> Value raise
+
+///|
+/// defun user-supply1 -- ../share/affine/amacros.lisp:178
+declare fn user_supply1(var_ : Value, val : Value) -> Value raise
+
+///|
+/// defun write-object -- ../share/affine/amacros.lisp:284
+declare fn write_object(filename : Value, obj : Value) -> Value raise
+
+///|
+/// defun $check_associative -- ../share/affine/ndotsimp.lisp:16
+declare fn d_check_associative(a : Value, b : Value, c : Value) -> Value raise
+
+///|
+/// defun ncdot-list -- ../share/affine/ndotsimp.lisp:24
+declare fn ncdot_list(lis : Value) -> Value raise
+
+///|
+/// defun dot-subword -- ../share/affine/ndotsimp.lisp:30
+declare fn dot_subword(small : Value, big : Value) -> Value raise
+
+///|
+/// defun split-numerator -- ../share/affine/ndotsimp.lisp:54
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn split_numerator(reduced : Value, rest_ : Value) -> (Value, Value) raise
+
+///|
+/// defun new-dotsimp -- ../share/affine/ndotsimp.lisp:63
+declare fn new_dotsimp(ratl_fun : Value) -> Value raise
+
+///|
+/// defun force-poly -- ../share/affine/ndotsimp.lisp:122
+declare fn force_poly(repl : Value) -> Value raise
+
+///|
+/// defun simp-once-monomial -- ../share/affine/ndotsimp.lisp:128
+declare fn simp_once_monomial(monom : Value) -> Value raise
+
+///|
+/// defun $dot_factor -- ../share/affine/ndotsimp.lisp:154
+declare fn d_dot_factor(form : Value, variables : Value, slot? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun rational-subst -- ../share/affine/sub-proj.lisp:10
+declare fn rational_subst(poly : Value, var_ : Value, denom : Value) -> Value raise
+
+///|
+/// defun $degree -- ../share/affine/sub-proj.lisp:64
+declare fn d_degree(form : Value, var_ : Value) -> Value raise
+
+///|
+/// defun sub-rat2 -- ../share/affine/sub-proj.lisp:68
+declare fn sub_rat2(poly : Value, var_ : Value, denom : Value, deg : Value) -> Value raise
+
+///|
+/// defun $sub1 -- ../share/affine/sub-proj.lisp:96
+declare fn d_sub1(poly : Value, var_ : Value, denom : Value, deg? : Value = Nil) -> Value raise
+
+///|
+/// defun poly-subst -- ../share/affine/sub-proj.lisp:104
+declare fn poly_subst(poly : Value, var_ : Value, repl : Value) -> Value raise
+
+///|
+/// defun poly-subst1 -- ../share/affine/sub-proj.lisp:110
+declare fn poly_subst1(poly : Value, var_ : Value, repl : Value) -> Value raise
+
+///|
+/// defun $polysub -- ../share/affine/sub-proj.lisp:139
+declare fn d_polysub(poly : Value, var_ : Value, repl : Value) -> Value raise
+
+///|
+/// defun rsublis -- ../share/affine/sub-proj.lisp:145
+declare fn rsublis(a_list : Value, denom : Value, poly : Value, degree? : Value = Nil, vars_to_sub? : Value = Nil, reduce_? : Value = Nil) -> Value raise
+
+///|
+/// defun $psublis -- ../share/affine/sub-proj.lisp:168
+declare fn d_psublis(a_list : Value, denom : Value, poly : Value) -> Value raise
+
+///|
+/// defun $coll_linear -- ../share/affine/sub-proj.lisp:177
+declare fn d_coll_linear(expr : Value) -> Value raise
+
+///|
+/// defun psubst -- ../share/affine/sub-proj.lisp:186
+declare fn psubst(repl : Value, var_ : Value, poly : Value) -> Value raise
+
+///|
+/// defun pdiscriminant -- ../share/affine/sub-proj.lisp:188
+declare fn pdiscriminant(poly : Value, var_ : Value) -> Value raise
+
+///|
+/// defun gen-vrem -- ../share/affine/sub-proj.lisp:217
+declare fn gen_vrem(b : Value, divisor : Value) -> Value raise
+
+///|
+/// defun highest-power-dividing -- ../share/affine/sub-proj.lisp:268
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn highest_power_dividing(f : Value, divisor : Value) -> (Value, Value) raise
+
+///|
+/// defun gen-prem -- ../share/affine/sub-proj.lisp:279
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn gen_prem(f : Value, g : Value, var_ : Value) -> (Value, Value) raise
+
+///|
+/// defun vdivide -- ../share/affine/sub-proj.lisp:312
+declare fn vdivide(b : Value, divisor : Value) -> Value raise
+
+///|
+/// defun coll-linear -- ../share/affine/sub-proj.lisp:364
+declare fn coll_linear(f : Value) -> Value raise
+
+///|
+/// defun constant-polyp -- ../share/affine/sub-proj.lisp:369
+declare fn constant_polyp(f : Value) -> Value raise
+
+///|
+/// defun coll-linear1 -- ../share/affine/sub-proj.lisp:378
+declare fn coll_linear1(poly : Value) -> Value raise
+
+///|
+/// defun gen-psublis -- ../share/affine/sub-proj.lisp:405
+declare fn gen_psublis(old : Value, new_ : Value, poly : Value) -> Value raise
+
+///|
+/// defun gen-rat-sublis -- ../share/affine/sub-proj.lisp:410
+declare fn gen_rat_sublis(old : Value, new_ : Value, f : Value, switch? : Value = t) -> Value raise
+
+///|
+/// defun subs-for-psublis -- ../share/affine/sub-proj.lisp:413
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn subs_for_psublis(old : Value, new_ : Value) -> (Value, Value) raise
+
+///|
+/// defun simple-rat-sublis -- ../share/affine/sub-proj.lisp:444
+declare fn simple_rat_sublis(subs : Value, f : Value, switch? : Value = t) -> Value raise
+
+///|
+/// defun subs-for-simple-rat-sublis -- ../share/affine/sub-proj.lisp:461
+declare fn subs_for_simple_rat_sublis(varl : Value, subs : Value) -> Value raise
+
+///|
+/// defun collect-monomial-coefficients -- ../share/affine/sub-proj.lisp:488
+declare fn collect_monomial_coefficients(poly : Value, variables : Value) -> Value raise
+
+///|
+/// defun collect-monomial-coefficients-and-monomials -- ../share/affine/sub-proj.lisp:502
+declare fn collect_monomial_coefficients_and_monomials(poly : Value, variables : Value, monomial? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun collect-and-verify-coefficients -- ../share/affine/sub-proj.lisp:521
+declare fn collect_and_verify_coefficients(poly : Value, variables : Value) -> Value raise
+
+///|
+/// defun va -- ../share/affine/sub-proj.lisp:529
+declare fn va(h : Value) -> Value raise
+
+///|
+/// defun safe-putprop -- ../share/affine/new-rat.lisp:46
+declare fn safe_putprop(sym_ : Value, value : Value, indicator : Value) -> Value raise
+
+///|
+/// defun new-prep1 -- ../share/affine/new-rat.lisp:52
+declare fn new_prep1(x : Value) -> Value raise
+
+///|
+/// defun safe-string -- ../share/affine/new-rat.lisp:119
+declare fn safe_string(symb : Value) -> Value raise
+
+///|
+/// defun new-ratf -- ../share/affine/new-rat.lisp:123
+declare fn new_ratf(l : Value) -> Value raise
+
+///|
+/// defun new-newvar -- ../share/affine/new-rat.lisp:135
+declare fn new_newvar(l : Value) -> Value raise
+
+///|
+/// defun new-ratrep* -- ../share/affine/new-rat.lisp:143
+declare fn new_ratrep_star(x : Value) -> Value raise
+
+///|
+/// defun new-rat -- ../share/affine/new-rat.lisp:150
+declare fn new_rat(x : Value) -> Value raise
+
+///|
+/// defun my-newvar1 -- ../share/affine/new-rat.lisp:171
+declare fn my_newvar1(x : Value) -> Value raise
+
+///|
+/// defun add-newvar-to-genpairs -- ../share/affine/new-rat.lisp:201
+declare fn add_newvar_to_genpairs(va : Value) -> Value raise
+
+///|
+/// defun add-newvar -- ../share/affine/new-rat.lisp:214
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn add_newvar(va : Value, use__stargenpairs_star? : Value = t) -> (Value, Value) raise
+
+///|
+/// defun rat-setup1 -- ../share/affine/new-rat.lisp:247
+declare fn rat_setup1(v : Value, g : Value) -> Value raise
+
+///|
+/// defun rat-setup2 -- ../share/affine/new-rat.lisp:254
+declare fn rat_setup2(v : Value, g : Value) -> Value raise
+
+///|
+/// defun te -- ../share/affine/new-rat.lisp:263
+declare fn te(f : Value, g : Value) -> Value raise
+
+///|
+/// defun new-pfactor -- ../share/affine/new-rat.lisp:271
+declare fn new_pfactor(poly : Value) -> Value raise
+
+///|
+/// defun multiply-factors-with-multiplicity -- ../share/affine/new-rat.lisp:276
+declare fn multiply_factors_with_multiplicity(a_list : Value) -> Value raise
+
+///|
+/// defun copy-vgp -- ../share/affine/new-rat.lisp:284
+declare fn copy_vgp() -> Value raise
+
+///|
+/// defun q-var -- ../share/affine/new-rat.lisp:289
+declare fn q__var(f : Value) -> Value raise
+
+///|
+/// defun ar-last -- ../share/affine/new-rat.lisp:292
+declare fn ar_last(aray : Value) -> Value raise
+
+///|
+/// defun ar-second-last -- ../share/affine/new-rat.lisp:294
+declare fn ar_second_last(aray : Value) -> Value raise
+
+///|
+/// defun set-fill-pointer -- ../share/affine/new-rat.lisp:297
+declare fn set_fill_pointer_(aray : Value, n : Value) -> Value raise
+
+///|
+/// defun constant-term-in-main-variable -- ../share/affine/new-rat.lisp:298
+declare fn constant_term_in_main_variable(f : Value) -> Value raise
+
+///|
+/// defmfun $gcdlist -- ../share/affine/new-rat.lisp:380
+declare fn d_gcdlist(fns : Value) -> Value raise
+
+///|
+/// defun factoredp -- ../share/affine/new-rat.lisp:424
+declare fn factoredp(poly : Value) -> Value raise
+
+///|
+/// defun exponent -- ../share/affine/new-rat.lisp:428
+declare fn exponent(expr : Value, prod : Value) -> Value raise
+
+///|
+/// defun $projective -- ../share/affine/new-rat.lisp:443
+declare fn d_projective(vector_ : Value) -> Value raise
+
+///|
+/// defun $zeta3_ratsimp -- ../share/affine/new-rat.lisp:479
+declare fn d_zeta3_ratsimp(expr : Value) -> Value raise
+
+///|
+/// defun rationalize-denom-zeta3 -- ../share/affine/new-rat.lisp:484
+declare fn rationalize_denom_zeta3(expr : Value) -> Value raise
+
+///|
+/// defun conj-zeta3 -- ../share/affine/new-rat.lisp:494
+declare fn conj_zeta3(expr : Value, the_gen : Value) -> Value raise
+
+///|
+/// defun variable-in-polyp -- ../share/affine/new-rat.lisp:505
+declare fn variable_in_polyp(poly : Value, gen : Value) -> Value raise
+
+///|
+/// defun variable-in-polyp1 -- ../share/affine/new-rat.lisp:508
+declare fn variable_in_polyp1(poly : Value, gen : Value) -> Value raise
+
+///|
+/// defun $zeta3_factor -- ../share/affine/new-rat.lisp:516
+declare fn d_zeta3_factor(poly : Value) -> Value raise
+
+///|
+/// defun new-newvarmexpt -- ../share/affine/new-rat.lisp:519
+declare fn new_newvarmexpt(x : Value, e : Value, flag : Value) -> Value raise
+
+///|
+/// defun new-newsym -- ../share/affine/new-rat.lisp:620
+declare fn new_newsym(e : Value) -> Value raise
+
+///|
+/// defun row-entry -- ../share/affine/sparsemat.lisp:202
+declare fn row_entry(arow : Value, j : Value) -> Value raise
+
+///|
+/// defun sp-row-dot -- ../share/affine/sparsemat.lisp:231
+declare fn sp_row_dot(sp_mat : Value, arow : Value, brow : Value) -> Value raise
+
+///|
+/// defun sp-row-dot-row-numbers -- ../share/affine/sparsemat.lisp:245
+declare fn sp_row_dot_row_numbers(sp_mat : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun maybe-move-back-fill-pointer -- ../share/affine/sparsemat.lisp:262
+declare fn maybe_move_back_fill_pointer(arow : Value) -> Value raise
+
+///|
+/// defun sp-reduce-elements-for-type -- ../share/affine/sparsemat.lisp:270
+declare fn sp_reduce_elements_for_type(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-reset-list-of-all-columns-occurring -- ../share/affine/sparsemat.lisp:285
+declare fn sp_reset_list_of_all_columns_occurring(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-set-rows -- ../share/affine/sparsemat.lisp:297
+declare fn sp_set_rows(sp_mat : Value, the_rows : Value, list_of_columns? : Value = Nil) -> Value raise
+
+///|
+/// defun ml-sort -- ../share/affine/sparsemat.lisp:321
+declare fn ml_sort(lis : Value, predicate? : Value) -> Value raise
+
+///|
+/// defun sp-check-set-up -- ../share/affine/sparsemat.lisp:324
+declare fn sp_check_set_up(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-set-current-row -- ../share/affine/sparsemat.lisp:345
+declare fn sp_set_current_row(sp_mat : Value, i : Value) -> Value raise
+
+///|
+/// defun sp-set-pivot-row -- ../share/affine/sparsemat.lisp:357
+declare fn sp_set_pivot_row(sp_mat : Value, i : Value) -> Value raise
+
+///|
+/// defun sp-entry -- ../share/affine/sparsemat.lisp:363
+declare fn sp_entry(sp_mat : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun fix-even -- ../share/affine/sparsemat.lisp:369
+declare fn fix_even(n : Value) -> Value raise
+
+///|
+/// defun sp-grow-current-row -- ../share/affine/sparsemat.lisp:372
+declare fn sp_grow_current_row(sp_mat : Value, ratio? : Value = Flo(1.3)) -> Value raise
+
+///|
+/// defun sp-grow-row -- ../share/affine/sparsemat.lisp:383
+declare fn sp_grow_row(sp_mat : Value, row_number : Value, ratio? : Value = Flo(1.3)) -> Value raise
+
+///|
+/// defun set-entry -- ../share/affine/sparsemat.lisp:443
+declare fn set_entry(value : Value, arow : Value, index : Value) -> Value raise
+
+///|
+/// defun sp-set-current-row-entry -- ../share/affine/sparsemat.lisp:485
+declare fn sp_set_current_row_entry(sp_mat : Value, value : Value, ind : Value) -> Value raise
+
+///|
+/// defun sp-set-entry -- ../share/affine/sparsemat.lisp:488
+declare fn sp_set_entry(sp_mat : Value, value : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun sp-row-operation -- ../share/affine/sparsemat.lisp:576
+declare fn sp_row_operation(sp_mat : Value, factor : Value) -> Value raise
+
+///|
+/// defun get-rows-from-array -- ../share/affine/sparsemat.lisp:616
+declare fn get_rows_from_array(matrix : Value) -> Value raise
+
+///|
+/// defun random-matrix -- ../share/affine/sparsemat.lisp:630
+declare fn random_matrix(m : Value, n : Value, random_size? : Value = Fix(5L)) -> Value raise
+
+///|
+/// defun sp-gcd-row -- ../share/affine/sparsemat.lisp:637
+declare fn sp_gcd_row(sp_mat : Value, i : Value) -> Value raise
+
+///|
+/// defun sp-first-element-of-row -- ../share/affine/sparsemat.lisp:644
+declare fn sp_first_element_of_row(sp_mat : Value, ii : Value) -> Value raise
+
+///|
+/// defun sp-show-row -- ../share/affine/sparsemat.lisp:659
+declare fn sp_show_row(sp_mat : Value, i : Value) -> Value raise
+
+///|
+/// defun sp-show-current-and-pivot -- ../share/affine/sparsemat.lisp:664
+declare fn sp_show_current_and_pivot(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-rat -- ../share/affine/sparsemat.lisp:688
+declare fn sp_rat(x : Value) -> Value raise
+
+///|
+/// defun sp-choose-type-of-entries -- ../share/affine/sparsemat.lisp:694
+declare fn sp_choose_type_of_entries(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-set-type-of-entries -- ../share/affine/sparsemat.lisp:714
+declare fn sp_set_type_of_entries(sp_mat : Value, y : Value) -> Value raise
+
+///|
+/// defun sp-enter-pivot-data -- ../share/affine/sparsemat.lisp:745
+declare fn sp_enter_pivot_data(sp_mat : Value, col : Value) -> Value raise
+
+///|
+/// defun sp-remove-zero-entries-from-row -- ../share/affine/sparsemat.lisp:756
+declare fn sp_remove_zero_entries_from_row(sp_mat : Value, i : Value) -> Value raise
+
+///|
+/// defun show-hash -- ../share/affine/sparsemat.lisp:763
+declare fn show_hash(tabl : Value) -> Value raise
+
+///|
+/// defun sp-show-rows -- ../share/affine/sparsemat.lisp:768
+declare fn sp_show_rows(sp_mat : Value, l : Value) -> Value raise
+
+///|
+/// defun sp-list-pivots -- ../share/affine/sparsemat.lisp:775
+declare fn sp_list_pivots(sp_mat : Value, pred? : Value = Nil) -> Value raise
+
+///|
+/// defun sp-show-pivots -- ../share/affine/sparsemat.lisp:787
+declare fn sp_show_pivots(sp_mat : Value, pred? : Value = Nil) -> Value raise
+
+///|
+/// defun sp-show-matrix -- ../share/affine/sparsemat.lisp:801
+declare fn sp_show_matrix(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-reduce -- ../share/affine/sparsemat.lisp:863
+declare fn sp_reduce(sp_mat : Value, type_of_entry? : Value = Nil) -> Value raise
+
+///|
+/// defun sp-kill-extra-rows -- ../share/affine/sparsemat.lisp:896
+declare fn sp_kill_extra_rows(sp_mat : Value, original_number_of_rows : Value) -> Value raise
+
+///|
+/// defun sp-multiply-row -- ../share/affine/sparsemat.lisp:906
+declare fn sp_multiply_row(sp_mat : Value, row_number : Value, factor : Value) -> Value raise
+
+///|
+/// defun sp-clear-pivots -- ../share/affine/sparsemat.lisp:926
+declare fn sp_clear_pivots(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-get-rows-from-array -- ../share/affine/sparsemat.lisp:933
+declare fn sp_get_rows_from_array(sp_mat : Value, aarray : Value, type_? : Value = q_kw_integer) -> Value raise
+
+///|
+/// defun genmatrix -- ../share/affine/sparsemat.lisp:945
+declare fn genmatrix(m : Value, n : Value, fun : Value) -> Value raise
+
+///|
+/// defun macsyma-array-to-row -- ../share/affine/sparsemat.lisp:952
+declare fn macsyma_array_to_row(aarray : Value, grow_ratio? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun list-of-macsyma-arrays-to-rows -- ../share/affine/sparsemat.lisp:970
+declare fn list_of_macsyma_arrays_to_rows(llist : Value) -> Value raise
+
+///|
+/// defun sp-number-of-pivots -- ../share/affine/sparsemat.lisp:1038
+declare fn sp_number_of_pivots(sp_mat : Value, below_row? : Value) -> Value raise
+
+///|
+/// defun sp-solve -- ../share/affine/sparsemat.lisp:1057
+declare fn sp_solve(sp_mat : Value, reduce_? : Value = Nil, reset_list_of_columns_occurring? : Value = Nil) -> Value raise
+
+///|
+/// defun bring-to-left-side -- ../share/affine/sparsemat.lisp:1224
+declare fn bring_to_left_side(possible_eqn : Value) -> Value raise
+
+///|
+/// defun sp-show-solutions -- ../share/affine/sparsemat.lisp:1234
+declare fn sp_show_solutions(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-verify-solutions -- ../share/affine/sparsemat.lisp:1237
+declare fn sp_verify_solutions(sp_mat : Value) -> Value raise
+
+///|
+/// defun nil-lessp -- ../share/affine/sparsemat.lisp:1259
+declare fn nil_lessp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun sp-sort-row -- ../share/affine/sparsemat.lisp:1267
+declare fn sp_sort_row(sp_mat : Value, i : Value) -> Value raise
+
+///|
+/// defun desirable-row -- ../share/affine/sparsemat.lisp:1275
+declare fn desirable_row(x : Value) -> Value raise
+
+///|
+/// defun sp-best-pivot -- ../share/affine/sparsemat.lisp:1279
+declare fn sp_best_pivot(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-put-back-row-with-no-pivot -- ../share/affine/sparsemat.lisp:1394
+declare fn sp_put_back_row_with_no_pivot(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-swap-pivot-row-with-later-one -- ../share/affine/sparsemat.lisp:1404
+declare fn sp_swap_pivot_row_with_later_one(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-best-pivot-macsyma -- ../share/affine/sparsemat.lisp:1467
+declare fn sp_best_pivot_macsyma(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-smallest-possible-pivot -- ../share/affine/sparsemat.lisp:1487
+declare fn sp_smallest_possible_pivot(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-verify-solutions-for-original-array -- ../share/affine/sparsemat.lisp:1526
+declare fn sp_verify_solutions_for_original_array(sp_mat : Value, aarray : Value) -> Value raise
+
+///|
+/// defun sp-init -- ../share/affine/sparsemat.lisp:1531
+declare fn sp_init(sp_mat : Value, plist : Value) -> Value raise
+
+///|
+/// defun sp-make-transpose -- ../share/affine/sparsemat.lisp:1562
+declare fn sp_make_transpose(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-set-current-column-above-pivot-row-number -- ../share/affine/sparsemat.lisp:1619
+declare fn sp_set_current_column_above_pivot_row_number(sp_mat : Value, j : Value) -> Value raise
+
+///|
+/// defun sp-set-constants-column -- ../share/affine/sparsemat.lisp:1637
+declare fn sp_set_constants_column(sp_mat : Value, j : Value) -> Value raise
+
+///|
+/// defun where-the-min -- ../share/affine/sparsemat.lisp:1676
+declare fn where_the_min(an_array : Value) -> Value raise
+
+///|
+/// defun sp-force-pivot-row-to-contain-gcd -- ../share/affine/sparsemat.lisp:1692
+declare fn sp_force_pivot_row_to_contain_gcd(sp_mat : Value, j : Value) -> Value raise
+
+///|
+/// defun sp-add-new-row -- ../share/affine/sparsemat.lisp:1770
+declare fn sp_add_new_row(self_ : Value, a_row : Value, constant? : Value = Nil) -> Value raise
+
+///|
+/// defun gcd-array -- ../share/affine/sparsemat.lisp:1846
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn gcd_array(an_array : Value) -> (Value, Value) raise
+
+///|
+/// defun rational-inverse -- ../share/affine/sparsemat.lisp:1857
+declare fn rational_inverse(x : Value) -> Value raise
+
+///|
+/// defun divides -- ../share/affine/sparsemat.lisp:1860
+declare fn divides(a : Value, b : Value) -> Value raise
+
+///|
+/// defun sp-find-good-column-to-pivot -- ../share/affine/sparsemat.lisp:1863
+declare fn sp_find_good_column_to_pivot(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-gcd-column -- ../share/affine/sparsemat.lisp:1873
+declare fn sp_gcd_column(sp_mat : Value, j : Value) -> Value raise
+
+///|
+/// defun show-gcd-of-columns -- ../share/affine/sparsemat.lisp:1878
+declare fn show_gcd_of_columns(a_sparse_matrix : Value) -> Value raise
+
+///|
+/// defun sp-show-row-array-leaders -- ../share/affine/sparsemat.lisp:1884
+declare fn sp_show_row_array_leaders(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-make-rows-desirable -- ../share/affine/sparsemat.lisp:1890
+declare fn sp_make_rows_desirable(sp_mat : Value, a_list : Value) -> Value raise
+
+///|
+/// defun fmat -- ../share/affine/sparsemat.lisp:1907
+declare fn fmat(l : Value) -> Value raise
+
+///|
+/// defun sp-show-column -- ../share/affine/sparsemat.lisp:1912
+declare fn sp_show_column(sp_mat : Value, j : Value) -> Value raise
+
+///|
+/// defun sp-verify-columns-above-pivots-are-zero -- ../share/affine/sparsemat.lisp:1915
+declare fn sp_verify_columns_above_pivots_are_zero(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-reduce-row-with-respect-to-rows -- ../share/affine/sparsemat.lisp:1929
+declare fn sp_reduce_row_with_respect_to_rows(sp_mat : Value, a_row : Value) -> Value raise
+
+///|
+/// defun sp-determinant -- ../share/affine/sparsemat.lisp:1960
+declare fn sp_determinant(sp_mat : Value) -> Value raise
+
+///|
+/// defun sp-product-of-pivots -- ../share/affine/sparsemat.lisp:1989
+declare fn sp_product_of_pivots(sp_mat : Value) -> Value raise
+
+///|
+/// defun gcd-and-cofs -- ../share/affine/sparsemat.lisp:2002
+declare fn gcd_and_cofs(b : Value, a : Value) -> Value raise
+
+///|
+/// defun convert-to-sparse-matrix -- ../share/affine/sparsemat.lisp:2021
+declare fn convert_to_sparse_matrix(row_list_matrix : Value, re_use_sparse_matrix? : Value = Nil, old_index_base? : Value = Fix(1L), rows_to_use? : Value = Nil, columns_to_use? : Value = Nil, rows_not_to_use? : Value = Nil, renumber_columns? : Value = Fix(0L), columns_not_to_use? : Value = Nil) -> Value raise
+
+///|
+/// defun make-test -- ../share/affine/sparsemat.lisp:2117
+declare fn make_test(n : Value) -> Value raise
+
+///|
+/// defun $coerce_matrix -- ../share/affine/sparsemat.lisp:2138
+declare fn d_coerce_matrix(mat : Value) -> Value raise
+
+///|
+/// defun sp-float -- ../share/affine/sparsemat.lisp:2154
+declare fn sp_float(sp_mat : Value) -> Value raise
+
+///|
+/// defun float-zerop -- ../share/affine/sparsemat.lisp:2162
+declare fn float_zerop(n : Value) -> Value raise
+
+///|
+/// defun sp-make-sparse-matrix -- ../share/affine/sparsemat.lisp:2174
+declare fn sp_make_sparse_matrix(list_of_rows : Value, sp? : Value, type_of_entries? : Value = q_kw_any_macsyma) -> Value raise
+
+///|
+/// defun sp-quotient-space-basis -- ../share/affine/sparsemat.lisp:2185
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn sp_quotient_space_basis(list_subspace_rows : Value, all_rows : Value) -> (Value, Value) raise
+
+///|
+/// defun $fast_determinant -- ../share/affine/sparsemat.lisp:2203
+declare fn d_fast_determinant(matrix : Value) -> Value raise
+
+///|
+/// defun which-centrals-to-add -- ../share/affine/polyd.lisp:12
+declare fn which_centrals_to_add() -> Value raise
+
+///|
+/// defun find-number-of-centrals -- ../share/affine/polyd.lisp:34
+declare fn find_number_of_centrals(n : Value, from_degree? : Value = Fix(2L), to_degree? : Value = Fix(10L), reset_centrals_so_far? : Value = Nil) -> Value raise
+
+///|
+/// defun monomials-and-rank-function-agree -- ../share/affine/polyd.lisp:69
+declare fn monomials_and_rank_function_agree(n : Value) -> Value raise
+
+///|
+/// defun $check_a_case -- ../share/affine/polyd.lisp:88
+declare fn d_check_a_case(relations : Value, to_degree? : Value = Fix(10L), rank_function? : Value = q_d_global_dimension_3, variables? : Value = Nil) -> Value raise
+
+///|
+/// defun $check_programs -- ../share/affine/polyd.lisp:171
+declare fn d_check_programs(list_relations : Value) -> Value raise
+
+///|
+/// defun new-convert-relation-to-dot-simp -- ../share/affine/polyd.lisp:178
+declare fn new_convert_relation_to_dot_simp(relat : Value, ordering? : Value, then_simplify? : Value = Nil) -> Value raise
+
+///|
+/// defun $simplify_dot_simplifications -- ../share/affine/polyd.lisp:199
+declare fn d_simplify_dot_simplifications(from_degree? : Value = Fix(0L)) -> Value raise
+
+///|
+/// defun $monomial_and_degree_lessp -- ../share/affine/polyd.lisp:230
+declare fn d_monomial_and_degree_lessp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun mono-dimension -- ../share/affine/polyd.lisp:236
+declare fn mono_dimension(n : Value) -> Value raise
+
+///|
+/// defun hilbert -- ../share/affine/polyd.lisp:238
+declare fn hilbert(n : Value, l : Value) -> Value raise
+
+///|
+/// defun our-dimensions -- ../share/affine/polyd.lisp:251
+declare fn our_dimensions(n : Value) -> Value raise
+
+///|
+/// defun $global_dimension_3 -- ../share/affine/polyd.lisp:261
+declare fn d_global_dimension_3(n : Value) -> Value raise
+
+///|
+/// defun dimension-from-sequence -- ../share/affine/polyd.lisp:263
+declare fn dimension_from_sequence(list_powers : Value, list_degree_maps : Value, degree : Value, number_variables : Value) -> Value raise
+
+///|
+/// defun $sum_hilbert -- ../share/affine/polyd.lisp:283
+declare fn d_sum_hilbert(l : Value) -> Value raise
+
+///|
+/// defun $hilbert_modulo -- ../share/affine/polyd.lisp:288
+declare fn d_hilbert_modulo(l : Value) -> Value raise
+
+///|
+/// defun hilbert-modulo -- ../share/affine/polyd.lisp:292
+declare fn hilbert_modulo(l : Value) -> Value raise
+
+///|
+/// defun $tes -- ../share/affine/polyd.lisp:297
+declare fn d_tes(relat : Value) -> Value raise
+
+///|
+/// defun $add_relation_to_dot_simplifications -- ../share/affine/polyd.lisp:300
+declare fn d_add_relation_to_dot_simplifications(relat : Value) -> Value raise
+
+///|
+/// defun $rat_the_dot_simplifications -- ../share/affine/polyd.lisp:303
+declare fn d_rat_the_dot_simplifications() -> Value raise
+
+///|
+/// defun $fast_central_elements_given_commutator -- ../share/affine/polyd.lisp:338
+declare fn d_fast_central_elements_given_commutator(variables : Value, deg : Value, comut : Value, used_var : Value) -> Value raise
+
+///|
+/// defun $read_lisp_string -- ../share/affine/polyd.lisp:388
+declare fn d_read_lisp_string(a_string : Value) -> Value raise
+
+///|
+/// defun $try -- ../share/affine/polyd.lisp:392
+declare fn d_try(u : Value) -> Value raise
+
+///|
+/// defun list-variables -- ../share/affine/polyd.lisp:406
+declare fn list_variables(expr : Value) -> Value raise
+
+///|
+/// defun list-variables1 -- ../share/affine/polyd.lisp:411
+declare fn list_variables1(expr : Value) -> Value raise
+
+///|
+/// defun reset-rat -- ../share/affine/polyd.lisp:421
+declare fn reset_rat(tree : Value) -> Value raise
+
+///|
+/// defun npfactor -- ../share/affine/polyd.lisp:430
+declare fn npfactor(p : Value) -> Value raise
+
+///|
+/// defun nplcm -- ../share/affine/polyd.lisp:435
+declare fn nplcm(x : Value, y : Value) -> Value raise
+
+///|
+/// defun npgcd -- ../share/affine/polyd.lisp:438
+declare fn npgcd(f : Value, g : Value) -> Value raise
+
+///|
+/// defun make-polynomial -- ../share/affine/aquotient.lisp:30
+declare fn make_polynomial(var_? : Value = Nil, terms? : Value = Nil) -> Value raise
+
+///|
+/// defun afc-quotient -- ../share/affine/aquotient.lisp:33
+declare fn afc_quotient(f : Value, g : Value) -> Value raise
+
+///|
+/// defun fsignal -- ../share/affine/aquotient.lisp:36
+declare fn fsignal(l : Value) -> Value raise
+
+///|
+/// defun list-previous-tellrats -- ../share/affine/aquotient.lisp:53
+declare fn list_previous_tellrats(new_tellrats : Value) -> Value raise
+
+///|
+/// defun set-tellrats -- ../share/affine/aquotient.lisp:57
+declare fn set_tellrats(new_tellrats : Value) -> Value raise
+
+///|
+/// defun undo-tellrats -- ../share/affine/aquotient.lisp:61
+declare fn undo_tellrats(old_list : Value) -> Value raise
+
+///|
+/// defun afp-cquotient -- ../share/affine/aquotient.lisp:106
+declare fn afp_cquotient(a : Value, b : Value) -> Value raise
+
+///|
+/// defun afp-terms-times -- ../share/affine/aquotient.lisp:124
+declare fn afp_terms_times(terms_f : Value, terms_g : Value) -> Value raise
+
+///|
+/// defun afp-plus -- ../share/affine/aquotient.lisp:183
+declare fn afp_plus(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afp-constant-term-plus -- ../share/affine/aquotient.lisp:193
+declare fn afp_constant_term_plus(constant : Value, terms : Value) -> Value raise
+
+///|
+/// defun afp-terms-plus -- ../share/affine/aquotient.lisp:206
+declare fn afp_terms_plus(terms_f : Value, terms_g : Value) -> Value raise
+
+///|
+/// defun afp-minus -- ../share/affine/aquotient.lisp:227
+declare fn afp_minus(f : Value) -> Value raise
+
+///|
+/// defun afp-terms-minus -- ../share/affine/aquotient.lisp:233
+declare fn afp_terms_minus(terms_f : Value) -> Value raise
+
+///|
+/// defun afp-difference -- ../share/affine/aquotient.lisp:245
+declare fn afp_difference(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afp-terms-differ -- ../share/affine/aquotient.lisp:261
+declare fn afp_terms_differ(terms_f : Value, terms_g : Value) -> Value raise
+
+///|
+/// defun afp-terms-constant-main-differ -- ../share/affine/aquotient.lisp:272
+declare fn afp_terms_constant_main_differ(const_ : Value, main_ : Value) -> Value raise
+
+///|
+/// defun afp-terms-main-constant-differ -- ../share/affine/aquotient.lisp:280
+declare fn afp_terms_main_constant_differ(main_ : Value, const_ : Value) -> Value raise
+
+///|
+/// defun afp-quotient -- ../share/affine/aquotient.lisp:289
+declare fn afp_quotient(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afp-test-divide -- ../share/affine/aquotient.lisp:327
+declare fn afp_test_divide(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afc-remainder -- ../share/affine/aquotient.lisp:333
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn afc_remainder(n : Value, divisor : Value) -> (Value, Value) raise
+
+///|
+/// defun afp-pseudo-quotient -- ../share/affine/aquotient.lisp:338
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn afp_pseudo_quotient(f : Value, g : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun gen-pointergp -- ../share/affine/aquotient.lisp:386
+declare fn gen_pointergp(f : Value, g : Value) -> Value raise
+
+///|
+/// defun gen-degree -- ../share/affine/aquotient.lisp:391
+declare fn gen_degree(f : Value) -> Value raise
+
+///|
+/// defun afp-content -- ../share/affine/aquotient.lisp:402
+declare fn afp_content(f : Value) -> Value raise
+
+///|
+/// defun principal-part -- ../share/affine/aquotient.lisp:411
+declare fn principal_part(f : Value) -> Value raise
+
+///|
+/// defun afp-gcd -- ../share/affine/aquotient.lisp:416
+declare fn afp_gcd(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afp-euclidean-gcd -- ../share/affine/aquotient.lisp:428
+declare fn afp_euclidean_gcd(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afp-subresultant-gcd -- ../share/affine/aquotient.lisp:462
+declare fn afp_subresultant_gcd(f : Value, g : Value) -> Value raise
+
+///|
+/// defun one-ptimes -- ../share/affine/aquotient.lisp:498
+declare fn one_ptimes(f : Value, g : Value) -> Value raise
+
+///|
+/// defun exponent-product -- ../share/affine/aquotient.lisp:503
+declare fn exponent_product(alternating_factor_exponent_list : Value) -> Value raise
+
+///|
+/// defun same-main-and-degree -- ../share/affine/aquotient.lisp:520
+declare fn same_main_and_degree(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afp-big-gcd -- ../share/affine/aquotient.lisp:543
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn afp_big_gcd(f : Value, g : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun afp-pgcdcofacts -- ../share/affine/aquotient.lisp:548
+declare fn afp_pgcdcofacts(f : Value, g : Value) -> Value raise
+
+///|
+/// defun afp-square-free-with-modulus -- ../share/affine/aquotient.lisp:564
+declare fn afp_square_free_with_modulus(u : Value) -> Value raise
+
+///|
+/// defun afp-square-free-factorization -- ../share/affine/aquotient.lisp:586
+declare fn afp_square_free_factorization(u : Value) -> Value raise
+
+///|
+/// defun afp-times -- ../share/affine/aquotient.lisp:674
+declare fn afp_times(f : Value, g : Value) -> Value raise
+
+///|
+/// defun test-decrease -- ../share/affine/aquotient.lisp:743
+declare fn test_decrease(terms : Value) -> Value raise
+
+///|
+/// defun afp-pctimes -- ../share/affine/aquotient.lisp:749
+declare fn afp_pctimes(poly : Value, number : Value) -> Value raise
+
+///|
+/// defun test-times -- ../share/affine/aquotient.lisp:761
+declare fn test_times(f : Value, g : Value, empty? : Value = Nil) -> Value raise
+
+///|
+/// defun remove-zero-coefficients -- ../share/affine/aquotient.lisp:774
+declare fn remove_zero_coefficients(poly : Value) -> Value raise
+
+///|
+/// defun recursive-ideal-gcd1 -- ../share/affine/aquotient.lisp:787
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn recursive_ideal_gcd1(f : Value, g : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun recursive-ideal-gcd -- ../share/affine/aquotient.lisp:803
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn recursive_ideal_gcd(f : Value, g : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun $list_poles_of_sum -- ../share/affine/aquotient.lisp:830
+declare fn d_list_poles_of_sum(sum : Value) -> Value raise
+
+///|
+/// defun constant-psublis -- ../share/affine/aquotient.lisp:855
+declare fn constant_psublis(alist : Value, polynomial : Value) -> Value raise
+
+///|
+/// defun constant-psublis1 -- ../share/affine/aquotient.lisp:859
+declare fn constant_psublis1(alist : Value, polynomial : Value) -> Value raise
+
+///|
+/// defun my-evenp -- ../share/affine/aquotient.lisp:903
+declare fn my_evenp(n : Value) -> Value raise
+
+///|
+/// defun fast-gcd -- ../share/affine/aquotient.lisp:932
+declare fn fast_gcd(m : Value, n : Value) -> Value raise
+
+///|
+/// defun bin-gcd -- ../share/affine/aquotient.lisp:944
+declare fn bin_gcd(u : Value, v : Value) -> Value raise
+
+///|
+/// defun poly-to-row -- ../share/affine/aquotient.lisp:972
+declare fn poly_to_row(poly : Value, row? : Value = Nil) -> Value raise
+
+///|
+/// defun row-to-terms -- ../share/affine/aquotient.lisp:986
+declare fn row_to_terms(row : Value) -> Value raise
+
+///|
+/// defun afp-square -- ../share/affine/aquotient.lisp:992
+declare fn afp_square(poly : Value) -> Value raise
+
+///|
+/// defun afp-terms-square -- ../share/affine/aquotient.lisp:1034
+declare fn afp_terms_square(p__terms : Value) -> Value raise
+
+///|
+/// defun afp-expt-modulo -- ../share/affine/aquotient.lisp:1133
+declare fn afp_expt_modulo(poly : Value, exponent : Value, work_modulo : Value) -> Value raise
+
+///|
+/// defun afp-expt -- ../share/affine/aquotient.lisp:1137
+declare fn afp_expt(poly : Value, exponent : Value) -> Value raise
+
+///|
+/// defun berlekamp-set-up-and-reduce-matrix -- ../share/affine/aquotient.lisp:1173
+declare fn berlekamp_set_up_and_reduce_matrix(u : Value, p : Value) -> Value raise
+
+///|
+/// defun berlekamp-polynomial-solutions -- ../share/affine/aquotient.lisp:1220
+declare fn berlekamp_polynomial_solutions(sp : Value, polynomial : Value) -> Value raise
+
+///|
+/// defun berlekamp-get-factors-little-prime -- ../share/affine/aquotient.lisp:1227
+declare fn berlekamp_get_factors_little_prime(u : Value, reduced_sparse_matrix : Value, prime : Value) -> Value raise
+
+///|
+/// defun berlekamp-get-factors-big-prime -- ../share/affine/aquotient.lisp:1257
+declare fn berlekamp_get_factors_big_prime(u : Value, reduced_sparse_matrix : Value, prime : Value) -> Value raise
+
+///|
+/// defun afp-make-monic -- ../share/affine/aquotient.lisp:1288
+declare fn afp_make_monic(poly : Value) -> Value raise
+
+///|
+/// defun afp-try-make-monic -- ../share/affine/aquotient.lisp:1297
+declare fn afp_try_make_monic(poly : Value) -> Value raise
+
+///|
+/// defun afp-berlekamp-factor -- ../share/affine/aquotient.lisp:1308
+declare fn afp_berlekamp_factor(pol : Value) -> Value raise
+
+///|
+/// defun afp-berlekamp-factor1 -- ../share/affine/aquotient.lisp:1311
+declare fn afp_berlekamp_factor1(pol : Value, p : Value, use_little? : Value = Nil, use_big? : Value = Nil) -> Value raise
+
+///|
+/// defun afp-factor -- ../share/affine/aquotient.lisp:1327
+declare fn afp_factor(pol : Value, square_free_arg? : Value = Nil) -> Value raise
+
+///|
+/// defun afp-mod -- ../share/affine/aquotient.lisp:1354
+declare fn afp_mod(pol : Value) -> Value raise
+
+///|
+/// defun get-factors -- ../share/affine/aquotient.lisp:1357
+declare fn get_factors(u : Value, use_for_gcd : Value, p : Value) -> Value raise
+
+///|
+/// defun afp-distinct-degree-factor -- ../share/affine/aquotient.lisp:1367
+declare fn afp_distinct_degree_factor(u : Value, prime? : Value) -> Value raise
+
+///|
+/// defun one-degree-factors -- ../share/affine/aquotient.lisp:1398
+declare fn one_degree_factors(u : Value, deg : Value, p : Value) -> Value raise
+
+///|
+/// defun generate-t-for-one-degree-factors -- ../share/affine/aquotient.lisp:1432
+declare fn generate_t_for_one_degree_factors(u : Value, deg : Value, p : Value, i : Value) -> Value raise
+
+///|
+/// defun ff -- ../share/affine/aquotient.lisp:1440
+declare fn ff(u : Value, prime? : Value) -> Value raise
+
+///|
+/// defun nnpfactor -- ../share/affine/aquotient.lisp:1453
+declare fn nnpfactor(pol : Value) -> Value raise
+
+///|
+/// defun hensel-lift -- ../share/affine/aquotient.lisp:1464
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn hensel_lift(product : Value, v : Value, w : Value, prime : Value, up_to_size : Value) -> (Value, Value) raise
+
+///|
+/// defun gen-afp-times -- ../share/affine/aquotient.lisp:1483
+declare fn gen_afp_times(lis : Value) -> Value raise
+
+///|
+/// defun gen-afp-times1 -- ../share/affine/aquotient.lisp:1491
+declare fn gen_afp_times1(lis : Value) -> Value raise
+
+///|
+/// defun smallest-power-bigger -- ../share/affine/aquotient.lisp:1498
+declare fn smallest_power_bigger(p : Value, up_to : Value) -> Value raise
+
+///|
+/// defun hensel-lift-list -- ../share/affine/aquotient.lisp:1504
+declare fn hensel_lift_list(product : Value, factor_list : Value, prime : Value, up_to_size : Value) -> Value raise
+
+///|
+/// defun hensel-lift1 -- ../share/affine/aquotient.lisp:1512
+declare fn hensel_lift1(product : Value, ve : Value, we : Value, prev_modulus : Value, prime : Value, a? : Value = Nil, b? : Value = Nil) -> Value raise
+
+///|
+/// defun collect-number-factors -- ../share/affine/aquotient.lisp:1536
+declare fn collect_number_factors(fact_list : Value) -> Value raise
+
+///|
+/// defun integer-univariate-factor -- ../share/affine/aquotient.lisp:1553
+declare fn integer_univariate_factor(poly : Value) -> Value raise
+
+///|
+/// defun find-small-prime-so-square-free -- ../share/affine/aquotient.lisp:1565
+declare fn find_small_prime_so_square_free(poly : Value, variable? : Value, prime_start? : Value = Fix(13L)) -> Value raise
+
+///|
+/// defun integer-univariate-factor1 -- ../share/affine/aquotient.lisp:1580
+declare fn integer_univariate_factor1(pol : Value) -> Value raise
+
+///|
+/// defun sub-lists -- ../share/affine/aquotient.lisp:1591
+declare fn sub_lists(leng : Value, list_ : Value) -> Value raise
+
+///|
+/// defun correct-factors -- ../share/affine/aquotient.lisp:1600
+declare fn correct_factors(pol : Value, factors : Value, p : Value, mod_ : Value) -> Value raise
+
+///|
+/// defun q-primep -- ../share/affine/aquotient.lisp:1628
+declare fn q__primep(i : Value) -> Value raise
+
+///|
+/// defun test-integer-factor -- ../share/affine/aquotient.lisp:1638
+declare fn test_integer_factor(pol : Value) -> Value raise
+
+///|
+/// defun subs-translate-sublis -- ../share/affine/aquotient.lisp:1643
+declare fn subs_translate_sublis(point : Value, inv? : Value = Nil) -> Value raise
+
+///|
+/// defun express-x^i -- ../share/affine/aquotient.lisp:1656
+declare fn express_x_hati(f : Value, g : Value, k : Value, modulus? : Value) -> Value raise
+
+///|
+/// defun wr-lift -- ../share/affine/aquotient.lisp:1684
+declare fn wr_lift(u : Value, fi : Value, gi : Value, up_to_k : Value, big_mod : Value, point : Value) -> Value raise
+
+///|
+/// defun afp-truncate-powers -- ../share/affine/aquotient.lisp:1716
+declare fn afp_truncate_powers(pol : Value, varl : Value, deg : Value) -> Value raise
+
+///|
+/// defun afp-truncate-powers1 -- ../share/affine/aquotient.lisp:1720
+declare fn afp_truncate_powers1(pol : Value, varl : Value, above_deg : Value) -> Value raise
+
+///|
+/// defun normalize-factor-list -- ../share/affine/aquotient.lisp:1741
+declare fn normalize_factor_list(factor_list : Value) -> Value raise
+
+///|
+/// defun find-factor-list-given-irreducible-factors -- ../share/affine/aquotient.lisp:1765
+declare fn find_factor_list_given_irreducible_factors(pol : Value, fact_list : Value) -> Value raise
+
+///|
+/// defun try-multi-factor0 -- ../share/affine/aquotient.lisp:1784
+declare fn try_multi_factor0(pol : Value) -> Value raise
+
+///|
+/// defun afp-degvector -- ../share/affine/aquotient.lisp:1801
+declare fn afp_degvector(pol : Value, vars : Value) -> Value raise
+
+///|
+/// defun afp-smallest-var -- ../share/affine/aquotient.lisp:1807
+declare fn afp_smallest_var(degvector : Value, list_variables : Value) -> Value raise
+
+///|
+/// defun reset-vgp -- ../share/affine/polyc.lisp:16
+declare fn reset_vgp() -> Value raise
+
+///|
+/// defun show-vgp -- ../share/affine/polyc.lisp:24
+declare fn show_vgp() -> Value raise
+
+///|
+/// defun put-tellrat-property -- ../share/affine/polyc.lisp:29
+declare fn put_tellrat_property(va : Value, the_gensym : Value) -> Value raise
+
+///|
+/// defun poly-ncmul1 -- ../share/affine/polyc.lisp:35
+declare fn poly_ncmul1(mon : Value, poly : Value, mon1 : Value) -> Value raise
+
+///|
+/// defun poly-ncmul -- ../share/affine/polyc.lisp:89
+declare fn poly_ncmul(ll : Value) -> Value raise
+
+///|
+/// defun reset-gen -- ../share/affine/polyc.lisp:105
+declare fn reset_gen() -> Value raise
+
+///|
+/// defun show-vg -- ../share/affine/polyc.lisp:107
+declare fn show_vg(varl? : Value, genv? : Value) -> Value raise
+
+///|
+/// defun last2 -- ../share/affine/polyc.lisp:116
+declare fn last2(a_list : Value) -> Value raise
+
+///|
+/// defun choose -- ../share/affine/polyc.lisp:128
+declare fn choose(m : Value, n : Value) -> Value raise
+
+///|
+/// defun polynomial-ring-1-1-1 -- ../share/affine/polyc.lisp:131
+declare fn polynomial_ring_1_1_1(deg : Value) -> Value raise
+
+///|
+/// defun three-times-n -- ../share/affine/polyc.lisp:134
+declare fn three_times_n(n : Value) -> Value raise
+
+///|
+/// defun list-equations1 -- ../share/affine/polyc.lisp:136
+declare fn list_equations1(expr : Value) -> Value raise
+
+///|
+/// defun list-equations-macsyma1 -- ../share/affine/polyc.lisp:146
+declare fn list_equations_macsyma1(expr : Value) -> Value raise
+
+///|
+/// defun $list_factors -- ../share/affine/polyc.lisp:164
+declare fn d_list_factors(poly : Value) -> Value raise
+
+///|
+/// defun $list_equations -- ../share/affine/polyc.lisp:172
+declare fn d_list_equations(a_list : Value) -> Value raise
+
+///|
+/// defun $sub_list -- ../share/affine/polyc.lisp:178
+declare fn d_sub_list(eqns : Value, expr : Value) -> Value raise
+
+///|
+/// defun new-sublis -- ../share/affine/polyc.lisp:187
+declare fn new_sublis(subs : Value, expr : Value) -> Value raise
+
+///|
+/// defun remove-from-*genpairs* -- ../share/affine/polyc.lisp:194
+declare fn remove_from__stargenpairs_star(expr : Value) -> Value raise
+
+///|
+/// defun pe -- ../share/affine/polyc.lisp:212
+declare fn pe() -> Value raise
+
+///|
+/// defun $eij -- ../share/affine/polyc.lisp:239
+declare fn d_eij(n : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun $unipotent_invariant_vectors -- ../share/affine/polyc.lisp:242
+declare fn d_unipotent_invariant_vectors(representation : Value, n1 : Value, n2 : Value) -> Value raise
+
+///|
+/// defun $matrix_from_list -- ../share/affine/polyc.lisp:255
+declare fn d_matrix_from_list(a_list : Value) -> Value raise
+
+///|
+/// defun kronecker-row-product -- ../share/affine/polyc.lisp:265
+declare fn kronecker_row_product(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $kronecker_product -- ../share/affine/polyc.lisp:273
+declare fn d_kronecker_product(m : Value, n : Value) -> Value raise
+
+///|
+/// defun $standard_rep -- ../share/affine/polyc.lisp:281
+declare fn d_standard_rep(mat : Value, v : Value) -> Value raise
+
+///|
+/// defun $unlist_matrix_entries -- ../share/affine/polyc.lisp:283
+declare fn d_unlist_matrix_entries(vect : Value, size? : Value = Nil) -> Value raise
+
+///|
+/// defun sub-list -- ../share/affine/polyc.lisp:292
+declare fn sub_list(a_list : Value, expr : Value) -> Value raise
+
+///|
+/// defun $tensor4 -- ../share/affine/polyc.lisp:314
+declare fn d_tensor4(mat : Value, v : Value) -> Value raise
+
+///|
+/// defun $tensor2 -- ../share/affine/polyc.lisp:340
+declare fn d_tensor2(mat : Value, v : Value) -> Value raise
+
+///|
+/// defun $tensor3 -- ../share/affine/polyc.lisp:347
+declare fn d_tensor3(mat : Value, v : Value) -> Value raise
+
+///|
+/// defun $sum5_standard_rep -- ../share/affine/polyc.lisp:383
+declare fn d_sum5_standard_rep(mat : Value, v : Value) -> Value raise
+
+///|
+/// defun list-ind-to-tensor-ind -- ../share/affine/polyc.lisp:405
+declare fn list_ind_to_tensor_ind(dimv : Value, tensor_power : Value, ind : Value) -> Value raise
+
+///|
+/// defun tensor-ind-to-list-ind -- ../share/affine/polyc.lisp:412
+declare fn tensor_ind_to_list_ind(dimv : Value, ll : Value) -> Value raise
+
+///|
+/// defun $tensor_product_representation -- ../share/affine/polyc.lisp:432
+declare fn d_tensor_product_representation(rep1 : Value, d1 : Value, rep2 : Value, d2 : Value, p : Value, w : Value) -> Value raise
+
+///|
+/// defun $find_matrix_of_operator -- ../share/affine/polyc.lisp:442
+declare fn d_find_matrix_of_operator(operator : Value, basis : Value) -> Value raise
+
+///|
+/// defun $restriction_representation -- ../share/affine/polyc.lisp:483
+declare fn d_restriction_representation(repr : Value, elt_gln : Value, vector_ : Value, sub_basis : Value) -> Value raise
+
+///|
+/// defun $standard_basis -- ../share/affine/polyc.lisp:487
+declare fn d_standard_basis(n : Value) -> Value raise
+
+///|
+/// defun $find_highest_weight_vectors -- ../share/affine/polyc.lisp:490
+declare fn d_find_highest_weight_vectors(rep : Value, n1 : Value, n2 : Value) -> Value raise
+
+///|
+/// defun $diagonalize_torus -- ../share/affine/polyc.lisp:498
+declare fn d_diagonalize_torus(representation : Value, n1 : Value, n2 : Value, basis : Value) -> Value raise
+
+///|
+/// defun $find_eigenvectors -- ../share/affine/polyc.lisp:518
+declare fn d_find_eigenvectors(mat : Value, eigenvalue : Value) -> Value raise
+
+///|
+/// defun $rank_of_representation -- ../share/affine/polyc.lisp:531
+declare fn d_rank_of_representation(rep : Value, n1 : Value, list_of_generators : Value) -> Value raise
+
+///|
+/// defun $general_matrix -- ../share/affine/polyc.lisp:539
+declare fn d_general_matrix(n : Value, a_list : Value) -> Value raise
+
+///|
+/// defun exponent-vector -- ../share/affine/polyc.lisp:549
+declare fn exponent_vector(n : Value, length_vector? : Value = Fix(10L)) -> Value raise
+
+///|
+/// defun replace-parameters-by-aa -- ../share/affine/polyc.lisp:565
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn replace_parameters_by_aa(expr : Value) -> (Value, Value) raise
+
+///|
+/// defun function-denominator -- ../share/affine/polyc.lisp:590
+declare fn function_denominator(pol : Value) -> Value raise
+
+///|
+/// defun function-numerator -- ../share/affine/polyc.lisp:596
+declare fn function_numerator(pol : Value) -> Value raise
+
+///|
+/// defun poly-type -- ../share/affine/polyc.lisp:602
+declare fn poly_type(x : Value) -> Value raise
+
+///|
+/// defun check-rat-variables -- ../share/affine/polyc.lisp:610
+declare fn check_rat_variables(expr : Value) -> Value raise
+
+///|
+/// defun check-vgp-correspond -- ../share/affine/polyc.lisp:615
+declare fn check_vgp_correspond() -> Value raise
+
+///|
+/// defun $slow_gcdlist -- ../share/affine/polyc.lisp:623
+declare fn d_slow_gcdlist(ll : Value) -> Value raise
+
+///|
+/// defun $slow_projective -- ../share/affine/polyc.lisp:632
+declare fn d_slow_projective(l : Value) -> Value raise
+
+///|
+/// defun sp-add* -- ../share/affine/polyc.lisp:736
+declare fn sp_add_star(llist : Value) -> Value raise
+
+///|
+/// defun sp-minus* -- ../share/affine/polyc.lisp:740
+declare fn sp_minus_star(a : Value) -> Value raise
+
+///|
+/// defun sp-sub* -- ../share/affine/polyc.lisp:744
+declare fn sp_sub_star(a : Value, b : Value) -> Value raise
+
+///|
+/// defun sp-mul* -- ../share/affine/polyc.lisp:748
+declare fn sp_mul_star(a_list : Value) -> Value raise
+
+///|
+/// defun sp-div* -- ../share/affine/polyc.lisp:753
+declare fn sp_div_star(a : Value, b : Value) -> Value raise
+
+///|
+/// defun poly-scalarp -- ../share/affine/polyc.lisp:777
+declare fn poly_scalarp(a : Value) -> Value raise
+
+///|
+/// defun $coefficient_matrix -- ../share/affine/polyc.lisp:785
+declare fn d_coefficient_matrix(a_list : Value, variables : Value) -> Value raise
+
+///|
+/// defun $new_rat -- ../share/affine/polyc.lisp:870
+declare fn d_new_rat(expr : Value) -> Value raise
+
+///|
+/// defun $shift -- ../share/affine/polyc.lisp:890
+declare fn d_shift(expr : Value, variables? : Value) -> Value raise
+
+///|
+/// defun $spur -- ../share/affine/polyc.lisp:897
+declare fn d_spur(expr : Value, function : Value, n : Value) -> Value raise
+
+///|
+/// defun $basis_of_invariant_ring -- ../share/affine/polyc.lisp:904
+declare fn d_basis_of_invariant_ring(n : Value, variables? : Value) -> Value raise
+
+///|
+/// defun $case_rep -- ../share/affine/polyc.lisp:929
+declare fn d_case_rep(mat : Value, vect : Value, triple : Value) -> Value raise
+
+///|
+/// defun $make_commutative -- ../share/affine/polyc.lisp:967
+declare fn d_make_commutative(expr : Value) -> Value raise
+
+///|
+/// defun iblowup -- ../share/affine/sheafb.lisp:11
+declare fn iblowup(zopen : Value, i : Value, firstk : Value) -> Value raise
+
+///|
+/// defun s-blow -- ../share/affine/sheafb.lisp:23
+declare fn s_blow(simp_pls : Value, open_number : Value, component_number : Value) -> Value raise
+
+///|
+/// defun high-dimensional-component -- ../share/affine/sheafb.lisp:30
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn high_dimensional_component(pls : Value) -> (Value, Value) raise
+
+///|
+/// defun blowup-pls-using-high-dimensional-components -- ../share/affine/sheafb.lisp:50
+declare fn blowup_pls_using_high_dimensional_components(pls : Value, n : Value, one_open? : Value = t, already_blown_up? : Value = Nil) -> Value raise
+
+///|
+/// defun eliminate-empty-and-larger-opens -- ../share/affine/sheafb.lisp:160
+declare fn eliminate_empty_and_larger_opens(pls : Value) -> Value raise
+
+///|
+/// defun blowup-pls-using-choices -- ../share/affine/sheafb.lisp:172
+declare fn blowup_pls_using_choices(pls : Value, n : Value, query_user? : Value = t, one_open? : Value = t, already_blown_up? : Value = Nil, number_to_reduce? : Value = Fix(3L)) -> Value raise
+
+///|
+/// defun restart-blowup -- ../share/affine/sheafb.lisp:234
+declare fn restart_blowup(part? : Value = Nil, use_blewup? : Value = Nil, one_open? : Value = Nil, query_user? : Value = Nil, after? : Value = Fix(0L), number_to_reduce? : Value = Fix(3L)) -> Value raise
+
+///|
+/// defun gen-pcomplexity -- ../share/affine/sheafb.lisp:259
+declare fn gen_pcomplexity(lis : Value) -> Value raise
+
+///|
+/// defun provide-some-choices-to-blowup -- ../share/affine/sheafb.lisp:283
+declare fn provide_some_choices_to_blowup(new_pls : Value, query_user? : Value = t, number_to_reduce? : Value = Fix(3L)) -> Value raise
+
+///|
+/// defun sort-the-reduced-history -- ../share/affine/sheafb.lisp:411
+declare fn sort_the_reduced_history(some_red_pls : Value) -> Value raise
+
+///|
+/// defun order-ldata -- ../share/affine/sheafb.lisp:421
+declare fn order_ldata(u : Value, v : Value) -> Value raise
+
+///|
+/// defun proper-transform -- ../share/affine/sheafb.lisp:506
+declare fn proper_transform(ld : Value, ith : Value, firstk : Value, ambient_dim : Value) -> Value raise
+
+///|
+/// defun blowup-sheaf -- ../share/affine/sheafb.lisp:578
+declare fn blowup_sheaf(pls : Value, firstk : Value, opens_not_to_blowup? : Value = Nil, opens_to_blowup? : Value = Nil, simplify_homogeneous? : Value = Nil, add_exceptional_divisor_ldata? : Value = Nil, keep_history? : Value = t) -> Value raise
+
+///|
+/// defun linear-poly-solve -- ../share/affine/sheafb.lisp:627
+declare fn linear_poly_solve(poly : Value, var_ : Value) -> Value raise
+
+///|
+/// defun unused-variables -- ../share/affine/sheafb.lisp:630
+declare fn unused_variables(n : Value, strin? : Value = Nil) -> Value raise
+
+///|
+/// defun apply-rmap -- ../share/affine/sheafb.lisp:694
+declare fn apply_rmap(rmap : Value, fns : Value, coords_for_fn? : Value, subs? : Value = Nil) -> Value raise
+
+///|
+/// defun ldatap -- ../share/affine/sheafb.lisp:724
+declare fn ldatap(obj : Value) -> Value raise
+
+///|
+/// defun make-normal-zopen -- ../share/affine/sheafb.lisp:845
+declare fn make_normal_zopen(eqns : Value, dim : Value, gg : Value) -> Value raise
+
+///|
+/// defun check-zopen-inv -- ../share/affine/sheafb.lisp:941
+declare fn check_zopen_inv(zopen : Value) -> Value raise
+
+///|
+/// defun solve-simple-system -- ../share/affine/sheafb.lisp:949
+declare fn solve_simple_system(eqns : Value, variables : Value, invertible? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun normalize-zopen -- ../share/affine/sheafb.lisp:967
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn normalize_zopen(zopen : Value, eqns : Value, inequality? : Value = Nil, data? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun normalize-zopen-in-pls -- ../share/affine/sheafb.lisp:979
+declare fn normalize_zopen_in_pls(pls : Value, zopen_number : Value, eqns : Value, copy_? : Value = Nil) -> Value raise
+
+///|
+/// defun copy-list-structure -- ../share/affine/sheafb.lisp:993
+declare fn copy_list_structure(expr : Value) -> Value raise
+
+///|
+/// defun best-open-cover -- ../share/affine/sheafb.lisp:1034
+declare fn best_open_cover(list_fns : Value, open_g : Value) -> Value raise
+
+///|
+/// defun eliminate-multiples -- ../share/affine/sheafb.lisp:1063
+declare fn eliminate_multiples(list_fns : Value, square_free? : Value = t) -> Value raise
+
+///|
+/// defun best-open-cover1 -- ../share/affine/sheafb.lisp:1071
+declare fn best_open_cover1(list_fns : Value, open_g : Value) -> Value raise
+
+///|
+/// defun all-perms -- ../share/affine/sheafb.lisp:1109
+declare fn all_perms(list_lists : Value) -> Value raise
+
+///|
+/// defun open-refinement -- ../share/affine/sheafb.lisp:1117
+declare fn open_refinement(zopen : Value, gmprep_poly : Value, m : Value) -> Value raise
+
+///|
+/// defun ldata-refinement -- ../share/affine/sheafb.lisp:1158
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn ldata_refinement(ldata : Value, gmprep_poly : Value, m : Value, inequality? : Value = Fix(1L)) -> (Value, Value) raise
+
+///|
+/// defun simplify-svar-ldata -- ../share/affine/sheafb.lisp:1212
+declare fn simplify_svar_ldata(pls : Value, keep_opens_with_empty_ldata? : Value = Nil, check_containment? : Value = t, set_ldata_inequalities_to_one? : Value = t, refine_opens? : Value = t, keep_history? : Value = t, opens_not_to_simplify? : Value = Nil) -> Value raise
+
+///|
+/// defun set-inequalities-to-one -- ../share/affine/sheafb.lisp:1319
+declare fn set_inequalities_to_one(form : Value) -> Value raise
+
+///|
+/// defun check-component-containment -- ../share/affine/sheafb.lisp:1332
+declare fn check_component_containment(orig_ldata_list : Value, list_ldat : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun check-components-contain-original -- ../share/affine/sheafb.lisp:1357
+declare fn check_components_contain_original(ldata : Value, list_ldat : Value) -> Value raise
+
+///|
+/// defun variable-doesnt-occur -- ../share/affine/sheafb.lisp:1376
+declare fn variable_doesnt_occur(var_ : Value, lists_fns : Value) -> Value raise
+
+///|
+/// defun replace-rmaps-by-new-ones -- ../share/affine/sheafb.lisp:1424
+declare fn replace_rmaps_by_new_ones(form : Value) -> Value raise
+
+///|
+/// defun rerat -- ../share/affine/sheafb.lisp:1433
+declare fn rerat(form : Value) -> Value raise
+
+///|
+/// defun affine-svar -- ../share/affine/sheafb.lisp:1464
+declare fn affine_svar(dim? : Value = Nil, eqns? : Value = Nil, inequality? : Value = Fix(1L), ld_inequality? : Value = Fix(1L), list_ldata? : Value = Nil) -> Value raise
+
+///|
+/// defun affine-ldata -- ../share/affine/sheafb.lisp:1472
+declare fn affine_ldata(n : Value, eqns : Value, inequality : Value) -> Value raise
+
+///|
+/// defun change-strings-to-symbols -- ../share/affine/sheafb.lisp:1494
+declare fn change_strings_to_symbols(tree : Value) -> Value raise
+
+///|
+/// defun des-file -- ../share/affine/sheafb.lisp:1503
+declare fn des_file(expr : Value, file_name : Value) -> Value raise
+
+///|
+/// defun sh-comp -- ../share/affine/sheafb.lisp:1520
+declare fn sh_comp(com : Value) -> Value raise
+
+///|
+/// defun find-ring-map -- ../share/affine/sheafb.lisp:1535
+declare fn find_ring_map(from_open : Value, to_open : Value) -> Value raise
+
+///|
+/// defun translate-component -- ../share/affine/sheafb.lisp:1540
+declare fn translate_component(from_open : Value, to_open : Value, ldata : Value, pls? : Value = Nil) -> Value raise
+
+///|
+/// defun sftimes -- ../share/affine/sheafb.lisp:1573
+declare fn sftimes(f : Value, g : Value) -> Value raise
+
+///|
+/// defun apply-rmap-to-square-free-factors -- ../share/affine/sheafb.lisp:1578
+declare fn apply_rmap_to_square_free_factors(mapl : Value, pol : Value) -> Value raise
+
+///|
+/// defun translate-component-and-reduce -- ../share/affine/sheafb.lisp:1592
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn translate_component_and_reduce(from_open : Value, to_open : Value, ldata : Value, use_inverse_inequal? : Value = t) -> (Value, Value) raise
+
+///|
+/// defun ldata-codim -- ../share/affine/sheafb.lisp:1640
+declare fn ldata_codim(ldata : Value) -> Value raise
+
+///|
+/// defun translate-reduced-component-and-reduce -- ../share/affine/sheafb.lisp:1643
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn translate_reduced_component_and_reduce(from_open : Value, to_open : Value, ldata : Value, homogeneous_ldata_on_to_open? : Value = Nil) -> (Value, Value) raise
+
+///|
+/// defun ldata-subset -- ../share/affine/sheafb.lisp:1740
+declare fn ldata_subset(ld : Value, ldd : Value) -> Value raise
+
+///|
+/// defun pls-ldata -- ../share/affine/sheafb.lisp:1754
+declare fn pls_ldata(pls : Value, open_ : Value, ldata_number? : Value = Nil) -> Value raise
+
+///|
+/// defun union-equal -- ../share/affine/sheafb.lisp:1826
+declare fn union_equal(lists : Value) -> Value raise
+
+///|
+/// defun intersection-equal1 -- ../share/affine/sheafb.lisp:1832
+declare fn intersection_equal1(l : Value) -> Value raise
+
+///|
+/// defun intersectp -- ../share/affine/sheafb.lisp:1839
+declare fn intersectp(a : Value, b : Value, test_? : Value = Nil) -> Value raise
+
+///|
+/// defun build-equiv -- ../share/affine/sheafb.lisp:1855
+declare fn build_equiv(lis : Value, test_? : Value) -> Value raise
+
+///|
+/// defun check-equivalence-relation -- ../share/affine/sheafb.lisp:1866
+declare fn check_equivalence_relation(lis_equiv_classes : Value) -> Value raise
+
+///|
+/// defun add-zopen-history -- ../share/affine/sheafb.lisp:1874
+declare fn add_zopen_history(zopen : Value, n : Value) -> Value raise
+
+///|
+/// defun final-check-contained-in -- ../share/affine/sheafb.lisp:1933
+declare fn final_check_contained_in(lis_ld : Value, orig_image : Value, hh : Value, current_open : Value, current_ld_number : Value, nth_open : Value) -> Value raise
+
+///|
+/// defun match-components -- ../share/affine/sheafb.lisp:2031
+declare fn match_components(pls : Value, nth_open : Value, check_equal? : Value = Nil, break_on_bad? : Value = Nil, ignore_empty_opens? : Value = Nil, ldata_number? : Value = Nil) -> Value raise
+
+///|
+/// defun list-opens1 -- ../share/affine/sheafb.lisp:2111
+declare fn list_opens1(components : Value) -> Value raise
+
+///|
+/// defun short-list-open-numbers -- ../share/affine/sheafb.lisp:2117
+declare fn short_list_open_numbers(components_to_cover : Value, opens_used? : Value = Nil) -> Value raise
+
+///|
+/// defun fast-match-components -- ../share/affine/sheafb.lisp:2136
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn fast_match_components(pls : Value) -> (Value, Value) raise
+
+///|
+/// defun get-component -- ../share/affine/sheafb.lisp:2199
+declare fn get_component(components : Value, cons_op_ld : Value) -> Value raise
+
+///|
+/// defun list-opens-with-component -- ../share/affine/sheafb.lisp:2203
+declare fn list_opens_with_component(pls : Value, open_num : Value, compon_num : Value) -> Value raise
+
+///|
+/// defun match-all-components -- ../share/affine/sheafb.lisp:2212
+declare fn match_all_components(pls : Value, ignore_empty_opens? : Value = t) -> Value raise
+
+///|
+/// defun verify-simplification -- ../share/affine/sheafb.lisp:2227
+declare fn verify_simplification(pl1 : Value, pl2simp : Value) -> Value raise
+
+///|
+/// defun good-order-variables -- ../share/affine/sheafb.lisp:2355
+declare fn good_order_variables(ldata : Value) -> Value raise
+
+///|
+/// defun charactaristic-setp -- ../share/affine/sheafb.lisp:2386
+/// Returns 4 values (CL multiple values) as a tuple.
+declare fn charactaristic_setp(eqns : Value) -> (Value, Value, Value, Value) raise
+
+///|
+/// defun order-equations -- ../share/affine/sheafb.lisp:2412
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn order_equations(eqns : Value) -> (Value, Value) raise
+
+///|
+/// defun highest-variables -- ../share/affine/sheafb.lisp:2423
+declare fn highest_variables(variables : Value, occurs : Value) -> Value raise
+
+///|
+/// defun all-linear-variables -- ../share/affine/sheafb.lisp:2428
+declare fn all_linear_variables(f : Value, g? : Value = Nil) -> Value raise
+
+///|
+/// defun poly-relations-from-simplifications -- ../share/affine/sheafb.lisp:2433
+declare fn poly_relations_from_simplifications(simps? : Value) -> Value raise
+
+///|
+/// defun simplify-ldata -- ../share/affine/sheafb.lisp:2442
+declare fn simplify_ldata(ldata : Value, open_g? : Value = Fix(1L), refine_opens? : Value = Nil, error_check_containments? : Value = Nil) -> Value raise
+
+///|
+/// defun try-factor-irreducible-ldata -- ../share/affine/sheafb.lisp:2464
+declare fn try_factor_irreducible_ldata(ldata : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun matrix-to-sparse-matrix -- ../share/affine/sheafb.lisp:2521
+declare fn matrix_to_sparse_matrix(mat : Value, re_use_sparse_matrix? : Value) -> Value raise
+
+///|
+/// defun matrix-rank -- ../share/affine/sheafb.lisp:2525
+declare fn matrix_rank(mat : Value) -> Value raise
+
+///|
+/// defun show-matrix -- ../share/affine/sheafb.lisp:2531
+declare fn show_matrix(mat : Value) -> Value raise
+
+///|
+/// defun jacobian-matrix -- ../share/affine/sheafb.lisp:2551
+declare fn jacobian_matrix(list_eqns : Value, variables? : Value = Nil) -> Value raise
+
+///|
+/// defun find-repeats -- ../share/affine/sheafb.lisp:2733
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn find_repeats(highest_variables : Value, eqns : Value) -> (Value, Value) raise
+
+///|
+/// defun divide-dichotomy -- ../share/affine/sheafb.lisp:2797
+declare fn divide_dichotomy(ldata : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun triangularp -- ../share/affine/sheafb.lisp:3106
+declare fn triangularp(ldata : Value) -> Value raise
+
+///|
+/// defun sort-expensive-key -- ../share/affine/sheafb.lisp:3126
+declare fn sort_expensive_key(a_list : Value, pred : Value, key : Value) -> Value raise
+
+///|
+/// defun linear-dichotomy -- ../share/affine/sheafb.lisp:3196
+declare fn linear_dichotomy(ldata : Value, open_g? : Value = Fix(1L), in_linear_dich? : Value = Nil) -> Value raise
+
+///|
+/// defun simplify-affine-ldata -- ../share/affine/sheafb.lisp:3238
+declare fn simplify_affine_ldata(ldata : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun simplify-affine-ldata-write -- ../share/affine/sheafb.lisp:3245
+declare fn simplify_affine_ldata_write(ldata : Value, open_g? : Value = Fix(1L), pathname? : Value = Str("haskell:>wfs>answer.lisp")) -> Value raise
+
+///|
+/// defun $complexity -- ../share/affine/dim4-help.lisp:4
+declare fn d_complexity(v : Value, sum? : Value = Nil) -> Value raise
+
+///|
+/// defun complexity-difference1 -- ../share/affine/dim4-help.lisp:13
+declare fn complexity_difference1(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $complexity_difference -- ../share/affine/dim4-help.lisp:23
+declare fn d_complexity_difference(a_list : Value, v : Value) -> Value raise
+
+///|
+/// defun $pdegree -- ../share/affine/dim4-help.lisp:29
+declare fn d_pdegree(v : Value, va : Value) -> Value raise
+
+///|
+/// defun $delete_matrix_row -- ../share/affine/dim4-help.lisp:37
+declare fn d_delete_matrix_row(mat : Value, i : Value) -> Value raise
+
+///|
+/// defun $complexity_less_p -- ../share/affine/dim4-help.lisp:42
+declare fn d_complexity_less_p(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $my_rat -- ../share/affine/dim4-help.lisp:44
+declare fn d_my_rat(x : Value) -> Value raise
+
+///|
+/// defun $mat_entry -- ../share/affine/dim4-help.lisp:49
+declare fn d_mat_entry(mat : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun $eliminate_pivot -- ../share/affine/dim4-help.lisp:54
+declare fn d_eliminate_pivot(mat : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun $eliminate_pivot_list_hack -- ../share/affine/dim4-help.lisp:92
+declare fn d_eliminate_pivot_list_hack(matrix : Value, pivot_list : Value) -> Value raise
+
+///|
+/// defun $get_relation_matrix -- ../share/affine/dim4-help.lisp:100
+declare fn d_get_relation_matrix(relations : Value, mons : Value) -> Value raise
+
+///|
+/// defun $switch_rows -- ../share/affine/dim4-help.lisp:110
+declare fn d_switch_rows(mat : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun number_zeros -- ../share/affine/dim4-help.lisp:116
+declare fn number_zeros(a : Value) -> Value raise
+
+///|
+/// defun $row_less -- ../share/affine/dim4-help.lisp:119
+declare fn d_row_less(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $row_sort -- ../share/affine/dim4-help.lisp:121
+declare fn d_row_sort(mat : Value, pred : Value) -> Value raise
+
+///|
+/// defun $reorder_matrix -- ../share/affine/dim4-help.lisp:124
+declare fn d_reorder_matrix(mat : Value) -> Value raise
+
+///|
+/// defun $best_row -- ../share/affine/dim4-help.lisp:131
+declare fn d_best_row(mat : Value) -> Value raise
+
+///|
+/// defun $best_piv -- ../share/affine/dim4-help.lisp:139
+declare fn d_best_piv(row : Value) -> Value raise
+
+///|
+/// defun $invertible_pivots -- ../share/affine/dim4-help.lisp:150
+declare fn d_invertible_pivots(mat : Value, g : Value) -> Value raise
+
+///|
+/// defun $reduce_by_complexity -- ../share/affine/dim4-help.lisp:174
+declare fn d_reduce_by_complexity(mat? : Value = Nil) -> Value raise
+
+///|
+/// defun $sort_complexity -- ../share/affine/dim4-help.lisp:182
+declare fn d_sort_complexity(list_ : Value) -> Value raise
+
+///|
+/// defun $p_projective -- ../share/affine/dim4-help.lisp:190
+declare fn d_p_projective(lis : Value, agcd? : Value = Nil) -> Value raise
+
+///|
+/// defun $cancel_pivot -- ../share/affine/dim4-help.lisp:219
+declare fn d_cancel_pivot(lis : Value, piv : Value) -> Value raise
+
+///|
+/// defun $linearize_nc -- ../share/affine/dim4-help.lisp:231
+declare fn d_linearize_nc(x : Value) -> Value raise
+
+///|
+/// defun $linearize_nc_to_nc -- ../share/affine/dim4-help.lisp:242
+declare fn d_linearize_nc_to_nc(x : Value) -> Value raise
+
+///|
+/// defun times_4_n -- ../share/affine/dim4-help.lisp:253
+declare fn times_4_n(n : Value) -> Value raise
+
+///|
+/// defun hilbert_4 -- ../share/affine/dim4-help.lisp:258
+declare fn hilbert_4(n : Value) -> Value raise
+
+///|
+/// defun $minors2_2 -- ../share/affine/dim4-help.lisp:265
+declare fn d_minors2_2(mat : Value, cols : Value) -> Value raise
+
+///|
+/// defun $minors -- ../share/affine/dim4-help.lisp:273
+declare fn d_minors(n : Value, mat : Value, cols : Value) -> Value raise
+
+///|
+/// defun sublist -- ../share/affine/dim4-help.lisp:286
+declare fn sublist(l : Value, pred : Value) -> Value raise
+
+///|
+/// defun lis -- ../share/affine/dim4-help.lisp:289
+declare fn lis(l : Value) -> Value raise
+
+///|
+/// defun monoms -- ../share/affine/dim4-help.lisp:298
+declare fn monoms(polys : Value, degs : Value, cross? : Value) -> Value raise
+
+///|
+/// defun $extract_c_equations -- ../share/affine/dim4-help.lisp:306
+declare fn d_extract_c_equations(poly : Value, vars_to_exclude : Value) -> Value raise
+
+///|
+/// defun affine-polynomialp -- ../share/affine/polybas.lisp:13
+declare fn affine_polynomialp(x : Value) -> Value raise
+
+///|
+/// defun header-poly -- ../share/affine/polybas.lisp:19
+declare fn header_poly(expr : Value) -> Value raise
+
+///|
+/// defun $zerop -- ../share/affine/polybas.lisp:29
+declare fn d_zerop(n : Value) -> Value raise
+
+///|
+/// defun rational-functionp -- ../share/affine/polybas.lisp:40
+declare fn rational_functionp(x : Value) -> Value raise
+
+///|
+/// defun psublis -- ../share/affine/polybas.lisp:46
+declare fn psublis(a_list : Value, denom : Value, poly : Value, degree? : Value = Nil, vars_to_sub? : Value = Nil) -> Value raise
+
+///|
+/// defun psublis1 -- ../share/affine/polybas.lisp:64
+declare fn psublis1(a_list : Value, denom : Value, poly : Value, degree : Value, varl : Value) -> Value raise
+
+///|
+/// defun zero-sublis -- ../share/affine/polybas.lisp:91
+declare fn zero_sublis(poly : Value, list_vars : Value) -> Value raise
+
+///|
+/// defun pcomplexity -- ../share/affine/polybas.lisp:94
+declare fn pcomplexity(poly : Value) -> Value raise
+
+///|
+/// defun $numerator -- ../share/affine/polybas.lisp:99
+declare fn d_numerator(expr : Value) -> Value raise
+
+///|
+/// defun n* -- ../share/affine/polybas.lisp:164
+declare fn n_star(l : Value) -> Value raise
+
+///|
+/// defun n+ -- ../share/affine/polybas.lisp:171
+declare fn n_plus(x : Value, y : Value) -> Value raise
+
+///|
+/// defun n1* -- ../share/affine/polybas.lisp:174
+declare fn n1_star(x : Value, y : Value) -> Value raise
+
+///|
+/// defun n- -- ../share/affine/polybas.lisp:177
+declare fn n__(x : Value, y : Value) -> Value raise
+
+///|
+/// defun nred -- ../share/affine/polybas.lisp:180
+declare fn nred(x : Value, y : Value) -> Value raise
+
+///|
+/// defun new-disrep -- ../share/affine/polybas.lisp:187
+declare fn new_disrep(expr : Value) -> Value raise
+
+///|
+/// defun poly-degree -- ../share/affine/polybas.lisp:204
+declare fn poly_degree(poly : Value, varl : Value) -> Value raise
+
+///|
+/// defun shl -- ../share/affine/polybas.lisp:213
+declare fn shl(l : Value) -> Value raise
+
+///|
+/// defun sh -- ../share/affine/polybas.lisp:224
+declare fn sh(expr : Value, stream? : Value) -> Value raise
+
+///|
+/// defun splice-in -- ../share/affine/polybas.lisp:246
+declare fn splice_in(after_nth : Value, item : Value, a_list : Value) -> Value raise
+
+///|
+/// defun nsplice-in -- ../share/affine/polybas.lisp:252
+declare fn nsplice_in(after_nth : Value, item : Value, a_list : Value) -> Value raise
+
+///|
+/// defun nc-equal -- ../share/affine/polybas.lisp:262
+declare fn nc_equal(p1 : Value, p2 : Value) -> Value raise
+
+///|
+/// defun find-in-ordered-list -- ../share/affine/polybas.lisp:268
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn find_in_ordered_list(x : Value, a_list : Value, order_function? : Value, order_equal? : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun disrep-list -- ../share/affine/polybas.lisp:300
+declare fn disrep_list(expr : Value) -> Value raise
+
+///|
+/// defun check-repeats -- ../share/affine/polybas.lisp:318
+declare fn check_repeats(varl : Value) -> Value raise
+
+///|
+/// defun check-order -- ../share/affine/polybas.lisp:323
+declare fn check_order(varl : Value) -> Value raise
+
+///|
+/// defun generate-new-variable-gensym -- ../share/affine/polybas.lisp:331
+declare fn generate_new_variable_gensym(variable : Value) -> Value raise
+
+///|
+/// defun zl-union -- ../share/affine/polybas.lisp:352
+declare fn zl_union(l : Value) -> Value raise
+
+///|
+/// defun grobner-subset -- ../share/affine/sheafc.lisp:27
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn grobner_subset(id1 : Value, id2 : Value, may_invert? : Value = Fix(1L)) -> (Value, Value) raise
+
+///|
+/// defun fast-grobner-basis -- ../share/affine/sheafc.lisp:47
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn fast_grobner_basis(list_eqns : Value, may_invert? : Value = Fix(1L), string_for_inverse_name? : Value = Str("")) -> (Value, Value) raise
+
+///|
+/// defun contract-ideal-localization -- ../share/affine/sheafc.lisp:78
+declare fn contract_ideal_localization(list_eqns : Value, may_invert : Value) -> Value raise
+
+///|
+/// defun unit-idealp -- ../share/affine/sheafc.lisp:91
+declare fn unit_idealp(list_eqns : Value, may_invert? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun ptruncate -- ../share/affine/sheafc.lisp:106
+declare fn ptruncate(poly : Value, var_ : Value, deg : Value) -> Value raise
+
+///|
+/// defun ptruncate1 -- ../share/affine/sheafc.lisp:110
+declare fn ptruncate1(poly : Value, var_ : Value, degree : Value) -> Value raise
+
+///|
+/// defun sort-key -- ../share/affine/sheafc.lisp:129
+declare fn sort_key(data : Value, pred : Value, key : Value, rest_key_arg : Value) -> Value raise
+
+///|
+/// defun leading-coefficient -- ../share/affine/sheafc.lisp:135
+declare fn leading_coefficient(poly : Value, var_ : Value) -> Value raise
+
+///|
+/// defun open-refinement-for-list -- ../share/affine/sheafc.lisp:163
+declare fn open_refinement_for_list(zopen : Value, list_eqns : Value) -> Value raise
+
+///|
+/// defun eliminate-larger -- ../share/affine/sheafc.lisp:229
+declare fn eliminate_larger(a_list : Value, key? : Value = q_identity, test_? : Value = Nil, test_not? : Value = Nil, verify? : Value = Nil, destructive? : Value = Nil) -> Value raise
+
+///|
+/// defun eliminate-smaller -- ../share/affine/sheafc.lisp:264
+declare fn eliminate_smaller(a_list : Value, key? : Value = q_identity, test_? : Value = Nil, test_not? : Value = Nil, verify? : Value = Nil, destructive? : Value = Nil) -> Value raise
+
+///|
+/// defun add-pls-zopen-history -- ../share/affine/sheafc.lisp:297
+declare fn add_pls_zopen_history(pls : Value) -> Value raise
+
+///|
+/// defun find-position-in-list -- ../share/affine/sheafc.lisp:303
+declare fn find_position_in_list(item : Value, list_ : Value, test_? : Value) -> Value raise
+
+///|
+/// defun normalize-pls -- ../share/affine/sheafc.lisp:309
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn normalize_pls(pls : Value, open_ : Value, ld_number : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun a-factor -- ../share/affine/sheafc.lisp:362
+declare fn a_factor(fact_list1 : Value, fact_list2 : Value) -> Value raise
+
+///|
+/// defun multiply-out-factorization -- ../share/affine/sheafc.lisp:369
+declare fn multiply_out_factorization(facts : Value) -> Value raise
+
+///|
+/// defun monomialp -- ../share/affine/sheafc.lisp:375
+declare fn monomialp(pol : Value) -> Value raise
+
+///|
+/// defun one-variablep -- ../share/affine/sheafc.lisp:378
+declare fn one_variablep(f : Value) -> Value raise
+
+///|
+/// defun ldata-simplify-homogeneous -- ../share/affine/sheafc.lisp:382
+declare fn ldata_simplify_homogeneous(ldata : Value, may_invert? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun simplify-svar-homogeneous -- ../share/affine/sheafc.lisp:462
+declare fn simplify_svar_homogeneous(pls : Value) -> Value raise
+
+///|
+/// defun intersection-inequality-in-op1 -- ../share/affine/sheafc.lisp:475
+declare fn intersection_inequality_in_op1(op1 : Value, op2 : Value) -> Value raise
+
+///|
+/// defun refine-pls -- ../share/affine/sheafc.lisp:484
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn refine_pls(pls : Value, list_eqns : Value) -> (Value, Value) raise
+
+///|
+/// defun all-linearp -- ../share/affine/sheafc.lisp:518
+declare fn all_linearp(eqns : Value, inequal? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun zopen-special-subset -- ../share/affine/sheafc.lisp:556
+declare fn zopen_special_subset(op1 : Value, op2 : Value) -> Value raise
+
+///|
+/// defun zopen-equal -- ../share/affine/sheafc.lisp:559
+declare fn zopen_equal(op1 : Value, op2 : Value) -> Value raise
+
+///|
+/// defun try-harder-and-intersect -- ../share/affine/sheafc.lisp:564
+declare fn try_harder_and_intersect(op : Value, trans_ld : Value, lis_dat : Value, hh : Value) -> Value raise
+
+///|
+/// defun prepare-for-blowup -- ../share/affine/sheafc.lisp:577
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn prepare_for_blowup(pls : Value, open_for_equations : Value, eqns : Value) -> (Value, Value) raise
+
+///|
+/// defun check-normalization -- ../share/affine/sheafc.lisp:645
+declare fn check_normalization(original_open : Value, norm_op : Value, original_eqns : Value) -> Value raise
+
+///|
+/// defun hhh -- ../share/affine/sheafc.lisp:657
+declare fn hhh(pls : Value, reduced_pls : Value, op_num : Value, dat_num : Value) -> Value raise
+
+///|
+/// defun blowup-pls-and-reduced-pls -- ../share/affine/sheafc.lisp:660
+declare fn blowup_pls_and_reduced_pls(pls : Value, reduced_pls : Value, opens_for_eqns : Value, eqns : Value) -> Value raise
+
+///|
+/// defun blowup-pls -- ../share/affine/sheafc.lisp:667
+declare fn blowup_pls(pls : Value, open_for_eqns : Value, eqns : Value, simplify_homogeneous? : Value = Nil, throw_out_components_in_exceptional_divisor? : Value = Nil) -> Value raise
+
+///|
+/// defun blowup-keep-exceptional -- ../share/affine/sheafc.lisp:700
+declare fn blowup_keep_exceptional(pls : Value, red_pls_list? : Value = Nil, open_eqns_list? : Value = Nil) -> Value raise
+
+///|
+/// defun blowup-pls-by-component-of-reduced -- ../share/affine/sheafc.lisp:723
+declare fn blowup_pls_by_component_of_reduced(pls : Value, red_pls : Value, red_open_number : Value, ld_number : Value) -> Value raise
+
+///|
+/// defun linear-ldatap -- ../share/affine/sheafc.lisp:737
+declare fn linear_ldatap(ldata : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun reduce-linear-ldata -- ../share/affine/sheafc.lisp:758
+declare fn reduce_linear_ldata(ldata : Value, variables : Value, open_g? : Value = Nil) -> Value raise
+
+///|
+/// defun check-containment -- ../share/affine/sheafc.lisp:815
+declare fn check_containment(ld1 : Value, ld2 : Value, dich_f : Value, open_g? : Value = Fix(1L), simplify? : Value = Nil) -> Value raise
+
+///|
+/// defun check-containment1 -- ../share/affine/sheafc.lisp:832
+declare fn check_containment1(ld1 : Value, ld2 : Value, dich_f : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun sub-scheme -- ../share/affine/sheafc.lisp:848
+declare fn sub_scheme(pls : Value, op_number : Value, ld_number : Value) -> Value raise
+
+///|
+/// defun open-sub-scheme -- ../share/affine/sheafc.lisp:855
+declare fn open_sub_scheme(pls : Value, op_numbers : Value) -> Value raise
+
+///|
+/// defun intersect-ldata -- ../share/affine/sheafc.lisp:864
+declare fn intersect_ldata(ld1 : Value, ld2 : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun save-parts -- ../share/affine/sheafc.lisp:880
+declare fn save_parts(obj : Value, file_name : Value) -> Value raise
+
+///|
+/// defun save-blew-up -- ../share/affine/sheafc.lisp:891
+declare fn save_blew_up() -> Value raise
+
+///|
+/// defun delete-nth -- ../share/affine/sheafc.lisp:943
+declare fn delete_nth(n : Value, a_list : Value) -> Value raise
+
+///|
+/// defun linear-triangularp -- ../share/affine/sheafc.lisp:956
+declare fn linear_triangularp(fns : Value, variables_solved_for? : Value = Nil, variables_in_prev_eqns? : Value = Nil, varlist_of_fns? : Value = Nil) -> Value raise
+
+///|
+/// defun linear-solvedp -- ../share/affine/sheafc.lisp:983
+declare fn linear_solvedp(fns : Value, variables_solved_for? : Value = Nil, variables_in_prev_eqns? : Value = Nil, order_functions? : Value = Nil, varlist_of_fns? : Value = Nil) -> Value raise
+
+///|
+/// defun plain-simplify-svar-ldata -- ../share/affine/sheafc.lisp:1090
+declare fn plain_simplify_svar_ldata(pls : Value) -> Value raise
+
+///|
+/// defun svar-simp -- ../share/affine/sheafc.lisp:1122
+declare fn svar_simp(ld : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun jacobian -- ../share/affine/sheafc.lisp:1125
+declare fn jacobian(eqns : Value, variables? : Value, codim? : Value) -> Value raise
+
+///|
+/// defun rank-generic-reduce-jacobian -- ../share/affine/sheafc.lisp:1151
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn rank_generic_reduce_jacobian(eqns : Value, variables? : Value) -> (Value, Value) raise
+
+///|
+/// defun reduce-jacobian -- ../share/affine/sheafc.lisp:1157
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn reduce_jacobian(eqns : Value, variables? : Value) -> (Value, Value) raise
+
+///|
+/// defun non-singular-complete-intersection-p -- ../share/affine/sheafc.lisp:1170
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn non_singular_complete_intersection_p(eqns : Value, open_g? : Value = Fix(1L), use_simplification? : Value = t) -> (Value, Value) raise
+
+///|
+/// defun simplify-dichotomy -- ../share/affine/sheafc.lisp:1208
+declare fn simplify_dichotomy(ldata : Value, fn_ : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun non-trivial-open-sub-scheme -- ../share/affine/sheafc.lisp:1217
+declare fn non_trivial_open_sub_scheme(pls : Value) -> Value raise
+
+///|
+/// defun show-divisors -- ../share/affine/sheafc.lisp:1225
+declare fn show_divisors(pls : Value) -> Value raise
+
+///|
+/// defun jacobian-dichotomy -- ../share/affine/sheafc.lisp:1240
+declare fn jacobian_dichotomy(ldata : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun $list_components -- ../share/affine/sheafc.lisp:1262
+declare fn d_list_components(lis_ldat : Value) -> Value raise
+
+///|
+/// defun $simple_solve -- ../share/affine/sheafc.lisp:1270
+declare fn d_simple_solve(eqns : Value, open_g? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun $circle_times -- ../share/affine/polyb.lisp:10
+declare fn d_circle_times(l : Value) -> Value raise
+
+///|
+/// defun sort-grouped-list -- ../share/affine/polyb.lisp:23
+declare fn sort_grouped_list(a_list : Value, group_size : Value, pred : Value) -> Value raise
+
+///|
+/// defun $sort_dot_simplifications -- ../share/affine/polyb.lisp:45
+declare fn d_sort_dot_simplifications(pred? : Value) -> Value raise
+
+///|
+/// defmfun ncmul2* -- ../share/affine/polyb.lisp:126
+declare fn ncmul2_star(x : Value, y : Value) -> Value raise
+
+///|
+/// defun contains-a-zero-replacement -- ../share/affine/polyb.lisp:129
+declare fn contains_a_zero_replacement(form : Value) -> Value raise
+
+///|
+/// defun contains-a-replacement -- ../share/affine/polyb.lisp:141
+declare fn contains_a_replacement(form : Value) -> Value raise
+
+///|
+/// defun $must_replacep -- ../share/affine/polyb.lisp:161
+declare fn d_must_replacep(expression : Value) -> Value raise
+
+///|
+/// defun must-replacep1-by-zero -- ../share/affine/polyb.lisp:183
+declare fn must_replacep1_by_zero(expression : Value) -> Value raise
+
+///|
+/// defun must-replacep1 -- ../share/affine/polyb.lisp:194
+declare fn must_replacep1(expression : Value) -> Value raise
+
+///|
+/// defun remove-header -- ../share/affine/polyb.lisp:215
+declare fn remove_header(x : Value) -> Value raise
+
+///|
+/// defun new-rat-ncmul1 -- ../share/affine/polyb.lisp:219
+declare fn new_rat_ncmul1(a : Value, b : Value, c : Value) -> Value raise
+
+///|
+/// defun two-times-n -- ../share/affine/polyb.lisp:282
+declare fn two_times_n(n : Value) -> Value raise
+
+///|
+/// defun rank-dimension-three-modulo-cubic -- ../share/affine/polyb.lisp:284
+declare fn rank_dimension_three_modulo_cubic(n : Value) -> Value raise
+
+///|
+/// defun rank-1-1-1-9 -- ../share/affine/polyb.lisp:288
+declare fn rank_1_1_1_9(n : Value) -> Value raise
+
+///|
+/// defun $check_overlaps -- ../share/affine/polyb.lisp:299
+declare fn d_check_overlaps(up_to_degree : Value, add_to_simps? : Value = Nil, maybe_reset? : Value = t, from_degree? : Value = Nil) -> Value raise
+
+///|
+/// defun rank-dimension-three -- ../share/affine/polyb.lisp:422
+declare fn rank_dimension_three(n : Value) -> Value raise
+
+///|
+/// defun ordered-pair-in-list -- ../share/affine/polyb.lisp:435
+declare fn ordered_pair_in_list(a : Value, b : Value, a_list_of_pairs : Value) -> Value raise
+
+///|
+/// defun $set_up_dot_simplifications -- ../share/affine/polyb.lisp:448
+declare fn d_set_up_dot_simplifications(relations : Value, check_thru_deg? : Value = Nil, ordering? : Value) -> Value raise
+
+///|
+/// defun convert-relation-to-dot-simp -- ../share/affine/polyb.lisp:468
+declare fn convert_relation_to_dot_simp(relat : Value, ordering? : Value) -> Value raise
+
+///|
+/// defun vadd* -- ../share/affine/polyb.lisp:633
+declare fn vadd_star(a_list : Value) -> Value raise
+
+///|
+/// defun vmul* -- ../share/affine/polyb.lisp:637
+declare fn vmul_star(a_list : Value) -> Value raise
+
+///|
+/// defun vsub* -- ../share/affine/polyb.lisp:641
+declare fn vsub_star(a : Value, b : Value) -> Value raise
+
+///|
+/// defun vdiv* -- ../share/affine/polyb.lisp:642
+declare fn vdiv_star(a : Value, b : Value) -> Value raise
+
+///|
+/// defun vminus* -- ../share/affine/polyb.lisp:643
+declare fn vminus_star(a : Value) -> Value raise
+
+///|
+/// defun $vrat -- ../share/affine/polyb.lisp:644
+declare fn d_vrat(a_list : Value) -> Value raise
+
+///|
+/// defun $add_to_simps -- ../share/affine/polyb.lisp:678
+declare fn d_add_to_simps(a_list : Value, ordering? : Value) -> Value raise
+
+///|
+/// defun $inverse_modulo -- ../share/affine/polyb.lisp:696
+declare fn d_inverse_modulo(n : Value, modulo_p : Value) -> Value raise
+
+///|
+/// defun $nu -- ../share/affine/polyb.lisp:701
+declare fn d_nu(i : Value, llist : Value) -> Value raise
+
+///|
+/// defun $phi -- ../share/affine/polyb.lisp:709
+declare fn d_phi(l : Value) -> Value raise
+
+///|
+/// defun $sig -- ../share/affine/polyb.lisp:726
+declare fn d_sig(n : Value, p0? : Value) -> Value raise
+
+///|
+/// defun $nu_poly -- ../share/affine/polyb.lisp:729
+declare fn d_nu_poly(i : Value, poly : Value) -> Value raise
+
+///|
+/// defun $scalar_concat -- ../share/affine/polyb.lisp:732
+declare fn d_scalar_concat(l : Value) -> Value raise
+
+///|
+/// defun $rel -- ../share/affine/polyb.lisp:737
+declare fn d_rel(i : Value, j : Value) -> Value raise
+
+///|
+/// defun $clifford_dot_simplifications -- ../share/affine/polyb.lisp:747
+declare fn d_clifford_dot_simplifications(n : Value) -> Value raise
+
+///|
+/// defun $replacements -- ../share/affine/polyb.lisp:756
+declare fn d_replacements() -> Value raise
+
+///|
+/// defun $earlier_mono -- ../share/affine/polyb.lisp:765
+declare fn d_earlier_mono(monom : Value, variables? : Value) -> Value raise
+
+///|
+/// defun $hh -- ../share/affine/polyb.lisp:790
+declare fn d_hh(a : Value) -> Value raise
+
+///|
+/// defun $monomial_dimensions -- ../share/affine/polyb.lisp:794
+declare fn d_monomial_dimensions(n : Value, order_weight? : Value = Nil) -> Value raise
+
+///|
+/// defun $mono_weighted -- ../share/affine/polyb.lisp:826
+declare fn d_mono_weighted(n : Value) -> Value raise
+
+///|
+/// defun $find_relations_among -- ../share/affine/polyb.lisp:838
+declare fn d_find_relations_among(a_list : Value, dotsimp_first? : Value = Nil, term_names? : Value = Nil) -> Value raise
+
+///|
+/// defun $check_skew_relations -- ../share/affine/polyb.lisp:860
+declare fn d_check_skew_relations(variables? : Value) -> Value raise
+
+///|
+/// defun get-alt -- ../share/affine/polyb.lisp:873
+declare fn get_alt(item : Value, a_list : Value) -> Value raise
+
+///|
+/// defun $collect_skew_relations -- ../share/affine/polyb.lisp:879
+declare fn d_collect_skew_relations(variables? : Value) -> Value raise
+
+///|
+/// defun $relations_from_dot_simps -- ../share/affine/polyb.lisp:892
+declare fn d_relations_from_dot_simps(dot_simps? : Value) -> Value raise
+
+///|
+/// defun repl-deg -- ../share/affine/polyb.lisp:900
+declare fn repl_deg() -> Value raise
+
+///|
+/// defun $pb -- ../share/affine/polyb.lisp:903
+declare fn d_pb(n : Value) -> Value raise
+
+///|
+/// defun $find_central_thru_deg -- ../share/affine/polyb.lisp:908
+declare fn d_find_central_thru_deg(begin : Value, to_n : Value) -> Value raise
+
+///|
+/// defun fast-scalarp -- ../share/affine/polyb.lisp:929
+declare fn fast_scalarp(x : Value) -> Value raise
+
+///|
+/// defun my-ratcoeff -- ../share/affine/polyb.lisp:946
+declare fn my_ratcoeff(expr : Value, monom : Value, deg? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun my-ratcoeff1 -- ../share/affine/polyb.lisp:959
+declare fn my_ratcoeff1(expr : Value, monom : Value, deg? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun my-ratcoeff2 -- ../share/affine/polyb.lisp:1005
+declare fn my_ratcoeff2(rat_expr : Value, gen_var : Value, deg? : Value = Fix(1L)) -> Value raise
+
+///|
+/// defun $denominator -- ../share/affine/polyb.lisp:1055
+declare fn d_denominator(expr : Value) -> Value raise
+
+///|
+/// defun variables-same-divide -- ../share/affine/polyb.lisp:1072
+declare fn variables_same_divide(f : Value, g : Value) -> Value raise
+
+///|
+/// defun simplify-rational-quotient -- ../share/affine/polyb.lisp:1076
+declare fn simplify_rational_quotient(expr : Value) -> Value raise
+
+///|
+/// defun two -- ../share/affine/polyb.lisp:1090
+declare fn two(x : Value) -> Value raise
+
+///|
+/// defun $check_skew3_conditions -- ../share/affine/polyb.lisp:1096
+declare fn d_check_skew3_conditions(relations : Value) -> Value raise
+
+///|
+/// defun $list_variables -- ../share/affine/polyb.lisp:1125
+declare fn d_list_variables(expr : Value, key_strings : Value) -> Value raise
+
+///|
+/// defun $socle -- ../share/affine/polyb.lisp:1138
+declare fn d_socle(variables : Value, deg : Value) -> Value raise
+
+///|
+/// defun $fast_normal_elements -- ../share/affine/polyb.lisp:1173
+declare fn d_fast_normal_elements(deg : Value, variables? : Value, up_to_deg? : Value = Nil, auto? : Value = Nil) -> Value raise
+
+///|
+/// defun $fast_central_elements -- ../share/affine/polyb.lisp:1214
+declare fn d_fast_central_elements(variables : Value, deg : Value) -> Value raise
+
+///|
+/// defun $central_elements_in_degrees -- ../share/affine/polyb.lisp:1248
+declare fn d_central_elements_in_degrees(degrees : Value) -> Value raise
+
+///|
+/// defun $pbi -- ../share/affine/polyb.lisp:1257
+declare fn d_pbi(n : Value) -> Value raise
+
+///|
+/// defun new-concat -- ../share/affine/polyb.lisp:1266
+declare fn new_concat(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $list_sublis -- ../share/affine/polyb.lisp:1273
+declare fn d_list_sublis(a_list : Value, b_list : Value, expr : Value) -> Value raise
+
+///|
+/// defun string-grind -- ../share/affine/polyb.lisp:1282
+declare fn string_grind(x : Value, d_display2d? : Value = Nil, stream? : Value = Nil) -> Value raise
+
+///|
+/// defun macsyma-typep -- ../share/affine/polyb.lisp:1291
+declare fn macsyma_typep(x : Value) -> Value raise
+
+///|
+/// defun fsh -- ../share/affine/polyb.lisp:1301
+declare fn fsh(x : Value, stream? : Value) -> Value raise
+
+///|
+/// defun fpscale -- ../share/numeric/brmbrg.lisp:8
+declare fn fpscale(x : Value, m : Value) -> Value raise
+
+///|
+/// defun bfmeval3 -- ../share/numeric/brmbrg.lisp:13
+declare fn bfmeval3(x1 : Value) -> Value raise
+
+///|
+/// defun bqeval3 -- ../share/numeric/brmbrg.lisp:17
+declare fn bqeval3(f : Value, x : Value) -> Value raise
+
+///|
+/// defun $bromberg -- ../share/numeric/brmbrg.lisp:25
+declare fn d_bromberg(l1 : Value) -> Value raise
+
+///|
+/// defun multiplies-in-nth-power -- ../share/numeric/expense.lisp:69
+declare fn multiplies_in_nth_power(nth_ : Value) -> Value raise
+
+///|
+/// defun $expense -- ../share/numeric/expense.lisp:96
+declare fn d_expense(x : Value) -> Value raise
+
+///|
+/// defun $nelder_mead -- ../share/nelder_mead/nm-maxima.lisp:3
+declare fn d_nelder_mead(expr : Value, vars : Value, init_ : Value, options : Value) -> Value raise
+
+///|
+/// defun neldermead::ip -- ../share/nelder_mead/la.lisp:15
+declare fn neldermead_ip(v : Value, w : Value, start? : Value = Fix(0L)) -> Value raise
+
+///|
+/// defun neldermead::norm -- ../share/nelder_mead/la.lisp:23
+declare fn neldermead_norm(v : Value, start? : Value = Fix(0L)) -> Value raise
+
+///|
+/// defun neldermead::make-matrix -- ../share/nelder_mead/la.lisp:26
+declare fn neldermead_make_matrix(m : Value, n : Value) -> Value raise
+
+///|
+/// defun neldermead::make-vector -- ../share/nelder_mead/la.lisp:31
+declare fn neldermead_make_vector(n : Value, initial_element? : Value = Flo(0.0)) -> Value raise
+
+///|
+/// defun neldermead::v*c -- ../share/nelder_mead/la.lisp:36
+declare fn neldermead_v_starc(vector_ : Value, constant : Value) -> Value raise
+
+///|
+/// defun neldermead::v+w*c -- ../share/nelder_mead/la.lisp:44
+declare fn neldermead_v_plusw_starc(v : Value, w : Value, c : Value) -> Value raise
+
+///|
+/// defun neldermead::qr-factorization -- ../share/nelder_mead/la.lisp:54
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn neldermead_qr_factorization(mat : Value, with_q? : Value = t) -> (Value, Value) raise
+
+///|
+/// defun neldermead::initial-simplex -- ../share/nelder_mead/neldermead.lisp:76
+declare fn neldermead_initial_simplex(x0 : Value, displace? : Value = Flo(0.1)) -> Value raise
+
+///|
+/// defun neldermead::default-initial-simplex -- ../share/nelder_mead/neldermead.lisp:98
+declare fn neldermead_default_initial_simplex(x0 : Value) -> Value raise
+
+///|
+/// defun neldermead::simplex-qr-thing -- ../share/nelder_mead/neldermead.lisp:162
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn neldermead_simplex_qr_thing(sidev : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun neldermead::qrthing-closure -- ../share/nelder_mead/neldermead.lisp:182
+declare fn neldermead_qrthing_closure(s : Value, n : Value) -> Value raise
+
+///|
+/// defun neldermead::nm-iteration -- ../share/nelder_mead/neldermead.lisp:201
+declare fn neldermead_nm_iteration(simplex : Value, f : Value, verbose? : Value = Nil, gamma_reflect? : Value = Flo(1.0), gamma_expand? : Value = Flo(2.0), gamma_outer_contraction? : Value = Flo(0.5), gamma_inner_contraction? : Value = Flo(-0.5), gamma_shrink? : Value = Flo(0.5)) -> Value raise
+
+///|
+/// defun neldermead::pp-volume-test -- ../share/nelder_mead/neldermead.lisp:285
+declare fn neldermead_pp_volume_test(cside : Value) -> Value raise
+
+///|
+/// defun neldermead::nm-optimize -- ../share/nelder_mead/neldermead.lisp:295
+declare fn neldermead_nm_optimize(objective_function : Value, initial_guess : Value, max_function_calls? : Value = Fix(100000L), convergence_p? : Value, verbose? : Value = Nil) -> Value raise
+
+///|
+/// defun neldermead::nm-iteration-burmen-et-al -- ../share/nelder_mead/neldermead.lisp:434
+/// Returns 2 values (CL multiple values) as a tuple.
+declare fn neldermead_nm_iteration_burmen_et_al(simplex : Value, f : Value, grid : Value, verbose? : Value = Nil, gamma_reflect? : Value = Flo(1.0), gamma_expand? : Value = Flo(2.0), gamma_outer_contraction? : Value = Flo(0.5), gamma_inner_contraction? : Value = Flo(-0.5)) -> (Value, Value) raise
+
+///|
+/// defun neldermead::burmen-et-al-convergence-test -- ../share/nelder_mead/neldermead.lisp:502
+declare fn neldermead_burmen_et_al_convergence_test(tol_x? : Value = Flo(1.0e-08), tol_f? : Value = Flo(1.0e-15), rel? : Value = Flo(1.0e-15)) -> Value raise
+
+///|
+/// defun neldermead::regrid -- ../share/nelder_mead/neldermead.lisp:521
+declare fn neldermead_regrid(g : Value, x1 : Value, dmin : Value, fkt : Value) -> Value raise
+
+///|
+/// defun neldermead::deep-shrink -- ../share/nelder_mead/neldermead.lisp:545
+declare fn neldermead_deep_shrink(f : Value, s : Value, g : Value, gamma_s : Value, convergence_p : Value, verbose : Value) -> Value raise
+
+///|
+/// defun neldermead::grnm-optimize -- ../share/nelder_mead/neldermead.lisp:592
+declare fn neldermead_grnm_optimize(objective_function : Value, initial_guess : Value, max_function_calls? : Value = Nil, convergence_p? : Value, verbose? : Value = Nil) -> Value raise
+
+///|
+/// defun neldermead::standard-quadratic -- ../share/nelder_mead/neldermead.lisp:699
+declare fn neldermead_standard_quadratic(v : Value) -> Value raise
+
+///|
+/// defun neldermead::rosenbrock -- ../share/nelder_mead/neldermead.lisp:703
+declare fn neldermead_rosenbrock(v : Value) -> Value raise
+
+///|
+/// defun ndown -- ../share/tensor/canten.lisp:24
+declare fn ndown(x : Value) -> Value raise
+
+///|
+/// defun ndownl -- ../share/tensor/canten.lisp:26
+declare fn ndownl(l : Value) -> Value raise
+
+///|
+/// defun brek -- ../share/tensor/canten.lisp:32
+declare fn brek(i : Value) -> Value raise
+
+///|
+/// defun specialrpobj -- ../share/tensor/canten.lisp:40
+declare fn specialrpobj(e : Value) -> Value raise
+
+///|
+/// defun reallyrpobj -- ../share/tensor/canten.lisp:50
+declare fn reallyrpobj(e : Value) -> Value raise
+
+///|
+/// defun rpobs -- ../share/tensor/canten.lisp:55
+declare fn rpobs(l : Value) -> Value raise
+
+///|
+/// defun fre -- ../share/tensor/canten.lisp:86
+declare fn fre(l : Value) -> Value raise
+
+///|
+/// defun boun -- ../share/tensor/canten.lisp:88
+declare fn boun(l : Value) -> Value raise
+
+///|
+/// defun grade -- ../share/tensor/canten.lisp:91
+declare fn grade(rp : Value) -> Value raise
+
+///|
+/// defun arank -- ../share/tensor/canten.lisp:98
+declare fn arank(mon : Value) -> Value raise
+
+///|
+/// defun eqarank -- ../share/tensor/canten.lisp:103
+declare fn eqarank(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun alphadi -- ../share/tensor/canten.lisp:107
+declare fn alphadi(rp1 : Value, rp2 : Value) -> Value raise
+
+///|
+/// defun catenate -- ../share/tensor/canten.lisp:113
+declare fn catenate(lis : Value) -> Value raise
+
+///|
+/// defun indlis -- ../share/tensor/canten.lisp:115
+declare fn indlis(rp : Value) -> Value raise
+
+///|
+/// defun asort -- ../share/tensor/canten.lisp:126
+declare fn asort(l : Value, p : Value) -> Value raise
+
+///|
+/// defun permute -- ../share/tensor/canten.lisp:141
+declare fn permute(arra : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// defun prank -- ../share/tensor/canten.lisp:146
+declare fn prank(rp1 : Value, rp2 : Value) -> Value raise
+
+///|
+/// defun sa -- ../share/tensor/canten.lisp:151
+declare fn sa(x : Value) -> Value raise
+
+///|
+/// defun top -- ../share/tensor/canten.lisp:154
+declare fn top(rp : Value) -> Value raise
+
+///|
+/// defun bot -- ../share/tensor/canten.lisp:155
+declare fn bot(rp : Value) -> Value raise
+
+///|
+/// defun allind -- ../share/tensor/canten.lisp:156
+declare fn allind(rp : Value) -> Value raise
+
+///|
+/// defun $irpmon -- ../share/tensor/canten.lisp:162
+declare fn d_irpmon(mon : Value) -> Value raise
+
+///|
+/// defun irpmon -- ../share/tensor/canten.lisp:185
+declare fn irpmon(mon : Value) -> Value raise
+
+///|
+/// defun redcan -- ../share/tensor/canten.lisp:213
+declare fn redcan(e : Value) -> Value raise
+
+///|
+/// defun la -- ../share/tensor/canten.lisp:282
+declare fn la(x : Value, y : Value) -> Value raise
+
+///|
+/// defun apdval -- ../share/tensor/canten.lisp:284
+declare fn apdval(c : Value, i : Value) -> Value raise
+
+///|
+/// defun canform -- ../share/tensor/canten.lisp:291
+declare fn canform(e : Value) -> Value raise
+
+///|
+/// defun endcons -- ../share/tensor/canten.lisp:307
+declare fn endcons(x : Value, l : Value) -> Value raise
+
+///|
+/// defun comp -- ../share/tensor/canten.lisp:309
+declare fn comp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun apdunion -- ../share/tensor/canten.lisp:316
+declare fn apdunion(x : Value, y : Value) -> Value raise
+
+///|
+/// defun canarank -- ../share/tensor/canten.lisp:325
+declare fn canarank(lis : Value) -> Value raise
+
+///|
+/// defun samestruc -- ../share/tensor/canten.lisp:370
+declare fn samestruc(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun indstruc -- ../share/tensor/canten.lisp:376
+declare fn indstruc(mon : Value) -> Value raise
+
+///|
+/// defun findstruc -- ../share/tensor/canten.lisp:387
+declare fn findstruc(fact : Value) -> Value raise
+
+///|
+/// defun transform -- ../share/tensor/canten.lisp:396
+declare fn transform(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun strata -- ../share/tensor/canten.lisp:399
+declare fn strata(lis : Value, p : Value) -> Value raise
+
+///|
+/// defun tindstruc -- ../share/tensor/canten.lisp:431
+declare fn tindstruc(mon : Value) -> Value raise
+
+///|
+/// defun tfindstruc -- ../share/tensor/canten.lisp:438
+declare fn tfindstruc(fact : Value) -> Value raise
+
+///|
+/// defun dumm -- ../share/tensor/canten.lisp:441
+declare fn dumm(x : Value) -> Value raise
+
+///|
+/// defun findpermut -- ../share/tensor/canten.lisp:444
+declare fn findpermut(i1 : Value, i2 : Value) -> Value raise
+
+///|
+/// defun pij -- ../share/tensor/canten.lisp:447
+declare fn pij(x : Value, y : Value) -> Value raise
+
+///|
+/// defun findperm -- ../share/tensor/canten.lisp:454
+declare fn findperm(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun $canten -- ../share/tensor/canten.lisp:471
+declare fn d_canten(x : Value) -> Value raise
+
+///|
+/// defun $concan -- ../share/tensor/canten.lisp:480
+declare fn d_concan(x : Value) -> Value raise
+
+///|
+/// defun $tentex -- ../share/tensor/tentex.lisp:64
+declare fn d_tentex(x : Value) -> Value raise
+
+///|
+/// defun tenreform -- ../share/tensor/tentex.lisp:69
+declare fn tenreform(x : Value) -> Value raise
+
+///|
+/// defun $ic_convert -- ../share/tensor/gener.lisp:27
+declare fn d_ic_convert(ee : Value) -> Value raise
+
+///|
+/// defun tabulate -- ../share/tensor/gener.lisp:92
+declare fn tabulate(e : Value) -> Value raise
+
+///|
+/// defun unique -- ../share/tensor/gener.lisp:101
+declare fn unique(l : Value) -> Value raise
+
+///|
+/// defun summer1 -- ../share/tensor/gener.lisp:107
+declare fn summer1(e : Value) -> Value raise
+
+///|
+/// defun summer -- ../share/tensor/gener.lisp:115
+declare fn summer(p : Value, dummy : Value) -> Value raise
+
+///|
+/// defun all -- ../share/tensor/gener.lisp:170
+declare fn all(l : Value) -> Value raise
+
+///|
+/// defun t-convert -- ../share/tensor/gener.lisp:173
+declare fn t_convert(e : Value) -> Value raise
+
+///|
+/// defun changeform -- ../share/tensor/gener.lisp:181
+declare fn changeform(e : Value) -> Value raise
+
+///|
+/// defun equiv-table -- ../share/tensor/gener.lisp:198
+declare fn equiv_table(a : Value) -> Value raise
+
+///|
+/// defun $makebox -- ../share/tensor/gener.lisp:208
+declare fn d_makebox(e : Value, name : Value) -> Value raise
+
+///|
+/// defun makebox -- ../share/tensor/gener.lisp:222
+declare fn makebox(e : Value, name : Value) -> Value raise
+
+///|
+/// defmfun $average -- ../share/tensor/gener.lisp:265
+declare fn d_average(n : Value) -> Value raise
+
+///|
+/// defun average -- ../share/tensor/gener.lisp:268
+declare fn average(tensr : Value, e : Value) -> Value raise
+
+///|
+/// defun average1 -- ../share/tensor/gener.lisp:275
+declare fn average1(e : Value) -> Value raise
+
+///|
+/// defun arev -- ../share/tensor/gener.lisp:290
+declare fn arev(l : Value) -> Value raise
+
+///|
+/// defun $conmetderiv -- ../share/tensor/gener.lisp:294
+declare fn d_conmetderiv(e : Value, g : Value) -> Value raise
+
+///|
+/// defun conmetderiv -- ../share/tensor/gener.lisp:300
+declare fn conmetderiv(e : Value, g : Value, indexl : Value) -> Value raise
+
+///|
+/// defun cmdexpand -- ../share/tensor/gener.lisp:319
+declare fn cmdexpand(g : Value, i : Value, j : Value, k : Value, indexl : Value) -> Value raise
+
+///|
+/// defun $flush1deriv -- ../share/tensor/gener.lisp:335
+declare fn d_flush1deriv(e : Value, g : Value) -> Value raise
+
+///|
+/// defun flush1deriv -- ../share/tensor/gener.lisp:340
+declare fn flush1deriv(e : Value, g : Value) -> Value raise
+
+///|
+/// defun $igeodesic_coords -- ../share/tensor/gener.lisp:357
+declare fn d_igeodesic_coords(exp_ : Value, g : Value) -> Value raise
+
+///|
+/// defun $decsym -- ../share/tensor/symtry.lisp:28
+declare fn d_decsym(name : Value, ncov : Value, ncontr : Value, covl : Value, contrl : Value) -> Value raise
+
+///|
+/// defun check-symargs -- ../share/tensor/symtry.lisp:80
+declare fn check_symargs(ll : Value, n : Value) -> Value raise
+
+///|
+/// defun $dispsym -- ../share/tensor/symtry.lisp:91
+declare fn d_dispsym(name : Value, ncov : Value, ncontr : Value) -> Value raise
+
+///|
+/// defun $remsym -- ../share/tensor/symtry.lisp:112
+declare fn d_remsym(name : Value, ncov : Value, ncontr : Value) -> Value raise
+
+///|
+/// defun $canform -- ../share/tensor/symtry.lisp:125
+declare fn d_canform(args : Value) -> Value raise
+
+///|
+/// defun canten -- ../share/tensor/symtry.lisp:146
+declare fn canten(e : Value, nfprpobjs : Value) -> Value raise
+
+///|
+/// defun rename1 -- ../share/tensor/symtry.lisp:298
+declare fn rename1(e : Value, dummy : Value) -> Value raise
+
+///|
+/// defun cleanup0 -- ../share/tensor/symtry.lisp:301
+declare fn cleanup0(a : Value) -> Value raise
+
+///|
+/// defun extract-elements -- ../share/tensor/symtry.lisp:311
+declare fn extract_elements(a : Value, b : Value) -> Value raise
+
+///|
+/// defun inserts -- ../share/tensor/symtry.lisp:318
+declare fn inserts(a : Value, b : Value, c : Value) -> Value raise
+
+///|
+/// defun symsort -- ../share/tensor/symtry.lisp:325
+declare fn symsort(l : Value, type_ : Value) -> Value raise
+
+///|
+/// defun antisort -- ../share/tensor/symtry.lisp:330
+declare fn antisort(l : Value) -> Value raise
+
+///|
+/// defun index -- ../share/tensor/symtry.lisp:336
+declare fn index(l : Value) -> Value raise
+
+///|
+/// defun cycsort -- ../share/tensor/symtry.lisp:341
+declare fn cycsort(l : Value) -> Value raise
+
+///|
+/// defun least -- ../share/tensor/symtry.lisp:348
+declare fn least(l : Value) -> Value raise
+
+///|
+/// defun canprod -- ../share/tensor/symtry.lisp:354
+declare fn canprod(e : Value, f : Value) -> Value raise
+
+///|
+/// defun tensorpred -- ../share/tensor/symtry.lisp:426
+declare fn tensorpred(x : Value, y : Value) -> Value raise
+
+///|
+/// defun describe-tensor -- ../share/tensor/symtry.lisp:437
+declare fn describe_tensor(free_indices : Value, f : Value) -> Value raise
+
+///|
+/// defun tdescript -- ../share/tensor/symtry.lisp:440
+declare fn tdescript(free_indices : Value, f : Value) -> Value raise
+
+///|
+/// defun $lesses -- ../share/calculus/qualsp.lisp:11
+declare fn d_lesses(x : Value) -> Value raise
+
+///|
+/// defun $leqs -- ../share/calculus/qualsp.lisp:18
+declare fn d_leqs(x : Value) -> Value raise
+
+///|
+/// defun $greaters -- ../share/calculus/qualsp.lisp:25
+declare fn d_greaters(x : Value) -> Value raise
+
+///|
+/// defun $geqs -- ../share/calculus/qualsp.lisp:32
+declare fn d_geqs(x : Value) -> Value raise
+
+///|
+/// defun $equals -- ../share/calculus/qualsp.lisp:39
+declare fn d_equals(x : Value) -> Value raise
+
+///|
+/// defun $neqs -- ../share/calculus/qualsp.lisp:47
+declare fn d_neqs(x : Value) -> Value raise
+
+///|
+/// defun $init_cartan -- ../share/calculus/cartan.lisp:122
+declare fn d_init_cartan(c : Value) -> Value raise
+
+///|
+/// defun $sound_sample_size -- ../share/sound/sound.lisp:47
+declare fn d_sound_sample_size() -> Value raise
+
+///|
+/// defun $sound_sample_channels -- ../share/sound/sound.lisp:51
+declare fn d_sound_sample_channels() -> Value raise
+
+///|
+/// defun $sound_sample_list -- ../share/sound/sound.lisp:55
+declare fn d_sound_sample_list(chn : Value) -> Value raise
+
+///|
+/// defun $set_sound_defaults -- ../share/sound/sound.lisp:86
+declare fn d_set_sound_defaults(opts : Value) -> Value raise
+
+///|
+/// defun ini-sound-options -- ../share/sound/sound.lisp:93
+declare fn ini_sound_options() -> Value raise
+
+///|
+/// defun get-sound-option -- ../share/sound/sound.lisp:116
+declare fn get_sound_option(opt : Value) -> Value raise
+
+///|
+/// defun update-sound-option -- ../share/sound/sound.lisp:120
+declare fn update_sound_option(opt : Value, val : Value) -> Value raise
+
+///|
+/// defun sound-user-defaults -- ../share/sound/sound.lisp:282
+declare fn sound_user_defaults() -> Value raise
+
+///|
+/// defun $save_sound_txt -- ../share/sound/sound.lisp:300
+declare fn d_save_sound_txt() -> Value raise
+
+///|
+/// defun $save_sound_wav -- ../share/sound/sound.lisp:310
+declare fn d_save_sound_wav() -> Value raise
+
+///|
+/// defun $load_sound_wav -- ../share/sound/sound.lisp:347
+declare fn d_load_sound_wav(fname : Value, verbose? : Value = t) -> Value raise
+
+///|
+/// defun save-sound -- ../share/sound/sound.lisp:442
+declare fn save_sound() -> Value raise
+
+///|
+/// defun $draw_sound -- ../share/sound/sound.lisp:457
+declare fn d_draw_sound() -> Value raise
+
+///|
+/// defun $wxdraw_sound -- ../share/sound/sound.lisp:492
+declare fn d_wxdraw_sound() -> Value raise
+
+///|
+/// defun $play_sound -- ../share/sound/sound.lisp:530
+declare fn d_play_sound() -> Value raise
+
+///|
+/// defun pairs-envelope -- ../share/sound/sound.lisp:576
+declare fn pairs_envelope(samp : Value) -> Value raise
+
+///|
+/// defun function-envelope -- ../share/sound/sound.lisp:635
+declare fn function_envelope(samp : Value) -> Value raise
+
+///|
+/// defun apply-envelope -- ../share/sound/sound.lisp:656
+declare fn apply_envelope(samp : Value) -> Value raise
+
+///|
+/// defun gaussian-noise -- ../share/sound/sound.lisp:673
+declare fn gaussian_noise(samp : Value) -> Value raise
+
+///|
+/// defun uniform-noise -- ../share/sound/sound.lisp:682
+declare fn uniform_noise(samp : Value) -> Value raise
+
+///|
+/// defun apply-noise -- ../share/sound/sound.lisp:695
+declare fn apply_noise(samp : Value) -> Value raise
+
+///|
+/// defun apply-oscillator-model -- ../share/sound/sound.lisp:712
+declare fn apply_oscillator_model(samp : Value, per1_samp : Value, ampl : Value) -> Value raise
+
+///|
+/// defun $note_freq -- ../share/sound/sound.lisp:790
+declare fn d_note_freq(note : Value, oct : Value) -> Value raise
+
+///|
+/// defun wave -- ../share/sound/sound.lisp:826
+declare fn wave(fcn : Value, var_ : Value, ini : Value, end : Value, sample_positions : Value) -> Value raise
+
+///|
+/// defun note -- ../share/sound/sound.lisp:863
+declare fn note(freq : Value, ampl : Value, dur : Value, sample_positions : Value) -> Value raise
+
+///|
+/// defun sample-from-list -- ../share/sound/sound.lisp:903
+declare fn sample_from_list(dat : Value, pos : Value) -> Value raise
+
+///|
+/// defun sample-from-array -- ../share/sound/sound.lisp:927
+declare fn sample_from_array(dat : Value, pos : Value) -> Value raise
+
+///|
+/// defun sample -- ../share/sound/sound.lisp:948
+declare fn sample(data : Value, sample_positions : Value) -> Value raise
+
+///|
+/// defun add-wave -- ../share/sound/sound.lisp:972
+declare fn add_wave(guest : Value, chn : Value, att : Value, ini : Value) -> Value raise
+
+///|
+/// defun sound-normalize -- ../share/sound/sound.lisp:986
+declare fn sound_normalize() -> Value raise
+
+///|
+/// defun $play -- ../share/sound/sound.lisp:1007
+declare fn d_play(args : Value) -> Value raise
+
+///|
+/// defun get-draw-wave-from-user-defaults -- ../share/sound/sound.lisp:1081
+declare fn get_draw_wave_from_user_defaults() -> Value raise
+
+///|
+/// defun get-others-from-user-defaults -- ../share/sound/sound.lisp:1086
+declare fn get_others_from_user_defaults() -> Value raise
+
+///|
+/// defun $wxplay -- ../share/sound/sound.lisp:1091
+declare fn d_wxplay(args : Value) -> Value raise
+
+///|
+/// defun simp-mtimesq -- ../share/vector/vector_rebuild.lisp:61
+declare fn simp_mtimesq(a : Value, tmp : Value, z : Value) -> Value raise
+
+///|
+/// defmfun mtimesq -- ../share/vector/vector_rebuild.lisp:65
+declare fn mtimesq(a : Value, b : Value) -> Value raise
+
+///|
+/// defun stardisp1 -- ../share/vector/vector_rebuild.lisp:70
+declare fn stardisp1(symbol : Value, val : Value) -> Value raise
+
+///|
+/// defun mtimesqp -- ../share/vector/vector_rebuild.lisp:77
+declare fn mtimesqp(expr : Value) -> Value raise
+
+///|
+/// defun tex-mtimesq -- ../share/vector/vector_rebuild.lisp:83
+declare fn tex_mtimesq(x : Value, l : Value, r : Value) -> Value raise
+
+///|
+/// defun $vector_simp -- ../share/vector/vector_rebuild.lisp:95
+declare fn d_vector_simp(expre_dol_dolion : Value) -> Value raise
+
+///|
+/// defun $vector_rebuild -- ../share/vector/vector_rebuild.lisp:106
+declare fn d_vector_rebuild(expr : Value, params? : Value) -> Value raise
+
+///|
+/// defun vector-rebuild -- ../share/vector/vector_rebuild.lisp:130
+declare fn vector_rebuild(expr : Value, params : Value) -> Value raise
+
+///|
+/// defun coef-list -- ../share/vector/vector_rebuild.lisp:156
+declare fn coef_list(expr : Value, params : Value) -> Value raise
+
+///|
+/// defun $extract_equations -- ../share/vector/vector_rebuild.lisp:169
+declare fn d_extract_equations(equation : Value) -> Value raise
+
+///|
+/// defun $vector_factor -- ../share/vector/vector_rebuild.lisp:199
+declare fn d_vector_factor(expr : Value) -> Value raise
+
+///|
+/// defun vector-extract-gcd -- ../share/vector/vector_rebuild.lisp:220
+declare fn vector_extract_gcd(expr : Value) -> Value raise
+
+///|
+/// defun simp-vector-length -- ../share/vector/vector_rebuild.lisp:265
+declare fn simp_vector_length(a : Value, tmp : Value, z : Value) -> Value raise
+
+///|
+/// defun simp-vector-cross -- ../share/vector/vector_rebuild.lisp:308
+declare fn simp_vector_cross(a : Value, tmp : Value, z : Value) -> Value raise
+
+///|
+/// defun column-to-row -- ../share/vector/vector_rebuild.lisp:353
+declare fn column_to_row(col : Value) -> Value raise
+
+///|
+/// defun row-to-column -- ../share/vector/vector_rebuild.lisp:357
+declare fn row_to_column(row : Value) -> Value raise
+
+///|
+/// defun vector-dim -- ../share/vector/vector_rebuild.lisp:362
+declare fn vector_dim(vec : Value) -> Value raise
+
+///|
+/// defun column-vector-p -- ../share/vector/vector_rebuild.lisp:365
+declare fn column_vector_p(obj : Value) -> Value raise
+
+///|
+/// defun vector-p -- ../share/vector/vector_rebuild.lisp:369
+declare fn vector_p(obj : Value) -> Value raise
+
+///|
+/// defun zero-vector-p -- ../share/vector/vector_rebuild.lisp:372
+declare fn zero_vector_p(obj : Value) -> Value raise
+
+///|
+/// defun zero-mlist-p -- ../share/vector/vector_rebuild.lisp:376
+declare fn zero_mlist_p(obj : Value) -> Value raise
+
+///|
+/// defun zero-$matrix-p -- ../share/vector/vector_rebuild.lisp:379
+declare fn zero__dolmatrix_p(obj : Value) -> Value raise
+
+///|
+/// defun $stand -- ../share/algebra/grob1.lisp:64
+declare fn d_stand(d_liste : Value, ordre? : Value = q_ordlex) -> Value raise
+
+///|
+/// defun lire1 -- ../share/algebra/grob1.lisp:80
+declare fn lire1(pol : Value, var_ : Value) -> Value raise
+
+///|
+/// defun lire2 -- ../share/algebra/grob1.lisp:92
+declare fn lire2(pol : Value, lvar : Value) -> Value raise
+
+///|
+/// defun lire -- ../share/algebra/grob1.lisp:103
+declare fn lire(mliste : Value, ordexp : Value) -> Value raise
+
+///|
+/// defun orddeg -- ../share/algebra/grob1.lisp:116
+declare fn orddeg(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun ordlex -- ../share/algebra/grob1.lisp:127
+declare fn ordlex(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun ordexp -- ../share/algebra/grob1.lisp:136
+declare fn ordexp(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun ordpairs -- ../share/algebra/grob1.lisp:145
+declare fn ordpairs(p1 : Value, p2 : Value) -> Value raise
+
+///|
+/// defun *gpolmon -- ../share/algebra/grob1.lisp:171
+declare fn n_stargpolmon(pol : Value, mon : Value) -> Value raise
+
+///|
+/// defun *gterm -- ../share/algebra/grob1.lisp:176
+declare fn n_stargterm(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun *gcofpol -- ../share/algebra/grob1.lisp:204
+declare fn n_stargcofpol(c : Value, p : Value) -> Value raise
+
+///|
+/// defun -gpol -- ../share/algebra/grob1.lisp:210
+declare fn n_gpol(p1 : Value, p2 : Value) -> Value raise
+
+///|
+/// defun red1 -- ../share/algebra/grob1.lisp:241
+declare fn red1(pol1 : Value, p : Value, pol2 : Value) -> Value raise
+
+///|
+/// defun div-terme -- ../share/algebra/grob1.lisp:251
+declare fn div_terme(p1 : Value, p : Value, base : Value) -> Value raise
+
+///|
+/// defun divise -- ../share/algebra/grob1.lisp:257
+declare fn divise(p1 : Value, base : Value) -> Value raise
+
+///|
+/// defun monic -- ../share/algebra/grob1.lisp:261
+declare fn monic(pol : Value) -> Value raise
+
+///|
+/// defun *ipolmon -- ../share/algebra/grob1.lisp:293
+declare fn n_staripolmon(pol : Value, mon : Value) -> Value raise
+
+///|
+/// defun *iterm -- ../share/algebra/grob1.lisp:296
+declare fn n_stariterm(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// defun isyz -- ../share/algebra/grob1.lisp:301
+declare fn isyz(pair : Value) -> Value raise
+
+///|
+/// defun *icofpol -- ../share/algebra/grob1.lisp:317
+declare fn n_staricofpol(c : Value, p : Value) -> Value raise
+
+///|
+/// defun -ipol -- ../share/algebra/grob1.lisp:323
+declare fn n_ipol(p1 : Value, p2 : Value) -> Value raise
+
+///|
+/// defun -ipol2 -- ../share/algebra/grob1.lisp:328
+declare fn n_ipol2(p1 : Value, p2 : Value) -> Value raise
+
+///|
+/// defun ired2 -- ../share/algebra/grob1.lisp:358
+declare fn ired2(pol1 : Value, pol2 : Value) -> Value raise
+
+///|
+/// defun iredp -- ../share/algebra/grob1.lisp:373
+declare fn iredp(p1 : Value, p : Value, q : Value) -> Value raise
+
+///|
+/// defun idivp -- ../share/algebra/grob1.lisp:390
+declare fn idivp(p1 : Value, p : Value, base : Value) -> Value raise
+
+///|
+/// defun idivise2 -- ../share/algebra/grob1.lisp:396
+declare fn idivise2(p1 : Value, base : Value) -> Value raise
+
+///|
+/// defun mactimes -- ../share/algebra/grob1.lisp:402
+declare fn mactimes(a : Value, b : Value) -> Value raise
+
+///|
+/// defun macplus -- ../share/algebra/grob1.lisp:405
+declare fn macplus(a : Value, b : Value) -> Value raise
+
+///|
+/// defun macmoins -- ../share/algebra/grob1.lisp:408
+declare fn macmoins(a : Value, b : Value) -> Value raise
+
+///|
+/// defun macdiv -- ../share/algebra/grob1.lisp:411
+declare fn macdiv(a : Value, b : Value) -> Value raise
+
+///|
+/// defun primpart -- ../share/algebra/grob1.lisp:419
+declare fn primpart(p : Value) -> Value raise
+
+///|
+/// defun apparier -- ../share/algebra/grob1.lisp:524
+declare fn apparier(p : Value, q : Value, expp : Value, expq : Value) -> Value raise
+
+///|
+/// defun vivier -- ../share/algebra/grob1.lisp:534
+declare fn vivier(paires : Value) -> Value raise
+
+///|
+/// defun rafraichir -- ../share/algebra/grob1.lisp:544
+declare fn rafraichir(paires : Value, q : Value, base : Value) -> Value raise
+
+///|
+/// defun reduire -- ../share/algebra/grob1.lisp:585
+declare fn reduire(base : Value, a : Value, b : Value) -> Value raise
+
+///|
+/// defun inserer -- ../share/algebra/grob1.lisp:613
+declare fn inserer(q : Value, base : Value) -> Value raise
+
+///|
+/// defun escalier -- ../share/algebra/grob1.lisp:644
+declare fn escalier(base : Value) -> Value raise
+
+///|
+/// defun dim-1 -- ../share/algebra/grob1.lisp:649
+declare fn dim_1(esc : Value) -> Value raise
+
+///|
+/// defun dim0 -- ../share/algebra/grob1.lisp:655
+declare fn dim0(esc : Value) -> Value raise
+
+///|
+/// defun sous-esc -- ../share/algebra/grob1.lisp:668
+declare fn sous_esc(esc : Value) -> Value raise
+
+///|
+/// defun notdivmon -- ../share/algebra/grob1.lisp:682
+declare fn notdivmon(mon1 : Value, mon2 : Value) -> Value raise
+
+///|
+/// defun sousp -- ../share/algebra/grob1.lisp:687
+declare fn sousp(mon : Value, esc : Value) -> Value raise
+
+///|
+/// defun umat -- ../share/algebra/grob1.lisp:699
+declare fn umat(basli : Value, base : Value) -> Value raise
+
+///|
+/// defun densif -- ../share/algebra/grob1.lisp:708
+declare fn densif(ligne : Value, basli : Value) -> Value raise
+
+///|
+/// defun matmac -- ../share/algebra/grob1.lisp:724
+declare fn matmac(basli : Value, base : Value) -> Value raise
+
+///|
+/// defun elimpol -- ../share/algebra/grob1.lisp:729
+declare fn elimpol(base : Value, ordexp : Value, var1 : Value) -> Value raise
+
+///|
+/// defun $elimpol_err -- ../share/algebra/grob1.lisp:742
+declare fn d_elimpol_err(ordexp : Value, var1 : Value) -> Value raise
+
+///|
+/// defun decmon -- ../share/algebra/grob1.lisp:754
+declare fn decmon(a : Value) -> Value raise
+
+///|
+/// defun decterm -- ../share/algebra/grob1.lisp:759
+declare fn decterm(a : Value) -> Value raise
+
+///|
+/// defun decpol -- ../share/algebra/grob1.lisp:767
+declare fn decpol(a : Value) -> Value raise
+
+///|
+/// defun decode -- ../share/algebra/grob1.lisp:772
+declare fn decode(lpol : Value, lvar : Value) -> Value raise
+
+///|
+/// defun $decode_poly -- ../share/algebra/grob1.lisp:777
+declare fn d_decode_poly(poly : Value, sample : Value) -> Value raise
+
+///|
+/// defun show-lazard -- ../share/algebra/grob1.lisp:799
+declare fn show_lazard(term : Value) -> Value raise
+
+///|
+/// defun $posintp -- ../share/algebra/charsets/charsets_powers.lisp:26
+declare fn d_posintp(x : Value) -> Value raise
+
+///|
+/// defun myrat -- ../share/algebra/charsets/charsets_powers.lisp:32
+declare fn myrat(e : Value, x : Value) -> Value raise
+
+///|
+/// defun $ratfreeof -- ../share/algebra/charsets/charsets_powers.lisp:46
+declare fn d_ratfreeof(x : Value, p : Value) -> Value raise
+
+///|
+/// defun $variablep -- ../share/algebra/charsets/charsets_powers.lisp:59
+declare fn d_variablep(e : Value) -> Value raise
+
+///|
+/// defun $ordinal_string -- ../share/algebra/charsets/charsets_powers.lisp:65
+declare fn d_ordinal_string(i : Value) -> Value raise
+
+///|
+/// defun require-list-of-symbols -- ../share/algebra/charsets/charsets_powers.lisp:94
+declare fn require_list_of_symbols(v : Value, f : Value, i : Value) -> Value raise
+
+///|
+/// defun require-poly -- ../share/algebra/charsets/charsets_powers.lisp:100
+declare fn require_poly(p : Value, v : Value, f : Value, i : Value) -> Value raise
+
+///|
+/// defun require-nonlist -- ../share/algebra/charsets/charsets_powers.lisp:105
+declare fn require_nonlist(e : Value, f : Value, i : Value) -> Value raise
+
+///|
+/// defun non-constant-ratvars -- ../share/algebra/charsets/charsets_powers.lisp:112
+declare fn non_constant_ratvars(e : Value) -> Value raise
+
+///|
+/// defun $powers -- ../share/algebra/charsets/charsets_powers.lisp:121
+declare fn d_powers(e : Value, x : Value) -> Value raise
+
+///|
+/// defun $hipower -- ../share/algebra/charsets/charsets_powers.lisp:134
+declare fn d_hipower(e : Value, x : Value) -> Value raise
+
+///|
+/// defun $lowpower -- ../share/algebra/charsets/charsets_powers.lisp:141
+declare fn d_lowpower(e : Value, x : Value) -> Value raise
+
+///|
+/// defun flatten-list -- ../share/algebra/charsets/charsets_powers.lisp:148
+declare fn flatten_list(e : Value) -> Value raise
+
+///|
+/// defun $allcoeffs -- ../share/algebra/charsets/charsets_powers.lisp:162
+declare fn d_allcoeffs(e : Value, x : Value) -> Value raise
+
+///|
+/// defun allcoeffs -- ../share/algebra/charsets/charsets_powers.lisp:165
+declare fn allcoeffs(e : Value, x : Value) -> Value raise
+
+///|
+/// defun $lcoeff -- ../share/algebra/charsets/charsets_powers.lisp:182
+declare fn d_lcoeff(e : Value, v? : Value = Nil) -> Value raise
+
+///|
+/// defun lcoeff -- ../share/algebra/charsets/charsets_powers.lisp:188
+declare fn lcoeff(e : Value, x : Value) -> Value raise
+
+///|
+/// defun $tcoeff -- ../share/algebra/charsets/charsets_powers.lisp:195
+declare fn d_tcoeff(e : Value, v? : Value = Nil) -> Value raise
+
+///|
+/// defun tcoeff -- ../share/algebra/charsets/charsets_powers.lisp:201
+declare fn tcoeff(e : Value, x : Value) -> Value raise
+
+///|
+/// defun $total_degree -- ../share/algebra/charsets/charsets_powers.lisp:227
+declare fn d_total_degree(p : Value, v? : Value = Nil) -> Value raise
+
+///|
+/// defun total-degree -- ../share/algebra/charsets/charsets_powers.lisp:232
+declare fn total_degree(e : Value) -> Value raise
+
+///|
+/// defun $lcm -- ../share/algebra/charsets/charsets_powers.lisp:238
+declare fn d_lcm(p : Value, q : Value) -> Value raise
+
+///|
+/// defun $spoly -- ../share/algebra/charsets/charsets_powers.lisp:245
+declare fn d_spoly(f : Value, g : Value, v : Value) -> Value raise
+
+///|
+/// defun $lterm -- ../share/algebra/charsets/charsets_powers.lisp:253
+declare fn d_lterm(p : Value, v? : Value = Nil) -> Value raise
+
+///|
+/// defun lterm -- ../share/algebra/charsets/charsets_powers.lisp:258
+declare fn lterm(p : Value, v : Value) -> Value raise
+
+///|
+/// defun $get_exponents -- ../share/algebra/charsets/charsets_powers.lisp:265
+declare fn d_get_exponents(p : Value, x : Value) -> Value raise
+
+///|
+/// defun $charsets_polynomialp -- ../share/algebra/charsets/charsets_powers.lisp:276
+declare fn d_charsets_polynomialp(e : Value, vars? : Value = Nil, cp? : Value = Nil, ep? : Value = Nil) -> Value raise
+
+///|
+/// defun $charsets_polylength -- ../share/algebra/charsets/fateman-len.lisp:6
+declare fn d_charsets_polylength(x : Value) -> Value raise
+
+///|
+/// defun cp1 -- ../share/algebra/charsets/fateman-len.lisp:11
+declare fn cp1(p : Value) -> Value raise
+
+///|
+/// defun $charsets_unorderedp -- ../share/algebra/charsets/charsets_set.lisp:16
+declare fn d_charsets_unorderedp(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $charsets_equalp -- ../share/algebra/charsets/charsets_set.lisp:38
+declare fn d_charsets_equalp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $charsets_xequalp -- ../share/algebra/charsets/charsets_set.lisp:46
+declare fn d_charsets_xequalp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $charsets_elem_equalp -- ../share/algebra/charsets/charsets_set.lisp:55
+declare fn d_charsets_elem_equalp(x : Value, y : Value) -> Value raise
+
+///|
+/// defun $charsets_adjoin2 -- ../share/algebra/charsets/charsets_set.lisp:73
+declare fn d_charsets_adjoin2(x : Value, a : Value) -> Value raise
+
+///|
+/// defun $charsets_setify -- ../share/algebra/charsets/charsets_set.lisp:83
+declare fn d_charsets_setify(a : Value) -> Value raise
+
+///|
+/// defun charsets_mysort -- ../share/algebra/charsets/charsets_set.lisp:91
+declare fn charsets_mysort(a : Value) -> Value raise
+
+///|
+/// defmfun $charsets_union -- ../share/algebra/charsets/charsets_set.lisp:98
+declare fn d_charsets_union(a : Value) -> Value raise
+
+///|
+/// defun $charsets_setdifference -- ../share/algebra/charsets/charsets_set.lisp:108
+declare fn d_charsets_setdifference(a : Value, b : Value) -> Value raise
+
+///|
+/// defmfun $charsets_intersection -- ../share/algebra/charsets/charsets_set.lisp:116
+declare fn d_charsets_intersection(a : Value) -> Value raise
+
+///|
+/// defun $charsets_subsetp -- ../share/algebra/charsets/charsets_set.lisp:130
+declare fn d_charsets_subsetp(a : Value, b : Value) -> Value raise
+
+///|
+/// defun charsets_xsubsetp -- ../share/algebra/charsets/charsets_set.lisp:141
+declare fn charsets_xsubsetp(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $charsets_setequality -- ../share/algebra/charsets/charsets_set.lisp:149
+declare fn d_charsets_setequality(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $charsets_elementp -- ../share/algebra/charsets/charsets_set.lisp:159
+declare fn d_charsets_elementp(x : Value, a : Value) -> Value raise
+
+///|
+/// defun $charsets_emptyp -- ../share/algebra/charsets/charsets_set.lisp:173
+declare fn d_charsets_emptyp(e : Value) -> Value raise
+
+///|
+/// defun $charsets_dupe -- ../share/algebra/charsets/charsets_set.lisp:181
+declare fn d_charsets_dupe(e : Value, n : Value) -> Value raise
+
+///|
+/// defun $charsets_disjointp -- ../share/algebra/charsets/charsets_set.lisp:189
+declare fn d_charsets_disjointp(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $charsets_symmdifference -- ../share/algebra/charsets/charsets_set.lisp:200
+declare fn d_charsets_symmdifference(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $charsets_complement -- ../share/algebra/charsets/charsets_set.lisp:207
+declare fn d_charsets_complement(a : Value, b : Value) -> Value raise
+
+///|
+/// defun $charsets_setp -- ../share/algebra/charsets/charsets_set.lisp:216
+declare fn d_charsets_setp(a : Value) -> Value raise
+
+///|
+/// defun charsets_setp -- ../share/algebra/charsets/charsets_set.lisp:219
+declare fn charsets_setp(a : Value) -> Value raise
+
+///|
+/// defun $charsets_powerset -- ../share/algebra/charsets/charsets_set.lisp:226
+declare fn d_charsets_powerset(a : Value) -> Value raise
+
+///|
+/// defun charsets_powerset -- ../share/algebra/charsets/charsets_set.lisp:233
+declare fn charsets_powerset(a : Value) -> Value raise
+
+///|
+/// defun $charsets_subpowerset -- ../share/algebra/charsets/charsets_set.lisp:244
+declare fn d_charsets_subpowerset(a : Value, n : Value) -> Value raise
+
+///|
+/// defun charsets_subpowerset -- ../share/algebra/charsets/charsets_set.lisp:255
+declare fn charsets_subpowerset(a : Value, n : Value) -> Value raise
+
+///|
+/// defun charsets_atomlength -- ../share/algebra/charsets/charsets_length.lisp:38
+declare fn charsets_atomlength(x : Value) -> Value raise
+
+///|
+/// defun charsets_maxatomp -- ../share/algebra/charsets/charsets_length.lisp:46
+declare fn charsets_maxatomp(x : Value) -> Value raise
+
+///|
+/// defun charsets_coeffp -- ../share/algebra/charsets/charsets_length.lisp:51
+declare fn charsets_coeffp(x : Value) -> Value raise
+
+///|
+/// defun charsets_variap -- ../share/algebra/charsets/charsets_length.lisp:57
+declare fn charsets_variap(x : Value) -> Value raise
+
+///|
+/// defun charsets_atomlength1 -- ../share/algebra/charsets/charsets_length.lisp:64
+declare fn charsets_atomlength1(x : Value, insum : Value) -> Value raise
+
+///|
+/// defun charsets_impuremonomialp -- ../share/algebra/charsets/charsets_length.lisp:107
+declare fn charsets_impuremonomialp(x : Value) -> Value raise
+
+///|
+/// defun charsets_partial-length -- ../share/algebra/charsets/charsets_length.lisp:112
+declare fn charsets_partial_length(h_length : Value, n__terms : Value, x : Value, insum : Value) -> Value raise
+
+///|
+/// defun charsets_polyrecur -- ../share/algebra/charsets/charsets_length.lisp:115
+declare fn charsets_polyrecur(x : Value, insum : Value) -> Value raise
+
+///|
+/// defun $charsets_length -- ../share/algebra/charsets/charsets_length.lisp:148
+declare fn d_charsets_length(x : Value) -> Value raise
+
+///|
+/// defun factorout-monomial -- ../share/simplification/scifac.lisp:40
+declare fn factorout_monomial(exp_ : Value) -> Value raise
+
+///|
+/// defun pair-factor -- ../share/simplification/scifac.lisp:241
+declare fn pair_factor(gel : Value, flag : Value) -> Value raise
+
+///|
+/// defun more-subfactors-q -- ../share/simplification/scifac.lisp:260
+declare fn more_subfactors_q(gg : Value) -> Value raise
+
+///|
+/// defun gcfac-prodscan -- ../share/simplification/scifac.lisp:278
+declare fn gcfac_prodscan(x : Value) -> Value raise
+
+///|
+/// defun monomial-factor -- ../share/simplification/scifac.lisp:293
+declare fn monomial_factor(exp_ : Value) -> Value raise
+
+///|
+/// defun $gcfac -- ../share/simplification/scifac.lisp:311
+declare fn d_gcfac(x : Value) -> Value raise
+
+///|
+/// defun query-const-table -- ../share/simplification/rducon.lisp:36
+declare fn query_const_table(x : Value) -> Value raise
+
+///|
+/// defun new-name -- ../share/simplification/rducon.lisp:42
+declare fn new_name(default_name : Value) -> Value raise
+
+///|
+/// defun log-const -- ../share/simplification/rducon.lisp:51
+declare fn log_const(exp_ : Value, name : Value) -> Value raise
+
+///|
+/// defun obtain-constant -- ../share/simplification/rducon.lisp:56
+declare fn obtain_constant(key : Value, curr_const : Value) -> Value raise
+
+///|
+/// defun find-constant -- ../share/simplification/rducon.lisp:110
+declare fn find_constant(x : Value) -> Value raise
+
+///|
+/// defun reduce-constants -- ../share/simplification/rducon.lisp:119
+declare fn reduce_constants(x : Value, newconst? : Value = Nil) -> Value raise
+
+///|
+/// defun $reduce_consts -- ../share/simplification/rducon.lisp:266
+declare fn d_reduce_consts(x : Value, newconstant? : Value = Nil) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -32190,6 +43254,10 @@ declare fn intl_ngettext(singular : Value, plural : Value, n : Value) -> Value r
 ///|
 /// macro defmvar (var &optional val doc &rest options) -- globals.lisp:46
 declare fn defmvar(var_ : Value, val? : Value = Nil, doc? : Value = Nil, options : Value) -> Value raise
+
+///|
+/// macro pregexp::pregexp-recur (name varvals &rest body) -- pregexp.lisp:12
+declare fn rx_pregexp_recur(name : Value, varvals : Value, body : Value) -> Value raise
 
 ///|
 /// macro declare-top (&rest decl-specs) -- lmdcls.lisp:43
@@ -32286,6 +43354,26 @@ declare fn signp(sym_ : Value, x : Value) -> Value raise
 ///|
 /// macro macsyma-module (module &rest options) -- mormac.lisp:13
 declare fn macsyma_module(module_ : Value, options : Value) -> Value raise
+
+///|
+/// macro def-same%tr (name same-as) -- transm.lisp:26
+declare fn def_same_pcttr(name : Value, same_as : Value) -> Value raise
+
+///|
+/// macro bind-transl-state (&rest forms) -- transm.lisp:53
+declare fn bind_transl_state(forms : Value) -> Value raise
+
+///|
+/// macro tr (u) -- transm.lisp:84
+declare fn tr(u : Value) -> Value raise
+
+///|
+/// macro maset (val ar &rest inds) -- transm.lisp:91
+declare fn maset(val : Value, ar : Value, inds : Value) -> Value raise
+
+///|
+/// macro maref (ar &rest inds) -- transm.lisp:100
+declare fn maref(ar : Value, inds : Value) -> Value raise
 
 ///|
 /// macro define-initial-symbols (&rest l) -- defcal.lisp:61
@@ -32940,10 +44028,6 @@ declare fn rzero() -> Value raise
 declare fn rzerop(a : Value) -> Value raise
 
 ///|
-/// macro primpart (p) -- ratmac.lisp:190
-declare fn primpart(p : Value) -> Value raise
-
-///|
 /// macro make-poly (var &optional (terms-or-e nil options?) (c nil e-c?) (terms nil terms?)) -- ratmac.lisp:211
 declare fn make_poly(var_ : Value, terms_or_e? : Value, c? : Value, terms? : Value) -> Value raise
 
@@ -33480,6 +44564,38 @@ declare fn invc(ind : Value) -> Value raise
 declare fn fctc(ind : Value) -> Value raise
 
 ///|
+/// macro tr-warnbreak () -- transl.lisp:245
+declare fn tr_warnbreak() -> Value raise
+
+///|
+/// macro mnot_tr (operand) -- trpred.lisp:97
+declare fn mnot_tr(operand : Value) -> Value raise
+
+///|
+/// macro mand_tr (&rest operands) -- trpred.lisp:136
+declare fn mand_tr(operands : Value) -> Value raise
+
+///|
+/// macro mor_tr (&rest operands) -- trpred.lisp:139
+declare fn mor_tr(operands : Value) -> Value raise
+
+///|
+/// macro def-mtrvar (v a &optional (priority 1)) -- transq.lisp:21
+declare fn def_mtrvar(v : Value, a : Value, priority? : Value = Fix(1L)) -> Value raise
+
+///|
+/// macro m-tlambda (bvl &rest body) -- transq.lisp:98
+declare fn m_tlambda(bvl : Value, body : Value) -> Value raise
+
+///|
+/// macro m-tlambda& (bvl &rest body) -- transq.lisp:102
+declare fn m_tlambda_amp(bvl : Value, body : Value) -> Value raise
+
+///|
+/// macro set-vals-into-list (argl var) -- transq.lisp:132
+declare fn set_vals_into_list(argl : Value, var_ : Value) -> Value raise
+
+///|
 /// macro mfunction-call (f &rest argl) -- fcall.lisp:71
 declare fn mfunction_call(f : Value, argl : Value) -> Value raise
 
@@ -33672,6 +44788,26 @@ declare fn trace_hook(x : Value) -> Value raise
 declare fn macsyma_errset(form : Value) -> Value raise
 
 ///|
+/// macro f (op &rest args) -- mdebug.lisp:9
+declare fn f(op : Value, args : Value) -> Value raise
+
+///|
+/// macro fb (op &rest args) -- mdebug.lisp:9
+declare fn fb(op : Value, args : Value) -> Value raise
+
+///|
+/// macro lisp-quiet (&rest l-lisp-quiet) -- mdebug.lisp:654
+declare fn lisp_quiet(l_lisp_quiet : Value) -> Value raise
+
+///|
+/// macro lisp-eval (&rest l-lisp-eval) -- mdebug.lisp:667
+declare fn lisp_eval(l_lisp_eval : Value) -> Value raise
+
+///|
+/// macro do-break (&optional name &rest l) -- mdebug.lisp:706
+declare fn do_break(name? : Value = Nil, l : Value) -> Value raise
+
+///|
 /// macro sum-arg (sum) -- asum.lisp:389
 declare fn sum_arg(sum : Value) -> Value raise
 
@@ -33794,6 +44930,34 @@ declare fn push_todo(m : Value, n : Value) -> Value raise
 ///|
 /// macro table (i) -- todd-coxeter.lisp:53
 declare fn table(i : Value) -> Value raise
+
+///|
+/// macro z-pt (ar i) -- plot.lisp:190
+declare fn z_pt(ar : Value, i : Value) -> Value raise
+
+///|
+/// macro y-pt (ar i) -- plot.lisp:190
+declare fn y_pt(ar : Value, i : Value) -> Value raise
+
+///|
+/// macro x-pt (ar i) -- plot.lisp:190
+declare fn x_pt(ar : Value, i : Value) -> Value raise
+
+///|
+/// macro rot (m i j) -- plot.lisp:190
+declare fn rot(m : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// macro print-pt (f) -- plot.lisp:190
+declare fn print_pt(f : Value) -> Value raise
+
+///|
+/// macro make-polygon (a b) -- plot.lisp:190
+declare fn make_polygon(a : Value, b : Value) -> Value raise
+
+///|
+/// macro zval (points verts i) -- plot.lisp:647
+declare fn zval(points : Value, verts : Value, i : Value) -> Value raise
 
 ///|
 /// macro grobner-makelist-1 (expr var lo hi &optional (step 1)) -- ../share/contrib/Grobner/grobner.lisp:48
@@ -33967,6 +45131,450 @@ declare fn write_subarray(arr : Value, str : Value) -> Value raise
 /// macro vtk-check-tube-extreme (ex cx cy cz) -- ../share/draw/vtk.lisp:2629
 declare fn vtk_check_tube_extreme(ex : Value, cx : Value, cy : Value, cz : Value) -> Value raise
 
+///|
+/// macro cl-sloop::sloop (&rest body) -- ../share/utils/sloop.lisp:2
+declare fn cl_sloop_sloop(body : Value) -> Value raise
+
+///|
+/// macro foreach (elt kw1 lst kw2 stmt) -- ../share/contrib/gentran/allgentran.lisp:36
+declare fn foreach(elt_ : Value, kw1 : Value, lst : Value, kw2 : Value, stmt : Value) -> Value raise
+
+///|
+/// macro aconc (m1 m2) -- ../share/contrib/gentran/allgentran.lisp:77
+declare fn aconc(m1 : Value, m2 : Value) -> Value raise
+
+///|
+/// macro delete1 (e lst) -- ../share/contrib/gentran/allgentran.lisp:110
+declare fn delete1(e : Value, lst : Value) -> Value raise
+
+///|
+/// macro flag (&rest m) -- ../share/contrib/gentran/allgentran.lisp:124
+declare fn flag(m : Value) -> Value raise
+
+///|
+/// macro prettyprint (m) -- ../share/contrib/gentran/allgentran.lisp:172
+declare fn prettyprint(m : Value) -> Value raise
+
+///|
+/// macro remflag (varlst fname) -- ../share/contrib/gentran/allgentran.lisp:197
+declare fn remflag(varlst : Value, fname : Value) -> Value raise
+
+///|
+/// macro repeat (stmt exp) -- ../share/contrib/gentran/allgentran.lisp:207
+declare fn repeat(stmt : Value, exp_ : Value) -> Value raise
+
+///|
+/// macro spaces (m) -- ../share/contrib/gentran/allgentran.lisp:219
+declare fn spaces(m : Value) -> Value raise
+
+///|
+/// macro massert (assertion vars &rest action) -- ../share/contrib/alt-display/alt-display.lisp:6
+declare fn massert(assertion : Value, vars : Value, action : Value) -> Value raise
+
+///|
+/// macro get-rid-of-array (ar) -- ../share/affine/polya.lisp:60
+declare fn get_rid_of_array(ar : Value) -> Value raise
+
+///|
+/// macro remove-second (a-list) -- ../share/affine/polya.lisp:106
+declare fn remove_second(a_list : Value) -> Value raise
+
+///|
+/// macro reverse-two-values (form) -- ../share/affine/polya.lisp:213
+declare fn reverse_two_values(form : Value) -> Value raise
+
+///|
+/// macro equation-length (eqn) -- ../share/affine/polya.lisp:286
+declare fn equation_length(eqn : Value) -> Value raise
+
+///|
+/// macro solution-corresponds-to-column (a-solution) -- ../share/affine/polya.lisp:328
+declare fn solution_corresponds_to_column(a_solution : Value) -> Value raise
+
+///|
+/// macro check-nc-rat-order (expr) -- ../share/affine/polya.lisp:681
+declare fn check_nc_rat_order(expr : Value) -> Value raise
+
+///|
+/// macro show-varlist (expr) -- ../share/affine/polya.lisp:688
+declare fn show_varlist(expr : Value) -> Value raise
+
+///|
+/// macro $declare_order_weights (&rest l) -- ../share/affine/polya.lisp:961
+declare fn d_declare_order_weights(l : Value) -> Value raise
+
+///|
+/// macro $declare_weights (&rest l) -- ../share/affine/polya.lisp:966
+declare fn d_declare_weights(l : Value) -> Value raise
+
+///|
+/// macro matrix-row (mat n) -- ../share/affine/modsimp.lisp:113
+declare fn matrix_row(mat : Value, n : Value) -> Value raise
+
+///|
+/// macro from-case (a-list) -- ../share/affine/sheafa.lisp:373
+declare fn from_case(a_list : Value) -> Value raise
+
+///|
+/// macro type? (a form &optional descrip &aux (ctrl-string "not a ~A")) -- ../share/affine/sheafa.lisp:388
+declare fn type_q(a : Value, form : Value, descrip? : Value = Nil) -> Value raise
+
+///|
+/// macro check-containments (ldata lis-ldat &optional gg) -- ../share/affine/sheafa.lisp:821
+declare fn check_containments(ldata : Value, lis_ldat : Value, gg? : Value = Nil) -> Value raise
+
+///|
+/// macro find-minimal (in-list ordering &optional such-that ind) -- ../share/affine/sheafa.lisp:1697
+declare fn find_minimal(in_list : Value, ordering : Value, such_that? : Value = Nil, ind? : Value = Nil) -> Value raise
+
+///|
+/// macro with-vc (var-corr &rest body) -- ../share/affine/sheafa.lisp:1936
+declare fn with_vc(var_corr : Value, body : Value) -> Value raise
+
+///|
+/// macro new-rmap (f) -- ../share/affine/sheafa.lisp:2149
+declare fn new_rmap(f : Value) -> Value raise
+
+///|
+/// macro pls-opens (pls) -- ../share/affine/sheafa.lisp:2276
+declare fn pls_opens(pls : Value) -> Value raise
+
+///|
+/// macro matrix-entry (matrix i j) -- ../share/affine/dim-3.lisp:132
+declare fn matrix_entry(matrix : Value, i : Value, j : Value) -> Value raise
+
+///|
+/// macro iassert (expr) -- ../share/affine/amacros.lisp:10
+declare fn iassert(expr : Value) -> Value raise
+
+///|
+/// macro defremember (func-spec arglist &rest body &aux hash-args hash-put-args (call-arglist (copy-list arglist))) -- ../share/affine/amacros.lisp:79
+declare fn defremember(func_spec : Value, arglist : Value, body : Value) -> Value raise
+
+///|
+/// macro disable-remember (f) -- ../share/affine/amacros.lisp:126
+declare fn disable_remember(f : Value) -> Value raise
+
+///|
+/// macro enable-remember (f) -- ../share/affine/amacros.lisp:129
+declare fn enable_remember(f : Value) -> Value raise
+
+///|
+/// macro with-no-query (&rest body) -- ../share/affine/amacros.lisp:147
+declare fn with_no_query(body : Value) -> Value raise
+
+///|
+/// macro with-no-query-answer-no (&rest body) -- ../share/affine/amacros.lisp:150
+declare fn with_no_query_answer_no(body : Value) -> Value raise
+
+///|
+/// macro user-supply (var) -- ../share/affine/amacros.lisp:175
+declare fn user_supply(var_ : Value) -> Value raise
+
+///|
+/// macro tim (&rest body) -- ../share/affine/amacros.lisp:199
+declare fn tim(body : Value) -> Value raise
+
+///|
+/// macro compare-functions (defa defb &rest assertions) -- ../share/affine/amacros.lisp:211
+declare fn compare_functions(defa : Value, defb : Value, assertions : Value) -> Value raise
+
+///|
+/// macro compare-recursive-functions (fn-a fn-b &rest assertions) -- ../share/affine/amacros.lisp:243
+declare fn compare_recursive_functions(fn_a : Value, fn_b : Value, assertions : Value) -> Value raise
+
+///|
+/// macro set-slots (struct conc-prefix &rest alt-list) -- ../share/affine/amacros.lisp:291
+declare fn set_slots(struct_ : Value, conc_prefix : Value, alt_list : Value) -> Value raise
+
+///|
+/// macro zl-copy-structure (struct conc-prefix &rest alt-list) -- ../share/affine/amacros.lisp:301
+declare fn zl_copy_structure(struct_ : Value, conc_prefix : Value, alt_list : Value) -> Value raise
+
+///|
+/// macro gshow (form) -- ../share/affine/amacros.lisp:376
+declare fn gshow(form : Value) -> Value raise
+
+///|
+/// macro mshow (&rest l) -- ../share/affine/amacros.lisp:380
+declare fn mshow(l : Value) -> Value raise
+
+///|
+/// macro ncmul* (&rest factors) -- ../share/affine/amacros.lisp:386
+declare fn ncmul_star(factors : Value) -> Value raise
+
+///|
+/// macro if-verbose (&rest l) -- ../share/affine/amacros.lisp:398
+declare fn if_verbose(l : Value) -> Value raise
+
+///|
+/// macro sum-over-polynomial (deg cof poly summand) -- ../share/affine/sub-proj.lisp:49
+declare fn sum_over_polynomial(deg : Value, cof : Value, poly : Value, summand : Value) -> Value raise
+
+///|
+/// macro replace-polynomial-coefficients (deg cof poly replacement) -- ../share/affine/sub-proj.lisp:56
+declare fn replace_polynomial_coefficients(deg : Value, cof : Value, poly : Value, replacement : Value) -> Value raise
+
+///|
+/// macro row-length (arow) -- ../share/affine/sparsemat.lisp:51
+declare fn row_length(arow : Value) -> Value raise
+
+///|
+/// macro array-push-extend-replace (aarray data &key amount-to-grow replace &aux forms) -- ../share/affine/sparsemat.lisp:94
+declare fn array_push_extend_replace(aarray : Value, data : Value, amount_to_grow? : Value = Nil, replace? : Value = Nil) -> Value raise
+
+///|
+/// macro sp-number-of-rows (self) -- ../share/affine/sparsemat.lisp:123
+declare fn sp_number_of_rows(self_ : Value) -> Value raise
+
+///|
+/// macro finite-characteristic-times (&rest l) -- ../share/affine/sparsemat.lisp:172
+declare fn finite_characteristic_times(l : Value) -> Value raise
+
+///|
+/// macro finite-characteristic-plus (&rest l) -- ../share/affine/sparsemat.lisp:175
+declare fn finite_characteristic_plus(l : Value) -> Value raise
+
+///|
+/// macro special-minus (a) -- ../share/affine/sparsemat.lisp:178
+declare fn special_minus(a : Value) -> Value raise
+
+///|
+/// macro special-times (&rest l) -- ../share/affine/sparsemat.lisp:180
+declare fn special_times(l : Value) -> Value raise
+
+///|
+/// macro special-plus (&rest l) -- ../share/affine/sparsemat.lisp:185
+declare fn special_plus(l : Value) -> Value raise
+
+///|
+/// macro non-negative-remainder (x y) -- ../share/affine/sparsemat.lisp:190
+declare fn non_negative_remainder(x : Value, y : Value) -> Value raise
+
+///|
+/// macro below-fill (a) -- ../share/affine/sparsemat.lisp:248
+declare fn below_fill(a : Value) -> Value raise
+
+///|
+/// macro sp-row (sp-mat i) -- ../share/affine/sparsemat.lisp:352
+declare fn sp_row(sp_mat : Value, i : Value) -> Value raise
+
+///|
+/// macro row-slot (row index) -- ../share/affine/sparsemat.lisp:550
+declare fn row_slot(row : Value, index : Value) -> Value raise
+
+///|
+/// macro set-current-row-entry-in-new-column (value row index) -- ../share/affine/sparsemat.lisp:558
+declare fn set_current_row_entry_in_new_column(value : Value, row : Value, index : Value) -> Value raise
+
+///|
+/// macro show-row (arow) -- ../share/affine/sparsemat.lisp:652
+declare fn show_row(arow : Value) -> Value raise
+
+///|
+/// macro special-inverse (x) -- ../share/affine/sparsemat.lisp:680
+declare fn special_inverse(x : Value) -> Value raise
+
+///|
+/// macro null-to-zero (x) -- ../share/affine/sparsemat.lisp:797
+declare fn null_to_zero(x : Value) -> Value raise
+
+///|
+/// macro dsend (object &rest body) -- ../share/affine/sparsemat.lisp:922
+declare fn dsend(object_ : Value, body : Value) -> Value raise
+
+///|
+/// macro may-have-pivot (row-number) -- ../share/affine/sparsemat.lisp:1272
+declare fn may_have_pivot(row_number : Value) -> Value raise
+
+///|
+/// macro swap-rows-and-constants (m n) -- ../share/affine/sparsemat.lisp:1385
+declare fn swap_rows_and_constants(m : Value, n : Value) -> Value raise
+
+///|
+/// macro p-cof (f) -- ../share/affine/aquotient.lisp:10
+declare fn p__cof(f : Value) -> Value raise
+
+///|
+/// macro p-next-term (f) -- ../share/affine/aquotient.lisp:10
+declare fn p__next_term(f : Value) -> Value raise
+
+///|
+/// macro p-deg (f) -- ../share/affine/aquotient.lisp:10
+declare fn p__deg(f : Value) -> Value raise
+
+///|
+/// macro term-cof (terms) -- ../share/affine/aquotient.lisp:10
+declare fn term_cof(terms : Value) -> Value raise
+
+///|
+/// macro term-deg (terms) -- ../share/affine/aquotient.lisp:10
+declare fn term_deg(terms : Value) -> Value raise
+
+///|
+/// macro term-operation (f g operation-function &optional deg-shift-result) -- ../share/affine/aquotient.lisp:69
+declare fn term_operation(f : Value, g : Value, operation_function : Value, deg_shift_result? : Value = Nil) -> Value raise
+
+///|
+/// macro plain-term-operation (terms-f terms-g operation-function &optional deg-shift-result) -- ../share/affine/aquotient.lisp:85
+declare fn plain_term_operation(terms_f : Value, terms_g : Value, operation_function : Value, deg_shift_result? : Value = Nil) -> Value raise
+
+///|
+/// macro quotient-not-exact () -- ../share/affine/aquotient.lisp:99
+declare fn quotient_not_exact() -> Value raise
+
+///|
+/// macro afp-main-plus-non-main (constant f-main) -- ../share/affine/aquotient.lisp:173
+declare fn afp_main_plus_non_main(constant : Value, f_main : Value) -> Value raise
+
+///|
+/// macro afp-number-plus (number poly) -- ../share/affine/aquotient.lisp:178
+declare fn afp_number_plus(number : Value, poly : Value) -> Value raise
+
+///|
+/// macro qfirstn (n l) -- ../share/affine/aquotient.lisp:221
+declare fn qfirstn(n : Value, l : Value) -> Value raise
+
+///|
+/// macro add-one-term (deg cof terms) -- ../share/affine/aquotient.lisp:236
+declare fn add_one_term(deg : Value, cof : Value, terms : Value) -> Value raise
+
+///|
+/// macro assume-pointerg-or-equal-p (f g &optional reverse-flag) -- ../share/affine/aquotient.lisp:380
+declare fn assume_pointerg_or_equal_p(f : Value, g : Value, reverse_flag? : Value = Nil) -> Value raise
+
+///|
+/// macro assume-greater-equal-degree (f g &optional reverse-flag) -- ../share/affine/aquotient.lisp:395
+declare fn assume_greater_equal_degree(f : Value, g : Value, reverse_flag? : Value = Nil) -> Value raise
+
+///|
+/// macro butlastn (n list) -- ../share/affine/aquotient.lisp:755
+declare fn butlastn(n : Value, list_ : Value) -> Value raise
+
+///|
+/// macro def-test (f1 f2) -- ../share/affine/aquotient.lisp:1080
+declare fn def_test(f1 : Value, f2 : Value) -> Value raise
+
+///|
+/// macro push-poly-number-deg-cof (rows poly-number deg cof &aux (row (make-symbol "row"))) -- ../share/affine/aquotient.lisp:1167
+declare fn push_poly_number_deg_cof(rows : Value, poly_number : Value, deg : Value, cof : Value) -> Value raise
+
+///|
+/// macro defrep (name argu &rest body &aux v mat) -- ../share/affine/polyc.lisp:296
+declare fn defrep(name : Value, argu : Value, body : Value) -> Value raise
+
+///|
+/// macro vformat (&rest l) -- ../share/affine/sheafb.lisp:42
+declare fn vformat(l : Value) -> Value raise
+
+///|
+/// macro vdes (&rest l) -- ../share/affine/sheafb.lisp:46
+declare fn vdes(l : Value) -> Value raise
+
+///|
+/// macro desn (x) -- ../share/affine/sheafb.lisp:1299
+declare fn desn(x : Value) -> Value raise
+
+///|
+/// macro desn-editor (expr &aux me) -- ../share/affine/sheafb.lisp:1488
+declare fn desn_editor(expr : Value) -> Value raise
+
+///|
+/// macro minimize (for v in a-list quantity) -- ../share/affine/sheafb.lisp:2254
+declare fn minimize(for_ : Value, v : Value, in_ : Value, a_list : Value, quantity : Value) -> Value raise
+
+///|
+/// macro for (v in-or-on a-list &rest body &aux when-clause operation quantity pred op init) -- ../share/affine/sheafb.lisp:2266
+declare fn for_(v : Value, in_or_on : Value, a_list : Value, body : Value) -> Value raise
+
+///|
+/// macro allow-rest-argument (new-funct binary-op answer-for-null-argument rest-arg) -- ../share/affine/polybas.lisp:105
+declare fn allow_rest_argument(new_funct : Value, binary_op : Value, answer_for_null_argument : Value, rest_arg : Value) -> Value raise
+
+///|
+/// macro polyop (x y identity-x identity-y number-op poly-op rat-op &optional rat-switch) -- ../share/affine/polybas.lisp:113
+declare fn polyop(x : Value, y : Value, identity_x : Value, identity_y : Value, number_op : Value, poly_op : Value, rat_op : Value, rat_switch? : Value = Nil) -> Value raise
+
+///|
+/// macro setq-num-den (num den expr &aux form .expr.) -- ../share/affine/polybas.lisp:234
+declare fn setq_num_den(num : Value, den : Value, expr : Value) -> Value raise
+
+///|
+/// macro with-vg (&rest body) -- ../share/affine/polybas.lisp:337
+declare fn with_vg(body : Value) -> Value raise
+
+///|
+/// macro with-vgp (&rest body) -- ../share/affine/polybas.lisp:344
+declare fn with_vgp(body : Value) -> Value raise
+
+///|
+/// macro setq-eqns (&rest alt-list) -- ../share/affine/sheafc.lisp:795
+declare fn setq_eqns(alt_list : Value) -> Value raise
+
+///|
+/// macro sim-hom (x) -- ../share/affine/sheafc.lisp:841
+declare fn sim_hom(x : Value) -> Value raise
+
+///|
+/// macro sim-ld (x) -- ../share/affine/sheafc.lisp:844
+declare fn sim_ld(x : Value) -> Value raise
+
+///|
+/// macro save-rational (name &optional (file-name "r20:ps:<atp.schelter>kill.tem" aa)) -- ../share/affine/sheafc.lisp:868
+declare fn save_rational(name : Value, file_name? : Value) -> Value raise
+
+///|
+/// macro alter-ldata (ldat &rest keys) -- ../share/affine/sheafc.lisp:1233
+declare fn alter_ldata(ldat : Value, keys : Value) -> Value raise
+
+///|
+/// macro spsafe (&rest ll) -- ../share/affine/polyb.lisp:440
+declare fn spsafe(ll : Value) -> Value raise
+
+///|
+/// macro $with_no_simp (form) -- ../share/affine/polyb.lisp:692
+declare fn d_with_no_simp(form : Value) -> Value raise
+
+///|
+/// macro mac (a-string) -- ../share/affine/polyb.lisp:779
+declare fn mac(a_string : Value) -> Value raise
+
+///|
+/// macro mac-eval-after (a-string) -- ../share/affine/polyb.lisp:783
+declare fn mac_eval_after(a_string : Value) -> Value raise
+
+///|
+/// macro mac-eval (a-string) -- ../share/affine/polyb.lisp:786
+declare fn mac_eval(a_string : Value) -> Value raise
+
+///|
+/// macro subscript (d i) -- ../share/affine/polyb.lisp:834
+declare fn subscript(d : Value, i : Value) -> Value raise
+
+///|
+/// macro maclist (x) -- ../share/affine/polyb.lisp:923
+declare fn maclist(x : Value) -> Value raise
+
+///|
+/// macro rat-variable-info (cre-form) -- ../share/affine/polyb.lisp:926
+declare fn rat_variable_info(cre_form : Value) -> Value raise
+
+///|
+/// macro eval&reduce (oper eval list &aux (temp (gensym)) (val (gensym))) -- ../share/numeric/expense.lisp:88
+declare fn eval_ampreduce(oper : Value, eval : Value, list_ : Value) -> Value raise
+
+///|
+/// macro make-expt (base exponent) -- ../share/simplification/scifac.lisp:13
+declare fn make_expt(base : Value, exponent : Value) -> Value raise
+
+///|
+/// macro acceptable-power (x) -- ../share/simplification/scifac.lisp:15
+declare fn acceptable_power(x : Value) -> Value raise
+
+///|
+/// macro minus-constantp (x) -- ../share/simplification/rducon.lisp:31
+declare fn minus_constantp(x : Value) -> Value raise
+
 // ---- Per-file initialization (top-level forms of each Lisp file)
 
 ///|
@@ -33980,6 +45588,14 @@ declare fn init_intl() -> Unit raise
 ///|
 /// top-level forms of globals.lisp
 declare fn init_globals() -> Unit raise
+
+///|
+/// top-level forms of pregexp.lisp
+declare fn init_pregexp() -> Unit raise
+
+///|
+/// top-level forms of cl-info.lisp
+declare fn init_cl_info() -> Unit raise
 
 ///|
 /// top-level forms of lmdcls.lisp
@@ -34020,6 +45636,18 @@ declare fn init_mormac() -> Unit raise
 ///|
 /// top-level forms of compat.lisp
 declare fn init_compat() -> Unit raise
+
+///|
+/// top-level forms of transm.lisp
+declare fn init_transm() -> Unit raise
+
+///|
+/// top-level forms of command-line.lisp
+declare fn init_command_line() -> Unit raise
+
+///|
+/// top-level forms of getopt.lisp
+declare fn init_getopt() -> Unit raise
 
 ///|
 /// top-level forms of defcal.lisp
@@ -34686,6 +46314,10 @@ declare fn init_halfangle() -> Unit raise
 declare fn init_numeric() -> Unit raise
 
 ///|
+/// top-level forms of server.lisp
+declare fn init_server() -> Unit raise
+
+///|
 /// top-level forms of prompt-util.lisp
 declare fn init_prompt_util() -> Unit raise
 
@@ -34700,6 +46332,10 @@ declare fn init_macsys() -> Unit raise
 ///|
 /// top-level forms of testsuite.lisp
 declare fn init_testsuite() -> Unit raise
+
+///|
+/// top-level forms of wxmx.lisp
+declare fn init_wxmx() -> Unit raise
 
 ///|
 /// top-level forms of mload.lisp
@@ -34770,6 +46406,62 @@ declare fn init_nrat4() -> Unit raise
 declare fn init_ratout() -> Unit raise
 
 ///|
+/// top-level forms of transl.lisp
+declare fn init_transl() -> Unit raise
+
+///|
+/// top-level forms of transs.lisp
+declare fn init_transs() -> Unit raise
+
+///|
+/// top-level forms of trans1.lisp
+declare fn init_trans1() -> Unit raise
+
+///|
+/// top-level forms of trans2.lisp
+declare fn init_trans2() -> Unit raise
+
+///|
+/// top-level forms of trans3.lisp
+declare fn init_trans3() -> Unit raise
+
+///|
+/// top-level forms of trans4.lisp
+declare fn init_trans4() -> Unit raise
+
+///|
+/// top-level forms of trans5.lisp
+declare fn init_trans5() -> Unit raise
+
+///|
+/// top-level forms of transf.lisp
+declare fn init_transf() -> Unit raise
+
+///|
+/// top-level forms of troper.lisp
+declare fn init_troper() -> Unit raise
+
+///|
+/// top-level forms of trutil.lisp
+declare fn init_trutil() -> Unit raise
+
+///|
+/// top-level forms of trmode.lisp
+declare fn init_trmode() -> Unit raise
+
+///|
+/// top-level forms of trdata.lisp
+declare fn init_trdata() -> Unit raise
+
+///|
+/// top-level forms of trpred.lisp
+declare fn init_trpred() -> Unit raise
+
+///|
+/// top-level forms of transq.lisp
+declare fn init_transq() -> Unit raise
+
+///|
 /// top-level forms of acall.lisp
 declare fn init_acall() -> Unit raise
 
@@ -34780,6 +46472,14 @@ declare fn init_fcall() -> Unit raise
 ///|
 /// top-level forms of evalw.lisp
 declare fn init_evalw() -> Unit raise
+
+///|
+/// top-level forms of trprop.lisp
+declare fn init_trprop() -> Unit raise
+
+///|
+/// top-level forms of mdefun.lisp
+declare fn init_mdefun() -> Unit raise
 
 ///|
 /// top-level forms of numerical-utils.lisp
@@ -34820,6 +46520,14 @@ declare fn init_spgcd() -> Unit raise
 ///|
 /// top-level forms of ezgcd.lisp
 declare fn init_ezgcd() -> Unit raise
+
+///|
+/// top-level forms of verify-html-index.lisp
+declare fn init_verify_html_index() -> Unit raise
+
+///|
+/// top-level forms of macdes.lisp
+declare fn init_macdes() -> Unit raise
 
 ///|
 /// top-level forms of inmis.lisp
@@ -34986,6 +46694,10 @@ declare fn init_algsys() -> Unit raise
 declare fn init_mtrace() -> Unit raise
 
 ///|
+/// top-level forms of mdebug.lisp
+declare fn init_mdebug() -> Unit raise
+
+///|
 /// top-level forms of expintegral.lisp
 declare fn init_expintegral() -> Unit raise
 
@@ -35096,6 +46808,26 @@ declare fn init_invert() -> Unit raise
 ///|
 /// top-level forms of todd-coxeter.lisp
 declare fn init_todd_coxeter() -> Unit raise
+
+///|
+/// top-level forms of plotcolors.lisp
+declare fn init_plotcolors() -> Unit raise
+
+///|
+/// top-level forms of plot.lisp
+declare fn init_plot() -> Unit raise
+
+///|
+/// top-level forms of gnuplot_def.lisp
+declare fn init_gnuplot_def() -> Unit raise
+
+///|
+/// top-level forms of xmaxima_def.lisp
+declare fn init_xmaxima_def() -> Unit raise
+
+///|
+/// top-level forms of geomview_def.lisp
+declare fn init_geomview_def() -> Unit raise
 
 ///|
 /// top-level forms of autol.lisp
@@ -35484,4 +47216,460 @@ declare fn init_share_numstats() -> Unit raise
 ///|
 /// top-level forms of ../share/contrib/integration/abs_integrate.lisp
 declare fn init_share_abs_integrate() -> Unit raise
+
+///|
+/// top-level forms of ../share/specfun.lisp
+declare fn init_share_specfun() -> Unit raise
+
+///|
+/// top-level forms of ../share/MYTOPIC-index.lisp
+declare fn init_share_n_cm__cy__ct__co__cp__ci__cc__index() -> Unit raise
+
+///|
+/// top-level forms of ../share/sym/tri.lisp
+declare fn init_share_tri() -> Unit raise
+
+///|
+/// top-level forms of ../share/sym/compile.lisp
+declare fn init_share_compile() -> Unit raise
+
+///|
+/// top-level forms of ../share/sym/load-sym-lisp-files.lisp
+declare fn init_share_load_sym_lisp_files() -> Unit raise
+
+///|
+/// top-level forms of ../share/gamma_simp/isequal.lisp
+declare fn init_share_isequal() -> Unit raise
+
+///|
+/// top-level forms of ../share/hompack/lisp/hompack-package.lisp
+declare fn init_share_hompack_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/dynamics/plotdf.lisp
+declare fn init_share_plotdf() -> Unit raise
+
+///|
+/// top-level forms of ../share/dynamics/complex_dynamics.lisp
+declare fn init_share_complex_dynamics() -> Unit raise
+
+///|
+/// top-level forms of ../share/dynamics/visualization.lisp
+declare fn init_share_visualization() -> Unit raise
+
+///|
+/// top-level forms of ../share/fftpack5/fftpack5.lisp
+declare fn init_share_fftpack5_fftpack5() -> Unit raise
+
+///|
+/// top-level forms of ../share/fftpack5/fftpack5-interface.lisp
+declare fn init_share_fftpack5_interface() -> Unit raise
+
+///|
+/// top-level forms of ../share/fftpack5/lisp/fftpack5.lisp
+declare fn init_share_fftpack5_lisp_fftpack5() -> Unit raise
+
+///|
+/// top-level forms of ../share/lapack/lapack-package.lisp
+declare fn init_share_lapack_lapack_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/lapack/blas/blas-package.lisp
+declare fn init_share_blas_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/lapack/lapack/lapack-package.lisp
+declare fn init_share_lapack_lapack_lapack_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/minpack/minpack-package.lisp
+declare fn init_share_minpack_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/cobyla/cobyla-package.lisp
+declare fn init_share_cobyla_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/to_poly_solve/topoly.lisp
+declare fn init_share_topoly() -> Unit raise
+
+///|
+/// top-level forms of ../share/logic/logic.lisp
+declare fn init_share_logic() -> Unit raise
+
+///|
+/// top-level forms of ../share/logic/Ksimplifier.lisp
+declare fn init_share_n_ck_simplifier() -> Unit raise
+
+///|
+/// top-level forms of ../share/colnew/colnew-package.lisp
+declare fn init_share_colnew_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/utils/mactex-utilities.lisp
+declare fn init_share_mactex_utilities() -> Unit raise
+
+///|
+/// top-level forms of ../share/utils/sloop.lisp
+declare fn init_share_sloop() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/tocl.lisp
+declare fn init_share_tocl() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/timeout.lisp
+declare fn init_share_timeout() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/implicit_plot.lisp
+declare fn init_share_implicit_plot() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/f90.lisp
+declare fn init_share_f90() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/tex2ooo.lisp
+declare fn init_share_tex2ooo() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/cgrind.lisp
+declare fn init_share_cgrind() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/ratpow.lisp
+declare fn init_share_ratpow() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/graph2d.lisp
+declare fn init_share_graph2d() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/colorterm.lisp
+declare fn init_share_colorterm() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/lll.lisp
+declare fn init_share_lll() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/maxima-server.lisp
+declare fn init_share_maxima_server() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/chebformax.lisp
+declare fn init_share_chebformax() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/binsplit/binsplit.lisp
+declare fn init_share_binsplit() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/testodelin.lisp
+declare fn init_share_testodelin() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/gauss.lisp
+declare fn init_share_gauss() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/lazysolver.lisp
+declare fn init_share_lazysolver() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/spherodialwave.lisp
+declare fn init_share_spherodialwave() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/kummer.lisp
+declare fn init_share_kummer() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/odeutils.lisp
+declare fn init_share_odeutils() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/extrabessel.lisp
+declare fn init_share_extrabessel() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/diffequations/sqfr.lisp
+declare fn init_share_sqfr() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/unit/unit-functions.lisp
+declare fn init_share_unit_functions() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/noninteractive/asksign1.lisp
+declare fn init_share_asksign1() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/noninteractive/noninteractive.lisp
+declare fn init_share_noninteractive() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/maximaMathML/CtMathML.lisp
+declare fn init_share_n_cc_t_cm_ath_cm__cl_() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/maximaMathML/mathml-maxima.lisp
+declare fn init_share_mathml_maxima() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/maximaMathML/maximaMathML.lisp
+declare fn init_share_maxima_cm_ath_cm__cl_() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/maximaMathML/mathmldisplay.lisp
+declare fn init_share_mathmldisplay() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/maximaMathML/PrMathML.lisp
+declare fn init_share_n_cp_r_cm_ath_cm__cl_() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/lurkmathml/mathml.lisp
+declare fn init_share_mathml() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/gentran/allgentran.lisp
+declare fn init_share_allgentran() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/state/readfile.lisp
+declare fn init_share_readfile() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/symplectic_ode/symplectic_ode.lisp
+declare fn init_share_symplectic_ode() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/elliptic_curves/elliptic_curves.lisp
+declare fn init_share_elliptic_curves() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/elliptic_curves/modular_polynomials.lisp
+declare fn init_share_modular_polynomials() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/elliptic_curves/ec2.lisp
+declare fn init_share_ec2() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/altsimp/altsimp.lisp
+declare fn init_share_altsimp() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/alt-display/tex-display.lisp
+declare fn init_share_tex_display() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/alt-display/alt-display.lisp
+declare fn init_share_alt_display() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/unicodedata/unicodedata.lisp
+declare fn init_share_unicodedata() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/unicodedata/unicodedata-txt.lisp
+declare fn init_share_unicodedata_txt() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/unicodedata/grind-patch.lisp
+declare fn init_share_grind_patch() -> Unit raise
+
+///|
+/// top-level forms of ../share/contrib/smath/smath.lisp
+declare fn init_share_smath() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/polya.lisp
+declare fn init_share_polya() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/compat.lisp
+declare fn init_share_compat() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/modsimp.lisp
+declare fn init_share_modsimp() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/sheafa.lisp
+declare fn init_share_sheafa() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/dim-3.lisp
+declare fn init_share_dim_3() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/polysmp.lisp
+declare fn init_share_polysmp() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/amacros.lisp
+declare fn init_share_amacros() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/sysdef.lisp
+declare fn init_share_sysdef() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/ndotsimp.lisp
+declare fn init_share_ndotsimp() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/sub-proj.lisp
+declare fn init_share_sub_proj() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/new-rat.lisp
+declare fn init_share_new_rat() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/sys-declaim.lisp
+declare fn init_share_sys_declaim() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/sparsemat.lisp
+declare fn init_share_sparsemat() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/polyd.lisp
+declare fn init_share_polyd() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/aquotient.lisp
+declare fn init_share_aquotient() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/polyc.lisp
+declare fn init_share_polyc() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/sheafb.lisp
+declare fn init_share_sheafb() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/dim4-help.lisp
+declare fn init_share_dim4_help() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/polybas.lisp
+declare fn init_share_polybas() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/affine.lisp
+declare fn init_share_affine() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/sheafc.lisp
+declare fn init_share_sheafc() -> Unit raise
+
+///|
+/// top-level forms of ../share/affine/polyb.lisp
+declare fn init_share_polyb() -> Unit raise
+
+///|
+/// top-level forms of ../share/numeric/brmbrg.lisp
+declare fn init_share_brmbrg() -> Unit raise
+
+///|
+/// top-level forms of ../share/numeric/expense.lisp
+declare fn init_share_expense() -> Unit raise
+
+///|
+/// top-level forms of ../share/nelder_mead/defpackage.lisp
+declare fn init_share_defpackage() -> Unit raise
+
+///|
+/// top-level forms of ../share/nelder_mead/nm-maxima.lisp
+declare fn init_share_nm_maxima() -> Unit raise
+
+///|
+/// top-level forms of ../share/nelder_mead/la.lisp
+declare fn init_share_la() -> Unit raise
+
+///|
+/// top-level forms of ../share/nelder_mead/neldermead.lisp
+declare fn init_share_neldermead() -> Unit raise
+
+///|
+/// top-level forms of ../share/tensor/canten.lisp
+declare fn init_share_canten() -> Unit raise
+
+///|
+/// top-level forms of ../share/tensor/tentex.lisp
+declare fn init_share_tentex() -> Unit raise
+
+///|
+/// top-level forms of ../share/tensor/gener.lisp
+declare fn init_share_gener() -> Unit raise
+
+///|
+/// top-level forms of ../share/tensor/symtry.lisp
+declare fn init_share_symtry() -> Unit raise
+
+///|
+/// top-level forms of ../share/odepack/package.lisp
+declare fn init_share_odepack_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/odepack/maxima-odepack.lisp
+declare fn init_share_maxima_odepack() -> Unit raise
+
+///|
+/// top-level forms of ../share/odepack/src/package.lisp
+declare fn init_share_odepack_src_package() -> Unit raise
+
+///|
+/// top-level forms of ../share/calculus/qualsp.lisp
+declare fn init_share_qualsp() -> Unit raise
+
+///|
+/// top-level forms of ../share/calculus/cartan.lisp
+declare fn init_share_cartan() -> Unit raise
+
+///|
+/// top-level forms of ../share/sound/sound.lisp
+declare fn init_share_sound() -> Unit raise
+
+///|
+/// top-level forms of ../share/vector/vector_rebuild.lisp
+declare fn init_share_vector_rebuild() -> Unit raise
+
+///|
+/// top-level forms of ../share/diff_form/cartan_new.lisp
+declare fn init_share_cartan_new() -> Unit raise
+
+///|
+/// top-level forms of ../share/algebra/grob1.lisp
+declare fn init_share_grob1() -> Unit raise
+
+///|
+/// top-level forms of ../share/algebra/charsets/charsets_powers.lisp
+declare fn init_share_charsets_powers() -> Unit raise
+
+///|
+/// top-level forms of ../share/algebra/charsets/fateman-len.lisp
+declare fn init_share_fateman_len() -> Unit raise
+
+///|
+/// top-level forms of ../share/algebra/charsets/charsets_set.lisp
+declare fn init_share_charsets_set() -> Unit raise
+
+///|
+/// top-level forms of ../share/algebra/charsets/charsets_length.lisp
+declare fn init_share_charsets_length() -> Unit raise
+
+///|
+/// top-level forms of ../share/simplification/scifac.lisp
+declare fn init_share_scifac() -> Unit raise
+
+///|
+/// top-level forms of ../share/simplification/rducon.lisp
+declare fn init_share_rducon() -> Unit raise
 

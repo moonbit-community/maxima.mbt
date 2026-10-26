@@ -562,3 +562,10 @@ test "format ~E ~G like sbcl" {
     content="0.00e+0|-1.50e+10|   1.50e-5|1.235e+2",
   )
 }
+
+///|
+test "process primitives" {
+  inspect(run_shell_command("exit 3"), content="3")
+  inspect(shell_command_output("printf hello"), content="(0, hello)")
+  assert_true(current_directory().length() > 0)
+}

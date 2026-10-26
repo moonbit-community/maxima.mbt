@@ -274,6 +274,25 @@ def ret_type(f):
     return "Value"
 
 
+_SHARE_STEM_COUNT = {}
+
+
+def share_base(fname, db=None):
+    """Identifier base for a share file's init/register/load functions: the
+    mangled file stem, or dir-stem when several share files share a stem."""
+    if db is not None and not _SHARE_STEM_COUNT:
+        for d in db:
+            if d.get("module") == "share":
+                st = d["file"].split("/")[-1]
+                _SHARE_STEM_COUNT[st] = _SHARE_STEM_COUNT.get(st, 0) + 1
+    parts = fname.split("/")
+    if _SHARE_STEM_COUNT.get(parts[-1], 1) > 1:
+        # full path below share/, e.g. lapack-lapack-lapack-package
+        i = parts.index("share") + 1 if "share" in parts else 0
+        return mangle("-".join(parts[i:]))
+    return mangle(parts[-1])
+
+
 def compute_overrides(db):
     """Resolve names that mangle identically. The underscore spelling (the
     Maxima-level name, e.g. %gamma_incomplete) keeps the natural identifier;
@@ -284,6 +303,10 @@ def compute_overrides(db):
         names |= set(f["name"] for f in d["functions"] if f["name"])
         names |= set(v["name"] for v in d["vars"])
         names |= set(d["specials"])
+        for f in d["functions"]:
+            for k in f["ll"].get("key", []):
+                if k[0]:
+                    names.add("$" + k[0])
     by = {}
     for n in sorted(names):
         by.setdefault(mangle0(n), []).append(n)
@@ -388,7 +411,7 @@ def main():
     for d in db:
         if d["file"] in excluded:
             continue
-        nm = ("init_share_" if d.get("module") == "share" else "init_") + mangle(d["file"].split("/")[-1])
+        nm = ("init_share_" + share_base(d["file"], db)) if d.get("module") == "share" else ("init_" + mangle(d["file"].split("/")[-1]))
         decl_lines.append("///|")
         decl_lines.append("/// top-level forms of %s.lisp" % d["file"])
         decl_lines.append("declare fn %s() -> Unit raise" % nm)
@@ -429,7 +452,7 @@ def main():
     for fname, lines in share_regs.items():
         reg_lines.append("")
         reg_lines.append("///|")
-        reg_lines.append("fn register_share_%s() -> Unit {" % mangle(fname.split("/")[-1]))
+        reg_lines.append("fn register_share_%s() -> Unit {" % share_base(fname, db))
         reg_lines.extend(lines)
         reg_lines.append("}")
     # variables
