@@ -1,12 +1,15 @@
-// Port of src/plasma.lisp: the Plasma Dispersion Function NZETA(Z).
+// Port of src/plasma.lisp: the Plasma Dispersion Function, NZETA(Z).
 //
 // This function is related to the complex error function by
 //
 //    NZETA(Z) = %I*SQRT(%PI)*EXP(-Z^2)*(1-ERF(-%I*Z))
 //
-// NZETA(Z) returns the complex value of the Plasma Dispersion Function for
-// complex Z. NZETAR(Z) returns REALPART(NZETA(Z)). NZETAI(Z) returns
-// IMAGPART(NZETA(Z)).
+// NZETA(Z)  returns the complex value of the Plasma Dispersion Function
+// for complex Z.
+//
+// NZETAR(Z)  returns REALPART(NZETA(Z)).
+//
+// NZETAI(Z)  returns IMAGPART(NZETA(Z)).
 
 ///|
 fn z_function(x : Value, y : Value) -> Value raise {
@@ -41,9 +44,9 @@ fn z_function(x : Value, y : Value) -> Value raise {
     nu = 8
   }
   if h > 0.0 {
-    lamb = @math.pow(h2, capn.to_double())
+    lamb = to_double(expt(Flo(h2), int(capn)))
   }
-  let bool = h == 0.0 || lamb == 0.0
+  let use_r = h == 0.0 || lamb == 0.0
   let mut n = nu
   while !(0 > n) {
     t1 = h + (n + 1).to_double() * r1 + y
@@ -62,9 +65,9 @@ fn z_function(x : Value, y : Value) -> Value raise {
   let mut im = if y == 0.0 {
     1.77245384 * @math.exp(-(x * x))
   } else {
-    2.0 * (if bool { r1 } else { s1 })
+    2.0 * (if use_r { r1 } else { s1 })
   }
-  let mut re = -2.0 * (if bool { r2 } else { s2 })
+  let mut re = -2.0 * (if use_r { r2 } else { s2 })
   if ys > 0.0 {
     re = re * xs
   } else {
@@ -73,7 +76,7 @@ fn z_function(x : Value, y : Value) -> Value raise {
     re = (re - r1 * @math.sin(r2)) * xs
     im = r1 * @math.cos(r2) - im
   }
-  mk_simp(q_mlist, [Flo(re), Flo(im)])
+  list([list2(q_mlist, q_simp), Flo(re), Flo(im)])
 }
 
 ///|
@@ -108,4 +111,9 @@ fn d_nzetai(z : Value) -> Value raise {
   } else {
     mk_simp(q_d_nzetai, [z])
   }
+}
+
+///|
+fn init_plasma() -> Unit raise {
+  ()
 }
