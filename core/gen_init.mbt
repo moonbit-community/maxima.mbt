@@ -54,6 +54,8 @@ fn init_generated() -> Unit raise {
   init_nrat4()
   init_acall()
   init_numerical_utils()
+  init_bessel()
+  init_airy()
   init_ellipt()
   init_intpol()
   init_mgrind()
