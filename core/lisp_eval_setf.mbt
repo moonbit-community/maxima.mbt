@@ -97,6 +97,27 @@ fn le__place(place : Value, env : LeEnv) -> LePlace raise {
         "mget" => return le__store_fn_place(head, args, "si::setmget")
         "macro-function" => return le__store_fn_place(head, args, "si::setmacfn")
         "the" => return le__place(cadr(rest), env)
+        "apply" =>
+          // (setf (apply #'aref array indices) value)
+          match car(rest) {
+            Cons({ car: Sym({ name: "function", .. }), cdr: Cons({ car: Sym({ name: "aref", .. }), .. }) }) =>
+              return {
+                args: args[1:].to_array(),
+                access: a => list_star(
+                  [sym("apply"), list2(sym("function"), sym("aref"))] + a,
+                ),
+                store: (a, v) => {
+                  let lead = a[0:a.length() - 1].to_array()
+                  list_star(
+                    [sym("apply"), list2(sym("function"), sym("si::setaref"))] +
+                    lead +
+                    [list3(sym("append"), a[a.length() - 1], list2(sym("list"), v))],
+                  )
+                },
+                simple: true,
+              }
+            _ => ()
+          }
         "second" | "third" | "fourth" | "fifth" | "sixth" | "seventh" | "eighth" | "ninth" | "tenth" => {
           let k = match h.name {
             "second" => 1

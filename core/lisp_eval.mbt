@@ -599,7 +599,82 @@ fn le__funcall(fv : Value, a : Array[Value]) -> Value raise {
 }
 
 ///|
+/// The CL functions compiled inline (when the function cell still holds
+/// the evaluator's own definition): name -> (arity, operation).
+fn le__inline_op(name : String, n : Int) -> ((Value, Value) -> Value raise)? {
+  match (name, n) {
+    ("+", 2) => Some((a, b) => num_add(a, b))
+    ("-", 2) => Some((a, b) => num_sub(a, b))
+    ("*", 2) => Some((a, b) => num_mul(a, b))
+    ("<", 2) => Some((a, b) => lbool(num_lt(a, b)))
+    (">", 2) => Some((a, b) => lbool(num_gt(a, b)))
+    ("<=", 2) => Some((a, b) => lbool(num_le(a, b)))
+    (">=", 2) => Some((a, b) => lbool(num_ge(a, b)))
+    ("=", 2) => Some((a, b) => lbool(num_eq(a, b)))
+    ("eq", 2) => Some((a, b) => lbool(eq(a, b)))
+    ("eql", 2) => Some((a, b) => lbool(eql(a, b)))
+    ("equal", 2) => Some((a, b) => lbool(equal(a, b)))
+    ("cons", 2) => Some((a, b) => cons(a, b))
+    ("1+", 1) => Some((a, _) => one_plus(a))
+    ("1-", 1) => Some((a, _) => one_minus(a))
+    ("car", 1) => Some((a, _) => car_strict(a))
+    ("cdr", 1) => Some((a, _) => cdr_strict(a))
+    ("cadr", 1) => Some((a, _) => cadr(a))
+    ("cddr", 1) => Some((a, _) => cddr(a))
+    ("caar", 1) => Some((a, _) => caar(a))
+    ("cdar", 1) => Some((a, _) => cdar(a))
+    ("null", 1) | ("not", 1) => Some((a, _) => lbool(a is Nil))
+    ("atom", 1) => Some((a, _) => lbool(!(a is Cons(_))))
+    ("consp", 1) => Some((a, _) => lbool(a is Cons(_)))
+    _ => None
+  }
+}
+
+///|
+/// The function cells of the inlined operations as the evaluator set them
+/// up (an inline call checks that the cell has not been redefined).
+let le__inline_cells : Map[Int, LFunc] = Map::new()
+
+///|
 fn le__comp_global_call(
+  s : Symbol,
+  head : Value,
+  args : Value,
+  env : LeEnv,
+) -> LeCode raise {
+  let nargs = length(args)
+  match (le__inline_op(s.name, nargs), le__inline_cells.get(s.id)) {
+    (Some(op), Some(orig)) => {
+      let a0 = le__comp(car(args), env, false)
+      let slow = le__comp_global_call_slow(s, head, args, env)
+      if nargs == 1 {
+        return f => match s.func {
+            Some(lf) if physical_equal(lf, orig) => {
+              let x = a0(f)
+              le__mv.val = None
+              op(x, Nil)
+            }
+            _ => slow(f)
+          }
+      }
+      let a1 = le__comp(cadr(args), env, false)
+      return f => match s.func {
+          Some(lf) if physical_equal(lf, orig) => {
+            let x = a0(f)
+            let y = a1(f)
+            le__mv.val = None
+            op(x, y)
+          }
+          _ => slow(f)
+        }
+    }
+    _ => ()
+  }
+  le__comp_global_call_slow(s, head, args, env)
+}
+
+///|
+fn le__comp_global_call_slow(
   s : Symbol,
   head : Value,
   args : Value,
@@ -791,7 +866,7 @@ fn le__eval_file_form(form : Value) -> Value raise {
       v
     }
     Cons({ car: Sym({ name: "eval-when", .. }), cdr: Cons({ car: sit, cdr: body }) }) =>
-      if le__eval_when_executes(sit, true) {
+      if le__eval_when_executes(sit, false) {
         let mut v : Value = Nil
         for x in body.iter() {
           v = le__eval_file_form(x)

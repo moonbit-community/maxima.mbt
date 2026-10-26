@@ -413,6 +413,31 @@ fn le__tag_p(x : Value) -> Bool {
 }
 
 ///|
+/// A TAGBODY statement: code, or a GO to one of the TAGBODY's own tags
+/// written directly as a statement (`(go tag)`, `(if test (go tag))`,
+/// `(if test nil (go tag))`), which runs as a jump.
+priv enum LeStmt {
+  SCode(LeCode)
+  SJump(Int)
+  SCondJump(LeCode, Bool, Int)
+}
+
+///|
+fn le__local_go(x : Value, tags : Array[Value], idxs : Array[Int]) -> Int? {
+  match x {
+    Cons({ car: Sym({ name: "go", .. }), cdr: Cons({ car: tag, cdr: Nil }) }) => {
+      for i, tg in tags {
+        if eql(tg, tag) {
+          return Some(idxs[i])
+        }
+      }
+      None
+    }
+    _ => None
+  }
+}
+
+///|
 fn le__sf_tagbody(args : Value, _form : Value, env : LeEnv, mv : Bool) -> LeCode raise {
   let tags : Array[Value] = []
   let idxs : Array[Int] = []
@@ -440,17 +465,67 @@ fn le__sf_tagbody(args : Value, _form : Value, env : LeEnv, mv : Bool) -> LeCode
   let slot = le__alloc_slot(env)
   let info = { used: false, mv: false }
   let e = Tags(tags, idxs, slot, info, env)
-  let codes : Array[LeCode] = []
+  let code : Array[LeStmt] = []
   for x in stmts {
-    codes.push(le__comp(x, e, false))
+    match le__local_go(x, tags, idxs) {
+      Some(k) => {
+        code.push(SJump(k))
+        continue
+      }
+      None => ()
+    }
+    match x {
+      Cons({ car: Sym({ name: "if", .. }), cdr: Cons({ car: tst, cdr: Cons({ car: th, cdr: el }) }) }) => {
+        match (le__local_go(th, tags, idxs), el) {
+          (Some(k), Nil) | (Some(k), Cons({ car: Nil, cdr: Nil })) => {
+            code.push(SCondJump(le__comp(tst, e, false), true, k))
+            continue
+          }
+          _ => ()
+        }
+        if th is Nil {
+          match el {
+            Cons({ car: g, cdr: Nil }) =>
+              match le__local_go(g, tags, idxs) {
+                Some(k) => {
+                  code.push(SCondJump(le__comp(tst, e, false), false, k))
+                  continue
+                }
+                None => ()
+              }
+            _ => ()
+          }
+        }
+      }
+      _ => ()
+    }
+    code.push(SCode(le__comp(x, e, false)))
   }
-  let n = codes.length()
+  let n = code.length()
+  // run the statements from `pc`; returns the target of a non-local GO
+  // caught here (or -1 when the end is reached)
+  let run : (LeFrame, Int) -> Unit raise = (f, start) => {
+    let mut pc = start
+    while pc < n {
+      match code[pc] {
+        SCode(c) => {
+          c(f) |> ignore
+          pc += 1
+        }
+        SJump(k) => pc = k
+        SCondJump(c, when_true, k) =>
+          if c(f).truthy() == when_true {
+            pc = k
+          } else {
+            pc += 1
+          }
+      }
+    }
+  }
   if !info.used {
     return le__single(
       f => {
-        for c in codes {
-          c(f) |> ignore
-        }
+        run(f, 0)
         Nil
       },
       mv,
@@ -460,18 +535,21 @@ fn le__sf_tagbody(args : Value, _form : Value, env : LeEnv, mv : Bool) -> LeCode
     f => {
       let tok = cons(Nil, Nil)
       f.vals[slot] = tok
-      let mut pc = 0
-      while pc < n {
-        let c = codes[pc]
-        pc = try {
-          c(f) |> ignore
-          pc + 1
+      let mut start = 0
+      while true {
+        let next = try {
+          run(f, start)
+          -1
         } catch {
           LispError::Go(Cons({ car: tg, cdr: Fix(k) })) if physical_equal_value(
               tg, tok,
             ) => k.to_int()
-          e => raise e
+          err => raise err
         }
+        if next < 0 {
+          break
+        }
+        start = next
       }
       Nil
     },

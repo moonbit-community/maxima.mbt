@@ -1192,6 +1192,12 @@ fn le__register_symbols() -> Unit {
     }
   })
   le__def("fdefinition", a => funcall(sym("symbol-function"), a))
+  // FBOUNDP's true value is the function (as SBCL returns it)
+  le__def("fboundp", a => match le__arg(a, 0) {
+    Sym({ func: Some(lf), .. }) => Func(lf)
+    Sym(s) if le__special_forms().contains(s.name) => t
+    s => if lisp_macro_p(s) { t } else { Nil }
+  })
   le__def("symbol-value", a => {
     let x = le__arg(a, 0)
     if boundp(x) {
@@ -1682,6 +1688,10 @@ fn le__register_eval() -> Unit {
   le__def("sleep", _ => Nil)
   le__def("room", _ => Nil)
   le__def("gc", _ => Nil)
+  le__def("decode-universal-time", a => le__decode_time(to_int64(le__arg(a, 0))))
+  le__def("get-decoded-time", _ => le__decode_time(
+    (wall_time_ms() / 1000UL).reinterpret_as_int64() + 2208988800L,
+  ))
   le__def("get-universal-time", _ => {
     let ms = wall_time_ms()
     int64((ms / 1000UL).reinterpret_as_int64() + 2208988800L)
@@ -1701,6 +1711,43 @@ fn le__register_eval() -> Unit {
     lisp_load_file(le__str(le__arg(a, 0)))
     t
   })
+}
+
+///|
+/// DECODE-UNIVERSAL-TIME (in UTC): second, minute, hour, date, month,
+/// year, day of week, daylight-p, zone.
+fn le__decode_time(ut : Int64) -> Value {
+  let secs = ut - 2208988800L // seconds since 1970-01-01
+  let mut days = secs / 86400L
+  let mut rem = secs % 86400L
+  if rem < 0L {
+    rem += 86400L
+    days -= 1L
+  }
+  // civil_from_days (H. Hinnant)
+  let z = days + 719468L
+  let era = (if z >= 0L { z } else { z - 146096L }) / 146097L
+  let doe = z - era * 146097L
+  let yoe = (doe - doe / 1460L + doe / 36524L - doe / 146096L) / 365L
+  let y = yoe + era * 400L
+  let doy = doe - (365L * yoe + yoe / 4L - yoe / 100L)
+  let mp = (5L * doy + 2L) / 153L
+  let d = doy - (153L * mp + 2L) / 5L + 1L
+  let m = if mp < 10L { mp + 3L } else { mp - 9L }
+  let year = if m <= 2L { y + 1L } else { y }
+  // 1970-01-01 was a Thursday (CL day 3, Monday = 0)
+  let dow = ((days % 7L + 7L) % 7L + 3L) % 7L
+  le__values([
+    Fix(rem % 60L),
+    Fix(rem / 60L % 60L),
+    Fix(rem / 3600L),
+    Fix(d),
+    Fix(m),
+    Fix(year),
+    Fix(dow),
+    Nil,
+    Fix(0L),
+  ])
 }
 
 ///|

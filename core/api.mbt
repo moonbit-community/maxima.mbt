@@ -28,6 +28,7 @@ pub fn exit(code : Int) -> Unit {
 /// Command-line driver. Supported options (a subset of maxima's):
 ///   --batch-string=<s>  evaluate Maxima code and exit
 ///   -b <file> / --batch=<file>  batch a file and exit
+///   --batch-lisp=<file>  load a Lisp source file and exit
 ///   -q / --quiet, --very-quiet, --no-init (accepted)
 /// With no batch options, runs the interactive loop.
 pub fn cli_main(args : Array[String]) -> Int {
@@ -50,6 +51,13 @@ pub fn cli_main(args : Array[String]) -> Int {
       } else if a == "--batch-string" && i + 1 < args.length() {
         i += 1
         actions.push(("string", args[i]))
+      } else if a.has_prefix("--batch-lisp=") {
+        actions.push(
+          ("string", ":lisp (load \"" + a.substring(start=13) + "\");"),
+        )
+      } else if a == "--batch-lisp" && i + 1 < args.length() {
+        i += 1
+        actions.push(("string", ":lisp (load \"" + args[i] + "\");"))
       } else if a.has_prefix("--batch=") {
         actions.push(("file", a.substring(start=8)))
       } else if (a == "-b" || a == "--batch") && i + 1 < args.length() {

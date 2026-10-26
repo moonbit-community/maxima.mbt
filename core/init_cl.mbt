@@ -1226,7 +1226,11 @@ fn maxima_read_eval_print_loop() -> Value raise {
             Nil,
           )
       }
-      format(t, "~{~&~S~}", [results]) |> ignore
+      // (format t "~{~&~S~}" results), with ~& at the stream's column
+      for r in results.iter() {
+        fresh_line() |> ignore
+        prin1(r) |> ignore
+      }
       Nil
     })
     |> ignore

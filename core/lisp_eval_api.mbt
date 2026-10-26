@@ -67,10 +67,38 @@ fn le__init() -> Unit raise {
       set(sym(name), t) |> ignore
     }
   }
-  if !boundp(sym("internal-time-units-per-second")) {
-    set(sym("internal-time-units-per-second"), Fix(1000000L)) |> ignore
+  for c in [
+    ("internal-time-units-per-second", Value::Fix(1000000L)),
+    ("pi", Flo(@math.PI)),
+    ("char-code-limit", Fix(1114112L)),
+    ("array-dimension-limit", Fix(4611686018427387901L)),
+    ("array-total-size-limit", Fix(4611686018427387901L)),
+    ("call-arguments-limit", Fix(4611686018427387903L)),
+    ("lambda-parameters-limit", Fix(4611686018427387903L)),
+    ("multiple-values-limit", Fix(1073741824L)),
+    ("boole-and", Fix(1L)),
+    ("boole-xor", Fix(6L)),
+    ("boole-ior", Fix(7L)),
+    ("single-float-epsilon", Flo(1.1102230246251568e-16)),
+    ("most-positive-single-float", Flo(1.7976931348623157e308)),
+    ("most-negative-single-float", Flo(-1.7976931348623157e308)),
+  ] {
+    if !boundp(sym(c.0)) {
+      set(sym(c.0), c.1) |> ignore
+    }
   }
   le__init_reader_hooks()
+  // the function cells of the operations compiled inline
+  for name in [
+    "+", "-", "*", "<", ">", "<=", ">=", "=", "eq", "eql", "equal", "cons", "1+",
+    "1-", "car", "cdr", "cadr", "cddr", "caar", "cdar", "null", "not", "atom",
+    "consp",
+  ] {
+    match intern(name) {
+      { func: Some(lf), id, .. } => le__inline_cells[id] = lf
+      _ => ()
+    }
+  }
   // Maxima's macros written in Lisp
   let saved = @lisp.reader_package.val
   @lisp.reader_package.val = "maxima"

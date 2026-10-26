@@ -266,6 +266,7 @@ let le__prelude : String =
   #|  `(mputprop ',sym ',val ',indicator))
   #|(defmacro defun-prop (f arg &body body)
   #|  `(setf (get ',(first f) ',(second f)) #'(lambda ,arg ,@body)))
+  #|(defmacro symbol-array (sym) `(get ,sym 'array))
   #|(defmacro ncons (x) `(list ,x))
   #|(defmacro xcons (x y) `(cons ,y ,x))
   #|(defmacro deff (fun val) `(setf (symbol-function ',fun) ,val))
