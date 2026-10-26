@@ -5,4 +5,9 @@ import {
 
 options(
   "is-main": true,
+  link: {
+    "native": {
+      "cc-flags": "-ffp-contract=off",
+    },
+  },
 )

@@ -2,6 +2,7 @@ import {
   "dii/maxima/lisp",
   "moonbitlang/core/bigint",
   "moonbitlang/core/math",
+  "dii/maxima/slatec",
 }
 
 warnings = "-unused_value-unused_error_type-declaration_unimplemented-unused_type_variable-unused_type_declaration-unused_constructor-unused_field-unused_mut-unused_catch_all-unused_try-unused_pattern-unused_package-unused_block_label-unused_loop_variable-missing_priv"
