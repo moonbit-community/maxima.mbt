@@ -35,6 +35,7 @@ boundp
 butlast
 caaadr
 caaar
+caadar
 caaddr
 caadr
 caar
@@ -47,11 +48,13 @@ cadr
 capture_stdout
 car
 car_strict
+cdaadr
 cdaar
 cdaddr
 cdadr
 cdar
 cddar
+cdddar
 cddddr
 cdddr
 cddr

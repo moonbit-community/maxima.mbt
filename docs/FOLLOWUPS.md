@@ -19,3 +19,6 @@
 - RISK: names proclaimed special by declare-top in EARLIER files are special in later files (CL global proclamation). defint treats k m s ans sign ind deg denom val as lexical; rat3 similar. Audit with a script: for each file, specials declared in earlier build-order files that are let-bound in this file.
 - intcv2_mv; intsc second value Nil; ptimes%e throw carries (nil updn) list
 - mhayat let-pw/tlist-mapc declared fns are approximations; expand inline (specfn uses let-pw)
+- set ops now SBCL order (union/intersection/set-difference); factor port assumed order-preserving intersection — recheck if factor tests differ
+- dopgcdcofacts returns 3 (lesfac__dopgcdcofacts3); bakalevelsolve declared tuple but 1 value
+- many private errcatch/errset helpers (risch, limit, solve, cpoly, ratout): consolidate into glue later
