@@ -59,7 +59,39 @@ fn matcom__mcall_mv(f : Value, args : Array[Value]) -> (Value, Value) raise {
       }
     None => ()
   }
-  (mcall(f, list(args)), Nil)
+  // a rule function defined by the Lisp evaluator (from META-FSET or a
+  // translated file) leaves its values in the evaluator's values register
+  le__mv.val = None
+  let v = mcall(f, list(args))
+  let vals = le__values_of(v)
+  (v, if vals.length() > 1 { vals[1] } else { Nil })
+}
+
+///|
+/// `(meta-fset name lambda-form)` when META-PROP-P (the translator asks for
+/// the definitions as Lisp code); otherwise the rule function is installed
+/// as a closure by `fset`.
+fn matcom__meta_fset(name : Value, lambda_form : () -> Value raise, fset : () -> Unit) -> Unit raise {
+  if symval(q_meta_prop_p).truthy() {
+    meta_fset(name, lambda_form()) |> ignore
+  } else {
+    fset()
+  }
+}
+
+///|
+/// `(catch 'match (prog TEM (declare (special . TEM)) ,@PRE ,@PROGRAM ,@POST))`
+fn matcom__catch_prog(tem : Value, pre : Array[Value], program : Value, post : Value) -> Value {
+  list3(
+    q_catch,
+    list2(q_quote, q_match),
+    list_star([
+      q_prog,
+      tem,
+      list2(q_declare, cons(q_special, tem)),
+      append(list(pre), append(program, post)),
+    ]),
+  )
 }
 
 ///|
@@ -781,6 +813,8 @@ fn matcom__delete_equal(x : Value, l : Value) -> Value {
 
 ///|
 fn d_defmatch(form : Value) -> Value raise {
+  let mb = bind(q_meta_prop_p, Nil)
+  defer unbind(mb)
   proc__doldefmatch(cdr(form))
 }
 
@@ -823,14 +857,23 @@ fn proc__doldefmatch(l : Value) -> Value raise {
   let pre = if atom(pt) { [] } else { [matcom__array_check(pt, a)] }
   let params = list_to_array(cons(a, args))
   let ret = if boundlist.truthy() { cons(q_retlist, boundlist) } else { t }
-  matcom__fset_mv(name, fn(actuals) raise {
-    matcom__check_args(actuals, params.length())
-    let pb = bind_all(params.mapi((i, p) => (p, actuals[i])))
-    defer unbind_all(pb)
-    matcom__run_match(tem, pre, program, ret)
-  })
-  add2lnc(name, symval(q_d_rules)) |> ignore
-  mputprop(
+  matcom__meta_fset(
+    name,
+    () => list4(
+      q_lambda,
+      cons(a, args),
+      list2(q_declare, cons(q_special, cons(a, boundlist))),
+      matcom__catch_prog(tem, pre, program, list1(list2(q_return, ret))),
+    ),
+    () => matcom__fset_mv(name, fn(actuals) raise {
+      matcom__check_args(actuals, params.length())
+      let pb = bind_all(params.mapi((i, p) => (p, actuals[i])))
+      defer unbind_all(pb)
+      matcom__run_match(tem, pre, program, ret)
+    }),
+  )
+  meta_add2lnc(name, q_d_rules) |> ignore
+  meta_mputprop(
     name,
     list3(list1(q_mlist), pt_star, cons(list1(q_mlist), args)),
     q_d_rule,
@@ -843,6 +886,8 @@ fn proc__doldefmatch(l : Value) -> Value raise {
 
 ///|
 fn d_tellsimp(form : Value) -> Value raise {
+  let mb = bind(q_meta_prop_p, Nil)
+  defer unbind(mb)
   twoargcheck(form) |> ignore
   proc__doltellsimp(cdr(form))
 }
@@ -920,15 +965,99 @@ fn proc__doltellsimp(l : Value) -> Value raise {
   }
   let oname = getop(name)
   let pgname = matcom__rule_name(oname, rulenum)
-  mputprop(pgname, name, q_ruleof) |> ignore
-  add2lnc(pgname, symval(q_d_rules)) |> ignore
-  mputprop(name, one_plus(rulenum), q_rulenum) |> ignore
+  meta_mputprop(pgname, name, q_ruleof) |> ignore
+  meta_add2lnc(pgname, q_d_rules) |> ignore
+  meta_mputprop(name, one_plus(rulenum), q_rulenum) |> ignore
   let tem = nconc(symval(q_boundlist), cdr(reverse(symval(q_topreflist))))
   let program = symval(q_program)
   let pre = [matcom__array_check(pt, q_x)]
   let ret = list3(q_values, memqargs(rhs), t)
   let rname = name
-  matcom__fset_mv(pgname, fn(args) raise {
+  let tellsimp_form = fn() -> Value raise {
+    let otherwise = if oldstuff.truthy() {
+      list2(t, list4(oldstuff, q_x, q_a2, if eq(rname, q_mtimes) || eq(rname, q_mplus) { q_a3 } else { t }))
+    } else {
+      list2(t, list3(q_eqtest, q_x, q_x))
+    }
+    let ret_clause = if !eq(rname, q_mtimes) && !eq(rname, q_mplus) {
+      list2(
+        q_return,
+        list4(
+          q_cond,
+          list2(q_rule_hit, q_ans),
+          list2(
+            list3(
+              q_and,
+              list2(q_not, q_dosimp),
+              list([q_member, list2(q_quote, q_simp), list2(q_cdar, q_x), kw("test"), list2(q_function, q_eq)]),
+            ),
+            q_x,
+          ),
+          otherwise,
+        ),
+      )
+    } else {
+      list2(
+        q_return,
+        list4(
+          q_cond,
+          list2(list3(q_and, list3(q_equal, Fix(1L), q_a2), q_rule_hit), q_ans),
+          list2(
+            q_rule_hit,
+            list2(
+              q_meval,
+              list2(
+                q_quote,
+                list3(list1(if eq(rname, q_mtimes) { q_mexpt } else { q_mtimes }), q_ans, q_a2),
+              ),
+            ),
+          ),
+          otherwise,
+        ),
+      )
+    }
+    list4(
+      q_lambda,
+      list3(q_x, q_a2, q_a3),
+      list2(q_declare, list4(q_special, q_x, q_a2, q_a3)),
+      list([
+        q_prog,
+        list3(q_ans, a, q_rule_hit),
+        list2(q_declare, list3(q_special, q_ans, a)),
+        list3(
+          q_setq,
+          q_x,
+          list3(
+            q_cons,
+            list2(q_car, q_x),
+            list3(
+              q_setq,
+              a,
+              list3(
+                q_cond,
+                list2(q_a3, list2(q_cdr, q_x)),
+                list2(
+                  t,
+                  list3(
+                    q_mapcar,
+                    list2(q_function, list3(q_lambda, list1(q_h), list3(q_simplifya, q_h, q_a3))),
+                    list2(q_cdr, q_x),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        list3(
+          q_multiple_value_setq,
+          list2(q_ans, q_rule_hit),
+          matcom__catch_prog(tem, pre, program, list1(list2(q_return, ret))),
+        ),
+        ret_clause,
+      ]),
+    )
+  }
+  matcom__meta_fset(pgname, tellsimp_form, () => matcom__fset_mv(pgname, fn(args) raise {
     // (lambda (x a2 a3) (declare (special x a2 a3)) (prog (ans a rule-hit) ...))
     matcom__check_args(args, 3)
     let lb = bind_all([(q_x, args[0]), (q_a2, args[1]), (q_a3, args[2])])
@@ -980,17 +1109,17 @@ fn proc__doltellsimp(l : Value) -> Value raise {
       eqtest(x, x)
     }
     (res, Nil)
-  })
-  mputprop(pgname, list3(list1(q_mequal), pt, rhs), q_d_rule) |> ignore
+  }))
+  meta_mputprop(pgname, list3(list1(q_mequal), pt, rhs), q_d_rule) |> ignore
   if mget(name, q_oldrules) is Nil {
-    mputprop(name, list1(get(name, q_operators)), q_oldrules) |> ignore
+    meta_mputprop(name, list1(get(name, q_operators)), q_oldrules) |> ignore
   }
-  putprop(name, pgname, q_operators) |> ignore
+  meta_putprop(name, pgname, q_operators) |> ignore
   free_rule_symbols(get(pgname, q_rule_symbols)) |> ignore
   putprop(pgname, symval(q_ear_current_rule_symbols), q_rule_symbols) |> ignore
   cons(
     list1(q_mlist),
-    mputprop(name, cons(pgname, mget(name, q_oldrules)), q_oldrules),
+    meta_mputprop(name, cons(pgname, mget(name, q_oldrules)), q_oldrules),
   )
 }
 
@@ -1006,6 +1135,8 @@ fn p_to_dol(l : Value) -> Value raise {
 
 ///|
 fn d_tellsimpafter(form : Value) -> Value raise {
+  let mb = bind(q_meta_prop_p, Nil)
+  defer unbind(mb)
   twoargcheck(form) |> ignore
   proc__doltellsimpafter(cdr(form))
 }
@@ -1061,15 +1192,70 @@ fn proc__doltellsimpafter(l : Value) -> Value raise {
   let pgname = matcom__rule_name(oname, rulenum)
   let my_afterflag = get_rule_symbol()
   set(my_afterflag, Nil) |> ignore
-  mputprop(pgname, name, q_ruleof) |> ignore
-  add2lnc(pgname, symval(q_d_rules)) |> ignore
-  mputprop(name, one_plus(rulenum), q_rulenum) |> ignore
+  meta_mputprop(pgname, name, q_ruleof) |> ignore
+  meta_add2lnc(pgname, q_d_rules) |> ignore
+  meta_mputprop(name, one_plus(rulenum), q_rulenum) |> ignore
   let tem = nconc(symval(q_boundlist), cdr(reverse(symval(q_topreflist))))
   let program = symval(q_program)
   let rhs_form = memqargs(rhs)
   let announce = symval(q_d_announce_rules_firing).truthy()
   let rname = name
-  matcom__fset_mv(pgname, fn(args) raise {
+  lisp_eval_form(list2(q_proclaim, list2(q_quote, list2(q_special, my_afterflag))))
+  |> ignore
+  let after_form = fn() -> Value raise {
+    let ret = if announce {
+      list2(
+        q_return,
+        list3(
+          q_values,
+          list4(q_announce_rule_firing, list2(q_quote, pgname), q_x, rhs_form),
+          t,
+        ),
+      )
+    } else {
+      list2(q_return, list3(q_values, rhs_form, t))
+    }
+    let body = Collector::new()
+    body.add(q_prog)
+    body.add(list3(a, my_afterflag, q_rule_hit))
+    body.add(list2(q_declare, list3(q_special, a, my_afterflag)))
+    body.add(list3(q_setq, my_afterflag, t))
+    if oldstuff.truthy() {
+      body.add(
+        list2(
+          q_cond,
+          list2(
+            list3(
+              q_or,
+              list2(q_atom, q_x),
+              list2(q_not, list3(q_eq, list2(q_caar, q_x), list2(q_quote, rname))),
+            ),
+            list2(q_return, q_x),
+          ),
+        ),
+      )
+    }
+    body.add(list3(q_setq, a, if plustimes { q_x } else { list2(q_cdr, q_x) }))
+    body.add(
+      list3(
+        q_multiple_value_setq,
+        list2(q_ans, q_rule_hit),
+        matcom__catch_prog(tem, [matcom__array_check(pt, q_x)], program, list1(ret)),
+      ),
+    )
+    body.add(list2(q_return, list4(q_if, q_rule_hit, q_ans, list3(q_eqtest, q_x, q_x))))
+    list4(
+      q_lambda,
+      list3(q_x, q_ans, q_a3),
+      if oldstuff.truthy() {
+        list3(q_setq, q_x, list4(oldstuff, q_x, q_ans, q_a3))
+      } else {
+        list3(q_setq, q_x, list4(q_simpargs1, q_x, q_ans, q_a3))
+      },
+      list3(q_cond, list2(my_afterflag, q_x), list2(t, body.result())),
+    )
+  }
+  matcom__meta_fset(pgname, after_form, () => matcom__fset_mv(pgname, fn(args) raise {
     // (lambda (x ans a3) ...); ANS is special.
     matcom__check_args(args, 3)
     let mut x = args[0]
@@ -1111,17 +1297,17 @@ fn proc__doltellsimpafter(l : Value) -> Value raise {
     let (ans, rule_hit) = matcom__run_match(tem, pre, program, ret)
     set(q_ans, ans) |> ignore
     (if rule_hit.truthy() { ans } else { eqtest(x, x) }, Nil)
-  })
-  mputprop(pgname, list3(list1(q_mequal), pt, rhs), q_d_rule) |> ignore
+  }))
+  meta_mputprop(pgname, list3(list1(q_mequal), pt, rhs), q_d_rule) |> ignore
   if mget(name, q_oldrules) is Nil {
-    mputprop(name, list1(get(name, q_operators)), q_oldrules) |> ignore
+    meta_mputprop(name, list1(get(name, q_operators)), q_oldrules) |> ignore
   }
-  putprop(name, pgname, q_operators) |> ignore
+  meta_putprop(name, pgname, q_operators) |> ignore
   free_rule_symbols(get(pgname, q_rule_symbols)) |> ignore
   putprop(pgname, symval(q_ear_current_rule_symbols), q_rule_symbols) |> ignore
   cons(
     list1(q_mlist),
-    mputprop(name, cons(pgname, mget(name, q_oldrules)), q_oldrules),
+    meta_mputprop(name, cons(pgname, mget(name, q_oldrules)), q_oldrules),
   )
 }
 
@@ -1142,6 +1328,8 @@ fn announce_rule_firing(
 
 ///|
 fn d_defrule(form : Value) -> Value raise {
+  let mb = bind(q_meta_prop_p, Nil)
+  defer unbind(mb)
   proc__doldefrule(cdr(form))
 }
 
@@ -1184,17 +1372,26 @@ fn proc__doldefrule(l : Value) -> Value raise {
   let program = symval(q_program)
   let pre = if atom(pt) { [] } else { [matcom__array_check(pt, a)] }
   let ret = list3(q_values, memqargs(rhs), t)
-  matcom__fset_mv(name, fn(args) raise {
-    // (lambda (a) (declare (special a)) (catch 'match (prog ...)))
-    matcom__check_args(args, 1)
-    let b = bind(a, args[0])
-    defer unbind(b)
-    matcom__run_match(tem, pre, program, ret)
-  })
-  add2lnc(name, symval(q_d_rules)) |> ignore
+  matcom__meta_fset(
+    name,
+    () => list4(
+      q_lambda,
+      list1(a),
+      list2(q_declare, list2(q_special, a)),
+      matcom__catch_prog(tem, pre, program, list1(list2(q_return, ret))),
+    ),
+    () => matcom__fset_mv(name, fn(args) raise {
+      // (lambda (a) (declare (special a)) (catch 'match (prog ...)))
+      matcom__check_args(args, 1)
+      let b = bind(a, args[0])
+      defer unbind(b)
+      matcom__run_match(tem, pre, program, ret)
+    }),
+  )
+  meta_add2lnc(name, q_d_rules) |> ignore
   let l = list3(list1(q_mequal), lhs_star, rhs_star)
-  mputprop(name, l, q_d_rule) |> ignore
-  mputprop(name, q_d_defrule, q_d_ruletype) |> ignore
+  meta_mputprop(name, l, q_d_rule) |> ignore
+  meta_mputprop(name, q_d_defrule, q_d_ruletype) |> ignore
   free_rule_symbols(get(name, q_rule_symbols)) |> ignore
   putprop(name, symval(q_ear_current_rule_symbols), q_rule_symbols) |> ignore
   list3(list1(q_msetq), name, cons(list1(q_marrow), cdr(l)))

@@ -57,8 +57,8 @@ fn transs__print(sb : StringBuilder, x : Value, pretty~ : Bool = false) -> Unit 
         // keyword; CL:SIGNUM is shadowed in MAXIMA, so it prints with the
         // package name.
         sb.write_string(
-          if cl.has_prefix("CL:") {
-            "COMMON-LISP:" + cl.substring(start=3)
+          if cl.has_prefix("CL::") {
+            "COMMON-LISP:" + cl.substring(start=4)
           } else {
             cl
           },

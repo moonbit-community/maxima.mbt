@@ -312,7 +312,9 @@ fn commac__exploden_base(symb : Value) -> Value raise {
     // readable as a number.
     let base = commac__print_base()
     let s = if base == 10 {
-      format_to_string("~A", [symb])
+      // (format nil "~A" n) honors *PRINT-RADIX*
+      format_to_string("~A", [symb]) +
+      (if symval(q_ear_print_radix).truthy() { "." } else { "" })
     } else {
       to_big(symb).to_string(radix=base).to_upper()
     }

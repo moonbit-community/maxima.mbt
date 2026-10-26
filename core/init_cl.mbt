@@ -1302,6 +1302,12 @@ fn maxima_load_pathname_directory() -> Value raise {
 }
 
 ///|
+/// The $- and %-symbols mentioned by the core files (see tools/gen.py).
+let init_cl__core_symbol_names : Set[String] = Set::from_array(
+  gen_core_symbol_names,
+)
+
+///|
 fn init_init_cl() -> Unit raise {
   // Autoconf variables for the port's (source-tree) layout.
   defvar_init(init_cl__q_autoconf_prefix, Str(init_cl__default_prefix))
@@ -1357,11 +1363,26 @@ fn init_init_cl() -> Unit raise {
   defvar_init(q_ear_builtin_symbol_props, make_hash_table())
   defvar_init(q_ear_builtin_symbol_values, make_hash_table())
   let props_tbl = symval(q_ear_builtin_symbol_props)
+  // the reader interned the core files' symbols in CL Maxima
+  for n in gen_core_symbol_names {
+    sym(n) |> ignore
+  }
   for sy in all_symbols() {
     let name = sy.name
+    let s = Value::Sym(sy)
+    // CL Maxima's MAXIMA package holds only the symbols its own (core)
+    // code mentions or creates; the port interns the symbols of every file,
+    // share packages included, so a symbol counts as built in when a core
+    // file mentions it or the core has given it a property, a value or a
+    // function.
     if name != "" &&
-      (char_at(name, 0) == '$' || char_at(name, 0) == '%') {
-      let s = Value::Sym(sy)
+      (char_at(name, 0) == '$' || char_at(name, 0) == '%') &&
+      (
+        init_cl__core_symbol_names.contains(name) ||
+        symbol_plist(s).truthy() ||
+        boundp(s) ||
+        fboundp(s)
+      ) {
       set(q_ear_builtin_symbols, cons(s, symval(q_ear_builtin_symbols)))
       |> ignore
       sethash(s, props_tbl, copy_tree(symbol_plist(s))) |> ignore
