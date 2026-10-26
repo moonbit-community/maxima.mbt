@@ -172,6 +172,7 @@ fn share_load_unwind_protect() -> Unit raise {
 fn share_load_grobner() -> Unit raise {
   init_vars_n_dot_dot_share_contrib__cg_robner_grobner()
   register_share_grobner()
+  init_share_grobner()
 }
 
 ///|
