@@ -13,6 +13,7 @@ pub fn initialize() -> Unit raise {
     init_macdes()
     globals__record_other_defmvars()
     register_cl_functions()
+    init_translate_compat()
     init_cl__setup_paths()
   }
 }

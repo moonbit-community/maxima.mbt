@@ -18,6 +18,17 @@ def run(cmd, stmt, timeout=60):
     except subprocess.TimeoutExpired:
         return "<timeout>"
     lines = [l.rstrip() for l in out.splitlines() if l.strip()]
+    # the reference build has no help index; drop its startup warning
+    keep, skip = [], False
+    for l in lines:
+        if l.startswith("WARNING: Maxima is unable to set up the help system"):
+            skip = True
+            continue
+        if skip and (l.startswith("(Details:") or l.startswith(" ") or l.startswith("\"")):
+            continue
+        skip = False
+        keep.append(l)
+    lines = keep
     return "\n".join(l for l in lines if not l.startswith("display2d"))
 
 
