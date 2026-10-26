@@ -263,6 +263,23 @@ fn le__invoke(lam : LeLambda, captured : LeFrame?, args : Array[Value]) -> Value
   if n < nreq {
     return le__arg_count_error(lam.name, n)
   }
+  // fast path: only required lexical parameters
+  if !c.any_dyn &&
+    c.opt.length() == 0 &&
+    c.rest is None &&
+    !c.has_key &&
+    c.aux.length() == 0 {
+    if n > nreq {
+      return le__arg_count_error(lam.name, n)
+    }
+    for i in 0..<nreq {
+      match c.req[i] {
+        PLex(slot) => fr.vals[slot] = args[i]
+        _ => ()
+      }
+    }
+    return (c.body)(fr)
+  }
   let binds : Array[Binding] = []
   defer {
     if binds.length() > 0 {
