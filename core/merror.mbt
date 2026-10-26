@@ -88,6 +88,20 @@ fn merror__condition(sstring : Value, l : Value, text? : Bool = true) -> Error {
 
 ///|
 fn merror(sstring : Value, l : Value) -> Value raise {
+  match merror__merror_cell.val {
+    Some(f) => f(sstring, l)
+    None => merror__merror_base(sstring, l)
+  }
+}
+
+///|
+/// The function cell of MERROR. Share packages (share/contrib/noninteractive/noninteractive.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let merror__merror_cell : Ref[((Value, Value) -> Value raise)?] = Ref(None)
+
+///|
+fn merror__merror_base(sstring : Value, l : Value) -> Value raise {
   set(q_d_error, cons(list2(q_mlist, q_simp), cons(sstring, l))) |> ignore
   if symval(q_ear_merror_signals__dolerror_p).truthy() {
     raise merror__condition(sstring, l, text=false)

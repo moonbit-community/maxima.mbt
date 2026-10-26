@@ -20,6 +20,20 @@ fn nforma__type_of(form : Value) -> Value {
 
 ///|
 fn nformat(form : Value) -> Value raise {
+  match nforma__nformat_cell.val {
+    Some(f) => f(form)
+    None => nforma__nformat_base(form)
+  }
+}
+
+///|
+/// The function cell of NFORMAT. Share packages (share/contrib/unit/unit-functions.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let nforma__nformat_cell : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
+fn nforma__nformat_base(form : Value) -> Value raise {
   if atom(form) {
     if realp(form) && minusp(form) && float_inf_p(form) is Nil {
       return list2(list1(q_mminus), num_neg(form))

@@ -410,6 +410,10 @@ fn mlisp__meval1_atom(form : Value) -> (Value, Value) raise {
 
 ///|
 fn meval1(form : Value) -> (Value, Value) raise {
+  // timers of share/contrib/timeout.lisp (polled instead of interrupts)
+  if share_timeout__deadline.val != 0UL {
+    share_timeout__check_timers()
+  }
   if atom(form) {
     return mlisp__meval1_atom(form)
   }

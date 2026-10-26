@@ -122,7 +122,21 @@ fn ask_declare(x : Value, property : Value) -> Value raise {
 ///|
 /// Asks the user a question about the property of an object.
 /// Returns only $yes, $no or $unknown.
-fn ask_prop(
+fn ask_prop(object_ : Value, property : Value, fun_or_number : Value) -> Value raise {
+  match askp__ask_prop_cell.val {
+    Some(f) => f(object_, property, fun_or_number)
+    None => askp__ask_prop_base(object_, property, fun_or_number)
+  }
+}
+
+///|
+/// The function cell of ASK-PROP. Share packages (share/contrib/noninteractive/asksign1.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let askp__ask_prop_cell : Ref[((Value, Value, Value) -> Value raise)?] = Ref(None)
+
+///|
+fn askp__ask_prop_base(
   object_ : Value,
   property : Value,
   fun_or_number : Value,

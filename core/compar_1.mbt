@@ -1029,6 +1029,20 @@ fn mnot(form : Value) -> Value raise {
 
 ///|
 fn d_askequal(a : Value, b : Value) -> Value raise {
+  match compar__d_askequal_cell.val {
+    Some(f) => f(a, b)
+    None => compar__d_askequal_base(a, b)
+  }
+}
+
+///|
+/// The function cell of $ASKEQUAL. Share packages (share/contrib/noninteractive/asksign1.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let compar__d_askequal_cell : Ref[((Value, Value) -> Value raise)?] = Ref(None)
+
+///|
+fn compar__d_askequal_base(a : Value, b : Value) -> Value raise {
   // presumably handles mbags and extended reals.
   let answer = meqp(sratsimp(a), sratsimp(b))
   if eq(answer, t) {
@@ -1498,11 +1512,21 @@ fn match_sign(
 /// the question ($pz, $nz, $pn, $znz); SQUARED means the sign of EXPR^2 is
 /// wanted. The special SIGN holds the best current guess; the result is
 /// stored with TDPOS/TDNEG/TDZERO/TDPN and SIGN is set.
-fn ensure_sign(
-  expr : Value,
-  domain? : Value = Nil,
-  squared? : Value = Nil,
-) -> Value raise {
+fn ensure_sign(expr : Value, domain? : Value = Nil, squared? : Value = Nil) -> Value raise {
+  match compar__ensure_sign_cell.val {
+    Some(f) => f(expr, domain, squared)
+    None => compar__ensure_sign_base(expr, domain, squared)
+  }
+}
+
+///|
+/// The function cell of ENSURE-SIGN. Share packages (share/contrib/noninteractive/asksign1.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let compar__ensure_sign_cell : Ref[((Value, Value, Value) -> Value raise)?] = Ref(None)
+
+///|
+fn compar__ensure_sign_base(expr : Value, domain : Value, squared : Value) -> Value raise {
   while true {
     let new_sign = match_sign(compar__sign(), domain, expr, squared)
     if new_sign.truthy() {

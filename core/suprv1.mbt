@@ -416,6 +416,20 @@ fn suprv1__mcatch(f : () -> Value raise) -> Value raise {
 
 ///|
 fn meval_star(expr : Value) -> Value raise {
+  match suprv1__meval_star_cell.val {
+    Some(f) => f(expr)
+    None => suprv1__meval_star_base(expr)
+  }
+}
+
+///|
+/// The function cell of MEVAL*. Share packages (share/contrib/noninteractive/asksign1.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let suprv1__meval_star_cell : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
+fn suprv1__meval_star_base(expr : Value) -> Value raise {
   suprv1__with_top_level_environment(() => meval(expr))
 }
 
@@ -774,6 +788,20 @@ fn kill1_atom(x : Value) -> Value raise {
 
 ///|
 fn kill1(x : Value) -> Value raise {
+  match suprv1__kill1_cell.val {
+    Some(f) => f(x)
+    None => suprv1__kill1_base(x)
+  }
+}
+
+///|
+/// The function cell of KILL1. Share packages (share/contrib/unit/unit-functions.lisp) redefine
+/// it at load time, as CL Maxima does with DEFUN; callers in the port reach
+/// the current definition through this cell (None: the standard one).
+let suprv1__kill1_cell : Ref[((Value) -> Value raise)?] = Ref(None)
+
+///|
+fn suprv1__kill1_base(x : Value) -> Value raise {
   if stringp(x) && !getopr0(x).truthy() {
     return Nil
   }
