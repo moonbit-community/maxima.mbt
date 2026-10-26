@@ -1140,6 +1140,7 @@ fn maxima_interactive(quiet? : Bool = false) -> Unit raise {
 fn init_macsys() -> Unit raise {
   defvar_init(macsys__q_query_input, Nil)
   register_mspec(macsys__q_create_list, macsys__d_create_list)
+  trmode__init()
   let (sec, min, hour, day, month, year) = macsys__now_decoded()
   macsys__build_time.val = format_to_string(
     "~4,'0d-~2,'0d-~2,'0d ~2,'0d:~2,'0d:~2,'0d",
