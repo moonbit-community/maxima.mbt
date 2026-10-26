@@ -60,6 +60,7 @@ fn init_generated() -> Unit raise {
   init_spgcd()
   init_db()
   init_compar()
+  init_nummod()
   init_sinint()
   init_risch()
   init_irinte()
@@ -83,6 +84,7 @@ fn init_generated() -> Unit raise {
   init_psolve()
   init_algsys()
   init_mtrace()
+  init_expintegral()
   init_rand_mt19937()
   init_asum()
   init_fortra()
@@ -100,4 +102,5 @@ fn init_generated() -> Unit raise {
   init_pois3()
   init_todd_coxeter()
   init_max_ext()
+  init_init_cl()
 }
