@@ -19,6 +19,8 @@ pub fn alphanumericp(Char) -> Bool
 
 pub fn append(Value, Value) -> Value
 
+pub fn append_file(String, String) -> Unit raise LispError
+
 pub fn append_n(Array[Value]) -> Value
 
 pub fn apply(Value, Value) -> Value raise
@@ -616,6 +618,8 @@ pub fn one_minus(Value) -> Value raise LispError
 pub fn one_plus(Value) -> Value raise LispError
 
 pub fn open_input_file(String) -> Value raise LispError
+
+pub fn open_output_file(String, append? : Bool) -> Value raise LispError
 
 pub fn out_stream(Value) -> LStream
 

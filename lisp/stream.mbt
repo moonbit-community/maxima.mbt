@@ -218,6 +218,38 @@ pub fn open_input_file(path : String) -> Value raise LispError {
 }
 
 ///|
+#borrow(path, b)
+extern "c" fn c_append_file(path : Bytes, b : Bytes, len : Int) -> Int = "maxima_append_file"
+
+///|
+/// Append a string (UTF-8) to a file, creating the file if needed.
+pub fn append_file(path : String, contents : String) -> Unit raise LispError {
+  let b = @utf8.encode(contents)
+  if c_append_file(cstr(path), b, b.length()) != 0 {
+    raise Condition(intern("file-error"), "cannot write file \{path}", Str(path))
+  }
+}
+
+///|
+/// `(open path :direction :output :if-does-not-exist :create
+/// :if-exists (if append :append :supersede))`: a character output stream
+/// whose output goes straight to the end of the file (unbuffered, so the
+/// file is complete without a CLOSE).
+pub fn open_output_file(
+  path : String,
+  append? : Bool = false,
+) -> Value raise LispError {
+  if append {
+    append_file(path, "")
+  } else {
+    write_file(path, "")
+  }
+  Stream(
+    new_stream(name=path, sink=s => append_file(path, s) catch { _ => () }),
+  )
+}
+
+///|
 /// `(get-output-stream-string s)`
 pub fn get_output_stream_string(s : Value) -> String {
   match s {

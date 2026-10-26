@@ -4,6 +4,7 @@ all_symbols
 alpha_char_p
 alphanumericp
 append
+append_file
 append_n
 apply
 aref
@@ -303,6 +304,7 @@ oddp
 one_minus
 one_plus
 open_input_file
+open_output_file
 out_stream
 parse_integer
 parse_number_token

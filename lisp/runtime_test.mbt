@@ -569,3 +569,22 @@ test "process primitives" {
   inspect(shell_command_output("printf hello"), content="(0, hello)")
   assert_true(current_directory().length() > 0)
 }
+
+///|
+test "output file streams" {
+  let path = "_build/runtime_test_output_file.txt"
+  let s = open_output_file(path)
+  write_string("ab", stream=s)
+  terpri(stream=s)
+  inspect(stream_column(stream=s), content="0")
+  write_string("ü", stream=s)
+  inspect(read_file(path), content="ab\nü")
+  // :if-exists :append keeps the contents; the default supersedes them
+  let s2 = open_output_file(path, append=true)
+  write_string("c", stream=s2)
+  inspect(read_file(path), content="ab\nüc")
+  let _ = open_output_file(path)
+  inspect(read_file(path), content="")
+  append_file(path, "x")
+  inspect(read_file(path), content="x")
+}

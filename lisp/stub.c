@@ -140,3 +140,13 @@ moonbit_bytes_t maxima_fd_read(int32_t fd, int32_t max) {
 
 MOONBIT_FFI_EXPORT
 int32_t maxima_fd_close(int32_t fd) { return close(fd); }
+
+/* Append LEN bytes to the file PATH (created if missing); 0 on success. */
+MOONBIT_FFI_EXPORT
+int32_t maxima_append_file(moonbit_bytes_t path, moonbit_bytes_t b, int32_t len) {
+  FILE *f = fopen((const char *)path, "ab");
+  if (!f) return -1;
+  size_t w = fwrite(b, 1, (size_t)len, f);
+  int r = fclose(f);
+  return (w == (size_t)len && r == 0) ? 0 : -1;
+}
