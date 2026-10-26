@@ -1,3 +1,6 @@
 - complex-number-p returns 3 values; hypgeo uses private hypgeo__complex_number_p_mv
 - ordmexpt declared as 2 values but returns 1 (simp port returns (r, Nil))
 - simp_2 funcalls sym('to'), 'bigfloat::abs', 'bigfloat::signum' -> numeric port installs
+- multiple values not declared: separc (separc_mv), rischform (_mv), rischlogeprog (_mv), getfncoeff (_mv)
+- risch has private risch__errcatch reproducing Lisp errcatch cleanup; consider shared glue version
+- bessel/airy numerics depend on slatec (excluded); need a plan (mechanical f2cl->MoonBit translation)
