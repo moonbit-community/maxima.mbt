@@ -2,94 +2,94 @@
 
 | file | status | passed |
 |---|---|---|
-| rtest_ask1 | ok | 66/69 |
+| rtest_ask1 | ok | 70/70 |
 | rtest_sqdnst | ok | 13/13 |
 | rtest_extensions | ok | 18/18 |
-| rtest_rules | exit -6 | incomplete |
-| rtestnset | exit -6 | incomplete |
-| rtest1 | exit -6 | incomplete |
-| rtest1a | ok | 50/54 |
-| rtest2 | exit -6 | incomplete |
+| rtest_rules | ok | 241/242 |
+| rtestnset | ok | 672/672 |
+| rtest1 | ok | 206/208 |
+| rtest1a | ok | 54/54 |
+| rtest2 | ok | 313/322 |
 | rtest4 | ok | 120/120 |
 | rtest5 | ok | 81/85 |
-| rtest6 | ok | 174/182 |
-| rtest6a | ok | incomplete |
-| rtest6b | exit -6 | incomplete |
+| rtest6 | ok | 182/182 |
+| rtest6a | ok | 91/91 |
+| rtest6b | ok | 58/58 |
 | rtest7 | ok | 106/106 |
 | rtest9 | ok | 89/89 |
-| rtest9a | ok | incomplete |
+| rtest9a | ok | 170/170 |
 | rtest10 | ok | 79/79 |
-| rtest11 | exit -6 | incomplete |
-| rtest13 | exit -6 | incomplete |
-| rtest13s | exit -6 | incomplete |
+| rtest11 | ok | 258/258 |
+| rtest13 | ok | 39/39 |
+| rtest13s | ok | 18/18 |
 | rtest14 | ok | incomplete |
-| rtest15 | ok | incomplete |
-| rtest16 | exit -6 | incomplete |
-| rtestode | ok | incomplete |
+| rtest15 | ok | 409/430 |
+| rtest16 | ok | 1109/1118 |
+| rtestode | ok | 109/109 |
 | rtestode_zp | ok | 30/30 |
-| rtest3 | ok | incomplete |
-| rtest8 | ok | 212/215 |
+| rtest3 | ok | 250/250 |
+| rtest8 | ok | 215/215 |
 | rtest12 | ok | 126/126 |
-| rtesthyp | ok | incomplete |
-| rtest_hypgeo | ok | 2/71 |
+| rtesthyp | ok | 370/418 |
+| rtest_hypgeo | ok | 247/324 |
 | rtestmt19937 | ok | 15/15 |
-| rtest_allnummod | ok | 556/575 |
-| rtest_maxmin | ok | incomplete |
-| rtestconjugate | ok | 261/291 |
-| rtestsum | ok | incomplete |
-| rtest_trig | timeout | incomplete |
+| rtest_allnummod | ok | 575/575 |
+| rtest_maxmin | ok | 110/110 |
+| rtestconjugate | ok | 289/291 |
+| rtestsum | ok | 345/348 |
+| rtest_trig | ok | 190/231 |
 | rtest_zeta | ok | 32/32 |
 | rtest_diff_invtrig | ok | 26/26 |
 | rtest_scalarp | ok | 22/22 |
 | rtest_everysome | ok | 84/84 |
-| rtestint | ok | incomplete |
-| rtest_mactex | exit -6 | incomplete |
-| rtest_numth | ok | 209/237 |
+| rtestint | ok | 352/357 |
+| rtest_mactex | ok | 265/265 |
+| rtest_numth | ok | 210/237 |
 | rtestifactor | ok | 34/34 |
-| rtest_equal | ok | 210/212 |
-| rtest_abs | ok | 170/175 |
-| rtest_taylor | ok | incomplete |
+| rtest_equal | ok | 212/212 |
+| rtest_abs | ok | 175/175 |
+| rtest_taylor | ok | 246/246 |
 | rtest_dot | ok | 72/72 |
 | rtest_mset | ok | incomplete |
 | rtest_boolean | ok | 115/116 |
-| rtest_round | ok | 99/101 |
-| rtest_map | ok | 139/145 |
-| rtest_sign | exit -6 | incomplete |
+| rtest_round | ok | 101/101 |
+| rtest_map | ok | 145/145 |
+| rtest_sign | ok | 800/800 |
 | rtest_algebraic | ok | 50/50 |
-| rtest_gamma | ok | 793/910 |
-| rtest_expintegral | ok | 199/226 |
-| rtest_signum | ok | 98/114 |
+| rtest_gamma | ok | 811/910 |
+| rtest_expintegral | ok | 215/226 |
+| rtest_signum | ok | 111/114 |
 | rtest_lambert_w | ok | 61/61 |
-| rtest_elliptic | ok | 267/273 |
-| rtest_integrate | ok | incomplete |
+| rtest_elliptic | ok | 273/273 |
+| rtest_integrate | ok | 982/1000 |
 | rtest_integrate_special | ok | 53/53 |
-| rtest_sqrt | ok | incomplete |
-| rtest_carg | ok | 56/64 |
-| rtest_log | ok | incomplete |
-| rtest_power | ok | incomplete |
-| rtestdefstruct | ok | 32/34 |
-| rtest_limit | ok | incomplete |
-| rtest_powerseries | ok | incomplete |
-| rtest_laplace | ok | incomplete |
+| rtest_sqrt | ok | 317/317 |
+| rtest_carg | ok | 64/64 |
+| rtest_log | ok | 140/140 |
+| rtest_power | ok | 79/79 |
+| rtestdefstruct | ok | 34/34 |
+| rtest_limit | ok | 448/454 |
+| rtest_powerseries | ok | 73/73 |
+| rtest_laplace | ok | 92/102 |
 | rtest_plotoptions | ok | 6/13 |
-| rtest_algsys | ok | 69/75 |
-| rtest_trace | exit -6 | incomplete |
+| rtest_algsys | ok | 75/75 |
+| rtest_trace | ok | 95/100 |
 | rtest_polynomialp | ok | 17/17 |
-| rtest_limit_extra | ok | 200/451 |
-| rtest_limit_gruntz | ok | incomplete |
-| rtest_limit_wester | ok | incomplete |
+| rtest_limit_extra | ok | 458/474 |
+| rtest_limit_gruntz | ok | 97/97 |
+| rtest_limit_wester | ok | 14/14 |
 | rtest_great | ok | 31/31 |
-| rtest_atan2 | ok | 79/85 |
+| rtest_atan2 | ok | 84/85 |
 | rtest_gcd | ok | 39/39 |
-| rtest_hstep | ok | 59/60 |
-| rtest_sinc | ok | 44/48 |
-| rtest_hg | timeout | incomplete |
-| rtest_nfloat | timeout | incomplete |
-| rtest_ilt | ok | incomplete |
-| rtest_unicode_display | exit -6 | incomplete |
-| rtest_setvar | ok | 12/17 |
-| rtest_operators | exit -6 | incomplete |
-| rtest_wxmx | ok | 4/11 |
+| rtest_hstep | ok | 60/60 |
+| rtest_sinc | ok | 48/48 |
+| rtest_hg | ok | 175/192 |
+| rtest_nfloat | ok | 45/61 |
+| rtest_ilt | ok | 31/31 |
+| rtest_unicode_display | ok | 119/119 |
+| rtest_setvar | ok | 17/17 |
+| rtest_operators | ok | 43/43 |
+| rtest_wxmx | ok | 11/11 |
 | rtest_load_relative | ok | 5/5 |
 
-Total: 5384 of 6031 in completed files.
+Total: 15431 of 15890 in completed files.
