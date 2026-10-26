@@ -53,6 +53,22 @@ fn init_cl_specials() -> Unit {
   set(q_ear_print_base, Fix(10L)) |> ignore
   set(sym("*print-radix*"), Nil) |> ignore
   set(sym("*read-default-float-format*"), sym("double-float")) |> ignore
+  // CL constants reachable from Maxima as ?most\-positive\-double\-float etc.
+  // (values as in SBCL).
+  set(sym("most-positive-double-float"), Flo(1.7976931348623157e308))
+  |> ignore
+  set(sym("most-negative-double-float"), Flo(-1.7976931348623157e308))
+  |> ignore
+  set(sym("least-positive-double-float"), Flo(4.9406564584124654e-324))
+  |> ignore
+  set(
+    sym("least-positive-normalized-double-float"),
+    Flo(2.2250738585072014e-308),
+  )
+  |> ignore
+  set(sym("double-float-epsilon"), Flo(1.1102230246251568e-16)) |> ignore
+  set(sym("most-positive-fixnum"), Fix(4611686018427387903L)) |> ignore
+  set(sym("most-negative-fixnum"), Fix(-4611686018427387904L)) |> ignore
 }
 
 ///|
