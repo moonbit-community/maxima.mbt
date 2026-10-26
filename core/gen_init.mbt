@@ -11,9 +11,13 @@ fn init_generated() -> Unit raise {
   init_intl()
   init_clmacs()
   init_globals()
+  init_pregexp()
+  init_cl_info()
   init_float_properties()
   init_commac()
   init_mormac()
+  init_getopt()
+  init_command_line()
   init_defcal()
   init_maxmac()
   init_mforma()
@@ -38,6 +42,7 @@ fn init_generated() -> Unit raise {
   init_suprv1()
   init_macsys()
   init_testsuite()
+  init_wxmx()
   init_mload()
   init_mactex()
   init_dskfn()
@@ -51,6 +56,7 @@ fn init_generated() -> Unit raise {
   init_zero()
   init_halfangle()
   init_numeric()
+  init_server()
   init_nalgfa()
   init_ifactor()
   init_rat3e()
@@ -70,6 +76,7 @@ fn init_generated() -> Unit raise {
   init_grind()
   init_displa()
   init_spgcd()
+  init_verify_html_index()
   init_macdes()
   init_rand_mt19937()
   init_asum()
@@ -107,6 +114,7 @@ fn init_generated() -> Unit raise {
   init_psolve()
   init_algsys()
   init_mtrace()
+  init_mdebug()
   init_expintegral()
   init_gamma()
   init_plasma()
@@ -880,6 +888,7 @@ fn share_load_lll() -> Unit raise {
 ///|
 fn share_load_maxima_server() -> Unit raise {
   register_share_maxima_server()
+  init_share_maxima_server()
 }
 
 ///|
@@ -1463,6 +1472,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "utils/sloop" => Some(share_load_sloop)
     "contrib/tex2ooo" => Some(share_load_tex2ooo)
     "contrib/lll" => Some(share_load_lll)
+    "contrib/maxima-server" => Some(share_load_maxima_server)
     "diffequations/gauss" => Some(share_load_gauss)
     "diffequations/spherodialwave" => Some(share_load_spherodialwave)
     "diffequations/kummer" => Some(share_load_kummer)
