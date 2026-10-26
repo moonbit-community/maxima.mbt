@@ -1090,6 +1090,7 @@ fn share_load_compat() -> Unit raise {
 fn share_load_modsimp() -> Unit raise {
   init_vars_n_dot_dot_share_affine_modsimp()
   register_share_modsimp()
+  init_share_modsimp()
 }
 
 ///|
@@ -1127,11 +1128,13 @@ fn share_load_sysdef() -> Unit raise {
 fn share_load_ndotsimp() -> Unit raise {
   init_vars_n_dot_dot_share_affine_ndotsimp()
   register_share_ndotsimp()
+  init_share_ndotsimp()
 }
 
 ///|
 fn share_load_sub_proj() -> Unit raise {
   register_share_sub_proj()
+  init_share_sub_proj()
 }
 
 ///|
@@ -1149,6 +1152,7 @@ fn share_load_sys_declaim() -> Unit raise {
 fn share_load_sparsemat() -> Unit raise {
   init_vars_n_dot_dot_share_affine_sparsemat()
   register_share_sparsemat()
+  init_share_sparsemat()
 }
 
 ///|
@@ -1161,6 +1165,7 @@ fn share_load_polyd() -> Unit raise {
 fn share_load_aquotient() -> Unit raise {
   init_vars_n_dot_dot_share_affine_aquotient()
   register_share_aquotient()
+  init_share_aquotient()
 }
 
 ///|
@@ -1217,6 +1222,7 @@ fn share_load_brmbrg() -> Unit raise {
 fn share_load_expense() -> Unit raise {
   init_vars_n_dot_dot_share_numeric_expense()
   register_share_expense()
+  init_share_expense()
 }
 
 ///|
@@ -1238,27 +1244,32 @@ fn share_load_la() -> Unit raise {
 fn share_load_neldermead() -> Unit raise {
   init_vars_n_dot_dot_share_nelder_mead_neldermead()
   register_share_neldermead()
+  init_share_neldermead()
 }
 
 ///|
 fn share_load_canten() -> Unit raise {
   init_vars_n_dot_dot_share_tensor_canten()
   register_share_canten()
+  init_share_canten()
 }
 
 ///|
 fn share_load_tentex() -> Unit raise {
   register_share_tentex()
+  init_share_tentex()
 }
 
 ///|
 fn share_load_gener() -> Unit raise {
   register_share_gener()
+  init_share_gener()
 }
 
 ///|
 fn share_load_symtry() -> Unit raise {
   register_share_symtry()
+  init_share_symtry()
 }
 
 ///|
@@ -1297,6 +1308,7 @@ fn share_load_sound() -> Unit raise {
 fn share_load_vector_rebuild() -> Unit raise {
   init_vars_n_dot_dot_share_vector_vector_rebuild()
   register_share_vector_rebuild()
+  init_share_vector_rebuild()
 }
 
 ///|
@@ -1308,11 +1320,13 @@ fn share_load_cartan_new() -> Unit raise {
 fn share_load_grob1() -> Unit raise {
   init_vars_n_dot_dot_share_algebra_grob1()
   register_share_grob1()
+  init_share_grob1()
 }
 
 ///|
 fn share_load_charsets_powers() -> Unit raise {
   register_share_charsets_powers()
+  init_share_charsets_powers()
 }
 
 ///|
@@ -1329,17 +1343,20 @@ fn share_load_charsets_set() -> Unit raise {
 ///|
 fn share_load_charsets_length() -> Unit raise {
   register_share_charsets_length()
+  init_share_charsets_length()
 }
 
 ///|
 fn share_load_scifac() -> Unit raise {
   register_share_scifac()
+  init_share_scifac()
 }
 
 ///|
 fn share_load_rducon() -> Unit raise {
   init_vars_n_dot_dot_share_simplification_rducon()
   register_share_rducon()
+  init_share_rducon()
 }
 
 ///|
@@ -1508,13 +1525,16 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "unicodedata/unicodedata-txt" => Some(share_load_unicodedata_txt)
     "unicodedata/grind-patch" => Some(share_load_grind_patch)
     "affine/polya" => Some(share_load_polya)
+    "affine/modsimp" => Some(share_load_modsimp)
     "affine/sheafa" => Some(share_load_sheafa)
     "affine/dim-3" => Some(share_load_dim_3)
     "affine/polysmp" => Some(share_load_polysmp)
     "affine/sysdef" => Some(share_load_sysdef)
+    "affine/ndotsimp" => Some(share_load_ndotsimp)
     "affine/sub-proj" => Some(share_load_sub_proj)
     "affine/new-rat" => Some(share_load_new_rat)
     "affine/sys-declaim" => Some(share_load_sys_declaim)
+    "affine/sparsemat" => Some(share_load_sparsemat)
     "affine/aquotient" => Some(share_load_aquotient)
     "affine/polyc" => Some(share_load_polyc)
     "affine/sheafb" => Some(share_load_sheafb)
@@ -1522,13 +1542,28 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "affine/affine" => Some(share_load_affine)
     "affine/sheafc" => Some(share_load_sheafc)
     "affine/polyb" => Some(share_load_polyb)
+    "numeric/expense" => Some(share_load_expense)
     "nelder_mead/defpackage" => Some(share_load_defpackage)
+    "nelder_mead/nm-maxima" => Some(share_load_nm_maxima)
+    "nelder_mead/la" => Some(share_load_la)
+    "nelder_mead/neldermead" => Some(share_load_neldermead)
+    "tensor/canten" => Some(share_load_canten)
+    "tensor/tentex" => Some(share_load_tentex)
+    "tensor/gener" => Some(share_load_gener)
+    "tensor/symtry" => Some(share_load_symtry)
     "odepack/package" => Some(share_load_odepack_package)
     "odepack/maxima-odepack" => Some(share_load_maxima_odepack)
     "src/package" => Some(share_load_odepack_src_package)
     "sound/sound" => Some(share_load_sound)
+    "vector/vector_rebuild" => Some(share_load_vector_rebuild)
     "diff_form/cartan_new" => Some(share_load_cartan_new)
     "algebra/grob1" => Some(share_load_grob1)
+    "charsets/charsets_powers" => Some(share_load_charsets_powers)
+    "charsets/fateman-len" => Some(share_load_fateman_len)
+    "charsets/charsets_set" => Some(share_load_charsets_set)
+    "charsets/charsets_length" => Some(share_load_charsets_length)
+    "simplification/scifac" => Some(share_load_scifac)
+    "simplification/rducon" => Some(share_load_rducon)
     "hompack/hompack-interface" => Some(share_load_hompack_interface)
     "colnew/colnew-if" => Some(share_load_colnew_if)
     _ => None
@@ -1559,6 +1594,7 @@ fn share_module_group(key : String) -> Array[String]? {
     "lbfgs/mcstep" => Some([])
     "linearalgebra/load-linearalgebra-lisp-files" => Some(["linearalgebra/mring", "linearalgebra/lu", "linearalgebra/linalgcholesky", "linearalgebra/eigens-by-jacobi", "linearalgebra/linalg-extra", "linearalgebra/matrixexp", "linearalgebra/linalg-utilities"])
     "minpack/load-minpack" => Some(["minpack/minpack-interface"])
+    "nelder_mead/load-neldermead" => Some(["nelder_mead/defpackage", "nelder_mead/la", "nelder_mead/neldermead", "nelder_mead/nm-maxima"])
     "numeric/decfp" => Some(["numeric/decfp-core"])
     "numeric/fft" => Some(["numeric/fft-package", "numeric/fft-core", "numeric/fft-interface"])
     "numericalio/load-numericalio" => Some(["numericalio/encode-decode-float", "numericalio/numericalio"])
