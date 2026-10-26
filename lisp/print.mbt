@@ -177,6 +177,9 @@ pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
         sb.write_char('|')
       } else if !s.interned && escape {
         sb.write_string("#:" + s.name)
+      } else if !escape && s.name.length() > 1 && s.name.has_prefix(":") && is_keyword_name(s.name) {
+        // princ omits the package marker of a keyword
+        sb.write_string(s.name.substring(start=1))
       } else {
         sb.write_string(s.name)
       }

@@ -624,3 +624,9 @@ test "format radix directives print upper-case digits" {
     content="&#x3C;|FF|101",
   )
 }
+
+///|
+test "princ of a keyword omits the colon" {
+  inspect(princ_to_string(Sym(intern(":rational"))), content="rational")
+  inspect(prin1_to_string(Sym(intern(":rational"))), content=":rational")
+}

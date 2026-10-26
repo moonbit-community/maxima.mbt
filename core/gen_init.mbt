@@ -1079,11 +1079,13 @@ fn share_load_smath() -> Unit raise {
 fn share_load_polya() -> Unit raise {
   init_vars_n_dot_dot_share_affine_polya()
   register_share_polya()
+  init_share_polya()
 }
 
 ///|
 fn share_load_compat() -> Unit raise {
   register_share_compat()
+  init_share_compat()
 }
 
 ///|
@@ -1111,17 +1113,20 @@ fn share_load_dim_3() -> Unit raise {
 fn share_load_polysmp() -> Unit raise {
   init_vars_n_dot_dot_share_affine_polysmp()
   register_share_polysmp()
+  init_share_polysmp()
 }
 
 ///|
 fn share_load_amacros() -> Unit raise {
   init_vars_n_dot_dot_share_affine_amacros()
   register_share_amacros()
+  init_share_amacros()
 }
 
 ///|
 fn share_load_sysdef() -> Unit raise {
   register_share_sysdef()
+  init_share_sysdef()
 }
 
 ///|
@@ -1141,11 +1146,13 @@ fn share_load_sub_proj() -> Unit raise {
 fn share_load_new_rat() -> Unit raise {
   init_vars_n_dot_dot_share_affine_new_rat()
   register_share_new_rat()
+  init_share_new_rat()
 }
 
 ///|
 fn share_load_sys_declaim() -> Unit raise {
   register_share_sys_declaim()
+  init_share_sys_declaim()
 }
 
 ///|
@@ -1159,6 +1166,7 @@ fn share_load_sparsemat() -> Unit raise {
 fn share_load_polyd() -> Unit raise {
   init_vars_n_dot_dot_share_affine_polyd()
   register_share_polyd()
+  init_share_polyd()
 }
 
 ///|
@@ -1172,6 +1180,7 @@ fn share_load_aquotient() -> Unit raise {
 fn share_load_polyc() -> Unit raise {
   init_vars_n_dot_dot_share_affine_polyc()
   register_share_polyc()
+  init_share_polyc()
 }
 
 ///|
@@ -1192,11 +1201,13 @@ fn share_load_dim4_help() -> Unit raise {
 fn share_load_polybas() -> Unit raise {
   init_vars_n_dot_dot_share_affine_polybas()
   register_share_polybas()
+  init_share_polybas()
 }
 
 ///|
 fn share_load_affine() -> Unit raise {
   register_share_affine()
+  init_share_affine()
 }
 
 ///|
@@ -1210,6 +1221,7 @@ fn share_load_sheafc() -> Unit raise {
 fn share_load_polyb() -> Unit raise {
   init_vars_n_dot_dot_share_affine_polyb()
   register_share_polyb()
+  init_share_polyb()
 }
 
 ///|
@@ -1525,20 +1537,24 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "unicodedata/unicodedata-txt" => Some(share_load_unicodedata_txt)
     "unicodedata/grind-patch" => Some(share_load_grind_patch)
     "affine/polya" => Some(share_load_polya)
+    "affine/compat" => Some(share_load_compat)
     "affine/modsimp" => Some(share_load_modsimp)
     "affine/sheafa" => Some(share_load_sheafa)
     "affine/dim-3" => Some(share_load_dim_3)
     "affine/polysmp" => Some(share_load_polysmp)
+    "affine/amacros" => Some(share_load_amacros)
     "affine/sysdef" => Some(share_load_sysdef)
     "affine/ndotsimp" => Some(share_load_ndotsimp)
     "affine/sub-proj" => Some(share_load_sub_proj)
     "affine/new-rat" => Some(share_load_new_rat)
     "affine/sys-declaim" => Some(share_load_sys_declaim)
     "affine/sparsemat" => Some(share_load_sparsemat)
+    "affine/polyd" => Some(share_load_polyd)
     "affine/aquotient" => Some(share_load_aquotient)
     "affine/polyc" => Some(share_load_polyc)
     "affine/sheafb" => Some(share_load_sheafb)
     "affine/dim4-help" => Some(share_load_dim4_help)
+    "affine/polybas" => Some(share_load_polybas)
     "affine/affine" => Some(share_load_affine)
     "affine/sheafc" => Some(share_load_sheafc)
     "affine/polyb" => Some(share_load_polyb)
@@ -1576,6 +1592,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
 /// file's contents are compiled into the port, loading it does nothing).
 fn share_module_group(key : String) -> Array[String]? {
   match key {
+    "affine/affine" => Some(["affine/sys-declaim", "affine/compat", "affine/amacros", "affine/polybas", "affine/sparsemat", "affine/aquotient", "affine/new-rat", "affine/polya", "affine/ndotsimp", "affine/polyb", "affine/polysmp", "affine/sub-proj", "affine/polyc", "affine/polyd", "affine/sheafa", "affine/sheafb", "affine/sheafc", "affine/dim-3", "affine/modsimp"])
     "cobyla/load-bf-cobyla" => Some(["cobyla/bf-cobyla-interface"])
     "cobyla/load-cobyla" => Some(["cobyla/cobyla-interface"])
     "colnew/load-colnew" => Some(["colnew/colnew-if"])
