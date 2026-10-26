@@ -1,0 +1,257 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/slatec"
+
+// Values
+pub fn d1mach(Int32) -> Double
+
+pub fn d9aimp(Double, Double, Double) -> (Double, Double)
+
+pub fn d9b0mp(Double, Double, Double) -> (Double, Double)
+
+pub fn d9b1mp(Double, Double, Double) -> (Double, Double)
+
+pub fn d9lgmc(Double) -> Double
+
+pub fn d9upak(Double, Double, Int32) -> (Double, Int32)
+
+pub fn dai(Double) -> Double
+
+pub fn daie(Double) -> Double
+
+pub fn dasyik(Double, Double, Int32, Double, Double, Double, Int32, FixedArray[Double], Int32) -> (Double, Double)
+
+pub fn dasyjy((Double, Double, Double, Double, Double) -> (Double, Double, Double, Double), Double, Double, Double, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn dbesi(Double, Double, Int32, Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn dbesi0(Double) -> Double
+
+pub fn dbesi1(Double) -> Double
+
+pub fn dbesj(Double, Double, Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn dbesj0(Double) -> Double
+
+pub fn dbesj1(Double) -> Double
+
+pub fn dbesk(Double, Double, Int32, Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn dbesk0(Double) -> Double
+
+pub fn dbesk1(Double) -> Double
+
+pub fn dbesy(Double, Double, Int32, FixedArray[Double]) -> Unit
+
+pub fn dbesy0(Double) -> Double
+
+pub fn dbesy1(Double) -> Double
+
+pub fn dbi(Double) -> Double
+
+pub fn dbie(Double) -> Double
+
+pub fn dbsi0e(Double) -> Double
+
+pub fn dbsi1e(Double) -> Double
+
+pub fn dbsk0e(Double) -> Double
+
+pub fn dbsk1e(Double) -> Double
+
+pub fn dbsknu(Double, Double, Int32, Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn dbsynu(Double, Double, Int32, FixedArray[Double]) -> Unit
+
+pub fn dcsevl(Double, FixedArray[Double], Int32) -> Double
+
+pub fn de1(Double) -> Double
+
+pub fn dei(Double) -> Double
+
+pub fn derf(Double) -> Double
+
+pub fn derfc(Double) -> Double
+
+pub fn dgamlm(Double, Double) -> (Double, Double)
+
+pub fn dgamln(Double, Int32) -> (Double, Int32)
+
+pub fn dgamma(Double) -> Double
+
+pub fn dgtsl(Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn djairy(Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn dlngam(Double) -> Double
+
+pub fn dqag((Double) -> Double raise, Double, Double, Double, Double, Int32, Double, Double, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqage((Double) -> Double raise, Double, Double, Double, Double, Int32, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqagi((Double) -> Double raise, Double, Int32, Double, Double, Double, Double, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqagie((Double) -> Double raise, Double, Int32, Double, Double, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqagp((Double) -> Double raise, Double, Double, Int32, FixedArray[Double], Double, Double, Double, Double, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqagpe((Double) -> Double raise, Double, Double, Int32, FixedArray[Double], Double, Double, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqags((Double) -> Double raise, Double, Double, Double, Double, Double, Double, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqagse((Double) -> Double raise, Double, Double, Double, Double, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqawc((Double) -> Double raise, Double, Double, Double, Double, Double, Double, Double, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Double, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqawce((Double) -> Double raise, Double, Double, Double, Double, Double, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> (Double, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqawf((Double) -> Double raise, Double, Double, Int32, Double, Double, Double, Int32, Int32, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Int32, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqawfe((Double) -> Double raise, Double, Double, Int32, Double, Int32, Int32, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> (Int32, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqawo((Double) -> Double raise, Double, Double, Double, Int32, Double, Double, Double, Double, Int32, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Int32, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqawoe((Double) -> Double raise, Double, Double, Double, Int32, Double, Double, Int32, Int32, Int32, Double, Double, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Double], Int32) -> (Int32, Double, Double, Int32, Int32, Int32, Int32) raise
+
+pub fn dqaws((Double) -> Double raise, Double, Double, Double, Double, Int32, Double, Double, Double, Double, Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double]) -> (Double, Double, Double, Double, Int32, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqawse((Double) -> Double raise, Double, Double, Double, Double, Int32, Double, Double, Int32, Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> (Double, Double, Double, Double, Int32, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dqc25c((Double) -> Double raise, Double, Double, Double, Double, Double, Int32, Int32) -> (Double, Double, Double, Int32, Int32) raise
+
+pub fn dqc25f((Double) -> Double raise, Double, Double, Double, Int32, Int32, Int32, Int32, Double, Double, Int32, Double, Double, Int32, FixedArray[Double], Int32) -> (Double, Int32, Double, Double, Int32, Double, Double, Int32) raise
+
+pub fn dqc25s((Double) -> Double raise, Double, Double, Double, Double, Double, Double, FixedArray[Double], FixedArray[Double], FixedArray[Double], FixedArray[Double], Double, Double, Double, Int32, Int32) -> (Double, Double, Double, Double, Double, Double, Double, Int32, Int32) raise
+
+pub fn dqcheb(FixedArray[Double], FixedArray[Double], FixedArray[Double], FixedArray[Double]) -> Unit
+
+pub fn dqelg(Int32, FixedArray[Double], Double, Double, FixedArray[Double], Int32) -> (Int32, Double, Double, Int32)
+
+pub fn dqk15((Double) -> Double raise, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double) raise
+
+pub fn dqk15i((Double) -> Double raise, Double, Int32, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double) raise
+
+pub fn dqk15w((Double) -> Double raise, (Double, Double, Double, Double, Double, Int32) -> Double, Double, Double, Double, Double, Int32, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double, Int32, Double, Double, Double, Double) raise
+
+pub fn dqk21((Double) -> Double raise, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double) raise
+
+pub fn dqk31((Double) -> Double raise, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double) raise
+
+pub fn dqk41((Double) -> Double raise, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double) raise
+
+pub fn dqk51((Double) -> Double raise, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double) raise
+
+pub fn dqk61((Double) -> Double raise, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double) raise
+
+pub fn dqmomo(Double, Double, FixedArray[Double], FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32) -> Unit
+
+pub fn dqng((Double) -> Double raise, Double, Double, Double, Double, Double, Double, Int32, Int32) -> (Double, Double, Int32, Int32) raise
+
+pub fn dqpsrt(Int32, Int32, Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Int32, Double, Int32)
+
+pub fn dqwgtc(Double, Double, Double, Double, Double, Int32) -> Double
+
+pub fn dqwgtf(Double, Double, Double, Double, Double, Int32) -> Double
+
+pub fn dqwgts(Double, Double, Double, Double, Double, Int32) -> Double
+
+pub fn dspenc(Double) -> Double
+
+pub fn dyairy(Double, Double, Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn fdump() -> Unit
+
+pub fn i1mach(Int32) -> Int32
+
+pub fn initds(FixedArray[Double], Int32, Float) -> Int32
+
+pub fn j4save(Int32, Int32, Bool) -> Int32
+
+pub fn xercnt(String, String, String, Int32, Int32, Int32) -> Unit
+
+pub fn xerhlt(String) -> Unit
+
+pub fn xermsg(String, String, String, Int32, Int32) -> Unit
+
+pub fn xerprn(String, Int32, String, Int32) -> Unit
+
+pub fn xersve(String, String, String, Int32, Int32, Int32, Int32) -> Int32
+
+pub fn xgetua(FixedArray[Int32], Int32) -> Int32
+
+pub fn zabs(Double, Double) -> Double
+
+pub fn zacai(Double, Double, Double, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double, Double) -> Int32
+
+pub fn zacon(Double, Double, Double, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double, Double, Double) -> Int32
+
+pub fn zairy(Double, Double, Int32, Int32, Double, Double, Int32, Int32) -> (Double, Double, Int32, Int32)
+
+pub fn zasyi(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double, Double) -> Int32
+
+pub fn zbesh(Double, Double, Double, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32) -> (Int32, Int32)
+
+pub fn zbesi(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32) -> (Int32, Int32)
+
+pub fn zbesj(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32) -> (Int32, Int32)
+
+pub fn zbesk(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32) -> (Int32, Int32)
+
+pub fn zbesy(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32) -> (Int32, Int32)
+
+pub fn zbinu(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double, Double, Double) -> Int32
+
+pub fn zbiry(Double, Double, Int32, Int32, Double, Double, Int32) -> (Double, Double, Int32)
+
+pub fn zbknu(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double) -> Int32
+
+pub fn zbuni(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, Double, Double, Double, Double) -> (Int32, Int32)
+
+pub fn zbunk(Double, Double, Double, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double) -> Int32
+
+pub fn zdiv(Double, Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn zexp(Double, Double, Double, Double) -> (Double, Double)
+
+pub fn zkscl(Double, Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double, Double, Double) -> Int32
+
+pub fn zlog(Double, Double, Double, Double, Int32) -> (Double, Double, Int32)
+
+pub fn zmlri(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double) -> Int32
+
+pub fn zmlt(Double, Double, Double, Double, Double, Double) -> (Double, Double)
+
+pub fn zrati(Double, Double, Double, Int32, FixedArray[Double], FixedArray[Double], Double) -> Unit
+
+pub fn zs1s2(Double, Double, Double, Double, Double, Double, Int32, Double, Double, Int32) -> (Double, Double, Double, Double, Int32, Int32)
+
+pub fn zseri(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double) -> Int32
+
+pub fn zshch(Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn zsqrt_(Double, Double, Double, Double) -> (Double, Double)
+
+pub fn zuchk(Double, Double, Int32, Double, Double) -> Int32
+
+pub fn zunhj(Double, Double, Double, Int32, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double) -> (Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double, Double)
+
+pub fn zuni1(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Double, Double, Double, Double) -> (Int32, Int32)
+
+pub fn zuni2(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Double, Double, Double, Double) -> (Int32, Int32)
+
+pub fn zunik(Double, Double, Double, Int32, Int32, Double, Int32, Double, Double, Double, Double, Double, Double, Double, Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> (Int32, Double, Double, Double, Double, Double, Double, Double, Double)
+
+pub fn zunk1(Double, Double, Double, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double) -> Int32
+
+pub fn zunk2(Double, Double, Double, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double) -> Int32
+
+pub fn zuoik(Double, Double, Double, Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double) -> Int32
+
+pub fn zwrsk(Double, Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Double, Double, Double) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
