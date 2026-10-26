@@ -249,6 +249,459 @@ fn ode_run(
 }
 
 ///|
+fn ode_loop(
+  s : StringBuilder,
+  step : (Double, Double, Int) -> (Double, Int) raise,
+  y : FixedArray[Double],
+  t0 : Double,
+  tout0 : Double,
+  nout : Int,
+  factor : Double,
+  istate0 : Int,
+  extra : (() -> Unit)?,
+) -> Unit raise {
+  let mut tt = t0
+  let mut tout = tout0
+  let mut istate = istate0
+  for _k in 0..<nout {
+    let (rt, ri_) = step(tt, tout, istate)
+    tt = rt
+    istate = ri_
+    rd(s, tt)
+    ri(s, istate)
+    rad(s, y)
+    if extra is Some(e) {
+      e()
+    }
+    if istate < 0 {
+      break
+    }
+    if istate != 3 {
+      if factor == 0.0 {
+        tout = tout + tout0
+      } else {
+        tout = tout * factor
+      }
+    }
+  }
+}
+
+///|
+fn rob_g(
+  neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  _ng : Int,
+  gout : FixedArray[Double],
+  go : Int,
+) -> Unit raise {
+  gout[go] = y[yo] - 1.0e-4
+  gout[go + 1] = y[yo + neq[0] - 1] - 1.0e-2
+}
+
+///|
+fn rob_jacs(
+  _neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  j : Int,
+  _ian : FixedArray[Int],
+  _iano : Int,
+  _jan : FixedArray[Int],
+  _jano : Int,
+  pdj : FixedArray[Double],
+  po : Int,
+) -> Unit raise {
+  match j {
+    1 => {
+      pdj[po] = -0.04
+      pdj[po + 1] = 0.04
+      pdj[po + 2] = 0.0
+    }
+    2 => {
+      pdj[po] = 1.0e4 * y[yo + 2]
+      pdj[po + 1] = -1.0e4 * y[yo + 2] - 6.0e7 * y[yo + 1]
+      pdj[po + 2] = 6.0e7 * y[yo + 1]
+    }
+    _ => {
+      pdj[po] = 1.0e4 * y[yo + 1]
+      pdj[po + 1] = -1.0e4 * y[yo + 1]
+      pdj[po + 2] = 0.0
+    }
+  }
+}
+
+///|
+fn rob_res(
+  _neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  s : FixedArray[Double],
+  so : Int,
+  r : FixedArray[Double],
+  ro : Int,
+  ires : Int,
+) -> Int raise {
+  let y0 = y[yo]
+  let y1 = y[yo + 1]
+  let y2 = y[yo + 2]
+  let f0 = -0.04 * y0 + 1.0e4 * y1 * y2
+  let f2 = 3.0e7 * y1 * y1
+  let f1 = -f0 - f2
+  r[ro] = f0 - s[so]
+  r[ro + 1] = f1 - s[so + 1]
+  r[ro + 2] = f2 - s[so + 2]
+  ires
+}
+
+///|
+fn rob_adda(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _ml : Int,
+  _mu : Int,
+  p : FixedArray[Double],
+  po : Int,
+  nrowp : Int,
+) -> Unit raise {
+  for i in 0..<3 {
+    p[po + i + i * nrowp] = p[po + i + i * nrowp] + 1.0
+  }
+}
+
+///|
+fn rob_jaci(
+  neq : FixedArray[Int],
+  t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  _s : FixedArray[Double],
+  _so : Int,
+  ml : Int,
+  mu : Int,
+  p : FixedArray[Double],
+  po : Int,
+  nrowp : Int,
+) -> Unit raise {
+  // rob_jac reads y from its start
+  let yy = FixedArray::make(3, 0.0)
+  for i in 0..<3 {
+    yy[i] = y[yo + i]
+  }
+  rob_jac(neq, t, yy, ml, mu, p, po, nrowp)
+}
+
+///|
+fn rob_addas(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  j : Int,
+  _ian : FixedArray[Int],
+  _iano : Int,
+  _jan : FixedArray[Int],
+  _jano : Int,
+  p : FixedArray[Double],
+  po : Int,
+) -> Unit raise {
+  p[po + j - 1] = p[po + j - 1] + 1.0
+}
+
+///|
+fn rob_jacis(
+  neq : FixedArray[Int],
+  t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  _s : FixedArray[Double],
+  _so : Int,
+  j : Int,
+  ian : FixedArray[Int],
+  iano : Int,
+  jan : FixedArray[Int],
+  jano : Int,
+  p : FixedArray[Double],
+  po : Int,
+) -> Unit raise {
+  rob_jacs(neq, t, y, yo, j, ian, iano, jan, jano, p, po)
+}
+
+///|
+fn heat_res(
+  neq : FixedArray[Int],
+  _t : Double,
+  y : FixedArray[Double],
+  yo : Int,
+  s : FixedArray[Double],
+  so : Int,
+  r : FixedArray[Double],
+  ro : Int,
+  ires : Int,
+) -> Int raise {
+  let n = neq[0]
+  for i in 0..<n {
+    let yl = if i > 0 { y[yo + i - 1] } else { 0.0 }
+    let yr = if i < n - 1 { y[yo + i + 1] } else { 0.0 }
+    r[ro + i] = yl - 2.0 * y[yo + i] + yr - s[so + i]
+  }
+  ires
+}
+
+///|
+fn heat_adda(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _mb : Int,
+  nb : Int,
+  pa : FixedArray[Double],
+  pao : Int,
+  _pb : FixedArray[Double],
+  _pbo : Int,
+  _pc : FixedArray[Double],
+  _pco : Int,
+) -> Unit raise {
+  for k in 0..<nb {
+    pa[pao + k] = pa[pao + k] + 1.0
+  }
+}
+
+///|
+fn heat_jac(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _s : FixedArray[Double],
+  _so : Int,
+  _mb : Int,
+  nb : Int,
+  pa : FixedArray[Double],
+  pao : Int,
+  pb : FixedArray[Double],
+  pbo : Int,
+  pc : FixedArray[Double],
+  pco : Int,
+) -> Unit raise {
+  for k in 0..<nb {
+    pa[pao + k] = -2.0
+    pb[pbo + k] = if k < nb - 1 { 1.0 } else { 0.0 }
+    pc[pco + k] = if k > 0 { 1.0 } else { 0.0 }
+  }
+}
+
+///|
+fn id_jac(
+  _f : (FixedArray[Int], Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _ysv : FixedArray[Double],
+  _ysvo : Int,
+  _rewt : FixedArray[Double],
+  _rewto : Int,
+  _fty : FixedArray[Double],
+  _ftyo : Int,
+  _v : FixedArray[Double],
+  _vo : Int,
+  _hl0 : Double,
+  _wp : FixedArray[Double],
+  _wpo : Int,
+  _iwp : FixedArray[Int],
+  _iwpo : Int,
+  _ier : Int,
+) -> Int raise {
+  0
+}
+
+///|
+fn id_jack(
+  _f : (FixedArray[Int], Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _ysv : FixedArray[Double],
+  _ysvo : Int,
+  _rewt : FixedArray[Double],
+  _rewto : Int,
+  _fty : FixedArray[Double],
+  _ftyo : Int,
+  _v : FixedArray[Double],
+  _vo : Int,
+  _hl0 : Double,
+  _jok : Int,
+  _wp : FixedArray[Double],
+  _wpo : Int,
+  _iwp : FixedArray[Int],
+  _iwpo : Int,
+  _ier : Int,
+) -> Int raise {
+  0
+}
+
+///|
+fn id_psol(
+  _neq : FixedArray[Int],
+  _t : Double,
+  _y : FixedArray[Double],
+  _yo : Int,
+  _fty : FixedArray[Double],
+  _ftyo : Int,
+  _wk : FixedArray[Double],
+  _wko : Int,
+  _hl0 : Double,
+  _wp : FixedArray[Double],
+  _wpo : Int,
+  _iwp : FixedArray[Int],
+  _iwpo : Int,
+  _b : FixedArray[Double],
+  _bo : Int,
+  _lr : Int,
+  _ier : Int,
+) -> Int raise {
+  0
+}
+
+///|
+fn set_iwork(iwork : FixedArray[Int], iw : Array[(Int, Int)]) -> Unit {
+  for p in iw {
+    iwork[p.0] = p.1
+  }
+}
+
+///|
+fn ode_explicit(
+  s : StringBuilder,
+  solver : String,
+  f : (FixedArray[Int], Double, FixedArray[Double], Int, FixedArray[Double], Int) -> Unit raise,
+  jac : (FixedArray[Int], Double, FixedArray[Double], Int, Int, FixedArray[Double], Int, Int) -> Unit raise,
+  mf : Int,
+  y0 : Array[Double],
+  rtol : Double,
+  atol : Double,
+  t0 : Double,
+  tout0 : Double,
+  nout : Int,
+  factor : Double,
+  lrw : Int,
+  liw : Int,
+  iopt : Int,
+  iw : Array[(Int, Int)],
+  extra : Bool,
+) -> Unit raise {
+  let neq = y0.length()
+  let y = dvec(y0)
+  let rwork = FixedArray::make(lrw, 0.0)
+  let iwork = FixedArray::make(liw, 0)
+  let jroot = FixedArray::make(2, 0)
+  set_iwork(iwork, iw)
+  let step = fn(tt : Double, tout : Double, istate : Int) -> (Double, Int) raise {
+    match solver {
+      "dlsoda" =>
+        dlsoda(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          jac, mf,
+        )
+      "dlsodes" =>
+        dlsodes(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          rob_jacs, mf,
+        )
+      "dlsodar" =>
+        dlsodar(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          jac, mf, rob_g, 2, jroot,
+        )
+      "dlsodpk" =>
+        dlsodpk(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          id_jac, id_psol, mf,
+        )
+      _ =>
+        dlsodkr(
+          f, [neq], y, tt, tout, 1, [rtol], [atol], 1, istate, iopt, rwork, lrw, iwork, liw,
+          id_jack, id_psol, mf, rob_g, 2, jroot,
+        )
+    }
+  }
+  ode_loop(
+    s,
+    step,
+    y,
+    t0,
+    tout0,
+    nout,
+    factor,
+    1,
+    if extra {
+      Some(() => rai(s, jroot))
+    } else {
+      None
+    },
+  )
+  rai(s, iwork)
+  rad(s, rwork)
+}
+
+///|
+fn ode_implicit(
+  s : StringBuilder,
+  solver : String,
+  mf : Int,
+  y0 : Array[Double],
+  yd0 : Array[Double],
+  istate0 : Int,
+  rtol : Double,
+  atol : Double,
+  t0 : Double,
+  tout0 : Double,
+  nout : Int,
+  factor : Double,
+  lrw : Int,
+  liw : Int,
+  iw : Array[(Int, Int)],
+) -> Unit raise {
+  let neq = y0.length()
+  let y = dvec(y0)
+  let ydoti = dvec(yd0)
+  let rwork = FixedArray::make(lrw, 0.0)
+  let iwork = FixedArray::make(liw, 0)
+  set_iwork(iwork, iw)
+  let step = fn(tt : Double, tout : Double, istate : Int) -> (Double, Int) raise {
+    match solver {
+      "dlsodi" =>
+        dlsodi(
+          rob_res, rob_adda, rob_jaci, [neq], y, ydoti, tt, tout, 1, [rtol], [atol], 1, istate,
+          0, rwork, lrw, iwork, liw, mf,
+        )
+      "dlsoibt" =>
+        dlsoibt(
+          heat_res, heat_adda, heat_jac, [neq], y, ydoti, tt, tout, 1, [rtol], [atol], 1, istate,
+          0, rwork, lrw, iwork, liw, mf,
+        )
+      _ =>
+        dlsodis(
+          rob_res, rob_addas, rob_jacis, [neq], y, ydoti, tt, tout, 1, [rtol], [atol], 1, istate,
+          0, rwork, lrw, iwork, liw, mf,
+        )
+    }
+  }
+  ode_loop(s, step, y, t0, tout0, nout, factor, istate0, None)
+  rad(s, ydoti)
+  rai(s, iwork)
+  rad(s, rwork)
+}
+
+///|
 test "sbcl reference 0: robertson mf=21 (rtest_dlsode)" {
   let r = ref_case(s => {
     ode_run(s, rob_f, rob_jac, 21, 2, 0.0001, [1.0e-06, 1.0e-10, 1.0e-06], [1.0, 0.0, 0.0], 0.0, 0.4, 12, 10.0, true)
@@ -318,4 +771,210 @@ test "sbcl reference 8: tout = t" {
     ode_run(s, osc_f, osc_jac, 10, 1, 1.0e-06, [1.0e-08], [1.0, 0.0], 0.0, 0.0, 1, 0.0, true)
   })
   assert_eq(r, " d0 i1 | d4607182418800017408 d0 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 | d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 d0 s\"\"")
+}
+
+///|
+test "sbcl reference 9: dlsoda robertson jt=1" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsoda", rob_f, rob_jac, 1, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 10, 10.0, 100, 40, 0, [], false)
+  })
+  assert_eq(r, " d4600877379321698714 i2 | d4607048862269507086 d4540122265876628506 d4579681718479360486 d4616189618054758400 i2 | d4606331366523564761 d4537233775612411292 d4591471224482579677 d4630826316843712512 i2 | d4604622602416791773 d4531539171323894938 d4598791087231909186 d4645744490609377280 i2 | d4601786734782658526 d4524718956417387770 d4603124832343401898 d4661014508095930368 i2 | d4595767457446384173 d4516547256272862790 d4605532551458201381 d4675730371722084352 i2 | d4585777534757951898 d4505221318395181902 d4606831372731999474 d4690615560138915840 i2 | d4572341828773272202 d4491582771844297860 d4607137951382061161 d4705844345939427328 i2 | d4557904475277824392 d4477073710735110661 d4607177765214981286 d4720637518976909312 i2 | d4542799777388133218 d4462108216125697044 d4607181950356210806 d4735490495139020800 i2 | d4527755081285340136 d4446988628984256464 d4607182371947295477 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i332 i422 i63 i4 i4 i0 i68 i23 i2 i2 i1 i2 i3 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h100:11040305718590634030 s\"\"")
+}
+
+///|
+test "sbcl reference 10: dlsoda robertson jt=2" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsoda", rob_f, rob_jac, 2, [1.0, 0.0, 0.0], 1.0e-06, 1.0e-10, 0.0, 0.4, 10, 10.0, 100, 40, 0, [], false)
+  })
+  assert_eq(r, " d4600877379321698714 i2 | d4607048861038695298 d4540122262163441488 d4579681797265819366 d4616189618054758400 i2 | d4606331406720883098 d4537233943290230247 d4591470902863095975 d4630826316843712512 i2 | d4604622814985769168 d4531539802559402726 d4598790662074690604 d4645744490609377280 i2 | d4601787435366254086 d4524720274610758382 d4603124482046575608 d4661014508095930368 i2 | d4595768548725153995 d4516549131010312019 d4605532278636721035 d4675730371722084352 i2 | d4585778924840239145 d4505222906225411825 d4606831285851477952 d4690615560138915840 i2 | d4572343494759182978 d4491584533832321929 d4607137938366493714 d4705844345939427328 i2 | d4557905983159133478 d4477075293490851319 d4607177763742435048 d4720637518976909312 i2 | d4542803277912319526 d4462111887305806597 d4607181950142554915 d4735490495139020800 i2 | d4527762396961255006 d4446996300115110374 d4607182371891481077 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i771 i1416 i111 i5 i5 i0 i68 i23 i2 i2 i1 i2 i3 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h100:13396802773008451918 s\"\"")
+}
+
+///|
+test "sbcl reference 11: dlsoda oscillator jt=2 (stays nonstiff)" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsoda", osc_f, osc_jac, 2, [1.0, 0.0], 1.0e-08, 1.0e-10, 0.0, 0.5, 20, 0.0, 100, 40, 0, [], false)
+  })
+  assert_eq(r, " d4602678819172646912 i2 | d4605917118466310267 d-4619922983211658685 d4607182418800017408 i2 | d4601023252241254373 d-4615254675811014587 d4609434218613702656 i2 | d-4624011631243554352 d-4613321418472627576 d4611686018427387904 i2 | d-4615459010397801586 d-4613170680688495836 d4612811918334230528 i2 | d-4612126335806348464 d-4615264030785121190 d4613937818241073152 i2 | d-4611029848398553775 d-4624514817680939336 d4615063718147915776 i2 | d-4611355291883293216 d4606149680823240036 d4616189618054758400 i2 | d-4614324200053887981 d4611705566309554066 d4616752568008179712 i2 | d-4626916810970353613 d4613374843823813245 d4617315517961601024 i2 | d4608207210952322944 d4613593762087603109 d4617878467915022336 i2 | d4612853674907429247 d4612120457361670937 d4618441417868443648 i2 | d4614635260635486019 d4606108817724343612 d4619004367821864960 i2 | d4614696151886450715 d-4617970181095078809 d4619567317775286272 i2 | d4612845328661705618 d-4610695255190784556 d4620130267728707584 i2 | d4606988067355340552 d-4608103332717737623 d4620693217682128896 i2 | d-4616764136987912572 d-4607387484265612494 d4620974692658839552 i2 | d-4609963049750044174 d-4608886340748739321 d4621256167635550208 i2 | d-4607147591331177831 d-4613062155001289547 d4621537642612260864 i2 | d-4606767813154169786 d4600819641019712796 d4621819117588971520 i2 | d-4608020457654988145 d4612866851254930230 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i143 i309 i0 i8 i8 i0 i52 i22 i1 i1 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h100:14413461797484316776 s\"\"")
+}
+
+///|
+test "sbcl reference 12: dlsodar robertson roots" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodar", rob_f, rob_jac, 1, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 14, 10.0, 100, 40, 0, [], true)
+  })
+  assert_eq(r, " d4598427748055455506 i3 | d4607092034206787770 d4540246474339750780 d4576918229304087675 | i0 i1 d4600877379321698714 i2 | d4607048862269507086 d4540122265876628506 d4579681718479360486 | i0 i0 d4616189618054758400 i2 | d4606331366523564761 d4537233775612411292 d4591471224482579677 | i0 i0 d4630826316843712512 i2 | d4604622602416791773 d4531539171323894938 d4598791087231909186 | i0 i0 d4645744490609377280 i2 | d4601786734782658526 d4524718956417387770 d4603124832343401898 | i0 i0 d4661014508095930368 i2 | d4595767457446384173 d4516547256272862790 d4605532551458201381 | i0 i0 d4675730371722084352 i2 | d4585777534757951898 d4505221318395181902 d4606831372731999474 | i0 i0 d4690615560138915840 i2 | d4572341828773272202 d4491582771844297860 d4607137951382061161 | i0 i0 d4705844345939427328 i2 | d4557904475277824392 d4477073710735110661 d4607177765214981286 | i0 i0 d4716345387948313340 i3 | d4547007122018943789 d4466301520816886678 d4607181518076488702 | i1 i0 d4720637518976909312 i2 | d4542799759678036233 d4462108197553284827 d4607181950357291747 | i0 i0 d4735490495139020800 i2 | d4527755081733041555 d4446988629453768771 d4607182371947292058 | i0 i0 d4750679015621132288 i2 | d4513010544135019704 d4432184131343284481 d4607182414120016377 | i0 i0 d4765547686130614272 i2 | d4498187464947319140 d4417516071457043000 d4607182418317299130 | i0 i0 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i400 i370 i471 i73 i2 i2 i0 i74 i23 i2 i2 i1 i2 i3 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h100:16053857019106613714 s\"\"")
+}
+
+///|
+test "sbcl reference 13: dlsodar oscillator jt=2 roots" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodar", osc_f, osc_jac, 2, [1.0, 0.0], 1.0e-06, 1.0e-08, 0.0, 1.0, 12, 0.0, 100, 40, 0, [], true)
+  })
+  assert_eq(r, " d4607182418800017408 i2 | d4601023238348217372 d-4615254675049550253 | i0 i0 d4608530676201746417 i3 | d4547007122018925056 d-4613927425099077485 | i1 i0 d4611686018427387904 i2 | d-4615459005907004481 d-4613170685799612785 | i0 i0 d4613937818241073152 i2 | d-4611029851510539558 d-4624514847337705117 | i0 i0 d4614236848338244446 i3 | d-4610987906619436604 d4576918229304087872 | i0 i1 d4616189618054758400 i2 | d-4614324209564288290 d4611705564639602863 | i0 i0 d4616834507075665103 i3 | d4547007122018990080 d4613507203324345050 | i1 i0 d4617315517961601024 i2 | d4608207207920025626 d4613593755032547670 | i0 i0 d4618441417868443648 i2 | d4614635251526326656 d4606108792680051832 | i0 i0 d4618739924892015186 i3 | d4614905047711985540 d4576918229304086240 | i0 i1 d4619567317775286272 i2 | d4612845317424458381 d-4610695260375148784 | i0 i0 d4620423685220040703 i3 | d4547007122018859008 d-4607462296089099084 | i1 i0 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i154 i80 i174 i0 i6 i6 i0 i58 i22 i1 i1 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h100:14149814725821607171 s\"\"")
+}
+
+///|
+test "sbcl reference 14: dlsodes robertson mf=121 (TYPE-ERROR in the Lisp)" {
+  let raised = try {
+    ref_case(s => {
+      ode_explicit(s, "dlsodes", rob_f, rob_jac, 121, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 8, 10.0, 600, 60, 0, [], false)
+    })
+    |> ignore
+    false
+  } catch {
+    _ => true
+  }
+  assert_true(raised)
+}
+
+///|
+test "sbcl reference 15: dlsodes robertson mf=222 (TYPE-ERROR in the Lisp)" {
+  let raised = try {
+    ref_case(s => {
+      ode_explicit(s, "dlsodes", rob_f, rob_jac, 222, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 8, 10.0, 600, 60, 0, [], false)
+    })
+    |> ignore
+    false
+  } catch {
+    _ => true
+  }
+  assert_true(raised)
+}
+
+///|
+test "sbcl reference 16: dlsodes oscillator mf=10 (TYPE-ERROR in the Lisp)" {
+  let raised = try {
+    ref_case(s => {
+      ode_explicit(s, "dlsodes", osc_f, osc_jac, 10, [1.0, 0.0], 1.0e-06, 1.0e-08, 0.0, 0.5, 10, 0.0, 600, 60, 0, [], false)
+    })
+    |> ignore
+    false
+  } catch {
+    _ => true
+  }
+  assert_true(raised)
+}
+
+///|
+test "sbcl reference 17: dlsodpk robertson mf=21" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodpk", rob_f, rob_jac, 21, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 6, 10.0, 600, 60, 0, [], false)
+  })
+  assert_eq(r, " d4600877379321698714 i2 | d4607048861253785698 d4540122263518914744 d4579681783494738983 d4616189618054758400 i2 | d4606331356343801941 d4537233733535560585 d4591471305930954848 d4630826316843712512 i2 | d4604622503807293931 d4531539005437326496 d4598791284455967311 d4645744490609377280 i2 | d4601786415512145222 d4524718565010955061 d4603124991980151639 d4661014508095930368 i2 | d4595766847313322258 d4516546350916338460 d4605532703992330269 d4675730371722084352 i2 | d4585776743641112644 d4505220428064657900 d4606831422177014196 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i171 i671 i0 i4 i4 i0 i74 i33 i289 i381 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i1 i2 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:12229756372970616456 s\"\"")
+}
+
+///|
+test "sbcl reference 18: dlsodpk oscillator mf=22 jpre=1" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodpk", osc_f, osc_jac, 22, [1.0, 0.0], 1.0e-06, 1.0e-08, 0.0, 0.5, 10, 0.0, 600, 60, 1, [(2, 1), (3, 1)], false)
+  })
+  assert_eq(r, " d4602678819172646912 i2 | d4605917121028116810 d-4619922979686632512 d4607182418800017408 i2 | d4601023237694448561 d-4615254673188946719 d4609434218613702656 i2 | d-4624011596621320912 d-4613321419036787862 d4611686018427387904 i2 | d-4615459000225259270 d-4613170688827653226 d4612811918334230528 i2 | d-4612126330368040940 d-4615264054245345319 d4613937818241073152 i2 | d-4611029855151119327 d-4624514961751376215 d4615063718147915776 i2 | d-4611355306686077998 d4606149732580389221 d4616189618054758400 i2 | d-4614324249594445908 d4611705570578048667 d4616752568008179712 i2 | d-4626917292283921578 d4613374832120518590 d4617315517961601024 i2 | d4608207255720540144 d4613593737185913401 | i0 i0 i1 i1 i0 i0 i0 i0 i0 i0 i77 i204 i12 i5 i5 i0 i59 i30 i92 i111 i191 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:11966337029059863512 s\"\"")
+}
+
+///|
+test "sbcl reference 19: dlsodpk oscillator mf=10" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodpk", osc_f, osc_jac, 10, [1.0, 0.0], 1.0e-06, 1.0e-08, 0.0, 0.5, 10, 0.0, 600, 60, 0, [], false)
+  })
+  assert_eq(r, " d4602678819172646912 i2 | d4605917118782590682 d-4619922982424323815 d4607182418800017408 i2 | d4601023230681438179 d-4615254673398668548 d4609434218613702656 i2 | d-4624011597540954083 d-4613321419855882846 d4611686018427387904 i2 | d-4615459002761562526 d-4613170685903584594 d4612811918334230528 i2 | d-4612126330635013883 d-4615264050413982911 d4613937818241073152 i2 | d-4611029853831565886 d-4624514938353199719 d4615063718147915776 i2 | d-4611355303348282210 d4606149719087032586 d4616189618054758400 i2 | d-4614324230906663774 d4611705570460329500 d4616752568008179712 i2 | d-4626917066089281479 d4613374839751844860 d4617315517961601024 i2 | d4608207232976210959 d4613593750935349533 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i73 i111 i0 i6 i6 i0 i52 i30 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:1896025241952285859 s\"\"")
+}
+
+///|
+test "sbcl reference 20: dlsodpk robertson mf=23" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodpk", rob_f, rob_jac, 23, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 5, 10.0, 600, 60, 0, [], false)
+  })
+  assert_eq(r, " d4600877379321698714 i2 | d4607048881025445907 d4540122305278403459 d4579680517945362603 d4612022311812326888 i-1 | d4606627708311640370 d4538463903022413337 d4589032359417264745 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i724 i4101 i0 i2 i2 i0 i65 i30 i1142 i2958 i0 i355 i880 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:9979742762352033364 s\" DLSODPK-  At current T (=R1), MXSTEP (=I1) steps            \\n       taken on this call before reaching TOUT               \\n      In above message,  I1 =       500\\n      In above message,  R1 =  0.2149344263595D+01\\n\"")
+}
+
+///|
+test "sbcl reference 21: dlsodpk robertson mf=24" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodpk", rob_f, rob_jac, 24, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 5, 10.0, 600, 60, 0, [], false)
+  })
+  assert_eq(r, " d4600877379321698714 i2 | d4607048862084775248 d4540122266406497301 d4579681730300128111 d4616189618054758400 i2 | d4606331432371182298 d4537234017812877058 d4591470697642508383 d4626663239433110843 i-1 | d4605175628851953781 d4533207909490173548 d4597194747326199211 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i597 i3799 i0 i1 i1 i0 i65 i30 i1004 i2794 i0 i281 i905 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:3680346829640752586 s\" DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2040214291737D+01   R2 =  0.9047619104385D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2095577334800D+01   R2 =  0.9166666865349D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2150940377863D+01   R2 =  0.9200000166893D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2206303420926D+01   R2 =  0.9230769276619D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2261666463989D+01   R2 =  0.9259259104729D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2317029507052D+01   R2 =  0.9333333373070D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2372392550114D+01   R2 =  0.9354838728905D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2427755593177D+01   R2 =  0.9375000000000D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2538481679303D+01   R2 =  0.9393939375877D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.2593844722366D+01   R2 =  0.9428571462631D+00\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4441087601124D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4441087601124D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4468223953822D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4468223953822D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4495360306520D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4495360306520D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4522496659218D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4522496659218D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4549633011916D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4549633011916D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4576769364614D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4576769364614D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4603905717311D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4603905717311D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4631042070009D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4631042070009D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4685314775405D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4685314775405D+01   R2 =  0.1000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by average no. of linear iterations = R2    \\n      In above,  R1 =  0.4739587480801D+01   R2 =  0.3000000000000D+01\\n DLSODPK- Warning. Poor iterative algorithm performance seen \\n       at T = R1 by linear convergence failure rate = R2     \\n      In above,  R1 =  0.4739587480801D+01   R2 =  0.1000000000000D+01\\n DLSODPK-  At current T (=R1), MXSTEP (=I1) steps            \\n       taken on this call before reaching TOUT               \\n      In above message,  I1 =       500\\n      In above message,  R1 =  0.2120977793745D+02\\n\"")
+}
+
+///|
+test "sbcl reference 22: dlsodpk robertson mf=29" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodpk", rob_f, rob_jac, 29, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 5, 10.0, 600, 60, 0, [], false)
+  })
+  assert_eq(r, " d4595432907413037757 i-1 | d4607121867171718752 d4540334271597003755 d4574359931772513040 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i500 i1447 i0 i1 i1 i0 i56 i30 i1446 i0 i1442 i226 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:10285955193101592340 s\" DLSODPK-  At current T (=R1), MXSTEP (=I1) steps            \\n       taken on this call before reaching TOUT               \\n      In above message,  I1 =       500\\n      In above message,  R1 =  0.1738855482520D+00\\n\"")
+}
+
+///|
+test "sbcl reference 23: dlsodkr robertson mf=21 roots" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodkr", rob_f, rob_jac, 21, [1.0, 0.0, 0.0], 0.0001, 1.0e-08, 0.0, 0.4, 8, 10.0, 600, 60, 0, [], true)
+  })
+  assert_eq(r, " d4598427409941639285 i3 | d4607092034206756610 d4540246474850298055 d4576918229304087675 | i0 i1 d4600877379321698714 i2 | d4607048859059580177 d4540122256782893667 d4579681923950205169 | i0 i0 d4616189618054758400 i2 | d4606331365688982503 d4537233785961736252 d4591471231156711042 | i0 i0 d4630826316843712512 i2 | d4604622497069631181 d4531538993607801658 d4598791297931653827 | i0 i0 d4645744490609377280 i2 | d4601786355856874358 d4524718458239108719 d4603125021808194373 | i0 i0 d4661014508095930368 i2 | d4595766903193550387 d4516546440459885448 d4605532690022187845 | i0 i0 d4675730371722084352 i2 | d4585776714731285762 d4505220396052398601 d4606831423983886013 | i0 i0 d4690615560138915840 i2 | d4572342219011018547 d4491583186541642521 d4607137948333316407 | i0 i0 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i225 i209 i866 i2 i4 i4 i0 i80 i33 i327 i492 i0 i0 i0 i20 i2 i0 i0 i0 i0 i0 i1 i2 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:17296304019973449186 s\"\"")
+}
+
+///|
+test "sbcl reference 24: dlsodkr oscillator mf=22 jpre=2 roots" {
+  let r = ref_case(s => {
+    ode_explicit(s, "dlsodkr", osc_f, osc_jac, 22, [1.0, 0.0], 1.0e-06, 1.0e-08, 0.0, 1.0, 10, 0.0, 600, 60, 1, [(2, 2), (3, 1)], true)
+  })
+  assert_eq(r, " d4607182418800017408 i2 | d4601023213652938939 d-4615254673095942695 | i0 i0 d4608530671097632479 i3 | d4547007122018930688 d-4613927429360294415 | i1 i0 d4611686018427387904 i2 | d-4615458997664063561 d-4613170694137721714 | i0 i0 d4613937818241073152 i2 | d-4611029857089520059 d-4624514989366623569 | i0 i0 d4614236840905261905 i3 | d-4610987914696447414 d4576918229304087680 | i0 i1 d4616189618054758400 i2 | d-4614324258018939574 d4611705570000891632 | i0 i0 d4616834501581766479 i3 | d4547007122018956928 d4613507186381894580 | i1 i0 d4617315517961601024 i2 | d4608207257222427686 d4613593733901739586 | i0 i0 d4618441417868443648 i2 | d4614635238765117288 d4606108615581432940 | i0 i0 d4618739919028315926 i3 | d4614905022125162595 d4576918229304087616 | i0 i1 | i0 i0 i2 i1 i0 i0 i0 i0 i0 i157 i98 i172 i0 i5 i5 i0 i65 i30 i0 i0 i0 i0 i0 i98 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h600:2232086736511231975 s\"\"")
+}
+
+///|
+test "sbcl reference 25: dlsodi robertson mf=21 istate=0" {
+  let r = ref_case(s => {
+    ode_implicit(s, "dlsodi", 21, [1.0, 0.0, 0.0], [0.0, 0.0, 0.0], 0, 0.0001, 1.0e-08, 0.0, 0.4, 8, 10.0, 100, 40, [])
+  })
+  assert_eq(r, " d4600877379321698714 i2 | d4607048861484358216 d4540122264050511633 d4579681768736021388 d4616189618054758400 i2 | d4606331366218040831 d4537233767297522994 d4591471226928801067 d4630826316843712512 i2 | d4604622542442691566 d4531538985164251070 d4598791207185790728 d4645744490609377280 i2 | d4601786584920627741 d4524718710634153558 d4603124907275354869 d4661014508095930368 i2 | d4595767118861333990 d4516546736847088873 d4605532636104959283 d4675730371722084352 i2 | d4585776988513476606 d4505220693793119458 d4606831406872428096 d4690615560138915840 i2 | d4572341148456190309 d4491582052332716048 d4607137956697059806 d4705844345939427328 i2 | d4557903841208359737 d4477073045043390778 d4607177765834192225 | d-4764809789974833756 d-4845650574218554494 d4458562282938173097 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i252 i313 i54 i4 i4 i0 i58 i23 i0 i0 i1 i2 i3 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h100:14748591403249054050 s\"\"")
+}
+
+///|
+test "sbcl reference 26: dlsodi robertson mf=22 istate=1" {
+  let r = ref_case(s => {
+    ode_implicit(s, "dlsodi", 22, [1.0, 0.0, 0.0], [(-0.04), 0.04, 0.0], 1, 0.0001, 1.0e-08, 0.0, 0.4, 8, 10.0, 100, 40, [])
+  })
+  assert_eq(r, " d4600877379321698714 i2 | d4607048861484573584 d4540122264051088419 d4579681768722235682 d4616189618054758400 i2 | d4606331366218334862 d4537233767315002801 d4591471226926444591 d4630826316843712512 i2 | d4604622542445546224 d4531538985179949876 d4598791207180080942 d4645744490609377280 i2 | d4601786584938598435 d4524718710664654901 d4603124907266369412 d4661014508095930368 i2 | d4595767118893959386 d4516546736884149613 d4605532636096802904 d4675730371722084352 i2 | d4585776988721336318 d4505220694029090998 d4606831406859436810 d4690615560138915840 i2 | d4572341149890554982 d4491582053851685954 d4607137956685853788 d4705844345939427328 i2 | d4557903854142883278 d4477073058621082263 d4607177765821560805 | d-4764818755879226773 d-4845655281760338245 d4458553316997864386 | i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i252 i528 i54 i4 i4 i0 i58 i23 i0 i0 i1 i2 i3 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h100:1499737536988741799 s\"\"")
+}
+
+///|
+test "sbcl reference 27: dlsoibt heat mf=21" {
+  let r = ref_case(s => {
+    ode_implicit(s, "dlsoibt", 21, [1.0, 2.0, 3.0, 2.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0], 0, 1.0e-06, 1.0e-08, 0.0, 0.1, 8, 0.0, 300, 60, [(0, 1), (1, 5)])
+  })
+  assert_eq(r, " d4591870180066957722 i2 | d4607179830489437072 d4611646463958534491 d4613528340632018492 d4611646463958534491 d4607179830489437073 d4596373779694328218 i2 | d4607164468802021242 d4611546097310112875 d4613186470327785588 d4611546097310112875 d4607164468802021242 d4599075939470750516 i2 | d4607129690417605171 d4611405809375893714 d4612895465409611914 d4611405809375893714 d4607129690417605171 d4600877379321698714 i2 | d4607073216083938066 d4611239895638861571 d4612643213036849631 d4611239895638861571 d4607073216083938066 d4602678819172646912 i2 | d4606995304449307952 d4611058176436478929 d4612420849455554321 d4611058176436478929 d4606995304449307952 d4603579539098121011 i2 | d4606897644279110982 d4610867357053564068 d4612221858888235013 d4610867357053564068 d4606897644279110982 d4604480259023595110 i2 | d4606782614088591777 d4610672016749802118 d4612041401887453123 d4610672016749802118 d4606782614088591777 d4605380978949069209 i2 | d4606652857170299041 d4610475247869615937 d4611875867898004417 d4610475247869615937 d4606652857170299041 | d-4628736639986128384 d-4621832960926565792 d-4618852713591849803 d-4621832960926565794 d-4628736639986128384 | i1 i5 i0 i0 i0 i0 i0 i0 i0 i0 i29 i36 i6 i5 i5 i0 i82 i25 i0 i0 i1 i1 i1 i1 i1 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h300:11677847644559584683 s\"\"")
+}
+
+///|
+test "sbcl reference 28: dlsoibt heat mf=22" {
+  let r = ref_case(s => {
+    ode_implicit(s, "dlsoibt", 22, [1.0, 2.0, 3.0, 2.0, 1.0], [0.0, 0.0, 0.0, 0.0, 0.0], 0, 1.0e-06, 1.0e-08, 0.0, 0.1, 8, 0.0, 300, 60, [(0, 1), (1, 5)])
+  })
+  assert_eq(r, " d4591870180066957722 i2 | d4607179830489437076 d4611646463958534485 d4613528340632018498 d4611646463958534487 d4607179830489437076 d4596373779694328218 i2 | d4607164468802021237 d4611546097310112880 d4613186470327785582 d4611546097310112882 d4607164468802021238 d4599075939470750516 i2 | d4607129690417605172 d4611405809375893710 d4612895465409611914 d4611405809375893713 d4607129690417605173 d4600877379321698714 i2 | d4607073216083938064 d4611239895638861568 d4612643213036849629 d4611239895638861571 d4607073216083938067 d4602678819172646912 i2 | d4606995304449307951 d4611058176436478923 d4612420849455554319 d4611058176436478929 d4606995304449307954 d4603579539098121011 i2 | d4606897644279110985 d4610867357053564059 d4612221858888235017 d4610867357053564060 d4606897644279110990 d4604480259023595110 i2 | d4606782614088591779 d4610672016749802111 d4612041401887453124 d4610672016749802113 d4606782614088591782 d4605380978949069209 i2 | d4606652857170299051 d4610475247869615920 d4611875867898004424 d4610475247869615924 d4606652857170299053 | d-4628736639985457718 d-4621832960926609753 d-4618852713592522973 d-4621832960926609732 d-4628736639985457725 | i1 i5 i0 i0 i0 i0 i0 i0 i0 i0 i29 i60 i6 i5 i5 i0 i82 i25 i0 i0 i1 i1 i1 i1 i1 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 i0 |h300:14282298675982148127 s\"\"")
+}
+
+///|
+test "sbcl reference 29: dlsodis robertson mf=121 (TYPE-ERROR in the Lisp)" {
+  let raised = try {
+    ref_case(s => {
+      ode_implicit(s, "dlsodis", 121, [1.0, 0.0, 0.0], [0.0, 0.0, 0.0], 0, 0.0001, 1.0e-08, 0.0, 0.4, 8, 10.0, 1000, 100, [])
+    })
+    |> ignore
+    false
+  } catch {
+    _ => true
+  }
+  assert_true(raised)
+}
+
+///|
+test "sbcl reference 30: dlsodis robertson mf=222 (TYPE-ERROR in the Lisp)" {
+  let raised = try {
+    ref_case(s => {
+      ode_implicit(s, "dlsodis", 222, [1.0, 0.0, 0.0], [0.0, 0.0, 0.0], 0, 0.0001, 1.0e-08, 0.0, 0.4, 8, 10.0, 1000, 100, [])
+    })
+    |> ignore
+    false
+  } catch {
+    _ => true
+  }
+  assert_true(raised)
 }

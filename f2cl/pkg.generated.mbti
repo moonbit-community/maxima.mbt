@@ -46,6 +46,8 @@ pub fn d_sq(Double) -> Double
 
 pub fn f2cl_string(String, Int32) -> String
 
+pub fn f_acos(Double) -> Double
+
 pub fn f_aint(Double) -> Double
 
 pub fn f_atan(Double) -> Double

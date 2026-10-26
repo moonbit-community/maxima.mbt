@@ -2,39 +2,157 @@
 package "dii/maxima/odepack"
 
 // Values
+pub fn adjlr(Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn cdrv(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32, Int32) -> (Int32, Int32)
+
+pub fn cntnzu(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn daigbt((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Int32, Int32, Int32) raise
+
+pub fn dainvg((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Int32, Int32, Int32) raise
+
+pub fn dainvgs(Int32, Double, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise) -> (Int32, Double, Int32) raise
+
+pub fn datp(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Double], Int32) -> Unit raise
+
+pub fn datv(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Double, Int32, Int32, Int32) -> (Double, Int32, Int32) raise
+
 pub fn daxpy(Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
 
+pub fn dbnorm(Int32, FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Double], Int32) -> Double
+
 pub fn dcfode(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dcopy(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn ddecbt(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32
 
 pub fn ddot(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Double
 
 pub fn dewset(Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
 
+pub fn dfnorm(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Double
+
 pub fn dgbfa(FixedArray[Double], Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], Int32, Int32) -> Int32
 
-pub fn dgbsl(FixedArray[Double], Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit
+pub fn dgbsl(FixedArray[Double], Int32, Int32, Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> Unit
 
 pub fn dgefa(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, Int32) -> Int32
 
-pub fn dgesl(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit
+pub fn dgesl(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dhefa(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, Int32, Int32) -> Int32
+
+pub fn dhels(FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dheqr(FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32
+
+pub fn dhesl(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit
 
 pub fn dintdy(Double, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Int32
 
+pub fn diprep(FixedArray[Int32], FixedArray[Double], FixedArray[Double], FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
+
+pub fn diprepi(FixedArray[Int32], FixedArray[Double], FixedArray[Double], FixedArray[Double], FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
+
+pub fn dlhin(FixedArray[Int32], Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, Double, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Double, Int32, Int32) -> (Double, Int32, Int32) raise
+
+pub fn dlsoda((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, Int32) -> (Double, Int32) raise
+
+pub fn dlsodar((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit raise, Int32, FixedArray[Int32]) -> (Double, Int32) raise
+
 pub fn dlsode((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, Int32) -> (Double, Int32) raise
+
+pub fn dlsodes((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise, Int32) -> (Double, Int32) raise
+
+pub fn dlsodi((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Int32) raise
+
+pub fn dlsodis((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Int32) raise
+
+pub fn dlsodkr((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, ((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit raise, Int32, FixedArray[Int32]) -> (Double, Int32) raise
+
+pub fn dlsodpk((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, ((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, Int32) -> (Double, Int32) raise
+
+pub fn dlsoibt((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], FixedArray[Double], Double, Double, Int32, FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> (Double, Int32) raise
+
+pub fn dmnorm(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Double
+
+pub fn dnrm2(Int32, FixedArray[Double], Int32, Int32) -> Double
+
+pub fn dorthog(FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, Int32, Int32, Double) -> Double
+
+pub fn dpcg(FixedArray[Int32], Double, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, Double, Double, Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dpcgs(FixedArray[Int32], Double, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, Double, Double, Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> (Double, Double, Int32, Int32, Int32) raise
+
+pub fn dpjibt(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise) -> Unit raise
+
+pub fn dpkset(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, ((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32 raise) -> Unit raise
+
+pub fn dprep(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
+
+pub fn dprepi(FixedArray[Int32], FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
 
 pub fn dprepj(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise) -> Unit raise
 
+pub fn dprepji(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise) -> Unit raise
+
+pub fn dprja(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise) -> Unit raise
+
+pub fn dprjis(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise) -> Unit raise
+
+pub fn dprjs(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit raise) -> Unit raise
+
+pub fn drchek(Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> Int32 raise
+
+pub fn droots(Int32, Double, Int32, Double, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Int32]) -> (Int32, Double, Double, Double)
+
 pub fn dscal(Int32, Double, FixedArray[Double], Int32, Int32) -> Unit
 
-pub fn dsolsy(FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], FixedArray[Double], Int32) -> Unit
+pub fn dsetpk(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, ((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32 raise) -> Int32 raise
+
+pub fn dslsbt(FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dsolbt(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> Unit
+
+pub fn dsolpk(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise) -> Unit raise
+
+pub fn dsolss(FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dsolsy(FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dspigmr(FixedArray[Int32], Double, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, Int32, Int32, Double, Double, Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Double, Int32, Int32, Int32, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dspiom(FixedArray[Int32], Double, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, Int32, Double, Double, Int32, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> (Double, Int32, Int32, Int32, Double, Double, Int32, Int32, Int32) raise
+
+pub fn dsrcar(FixedArray[Double], FixedArray[Int32], Int32) -> Unit
+
+pub fn dsrckr(FixedArray[Double], FixedArray[Int32], Int32) -> Unit
+
+pub fn dsrcma(FixedArray[Double], FixedArray[Int32], Int32) -> Unit
+
+pub fn dsrcms(FixedArray[Double], FixedArray[Int32], Int32) -> Unit
 
 pub fn dsrcom(FixedArray[Double], FixedArray[Int32], Int32) -> Unit
 
-pub fn dstode(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, (FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise) -> Unit raise, (FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], FixedArray[Double], Int32) -> Unit) -> Int32 raise
+pub fn dsrcpk(FixedArray[Double], FixedArray[Int32], Int32) -> Unit
+
+pub fn dstoda(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise, (FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit raise) -> Unit raise, (FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit) -> Int32 raise
+
+pub fn[TJac] dstode(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, TJac, (FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, TJac) -> Unit raise, (FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit) -> Int32 raise
+
+pub fn[TAdda, TJac] dstodi(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, TAdda, TJac, (FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32 raise, TJac, TAdda) -> Unit raise, (FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit) -> Int32 raise
+
+pub fn dstodpk(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, ((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise) -> Unit raise
+
+pub fn dstoka(FixedArray[Int32], FixedArray[Double], FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, ((FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32 raise, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise) -> Unit raise
 
 pub fn dumach() -> Double
 
 pub fn dumsum(Double, Double, Double) -> Double
+
+pub fn dusol(FixedArray[Int32], Double, FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Double, Double, Int32, (FixedArray[Int32], Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32) -> Int32 raise, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> (Double, Double, Int32, Int32) raise
 
 pub fn dvnorm(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Double
 
@@ -43,6 +161,32 @@ pub fn idamax(Int32, FixedArray[Double], Int32, Int32) -> Int32
 pub fn iumach() -> Int32
 
 pub fn ixsav(Int32, Int32, Bool) -> Int32
+
+pub fn jgroup(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> (Int32, Int32)
+
+pub fn md(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn mdi(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, Int32) -> Int32
+
+pub fn mdm(Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32) -> Int32
+
+pub fn mdp(Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32) -> (Int32, Int32)
+
+pub fn mdu(Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32) -> Int32
+
+pub fn nnfc(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn nnsc(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn nntc(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn nroc(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn nsfc(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn odrv(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, Int32, Int32) -> Int32
+
+pub fn sro(Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Bool) -> Unit
 
 pub fn xerrwd(String, Int32, Int32, Int32, Int32, Int32, Int32, Int32, Double, Double) -> Unit
 

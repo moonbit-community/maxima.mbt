@@ -312,6 +312,7 @@ fn format_directive(sb : StringBuilder, s : String, a : FArg) -> Unit {
           )
         _ => sb.write_string(farg_princ(a))
       }
+    'F' => format_fixed_directive(sb, d, a)
     _ => abort("f2cl format: unsupported directive ~" + d.ch.to_string())
   }
 }
@@ -649,4 +650,105 @@ fn flonum_to_digits(v : Double, position : Int?) -> (Int, String) {
     sb.write_char(Int::unsafe_to_char('0'.to_int() + d))
   }
   (k, sb.to_string())
+}
+
+///|
+/// ~w,d,k,overflowchar,padcharF.
+fn format_fixed_directive(sb : StringBuilder, d : Directive, a : FArg) -> Unit {
+  let x = match a {
+    AD(x) => x
+    // SBCL formats a rational with ~F as a single-float
+    AI(n) => Float::from_int(n).to_double()
+    _ => {
+      sb.write_string(farg_princ(a))
+      return
+    }
+  }
+  format_fixed(
+    sb,
+    x,
+    param_int_opt(d, 0),
+    param_int_opt(d, 1),
+    param_int(d, 2, 0),
+    param_char(d, 3),
+    match param_char(d, 4) {
+      Some(c) => c
+      None => ' '
+    },
+    d.at,
+  )
+}
+
+///|
+/// SBCL's FORMAT-FIXED-AUX.  (Without fraction digits SBCL picks the digits
+/// from the width; the f2cl formats always give them, and the shortest
+/// digits are used otherwise.)
+fn format_fixed(
+  sb : StringBuilder,
+  number : Double,
+  w : Int?,
+  d : Int?,
+  k : Int,
+  ovf : Char?,
+  pad : Char,
+  atsign : Bool,
+) -> Unit {
+  if number.is_nan() || number.is_inf() {
+    sb.write_string(number.to_string())
+    return
+  }
+  let neg = number.reinterpret_as_int64() < 0L
+  let mut spaceleft = match w {
+    Some(wv) => if atsign || neg { wv - 1 } else { wv }
+    None => 0
+  }
+  let (str, len, lpoint0, tpoint0) = flonum_to_string(number.abs(), d, k, None)
+  let mut lpoint = lpoint0
+  let mut tpoint = tpoint0
+  if d == Some(0) {
+    tpoint = false
+  }
+  if w is Some(_) {
+    spaceleft = spaceleft - len
+    if lpoint {
+      if spaceleft > 0 || tpoint {
+        spaceleft = spaceleft - 1
+      } else {
+        lpoint = false
+      }
+    }
+    if tpoint {
+      if spaceleft > 0 {
+        spaceleft = spaceleft - 1
+      } else {
+        tpoint = false
+      }
+    }
+  }
+  match (w, ovf) {
+    (Some(wv), Some(oc)) if spaceleft < 0 => {
+      for _i in 0..<wv {
+        sb.write_char(oc)
+      }
+      return
+    }
+    _ => ()
+  }
+  if w is Some(_) {
+    for _i in 0..<spaceleft {
+      sb.write_char(pad)
+    }
+  }
+  if neg {
+    sb.write_char('-')
+  } else if atsign {
+    sb.write_char('+')
+  }
+  if lpoint {
+    sb.write_char('0')
+  }
+  sb.write_string(str)
+  if tpoint {
+    sb.write_char('0')
+  }
 }

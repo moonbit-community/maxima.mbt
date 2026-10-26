@@ -1,0 +1,73 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/colnew"
+
+// Values
+pub fn approx(Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Int32], Int32, Int32, Int32, FixedArray[Double], Int32, Int32) -> (Int32, Double)
+
+pub fn appsln(Double, FixedArray[Double], FixedArray[Double], FixedArray[Int32]) -> Double
+
+pub fn blockdata_colnew() -> Unit
+
+pub fn colnew(Int32, FixedArray[Int32], Double, Double, FixedArray[Double], FixedArray[Int32], FixedArray[Int32], FixedArray[Double], FixedArray[Double], FixedArray[Int32], FixedArray[Double], Int32, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Int32, FixedArray[Double], Int32, Double) -> Double raise, (Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
+
+pub fn colsys(Int32, FixedArray[Int32], Double, Double, FixedArray[Double], FixedArray[Int32], FixedArray[Int32], FixedArray[Double], FixedArray[Double], FixedArray[Int32], FixedArray[Double], Int32, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Int32, FixedArray[Double], Int32, Double) -> Double raise, (Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
+
+pub fn consts(Int32, FixedArray[Double], FixedArray[Double], Int32) -> Unit
+
+pub fn contrl(FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Double], Int32, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Int32, FixedArray[Double], Int32, Double) -> Double raise, (Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
+
+pub fn daxpy(Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn ddot(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32) -> Double
+
+pub fn dgefa(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, Int32) -> Int32
+
+pub fn dgesl(FixedArray[Double], Int32, Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn dmzsol(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dscal(Int32, Double, FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn errchk(FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn factrb(FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32, Int32, Int32, Int32) -> Int32
+
+pub fn fcblok(FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Int32
+
+pub fn gblock(Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32) -> Unit
+
+pub fn gderiv(FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], FixedArray[Double], Int32, (Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise) -> Unit raise
+
+pub fn horder(Int32, FixedArray[Double], Double, FixedArray[Double], Int32, Int32, Int32) -> Unit
+
+pub fn idamax(Int32, FixedArray[Double], Int32, Int32) -> Int32
+
+pub fn lsyslv(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, FixedArray[Int32], Int32, Double, Int32, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Int32, FixedArray[Double], Int32, Double) -> Double raise, (Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise) -> (Int32, Double) raise
+
+pub fn multi_entry_colnew(String, Int32, FixedArray[Int32], Double, Double, FixedArray[Double], FixedArray[Int32], FixedArray[Int32], FixedArray[Double], FixedArray[Double], FixedArray[Int32], FixedArray[Double], Int32, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Int32, FixedArray[Double], Int32, Double) -> Double raise, (Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise) -> Int32 raise
+
+pub fn newmsh(Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, FixedArray[Double]) -> Int32
+
+pub fn rkbas(Double, FixedArray[Double], Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn sbblok(FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Int32], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn shiftb(FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, Int32) -> Unit
+
+pub fn skale(Int32, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn subbak(FixedArray[Double], Int32, Int32, Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn subfor(FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn vmonde(FixedArray[Double], FixedArray[Double], Int32, Int32) -> Unit
+
+pub fn vwblok(Double, Double, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, (Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit raise, Int32) -> (Double, Int32) raise
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

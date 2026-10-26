@@ -61,3 +61,9 @@ pub fn f_tanh(x : Double) -> Double {
 pub fn f_hypot(x : Double, y : Double) -> Double {
   @math.hypot(x, y)
 }
+
+///|
+/// ACOS of a double-float in [-1, 1].
+pub fn f_acos(x : Double) -> Double {
+  @math.acos(x)
+}
