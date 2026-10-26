@@ -41,23 +41,10 @@ let init_cl__q_maxima_default_layout_autotools : Value = sym(
 let init_cl__q_load_pathname : Value = sym("*load-pathname*")
 
 ///|
-/// Command-line arguments for PROCESS-MAXIMA-ARGS (GET-APPLICATION-ARGS).
-let init_cl__application_args : Ref[Array[String]] = Ref([])
-
-///|
 /// Called by the MoonBit main program with the program arguments (without
-/// the program name).
+/// the program name), for GET-APPLICATION-ARGS.
 fn init_cl__set_application_args(args : Array[String]) -> Unit {
-  // -- is used to distinguish between options for a lisp implementation
-  // and for Maxima.
-  let mut start = 0
-  for i, a in args {
-    if a == "--" {
-      start = i + 1
-      break
-    }
-  }
-  init_cl__application_args.val = args[start:].to_array()
+  cmdline__argv.val = args
 }
 
 ///|
@@ -637,118 +624,81 @@ fn list_avail_action() -> Value raise {
 // ---- Command-line options (cl-option structures of command-line.lisp).
 
 ///|
-priv struct InitClOption {
-  names : Array[String]
-  argument : String?
-  action : ((String) -> Unit raise)?
-  help : String
-}
-
-///|
-fn init_cl__option_description(name : String, arg_ : String?) -> String {
-  match arg_ {
-    None => name
-    Some(a) =>
-      if name.length() == 1 {
-        name + " " + a
-      } else if name.has_prefix("--") {
-        name + "=" + a
-      } else {
-        name + " " + a
-      }
-  }
-}
-
-///|
-/// LIST-CL-OPTIONS: print all the command line options, wrapped at 80
-/// columns.
-fn init_cl__list_cl_options(opts : Array[InitClOption]) -> Unit {
-  write_string("options:\n")
-  for opt in opts {
-    let descs = opt.names.map(n => init_cl__option_description(n, opt.argument))
-    let sb = StringBuilder::new()
-    let mut col = 4
-    sb.write_string("    ")
-    for i, d in descs {
-      let item = if i + 1 < descs.length() { d + ", " } else { d }
-      if col + item.length() > 80 && col > 4 {
-        sb.write_string("\n      ")
-        col = 6
-      }
-      sb.write_string(item)
-      col += item.length()
-    }
-    sb.write_string("\n")
-    if opt.help != "" {
-      sb.write_string("        ")
-      let mut col = 8
-      for w in opt.help.split(" ") {
-        let w = w.to_string().trim(chars=" \n\t").to_string()
-        if w == "" {
-          continue
-        }
-        if col + 1 + w.length() > 80 {
-          sb.write_string("\n        ")
-          col = 8
-        }
-        sb.write_string(" " + w)
-        col += 1 + w.length()
-      }
-    }
-    sb.write_string("\n")
-    write_string(sb.to_string())
-  }
-  finish_output()
-}
-
-///|
 fn process_maxima_args(
   input_stream : Value,
   batch_flag : Value,
 ) -> (Value, Value) raise {
+  // Note: The current option parsing code expects every short option to
+  // have an equivalent long option.  No check is made for this, so please
+  // make sure this holds.  Or change the code in process-args in
+  // command-line.lisp.
+  //
+  // The help strings should not have any special manual formatting but
+  // extraneous white space is ok.  They are automatically printed with
+  // extraneous whitespace (including newlines) removed and lines wrapped
+  // neatly.
   let input_stream = Ref(input_stream)
   let batch_flag = Ref(batch_flag)
-  let opts : Array[InitClOption] = []
+  let opts : Array[Value] = []
   let opt = (
     names : Array[String],
     argument : String?,
-    action : ((String) -> Unit raise)?,
+    action : ((Array[Value]) -> Value raise)?,
     help : String,
-  ) => opts.push({ names, argument, action, help })
+  ) => opts.push(
+    cmdline__make_cl_option(
+      names=list(names.map(n => Str(n))),
+      argument=match argument {
+        Some(a) => Str(a)
+        None => Nil
+      },
+      action=match action {
+        Some(f) => lfunc("cl-option-action", f)
+        None => Nil
+      },
+      help_string=Str(help),
+    ),
+  )
+  let str_arg = (args : Array[Value]) => lstring(args[0])
   opt(
     ["-b", "--batch"],
     Some("<file>"),
-    Some(file => {
+    Some(args => {
       input_stream.val = make_string_input_stream(
-        "batch(\"" + file + "\");",
+        format_to_string("batch(\"~a\");", [Str(str_arg(args))]),
       )
       batch_flag.val = q_kw_batch
+      Nil
     }),
     "Process maxima file <file> in batch mode.",
   )
   opt(
     ["--batch-lisp"],
     Some("<file>"),
-    Some(file => {
+    Some(args => {
       input_stream.val = make_string_input_stream(
-        ":lisp (with-compilation-unit nil (load \"" + file + "\"));",
+        format_to_string(":lisp (with-compilation-unit nil (load \"~a\"));", [
+          Str(str_arg(args)),
+        ]),
       )
       batch_flag.val = q_kw_batch
+      Nil
     }),
     "Process lisp file <file> in batch mode.",
   )
   opt(
     ["--batch-string"],
     Some("<string>"),
-    Some(string => {
+    Some(args => {
       set(q_d_batch_answers_from_file, t) |> ignore
-      input_stream.val = make_string_input_stream(string)
+      input_stream.val = make_string_input_stream(str_arg(args))
       // see RETRIEVE in macsys.lisp
       set(standard_input, input_stream.val) |> ignore
       // (make-two-way-stream input-stream (make-string-output-stream)):
       // the port has no two-way streams; queries read the input stream.
       set(q_ear_query_io, input_stream.val) |> ignore
       batch_flag.val = q_kw_batch
+      Nil
     }),
     "Process maxima command(s) <string> in batch mode.",
   )
@@ -757,15 +707,15 @@ fn process_maxima_args(
     None,
     Some(_ => {
       print_directories() |> ignore
-      d_quit() |> ignore
+      d_quit()
     }),
     "Display maxima internal directory information.",
   )
-  opt(["--disable-readline"], None, Some(_ => ()), "Disable readline support.")
+  opt(["--disable-readline"], None, Some(_ => Nil), "Disable readline support.")
   opt(
     ["-g", "--enable-lisp-debugger"],
     None,
-    Some(_ => set(q_ear_debugger_hook, Nil) |> ignore),
+    Some(_ => set(q_ear_debugger_hook, Nil)),
     "Enable underlying lisp debugger.",
   )
   opt(
@@ -773,8 +723,9 @@ fn process_maxima_args(
     None,
     Some(_ => {
       format(t, "usage: maxima [options]~%", []) |> ignore
-      init_cl__list_cl_options(opts)
-      bye() |> ignore
+      cmdline_list_cl_options(symval(q_ear_maxima_commandline_options))
+      |> ignore
+      bye()
     }),
     "Display this usage message.",
   )
@@ -788,10 +739,11 @@ fn process_maxima_args(
   opt(
     ["--init"],
     Some("<file>"),
-    Some(file => {
+    Some(args => {
       // Strip off everything before the last "/" (or "\"). Then strip off
       // everything after the last dot.
-      let n = file.length()
+      let file = str_arg(args)
+      let n = string_length(file)
       let mut dot = -1
       let mut dir = -1
       for i in 0..<n {
@@ -820,11 +772,12 @@ fn process_maxima_args(
         |> ignore
       }
       set(q_ear_maxima_initmac, Str(base + ".mac")) |> ignore
-      set(q_ear_maxima_initlisp, Str(base + ".lisp")) |> ignore
+      set(q_ear_maxima_initlisp, Str(base + ".lisp"))
     }),
-    "Set the base name of the Maxima & Lisp initialization files (default is \"" +
-    substring(initmac, 0, end=string_length(initmac) - 4) +
-    "\".)  The last extension and any directory parts are removed to form the base name.  The resulting files, <base>.mac and <base>.lisp are only searched for in userdir (see --userdir option).  This may be specified for than once, but only the last is used.",
+    format_to_string(
+      "Set the base name of the Maxima & Lisp initialization files (default is ~s.)  The last extension and any directory parts are removed to form the base name.  The resulting files, <base>.mac and <base>.lisp are only searched for in userdir (see --userdir option).  This may be specified for than once, but only the last is used.",
+      [Str(substring(initmac, 0, end=string_length(initmac) - 4))],
+    ),
   )
   opt(
     ["-l", "--lisp"],
@@ -835,56 +788,65 @@ fn process_maxima_args(
   opt(
     ["--list-avail"],
     None,
-    Some(_ => list_avail_action() |> ignore),
+    Some(_ => list_avail_action()),
     "List the installed version/lisp combinations.",
   )
+  // --preload-lisp is left for backward compatibility.  We no longer
+  // distinguish between mac and lisp files.  Any file type that $LOAD
+  // supports is acceptable.  "--init-mac" and "--init-lisp" are now also
+  // (deprecated) aliases for --preload.
   opt(
     ["-p", "--preload", "--preload-lisp", "--init-mac", "--init-lisp"],
     Some("<file>"),
-    Some(file => {
+    Some(args => {
       // $loadprint T so we can see the file being loaded; unless
       // *maxima-quiet* is T.
       with_special(
         q_d_loadprint,
         lbool(!symval(q_ear_maxima_quiet).truthy()),
-        () => catch_tag(q_macsyma_quit, () => d_load(Str(file))),
+        // If there's an error, catch
+        () => catch_tag(q_macsyma_quit, () => d_load(args[0])),
       )
-      |> ignore
     }),
-    "Preload <file>, which may be any file time accepted by Maxima's LOAD function.  The <file> is loaded before any other system initialization is done.  This will be searched for in the locations given by file_search_maxima and file_search_lisp.  This can be specified multiple times to load multiple files. The equivalent options --preload-lisp, --init-mac, and --init-lisp are deprecated.",
+    "Preload <file>, which may be any file time accepted by\n        Maxima's LOAD function.  The <file> is loaded before any other\n        system initialization is done.  This will be searched for in\n        the locations given by file_search_maxima and\n        file_search_lisp.  This can be specified multiple times to\n        load multiple files. The equivalent options --preload-lisp,\n        --init-mac, and --init-lisp are deprecated.",
   )
   opt(
     ["-q", "--quiet"],
     None,
-    Some(_ => set(q_ear_maxima_quiet, t) |> ignore),
+    Some(_ => set(q_ear_maxima_quiet, t)),
     "Suppress Maxima start-up message.",
   )
   opt(
     ["-Q", "--quit-on-error"],
     None,
-    Some(_ => set(q_ear_quit_on_error, t) |> ignore),
+    Some(_ => set(q_ear_quit_on_error, t)),
     "Quit, and return an exit code 1, when Maxima encounters an error.",
   )
   opt(
     ["-r", "--run-string"],
     Some("<string>"),
-    Some(string => {
+    Some(args => {
       set(q_ear_maxima_run_string, t) |> ignore
-      input_stream.val = make_string_input_stream(string)
+      input_stream.val = make_string_input_stream(str_arg(args))
       batch_flag.val = Nil
+      Nil
     }),
     "Process maxima command(s) <string> in interactive mode.",
   )
   opt(
     ["-s", "--server"],
     Some("<port>"),
-    Some(_ => merr("--server: not supported in this port", []) |> ignore),
+    Some(args => {
+      start_client(init_cl__parse_integer(args[0])) |> ignore
+      input_stream.val = symval(standard_input)
+      Nil
+    }),
     "Connect Maxima to server on <port>.",
   )
   opt(
     ["--suppress-input-echo"],
     None,
-    Some(_ => set(q_ear_suppress_input_echo, t) |> ignore),
+    Some(_ => set(q_ear_suppress_input_echo, t)),
     "Do not print input expressions when processing noninteractively.",
   )
   opt(
@@ -904,7 +866,7 @@ fn process_maxima_args(
     None,
     Some(_ => {
       format(t, "Maxima ~a~%", [symval(q_ear_autoconf_version)]) |> ignore
-      d_quit() |> ignore
+      d_quit()
     }),
     "Display the default installed version.",
   )
@@ -915,7 +877,7 @@ fn process_maxima_args(
       set(q_ear_maxima_quiet, t) |> ignore
       set(q_ear_display_labels_p, Nil) |> ignore
       set(q_ear_verify_html_index, Nil) |> ignore
-      set(q_ear_warn_deprecated_defmvar_options, Nil) |> ignore
+      set(q_ear_warn_deprecated_defmvar_options, Nil)
     }),
     "Suppress expression labels, Maxima start-up message and verification of html index.",
   )
@@ -927,92 +889,53 @@ fn process_maxima_args(
       set(q_ear_display_labels_p, Nil) |> ignore
       set(q_ear_verify_html_index, Nil) |> ignore
       set(q_d_ttyoff, t) |> ignore
-      set(q_ear_warn_deprecated_defmvar_options, Nil) |> ignore
+      set(q_ear_warn_deprecated_defmvar_options, Nil)
     }),
     "In addition to --very-quiet, suppress most printed output by setting TTYOFF to T.",
   )
   opt(
     ["-X", "--lisp-options"],
     Some("<Lisp options>"),
-    Some(o => if !symval(q_ear_maxima_quiet).truthy() {
-      format(t, "Lisp options: ~A", [list1(Str(o))]) |> ignore
+    Some(args => {
+      if !symval(q_ear_maxima_quiet).truthy() {
+        format(t, "Lisp options: ~A", [list(args)]) |> ignore
+      }
+      Nil
     }),
     "Options to be given to the underlying Lisp",
   )
   opt(
     ["--no-init", "--norc"],
     None,
-    Some(_ => set(q_ear_maxima_load_init_files, Nil) |> ignore),
+    Some(_ => set(q_ear_maxima_load_init_files, Nil)),
     "Do not load the init file(s) on startup",
   )
   opt(
     ["--verify-html-index"],
     None,
-    Some(_ => set(q_ear_verify_html_index, t) |> ignore),
+    Some(_ => set(q_ear_verify_html_index, t)),
     "Verify on startup that the set of html topics is consistent with text topics.",
   )
-  set(q_ear_maxima_commandline_options, list(opts.map(o => Str(o.names[0]))))
+  set(q_ear_maxima_commandline_options, list(opts)) |> ignore
+  cmdline_process_args(
+    cmdline_get_application_args(),
+    symval(q_ear_maxima_commandline_options),
+  )
   |> ignore
-  // PROCESS-ARGS: parse with getopt first, then run the actions in order.
-  let find_opt = (name : String) => {
-    let mut found : InitClOption? = None
-    for o in opts {
-      for n in o.names {
-        if string_left_trim("-", n) == name {
-          found = Some(o)
-        }
-      }
-      if found is Some(_) {
-        break
-      }
-    }
-    found
-  }
-  let parsed : Array[(InitClOption, String)] = []
-  let errors : Array[String] = []
-  let args = init_cl__application_args.val
-  let mut i = 0
-  while i < args.length() {
-    let a = args[i]
-    i += 1
-    if !a.has_prefix("-") || a == "-" {
-      continue // non-option arguments are ignored
-    }
-    let body = string_left_trim("-", a)
-    let (name, inline_val) = match body.find("=") {
-      Some(k) if a.has_prefix("--") =>
-        (substring(body, 0, end=k), Some(substring(body, k + 1)))
-      _ => (body, None)
-    }
-    match find_opt(name) {
-      None => errors.push(a)
-      Some(o) =>
-        if o.argument is Some(_) {
-          match inline_val {
-            Some(v) => parsed.push((o, v))
-            None =>
-              if i < args.length() {
-                parsed.push((o, args[i]))
-                i += 1
-              } else {
-                errors.push(a)
-              }
-          }
-        } else {
-          parsed.push((o, ""))
-        }
-    }
-  }
-  for p in parsed {
-    match p.0.action {
-      Some(f) => f(p.1)
-      None => ()
-    }
-  }
-  for e in errors {
-    format(t, "Warning: argument ~A not recognized.~%", [Str(e)]) |> ignore
-  }
   (input_stream.val, batch_flag.val)
+}
+
+///|
+/// (parse-integer string): the integer the whole string spells.
+fn init_cl__parse_integer(s : Value) -> Value raise {
+  let str = lstring(s)
+  match parse_integer(string_trim(" \t\n", str)) {
+    Some(v) => v
+    None =>
+      raise LispError::SimpleError(
+        format_to_string("junk in string ~S", [Str(str)]),
+      )
+  }
 }
 
 ///|
@@ -1046,10 +969,13 @@ fn run() -> (Value, Value) raise {
     let (s, b) = process_maxima_args(input_stream, batch_flag)
     input_stream = s
     batch_flag = b
+    // Whether the console is used interactively (INTERACTIVE-STREAM-P of
+    // the input, which the display code consults): not in batch mode, nor
+    // when the input is a socket (-s).
+    displa__interactive.val = batch_flag is Nil &&
+      !boundp(q_ear_socket_connection)
     if symval(q_ear_verify_html_index).truthy() {
-      // $verify_html_index belongs to the help system, which is not part
-      // of the port.
-      ()
+      d_verify_html_index() |> ignore
     }
     load_user_init_file() |> ignore
     // (loop (with-simple-restart (macsyma-quit "Maxima top-level")
@@ -1110,7 +1036,7 @@ fn initialize_runtime_globals() -> Value raise {
   set_locale_subdir() |> ignore
   adjust_character_encoding() |> ignore
   set_pathnames() |> ignore
-  // (cl-info::load-primary-index): the help system is not part of the port.
+  catch_tag(q_return_from_debugger, () => info_load_primary_index()) |> ignore
   if boundp(q_ear_maxima_prefix) {
     let dir = init_cl__str(symval(q_ear_maxima_prefix)) +
       (if symval(q_ear_maxima_layout_autotools).truthy() {
