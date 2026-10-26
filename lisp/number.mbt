@@ -518,17 +518,13 @@ pub fn num_add(a : Value, b : Value) -> Value raise LispError {
           ftrap(x + y, x, y)
         }
         _ =>
-          // As SBCL: (+ real complex) takes the imaginary part as
-          // (+ 0 im), so -0.0 becomes 0.0, while (+ complex real) keeps
-          // the complex operand's imaginary part.
-          match (a, b) {
-            (Cplx(r1, i1), Fix(_) | Big(_) | Ratio(_, _) | Flo(_)) =>
-              make_complex(num_add(r1, b), i1)
-            _ => {
-              let (r1, i1) = cparts(a)
-              let (r2, i2) = cparts(b)
-              make_complex(num_add(r1, r2), num_add(i1, i2))
-            }
+          // As SBCL (verified): the real operand counts as complex with a
+          // zero imaginary part in both argument orders, so an imaginary
+          // -0.0 becomes 0.0.
+          {
+            let (r1, i1) = cparts(a)
+            let (r2, i2) = cparts(b)
+            make_complex(num_add(r1, r2), num_add(i1, i2))
           }
       }
     }
@@ -548,6 +544,11 @@ pub fn num_sub(a : Value, b : Value) -> Value raise LispError {
       }
     }
     (Flo(x), Flo(y)) => ftrap(x - y, x, y)
+    // As SBCL (verified): complex - real leaves the imaginary part alone;
+    // real - complex negates it as 0 - im.
+    (Cplx(r1, i1), Cplx(r2, i2)) => make_complex(num_sub(r1, r2), num_sub(i1, i2))
+    (Cplx(r1, i1), _) => make_complex(num_sub(r1, b), i1)
+    (_, Cplx(r2, i2)) => make_complex(num_sub(a, r2), num_sub(Fix(0L), i2))
     _ => num_add(a, num_neg(b))
   }
 }

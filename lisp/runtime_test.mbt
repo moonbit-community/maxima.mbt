@@ -82,6 +82,9 @@ test "complex arithmetic like sbcl" {
   inspect(try! num_div(Value::Flo(2.0), c2), content="#C(0.10344827586206898 0.24137931034482762)")
   inspect(try! num_add(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(3.0 0.0)")
   inspect(try! num_mul(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(2.0 -0.0)")
+  inspect(try! num_add(Value::Flo(2.0), Value::Cplx(Flo(1.0), Value::Flo(-0.0))), content="#C(3.0 0.0)")
+  inspect(try! num_sub(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(-1.0 -0.0)")
+  inspect(try! num_sub(Value::Flo(2.0), Value::Cplx(Flo(1.0), Value::Flo(0.0))), content="#C(1.0 0.0)")
 }
 
 ///|
