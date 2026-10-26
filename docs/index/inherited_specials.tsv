@@ -1,0 +1,112 @@
+simp	dosimp errcatch errset genvar opers-list varlist
+basic-util	in-p substp
+nparse	errset fpprec
+safe-recursion	name
+merror	errset s var
+outmis	errorsw genvar s var varlist
+ar	evarrp
+comm	derivflag derivlist dispflag dn* errcatch errset nn* noevalargs s size substp var
+comm2	scanmapp var varlist
+mmacro	name
+mlisp	aryp derivflag derivlist evarrp evp fmaplvl maplp mlocp munbindp name noevalargs tlist transp var
+csimp	dn* genpairs nn* varlist
+rpart	bas sign-imag-errp
+float	bas fpprec s
+csimp2	genvar varlist
+zero	genvar varlist
+numeric	fpprec s sign
+macsys	name s v
+mload	errset name noevalargs s
+mactex	s var
+dskfn	flag name opers var
+factor	algfac* dn* gauss mm* modulus nn* r1 r2 s v
+lesfac	v
+ufact	flag res v
+result	genvar res v var varlist
+algfac	algfac* gauss minpoly* mm* modulus s tellratlist v
+nalgfa	algfac* genpairs genvar i ind q res tellratlist v var varlist
+ifactor	i j q res s v v1 v2
+rat3a	algfac* deg i q s v
+rat3b	genvar q v varlist
+rat3d	adn* j modulus nn* q v
+rat3c	ans i q s v
+rat3e	adn* algfac* ans dosimp flag gauss genpairs genvar i k minpoly* mm* modulus mplc* ovarlist sign tellratlist v varlist
+nrat4	ans bas flag genvar i j k modulus q radcanp v var varlist
+ratout	ans dosimp genvar i j modulus q v2 var
+acall	ans j maplp res var
+fcall	var
+bessel	k sign v var
+airy	var
+ellipt	k q s v var
+intpol	errcatch errset name right
+mgrind	i lop rop
+grind	i
+displa	bas bkpt bkptdp bkptht bkptlevel bkptout bkptwd break depth height i in-p level lines lop maxdp maxht mratp oldcol oldrow right rop size var width
+spgcd	algfac* ans flag genvar i j k modulus var
+ezgcd	ans flag genvar i modulus q
+inmis	munbindp
+db	i k s v
+compar	ans context errcatch errset flag fn i ind k limitp q s sign-imag-errp v var
+hyp	fact1 fact2 k q r1 r2 res s sign v
+nummod	fn q var
+hypergeometric	context k q s
+nfloat	q s v
+sinint	ans deg genvar i q sign varlist
+risch	ans deg flag fn genpairs genvar i implicit-real k res rischp rp-polylogp s sign-imag-errp varlist
+irinte	q r1 r2 res s sign
+sin	ans genvar i k q r1 r2 s v var varlist
+hayat	errorsw genpairs genvar i k modulus msg q s sign silent-taylor-flag v v1 v2 varlist
+residu	r1 s silent-taylor-flag wflag
+defint	ans deg dn* dosimp errorsw flag genvar i ind integerl j k limitp nn* nonintegerl plogabs q res rp-polylogp rsn* s sign v varlist zn
+hypgeo	ans i j k q res s v
+laplac	errcatch errset exp k q res sign v varlist
+trigi	errcatch exp i limitp name q s sign v var
+trigo	flag i s sign
+trgred	ans exp fn nf q s v
+specfn	exp i k q s
+mat	exp flag i j k q zl
+matrix	ans ax elm fn i j k name s sign v var
+linnew	ax flag i ind j k name res vars
+sprdet	ans ax elm i ind j s
+newinv	ans ax i j s
+newdet	aryp j k sign
+matcom	flag meta-prop-p name
+matrun	ans depth flag
+nisimp	flag genvar q s var varlist
+tlimit	ans exp flag fn silent-taylor-flag var
+limit	ans bas ccc errcatch errorsw flag fn i ind k low* nn* q r1 r2 s sign sign-imag-errp v
+polyrz	exp fn s tlist v varlist
+cpoly	exp i j r1 res var
+solve	ans exp flag genpairs genvar ind j k s v var varlist vlist
+algsys	errorsw genvar q v var varlist
+mtrace	ans j level v
+expintegral	i val var
+gamma	context delta exp fpprec i k s sign val var
+plasma	r1 r2 s
+rand-mt19937	i j k
+scs	exp flag nx
+asum	ans exp fn i ind j k msump opers-list q s v valist var
+fortra	i j name
+optim	exp nx
+marray	val
+mdot	exp
+series	bas exp i ind k s v vars
+numth	ans header i j k modulus mult q quo r1 r2 res s v var vars
+pade	ans mult r1 r2
+homog	ans i j sum
+combin	ans dn* exp genvar i indl j k makef nn* q r1 s sign sum v val var varlist
+nset	errcatch fmaplvl fn i j k q res s sum v
+maxmin	q sign val var
+conjugate	context s
+hstep	q
+sinc	flag k q
+mstuff	ans i j k s
+polynomialp	vars
+pois2	i j sum
+pois3	k q s var
+desoln	errcatch flag tvars vars
+elim	flag j v vars
+invert	i j m size
+todd-coxeter	ans i j k m s v vars
+max_ext	v
+init-cl	s val var
