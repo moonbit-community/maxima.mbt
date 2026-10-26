@@ -1146,18 +1146,6 @@ fn share_itensor__autof(fun : Value, file : Value) -> Unit {
 }
 
 ///|
-/// A stub in the function cell of `fun` that loads the symtry module (as
-/// AUTOF does for a Lisp file) and then calls the real definition.
-fn share_itensor__autof_symtry(fun : Value) -> Unit {
-  if !fboundp(fun) {
-    defun(fun, l => {
-      share_itensor__load_symtry()
-      apply(fun, list(l))
-    })
-  }
-}
-
-///|
 /// Top-level forms of itensor.lisp.
 fn init_share_itensor() -> Unit raise {
   if d_get(q_d_itensor, q_d_version).truthy() {
@@ -1175,17 +1163,13 @@ fn init_share_itensor() -> Unit raise {
   //    GENER FASL        IC_CONVERT, MAKEBOX, AVERAGE, CONMETDERIV,
   //                      FLUSH1DERIV, IGEODESIC_COORDS
   //    SYMTRY FASL       CANFORM, DECSYM, DISPSYM, REMSYM
-  // Port: symtry.lisp and gener.lisp are ported with itensor
-  // (share_itensor_symtry.mbt, share_itensor_gener.mbt) and loaded on first
-  // use; canten.lisp is not ported (its autoload stubs report that the Lisp
-  // file cannot be loaded).
-  share_itensor__autof_gener(q_d_ic_convert)
-  share_itensor__autof_symtry(q_d_decsym)
-  share_itensor__autof_symtry(q_d_canform)
+  share_itensor__autof(q_d_ic_convert, Str("gener"))
+  share_itensor__autof(q_d_decsym, Str("symtry"))
+  share_itensor__autof(q_d_canform, Str("symtry"))
   share_itensor__autof(q_d_canten, Str("canten"))
-  share_itensor__autof_gener(q_d_makebox)
-  share_itensor__autof_gener(q_d_igeodesic_coords)
-  share_itensor__autof_gener(q_d_conmetderiv)
+  share_itensor__autof(q_d_makebox, Str("gener"))
+  share_itensor__autof(q_d_igeodesic_coords, Str("gener"))
+  share_itensor__autof(q_d_conmetderiv, Str("gener"))
   share_itensor__autof(q_d_name, Str("canten"))
   set(q_d_idummyx, q_d_op_pct) |> ignore // Prefix for dummy indices
   set(q_d_icounter, Fix(0L)) |> ignore // Dummy variable numeric index
