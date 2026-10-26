@@ -467,7 +467,7 @@ fn d_batchload(filename_or_stream : Value) -> Value raise {
     )
     if wxmx_file_p(filename).truthy() {
       let in_stream = make_string_input_stream(
-        mload__str(wxmx__input_string(filename)),
+        mload__str(wxmx_input_string(filename)),
       )
       batchload_stream(in_stream, truename=Str(mload__str(filename)))
     } else {
@@ -703,7 +703,7 @@ fn d_batch(filename_or_stream : Value, demo? : Value = q_kw_batch) -> Value rais
     test_batch(filename, Nil, show_all=t).0
   } else if wxmx_file_p(filename).truthy() {
     let in_stream = make_string_input_stream(
-      mload__str(wxmx__input_string(filename)),
+      mload__str(wxmx_input_string(filename)),
     )
     batch_stream(in_stream, demo, truename=Str(mload__str(filename)))
   } else {
