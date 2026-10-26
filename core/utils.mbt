@@ -115,7 +115,8 @@ fn cput(base : Value, val : Value, sel : Value) -> Value raise {
     zl_remprop(base, sel) |> ignore
     Nil
   } else {
-    putprop(base, val, sel)
+    // Maxima's PUTPROP: a cons node keeps its properties in its CDR.
+    putprop_(base, val, sel)
   }
 }
 
