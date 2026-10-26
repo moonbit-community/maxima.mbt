@@ -1,0 +1,94 @@
+name: publish
+
+# Publishes moonbit-community/maxima to mooncakes.io and tags the published
+# commit v<version>. Uses the organization secret
+# MOONCAKES_MOONBIT_COMMUNITY_TOKEN (the contents of ~/.moon/credentials.json
+# of an account allowed to publish moonbit-community modules).
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: mooncakes-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    outputs:
+      published_tag: ${{ steps.prepublish.outputs.published_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install MoonBit
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+
+      - name: Fetch the Maxima source tree
+        run: tools/fetch-maxima.sh
+
+      - name: post install
+        run: |
+          moon version --all
+          moon update
+
+      - name: prepublish check
+        id: prepublish
+        shell: bash
+        run: |
+          set -euo pipefail
+          moon check
+          moon info
+          git diff --exit-code
+          moon test lisp f2cl slatec lbfgs odepack lapack hompack colnew fftpack5 minpack cobyla
+          moon build --release
+          ./_build/native/release/build/cmd/main/main.exe --very-quiet \
+            --batch-string='display2d:false$ integrate(x^2*sin(x),x);' \
+            | grep -F '2*x*sin(x)+(2-x^2)*cos(x)'
+          version="$(sed -n 's/^version = "\(.*\)"/\1/p' moon.mod)"
+          if [[ -z "$version" ]]; then
+            echo "could not read the version from moon.mod" >&2
+            exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/v$version" >/dev/null; then
+            echo "v$version is already tagged: bump the version in moon.mod" >&2
+            exit 1
+          fi
+          echo "published_tag=v$version" >> "$GITHUB_OUTPUT"
+
+      - name: publish
+        env:
+          SECRET: ${{ secrets.MOONCAKES_MOONBIT_COMMUNITY_TOKEN }}
+        shell: bash
+        run: |
+          if [ -z "$SECRET" ]; then
+            echo "Error: MOONCAKES_MOONBIT_COMMUNITY_TOKEN secret is not set."
+            echo "Please contact an admin to grant access to this secret."
+            exit 1
+          fi
+          echo "$SECRET" > ~/.moon/credentials.json
+          moon publish
+          rm ~/.moon/credentials.json
+
+  tag:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: tag published commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISHED_TAG: ${{ needs.publish.outputs.published_tag }}
+        shell: bash
+        run: |
+          gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
+            -f ref="refs/tags/$PUBLISHED_TAG" \
+            -f sha="$GITHUB_SHA"
