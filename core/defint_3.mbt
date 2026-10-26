@@ -648,7 +648,11 @@ fn log_starrat(n : Value, d : Value, m : Value, ivar : Value) -> Value raise {
     i_vals[c] = res
     j_vals[c] = logcpj(n, factors, int(c), ivar, plm, pl, rl, pl1, rl1)
   }
-  logcpi(n, d, mm, ivar).0
+  // (dotimes (c m (return (logcpi n d m ivar))) ...) inside (prog ...): the
+  // RETURN only exits the DOTIMES block, then the PROG falls off its end, so
+  // LOG*RAT always returns NIL.
+  logcpi(n, d, mm, ivar) |> ignore
+  Nil
 }
 
 ///|
