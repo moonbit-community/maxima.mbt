@@ -143,8 +143,7 @@ fn d_set_alt_display(
       ])
       |> ignore
     }
-    // the CL name of the special, as PRINC prints it
-    let alt_name : Value = Str(invert_case(symbol_name(alt_display)))
+    let alt_name = alt_display
     let error_handler = () => merr("Error in ~a.~%Message: ~a~a reset to default.", [
       alt_name,
       Str(

@@ -141,7 +141,7 @@ fn process_line(l : Value) -> Value raise {
 
 ///|
 fn share_readfile__readfile(filename : Value) -> Value raise {
-  let mut a = list1(q_mlist)
+  let mut a = list1(list1(q_mlist))
   let text = read_file(lstring(print_invert_case(stripdollar(filename))))
   let lines = text.split("\n").map(x => x.to_string()).to_array()
   // a final newline does not start another line
