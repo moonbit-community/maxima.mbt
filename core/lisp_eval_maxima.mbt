@@ -12,39 +12,62 @@ fn le__port_name(cl_name : String) -> String {
 }
 
 ///|
-/// Count the positional parameters of a lambda list: (required, max or -1
-/// for &rest, has &key).
-fn le__ll_arity(ll : Value) -> (Int, Int, Bool) {
-  let mut req = 0
-  let mut opt = 0
-  let mut rest = false
-  let mut key = false
+/// The parts of a DEFMFUN lambda list: required parameters, optional ones,
+/// the rest parameter, the keyword parameters, &allow-other-keys.
+priv struct LeDefmfunLL {
+  req : Array[Value]
+  opt : Array[Value]
+  rest : Value?
+  keys : Array[Value]
+  allow_other : Bool
+}
+
+///|
+fn le__defmfun_ll(ll : Value) -> LeDefmfunLL {
+  let req = []
+  let opt = []
+  let mut rest = None
+  let keys = []
+  let mut allow_other = false
   let mut mode = 0
   for x in ll.iter() {
     match x {
       Sym({ name: "&optional", .. }) => mode = 1
-      Sym({ name: "&rest" | "&body", .. }) => {
-        rest = true
-        mode = 2
-      }
-      Sym({ name: "&key", .. }) => {
-        key = true
-        mode = 3
-      }
+      Sym({ name: "&rest" | "&body", .. }) => mode = 2
+      Sym({ name: "&key", .. }) => mode = 3
       Sym({ name: "&aux", .. }) => mode = 4
-      Sym({ name: "&allow-other-keys", .. }) => ()
+      Sym({ name: "&allow-other-keys", .. }) => allow_other = true
       _ =>
         match mode {
-          0 => req += 1
-          1 => opt += 1
+          0 => req.push(x)
+          1 => opt.push(x)
+          2 => rest = Some(x)
+          3 => keys.push(x)
           _ => ()
         }
     }
   }
-  (req, if rest { -1 } else { req + opt }, key)
+  { req, opt, rest, keys, allow_other }
 }
 
 ///|
+/// The Maxima symbol `$name` for a Lisp parameter or keyword spec.
+fn le__dollar_name(x : Value) -> Value raise {
+  let v = match x {
+    Cons({ car, .. }) => car
+    _ => x
+  }
+  let n = match v {
+    Cons({ cdr: Cons({ car: inner, .. }), .. }) => symbol_name(inner)
+    _ => symbol_name(v)
+  }
+  sym("$" + n)
+}
+
+///|
+/// DEFMFUN (defmfun-check.lisp): a `$` function gets FOO-IMPL with the
+/// body and a FOO checking the number of arguments (and converting Maxima
+/// keyword options `name = value`), like DEFUN-CHECKED-FORM.
 fn le__m_defmfun(form : Value, _env : LeEnv) -> Value raise {
   let spec = cadr(form)
   let ll = caddr(form)
@@ -57,13 +80,13 @@ fn le__m_defmfun(form : Value, _env : LeEnv) -> Value raise {
     Sym(s) => s.name
     _ => ""
   }
-  let props = Collector::new()
-  props.add(
+  let add_props = [
     list4(sym("putprop"), le__quote(name), le__quote(ll), le__quote(sym("arg-list"))),
-  )
-  props.add(list4(sym("defprop"), name, t, sym("translated")))
+    list4(sym("defprop"), name, t, sym("translated")),
+  ]
+  let func_props = []
   for p in getf(opts, sym(":properties")).iter() {
-    props.add(
+    func_props.push(
       list4(sym("putprop"), le__quote(name), le__quote(cadr(p)), le__quote(car(p))),
     )
   }
@@ -81,56 +104,83 @@ fn le__m_defmfun(form : Value, _env : LeEnv) -> Value raise {
     }
     return cons(
       sym("progn"),
-      cons(list_star([sym("defun"), name, ll2, body]), append(props.result(), list1(le__quote(name)))),
+      cons(list_star([sym("defun"), name, ll2, body]), list(add_props)),
     )
   }
   let implv = sym(le__port_name(le__port_name(sname).substring(start=1) + "-IMPL"))
-  let (mn, mx, key) = le__ll_arity(ll)
-  props.add(
-    list4(sym("putprop"), le__quote(name), le__quote(implv), le__quote(sym("implv-name"))),
-  )
-  cons(
-    sym("progn"),
-    cons(
-      list_star([sym("defun"), implv, ll, body]),
-      cons(
-        list([
-          sym("si::defmfun-wrapper"),
-          le__quote(name),
-          le__quote(implv),
-          Fix(mn.to_int64()),
-          Fix(mx.to_int64()),
-          lbool(key),
-        ]),
-        append(props.result(), list1(le__quote(name))),
-      ),
-    ),
-  )
-}
-
-///|
-/// Maxima callers pass keyword arguments of a DEFMFUN as `name = value`
-/// equations: turn them into CL keyword arguments.
-fn le__equations_to_keys(args : Array[Value], start : Int) -> Array[Value] {
-  if start >= args.length() {
-    return args
-  }
-  let out = args[0:start].to_array()
-  for i in start..<args.length() {
-    let a = args[i]
-    if is_op(a, q_mequal) && cadr(a) is Sym(s) {
-      let n = if s.name.has_prefix("$") || s.name.has_prefix("%") {
-        s.name.substring(start=1)
-      } else {
-        s.name
-      }
-      out.push(sym(":" + n))
-      out.push(caddr(a))
-    } else {
-      out.push(a)
+  let p = le__defmfun_ll(ll)
+  let keyp = p.keys.length() > 0
+  let header = list1(name)
+  let pretty = if p.opt.length() > 0 {
+    name
+  } else {
+    match p.rest {
+      Some(r) =>
+        cons(header, append(list(p.req), list1(list2(list1(q_mlist), r))))
+      None =>
+        if keyp {
+          let keys = []
+          for k in p.keys {
+            keys.push(list3(list1(q_mequal), le__dollar_name(k), cadr(k)))
+          }
+          cons(header, append(list(p.req), list(keys)))
+        } else {
+          cons(header, list(p.req))
+        }
     }
   }
-  out
+  let maxima_keywords = if p.allow_other {
+    Value::Nil
+  } else {
+    let ks = []
+    for k in p.keys {
+      ks.push(le__dollar_name(k))
+    }
+    list(ks)
+  }
+  // (defun impl ll decls (block name (let ((%%pretty-fname 'pretty)) ...)))
+  let (decls, forms) = le__split_decls(
+    match body {
+      Cons({ car: Str(_), cdr: Cons(_) as rest }) => rest
+      _ => body
+    },
+  )
+  let impl_body = list3(
+    sym("block"),
+    name,
+    list_star([
+      sym("let"),
+      list1(list2(sym("%%pretty-fname"), le__quote(pretty))),
+      list2(sym("declare"), list2(sym("ignorable"), sym("%%pretty-fname"))),
+      forms,
+    ]),
+  )
+  let out = Collector::new()
+  out.add(sym("progn"))
+  out.add(list_star([sym("defun"), implv, ll, append(decls, list1(impl_body))]))
+  out.add(
+    list([
+      sym("si::defmfun-wrapper"),
+      le__quote(name),
+      le__quote(implv),
+      le__quote(pretty),
+      Fix(p.req.length().to_int64()),
+      Fix(p.opt.length().to_int64()),
+      lbool(p.rest is Some(_)),
+      lbool(keyp),
+      le__quote(maxima_keywords),
+    ]),
+  )
+  for x in add_props {
+    out.add(x)
+  }
+  for x in func_props {
+    out.add(x)
+  }
+  out.add(
+    list4(sym("putprop"), le__quote(name), le__quote(implv), le__quote(sym("impl-name"))),
+  )
+  out.result()
 }
 
 ///|
@@ -138,23 +188,41 @@ fn le__register_maxima_support() -> Unit {
   le__def("si::defmfun-wrapper", a => {
     let name = le__arg(a, 0)
     let implv = le__arg(a, 1)
-    let mn = to_int(le__arg(a, 2))
-    let mx = to_int(le__arg(a, 3))
-    let key = le__arg(a, 4).truthy()
-    let sname = symbol_name(name)
+    let pretty = le__arg(a, 2)
+    let nreq = to_int(le__arg(a, 3))
+    let nopt = to_int(le__arg(a, 4))
+    let restp = le__arg(a, 5).truthy()
+    let keyp = le__arg(a, 6).truthy()
+    let maxima_keywords = le__arg(a, 7)
     defun(name, args => {
-      if key {
-        // positional arguments, then keyword options
-        let mut npos = 0
-        while npos < args.length() &&
-              !is_op(args[npos], q_mequal) &&
-              !keywordp(args[npos]) {
-          npos += 1
+      let nargs = args.length()
+      let err = (control : String, expected : Int) => defmfun_arity_error(
+        Str(control),
+        pretty,
+        int(expected),
+        int(nargs),
+        list(args),
+      )
+      if restp || keyp {
+        if nreq > 0 && nargs < nreq {
+          err("~M: expected at least ~M arguments but got ~M: ~M", nreq) |> ignore
         }
-        check_arity_range(sname, args[0:npos].to_array(), mn, mx)
-        le__funcall(implv, le__equations_to_keys(args, npos))
+      } else if nopt > 0 {
+        if nargs > nreq + nopt {
+          err("~M: expected at most ~M arguments but got ~M: ~M", nreq + nopt)
+          |> ignore
+        }
+        if nargs < nreq {
+          err("~M: expected at least ~M arguments but got ~M: ~M", nreq) |> ignore
+        }
+      } else if nargs != nreq {
+        err("~M: expected exactly ~M arguments but got ~M: ~M", nreq) |> ignore
+      }
+      if keyp {
+        let n = nreq.min(nargs)
+        let keys = defmfun_keywords(pretty, list(args[n:].to_array()), maxima_keywords)
+        le__funcall(implv, args[0:n].to_array() + list_to_array(keys))
       } else {
-        check_arity_range(sname, args, mn, mx)
         le__funcall(implv, args)
       }
     })
@@ -466,6 +534,12 @@ let le__prelude : String =
   #|      `(,f ,@ argl)
   #|      `(mfunction-call-aux ',f ',argl nil)))
   #|(defmacro trd-msymeval (&rest l) `(si::trd-msymeval-aux ',l))
+  #|(defquote dsksetq (&rest l)
+  #|  (let ((dsksetp t))
+  #|    (mset (car l) (eval (cadr l)))))
+  #|(defquote retlist (&rest l)
+  #|  (cons '(mlist simp)
+  #|        (mapcar #'(lambda (z) (list '(mequal simp) z (meval z))) l)))
   #|(defmacro fungen&env-for-meval (&rest args)
   #|  `(si::fungen&env-for-meval-aux ',args))
   #|(defun si::fungen&env-for-meval-aux (args)

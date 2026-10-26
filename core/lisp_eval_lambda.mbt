@@ -392,8 +392,30 @@ fn le__new_lambda(
   body : Value,
   env : LeEnv,
   block : Value?,
-) -> LeLambda {
-  { name, ll, body, env, block, compiled: None }
+) -> LeLambda raise {
+  let lam : LeLambda = { name, ll, body, env, block, compiled: None }
+  // The body is compiled on the first call, except when it may refer to an
+  // enclosing BLOCK or TAGBODY: those must know at their own compilation
+  // whether a RETURN-FROM or GO reaches them.
+  if le__env_has_exits(env) {
+    lam.compiled = Some(le__compile_lambda(lam))
+  }
+  lam
+}
+
+///|
+fn le__env_has_exits(env : LeEnv) -> Bool {
+  let mut e = env
+  while true {
+    match e {
+      Top => return false
+      Block(_, _, _, _) | Tags(_, _, _, _, _) => return true
+      Frame(_, p) | Var(_, _, p) | Special(_, p) | SymMacro(_, _, p) | Fun(_, _, p) =>
+        e = p
+      Mac(_, _, p) => e = p
+    }
+  }
+  false
 }
 
 ///|

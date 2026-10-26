@@ -688,8 +688,11 @@ fn le__sf_load_time_value(
 }
 
 ///|
-fn le__sf_declare(_args : Value, _form : Value, _env : LeEnv, mv : Bool) -> LeCode raise {
-  le__single(le__const(Nil), mv)
+fn le__sf_declare(_args : Value, form : Value, _env : LeEnv, _mv : Bool) -> LeCode raise {
+  // a declaration where a form is evaluated (as SBCL reports it)
+  let msg = "There is no function named DECLARE.  References to DECLARE in some contexts (like starts of blocks) are unevaluated expressions, but here the expression is being evaluated, which invokes undefined behaviour: " +
+    prin1_to_string(form)
+  _f => raise LispError::Condition(intern("undefined-function"), msg, sym("declare"))
 }
 
 ///|

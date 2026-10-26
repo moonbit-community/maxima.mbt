@@ -14,6 +14,7 @@
 priv struct LReader {
   s : LStream
   base_sensitive : Bool
+  labels : Map[Int, Value]
 }
 
 ///|
@@ -66,7 +67,7 @@ pub fn invert_case(name : String) -> String {
 ///|
 /// Read one Lisp datum from a string.
 pub fn lread(s : String) -> Value raise LispError {
-  let r = { s: out_or_in_stream(s), base_sensitive: false }
+  let r = { s: out_or_in_stream(s), base_sensitive: false, labels: {} }
   match r.read_top() {
     Some(v) => v
     None => raise SimpleError("lread: unexpected end of input")
@@ -76,7 +77,7 @@ pub fn lread(s : String) -> Value raise LispError {
 ///|
 /// Read all data from a string.
 pub fn lread_all(s : String) -> Array[Value] raise LispError {
-  let r = { s: out_or_in_stream(s), base_sensitive: false }
+  let r = { s: out_or_in_stream(s), base_sensitive: false, labels: {} }
   let out = []
   while r.read_top() is Some(v) {
     out.push(v)
@@ -92,7 +93,7 @@ pub fn lread_source_all(
   s : String,
   each : (Value) -> Unit raise,
 ) -> Unit raise {
-  let r = { s: out_or_in_stream(s), base_sensitive: true }
+  let r = { s: out_or_in_stream(s), base_sensitive: true, labels: {} }
   while true {
     let v = r.read_top() catch {
       LispError::SimpleError(msg) =>
@@ -119,9 +120,16 @@ pub fn lread_stream(
     Stream(st) => st
     _ => raise SimpleError("read: not a stream")
   }
-  let r = { s: st, base_sensitive: true }
+  let r = { s: st, base_sensitive: true, labels: {} }
   match r.read_top() {
-    Some(v) => v
+    Some(v) => {
+      // READ consumes the whitespace character that ends the datum
+      match st.peek_char() {
+        Some(c) if is_ws(c) => st.read_char() |> ignore
+        _ => ()
+      }
+      v
+    }
     None =>
       if eof_error {
         raise Condition(intern("end-of-file"), "end of file on stream", stream)
@@ -703,6 +711,19 @@ fn LReader::read_dispatch(self : LReader) -> Value? raise LispError {
         e => raise SimpleError(e.to_string())
       }
     }
+    '=' => {
+      // #n= object: a label for shared structure
+      let placeholder = cons(sym("si::label-placeholder"), Nil)
+      self.labels[arg] = placeholder
+      let v = self.read()
+      self.labels[arg] = v
+      Some(replace_placeholder(v, placeholder, v))
+    }
+    '#' =>
+      match self.labels.get(arg) {
+        Some(v) => Some(v)
+        None => raise SimpleError("read: undefined label #\{arg}#")
+      }
     'x' | 'X' => Some(self.read_radix(16))
     'o' | 'O' => Some(self.read_radix(8))
     'b' | 'B' => Some(self.read_radix(2))
@@ -846,4 +867,26 @@ pub fn parse_number_token(tok : String) -> Value? {
   (fn() -> Value? raise { Some(Flo(@string.parse_double(st2))) })() catch {
     _ => None
   }
+}
+
+///|
+/// Replace a #n= placeholder inside `x` by the labelled object (in place).
+fn replace_placeholder(x : Value, ph : Value, v : Value) -> Value {
+  if physical_equal_value(x, ph) {
+    return v
+  }
+  let mut l = x
+  while l is Cons(c) {
+    if physical_equal_value(c.car, ph) {
+      c.car = v
+    } else {
+      replace_placeholder(c.car, ph, v) |> ignore
+    }
+    if physical_equal_value(c.cdr, ph) {
+      c.cdr = v
+      break
+    }
+    l = c.cdr
+  }
+  x
 }

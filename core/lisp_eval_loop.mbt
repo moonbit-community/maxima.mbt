@@ -543,7 +543,7 @@ fn LeLoop::parse_clause(self : LeLoop, it : Value?) -> Array[Value] raise {
       [list3(sym("return-from"), self.name, x)]
     }
     "when" | "if" | "unless" => {
-      let tst = self.next()
+      let test_form = self.next()
       let g = le__gensym("it")
       let then_ = self.parse_conditional_body(Some(g))
       let mut else_ : Array[Value] = []
@@ -558,7 +558,7 @@ fn LeLoop::parse_clause(self : LeLoop, it : Value?) -> Array[Value] raise {
       [
         list3(
           sym("let"),
-          list1(list2(g, tst)),
+          list1(list2(g, test_form)),
           list4(
             sym("if"),
             tst,

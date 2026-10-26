@@ -36,8 +36,8 @@ fn le__init() -> Unit raise {
       feats,
       list(
         [
-          ":maxima", ":macsyma", ":common-lisp", ":ansi-cl", ":ieee-floating-point",
-          ":64-bit", ":unix",
+          ":has-distinct-double-float", ":lisp-unicode-capable", ":cl", ":cltl2",
+          ":64-bit", ":ansi-cl", ":common-lisp", ":ieee-floating-point", ":unix",
         ].map(sym),
       ),
     )

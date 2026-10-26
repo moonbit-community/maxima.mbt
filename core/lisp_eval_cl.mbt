@@ -82,6 +82,15 @@ fn le__key_fn(a : Array[Value], start : Int) -> ((Value) -> Value raise)? {
 }
 
 ///|
+/// The element comparison of a two-list set function (:TEST and :KEY
+/// applied to both elements).
+fn le__pred2(a : Array[Value], start : Int) -> (Value, Value) -> Bool raise {
+  let tst = le__test_fn(a, start)
+  let key = le__key_fn(a, start)
+  (x, y) => tst(le__apply_key(key, x), le__apply_key(key, y))
+}
+
+///|
 fn le__apply_key(k : ((Value) -> Value raise)?, x : Value) -> Value raise {
   match k {
     Some(f) => f(x)
@@ -401,70 +410,30 @@ fn le__register_cl_lists() -> Unit {
     }
     cons(item, l)
   })
-  le__def("union", a => {
-    let tst = le__test_fn(a, 2)
-    let key = le__key_fn(a, 2)
-    let l1 = le__arg(a, 0)
-    let l2 = le__arg(a, 1)
-    let r = Collector::new()
-    for x in l1.iter() {
-      let kx = le__apply_key(key, x)
-      if !l2.iter().any(y => tst(kx, le__apply_key(key, y)) catch { _ => false }) {
-        r.add(x)
-      }
-    }
-    r.append_list(copy_list(l2))
-    r.result()
-  })
+  le__def("union", a => union_(
+    le__arg(a, 0),
+    le__arg(a, 1),
+    pred2=le__pred2(a, 2),
+  ))
   le__def("nunion", a => funcall(sym("union"), a))
-  le__def("intersection", a => {
-    let tst = le__test_fn(a, 2)
-    let key = le__key_fn(a, 2)
-    let l2 = le__arg(a, 1)
-    let r = Collector::new()
-    for x in le__arg(a, 0).iter() {
-      let kx = le__apply_key(key, x)
-      let mut found = false
-      for y in l2.iter() {
-        if tst(kx, le__apply_key(key, y)) {
-          found = true
-          break
-        }
-      }
-      if found {
-        r.add(x)
-      }
-    }
-    r.result()
-  })
+  le__def("intersection", a => intersection(
+    le__arg(a, 0),
+    le__arg(a, 1),
+    pred2=le__pred2(a, 2),
+  ))
   le__def("nintersection", a => funcall(sym("intersection"), a))
-  le__def("set-difference", a => {
-    let tst = le__test_fn(a, 2)
-    let key = le__key_fn(a, 2)
-    let l2 = le__arg(a, 1)
-    let r = Collector::new()
-    for x in le__arg(a, 0).iter() {
-      let kx = le__apply_key(key, x)
-      let mut found = false
-      for y in l2.iter() {
-        if tst(kx, le__apply_key(key, y)) {
-          found = true
-          break
-        }
-      }
-      if !found {
-        r.add(x)
-      }
-    }
-    r.result()
-  })
+  le__def("set-difference", a => set_difference(
+    le__arg(a, 0),
+    le__arg(a, 1),
+    pred2=le__pred2(a, 2),
+  ))
   le__def("nset-difference", a => funcall(sym("set-difference"), a))
   le__def("set-exclusive-or", a => {
-    let d1 = funcall(sym("set-difference"), a)
-    let b = a.copy()
-    b[0] = le__arg(a, 1)
-    b[1] = le__arg(a, 0)
-    append(d1, funcall(sym("set-difference"), b))
+    let p = le__pred2(a, 2)
+    append(
+      set_difference(le__arg(a, 0), le__arg(a, 1), pred2=p),
+      set_difference(le__arg(a, 1), le__arg(a, 0), pred2=p),
+    )
   })
   le__def("subsetp", a => {
     let tst = le__test_fn(a, 2)

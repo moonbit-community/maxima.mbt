@@ -1033,7 +1033,7 @@ fn le__register_arrays() -> Unit {
     }
   })
   le__def("vector-push-extend", a => int(
-    vector_push_extend(le__arg(a, 1), le__arg(a, 0)),
+    vector_push_extend(le__arg(a, 0), le__arg(a, 1)),
   ))
   le__def("vector-pop", a => vector_pop(le__arg(a, 0)))
   le__def("adjust-array", a => {
@@ -1056,7 +1056,7 @@ fn le__register_arrays() -> Unit {
   le__def("si::string-append-fill", a => {
     let target = le__arg(a, 0)
     for c in string_chars(le__str(le__arg(a, 1))) {
-      vector_push_extend(target, Char(c)) |> ignore
+      vector_push_extend(Char(c), target) |> ignore
     }
     Nil
   })
