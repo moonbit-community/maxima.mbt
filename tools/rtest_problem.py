@@ -2,6 +2,7 @@
 usage: python3 tools/rtest_problem.py rtest7 46 [47 ...]"""
 import sys, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPOS_DIR = os.path.join(ROOT, ".repos") if os.path.isdir(os.path.join(ROOT, ".repos")) else "/Users/dii/git/maxima.mbt/.repos"
 
 def statements(text):
     out, buf, i, n = [], [], 0, len(text)
@@ -29,7 +30,7 @@ def statements(text):
 
 def find(name):
     for d in ("tests", "share"):
-        for root, _, files in os.walk(os.path.join(ROOT, ".repos", "maxima", d)):
+        for root, _, files in os.walk(os.path.join(REPOS_DIR, "maxima", d)):
             if name + ".mac" in files:
                 return os.path.join(root, name + ".mac")
 

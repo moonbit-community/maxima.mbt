@@ -7,6 +7,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 from lispread import *  # noqa
 
 SRC = os.path.join(os.path.dirname(__file__), "..", ".repos", "maxima", "src")
+if not os.path.isdir(SRC):
+    SRC = "/Users/dii/git/maxima.mbt/.repos/maxima/src"
 
 
 def system_files():
