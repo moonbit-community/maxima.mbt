@@ -186,7 +186,7 @@ def to_text(x):
 
 
 def needs_bars(n):
-    if n == "":
+    if n == "" or n[0] == "#":
         return True
     for c in n:
         if c in " ()\"';`,|\\\n\t" or (c.isalpha() and c.isupper()):
