@@ -81,6 +81,8 @@ pub fn caaadr(Value) -> Value
 
 pub fn caaar(Value) -> Value
 
+pub fn caadar(Value) -> Value
+
 pub fn caaddr(Value) -> Value
 
 pub fn caadr(Value) -> Value
@@ -105,6 +107,8 @@ pub fn car(Value) -> Value
 
 pub fn car_strict(Value) -> Value raise LispError
 
+pub fn cdaadr(Value) -> Value
+
 pub fn cdaar(Value) -> Value
 
 pub fn cdaddr(Value) -> Value
@@ -114,6 +118,8 @@ pub fn cdadr(Value) -> Value
 pub fn cdar(Value) -> Value
 
 pub fn cddar(Value) -> Value
+
+pub fn cdddar(Value) -> Value
 
 pub fn cddddr(Value) -> Value
 

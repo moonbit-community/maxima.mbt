@@ -554,13 +554,9 @@ fn matcom__compile_sum_or_product(
           } else if cdr(leftover) is Nil {
             return compilematch(e, car(leftover))
           } else {
-            // SBCL's INTERSECTION returns the common elements in reverse
-            // order of the first list.
-            f = reverse(
-              intersection(leftover, symval(q_boundlist), pred2=(a, b) => {
-                equal(a, b)
-              }),
-            )
+            f = intersection(leftover, symval(q_boundlist), pred2=(a, b) => {
+              equal(a, b)
+            })
             if f.truthy() {
               emit(list3(q_setq, e, matcom__remove_form(e, car(f), plus)))
               |> ignore

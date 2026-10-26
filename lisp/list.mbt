@@ -1033,14 +1033,53 @@ pub fn adjoin(x : Value, l : Value) -> Value {
 }
 
 ///|
-/// `(union a b)` with a test.
+/// `(union a b)` with a test, reproducing SBCL's element order: the shorter
+/// list (the first on ties) is the base; elements of the other list not in
+/// it are pushed onto its front.
 pub fn union_(
   a : Value,
   b : Value,
   pred2? : (Value, Value) -> Bool raise = (x, y) => eql(x, y),
 ) -> Value raise {
-  let mut r = b
-  for x in list_to_array(a) {
+  let (short, long) = if length(b) < length(a) { (b, a) } else { (a, b) }
+  let mut r = short
+  for x in long.iter() {
+    if member_if_test(x, short, pred2) is Nil {
+      r = cons(x, r)
+    }
+  }
+  r
+}
+
+///|
+/// `(intersection a b)` with a test, reproducing SBCL's element order: the
+/// elements of the shorter list (the first on ties) that occur in the other
+/// list, in reverse order.
+pub fn intersection(
+  a : Value,
+  b : Value,
+  pred2? : (Value, Value) -> Bool raise = (x, y) => eql(x, y),
+) -> Value raise {
+  let (short, long) = if length(b) < length(a) { (b, a) } else { (a, b) }
+  let mut r = Nil
+  for x in short.iter() {
+    if !(member_if_test(x, long, pred2) is Nil) {
+      r = cons(x, r)
+    }
+  }
+  r
+}
+
+///|
+/// `(set-difference a b)` with a test, reproducing SBCL's element order
+/// (the surviving elements of `a`, reversed).
+pub fn set_difference(
+  a : Value,
+  b : Value,
+  pred2? : (Value, Value) -> Bool raise = (x, y) => eql(x, y),
+) -> Value raise {
+  let mut r = Nil
+  for x in a.iter() {
     if member_if_test(x, b, pred2) is Nil {
       r = cons(x, r)
     }
@@ -1049,35 +1088,18 @@ pub fn union_(
 }
 
 ///|
-/// `(intersection a b)` with a test.
-pub fn intersection(
-  a : Value,
-  b : Value,
-  pred2? : (Value, Value) -> Bool raise = (x, y) => eql(x, y),
-) -> Value raise {
-  let r = []
-  for x in list_to_array(a) {
-    if !(member_if_test(x, b, pred2) is Nil) {
-      r.push(x)
-    }
-  }
-  list(r)
+pub fn cdddar(x : Value) -> Value {
+  cdr(cdr(cdr(car(x))))
 }
 
 ///|
-/// `(set-difference a b)` with a test.
-pub fn set_difference(
-  a : Value,
-  b : Value,
-  pred2? : (Value, Value) -> Bool raise = (x, y) => eql(x, y),
-) -> Value raise {
-  let r = []
-  for x in list_to_array(a) {
-    if member_if_test(x, b, pred2) is Nil {
-      r.push(x)
-    }
-  }
-  list(r)
+pub fn cdaadr(x : Value) -> Value {
+  cdr(car(car(cdr(x))))
+}
+
+///|
+pub fn caadar(x : Value) -> Value {
+  car(car(cdr(car(x))))
 }
 
 ///|

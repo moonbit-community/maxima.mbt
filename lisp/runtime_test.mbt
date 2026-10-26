@@ -63,3 +63,13 @@ test "nil reads as Nil" {
   inspect(try! lread("(a nil ())"), content="(a nil nil)")
   assert_true(try! lread("nil") is Nil)
 }
+
+///|
+test "sbcl set order" {
+  let l = (xs : Array[Int]) => list(xs.map(int))
+  inspect(try! union_(l([1, 2, 3]), l([3, 4, 5])), content="(5 4 1 2 3)")
+  inspect(try! union_(l([1, 2, 3, 4, 5, 6]), l([9, 1])), content="(6 5 4 3 2 9 1)")
+  inspect(try! intersection(l([4, 3, 2]), l([1, 2, 3, 4, 5])), content="(2 3 4)")
+  inspect(try! intersection(l([1, 2, 3]), l([3, 2, 1])), content="(3 2 1)")
+  inspect(try! set_difference(l([1, 2, 3, 4, 5]), l([2, 9])), content="(5 4 3 1)")
+}
