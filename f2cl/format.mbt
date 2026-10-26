@@ -107,11 +107,16 @@ fn execute_format(
             break
           }
         }
-      Forever(grp) =>
+      Forever(grp) => {
         while cur.pos < cur.args.length() {
           execute_format(false, sb, grp, cur)
           sb.write_char('\n')
         }
+        // The Lisp steps past the T but not past its group, so the text
+        // that follows the group is never printed: the data is used up and
+        // the trailing strings it would print start at the group.
+        return
+      }
       Lit(s) => format_text(sb, s)
     }
     i = i + 1

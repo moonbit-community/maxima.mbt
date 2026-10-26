@@ -1,0 +1,49 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/minpack"
+
+// Values
+pub fn dogleg(Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn dpmpar(Int32) -> Double
+
+pub fn enorm(Int32, FixedArray[Double], Int32) -> Double
+
+pub fn fdjac1((Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32) raise, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, Int32, Int32, Double, FixedArray[Double], Int32, FixedArray[Double], Int32) -> (Int32, Int32) raise
+
+pub fn fdjac2((Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32, Int32) raise, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Int32, Int32, Double, FixedArray[Double], Int32) -> (Int32, Int32, Int32) raise
+
+pub fn hybrd((Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32) raise, Int32, FixedArray[Double], FixedArray[Double], Double, Int32, Int32, Int32, Double, FixedArray[Double], Int32, Int32, Double, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> (Int32, Int32, Int32) raise
+
+pub fn hybrd1((Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32) raise, Int32, FixedArray[Double], FixedArray[Double], Double, Int32, FixedArray[Double], Int32) -> (Int32, Int32) raise
+
+pub fn hybrj((Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> (Int32, Int32, Int32) raise, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Double, Int32, FixedArray[Double], Int32, Int32, Double, Int32, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> (Int32, Int32, Int32, Int32, Int32) raise
+
+pub fn hybrj1((Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> (Int32, Int32, Int32) raise, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Double, Int32, FixedArray[Double], Int32) -> (Int32, Int32, Int32) raise
+
+pub fn lmder((Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> (Int32, Int32, Int32, Int32) raise, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Double, Double, Double, Int32, FixedArray[Double], Int32, Int32, Double, Int32, Int32, Int32, Int32, FixedArray[Int32], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> (Int32, Int32, Int32, Int32, Int32, Int32) raise
+
+pub fn lmder1((Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32, Int32) -> (Int32, Int32, Int32, Int32) raise, Int32, Int32, FixedArray[Double], FixedArray[Double], FixedArray[Double], Int32, Double, Int32, FixedArray[Int32], FixedArray[Double], Int32) -> (Int32, Int32, Int32, Int32) raise
+
+pub fn lmdif((Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32, Int32) raise, Int32, Int32, FixedArray[Double], FixedArray[Double], Double, Double, Double, Int32, Double, FixedArray[Double], Int32, Int32, Double, Int32, Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> (Int32, Int32, Int32, Int32) raise
+
+pub fn lmdif1((Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Int32) -> (Int32, Int32, Int32) raise, Int32, Int32, FixedArray[Double], FixedArray[Double], Double, Int32, FixedArray[Int32], FixedArray[Double], Int32) -> (Int32, Int32, Int32) raise
+
+pub fn lmpar(Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], FixedArray[Double], Int32, FixedArray[Double], Int32, Double, Double, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Double
+
+pub fn qform(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn qrfac(Int32, Int32, FixedArray[Double], Int32, Int32, Bool, FixedArray[Int32], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn qrsolv(Int32, FixedArray[Double], Int32, Int32, FixedArray[Int32], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1mpyq(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Unit
+
+pub fn r1updt(Int32, Int32, FixedArray[Double], Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Bool) -> Bool
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,23 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/cobyla"
+
+import {
+  "moonbitlang/core/ref",
+}
+
+// Values
+pub let calcfc_hook : @ref.Ref[(Int32, Int32, FixedArray[Double], Double, FixedArray[Double], Int32) -> Double raise]
+
+pub fn cobyla(Int32, Int32, FixedArray[Double], Double, Double, Int32, Int32, FixedArray[Double], FixedArray[Int32], Int32) -> (Int32, Int32) raise
+
+pub fn cobylb(Int32, Int32, Int32, FixedArray[Double], Double, Double, Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Int32], Int32) -> (Int32, Int32) raise
+
+pub fn trstlp(Int32, Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, Double, FixedArray[Double], Int32, Int32, FixedArray[Int32], FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32, FixedArray[Double], Int32) -> Int32
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

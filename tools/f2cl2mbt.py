@@ -157,7 +157,8 @@ def parse_atom(tok):
     if name.startswith("f2cl-lib::"):
         name = "f2cl-lib:" + name[len("f2cl-lib::"):]
     for pre in ("cl:", "common-lisp:", "slatec::", "slatec:", "odepack::", "odepack:",
-                "lapack::", "lapack:", "blas::", "blas:", "common-lisp-user::"):
+                "lapack::", "lapack:", "blas::", "blas:", "common-lisp-user::",
+                "fftpack5::", "fftpack5:", "minpack::", "minpack:", "cobyla::", "cobyla:"):
         if name.startswith(pre):
             name = name[len(pre):]
     return Sym(name)
@@ -770,7 +771,7 @@ def compute_fnsigs():
     for fd in FNS.values():
         for p in fd.params:
             if fd.ptypes[p] == ("FN", None):
-                fd.fnsigs[p] = LIB["user_sigs"].get(p)
+                fd.fnsigs[p] = LIB["user_sigs"].get((fd.name, p), LIB["user_sigs"].get(p))
     changed = True
     while changed:
         changed = False
@@ -831,6 +832,47 @@ def compute_fnsigs():
             if fd.fnsigs[p] is None:
                 fd.fnsigs[p] = USER_FN
             fd.ptypes[p] = ("FN", fd.fnsigs[p])
+
+
+def hook_name(name):
+    return mb_ident(name) + "_hook"
+
+
+def mark_hook_callers():
+    """Routines that call a raising hook raise (compute_fnsigs propagates
+    this to their callers)."""
+    hooks = LIB.get("hooks", {})
+    for fd in FNS.values():
+        if fd.hand:
+            continue
+        found = []
+
+        def visit(x):
+            if isinstance(x, list) and x and isinstance(x[0], Sym) and x[0].name in hooks \
+                    and hooks[x[0].name].raises:
+                found.append(1)
+        walk(fd.body, visit)
+        if found:
+            fd.raises = True
+
+
+def emit_hooks(out_dir):
+    hooks = LIB.get("hooks", {})
+    if not hooks:
+        return
+    lines = [LIB["header"] % "hooks"]
+    for name, sig in sorted(hooks.items()):
+        ps = ", ".join("_a%d_%d" % (k, j) for k, t in enumerate(sig.args)
+                       for j in range(2 if isinstance(t, tuple) and t[0] == "AO" else 1))
+        lines.append("///|")
+        lines.append("/// %s, which the Lisp calls by name: the caller (Maxima's interface)" % name.upper())
+        lines.append("/// defines it by storing a closure here.")
+        lines.append("pub let %s : Ref[%s] = {" % (hook_name(name), sig.mbt()))
+        lines.append('  val: fn(%s) { abort("%s: no routine installed") },' % (ps, name.upper()))
+        lines.append("}")
+        lines.append("")
+    with open(os.path.join(out_dir, "hooks.mbt"), "w") as f:
+        f.write("\n".join(lines))
 
 
 def uses_funcall(fd, p):
@@ -1048,6 +1090,19 @@ def expr(ctx, x):
         if h == "realpart":
             return (c, t)
         raise TransError("imagpart of %s" % t)
+    if h in ("f2cl-lib:dcos", "f2cl-lib:dsin"):
+        c, t = expr(ctx, args[0])
+        return ("%s(%s)" % ("f_cos" if h.endswith("cos") else "f_sin", conv(c, t, "D")), "D")
+    if h == "f2cl-lib:ffloat":
+        # (coerce x 'single-float)
+        c, t = expr(ctx, args[0])
+        return (conv(c, t, "F"), "F")
+    if h == "aref" and isinstance(args[0], Sym):
+        v = array_base(ctx, args[0])
+        c, t = expr(ctx, args[1])
+        if t != "I":
+            raise TransError("non-int aref index")
+        return ("%s[%s]" % (v.code, strip_paren(add_off(v.off, c))), v.typ[1])
     if h in ("f2cl-lib:freal", "f2cl-lib:sngl"):
         c, t = expr(ctx, args[0])
         if t == "C":
@@ -1213,7 +1268,7 @@ def expr(ctx, x):
         return mvb_expr(ctx, x)
     if h == "funcall":
         return call_expr(ctx, args[0], args[1:], funcall=True)
-    if h in FNS:
+    if h in FNS or h in LIB.get("hooks", {}):
         return call_expr(ctx, x[0], args)
     raise TransError("unknown expr head %s in %s" % (h, ctx.fd.name))
 
@@ -1403,6 +1458,12 @@ def array_arg(ctx, a):
             if oc != (v.off or "0"):
                 off = add_off(off, oc)
         return v.code, strip_paren(add_off(off, idx)), v.typ
+    if head(a) == "make-array" and len(a) == 6 and a[1] == 1 and head(a[3]) == "type-of" \
+            and is_sym(a[5], a[3][1].name):
+        # A scalar passed for an array argument: f2cl copies it into a fresh
+        # one-element array (changes to it are not copied back).
+        c, t = expr(ctx, a[5])
+        return "FixedArray::make(1, %s)" % strip_paren(c), "0", ("A", t)
     raise TransError("bad array arg %r in %s" % (a, ctx.fd.name))
 
 
@@ -1413,6 +1474,9 @@ def callee_info(ctx, fsym, funcall):
             raise TransError("funcall of non-fn %s" % fsym.name)
         sig = v.typ[1]
         return v.code, [resolve_t(t) for t in sig.args], [None] * len(sig.args), sig.slots, None
+    if fsym.name in LIB.get("hooks", {}):
+        sig = LIB["hooks"][fsym.name]
+        return "(" + hook_name(fsym.name) + ".val)", list(sig.args), [None] * len(sig.args), sig.slots, None
     cd = FNS[fsym.name]
     return mb_fn_name(cd.name), [cd.ptypes[p] for p in cd.params], cd.params, cd.slots(), cd
 
@@ -1608,6 +1672,12 @@ def stmt(ctx, x):
         return
     if h == "declare":
         return
+    if h == "quote" and isinstance(args[0], Str):
+        # f2cl's :include-comments: Fortran comments as quoted strings
+        return
+    if h == "let" and len(args[0]) == 1 and head(args[0][0][1]) == "f2cl-lib:make-compatible-seq":
+        copy_seq_let(ctx, x)
+        return
     if h == "go":
         go(ctx, args[0].name)
         return
@@ -1691,11 +1761,81 @@ def stmt(ctx, x):
         code, slots = call_code(ctx, args[0], args[1:], funcall=True)
         ctx.emit(code if not slots else "let _ = " + code)
         return
-    if h in FNS:
+    if h in FNS or h in LIB.get("hooks", {}):
         code, slots = call_code(ctx, x[0], args)
         ctx.emit(code if not slots else "let _ = " + code)
         return
     raise TransError("unknown statement %s in %s" % (h, ctx.fd.name))
+
+
+def array_len_code(v):
+    """(length a) of an array variable (a displaced section ends with the
+    array)."""
+    if v.off in (None, "0"):
+        return "%s.length()" % v.code
+    return "(%s.length() - %s)" % (v.code, v.off)
+
+
+def copy_seq_let(ctx, x):
+    """f2cl's :copy-array-parameter for a COMPLEX array passed where the
+    callee wants DOUBLE PRECISION (or the reverse):
+      (let ((%copy-c (make-compatible-seq (array double-float (*)) c
+                                          (array complex16 (*)))))
+        (f2cl-copy-seq %copy-c c double-float complex16)
+        (call ... %copy-c ...)
+        (f2cl-copy-seq c %copy-c complex16 double-float))
+    The copy is a fresh array (complex elements split into real and
+    imaginary parts, in order)."""
+    var, init = x[1][0]
+    body = x[2:]
+    rtype = parse_type(init[1])
+    src = array_base(ctx, init[2])
+    stype = parse_type(init[3])
+    if rtype[1] == stype[1] or src.typ != stype:
+        raise TransError("make-compatible-seq %r" % (init,))
+    mb = ctx.fresh("copy")
+    n = array_len_code(src)
+    if rtype[1] == "D":
+        size = "2 * %s" % wrap(n)
+    else:
+        size = "(%s + 1) / 2" % wrap(n)
+    ctx.emit("let %s : %s = FixedArray::make(%s, %s)" % (mb, mbt_type(rtype), size, ELEM_ZERO[rtype[1]]))
+    saved = ctx.env.get(var.name)
+    ctx.env[var.name] = Var("array", mb, rtype)
+    for b in body:
+        if head(b) == "f2cl-lib:f2cl-copy-seq":
+            copy_seq(ctx, b)
+        else:
+            stmt(ctx, b)
+    if saved is None:
+        del ctx.env[var.name]
+    else:
+        ctx.env[var.name] = saved
+
+
+def copy_seq(ctx, x):
+    """(f2cl-copy-seq dst src dst-type src-type) between a complex array and
+    a double one (F2CL-COPY-SEQ's loops: they stop at the end of either)."""
+    dst = array_base(ctx, x[1])
+    src = array_base(ctx, x[2])
+    k = ctx.fresh("k")
+    doff = dst.off or "0"
+    soff = src.off or "0"
+    if dst.typ == ("A", "D") and src.typ == ("A", "C"):
+        ctx.emit("for %s = 0; 2 * %s < %s && %s < %s; %s = %s + 1 {" % (
+            k, k, array_len_code(dst), k, array_len_code(src), k, k))
+        ctx.emit("  %s[%s] = %s[%s].re" % (dst.code, add_off(doff, "2 * " + k), src.code, add_off(soff, k)))
+        ctx.emit("  %s[%s] = %s[%s].im" % (dst.code, add_off(doff, "2 * " + k + " + 1"), src.code, add_off(soff, k)))
+        ctx.emit("}")
+    elif dst.typ == ("A", "C") and src.typ == ("A", "D"):
+        ctx.emit("for %s = 0; 2 * %s < %s && %s < %s; %s = %s + 1 {" % (
+            k, k, array_len_code(src), k, array_len_code(dst), k, k))
+        ctx.emit("  %s[%s] = cplx(%s[%s], %s[%s])" % (
+            dst.code, add_off(doff, k), src.code, add_off(soff, "2 * " + k),
+            src.code, add_off(soff, "2 * " + k + " + 1")))
+        ctx.emit("}")
+    else:
+        raise TransError("f2cl-copy-seq %r" % (x,))
 
 
 def fmt_items(items):
@@ -3110,6 +3250,18 @@ def share_ref_config(lib):
         return dict(src="share/lapack", pre=[os.path.join(d, "lapack-package.lisp")],
                     lisp=LAPACK_REF_LISP, mbt=LAPACK_REF_MBT, cases=LAPACK_CASES,
                     files=LIB["files"])
+    if lib == "fftpack5":
+        return dict(src="share/fftpack5/lisp", pre=[os.path.join(SHARE_DIR, "fftpack5", "fftpack5.lisp")],
+                    lisp=FFTPACK5_REF_LISP, mbt=FFTPACK5_REF_MBT, cases=FFTPACK5_CASES,
+                    files=LIB["files"])
+    if lib == "minpack":
+        return dict(src="share/minpack/lisp", pre=[os.path.join(SHARE_DIR, "minpack", "minpack-package.lisp")],
+                    lisp=MINPACK_REF_LISP, mbt=MINPACK_REF_MBT, cases=MINPACK_CASES,
+                    files=LIB["files"])
+    if lib == "cobyla":
+        return dict(src="share/cobyla/lisp", pre=[os.path.join(SHARE_DIR, "cobyla", "cobyla-package.lisp")],
+                    lisp=COBYLA_REF_LISP, mbt=COBYLA_REF_MBT, cases=COBYLA_CASES,
+                    files=LIB["files"])
     raise SystemExit("no reference test for %s" % lib)
 
 
@@ -3781,6 +3933,936 @@ for name, A, jz, up in [("3x3 V U", H3, "V", "U"), ("3x3 N U", H3, "N", "U"), ("
           't_zheev(s, %d, %s, "%s", "%s")' % (n, _mzmat(A), jz, up))
 
 
+# --- fftpack5 ---------------------------------------------------------------
+
+FFTPACK5_REF_LISP = r"""
+(defun gen-r (n seed)
+  (let ((a (dzeros n)))
+    (dotimes (k n a)
+      (setf (aref a k) (/ (float (- (mod (+ (* k 37) (* seed 11)) 101) 50) 1d0) 7d0)))))
+(defun gen-c (n seed)
+  (let ((a (zzeros n)))
+    (dotimes (k n a)
+      (setf (aref a k)
+            (complex (/ (float (- (mod (+ (* k 37) (* seed 11)) 101) 50) 1d0) 7d0)
+                     (/ (float (- (mod (+ (* k 53) (* seed 7)) 103) 51) 1d0) 5d0))))))
+;; 1-D drivers: INIT(N, WSAVE, LENSAV, IER), FWD/BWD(N, INC, X, LENX, WSAVE,
+;; LENSAV, WORK, LENWRK, IER)
+(defun t-1d (init fwd bwd n inc lensav lenwrk seed complexp)
+  (let* ((lenx (+ (* inc (- n 1)) 1))
+         (x (if complexp (gen-c lenx seed) (gen-r lenx seed)))
+         (wsave (dzeros lensav)) (work (dzeros lenwrk)))
+    (ri (nth-value 3 (funcall init n wsave lensav 0)))
+    (ra wsave)
+    (ri (nth-value 8 (funcall fwd n inc x lenx wsave lensav work lenwrk 0)))
+    (ra x)
+    (ri (nth-value 8 (funcall bwd n inc x lenx wsave lensav work lenwrk 0)))
+    (ra x)))
+;; multiple-sequence drivers: FWD/BWD(LOT, JUMP, N, INC, X, LENX, WSAVE,
+;; LENSAV, WORK, LENWRK, IER)
+(defun t-md (init fwd bwd lot jump n inc lensav lenwrk seed complexp)
+  (let* ((lenx (+ (* (- lot 1) jump) (* inc (- n 1)) 1))
+         (x (if complexp (gen-c lenx seed) (gen-r lenx seed)))
+         (wsave (dzeros lensav)) (work (dzeros lenwrk)))
+    (ri (nth-value 3 (funcall init n wsave lensav 0)))
+    (ra wsave)
+    (ri (nth-value 10 (funcall fwd lot jump n inc x lenx wsave lensav work lenwrk 0)))
+    (ra x)
+    (ri (nth-value 10 (funcall bwd lot jump n inc x lenx wsave lensav work lenwrk 0)))
+    (ra x)))
+;; 2-D drivers: INIT(L, M, WSAVE, LENSAV, IER), FWD/BWD(LDIM, L, M, X, WSAVE,
+;; LENSAV, WORK, LENWRK, IER)
+(defun t-2d (init fwd bwd ldim l m lensav lenwrk seed complexp)
+  (let* ((lenx (* ldim m))
+         (x (if complexp (gen-c lenx seed) (gen-r lenx seed)))
+         (wsave (dzeros lensav)) (work (dzeros lenwrk)))
+    (ri (nth-value 4 (funcall init l m wsave lensav 0)))
+    (ra wsave)
+    (ri (nth-value 8 (funcall fwd ldim l m x wsave lensav work lenwrk 0)))
+    (ra x)
+    (ri (nth-value 8 (funcall bwd ldim l m x wsave lensav work lenwrk 0)))
+    (ra x)))
+"""
+
+FFTPACK5_REF_MBT = """
+///|
+fn gen_r(n : Int, seed : Int) -> FixedArray[Double] {
+  FixedArray::makei(n, k => ((k * 37 + seed * 11) % 101 - 50).to_double() / 7.0)
+}
+
+///|
+fn gen_c(n : Int, seed : Int) -> FixedArray[Complex] {
+  FixedArray::makei(n, k => cplx(
+    ((k * 37 + seed * 11) % 101 - 50).to_double() / 7.0,
+    ((k * 53 + seed * 7) % 103 - 51).to_double() / 5.0,
+  ))
+}
+
+///|
+fn[X] t_1d(
+  s : StringBuilder,
+  init : (Int, FixedArray[Double], Int, Int) -> Int,
+  fwd : (Int, Int, FixedArray[X], Int, FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Int,
+  bwd : (Int, Int, FixedArray[X], Int, FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Int,
+  n : Int,
+  inc : Int,
+  lensav : Int,
+  lenwrk : Int,
+  x : FixedArray[X],
+  ra : (StringBuilder, FixedArray[X]) -> Unit,
+) -> Unit {
+  let lenx = x.length()
+  let wsave = FixedArray::make(lensav, 0.0)
+  let work = FixedArray::make(lenwrk, 0.0)
+  ri(s, init(n, wsave, lensav, 0))
+  rad(s, wsave)
+  ri(s, fwd(n, inc, x, lenx, wsave, lensav, work, lenwrk, 0))
+  ra(s, x)
+  ri(s, bwd(n, inc, x, lenx, wsave, lensav, work, lenwrk, 0))
+  ra(s, x)
+}
+
+///|
+fn[X] t_md(
+  s : StringBuilder,
+  init : (Int, FixedArray[Double], Int, Int) -> Int,
+  fwd : (Int, Int, Int, Int, FixedArray[X], Int, FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Int,
+  bwd : (Int, Int, Int, Int, FixedArray[X], Int, FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Int,
+  lot : Int,
+  jump : Int,
+  n : Int,
+  inc : Int,
+  lensav : Int,
+  lenwrk : Int,
+  x : FixedArray[X],
+  ra : (StringBuilder, FixedArray[X]) -> Unit,
+) -> Unit {
+  let lenx = x.length()
+  let wsave = FixedArray::make(lensav, 0.0)
+  let work = FixedArray::make(lenwrk, 0.0)
+  ri(s, init(n, wsave, lensav, 0))
+  rad(s, wsave)
+  ri(s, fwd(lot, jump, n, inc, x, lenx, wsave, lensav, work, lenwrk, 0))
+  ra(s, x)
+  ri(s, bwd(lot, jump, n, inc, x, lenx, wsave, lensav, work, lenwrk, 0))
+  ra(s, x)
+}
+
+///|
+fn[X] t_2d(
+  s : StringBuilder,
+  init : (Int, Int, FixedArray[Double], Int, Int) -> Int,
+  fwd : (Int, Int, Int, FixedArray[X], FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Int,
+  bwd : (Int, Int, Int, FixedArray[X], FixedArray[Double], Int, FixedArray[Double], Int, Int) -> Int,
+  ldim : Int,
+  l : Int,
+  m : Int,
+  lensav : Int,
+  lenwrk : Int,
+  x : FixedArray[X],
+  ra : (StringBuilder, FixedArray[X]) -> Unit,
+) -> Unit {
+  let wsave = FixedArray::make(lensav, 0.0)
+  let work = FixedArray::make(lenwrk, 0.0)
+  ri(s, init(l, m, wsave, lensav, 0))
+  rad(s, wsave)
+  ri(s, fwd(ldim, l, m, x, wsave, lensav, work, lenwrk, 0))
+  ra(s, x)
+  ri(s, bwd(ldim, l, m, x, wsave, lensav, work, lenwrk, 0))
+  ra(s, x)
+}
+
+// The drivers whose WSAVE takes a section offset (they are also called on
+// sections internally), with the offset fixed to 0.
+
+///|
+fn rfft1i_(n : Int, w : FixedArray[Double], l : Int, e : Int) -> Int {
+  rfft1i(n, w, 0, l, e)
+}
+
+///|
+fn rfft1f_(n : Int, inc : Int, r : FixedArray[Double], lr : Int, w : FixedArray[Double], l : Int, wk : FixedArray[Double], lw : Int, e : Int) -> Int {
+  rfft1f(n, inc, r, lr, w, 0, l, wk, lw, e)
+}
+
+///|
+fn rfft1b_(n : Int, inc : Int, r : FixedArray[Double], lr : Int, w : FixedArray[Double], l : Int, wk : FixedArray[Double], lw : Int, e : Int) -> Int {
+  rfft1b(n, inc, r, lr, w, 0, l, wk, lw, e)
+}
+
+///|
+fn rfftmi_(n : Int, w : FixedArray[Double], l : Int, e : Int) -> Int {
+  rfftmi(n, w, 0, l, e)
+}
+
+///|
+fn rfftmf_(lot : Int, jump : Int, n : Int, inc : Int, r : FixedArray[Double], lr : Int, w : FixedArray[Double], l : Int, wk : FixedArray[Double], lw : Int, e : Int) -> Int {
+  rfftmf(lot, jump, n, inc, r, lr, w, 0, l, wk, lw, e)
+}
+
+///|
+fn rfftmb_(lot : Int, jump : Int, n : Int, inc : Int, r : FixedArray[Double], lr : Int, w : FixedArray[Double], l : Int, wk : FixedArray[Double], lw : Int, e : Int) -> Int {
+  rfftmb(lot, jump, n, inc, r, lr, w, 0, l, wk, lw, e)
+}
+
+///|
+fn cfftmi_(n : Int, w : FixedArray[Double], l : Int, e : Int) -> Int {
+  cfftmi(n, w, 0, l, e)
+}
+
+///|
+fn cfftmf_(lot : Int, jump : Int, n : Int, inc : Int, c : FixedArray[Complex], lc : Int, w : FixedArray[Double], l : Int, wk : FixedArray[Double], lw : Int, e : Int) -> Int {
+  cfftmf(lot, jump, n, inc, c, lc, w, 0, l, wk, lw, e)
+}
+
+///|
+fn cfftmb_(lot : Int, jump : Int, n : Int, inc : Int, c : FixedArray[Complex], lc : Int, w : FixedArray[Double], l : Int, wk : FixedArray[Double], lw : Int, e : Int) -> Int {
+  cfftmb(lot, jump, n, inc, c, lc, w, 0, l, wk, lw, e)
+}
+"""
+
+FFTPACK5_CASES = []
+
+
+def _fft_cases():
+    sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 20, 25, 27, 30, 32, 35,
+             49, 60, 64, 77, 97, 100, 120, 128, 210, 256, 360, 1000, 1024]
+    seed = 0
+    fams = [("rfft1", False), ("cfft1", True), ("cost1", False), ("sint1", False),
+            ("cosq1", False), ("sinq1", False)]
+    for fam, cx in fams:
+        for n in sizes:
+            for inc in ([1, 3] if n in (5, 12, 64, 97) else [1]):
+                seed += 1
+                lens = 3 * n + 40
+                lenw = 4 * n + 40
+                mb = fam + ("i_" if fam == "rfft1" else "i")
+                mf = fam + ("f_" if fam == "rfft1" else "f")
+                mbb = fam + ("b_" if fam == "rfft1" else "b")
+                lenx = inc * (n - 1) + 1
+                FFTPACK5_CASES.append((
+                    "%s n=%d inc=%d" % (fam, n, inc),
+                    "(t-1d #'fftpack5::%si #'fftpack5::%sf #'fftpack5::%sb %d %d %d %d %d %s)" % (
+                        fam, fam, fam, n, inc, lens, lenw, seed, "t" if cx else "nil"),
+                    "t_1d(s, %s, %s, %s, %d, %d, %d, %d, %s(%d, %d), %s)" % (
+                        mb, mf, mbb, n, inc, lens, lenw, "gen_c" if cx else "gen_r", lenx, seed,
+                        "rac" if cx else "rad")))
+    mfams = [("rfftm", False), ("cfftm", True), ("cosqm", False), ("sinqm", False)]
+    for fam, cx in mfams:
+        for n in [1, 2, 3, 4, 5, 8, 12, 15, 16, 30, 49, 64, 97]:
+            for lot, jump, inc in [(3, n, 1), (4, 1, 4), (2, n + 2, 1)]:
+                seed += 1
+                lens = 3 * n + 40
+                lenw = 4 * lot * n + 40
+                lenx = (lot - 1) * jump + inc * (n - 1) + 1
+                sfx = "_" if fam in ("rfftm", "cfftm") else ""
+                FFTPACK5_CASES.append((
+                    "%s n=%d lot=%d jump=%d inc=%d" % (fam, n, lot, jump, inc),
+                    "(t-md #'fftpack5::%si #'fftpack5::%sf #'fftpack5::%sb %d %d %d %d %d %d %d %s)" % (
+                        fam, fam, fam, lot, jump, n, inc, lens, lenw, seed, "t" if cx else "nil"),
+                    "t_md(s, %si%s, %sf%s, %sb%s, %d, %d, %d, %d, %d, %d, %s(%d, %d), %s)" % (
+                        fam, sfx, fam, sfx, fam, sfx, lot, jump, n, inc, lens, lenw,
+                        "gen_c" if cx else "gen_r", lenx, seed, "rac" if cx else "rad")))
+    for fam, cx in [("rfft2", False), ("cfft2", True)]:
+        for l, m in [(1, 1), (2, 3), (4, 4), (5, 3), (6, 7), (8, 10), (12, 9), (16, 16), (15, 4), (30, 20)]:
+            seed += 1
+            ldim = 2 * (l // 2 + 1) if not cx else l + 1
+            lens = 4 * (l + m) + 64
+            lenw = 2 * (l + 2) * (m + 2) + 16
+            FFTPACK5_CASES.append((
+                "%s l=%d m=%d" % (fam, l, m),
+                "(t-2d #'fftpack5::%si #'fftpack5::%sf #'fftpack5::%sb %d %d %d %d %d %d %s)" % (
+                    fam, fam, fam, ldim, l, m, lens, lenw, seed, "t" if cx else "nil"),
+                "t_2d(s, %si, %sf, %sb, %d, %d, %d, %d, %d, %s(%d, %d), %s)" % (
+                    fam, fam, fam, ldim, l, m, lens, lenw, "gen_c" if cx else "gen_r",
+                    ldim * m, seed, "rac" if cx else "rad")))
+    # error returns (IER /= 0, XERFFT messages)
+    FFTPACK5_CASES.append(("rfft1f short wsave",
+                           "(t-1d #'fftpack5::rfft1i #'fftpack5::rfft1f #'fftpack5::rfft1b 64 1 8 100 1 nil)",
+                           "t_1d(s, rfft1i_, rfft1f_, rfft1b_, 64, 1, 8, 100, gen_r(64, 1), rad)"))
+    FFTPACK5_CASES.append(("cfft1f short work",
+                           "(t-1d #'fftpack5::cfft1i #'fftpack5::cfft1f #'fftpack5::cfft1b 16 1 80 10 2 t)",
+                           "t_1d(s, cfft1i, cfft1f, cfft1b, 16, 1, 80, 10, gen_c(16, 2), rac)"))
+    FFTPACK5_CASES.append(("rfftmf inconsistent",
+                           "(t-md #'fftpack5::rfftmi #'fftpack5::rfftmf #'fftpack5::rfftmb 3 1 8 1 64 100 3 nil)",
+                           "t_md(s, rfftmi_, rfftmf_, rfftmb_, 3, 1, 8, 1, 64, 100, gen_r(10, 3), rad)"))
+
+
+_fft_cases()
+
+
+# --- minpack ----------------------------------------------------------------
+
+MINPACK_REF_LISP = r"""
+(defmacro rvals (call) `(dolist (v (remove nil (multiple-value-list ,call))) (rv v)))
+(defparameter *bard-y*
+  (dvec 0.14d0 0.18d0 0.22d0 0.25d0 0.29d0 0.32d0 0.35d0 0.39d0 0.37d0 0.58d0
+        0.73d0 0.96d0 1.34d0 2.10d0 4.39d0))
+;; Test problems (More, Garbow, Hillstrom): F(X) into FVEC(0..M-1)
+(defun prob-f (p m n x fvec)
+  (macrolet ((x (i) `(aref x ,i)) (f (i) `(aref fvec ,i)))
+    (ecase p
+      (:rosen
+       (setf (f 0) (- 1d0 (x 0)))
+       (setf (f 1) (* 10d0 (- (x 1) (* (x 0) (x 0))))))
+      (:powell
+       (setf (f 0) (+ (x 0) (* 10d0 (x 1))))
+       (setf (f 1) (* (sqrt 5d0) (- (x 2) (x 3))))
+       (setf (f 2) (* (- (x 1) (* 2d0 (x 2))) (- (x 1) (* 2d0 (x 2)))))
+       (setf (f 3) (* (sqrt 10d0) (* (- (x 0) (x 3)) (- (x 0) (x 3))))))
+      (:broyden
+       (dotimes (i n)
+         (setf (f i) (+ (- (- (* (- 3d0 (* 2d0 (x i))) (x i))
+                              (if (> i 0) (x (- i 1)) 0d0))
+                           (* 2d0 (if (< i (- n 1)) (x (+ i 1)) 0d0)))
+                        1d0))))
+      (:freud
+       (setf (f 0) (+ -13d0 (x 0) (* (- (* (- 5d0 (x 1)) (x 1)) 2d0) (x 1))))
+       (setf (f 1) (+ -29d0 (x 0) (* (- (* (+ (x 1) 1d0) (x 1)) 14d0) (x 1)))))
+      (:bard
+       (dotimes (i 15)
+         (let* ((u (+ i 1)) (v (- 16 u)) (w (min u v)))
+           (setf (f i) (- (aref *bard-y* i)
+                          (+ (x 0) (/ u (+ (* v (x 1)) (* w (x 2))))))))))
+      (:linear
+       (let ((sum 0d0))
+         (dotimes (j n) (setf sum (+ sum (x j))))
+         (dotimes (i m)
+           (setf (f i) (- (- (if (< i n) (x i) 0d0) (* (/ 2d0 m) sum)) 1d0))))))))
+;; The Jacobian into FJAC (column major, leading dimension LDFJAC)
+(defun prob-j (p m n x fjac ldfjac)
+  (macrolet ((x (i) `(aref x ,i)) (j (i k) `(aref fjac (+ ,i (* ldfjac ,k)))))
+    (dotimes (k n) (dotimes (i m) (setf (j i k) 0d0)))
+    (ecase p
+      (:rosen
+       (setf (j 0 0) -1d0)
+       (setf (j 1 0) (* -20d0 (x 0)) (j 1 1) 10d0))
+      (:powell
+       (setf (j 0 0) 1d0 (j 0 1) 10d0)
+       (setf (j 1 2) (sqrt 5d0) (j 1 3) (- (sqrt 5d0)))
+       (let ((d (- (x 1) (* 2d0 (x 2)))))
+         (setf (j 2 1) (* 2d0 d) (j 2 2) (* -4d0 d)))
+       (let ((d (* 2d0 (sqrt 10d0) (- (x 0) (x 3)))))
+         (setf (j 3 0) d (j 3 3) (- d))))
+      (:broyden
+       (dotimes (i n)
+         (setf (j i i) (- 3d0 (* 4d0 (x i))))
+         (when (> i 0) (setf (j i (- i 1)) -1d0))
+         (when (< i (- n 1)) (setf (j i (+ i 1)) -2d0))))
+      (:freud
+       (setf (j 0 0) 1d0 (j 0 1) (- (* (- 10d0 (* 3d0 (x 1))) (x 1)) 2d0))
+       (setf (j 1 0) 1d0 (j 1 1) (- (* (+ (* 3d0 (x 1)) 2d0) (x 1)) 14d0)))
+      (:bard
+       (dotimes (i 15)
+         (let* ((u (+ i 1)) (v (- 16 u)) (w (min u v))
+                (den (+ (* v (x 1)) (* w (x 2)))) (tmp (* den den)))
+           (setf (j i 0) -1d0 (j i 1) (/ (* u v) tmp) (j i 2) (/ (* u w) tmp)))))
+      (:linear
+       (dotimes (i m)
+         (dotimes (k n)
+           (setf (j i k) (- (if (= i k) 1d0 0d0) (/ 2d0 m)))))))))
+;; Run a driver with a counting FCN; MAXC (or NIL) makes FCN set IFLAG to -1
+;; after that many calls.
+(defvar *calls* 0)
+(defun count-call (iflag maxc)
+  (when (/= iflag 0) (incf *calls*))
+  (if (and maxc (> *calls* maxc)) -1 iflag))
+(defun t-hybrd1 (p n x0 tol maxc)
+  (let* ((x (apply #'dvec x0)) (fvec (dzeros n)) (lwa (floor (* n (+ (* 3 n) 13)) 2)) (wa (dzeros lwa)))
+    (setf *calls* 0)
+    (rvals (minpack::hybrd1 (lambda (n x fvec iflag)
+                              (setf iflag (count-call iflag maxc))
+                              (when (> iflag 0) (prob-f p n n x fvec))
+                              (values n nil nil iflag))
+                            n x fvec tol 0 wa lwa))
+    (ri *calls*) (ra x) (ra fvec) (rd (minpack::enorm n fvec))))
+(defun t-hybrj1 (p n x0 tol maxc)
+  (let* ((x (apply #'dvec x0)) (fvec (dzeros n)) (fjac (dzeros (* n n)))
+         (lwa (floor (* n (+ n 13)) 2)) (wa (dzeros lwa)))
+    (setf *calls* 0)
+    (rvals (minpack::hybrj1 (lambda (n x fvec fjac ldfjac iflag)
+                              (setf iflag (count-call iflag maxc))
+                              (case iflag
+                                (1 (prob-f p n n x fvec))
+                                (2 (prob-j p n n x fjac ldfjac)))
+                              (values n nil nil nil ldfjac iflag))
+                            n x fvec fjac n tol 0 wa lwa))
+    (ri *calls*) (ra x) (ra fvec) (ra fjac)))
+(defun t-lmdif1 (p m n x0 tol maxc)
+  (let* ((x (apply #'dvec x0)) (fvec (dzeros m)) (lwa (+ m (* 5 n) (* m n))) (wa (dzeros lwa))
+         (iwa (ivec n)))
+    (setf *calls* 0)
+    (rvals (minpack::lmdif1 (lambda (m n x fvec iflag)
+                              (setf iflag (count-call iflag maxc))
+                              (when (> iflag 0) (prob-f p m n x fvec))
+                              (values m n nil nil iflag))
+                            m n x fvec tol 0 iwa wa lwa))
+    (ri *calls*) (ra x) (ra fvec) (ra iwa) (rd (minpack::enorm m fvec))))
+(defun t-lmder1 (p m n x0 tol maxc)
+  (let* ((x (apply #'dvec x0)) (fvec (dzeros m)) (fjac (dzeros (* m n)))
+         (lwa (+ m (* 5 n))) (wa (dzeros lwa)) (ipvt (ivec n)))
+    (setf *calls* 0)
+    (rvals (minpack::lmder1 (lambda (m n x fvec fjac ldfjac iflag)
+                              (setf iflag (count-call iflag maxc))
+                              (case iflag
+                                (1 (prob-f p m n x fvec))
+                                (2 (prob-j p m n x fjac ldfjac)))
+                              (values m n nil nil nil ldfjac iflag))
+                            m n x fvec fjac m tol 0 ipvt wa lwa))
+    (ri *calls*) (ra x) (ra fvec) (ra fjac) (ra ipvt)))
+;; HYBRD with a banded Jacobian approximation, MODE 2 scaling and NPRINT 1
+(defun t-hybrd (p n x0 ml mu mode nprint)
+  (let* ((x (apply #'dvec x0)) (fvec (dzeros n)) (fjac (dzeros (* n n)))
+         (r (dzeros (floor (* n (+ n 1)) 2))) (diag (dzeros n)) (qtf (dzeros n))
+         (w1 (dzeros n)) (w2 (dzeros n)) (w3 (dzeros n)) (w4 (dzeros n)))
+    (dotimes (i n) (setf (aref diag i) (float (+ i 1) 1d0)))
+    (setf *calls* 0)
+    (rvals (minpack::hybrd (lambda (n x fvec iflag)
+                             (setf iflag (count-call iflag nil))
+                             (when (> iflag 0) (prob-f p n n x fvec))
+                             (values n nil nil iflag))
+                           n x fvec 1d-10 2000 ml mu 0d0 diag mode 100d0 nprint 0 0
+                           fjac n r (length r) qtf w1 w2 w3 w4))
+    (ri *calls*) (ra x) (ra fvec) (ra r) (ra qtf)))
+(defun t-lmdif (p m n x0 mode nprint epsfcn)
+  (let* ((x (apply #'dvec x0)) (fvec (dzeros m)) (fjac (dzeros (* m n)))
+         (diag (dzeros n)) (qtf (dzeros n)) (ipvt (ivec n))
+         (w1 (dzeros n)) (w2 (dzeros n)) (w3 (dzeros n)) (w4 (dzeros m)))
+    (dotimes (i n) (setf (aref diag i) (float (+ i 2) 1d0)))
+    (setf *calls* 0)
+    (rvals (minpack::lmdif (lambda (m n x fvec iflag)
+                             (setf iflag (count-call iflag nil))
+                             (when (> iflag 0) (prob-f p m n x fvec))
+                             (values m n nil nil iflag))
+                           m n x fvec 1d-12 1d-12 0d0 3000 epsfcn diag mode 100d0 nprint
+                           0 0 fjac m ipvt qtf w1 w2 w3 w4))
+    (ri *calls*) (ra x) (ra fvec) (ra fjac) (ra ipvt) (ra qtf)))
+"""
+
+MINPACK_REF_MBT = """
+///|
+let bard_y : FixedArray[Double] = [
+  0.14, 0.18, 0.22, 0.25, 0.29, 0.32, 0.35, 0.39, 0.37, 0.58, 0.73, 0.96, 1.34,
+  2.10, 4.39,
+]
+
+///|
+fn prob_f(
+  p : String,
+  m : Int,
+  n : Int,
+  x : FixedArray[Double],
+  xo : Int,
+  f : FixedArray[Double],
+  fo : Int,
+) -> Unit {
+  match p {
+    "rosen" => {
+      f[fo + 0] = 1.0 - x[xo + 0]
+      f[fo + 1] = 10.0 * (x[xo + 1] - x[xo + 0] * x[xo + 0])
+    }
+    "powell" => {
+      f[fo + 0] = x[xo + 0] + 10.0 * x[xo + 1]
+      f[fo + 1] = (5.0 : Double).sqrt() * (x[xo + 2] - x[xo + 3])
+      f[fo + 2] = (x[xo + 1] - 2.0 * x[xo + 2]) * (x[xo + 1] - 2.0 * x[xo + 2])
+      f[fo + 3] = (10.0 : Double).sqrt() *
+        ((x[xo + 0] - x[xo + 3]) * (x[xo + 0] - x[xo + 3]))
+    }
+    "broyden" =>
+      for i in 0..<n {
+        f[fo + i] = (3.0 - 2.0 * x[xo + i]) * x[xo + i] -
+          (if i > 0 { x[xo + i - 1] } else { 0.0 }) -
+          2.0 * (if i < n - 1 { x[xo + i + 1] } else { 0.0 }) +
+          1.0
+      }
+    "freud" => {
+      f[fo + 0] = -13.0 + x[xo + 0] + ((5.0 - x[xo + 1]) * x[xo + 1] - 2.0) * x[xo + 1]
+      f[fo + 1] = -29.0 + x[xo + 0] + ((x[xo + 1] + 1.0) * x[xo + 1] - 14.0) * x[xo + 1]
+    }
+    "bard" =>
+      for i in 0..<15 {
+        let u = i + 1
+        let v = 16 - u
+        let w = if u < v { u } else { v }
+        f[fo + i] = bard_y[i] -
+          (x[xo + 0] +
+          u.to_double() / (v.to_double() * x[xo + 1] + w.to_double() * x[xo + 2]))
+      }
+    "linear" => {
+      let mut sum = 0.0
+      for j in 0..<n {
+        sum = sum + x[xo + j]
+      }
+      for i in 0..<m {
+        f[fo + i] = (if i < n { x[xo + i] } else { 0.0 }) -
+          2.0 / m.to_double() * sum -
+          1.0
+      }
+    }
+    _ => abort(p)
+  }
+}
+
+///|
+fn prob_j(
+  p : String,
+  m : Int,
+  n : Int,
+  x : FixedArray[Double],
+  xo : Int,
+  fjac : FixedArray[Double],
+  jo : Int,
+  ld : Int,
+) -> Unit {
+  fn set(i : Int, k : Int, v : Double) {
+    fjac[jo + i + ld * k] = v
+  }
+
+  for k in 0..<n {
+    for i in 0..<m {
+      set(i, k, 0.0)
+    }
+  }
+  match p {
+    "rosen" => {
+      set(0, 0, -1.0)
+      set(1, 0, -20.0 * x[xo + 0])
+      set(1, 1, 10.0)
+    }
+    "powell" => {
+      set(0, 0, 1.0)
+      set(0, 1, 10.0)
+      set(1, 2, (5.0 : Double).sqrt())
+      set(1, 3, -(5.0 : Double).sqrt())
+      let d = x[xo + 1] - 2.0 * x[xo + 2]
+      set(2, 1, 2.0 * d)
+      set(2, 2, -4.0 * d)
+      let d = 2.0 * (10.0 : Double).sqrt() * (x[xo + 0] - x[xo + 3])
+      set(3, 0, d)
+      set(3, 3, -d)
+    }
+    "broyden" =>
+      for i in 0..<n {
+        set(i, i, 3.0 - 4.0 * x[xo + i])
+        if i > 0 {
+          set(i, i - 1, -1.0)
+        }
+        if i < n - 1 {
+          set(i, i + 1, -2.0)
+        }
+      }
+    "freud" => {
+      set(0, 0, 1.0)
+      set(0, 1, (10.0 - 3.0 * x[xo + 1]) * x[xo + 1] - 2.0)
+      set(1, 0, 1.0)
+      set(1, 1, (3.0 * x[xo + 1] + 2.0) * x[xo + 1] - 14.0)
+    }
+    "bard" =>
+      for i in 0..<15 {
+        let u = i + 1
+        let v = 16 - u
+        let w = if u < v { u } else { v }
+        let den = v.to_double() * x[xo + 1] + w.to_double() * x[xo + 2]
+        let tmp = den * den
+        set(i, 0, -1.0)
+        set(i, 1, (u * v).to_double() / tmp)
+        set(i, 2, (u * w).to_double() / tmp)
+      }
+    "linear" =>
+      for i in 0..<m {
+        for k in 0..<n {
+          set(i, k, (if i == k { 1.0 } else { 0.0 }) - 2.0 / m.to_double())
+        }
+      }
+    _ => abort(p)
+  }
+}
+
+///|
+let calls : Ref[Int] = { val: 0 }
+
+///|
+fn count_call(iflag : Int, maxc : Int) -> Int {
+  if iflag != 0 {
+    calls.val = calls.val + 1
+  }
+  if maxc > 0 && calls.val > maxc {
+    -1
+  } else {
+    iflag
+  }
+}
+
+///|
+fn t_hybrd1(s : StringBuilder, p : String, n : Int, x0 : Array[Double], tol : Double, maxc : Int) -> Unit raise {
+  let x = dvec(x0)
+  let fvec = FixedArray::make(n, 0.0)
+  let lwa = n * (3 * n + 13) / 2
+  let wa = FixedArray::make(lwa, 0.0)
+  calls.val = 0
+  let (r0, r1) = hybrd1(
+    fn(n, x, xo, fv, fo, iflag) {
+      let iflag = count_call(iflag, maxc)
+      if iflag > 0 {
+        prob_f(p, n, n, x, xo, fv, fo)
+      }
+      (n, iflag)
+    },
+    n, x, fvec, tol, 0, wa, lwa,
+  )
+  ri(s, r0)
+  ri(s, r1)
+  ri(s, calls.val)
+  rad(s, x)
+  rad(s, fvec)
+  rd(s, enorm(n, fvec, 0))
+}
+
+///|
+fn t_hybrj1(s : StringBuilder, p : String, n : Int, x0 : Array[Double], tol : Double, maxc : Int) -> Unit raise {
+  let x = dvec(x0)
+  let fvec = FixedArray::make(n, 0.0)
+  let fjac = FixedArray::make(n * n, 0.0)
+  let lwa = n * (n + 13) / 2
+  let wa = FixedArray::make(lwa, 0.0)
+  calls.val = 0
+  let (r0, r1, r2) = hybrj1(
+    fn(n, x, xo, fv, fo, fj, jo, ld, iflag) {
+      let iflag = count_call(iflag, maxc)
+      if iflag == 1 {
+        prob_f(p, n, n, x, xo, fv, fo)
+      } else if iflag == 2 {
+        prob_j(p, n, n, x, xo, fj, jo, ld)
+      }
+      (n, ld, iflag)
+    },
+    n, x, fvec, fjac, n, tol, 0, wa, lwa,
+  )
+  ri(s, r0)
+  ri(s, r1)
+  ri(s, r2)
+  ri(s, calls.val)
+  rad(s, x)
+  rad(s, fvec)
+  rad(s, fjac)
+}
+
+///|
+fn t_lmdif1(s : StringBuilder, p : String, m : Int, n : Int, x0 : Array[Double], tol : Double, maxc : Int) -> Unit raise {
+  let x = dvec(x0)
+  let fvec = FixedArray::make(m, 0.0)
+  let lwa = m + 5 * n + m * n
+  let wa = FixedArray::make(lwa, 0.0)
+  let iwa = FixedArray::make(n, 0)
+  calls.val = 0
+  let (r0, r1, r2) = lmdif1(
+    fn(m, n, x, xo, fv, fo, iflag) {
+      let iflag = count_call(iflag, maxc)
+      if iflag > 0 {
+        prob_f(p, m, n, x, xo, fv, fo)
+      }
+      (m, n, iflag)
+    },
+    m, n, x, fvec, tol, 0, iwa, wa, lwa,
+  )
+  ri(s, r0)
+  ri(s, r1)
+  ri(s, r2)
+  ri(s, calls.val)
+  rad(s, x)
+  rad(s, fvec)
+  rai(s, iwa)
+  rd(s, enorm(m, fvec, 0))
+}
+
+///|
+fn t_lmder1(s : StringBuilder, p : String, m : Int, n : Int, x0 : Array[Double], tol : Double, maxc : Int) -> Unit raise {
+  let x = dvec(x0)
+  let fvec = FixedArray::make(m, 0.0)
+  let fjac = FixedArray::make(m * n, 0.0)
+  let lwa = m + 5 * n
+  let wa = FixedArray::make(lwa, 0.0)
+  let ipvt = FixedArray::make(n, 0)
+  calls.val = 0
+  let (r0, r1, r2, r3) = lmder1(
+    fn(m, n, x, xo, fv, fo, fj, jo, ld, iflag) {
+      let iflag = count_call(iflag, maxc)
+      if iflag == 1 {
+        prob_f(p, m, n, x, xo, fv, fo)
+      } else if iflag == 2 {
+        prob_j(p, m, n, x, xo, fj, jo, ld)
+      }
+      (m, n, ld, iflag)
+    },
+    m, n, x, fvec, fjac, m, tol, 0, ipvt, wa, lwa,
+  )
+  ri(s, r0)
+  ri(s, r1)
+  ri(s, r2)
+  ri(s, r3)
+  ri(s, calls.val)
+  rad(s, x)
+  rad(s, fvec)
+  rad(s, fjac)
+  rai(s, ipvt)
+}
+
+///|
+fn t_hybrd(s : StringBuilder, p : String, n : Int, x0 : Array[Double], ml : Int, mu : Int, mode : Int, nprint : Int) -> Unit raise {
+  let x = dvec(x0)
+  let fvec = FixedArray::make(n, 0.0)
+  let fjac = FixedArray::make(n * n, 0.0)
+  let r = FixedArray::make(n * (n + 1) / 2, 0.0)
+  let diag = FixedArray::makei(n, i => (i + 1).to_double())
+  let qtf = FixedArray::make(n, 0.0)
+  let w1 = FixedArray::make(n, 0.0)
+  let w2 = FixedArray::make(n, 0.0)
+  let w3 = FixedArray::make(n, 0.0)
+  let w4 = FixedArray::make(n, 0.0)
+  calls.val = 0
+  let (r0, r1, r2) = hybrd(
+    fn(n, x, xo, fv, fo, iflag) {
+      let iflag = count_call(iflag, 0)
+      if iflag > 0 {
+        prob_f(p, n, n, x, xo, fv, fo)
+      }
+      (n, iflag)
+    },
+    n, x, fvec, 1.0e-10, 2000, ml, mu, 0.0, diag, 0, mode, 100.0, nprint, 0, 0,
+    fjac, 0, n, r, 0, r.length(), qtf, 0, w1, 0, w2, 0, w3, 0, w4, 0,
+  )
+  ri(s, r0)
+  ri(s, r1)
+  ri(s, r2)
+  ri(s, calls.val)
+  rad(s, x)
+  rad(s, fvec)
+  rad(s, r)
+  rad(s, qtf)
+}
+
+///|
+fn t_lmdif(s : StringBuilder, p : String, m : Int, n : Int, x0 : Array[Double], mode : Int, nprint : Int, epsfcn : Double) -> Unit raise {
+  let x = dvec(x0)
+  let fvec = FixedArray::make(m, 0.0)
+  let fjac = FixedArray::make(m * n, 0.0)
+  let diag = FixedArray::makei(n, i => (i + 2).to_double())
+  let qtf = FixedArray::make(n, 0.0)
+  let ipvt = FixedArray::make(n, 0)
+  let w1 = FixedArray::make(n, 0.0)
+  let w2 = FixedArray::make(n, 0.0)
+  let w3 = FixedArray::make(n, 0.0)
+  let w4 = FixedArray::make(m, 0.0)
+  calls.val = 0
+  let (r0, r1, r2, r3) = lmdif(
+    fn(m, n, x, xo, fv, fo, iflag) {
+      let iflag = count_call(iflag, 0)
+      if iflag > 0 {
+        prob_f(p, m, n, x, xo, fv, fo)
+      }
+      (m, n, iflag)
+    },
+    m, n, x, fvec, 1.0e-12, 1.0e-12, 0.0, 3000, epsfcn, diag, 0, mode, 100.0,
+    nprint, 0, 0, fjac, 0, m, ipvt, qtf, 0, w1, 0, w2, 0, w3, 0, w4, 0,
+  )
+  ri(s, r0)
+  ri(s, r1)
+  ri(s, r2)
+  ri(s, r3)
+  ri(s, calls.val)
+  rad(s, x)
+  rad(s, fvec)
+  rad(s, fjac)
+  rai(s, ipvt)
+  rad(s, qtf)
+}
+"""
+
+MINPACK_CASES = []
+
+
+def _mp_cases():
+    def lst(xs):
+        return " ".join(lf(v) for v in xs), ", ".join(mf(float(v)) for v in xs)
+
+    sq = [("rosen", [-1.2, 1.0]), ("rosen", [5.0, -3.0]), ("powell", [3.0, -1.0, 0.0, 1.0]),
+          ("broyden", [-1.0] * 5), ("broyden", [-1.0] * 9), ("freud", [0.5, -2.0])]
+    for p, x0 in sq:
+        n = len(x0)
+        lx, mx = lst(x0)
+        for tol, maxc in [(1.4901161193847656e-08, 0), (1e-3, 0), (1e-12, 7)]:
+            for drv in ["hybrd1", "hybrj1"]:
+                MINPACK_CASES.append((
+                    "%s %s n=%d tol=%g maxc=%d" % (drv, p, n, tol, maxc),
+                    "(t-%s :%s %d (list %s) %s %s)" % (drv, p, n, lx, lf(tol), maxc or "nil"),
+                    't_%s(s, "%s", %d, [%s], %s, %d)' % (drv, p, n, mx, mf(tol), maxc)))
+    ls = [("rosen", 2, [-1.2, 1.0]), ("freud", 2, [0.5, -2.0]), ("bard", 15, [1.0, 1.0, 1.0]),
+          ("bard", 15, [10.0, 10.0, 10.0]), ("linear", 5, [1.0, 1.0, 1.0]),
+          ("linear", 10, [1.0, -2.0, 3.0, 0.5, 4.0]), ("powell", 4, [3.0, -1.0, 0.0, 1.0])]
+    for p, m, x0 in ls:
+        n = len(x0)
+        lx, mx = lst(x0)
+        for tol, maxc in [(1.4901161193847656e-08, 0), (1e-4, 0), (1e-12, 9)]:
+            for drv in ["lmdif1", "lmder1"]:
+                MINPACK_CASES.append((
+                    "%s %s m=%d n=%d tol=%g maxc=%d" % (drv, p, m, n, tol, maxc),
+                    "(t-%s :%s %d %d (list %s) %s %s)" % (drv, p, m, n, lx, lf(tol), maxc or "nil"),
+                    't_%s(s, "%s", %d, %d, [%s], %s, %d)' % (drv, p, m, n, mx, mf(tol), maxc)))
+    for p, x0, ml, mu, mode, nprint in [("broyden", [-1.0] * 7, 1, 1, 2, 0),
+                                        ("broyden", [-1.0] * 7, 1, 1, 1, 3),
+                                        ("powell", [3.0, -1.0, 0.0, 1.0], 3, 3, 2, 1),
+                                        ("rosen", [-1.2, 1.0], 0, 1, 1, 2)]:
+        lx, mx = lst(x0)
+        MINPACK_CASES.append((
+            "hybrd %s ml=%d mu=%d mode=%d nprint=%d" % (p, ml, mu, mode, nprint),
+            "(t-hybrd :%s %d (list %s) %d %d %d %d)" % (p, len(x0), lx, ml, mu, mode, nprint),
+            't_hybrd(s, "%s", %d, [%s], %d, %d, %d, %d)' % (p, len(x0), mx, ml, mu, mode, nprint)))
+    for p, m, x0, mode, nprint, eps in [("bard", 15, [1.0, 1.0, 1.0], 2, 0, 1e-10),
+                                        ("bard", 15, [1.0, 1.0, 1.0], 1, 4, 0.0),
+                                        ("linear", 6, [1.0, 2.0, 3.0, 4.0], 2, 1, 0.0),
+                                        ("freud", 2, [0.5, -2.0], 1, 0, 1e-6)]:
+        lx, mx = lst(x0)
+        MINPACK_CASES.append((
+            "lmdif %s m=%d mode=%d nprint=%d epsfcn=%g" % (p, m, mode, nprint, eps),
+            "(t-lmdif :%s %d %d (list %s) %d %d %s)" % (p, m, len(x0), lx, mode, nprint, lf(eps)),
+            't_lmdif(s, "%s", %d, %d, [%s], %d, %d, %s)' % (p, m, len(x0), mx, mode, nprint, mf(eps))))
+    for i in [1, 2, 3]:
+        MINPACK_CASES.append(("dpmpar %d" % i, "(rd (minpack::dpmpar %d))" % i,
+                              "rd(s, dpmpar(%d))" % i))
+
+
+_mp_cases()
+
+
+# --- cobyla -----------------------------------------------------------------
+
+COBYLA_REF_LISP = r"""
+(defmacro rvals (call) `(dolist (v (remove nil (multiple-value-list ,call))) (rv v)))
+(defvar *prob*)
+(defvar *calls* 0)
+(defun prob-fc (p x con)
+  (macrolet ((x (i) `(aref x ,i)) (c (i) `(aref con ,i)))
+    (ecase p
+      (:quad (+ (* 10d0 (* (+ (x 0) 1d0) (+ (x 0) 1d0))) (* (x 1) (x 1))))
+      (:circle
+       (setf (c 0) (- (- 1d0 (* (x 0) (x 0))) (* (x 1) (x 1))))
+       (* (x 0) (x 1)))
+      (:ellipsoid
+       (setf (c 0) (- (- (- 1d0 (* (x 0) (x 0))) (* 2d0 (* (x 1) (x 1)))) (* 3d0 (* (x 2) (x 2)))))
+       (* (* (x 0) (x 1)) (x 2)))
+      (:parab
+       (setf (c 0) (- (x 1) (* (x 0) (x 0))))
+       (setf (c 1) (- (- 1d0 (* (x 0) (x 0))) (* (x 1) (x 1))))
+       (- (- (x 0)) (x 1)))
+      (:rosen-suzuki
+       (let ((x1 (x 0)) (x2 (x 1)) (x3 (x 2)) (x4 (x 3)))
+         (setf (c 0) (+ (- (+ (- (- (- (- (- 8d0 (* x1 x1)) (* x2 x2)) (* x3 x3)) (* x4 x4)) x1) x2) x3) x4))
+         (setf (c 1) (+ (+ (- (- (- (- 10d0 (* x1 x1)) (* 2d0 (* x2 x2))) (* x3 x3)) (* 2d0 (* x4 x4))) x1) x4))
+         (setf (c 2) (+ (+ (- (- (- (- 5d0 (* 2d0 (* x1 x1))) (* x2 x2)) (* x3 x3)) (* 2d0 x1)) x2) x4))
+         (+ (- (- (- (+ (+ (+ (* x1 x1) (* x2 x2)) (* 2d0 (* x3 x3))) (* x4 x4)) (* 5d0 x1)) (* 5d0 x2))
+               (* 21d0 x3))
+            (* 7d0 x4)))))))
+(defun cobyla::calcfc (n m x f con)
+  (declare (ignore n m f))
+  (incf *calls*)
+  (values nil nil nil (prob-fc *prob* x con) nil))
+(defun t-cobyla (p m x0 rhobeg rhoend iprint maxfun)
+  (let* ((n (length x0)) (x (apply #'dvec x0))
+         (w (dzeros (+ (* n (+ (* 3 n) (* 2 m) 11)) (* 4 m) 6 6)))
+         (iact (ivec (+ m 1))))
+    (setf *prob* p *calls* 0)
+    (rvals (cobyla::cobyla n m x rhobeg rhoend iprint maxfun w iact 0))
+    (ri *calls*) (ra x) (ra w) (ra iact)))
+"""
+
+COBYLA_REF_MBT = """
+///|
+fn prob_fc(p : String, x : FixedArray[Double], c : FixedArray[Double], co : Int) -> Double {
+  match p {
+    "quad" => 10.0 * ((x[0] + 1.0) * (x[0] + 1.0)) + x[1] * x[1]
+    "circle" => {
+      c[co + 0] = 1.0 - x[0] * x[0] - x[1] * x[1]
+      x[0] * x[1]
+    }
+    "ellipsoid" => {
+      c[co + 0] = 1.0 - x[0] * x[0] - 2.0 * (x[1] * x[1]) - 3.0 * (x[2] * x[2])
+      x[0] * x[1] * x[2]
+    }
+    "parab" => {
+      c[co + 0] = x[1] - x[0] * x[0]
+      c[co + 1] = 1.0 - x[0] * x[0] - x[1] * x[1]
+      -x[0] - x[1]
+    }
+    "rosen-suzuki" => {
+      let x1 = x[0]
+      let x2 = x[1]
+      let x3 = x[2]
+      let x4 = x[3]
+      c[co + 0] = 8.0 - x1 * x1 - x2 * x2 - x3 * x3 - x4 * x4 - x1 + x2 - x3 + x4
+      c[co + 1] = 10.0 - x1 * x1 - 2.0 * (x2 * x2) - x3 * x3 - 2.0 * (x4 * x4) + x1 + x4
+      c[co + 2] = 5.0 - 2.0 * (x1 * x1) - x2 * x2 - x3 * x3 - 2.0 * x1 + x2 + x4
+      x1 * x1 + x2 * x2 + 2.0 * (x3 * x3) + x4 * x4 - 5.0 * x1 - 5.0 * x2 - 21.0 * x3 +
+      7.0 * x4
+    }
+    _ => abort(p)
+  }
+}
+
+///|
+let calls : Ref[Int] = { val: 0 }
+
+///|
+fn t_cobyla(
+  s : StringBuilder,
+  p : String,
+  m : Int,
+  x0 : Array[Double],
+  rhobeg : Double,
+  rhoend : Double,
+  iprint : Int,
+  maxfun : Int,
+) -> Unit raise {
+  let n = x0.length()
+  let x = dvec(x0)
+  let w = FixedArray::make(n * (3 * n + 2 * m + 11) + 4 * m + 6 + 6, 0.0)
+  let iact = FixedArray::make(m + 1, 0)
+  calls.val = 0
+  calcfc_hook.val = fn(_n, _m, x, _f, con, co) {
+    calls.val = calls.val + 1
+    prob_fc(p, x, con, co)
+  }
+  let (r0, r1) = cobyla(n, m, x, rhobeg, rhoend, iprint, maxfun, w, iact, 0)
+  ri(s, r0)
+  ri(s, r1)
+  ri(s, calls.val)
+  rad(s, x)
+  rad(s, w)
+  rai(s, iact)
+}
+"""
+
+COBYLA_CASES = []
+
+
+def _cob_cases():
+    probs = [("quad", 0, [1.0, 1.0]), ("circle", 1, [1.0, 1.0]), ("ellipsoid", 1, [1.0, 1.0, 1.0]),
+             ("parab", 2, [1.0, 1.0]), ("rosen-suzuki", 3, [1.0, 1.0, 1.0, 1.0]),
+             ("circle", 1, [-0.3, 2.0])]
+    for p, m, x0 in probs:
+        lx = " ".join(lf(v) for v in x0)
+        mx = ", ".join(mf(v) for v in x0)
+        for rhobeg, rhoend, iprint, maxfun in [(0.5, 1e-6, 0, 2000), (1.0, 1e-4, 1, 2000),
+                                               (0.5, 1e-8, 2, 3000), (0.5, 1e-3, 3, 2000),
+                                               (0.5, 1e-6, 1, 12)]:
+            COBYLA_CASES.append((
+                "cobyla %s rhobeg=%g rhoend=%g iprint=%d maxfun=%d" % (p, rhobeg, rhoend, iprint, maxfun),
+                "(t-cobyla :%s %d (list %s) %s %s %d %d)" % (p, m, lx, lf(rhobeg), lf(rhoend), iprint, maxfun),
+                't_cobyla(s, "%s", %d, [%s], %s, %s, %d, %d)' % (p, m, mx, mf(rhobeg), mf(rhoend), iprint, maxfun)))
+
+
+_cob_cases()
+
+
 # ---------------------------------------------------------------------------
 # Driver
 
@@ -3815,6 +4897,30 @@ ODEPACK_SIGS = {
     "jac": Sig([("A", "I"), "D", ("A", "D"), "I", "I", ("AO", "D"), "I"], [], True),
 }
 
+# MINPACK's user routine FCN (hybrd: FCN(N, X, FVEC, IFLAG); lmdif:
+# FCN(M, N, X, FVEC, IFLAG); hybrj: FCN(N, X, FVEC, FJAC, LDFJAC, IFLAG);
+# lmder: FCN(M, N, X, FVEC, FJAC, LDFJAC, IFLAG)) is resolved per routine
+# from the calls (see compute_fnsigs); none is preset.
+_MP_HYBRD = Sig(["I", ("AO", "D"), ("AO", "D"), "I"], [(0, "I"), (3, "I")], True)
+_MP_HYBRJ = Sig(["I", ("AO", "D"), ("AO", "D"), ("AO", "D"), "I", "I"],
+                [(0, "I"), (4, "I"), (5, "I")], True)
+_MP_LMDIF = Sig(["I", "I", ("AO", "D"), ("AO", "D"), "I"], [(0, "I"), (1, "I"), (4, "I")], True)
+_MP_LMDER = Sig(["I", "I", ("AO", "D"), ("AO", "D"), ("AO", "D"), "I", "I"],
+                [(0, "I"), (1, "I"), (5, "I"), (6, "I")], True)
+MINPACK_SIGS = {
+    ("hybrd", "fcn"): _MP_HYBRD, ("hybrd1", "fcn"): _MP_HYBRD, ("fdjac1", "fcn"): _MP_HYBRD,
+    ("hybrj", "fcn"): _MP_HYBRJ, ("hybrj1", "fcn"): _MP_HYBRJ,
+    ("lmdif", "fcn"): _MP_LMDIF, ("lmdif1", "fcn"): _MP_LMDIF, ("fdjac2", "fcn"): _MP_LMDIF,
+    ("lmder", "fcn"): _MP_LMDER, ("lmder1", "fcn"): _MP_LMDER,
+}
+
+# Routines called by name that the user supplies (Maxima's interface defines
+# them): a package-level hook holding a closure.  COBYLA's
+# CALCFC(N, M, X, F, CON) returns F; CON is a section of COBYLA's work array.
+COBYLA_HOOKS = {
+    "calcfc": Sig(["I", "I", ("A", "D"), "D", ("AO", "D")], [(3, "D")], True),
+}
+
 
 def lib_config(name):
     if name == "slatec":
@@ -3845,6 +4951,26 @@ def lib_config(name):
         return dict(name="lapack", out=os.path.join(ROOT, "lapack"), what="BLAS/LAPACK routine",
                     srcrel="share/lapack/{blas,lapack}", hand=[], user_sigs={}, files=files,
                     header=share_header("share/lapack/{blas,lapack}", "BLAS and LAPACK"))
+    if name == "fftpack5":
+        d = os.path.join(SHARE_DIR, "fftpack5", "lisp")
+        # lisp/fftpack5.lisp is an old single-float interface, not f2cl output
+        files = lisp_files(d, ("fftpack5",))
+        return dict(name="fftpack5", out=os.path.join(ROOT, "fftpack5"), what="FFTPACK5 routine",
+                    srcrel="share/fftpack5/lisp", hand=[], user_sigs={}, files=files,
+                    header=share_header("share/fftpack5/lisp", "FFTPACK 5.1"))
+    if name == "minpack":
+        d = os.path.join(SHARE_DIR, "minpack", "lisp")
+        return dict(name="minpack", out=os.path.join(ROOT, "minpack"), what="MINPACK routine",
+                    srcrel="share/minpack/lisp", hand=[], user_sigs=MINPACK_SIGS,
+                    files=lisp_files(d),
+                    header=share_header("share/minpack/lisp", "MINPACK"))
+    if name == "cobyla":
+        d = os.path.join(SHARE_DIR, "cobyla", "lisp")
+        files = [os.path.join(d, f + ".lisp") for f in ["cobyla", "cobylb", "trstlp"]]
+        return dict(name="cobyla", out=os.path.join(ROOT, "cobyla"), what="COBYLA routine",
+                    srcrel="share/cobyla/lisp", hand=[], user_sigs={}, files=files,
+                    hooks=COBYLA_HOOKS,
+                    header=share_header("share/cobyla/lisp", "Powell's COBYLA"))
     raise SystemExit("unknown library %s" % name)
 
 
@@ -3896,9 +5022,11 @@ def main():
     for name in FNS:
         FNS_MB.add(mb_fn_name(name))
     compute_offsets()
+    mark_hook_callers()
     compute_fnsigs()
     errors = 0
     os.makedirs(out, exist_ok=True)
+    emit_hooks(out)
     byfile = {}
     for d in defs:
         byfile.setdefault(d.file, []).append(d)
