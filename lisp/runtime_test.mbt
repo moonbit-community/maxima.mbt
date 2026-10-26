@@ -83,3 +83,10 @@ test "complex arithmetic like sbcl" {
   inspect(try! num_add(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(3.0 0.0)")
   inspect(try! num_mul(Value::Cplx(Flo(1.0), Value::Flo(-0.0)), Value::Flo(2.0)), content="#C(2.0 -0.0)")
 }
+
+///|
+test "float traps" {
+  let big = Value::Flo(1.0e308)
+  let r = try num_mul(big, big) catch { e => Value::Str("\{e}") } noraise { v => v }
+  inspect(r, content="\"floating-point-overflow: arithmetic error FLOATING-POINT-OVERFLOW signalled\"")
+}

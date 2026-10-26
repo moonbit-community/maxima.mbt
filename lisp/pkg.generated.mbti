@@ -275,6 +275,8 @@ pub fn from_big(@bigint.BigInt) -> Value
 
 pub fn from_double_integer(Double) -> @bigint.BigInt
 
+pub fn ftrap(Double, Double, Double) -> Value raise LispError
+
 pub fn funcall(Value, Array[Value]) -> Value raise
 
 pub fn funcall0(Value) -> Value raise

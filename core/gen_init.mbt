@@ -61,6 +61,8 @@ fn init_generated() -> Unit raise {
   init_db()
   init_compar()
   init_nummod()
+  init_hypergeometric()
+  init_nfloat()
   init_sinint()
   init_risch()
   init_irinte()

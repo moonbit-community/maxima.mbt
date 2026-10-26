@@ -288,12 +288,54 @@ pub fn ratio_to_double(n : BigInt, d : BigInt) -> Double {
 }
 
 ///|
+/// SBCL traps floating-point overflow and invalid operations: a non-finite
+/// result from finite operands signals an arithmetic error.
+pub fn ftrap(r : Double, x : Double, y : Double) -> Value raise LispError {
+  if (r.is_inf() || r.is_nan()) && !(x.is_inf() || x.is_nan()) &&
+    !(y.is_inf() || y.is_nan()) {
+    if r.is_nan() {
+      raise Condition(
+        intern("floating-point-invalid-operation"),
+        "arithmetic error FLOATING-POINT-INVALID-OPERATION signalled",
+        Nil,
+      )
+    }
+    raise Condition(
+      intern("floating-point-overflow"),
+      "arithmetic error FLOATING-POINT-OVERFLOW signalled",
+      Nil,
+    )
+  }
+  Flo(r)
+}
+
+///|
 /// `(float x)` / `(coerce x 'double-float)` for reals.
 pub fn to_double(x : Value) -> Double raise LispError {
   match x {
     Fix(n) => n.to_double()
-    Big(b) => big_to_double(b)
-    Ratio(n, d) => ratio_to_double(n, d)
+    Big(b) => {
+      let d = big_to_double(b)
+      if d.is_inf() {
+        raise Condition(
+          intern("floating-point-overflow"),
+          "Too large to be represented as a DOUBLE-FLOAT: \{b}",
+          x,
+        )
+      }
+      d
+    }
+    Ratio(n, d) => {
+      let r = ratio_to_double(n, d)
+      if r.is_inf() {
+        raise Condition(
+          intern("floating-point-overflow"),
+          "Too large to be represented as a DOUBLE-FLOAT",
+          x,
+        )
+      }
+      r
+    }
     Flo(d) => d
     _ => raise type_error(x, "real")
   }
@@ -460,7 +502,7 @@ pub fn num_add(a : Value, b : Value) -> Value raise LispError {
         Fix(r)
       }
     }
-    (Flo(x), Flo(y)) => Flo(x + y)
+    (Flo(x), Flo(y)) => ftrap(x + y, x, y)
     _ => {
       let l = level(a).max(level(b))
       match l {
@@ -470,7 +512,11 @@ pub fn num_add(a : Value, b : Value) -> Value raise LispError {
           let (n2, d2) = ratio_parts(b)
           make_ratio(n1 * d2 + n2 * d1, d1 * d2)
         }
-        2 => Flo(to_double(a) + to_double(b))
+        2 => {
+          let x = to_double(a)
+          let y = to_double(b)
+          ftrap(x + y, x, y)
+        }
         _ =>
           // As SBCL: the real operand is treated as complex with zero
           // imaginary part (so -0.0 + 0 gives 0.0).
@@ -496,7 +542,7 @@ pub fn num_sub(a : Value, b : Value) -> Value raise LispError {
         Fix(r)
       }
     }
-    (Flo(x), Flo(y)) => Flo(x - y)
+    (Flo(x), Flo(y)) => ftrap(x - y, x, y)
     _ => num_add(a, num_neg(b))
   }
 }
@@ -529,7 +575,7 @@ pub fn num_mul(a : Value, b : Value) -> Value raise LispError {
       } else {
         from_big(BigInt::from_int64(x) * BigInt::from_int64(y))
       }
-    (Flo(x), Flo(y)) => Flo(x * y)
+    (Flo(x), Flo(y)) => ftrap(x * y, x, y)
     _ => {
       let l = level(a).max(level(b))
       match l {
@@ -539,7 +585,11 @@ pub fn num_mul(a : Value, b : Value) -> Value raise LispError {
           let (n2, d2) = ratio_parts(b)
           make_ratio(n1 * n2, d1 * d2)
         }
-        2 => Flo(to_double(a) * to_double(b))
+        2 => {
+          let x = to_double(a)
+          let y = to_double(b)
+          ftrap(x * y, x, y)
+        }
         _ =>
           match (a, b) {
             (Cplx(r1, i1), Cplx(r2, i2)) =>
@@ -569,7 +619,7 @@ pub fn num_div(a : Value, b : Value) -> Value raise LispError {
       if y == 0.0 {
         raise division_by_zero()
       } else {
-        Flo(x / y)
+        ftrap(x / y, x, y)
       }
     _ => {
       let l = level(a).max(level(b))
@@ -587,7 +637,8 @@ pub fn num_div(a : Value, b : Value) -> Value raise LispError {
           if y == 0.0 {
             raise division_by_zero()
           }
-          Flo(to_double(a) / y)
+          let x = to_double(a)
+          ftrap(x / y, x, y)
         }
         _ =>
           // SBCL's algorithms (Smith-style scaling for complex divisors).
