@@ -13,7 +13,7 @@ fn expintegral__f(op : Value, x : Value) -> Value raise {
 
 ///|
 fn expintegral__gi0(x : Value) -> Value raise {
-  take(list1(q_p_gamma_incomplete), [Fix(0L), x])
+  take(list1(q_p_gamma_u_incomplete), [Fix(0L), x])
 }
 
 ///|
@@ -128,7 +128,7 @@ fn simp__pctexpintegral_e1(
   }
   if expintegral__rep_other(q_p_expintegral_e1) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_incomplete) {
+    return if eq(rep, q_p_gamma_u_incomplete) {
       expintegral__gi0(arg)
     } else if eq(rep, q_p_expintegral_ei) {
       addn_([
@@ -266,7 +266,7 @@ fn simp__pctexpintegral_ei(
   }
   if expintegral__rep_other(q_p_expintegral_ei) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_incomplete) {
+    return if eq(rep, q_p_gamma_u_incomplete) {
       addn_([
         expintegral__neg1(expintegral__gi0(expintegral__neg1(arg))),
         mul2(
@@ -484,7 +484,7 @@ fn simp__pctexpintegral_li(
   if expintegral__rep_other(q_p_expintegral_li) {
     let logarg = take(list1(q_p_log), [arg])
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_incomplete) {
+    return if eq(rep, q_p_gamma_u_incomplete) {
       addn_([
         expintegral__neg1(expintegral__gi0(expintegral__neg1(logarg))),
         mul2(
@@ -639,7 +639,7 @@ fn simp__pctexpintegral_si(
   if expintegral__rep_other(q_d_expintegral_trig) {
     let rep = symval(q_d_expintrep)
     let iarg = mul2(q_d__pcti, arg)
-    return if eq(rep, q_p_gamma_incomplete) {
+    return if eq(rep, q_p_gamma_u_incomplete) {
       mul2(
         div(q_d__pcti, Fix(2L)),
         addn_([
@@ -847,7 +847,7 @@ fn simp__pctexpintegral_shi(
   }
   if expintegral__rep_other(q_d_expintegral_hyp) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_incomplete) {
+    return if eq(rep, q_p_gamma_u_incomplete) {
       mul2(
         inv(Fix(2L)),
         addn_([
@@ -1065,7 +1065,7 @@ fn simp__pctexpintegral_ci(
   if expintegral__rep_other(q_d_expintegral_trig) {
     let rep = symval(q_d_expintrep)
     let iarg = mul2(q_d__pcti, arg)
-    return if eq(rep, q_p_gamma_incomplete) {
+    return if eq(rep, q_p_gamma_u_incomplete) {
       sub(
         expintegral__log(arg),
         mul2(
@@ -1298,7 +1298,7 @@ fn simp__pctexpintegral_chi(
   }
   if expintegral__rep_other(q_d_expintegral_hyp) {
     let rep = symval(q_d_expintrep)
-    return if eq(rep, q_p_gamma_incomplete) {
+    return if eq(rep, q_p_gamma_u_incomplete) {
       mul2(
         inv(Fix(-2L)),
         addn_([
@@ -1463,10 +1463,11 @@ fn init_expintegral() -> Unit raise {
       q_p_expintegral_li,
       q_d_expintegral_trig,
       q_d_expintegral_hyp,
-      q_p_gamma_incomplete,
+      q_p_gamma_u_incomplete,
     ]),
   )
   // (defmvar $expintexpand nil ... :setting-list (t nil %erf))
+  defmvar(q_d_expintexpand, val=Nil, Nil) |> ignore
   let possible_values = list([t, Nil, q_p_erf])
   putprop(
     q_d_expintexpand,
@@ -1491,6 +1492,7 @@ fn init_expintegral() -> Unit raise {
   )
   |> ignore
   // (defmvar $expintrep nil ... :setting-predicate ...)
+  defmvar(q_d_expintrep, val=Nil, Nil) |> ignore
   putprop(
     q_d_expintrep,
     lfunc("expintrep-assign", args => {

@@ -1325,7 +1325,7 @@ fn init_hayat() -> Unit raise {
   putprop(q_p_atan2, q_atan2_trans, q_tay_trans) |> ignore
   putprop(q_mfactorial, q_factorial_trans, q_tay_trans) |> ignore
   putprop(q_p_signum, q_signum_trans, q_tay_trans) |> ignore
-  putprop(q_p_gamma_incomplete, q_gamma_upper_trans, q_tay_trans) |> ignore
+  putprop(q_p_gamma_u_incomplete, q_gamma_upper_trans, q_tay_trans) |> ignore
   putprop(q_d_gamma_incomplete, q_gamma_upper_trans, q_tay_trans) |> ignore
   putprop(q_p_gamma_incomplete_lower, q_gamma_lower_trans, q_tay_trans)
   |> ignore
