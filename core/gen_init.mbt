@@ -842,6 +842,7 @@ fn share_load_sloop() -> Unit raise {
 ///|
 fn share_load_tocl() -> Unit raise {
   register_share_tocl()
+  init_share_tocl()
 }
 
 ///|
@@ -858,6 +859,7 @@ fn share_load_implicit_plot() -> Unit raise {
 fn share_load_f90() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_f90()
   register_share_f90()
+  init_share_f90()
 }
 
 ///|
@@ -869,6 +871,7 @@ fn share_load_tex2ooo() -> Unit raise {
 ///|
 fn share_load_cgrind() -> Unit raise {
   register_share_cgrind()
+  init_share_cgrind()
 }
 
 ///|
@@ -902,6 +905,7 @@ fn share_load_maxima_server() -> Unit raise {
 ///|
 fn share_load_chebformax() -> Unit raise {
   register_share_chebformax()
+  init_share_chebformax()
 }
 
 ///|
@@ -912,59 +916,70 @@ fn share_load_binsplit() -> Unit raise {
 ///|
 fn share_load_testodelin() -> Unit raise {
   register_share_testodelin()
+  init_share_testodelin()
 }
 
 ///|
 fn share_load_gauss() -> Unit raise {
   register_share_gauss()
+  init_share_gauss()
 }
 
 ///|
 fn share_load_lazysolver() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_diffequations_lazysolver()
   register_share_lazysolver()
+  init_share_lazysolver()
 }
 
 ///|
 fn share_load_spherodialwave() -> Unit raise {
   register_share_spherodialwave()
+  init_share_spherodialwave()
 }
 
 ///|
 fn share_load_kummer() -> Unit raise {
   register_share_kummer()
+  init_share_kummer()
 }
 
 ///|
 fn share_load_odeutils() -> Unit raise {
   register_share_odeutils()
+  init_share_odeutils()
 }
 
 ///|
 fn share_load_extrabessel() -> Unit raise {
   register_share_extrabessel()
+  init_share_extrabessel()
 }
 
 ///|
 fn share_load_sqfr() -> Unit raise {
   register_share_sqfr()
+  init_share_sqfr()
 }
 
 ///|
 fn share_load_unit_functions() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_unit_unit_functions()
   register_share_unit_functions()
+  init_share_unit_functions()
 }
 
 ///|
 fn share_load_asksign1() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_noninteractive_asksign1()
   register_share_asksign1()
+  init_share_asksign1()
 }
 
 ///|
 fn share_load_noninteractive() -> Unit raise {
   register_share_noninteractive()
+  init_share_noninteractive()
 }
 
 ///|
@@ -1015,11 +1030,13 @@ fn share_load_allgentran() -> Unit raise {
 ///|
 fn share_load_readfile() -> Unit raise {
   register_share_readfile()
+  init_share_readfile()
 }
 
 ///|
 fn share_load_symplectic_ode() -> Unit raise {
   register_share_symplectic_ode()
+  init_share_symplectic_ode()
 }
 
 ///|
@@ -1032,6 +1049,7 @@ fn share_load_elliptic_curves() -> Unit raise {
 fn share_load_modular_polynomials() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_elliptic_curves_modular_polynomials()
   register_share_modular_polynomials()
+  init_share_modular_polynomials()
 }
 
 ///|
@@ -1043,6 +1061,7 @@ fn share_load_ec2() -> Unit raise {
 fn share_load_altsimp() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_altsimp_altsimp()
   register_share_altsimp()
+  init_share_altsimp()
 }
 
 ///|
@@ -1078,6 +1097,7 @@ fn share_load_grind_patch() -> Unit raise {
 fn share_load_smath() -> Unit raise {
   init_vars_n_dot_dot_share_contrib_smath_smath()
   register_share_smath()
+  init_share_smath()
 }
 
 ///|
@@ -1312,6 +1332,7 @@ fn share_load_qualsp() -> Unit raise {
 ///|
 fn share_load_cartan() -> Unit raise {
   register_share_cartan()
+  init_share_cartan()
 }
 
 ///|
@@ -1508,8 +1529,10 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "integration/abs_integrate" => Some(share_load_abs_integrate)
     "share/specfun" => Some(share_load_specfun)
     "share/MYTOPIC-index" => Some(share_load_n_cm__cy__ct__co__cp__ci__cc__index)
+    "sym/tri" => Some(share_load_tri)
     "sym/compile" => Some(share_load_compile)
     "sym/load-sym-lisp-files" => Some(share_load_load_sym_lisp_files)
+    "gamma_simp/isequal" => Some(share_load_isequal)
     "lisp/hompack-package" => Some(share_load_hompack_package)
     "fftpack5/fftpack5" => Some(share_load_fftpack5_fftpack5)
     "fftpack5/fftpack5-interface" => Some(share_load_fftpack5_interface)
@@ -1525,13 +1548,25 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "colnew/colnew-package" => Some(share_load_colnew_package)
     "utils/mactex-utilities" => Some(share_load_mactex_utilities)
     "utils/sloop" => Some(share_load_sloop)
+    "contrib/tocl" => Some(share_load_tocl)
+    "contrib/timeout" => Some(share_load_timeout)
+    "contrib/f90" => Some(share_load_f90)
     "contrib/tex2ooo" => Some(share_load_tex2ooo)
+    "contrib/cgrind" => Some(share_load_cgrind)
+    "contrib/ratpow" => Some(share_load_ratpow)
+    "contrib/colorterm" => Some(share_load_colorterm)
     "contrib/lll" => Some(share_load_lll)
     "contrib/maxima-server" => Some(share_load_maxima_server)
+    "contrib/chebformax" => Some(share_load_chebformax)
+    "binsplit/binsplit" => Some(share_load_binsplit)
+    "diffequations/testodelin" => Some(share_load_testodelin)
     "diffequations/gauss" => Some(share_load_gauss)
+    "diffequations/lazysolver" => Some(share_load_lazysolver)
     "diffequations/spherodialwave" => Some(share_load_spherodialwave)
     "diffequations/kummer" => Some(share_load_kummer)
+    "diffequations/odeutils" => Some(share_load_odeutils)
     "diffequations/extrabessel" => Some(share_load_extrabessel)
+    "diffequations/sqfr" => Some(share_load_sqfr)
     "unit/unit-functions" => Some(share_load_unit_functions)
     "noninteractive/asksign1" => Some(share_load_asksign1)
     "noninteractive/noninteractive" => Some(share_load_noninteractive)
@@ -1542,11 +1577,18 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "maximaMathML/PrMathML" => Some(share_load_n_cp_r_cm_ath_cm__cl_)
     "lurkmathml/mathml" => Some(share_load_mathml)
     "gentran/allgentran" => Some(share_load_allgentran)
+    "state/readfile" => Some(share_load_readfile)
+    "symplectic_ode/symplectic_ode" => Some(share_load_symplectic_ode)
+    "elliptic_curves/elliptic_curves" => Some(share_load_elliptic_curves)
     "elliptic_curves/modular_polynomials" => Some(share_load_modular_polynomials)
+    "elliptic_curves/ec2" => Some(share_load_ec2)
     "altsimp/altsimp" => Some(share_load_altsimp)
+    "alt-display/tex-display" => Some(share_load_tex_display)
+    "alt-display/alt-display" => Some(share_load_alt_display)
     "unicodedata/unicodedata" => Some(share_load_unicodedata)
     "unicodedata/unicodedata-txt" => Some(share_load_unicodedata_txt)
     "unicodedata/grind-patch" => Some(share_load_grind_patch)
+    "smath/smath" => Some(share_load_smath)
     "affine/polya" => Some(share_load_polya)
     "affine/compat" => Some(share_load_compat)
     "affine/modsimp" => Some(share_load_modsimp)
@@ -1569,6 +1611,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "affine/affine" => Some(share_load_affine)
     "affine/sheafc" => Some(share_load_sheafc)
     "affine/polyb" => Some(share_load_polyb)
+    "numeric/brmbrg" => Some(share_load_brmbrg)
     "numeric/expense" => Some(share_load_expense)
     "nelder_mead/defpackage" => Some(share_load_defpackage)
     "nelder_mead/nm-maxima" => Some(share_load_nm_maxima)
@@ -1581,6 +1624,8 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "odepack/package" => Some(share_load_odepack_package)
     "odepack/maxima-odepack" => Some(share_load_maxima_odepack)
     "src/package" => Some(share_load_odepack_src_package)
+    "calculus/qualsp" => Some(share_load_qualsp)
+    "calculus/cartan" => Some(share_load_cartan)
     "sound/sound" => Some(share_load_sound)
     "vector/vector_rebuild" => Some(share_load_vector_rebuild)
     "diff_form/cartan_new" => Some(share_load_cartan_new)
