@@ -604,7 +604,7 @@ fn d_zn_order(x : Value, n : Value, fs_phi? : Value = Nil) -> Value raise {
   } else {
     let fs_phi = if fs_phi.truthy() {
       numth__lispify_fs(
-        fs_phi, "Third argument to `zn_h_order' must be of the form [[p1, e1], ..., [pk, ek]].",
+        fs_phi, "Third argument to `zn_order' must be of the form [[p1, e1], ..., [pk, ek]].",
       )
     } else {
       totient_with_factors(n)
@@ -620,7 +620,7 @@ fn d_zn_order(x : Value, n : Value, fs_phi? : Value = Nil) -> Value raise {
 
 ///|
 fn zn_order(x : Value, n : Value, phi : Value, fs_phi : Value) -> Value raise {
-  format(t, "`zn_h_order' is deprecated. ~%Please use `zn-order' instead.~%", [])
+  format(t, "`zn_order' is deprecated. ~%Please use `zn-order' instead.~%", [])
   |> ignore
   zn_h_order(x, n, phi, fs_phi)
 }

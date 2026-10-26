@@ -628,7 +628,7 @@ fn gamma1__simp_gamma_incomplete(
     if gamma1__sign_in(sgn, [q_d_neg, q_d_zero]) {
       simp_domain_error(
         list([
-          Str("gamma_h_incomplete: gamma_h_incomplete(~:M,~:M) is undefined."),
+          Str("gamma_incomplete: gamma_incomplete(~:M,~:M) is undefined."),
           a,
           z,
         ]),
@@ -1211,7 +1211,7 @@ fn p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value) raise {
       while true {
         if num_gt(int(i), gm_maxit) {
           merr(
-            "gamma_h_incomplete: continued fractions failed for gamma_h_incomplete(~:M, ~:M).",
+            "gamma_incomplete: continued fractions failed for gamma_incomplete(~:M, ~:M).",
             [a, x],
           )
           |> ignore
@@ -1249,7 +1249,7 @@ fn p_gamma_h_incomplete(a : Value, x : Value) -> (Value, Value) raise {
     while true {
       if num_gt(int(i), gm_maxit) {
         merr(
-          "gamma_h_incomplete: series expansion failed for gamma_h_incomplete(~:M, ~:M).",
+          "gamma_incomplete: series expansion failed for gamma_incomplete(~:M, ~:M).",
           [a, x],
         )
         |> ignore
@@ -1350,7 +1350,7 @@ fn bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
       while true {
         if num_gt(int(i), gm_maxit) {
           merr(
-            "gamma_h_incomplete: continued fractions failed for gamma_h_incomplete(~:M, ~:M).",
+            "gamma_incomplete: continued fractions failed for gamma_incomplete(~:M, ~:M).",
             [a, x],
           )
           |> ignore
@@ -1406,7 +1406,7 @@ fn bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
     while true {
       if num_gt(int(i), gm_maxit) {
         merr(
-          "gamma_h_incomplete: series expansion failed for gamma_h_incomplete(~:M, ~:M).",
+          "gamma_incomplete: series expansion failed for gamma_incomplete(~:M, ~:M).",
           [a, x],
         )
         |> ignore
@@ -1507,7 +1507,7 @@ fn complex_bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
       while true {
         if num_gt(int(i), gm_maxit) {
           merr(
-            "gamma_h_incomplete: continued fractions failed for gamma_h_incomplete(~:M, ~:M).",
+            "gamma_incomplete: continued fractions failed for gamma_incomplete(~:M, ~:M).",
             [a, x],
           )
           |> ignore
@@ -1569,7 +1569,7 @@ fn complex_bfloat_gamma_incomplete(a : Value, x : Value) -> Value raise {
     while true {
       if num_gt(int(i), gm_maxit) {
         merr(
-          "gamma_h_incomplete: series expansion failed for gamma_h_incomplete(~:M, ~:M).",
+          "gamma_incomplete: series expansion failed for gamma_incomplete(~:M, ~:M).",
           [a, x],
         )
         |> ignore
@@ -2185,7 +2185,7 @@ fn init_gamma() -> Unit raise {
   gamma1__defgrad(q_p_gamma_incomplete, [
     list2(q_d_a, q_d_z),
     // wrt a
-    lfunc("gamma_h_incomplete-grad-a", args => gamma1__gamma_incomplete_grad_a(
+    lfunc("gamma_incomplete-grad-a", args => gamma1__gamma_incomplete_grad_a(
       arg(args, 0),
       arg(args, 1),
     )),
@@ -2196,7 +2196,7 @@ fn init_gamma() -> Unit raise {
   putprop(
     q_p_gamma_incomplete,
     lread(
-      "((a z) nil ((mplus) ((mtimes) -1 ((%gamma_h_incomplete) ((mplus) 1 a) z)) ((mtimes) ((%gamma_h_incomplete) a z) z)))",
+      "((a z) nil ((mplus) ((mtimes) -1 ((%gamma_incomplete) ((mplus) 1 a) z)) ((mtimes) ((%gamma_incomplete) a z) z)))",
     ),
     q_integral,
   )
