@@ -754,7 +754,7 @@ fn init_displa() -> Unit raise {
   displa__def(q_mlabel, q_dim_mlabel, bp=[0, 0])
   displa__def(q_p_mlabel, q_dim_mlabel, bp=[0, 0])
   // backwards-compatibility for wxMaxima
-  setf_get(q_mlabel, q_wxxml_mlable, q_wxxml) |> ignore
+  setf_get(q_mlabel, q_wxxml, q_wxxml_mlable) |> ignore
   putprop(q_mparen, int(-1), q_lbp) |> ignore
   putprop(q_mparen, int(-1), q_rbp) |> ignore
 }
