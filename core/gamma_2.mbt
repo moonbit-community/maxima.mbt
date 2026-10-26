@@ -1249,6 +1249,12 @@ fn gamma2__init() -> Unit raise {
   // Generalized Erf is antisymmetric Erf(z1,z2) = - Erf(z2,z1)
   with_specials([(q_d_context, q_d_global), (q_context, q_d_global)], () => {
     meval(mk(q_d_declare, [q_p_erf_generalized, q_d_antisymmetric])) |> ignore
+    // In the built CL image this symbol also carries the operator
+    // property ($antisymmetric and OPERS), i.e. DECLARE took its OPERS
+    // branch: asum.lisp's additions to OPERS were in effect. Our inits run
+    // strictly in build order (asum after gamma), so store it explicitly.
+    putprop(q_p_erf_generalized, t, q_d_antisymmetric) |> ignore
+    putprop(q_p_erf_generalized, t, q_opers) |> ignore
     // Let's remove built-in symbols from list for user-defined properties.
     set(q_d_props, remove(q_p_erf_generalized, symval(q_d_props))) |> ignore
   })
