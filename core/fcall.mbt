@@ -2,41 +2,6 @@
 // Maxima code (MFUNCTION-CALL and friends).
 
 ///|
-/// A minimal Lisp evaluator for the argument forms handed to
-/// MFUNCTION-CALL-AUX: self-evaluating atoms, variables, QUOTE/FUNCTION and
-/// function calls. Special forms and macros are not supported.
-fn fcall__lisp_eval(x : Value) -> Value raise {
-  match x {
-    Nil => Nil
-    Sym(_) =>
-      if eq(x, t) || keywordp(x) {
-        x
-      } else if boundp(x) {
-        symval(x)
-      } else {
-        raise LispError::Condition(
-          intern("unbound-variable"),
-          "The variable " + prin1_to_string(x) + " is unbound.",
-          x,
-        )
-      }
-    Cons(_) =>
-      if eq(car(x), q_quote) || eq(car(x), q_function) {
-        cadr(x)
-      } else if symbolp(car(x)) && fboundp(car(x)) {
-        apply(car(x), mapcar(a => fcall__lisp_eval(a), cdr(x)))
-      } else {
-        raise LispError::SimpleError(
-          "eval: evaluating the Lisp form " +
-          prin1_to_string(x) +
-          " is not supported in this port",
-        )
-      }
-    _ => x
-  }
-}
-
-///|
 fn d_tr_warnings_get() -> Value raise {
   cons(
     list1(q_mlist),
@@ -110,7 +75,7 @@ fn mfunction_call_warn(f : Value, type_ : Value) -> Value raise {
 
 ///|
 fn mapcar_eval(x : Value) -> Value raise {
-  mapcar(a => fcall__lisp_eval(a), x)
+  mapcar(a => lisp_eval_form(a), x)
 }
 
 ///|
@@ -136,7 +101,10 @@ fn mfunction_call_aux(
   if functionp_(f).truthy() {
     return apply(f, mapcar_eval(argl))
   }
-  // (MACRO-FUNCTION F) is always false: the port has no Lisp macros.
+  if lisp_macro_p(f) {
+    mfunction_call_warn(f, q_d_lisp_macro) |> ignore
+    return lisp_eval_form(cons(f, argl))
+  }
   if !symbolp(f) {
     return merr("apply: expected symbol or function; found: ~M", [f])
   }

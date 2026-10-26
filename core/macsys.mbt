@@ -459,10 +459,15 @@ fn d_eval_string_lisp(string_ : Value) -> (Value, Value) raise {
   if !stringp(string_) {
     merr("eval_string_lisp: Expected a string, got ~M.", [string_]) |> ignore
   }
-  let forms = lread_all(lstring(string_))
   let mut values : Value = Nil
-  for f in forms {
-    values = list1(suprv1__lisp_eval(f))
+  let st = make_string_input_stream(lstring(string_))
+  let eof = cons(Fix(0L), Fix(0L))
+  while true {
+    let input = lisp_read(st, eof)
+    if physical_equal_value(input, eof) {
+      break
+    }
+    values = list(lisp_eval_form_values(input))
   }
   // Mark the list as simplified
   (cons(list2(q_mlist, q_simp), values), Nil)

@@ -141,7 +141,7 @@ pub fn float_to_string(d : Double) -> String {
 ///|
 /// Does a symbol name need |escaping| for prin1?
 fn needs_escape(name : String) -> Bool {
-  if name.length() == 0 {
+  if name.length() == 0 || name[0] == '#' || name == "." {
     return true
   }
   for c in name {
@@ -227,6 +227,22 @@ pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
           print_value(sb, q, escape)
           return
         }
+        // backquote syntax as the reader produces it
+        Cons({ car: Sym({ name: "si::quasiquote", .. }), cdr: Cons({ car: q, cdr: Nil }) }) => {
+          sb.write_char('`')
+          print_value(sb, q, escape)
+          return
+        }
+        Cons({ car: Sym({ name: "si::unquote", .. }), cdr: Cons({ car: q, cdr: Nil }) }) => {
+          sb.write_char(',')
+          print_value(sb, q, escape)
+          return
+        }
+        Cons({ car: Sym({ name: "si::unquote-splicing", .. }), cdr: Cons({ car: q, cdr: Nil }) }) => {
+          sb.write_string(",@")
+          print_value(sb, q, escape)
+          return
+        }
         _ => ()
       }
       sb.write_char('(')
@@ -235,6 +251,12 @@ pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
       let mut count = 0
       while true {
         match p {
+          // a dotted backquote tail: (a . ,b)
+          Cons({ car: Sym({ name: "si::unquote" | "si::unquote-splicing", .. }), cdr: Cons({ cdr: Nil, .. }) }) if !first => {
+            sb.write_string(" . ")
+            print_value(sb, p, escape)
+            break
+          }
           Cons(c) => {
             if !first {
               sb.write_char(' ')

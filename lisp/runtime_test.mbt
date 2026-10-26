@@ -564,6 +564,57 @@ test "format ~E ~G like sbcl" {
 }
 
 ///|
+/// Read all forms of Lisp source text (with the source reader).
+fn read_src(s : String) -> Array[Value] raise {
+  let r = []
+  lread_source_all(s, x => r.push(x))
+  r
+}
+
+///|
+test "source reader: backquote, dispatch macros, packages" {
+  inspect(
+    try! lread("`(a ,b ,@c (d . ,e))"),
+    content="`(a ,b ,@c (d . ,e))",
+  )
+  inspect(
+    try! lread("(#'car #(1 2) #\\Space #\\( #\\a #:g #c(1 2) #p\"x\" #*101)"),
+    content="((function car) #(1 2) #\\Space #\\( #\\a #:g #C(1 2) \"x\" #(1 0 1))",
+  )
+  inspect(try! lread("(#x1F #b101 #o17 #3r12 #36rZ)"), content="(31 5 15 5 35)")
+  inspect(try! lread("(a #| comment #| nested |# |# b ; c\n d)"), content="(a b d)")
+  inspect(try! lread("(cl:car maxima::foo :key common-lisp-user::x)"), content="(car foo :key x)")
+  inspect(try! lread("(|Foo| \\a |abc|def)"), content="(|Foo| |A| |abcDEF|)")
+  inspect(try! lread("#A((3) BASE-CHAR . \"abc\")"), content="\"abc\"")
+  let shared = try! lread("(#1=(x y) #1#)")
+  assert_true(physical_equal_value(car(shared), cadr(shared)))
+}
+
+///|
+test "source reader: features, read-base, read-from-string" {
+  set(sym("*features*"), list([sym(":foo"), sym(":bar")])) |> ignore
+  inspect(
+    try! read_src("(#+foo a #-foo b #+(or baz bar) c #+(and foo (not bar)) d #-(or baz) e)"),
+    content="[(a c e)]",
+  )
+  set(sym("*read-base*"), Fix(2L)) |> ignore
+  inspect(try! read_src("(10 11. 1.5 z)"), content="[(2 11 1.5 z)]")
+  set(sym("*read-base*"), Fix(16L)) |> ignore
+  inspect(try! read_src("(ff 10 face g)"), content="[(255 16 64206 g)]")
+  set(sym("*read-base*"), Fix(10L)) |> ignore
+  let (v, pos) = try! lread_from_string("(a b) c")
+  inspect((v, pos), content="((a b), 6)")
+  let (v2, pos2) = try! lread_from_string("  foo", start=1)
+  inspect((v2, pos2), content="(foo, 5)")
+  let st = make_string_input_stream("1 (2) \"three\"")
+  let a = try! lread_stream(st)
+  let b = try! lread_stream(st)
+  let c = try! lread_stream(st)
+  let d = try! lread_stream(st, eof_error=false, eof_value=sym(":eof"))
+  inspect([a, b, c, d], content="[1, (2), \"three\", :eof]")
+}
+
+///|
 test "process primitives" {
   inspect(run_shell_command("exit 3"), content="3")
   inspect(shell_command_output("printf hello"), content="(0, hello)")

@@ -35,11 +35,13 @@ fn share_try_load(path : String) -> Bool raise {
       }
       share_loader__group_forms(key, g)
     }
+    lisp_eval_after_share_load()
     return true
   }
   match share_module_loader(key) {
     Some(f) => {
       f()
+      lisp_eval_after_share_load()
       true
     }
     None => share_loader__core_source_p(path)
