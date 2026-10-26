@@ -66,7 +66,14 @@ fn init_cl_specials() -> Unit {
     Flo(2.2250738585072014e-308),
   )
   |> ignore
-  set(sym("double-float-epsilon"), Flo(1.1102230246251568e-16)) |> ignore
+  set(sym("least-negative-double-float"), Flo(-4.9406564584124654e-324))
+  |> ignore
+  set(
+    sym("least-negative-normalized-double-float"),
+    Flo(-2.2250738585072014e-308),
+  )
+  |> ignore
+  set(sym("double-float-epsilon"),Flo(1.1102230246251568e-16)) |> ignore
   set(sym("most-positive-fixnum"), Fix(4611686018427387903L)) |> ignore
   set(sym("most-negative-fixnum"), Fix(-4611686018427387904L)) |> ignore
 }
