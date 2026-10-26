@@ -489,6 +489,7 @@ fn share_load_combinatorics() -> Unit raise {
 ///|
 fn share_load_itensor() -> Unit raise {
   register_share_itensor()
+  init_share_itensor()
 }
 
 ///|
@@ -502,6 +503,7 @@ fn share_load_simplex_algorithm() -> Unit raise {
 fn share_load_pytranslate() -> Unit raise {
   init_vars_n_dot_dot_share_pytranslate_pytranslate()
   register_share_pytranslate()
+  init_share_pytranslate()
 }
 
 ///|
@@ -744,6 +746,7 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "combinatorics/combinatorics" => Some(share_load_combinatorics)
     "tensor/itensor" => Some(share_load_itensor)
     "simplex/simplex_algorithm" => Some(share_load_simplex_algorithm)
+    "pytranslate/pytranslate" => Some(share_load_pytranslate)
     "multiadditive/multiadditive" => Some(share_load_multiadditive)
     "integer_sequence/integer_sequence" => Some(share_load_integer_sequence)
     "fourier_elim/fourier_elim" => Some(share_load_fourier_elim)
