@@ -144,13 +144,14 @@ pub fn integerp(x : Value) -> Bool {
 }
 
 ///|
+/// SBCL's fixnum range is 62 bits plus sign: [-2^62, 2^62 - 1].
 pub fn fixnump(x : Value) -> Bool {
-  x is Fix(_)
+  x is Fix(n) && n >= -4611686018427387904L && n <= 4611686018427387903L
 }
 
 ///|
 pub fn bignump(x : Value) -> Bool {
-  x is Big(_)
+  x is Big(_) || (x is Fix(_) && !fixnump(x))
 }
 
 ///|
