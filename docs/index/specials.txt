@@ -302,6 +302,7 @@ $programmode
 $prompt
 $props
 $psexpand
+$pwilt_hstep_all
 $radexpand
 $radsubstflag
 $ratalgdenom
@@ -566,6 +567,7 @@ $zn_primroot_verbose
 *expression-ring*
 *exptrlsw*
 *extended-reals*
+*external-byte-order*
 *f*
 *f2-red*
 *fact-protected*
@@ -1190,6 +1192,7 @@ name
 ncont
 ne
 negp*
+newline-symbol
 nf
 nisflag
 nisrules
@@ -1326,6 +1329,7 @@ varlist
 vars
 vlist
 wflag
+whitespace-sans-newline
 width
 xa*
 xm*

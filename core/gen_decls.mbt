@@ -26255,6 +26255,344 @@ declare fn array_to_maxima_list(ar : Value, fn_? : Value = q_identity) -> Value 
 /// defun maxima-to-array -- ../share/linearalgebra/linalg-utilities.lisp:161
 declare fn maxima_to_array(mat : Value, fn_? : Value = q_identity, typ? : Value = Nil) -> Value raise
 
+///|
+/// defun pwilt-add-parts -- ../share/diffequations/pwilt.lisp:30
+declare fn pwilt_add_parts(a : Value, b : Value) -> Value raise
+
+///|
+/// defun pwilt-mult-parts -- ../share/diffequations/pwilt.lisp:42
+declare fn pwilt_mult_parts(a : Value, b : Value) -> Value raise
+
+///|
+/// defun pwilt-parts -- ../share/diffequations/pwilt.lisp:51
+declare fn pwilt_parts(e : Value, s : Value) -> Value raise
+
+///|
+/// defun pwilt-one-part -- ../share/diffequations/pwilt.lisp:88
+declare fn pwilt_one_part(p : Value, s : Value, x : Value, xtemp : Value) -> Value raise
+
+///|
+/// defun pwilt-subst-periodic -- ../share/diffequations/pwilt.lisp:98
+declare fn pwilt_subst_periodic(e : Value) -> Value raise
+
+///|
+/// defun pwilt-polynomial-degree -- ../share/diffequations/pwilt.lisp:120
+declare fn pwilt_polynomial_degree(e : Value, s : Value) -> Value raise
+
+///|
+/// defun pwilt1 -- ../share/diffequations/pwilt.lisp:135
+declare fn pwilt1(e : Value, s : Value, x : Value) -> Value raise
+
+///|
+/// defun pwilt2 -- ../share/diffequations/pwilt.lisp:158
+declare fn pwilt2(e : Value, s : Value, x : Value) -> Value raise
+
+///|
+/// defun $pwilt -- ../share/diffequations/pwilt.lisp:195
+declare fn d_pwilt(e : Value, s : Value, x : Value) -> Value raise
+
+///|
+/// defun smash-float-into-integer -- ../share/numericalio/encode-decode-float.lisp:25
+declare fn smash_float_into_integer(x : Value) -> Value raise
+
+///|
+/// defun smash-decoded-float-32-into-integer -- ../share/numericalio/encode-decode-float.lisp:35
+declare fn smash_decoded_float_32_into_integer(significand : Value, exponent : Value, sign : Value) -> Value raise
+
+///|
+/// defun construct-float-32-from-integer -- ../share/numericalio/encode-decode-float.lisp:48
+declare fn construct_float_32_from_integer(x : Value) -> Value raise
+
+///|
+/// defun extract-smashed-float-32-from-integer -- ../share/numericalio/encode-decode-float.lisp:54
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn extract_smashed_float_32_from_integer(x : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun smash-decoded-float-64-into-integer -- ../share/numericalio/encode-decode-float.lisp:63
+declare fn smash_decoded_float_64_into_integer(significand : Value, exponent : Value, sign : Value) -> Value raise
+
+///|
+/// defun construct-float-64-from-integer -- ../share/numericalio/encode-decode-float.lisp:76
+declare fn construct_float_64_from_integer(x : Value) -> Value raise
+
+///|
+/// defun extract-smashed-float-64-from-integer -- ../share/numericalio/encode-decode-float.lisp:82
+/// Returns 3 values (CL multiple values) as a tuple.
+declare fn extract_smashed_float_64_from_integer(x : Value) -> (Value, Value, Value) raise
+
+///|
+/// defun write-float -- ../share/numericalio/encode-decode-float.lisp:93
+declare fn write_float(x : Value, s : Value) -> Value raise
+
+///|
+/// defun size-in-bytes -- ../share/numericalio/encode-decode-float.lisp:96
+declare fn size_in_bytes(x : Value) -> Value raise
+
+///|
+/// defun read-float-64 -- ../share/numericalio/encode-decode-float.lisp:99
+declare fn read_float_64(s : Value) -> Value raise
+
+///|
+/// defun define-external-byte-order -- ../share/numericalio/encode-decode-float.lisp:115
+declare fn define_external_byte_order(x : Value) -> Value raise
+
+///|
+/// defun read-unsigned-integer -- ../share/numericalio/encode-decode-float.lisp:119
+declare fn read_unsigned_integer(nb_bytes : Value, s : Value) -> Value raise
+
+///|
+/// defun write-unsigned-integer -- ../share/numericalio/encode-decode-float.lisp:135
+declare fn write_unsigned_integer(quantity : Value, nb_bytes : Value, s : Value) -> Value raise
+
+///|
+/// defun $assume_external_byte_order -- ../share/numericalio/numericalio.lisp:44
+declare fn d_assume_external_byte_order(x : Value) -> Value raise
+
+///|
+/// defun lisp-or-declared-maxima-array-p -- ../share/numericalio/numericalio.lisp:53
+declare fn lisp_or_declared_maxima_array_p(x : Value) -> Value raise
+
+///|
+/// defun $openw_binary -- ../share/numericalio/numericalio.lisp:58
+declare fn d_openw_binary(file : Value) -> Value raise
+
+///|
+/// defun $opena_binary -- ../share/numericalio/numericalio.lisp:67
+declare fn d_opena_binary(file : Value) -> Value raise
+
+///|
+/// defun $openr_binary -- ../share/numericalio/numericalio.lisp:76
+declare fn d_openr_binary(file : Value) -> Value raise
+
+///|
+/// defun $read_matrix -- ../share/numericalio/numericalio.lisp:85
+declare fn d_read_matrix(stream_or_filename : Value, args : Value) -> Value raise
+
+///|
+/// defun $read_binary_matrix -- ../share/numericalio/numericalio.lisp:101
+declare fn d_read_binary_matrix(stream_or_filename : Value, m : Value) -> Value raise
+
+///|
+/// defun fill-matrix-from-list -- ../share/numericalio/numericalio.lisp:111
+declare fn fill_matrix_from_list(l : Value, m : Value, nrow : Value, ncol : Value) -> Value raise
+
+///|
+/// defun $read_array -- ../share/numericalio/numericalio.lisp:122
+declare fn d_read_array(stream_or_filename : Value, args : Value) -> Value raise
+
+///|
+/// defun $read_binary_array -- ../share/numericalio/numericalio.lisp:134
+declare fn d_read_binary_array(file_name : Value, args : Value) -> Value raise
+
+///|
+/// defun read-into-existing-array -- ../share/numericalio/numericalio.lisp:139
+declare fn read_into_existing_array(file_name : Value, a : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun read-into-existing-array-size-known -- ../share/numericalio/numericalio.lisp:148
+declare fn read_into_existing_array_size_known(stream_or_filename : Value, a : Value, sep_ch_flag : Value, mode : Value, n : Value) -> Value raise
+
+///|
+/// defun read-into-existing-array-size-known-from-stream -- ../share/numericalio/numericalio.lisp:162
+declare fn read_into_existing_array_size_known_from_stream(in_ : Value, a : Value, sep_ch_flag : Value, mode : Value, n : Value) -> Value raise
+
+///|
+/// defun read-into-existing-array-size-unknown-from-stream -- ../share/numericalio/numericalio.lisp:170
+declare fn read_into_existing_array_size_unknown_from_stream(in_ : Value, a : Value, sep_ch : Value, mode : Value) -> Value raise
+
+///|
+/// defun read-and-return-new-array -- ../share/numericalio/numericalio.lisp:178
+declare fn read_and_return_new_array(stream_or_filename : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun read-and-return-new-array-from-stream -- ../share/numericalio/numericalio.lisp:192
+declare fn read_and_return_new_array_from_stream(in_ : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun $read_hashed_array -- ../share/numericalio/numericalio.lisp:199
+declare fn d_read_hashed_array(stream_or_filename : Value, a : Value, sep_ch_flag? : Value = Nil) -> Value raise
+
+///|
+/// defun read-hashed-array-from-stream -- ../share/numericalio/numericalio.lisp:211
+declare fn read_hashed_array_from_stream(in_ : Value, a : Value, sep_ch_flag : Value) -> Value raise
+
+///|
+/// defun $read_nested_list -- ../share/numericalio/numericalio.lisp:227
+declare fn d_read_nested_list(stream_or_filename : Value, sep_ch_flag? : Value = Nil) -> Value raise
+
+///|
+/// defun read-nested-list-from-stream -- ../share/numericalio/numericalio.lisp:239
+declare fn read_nested_list_from_stream(in_ : Value, sep_ch_flag : Value) -> Value raise
+
+///|
+/// defun $read_list -- ../share/numericalio/numericalio.lisp:247
+declare fn d_read_list(stream_or_filename : Value, args : Value) -> Value raise
+
+///|
+/// defun read-into-existing-list -- ../share/numericalio/numericalio.lisp:260
+declare fn read_into_existing_list(stream_or_filename : Value, l : Value, sep_ch_flag : Value, mode : Value, n : Value) -> Value raise
+
+///|
+/// defun read-into-existing-list-from-stream -- ../share/numericalio/numericalio.lisp:274
+declare fn read_into_existing_list_from_stream(in_ : Value, l : Value, sep_ch_flag : Value, mode : Value, n : Value) -> Value raise
+
+///|
+/// defun read-list -- ../share/numericalio/numericalio.lisp:283
+declare fn read_list(stream_or_filename : Value, sep_ch_flag : Value, mode : Value, n : Value) -> Value raise
+
+///|
+/// defun read-list-from-stream -- ../share/numericalio/numericalio.lisp:297
+declare fn read_list_from_stream(in_ : Value, sep_ch_flag : Value, mode : Value, n : Value) -> Value raise
+
+///|
+/// defun $read_binary_list -- ../share/numericalio/numericalio.lisp:310
+declare fn d_read_binary_list(stream_or_filename : Value, args : Value) -> Value raise
+
+///|
+/// defun $read_struct -- ../share/numericalio/numericalio.lisp:328
+declare fn d_read_struct(stream_or_filename : Value, args : Value) -> Value raise
+
+///|
+/// defun read-struct-separator-flag-p -- ../share/numericalio/numericalio.lisp:347
+declare fn read_struct_separator_flag_p(arg : Value) -> Value raise
+
+///|
+/// defun read-struct-default-name -- ../share/numericalio/numericalio.lisp:354
+declare fn read_struct_default_name(file_name : Value) -> Value raise
+
+///|
+/// defun read-struct-name-stem -- ../share/numericalio/numericalio.lisp:363
+declare fn read_struct_name_stem(file_name : Value) -> Value raise
+
+///|
+/// defun read-struct-field-name -- ../share/numericalio/numericalio.lisp:383
+declare fn read_struct_field_name(field : Value) -> Value raise
+
+///|
+/// defun read-struct-repeated-name -- ../share/numericalio/numericalio.lisp:393
+declare fn read_struct_repeated_name(fields : Value) -> Value raise
+
+///|
+/// defun read-struct-from-stream -- ../share/numericalio/numericalio.lisp:400
+declare fn read_struct_from_stream(in_ : Value, sep_ch_flag : Value, name : Value) -> Value raise
+
+///|
+/// defun make-mlist-from-string -- ../share/numericalio/numericalio.lisp:438
+declare fn make_mlist_from_string(s : Value, sep_ch : Value) -> Value raise
+
+///|
+/// defun fast-mlist-from-string -- ../share/numericalio/numericalio.lisp:453
+declare fn fast_mlist_from_string(s : Value, sep_ch : Value) -> Value raise
+
+///|
+/// defun fast-separator-char -- ../share/numericalio/numericalio.lisp:463
+declare fn fast_separator_char(sep_ch : Value) -> Value raise
+
+///|
+/// defun fast-whitespace-fields -- ../share/numericalio/numericalio.lisp:473
+declare fn fast_whitespace_fields(s : Value) -> Value raise
+
+///|
+/// defun fast-separated-fields -- ../share/numericalio/numericalio.lisp:490
+declare fn fast_separated_fields(s : Value, separator : Value) -> Value raise
+
+///|
+/// defun fast-blank-p -- ../share/numericalio/numericalio.lisp:514
+declare fn fast_blank_p(s : Value, start : Value, end : Value) -> Value raise
+
+///|
+/// defun fast-skip-blanks -- ../share/numericalio/numericalio.lisp:520
+declare fn fast_skip_blanks(s : Value, start : Value, end : Value) -> Value raise
+
+///|
+/// defun fast-back-over-blanks -- ../share/numericalio/numericalio.lisp:524
+declare fn fast_back_over_blanks(s : Value, start : Value, end : Value) -> Value raise
+
+///|
+/// defun scan-plain-number -- ../share/numericalio/numericalio.lisp:528
+declare fn scan_plain_number(s : Value, start : Value, end : Value) -> Value raise
+
+///|
+/// defun slow-mlist-from-string -- ../share/numericalio/numericalio.lisp:569
+declare fn slow_mlist_from_string(s : Value, sep_ch : Value) -> Value raise
+
+///|
+/// defun cons-appropriate-field -- ../share/numericalio/numericalio.lisp:617
+declare fn cons_appropriate_field(ll : Value, l : Value) -> Value raise
+
+///|
+/// defun $read_lisp_array -- ../share/numericalio/numericalio.lisp:627
+declare fn d_read_lisp_array(file_name : Value, a : Value, sep_ch_flag? : Value = Nil) -> Value raise
+
+///|
+/// defun $read_maxima_array -- ../share/numericalio/numericalio.lisp:630
+declare fn d_read_maxima_array(file_name : Value, a : Value, sep_ch_flag? : Value = Nil) -> Value raise
+
+///|
+/// defun reset-for-parse-next-element -- ../share/numericalio/numericalio.lisp:641
+declare fn reset_for_parse_next_element() -> Value raise
+
+///|
+/// defun parse-next-element -- ../share/numericalio/numericalio.lisp:646
+declare fn parse_next_element(in_ : Value, sep_ch : Value) -> Value raise
+
+///|
+/// defun open-file-appropriately -- ../share/numericalio/numericalio.lisp:688
+declare fn open_file_appropriately(file_name : Value, mode : Value) -> Value raise
+
+///|
+/// defun $write_data -- ../share/numericalio/numericalio.lisp:697
+declare fn d_write_data(x : Value, stream_or_filename : Value, sep_ch_flag? : Value = Nil) -> Value raise
+
+///|
+/// defun $write_binary_data -- ../share/numericalio/numericalio.lisp:700
+declare fn d_write_binary_data(x : Value, stream_or_filename : Value) -> Value raise
+
+///|
+/// defun write-data -- ../share/numericalio/numericalio.lisp:703
+declare fn write_data(x : Value, stream_or_filename : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun write-matrix -- ../share/numericalio/numericalio.lisp:726
+declare fn write_matrix(m : Value, out : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun write-lisp-array -- ../share/numericalio/numericalio.lisp:730
+declare fn write_lisp_array(a : Value, out : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun write-lisp-array-helper -- ../share/numericalio/numericalio.lisp:734
+declare fn write_lisp_array_helper(a : Value, d : Value, indices : Value, out : Value, sep_ch : Value, mode : Value) -> Value raise
+
+///|
+/// defun write-maxima-array -- ../share/numericalio/numericalio.lisp:747
+declare fn write_maxima_array(a : Value, out : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun write-hashed-array -- ../share/numericalio/numericalio.lisp:750
+declare fn write_hashed_array(a : Value, out : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun write-list -- ../share/numericalio/numericalio.lisp:762
+declare fn write_list(l : Value, out : Value, sep_ch_flag : Value, mode : Value) -> Value raise
+
+///|
+/// defun write-list-lowlevel -- ../share/numericalio/numericalio.lisp:766
+declare fn write_list_lowlevel(l : Value, out : Value, sep_ch : Value, mode : Value) -> Value raise
+
+///|
+/// defun get-input-sep-ch -- ../share/numericalio/numericalio.lisp:793
+declare fn get_input_sep_ch(sep_ch_flag : Value, my_stream : Value) -> Value raise
+
+///|
+/// defun get-output-sep-ch -- ../share/numericalio/numericalio.lisp:800
+declare fn get_output_sep_ch(sep_ch_flag : Value, my_stream : Value) -> Value raise
+
+///|
+/// defun require-string -- ../share/numericalio/numericalio.lisp:831
+declare fn require_string(s : Value) -> Value raise
+
 // ---- Function-like macros (implemented as functions by the porter of the defining file)
 
 ///|
@@ -29150,4 +29488,16 @@ declare fn init_share_matrixexp() -> Unit raise
 ///|
 /// top-level forms of ../share/linearalgebra/linalg-utilities.lisp
 declare fn init_share_linalg_utilities() -> Unit raise
+
+///|
+/// top-level forms of ../share/diffequations/pwilt.lisp
+declare fn init_share_pwilt() -> Unit raise
+
+///|
+/// top-level forms of ../share/numericalio/encode-decode-float.lisp
+declare fn init_share_encode_decode_float() -> Unit raise
+
+///|
+/// top-level forms of ../share/numericalio/numericalio.lisp
+declare fn init_share_numericalio() -> Unit raise
 

@@ -104,6 +104,9 @@ let q_d__pcti : Value = sym("$%i")
 let q_d__pctiargs : Value = sym("$%iargs")
 
 ///|
+let q_d__pctk : Value = sym("$%k")
+
+///|
 let q_d__pctl : Value = sym("$%l")
 
 ///|
@@ -1073,6 +1076,9 @@ let q_d_combine : Value = sym("$combine")
 let q_d_combineflag : Value = sym("$combineflag")
 
 ///|
+let q_d_comma : Value = sym("$comma")
+
+///|
 let q_d_common_lisp : Value = sym("$common_lisp")
 
 ///|
@@ -1167,6 +1173,9 @@ let q_d_csch : Value = sym("$csch")
 
 ///|
 let q_d_csign : Value = sym("$csign")
+
+///|
+let q_d_csv : Value = sym("$csv")
 
 ///|
 let q_d_ctranspose : Value = sym("$ctranspose")
@@ -3401,6 +3410,9 @@ let q_d_lratsubst : Value = sym("$lratsubst")
 let q_d_lreduce : Value = sym("$lreduce")
 
 ///|
+let q_d_lsb : Value = sym("$lsb")
+
+///|
 let q_d_lsum : Value = sym("$lsum")
 
 ///|
@@ -3705,6 +3717,9 @@ let q_d_most_positive_float : Value = sym("$most_positive_float")
 
 ///|
 let q_d_mring : Value = sym("$mring")
+
+///|
+let q_d_msb : Value = sym("$msb")
 
 ///|
 let q_d_mu : Value = sym("$mu")
@@ -4268,6 +4283,9 @@ let q_d_picturep : Value = sym("$picturep")
 let q_d_piece : Value = sym("$piece")
 
 ///|
+let q_d_pipe : Value = sym("$pipe")
+
+///|
 let q_d_playback : Value = sym("$playback")
 
 ///|
@@ -4679,6 +4697,9 @@ let q_d_put : Value = sym("$put")
 let q_d_pwilt : Value = sym("$pwilt")
 
 ///|
+let q_d_pwilt_hstep_all : Value = sym("$pwilt_hstep_all")
+
+///|
 let q_d_pz : Value = sym("$pz")
 
 ///|
@@ -4872,6 +4893,9 @@ let q_d_read_maxima_array : Value = sym("$read_maxima_array")
 
 ///|
 let q_d_read_nested_list : Value = sym("$read_nested_list")
+
+///|
+let q_d_read_struct : Value = sym("$read_struct")
 
 ///|
 let q_d_read_xpm : Value = sym("$read_xpm")
@@ -5214,6 +5238,9 @@ let q_d_sech : Value = sym("$sech")
 
 ///|
 let q_d_second : Value = sym("$second")
+
+///|
+let q_d_semicolon : Value = sym("$semicolon")
 
 ///|
 let q_d_sequal : Value = sym("$sequal")
@@ -6173,6 +6200,9 @@ let q_d_znz : Value = sym("$znz")
 let q_d_op_lc : Value = sym("${")
 
 ///|
+let q_d_op_bar : Value = sym("$|")
+
+///|
 let q_d_op_rc : Value = sym("$}")
 
 ///|
@@ -6896,6 +6926,12 @@ let q_p_product : Value = sym("%product")
 let q_p_psi : Value = sym("%psi")
 
 ///|
+let q_p_pwilt : Value = sym("%pwilt")
+
+///|
+let q_p_pwilt_periodic : Value = sym("%pwilt_periodic")
+
+///|
 let q_p_r : Value = sym("%r")
 
 ///|
@@ -7503,6 +7539,9 @@ let q_ear_exptrlsw : Value = sym("*exptrlsw*")
 
 ///|
 let q_ear_extended_reals : Value = sym("*extended-reals*")
+
+///|
+let q_ear_external_byte_order : Value = sym("*external-byte-order*")
 
 ///|
 let q_ear_f : Value = sym("*f*")
@@ -9008,6 +9047,12 @@ let q_kw_keyword : Value = sym(":keyword")
 let q_kw_load_toplevel : Value = sym(":load-toplevel")
 
 ///|
+let q_kw_lsb : Value = sym(":lsb")
+
+///|
+let q_kw_msb : Value = sym(":msb")
+
+///|
 let q_kw_name : Value = sym(":name")
 
 ///|
@@ -9573,6 +9618,9 @@ let q_antisym : Value = sym("antisym")
 
 ///|
 let q_antisym1 : Value = sym("antisym1")
+
+///|
+let q_ap : Value = sym("ap")
 
 ///|
 let q_ap1 : Value = sym("ap1")
@@ -10865,6 +10913,9 @@ let q_boundp : Value = sym("boundp")
 let q_box_label : Value = sym("box-label")
 
 ///|
+let q_bp : Value = sym("bp")
+
+///|
 let q_bprintf : Value = sym("bprintf")
 
 ///|
@@ -11573,6 +11624,9 @@ let q_colout : Value = sym("colout")
 let q_colrow0 : Value = sym("colrow0")
 
 ///|
+let q_column : Value = sym("column")
+
+///|
 let q_combin : Value = sym("combin")
 
 ///|
@@ -11924,6 +11978,9 @@ let q_conmark : Value = sym("conmark")
 let q_cons : Value = sym("cons")
 
 ///|
+let q_cons_appropriate_field : Value = sym("cons-appropriate-field")
+
+///|
 let q_consfundef : Value = sym("consfundef")
 
 ///|
@@ -11973,6 +12030,12 @@ let q_constmx : Value = sym("constmx")
 
 ///|
 let q_constp : Value = sym("constp")
+
+///|
+let q_construct_float_32_from_integer : Value = sym("construct-float-32-from-integer")
+
+///|
+let q_construct_float_64_from_integer : Value = sym("construct-float-64-from-integer")
 
 ///|
 let q_consttermp : Value = sym("consttermp")
@@ -12546,6 +12609,9 @@ let q_defexec : Value = sym("defexec")
 
 ///|
 let q_define_compiler_macro : Value = sym("define-compiler-macro")
+
+///|
+let q_define_external_byte_order : Value = sym("define-external-byte-order")
 
 ///|
 let q_define_macro : Value = sym("define-macro")
@@ -14465,6 +14531,12 @@ let q_extract : Value = sym("extract")
 let q_extract_indices : Value = sym("extract-indices")
 
 ///|
+let q_extract_smashed_float_32_from_integer : Value = sym("extract-smashed-float-32-from-integer")
+
+///|
+let q_extract_smashed_float_64_from_integer : Value = sym("extract-smashed-float-64-from-integer")
+
+///|
 let q_extract_trailing_digits : Value = sym("extract-trailing-digits")
 
 ///|
@@ -14846,6 +14918,27 @@ let q_fasprin : Value = sym("fasprin")
 let q_fasprint : Value = sym("fasprint")
 
 ///|
+let q_fast_back_over_blanks : Value = sym("fast-back-over-blanks")
+
+///|
+let q_fast_blank_p : Value = sym("fast-blank-p")
+
+///|
+let q_fast_mlist_from_string : Value = sym("fast-mlist-from-string")
+
+///|
+let q_fast_separated_fields : Value = sym("fast-separated-fields")
+
+///|
+let q_fast_separator_char : Value = sym("fast-separator-char")
+
+///|
+let q_fast_skip_blanks : Value = sym("fast-skip-blanks")
+
+///|
+let q_fast_whitespace_fields : Value = sym("fast-whitespace-fields")
+
+///|
 let q_fastcont : Value = sym("fastcont")
 
 ///|
@@ -14922,6 +15015,9 @@ let q_fill_hash : Value = sym("fill-hash")
 
 ///|
 let q_fill_in_inverses : Value = sym("fill-in-inverses")
+
+///|
+let q_fill_matrix_from_list : Value = sym("fill-matrix-from-list")
 
 ///|
 let q_fill_row : Value = sym("fill-row")
@@ -16556,6 +16652,9 @@ let q_get_first_char : Value = sym("get-first-char")
 let q_get_free_index : Value = sym("get-free-index")
 
 ///|
+let q_get_input_sep_ch : Value = sym("get-input-sep-ch")
+
+///|
 let q_get_instream : Value = sym("get-instream")
 
 ///|
@@ -16596,6 +16695,9 @@ let q_get_one_factor_p_1 : Value = sym("get-one-factor-p-1")
 
 ///|
 let q_get_one_factor_pollard : Value = sym("get-one-factor-pollard")
+
+///|
+let q_get_output_sep_ch : Value = sym("get-output-sep-ch")
 
 ///|
 let q_get_rule_symbol : Value = sym("get-rule-symbol")
@@ -19091,6 +19193,9 @@ let q_lisp_macro_warnp : Value = sym("lisp-macro-warnp")
 let q_lisp_no_simp : Value = sym("lisp-no-simp")
 
 ///|
+let q_lisp_or_declared_maxima_array_p : Value = sym("lisp-or-declared-maxima-array-p")
+
+///|
 let q_lisp_shadow : Value = sym("lisp-shadow")
 
 ///|
@@ -20099,6 +20204,9 @@ let q_make_mequal : Value = sym("make-mequal")
 let q_make_mequal_simp : Value = sym("make-mequal-simp")
 
 ///|
+let q_make_mlist_from_string : Value = sym("make-mlist-from-string")
+
+///|
 let q_make_monom : Value = sym("make-monom")
 
 ///|
@@ -20796,6 +20904,9 @@ let q_meqp_by_csign : Value = sym("meqp-by-csign")
 
 ///|
 let q_mequal : Value = sym("mequal")
+
+///|
+let q_mequal_lhs : Value = sym("mequal-lhs")
 
 ///|
 let q_mequal_rhs : Value = sym("mequal-rhs")
@@ -22139,6 +22250,9 @@ let q_newinv : Value = sym("newinv")
 let q_newline : Value = sym("newline")
 
 ///|
+let q_newline_symbol : Value = sym("newline-symbol")
+
+///|
 let q_newmat : Value = sym("newmat")
 
 ///|
@@ -22919,6 +23033,9 @@ let q_op_equalp : Value = sym("op-equalp")
 let q_op_setup : Value = sym("op-setup")
 
 ///|
+let q_open_file_appropriately : Value = sym("open-file-appropriately")
+
+///|
 let q_oper_apply : Value = sym("oper-apply")
 
 ///|
@@ -23297,6 +23414,9 @@ let q_parse_matchfix : Value = sym("parse-matchfix")
 let q_parse_nary : Value = sym("parse-nary")
 
 ///|
+let q_parse_next_element : Value = sym("parse-next-element")
+
+///|
 let q_parse_nofix : Value = sym("parse-nofix")
 
 ///|
@@ -23586,6 +23706,9 @@ let q_pelso1 : Value = sym("pelso1")
 
 ///|
 let q_period : Value = sym("period")
+
+///|
+let q_periodic : Value = sym("periodic")
 
 ///|
 let q_permsign : Value = sym("permsign")
@@ -25016,6 +25139,30 @@ let q_pw : Value = sym("pw")
 let q_pweight : Value = sym("pweight")
 
 ///|
+let q_pwilt_add_parts : Value = sym("pwilt-add-parts")
+
+///|
+let q_pwilt_mult_parts : Value = sym("pwilt-mult-parts")
+
+///|
+let q_pwilt_one_part : Value = sym("pwilt-one-part")
+
+///|
+let q_pwilt_parts : Value = sym("pwilt-parts")
+
+///|
+let q_pwilt_polynomial_degree : Value = sym("pwilt-polynomial-degree")
+
+///|
+let q_pwilt_subst_periodic : Value = sym("pwilt-subst-periodic")
+
+///|
+let q_pwilt1 : Value = sym("pwilt1")
+
+///|
+let q_pwilt2 : Value = sym("pwilt2")
+
+///|
 let q_pwl : Value = sym("pwl")
 
 ///|
@@ -25523,6 +25670,12 @@ let q_re_taylor_recurse : Value = sym("re-taylor-recurse")
 let q_read : Value = sym("read")
 
 ///|
+let q_read_and_return_new_array : Value = sym("read-and-return-new-array")
+
+///|
+let q_read_and_return_new_array_from_stream : Value = sym("read-and-return-new-array-from-stream")
+
+///|
 let q_read_belong : Value = sym("read-belong")
 
 ///|
@@ -25535,13 +25688,67 @@ let q_read_command_token_aux : Value = sym("read-command-token-aux")
 let q_read_comment : Value = sym("read-comment")
 
 ///|
+let q_read_float_64 : Value = sym("read-float-64")
+
+///|
+let q_read_hashed_array_from_stream : Value = sym("read-hashed-array-from-stream")
+
+///|
+let q_read_into_existing_array : Value = sym("read-into-existing-array")
+
+///|
+let q_read_into_existing_array_size_known : Value = sym("read-into-existing-array-size-known")
+
+///|
+let q_read_into_existing_array_size_known_from_stream : Value = sym("read-into-existing-array-size-known-from-stream")
+
+///|
+let q_read_into_existing_array_size_unknown_from_stream : Value = sym("read-into-existing-array-size-unknown-from-stream")
+
+///|
+let q_read_into_existing_list : Value = sym("read-into-existing-list")
+
+///|
+let q_read_into_existing_list_from_stream : Value = sym("read-into-existing-list-from-stream")
+
+///|
 let q_read_lelong : Value = sym("read-lelong")
+
+///|
+let q_read_list : Value = sym("read-list")
+
+///|
+let q_read_list_from_stream : Value = sym("read-list-from-stream")
 
 ///|
 let q_read_nested_comment : Value = sym("read-nested-comment")
 
 ///|
+let q_read_nested_list_from_stream : Value = sym("read-nested-list-from-stream")
+
+///|
+let q_read_struct_default_name : Value = sym("read-struct-default-name")
+
+///|
+let q_read_struct_field_name : Value = sym("read-struct-field-name")
+
+///|
+let q_read_struct_from_stream : Value = sym("read-struct-from-stream")
+
+///|
+let q_read_struct_name_stem : Value = sym("read-struct-name-stem")
+
+///|
+let q_read_struct_repeated_name : Value = sym("read-struct-repeated-name")
+
+///|
+let q_read_struct_separator_flag_p : Value = sym("read-struct-separator-flag-p")
+
+///|
 let q_read_translatable_string : Value = sym("read-translatable-string")
+
+///|
+let q_read_unsigned_integer : Value = sym("read-unsigned-integer")
 
 ///|
 let q_readlist : Value = sym("readlist")
@@ -25617,6 +25824,9 @@ let q_rectzto_pctpi2 : Value = sym("rectzto%pi2")
 
 ///|
 let q_recur_apply : Value = sym("recur-apply")
+
+///|
+let q_recurse : Value = sym("recurse")
 
 ///|
 let q_red : Value = sym("red")
@@ -25826,6 +26036,9 @@ let q_require_list_or_set : Value = sym("require-list-or-set")
 let q_require_set : Value = sym("require-set")
 
 ///|
+let q_require_string : Value = sym("require-string")
+
+///|
 let q_res : Value = sym("res")
 
 ///|
@@ -25842,6 +26055,9 @@ let q_reset_ccol : Value = sym("reset-ccol")
 
 ///|
 let q_reset_do_the_work : Value = sym("reset-do-the-work")
+
+///|
+let q_reset_for_parse_next_element : Value = sym("reset-for-parse-next-element")
 
 ///|
 let q_reset_on_kill : Value = sym("reset-on-kill")
@@ -26564,6 +26780,9 @@ let q_scan_one_token : Value = sym("scan-one-token")
 let q_scan_one_token_g : Value = sym("scan-one-token-g")
 
 ///|
+let q_scan_plain_number : Value = sym("scan-plain-number")
+
+///|
 let q_scan_string : Value = sym("scan-string")
 
 ///|
@@ -26664,6 +26883,9 @@ let q_semantics : Value = sym("semantics")
 
 ///|
 let q_sendexec : Value = sym("sendexec")
+
+///|
+let q_sep_ch : Value = sym("sep-ch")
 
 ///|
 let q_separc : Value = sym("separc")
@@ -27995,6 +28217,9 @@ let q_sixth : Value = sym("sixth")
 let q_size : Value = sym("size")
 
 ///|
+let q_size_in_bytes : Value = sym("size-in-bytes")
+
+///|
 let q_sj : Value = sym("sj")
 
 ///|
@@ -28370,6 +28595,18 @@ let q_slommel : Value = sym("slommel")
 let q_slommeltjandy : Value = sym("slommeltjandy")
 
 ///|
+let q_slow_mlist_from_string : Value = sym("slow-mlist-from-string")
+
+///|
+let q_smash_decoded_float_32_into_integer : Value = sym("smash-decoded-float-32-into-integer")
+
+///|
+let q_smash_decoded_float_64_into_integer : Value = sym("smash-decoded-float-64-into-integer")
+
+///|
+let q_smash_float_into_integer : Value = sym("smash-float-into-integer")
+
+///|
 let q_sminmax : Value = sym("sminmax")
 
 ///|
@@ -28401,6 +28638,9 @@ let q_snumden_var : Value = sym("snumden-var")
 
 ///|
 let q_solcoef : Value = sym("solcoef")
+
+///|
+let q_soln : Value = sym("soln")
 
 ///|
 let q_solnl : Value = sym("solnl")
@@ -31106,6 +31346,9 @@ let q_while : Value = sym("while")
 let q_white_space_p : Value = sym("white-space-p")
 
 ///|
+let q_whitespace_sans_newline : Value = sym("whitespace-sans-newline")
+
+///|
 let q_whitfun : Value = sym("whitfun")
 
 ///|
@@ -31155,6 +31398,36 @@ let q_word_to_octets : Value = sym("word-to-octets")
 
 ///|
 let q_write_char : Value = sym("write-char")
+
+///|
+let q_write_data : Value = sym("write-data")
+
+///|
+let q_write_float : Value = sym("write-float")
+
+///|
+let q_write_hashed_array : Value = sym("write-hashed-array")
+
+///|
+let q_write_lisp_array : Value = sym("write-lisp-array")
+
+///|
+let q_write_lisp_array_helper : Value = sym("write-lisp-array-helper")
+
+///|
+let q_write_list : Value = sym("write-list")
+
+///|
+let q_write_list_lowlevel : Value = sym("write-list-lowlevel")
+
+///|
+let q_write_matrix : Value = sym("write-matrix")
+
+///|
+let q_write_maxima_array : Value = sym("write-maxima-array")
+
+///|
+let q_write_unsigned_integer : Value = sym("write-unsigned-integer")
 
 ///|
 let q_wrng_type_arg : Value = sym("wrng-type-arg")
@@ -31248,6 +31521,9 @@ let q_xrhs : Value = sym("xrhs")
 
 ///|
 let q_xrutout : Value = sym("xrutout")
+
+///|
+let q_xtemp : Value = sym("xtemp")
 
 ///|
 let q_xtorterm : Value = sym("xtorterm")
