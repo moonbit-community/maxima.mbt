@@ -49,6 +49,18 @@ fn le__mv_wrappers() -> Array[(Value, (Array[Value]) -> Array[Value] raise)] {
       let r = sumsum_mv(arg(args, 0), arg(args, 1), arg(args, 2), arg(args, 3), arg(args, 4), arg(args, 5))
       [r.0, r.1]
     }),
+    (q_bs_exp__pcti_starx, args => {
+      let r = bs_exp__pcti_starx_mv(arg(args, 0), arg(args, 1))
+      [r.0, r.1]
+    }),
+    (q_get_tag, args => {
+      let r = get_tag_mv(endc?=args.get(0))
+      [r.0, r.1]
+    }),
+    (q_sc_and_nc_parts, args => {
+      let r = sc_and_nc_parts_mv(arg(args, 0))
+      [r.0, r.1]
+    }),
     (q_intl_parse_plurals, args => {
       let r = intl_parse_plurals(arg(args, 0))
       [r.0, r.1]

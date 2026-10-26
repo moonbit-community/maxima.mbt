@@ -35,11 +35,17 @@ for f in sorted(os.listdir(os.path.join(ROOT, "core"))):
         continue
     text = open(os.path.join(ROOT, "core", f)).read()
     for m in re.finditer(r"^fn (\w+)_mv\(((?:[^()]|\([^()]*\))*)\)\s*->\s*\(([^()]*)\)\s*raise", text, re.M):
-        mv_helpers[m.group(1)] = len([x for x in m.group(3).split(",") if x.strip()])
+        mv_helpers[m.group(1)] = (len([x for x in m.group(3).split(",") if x.strip()]), m.group(2))
 for m in re.finditer(r"^  defun\((q_\w+), args => ((\w+)\((.*)\))\)$", reg, re.M):
     sym, fname, rest = m.group(1), m.group(3), m.group(4)
-    k = mv_helpers.get(fname)
-    if not k:
+    h = mv_helpers.get(fname)
+    if not h:
+        continue
+    k, params = h
+    # the helper must take the declared function's labelled arguments
+    if any(not re.search(r"\b%s[?~]\s*:" % lab, params)
+           for lab in re.findall(r"(\w+)[?~]=", rest)):
+        print("skipping %s_mv: its parameters differ from the declaration" % fname)
         continue
     elems = ", ".join("r.%d" % i for i in range(k))
     out.append("    (%s, args => {\n      let r = %s_mv(%s)\n      [%s]\n    }),"

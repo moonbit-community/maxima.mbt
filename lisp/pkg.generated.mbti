@@ -673,11 +673,11 @@ pub fn push_special(Value, Value) -> Value
 
 pub fn putprop(Value, Value, Value) -> Value
 
-pub let q_quasiquote : Value
+pub let qq_quasiquote : Value
 
-pub let q_unquote : Value
+pub let qq_unquote : Value
 
-pub let q_unquote_splicing : Value
+pub let qq_unquote_splicing : Value
 
 pub fn rassoc(Value, Value) -> Value
 

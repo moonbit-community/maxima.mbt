@@ -232,6 +232,9 @@ logxor
 lower_case_p
 lread
 lread_all
+lread_from_string
+lread_source_all
+lread_stream
 lsin
 lsinh
 lsqrt
@@ -328,6 +331,9 @@ progv
 push_ref
 push_special
 putprop
+qq_quasiquote
+qq_unquote
+qq_unquote_splicing
 rassoc
 ratio_to_double
 rational
@@ -335,10 +341,13 @@ rationalize
 rationalp
 ratiop
 read_char
+read_eval_hook
 read_file
 read_file_bytes
 read_line
+read_maxima_hook
 read_stdin_line
+reader_package
 realp
 realpart
 reduce

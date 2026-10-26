@@ -35,13 +35,13 @@ pub let reader_package : Ref[String] = Ref("maxima")
 
 ///|
 /// The symbols the reader produces for backquote syntax.
-pub let q_quasiquote : Value = sym("si::quasiquote")
+pub let qq_quasiquote : Value = sym("si::quasiquote")
 
 ///|
-pub let q_unquote : Value = sym("si::unquote")
+pub let qq_unquote : Value = sym("si::unquote")
 
 ///|
-pub let q_unquote_splicing : Value = sym("si::unquote-splicing")
+pub let qq_unquote_splicing : Value = sym("si::unquote-splicing")
 
 ///|
 /// Invert the case of a name if all its letters share one case.
@@ -252,14 +252,14 @@ fn LReader::read_inner(self : LReader) -> Value? raise LispError {
     '(' => Some(self.read_list(')'))
     ')' => raise SimpleError("read: unmatched close parenthesis")
     '\'' => Some(list2(sym("quote"), self.read()))
-    '`' => Some(list2(q_quasiquote, self.read()))
+    '`' => Some(list2(qq_quasiquote, self.read()))
     ',' =>
       match self.peek() {
         Some('@') | Some('.') => {
           self.next() |> ignore
-          Some(list2(q_unquote_splicing, self.read()))
+          Some(list2(qq_unquote_splicing, self.read()))
         }
-        _ => Some(list2(q_unquote, self.read()))
+        _ => Some(list2(qq_unquote, self.read()))
       }
     '"' => {
       let sb = StringBuilder::new()

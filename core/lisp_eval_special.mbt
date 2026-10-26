@@ -926,7 +926,7 @@ fn le__qq_form_p(x : Value, head : Value) -> Bool {
 /// Expand a backquoted template at nesting `depth`; returns the form and
 /// whether it is constant (then the form is a quoted constant).
 fn le__qq_expand(x : Value, depth : Int) -> (Value, Bool) {
-  if le__qq_form_p(x, @lisp.q_unquote) {
+  if le__qq_form_p(x, @lisp.qq_unquote) {
     if depth == 1 {
       return (cadr(x), false)
     }
@@ -934,24 +934,24 @@ fn le__qq_expand(x : Value, depth : Int) -> (Value, Bool) {
     if c {
       return (le__qq_quote(x), true)
     }
-    return (list3(sym("list"), list2(sym("quote"), @lisp.q_unquote), inner), false)
+    return (list3(sym("list"), list2(sym("quote"), @lisp.qq_unquote), inner), false)
   }
-  if le__qq_form_p(x, @lisp.q_unquote_splicing) && depth > 1 {
+  if le__qq_form_p(x, @lisp.qq_unquote_splicing) && depth > 1 {
     let (inner, c) = le__qq_expand(cadr(x), depth - 1)
     if c {
       return (le__qq_quote(x), true)
     }
     return (
-      list3(sym("list"), list2(sym("quote"), @lisp.q_unquote_splicing), inner),
+      list3(sym("list"), list2(sym("quote"), @lisp.qq_unquote_splicing), inner),
       false,
     )
   }
-  if le__qq_form_p(x, @lisp.q_quasiquote) {
+  if le__qq_form_p(x, @lisp.qq_quasiquote) {
     let (inner, c) = le__qq_expand(cadr(x), depth + 1)
     if c {
       return (le__qq_quote(x), true)
     }
-    return (list3(sym("list"), list2(sym("quote"), @lisp.q_quasiquote), inner), false)
+    return (list3(sym("list"), list2(sym("quote"), @lisp.qq_quasiquote), inner), false)
   }
   match x {
     Cons(_) => {
@@ -966,7 +966,7 @@ fn le__qq_expand(x : Value, depth : Int) -> (Value, Bool) {
         match l {
           Nil => break
           Cons({ car: e, cdr: rest }) => {
-            if le__qq_form_p(l, @lisp.q_unquote) || le__qq_form_p(l, @lisp.q_quasiquote) {
+            if le__qq_form_p(l, @lisp.qq_unquote) || le__qq_form_p(l, @lisp.qq_quasiquote) {
               // dotted unquote: `(a . ,b)
               let (tf, tc) = le__qq_expand(l, depth)
               tail = tf
@@ -976,9 +976,9 @@ fn le__qq_expand(x : Value, depth : Int) -> (Value, Bool) {
             // ,,@x and ,@,@x inside a nested backquote: one unquote per
             // element of x, spliced into this list
             let nested_splice = if depth == 2 &&
-              (le__qq_form_p(e, @lisp.q_unquote) ||
-              le__qq_form_p(e, @lisp.q_unquote_splicing)) &&
-              le__qq_form_p(cadr(e), @lisp.q_unquote_splicing) {
+              (le__qq_form_p(e, @lisp.qq_unquote) ||
+              le__qq_form_p(e, @lisp.qq_unquote_splicing)) &&
+              le__qq_form_p(cadr(e), @lisp.qq_unquote_splicing) {
               Some(car(e))
             } else {
               None
@@ -1004,7 +1004,7 @@ fn le__qq_expand(x : Value, depth : Int) -> (Value, Bool) {
                 ),
               )
               all_const = false
-            } else if le__qq_form_p(e, @lisp.q_unquote_splicing) && depth == 1 {
+            } else if le__qq_form_p(e, @lisp.qq_unquote_splicing) && depth == 1 {
               if cur.length() > 0 {
                 segs.push(cons(sym("list"), list(cur)))
                 cur.clear()
