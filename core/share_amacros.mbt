@@ -646,3 +646,38 @@ fn init_share_amacros() -> Unit raise {
 
 ///|
 let amacros__q_kw_order_weight : Value = kw("order-weight")
+
+///|
+/// `(show var)` (commac.lisp) for a variable whose (CL, upper case) name
+/// is NAME: prints "The value of NAME is <value>".
+fn amacros__show(name : String, value : Value) -> Unit raise {
+  format(t, "~%The value of ~A is ~A", [Str(name), value]) |> ignore
+}
+
+///|
+/// `(y-or-n-p prompt)`: asks on the standard input until the answer is y
+/// or n (end of input counts as n).
+fn amacros__y_or_n_p(prompt : String) -> Bool raise {
+  while true {
+    format(t, "~&~A (y or n) ", [Str(prompt)]) |> ignore
+    finish_output()
+    match read_line(stream=symval(standard_input)) {
+      None => return false
+      Some(s) => {
+        let a = string_downcase(string_trim(" \t\r", s))
+        if a == "y" || a == "yes" {
+          return true
+        } else if a == "n" || a == "no" {
+          return false
+        }
+      }
+    }
+  }
+  false
+}
+
+///|
+/// `(break ...)`: the port has no Lisp debugger; signal an error instead.
+fn amacros__break(what : String) -> Value raise {
+  raise LispError::SimpleError("Break: " + what)
+}
