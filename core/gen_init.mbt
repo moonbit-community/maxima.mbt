@@ -418,61 +418,72 @@ fn share_load_wiener_index() -> Unit raise {
 ///|
 fn share_load_fft_package() -> Unit raise {
   register_share_fft_package()
+  init_share_fft_package()
 }
 
 ///|
 fn share_load_fft_core() -> Unit raise {
   register_share_fft_core()
+  init_share_fft_core()
 }
 
 ///|
 fn share_load_fft_interface() -> Unit raise {
   register_share_fft_interface()
+  init_share_fft_interface()
 }
 
 ///|
 fn share_load_decfp_core() -> Unit raise {
   init_vars_n_dot_dot_share_numeric_decfp_core()
   register_share_decfp_core()
+  init_share_decfp_core()
 }
 
 ///|
 fn share_load_pslq_integer_relation() -> Unit raise {
   init_vars_n_dot_dot_share_pslq_pslq_integer_relation()
   register_share_pslq_integer_relation()
+  init_share_pslq_integer_relation()
 }
 
 ///|
 fn share_load_bitwise() -> Unit raise {
   register_share_bitwise()
+  init_share_bitwise()
 }
 
 ///|
 fn share_load_to_poly() -> Unit raise {
   init_vars_n_dot_dot_share_to_poly_solve_to_poly()
   register_share_to_poly()
+  init_share_to_poly()
 }
 
 ///|
 fn share_load_pdiff() -> Unit raise {
   init_vars_n_dot_dot_share_pdiff_pdiff()
   register_share_pdiff()
+  init_share_pdiff()
 }
 
 ///|
 fn share_load_romberg() -> Unit raise {
   init_vars_n_dot_dot_share_numeric_romberg()
   register_share_romberg()
+  init_share_romberg()
 }
 
 ///|
 fn share_load_simplifying() -> Unit raise {
   register_share_simplifying()
+  init_share_simplifying()
 }
 
 ///|
 fn share_load_combinatorics() -> Unit raise {
   register_share_combinatorics()
+  init_share_combinatorics()
 }
 
 ///|
@@ -484,6 +495,7 @@ fn share_load_itensor() -> Unit raise {
 fn share_load_simplex_algorithm() -> Unit raise {
   init_vars_n_dot_dot_share_simplex_simplex_algorithm()
   register_share_simplex_algorithm()
+  init_share_simplex_algorithm()
 }
 
 ///|
@@ -651,8 +663,18 @@ fn share_module_loader(stem : String) -> (() -> Unit raise)? {
     "graphs/dijkstra" => Some(share_load_dijkstra)
     "graphs/wiener_index" => Some(share_load_wiener_index)
     "numeric/fft-package" => Some(share_load_fft_package)
+    "numeric/fft-core" => Some(share_load_fft_core)
+    "numeric/fft-interface" => Some(share_load_fft_interface)
     "numeric/decfp-core" => Some(share_load_decfp_core)
+    "pslq/pslq_integer_relation" => Some(share_load_pslq_integer_relation)
+    "bitwise/bitwise" => Some(share_load_bitwise)
+    "to_poly_solve/to_poly" => Some(share_load_to_poly)
+    "pdiff/pdiff" => Some(share_load_pdiff)
+    "numeric/romberg" => Some(share_load_romberg)
+    "contrib/simplifying" => Some(share_load_simplifying)
+    "combinatorics/combinatorics" => Some(share_load_combinatorics)
     "tensor/itensor" => Some(share_load_itensor)
+    "simplex/simplex_algorithm" => Some(share_load_simplex_algorithm)
     "multiadditive/multiadditive" => Some(share_load_multiadditive)
     "integer_sequence/integer_sequence" => Some(share_load_integer_sequence)
     "fourier_elim/fourier_elim" => Some(share_load_fourier_elim)

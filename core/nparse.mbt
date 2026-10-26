@@ -568,8 +568,16 @@ fn nparse__number_markers(dot : Bool) -> Value {
 }
 
 ///|
+/// The definition of MAKE-NUMBER installed by
+/// share/numeric/decfp-core.lisp, which redefines it when loaded.
+let nparse__redefined_make_number : Ref[((Value) -> Value raise)?] = Ref::new(None)
+
+///|
 /// WARNING: MAKE-NUMBER destructively modifies its argument!
 fn make_number(data : Value) -> Value raise {
+  if nparse__redefined_make_number.val is Some(redefined) {
+    return redefined(data)
+  }
   let data = nreverse(data)
   // Maxima really wants to read in any number as a flonum (except when we
   // have a bigfloat, of course!). So convert exponent markers to the
