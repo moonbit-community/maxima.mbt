@@ -95,11 +95,23 @@ fn merror(sstring : Value, l : Value) -> Value raise {
     // Would go immediately into the Lisp debugger.
     raise merror__condition(sstring, l)
   } else if symval(q_ear_mdebug).truthy() {
-    // The Maxima debugger is not ported: report the error as under errcatch.
-    if symval(q_d_errormsg).truthy() {
-      d_errormsg() |> ignore
-    }
-    raise merror__condition(sstring, l)
+    with_special(q_dispflag, t, fn() raise {
+      if symval(q_d_errormsg).truthy() {
+        d_errormsg() |> ignore
+      }
+      format(
+        t,
+        " -- an error.  Entering the Maxima debugger.~%Enter ':h' for help.~%",
+        [],
+      )
+      |> ignore
+      let ret = break_dbm_loop(Nil)
+      if eql(ret, q_kw_resume) {
+        break_quit()
+      } else {
+        Nil
+      }
+    })
   } else if symval(q_errcatch).truthy() {
     if symval(q_d_errormsg).truthy() {
       d_errormsg() |> ignore
@@ -111,7 +123,7 @@ fn merror(sstring : Value, l : Value) -> Value raise {
         d_errormsg() |> ignore
       }
       fresh_line() |> ignore
-      // ($backtrace 3): the debugger's backtrace is not ported.
+      d_backtrace(n=Fix(3L)) |> ignore
       fresh_line() |> ignore
       write_string(" -- an error. To debug this try: debugmode(true);\n")
       finish_output()
