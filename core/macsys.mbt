@@ -1161,7 +1161,7 @@ fn init_macsys() -> Unit raise {
     ),
   )
   |> ignore
-  setf_get(q_p_build_info, q_dimension_build_info, q_dimension) |> ignore
+  setf_get(q_p_build_info, q_dimension, q_dimension_build_info) |> ignore
   initialize_real_and_run_time() |> ignore
   defun(q_d_absolute_real_time, args => {
     check_arity("$absolute_real_time", args, 0)
