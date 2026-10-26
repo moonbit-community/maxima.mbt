@@ -1,0 +1,12 @@
+import {
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/math",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/env",
+  "moonbitlang/core/string",
+  "moonbitlang/x/fs",
+}
+
+options(
+  "native-stub": ["stub.c"],
+)

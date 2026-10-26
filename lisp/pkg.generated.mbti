@@ -1,0 +1,940 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "dii/maxima/lisp"
+
+import {
+  "moonbitlang/core/bigint",
+  "moonbitlang/core/ref",
+}
+
+// Values
+pub fn adjoin(Value, Value) -> Value
+
+pub fn adjust_array(Value, Array[Int32], initial? : Value) -> Value raise LispError
+
+pub fn all_symbols() -> Array[Symbol]
+
+pub fn alpha_char_p(Char) -> Bool
+
+pub fn alphanumericp(Char) -> Bool
+
+pub fn append(Value, Value) -> Value
+
+pub fn append_n(Array[Value]) -> Value
+
+pub fn apply(Value, Value) -> Value raise
+
+pub fn aref(Value, Array[Int32]) -> Value raise LispError
+
+pub fn aref1(Value, Int32) -> Value raise LispError
+
+pub fn array_dimension(Value, Int32) -> Int32 raise LispError
+
+pub fn array_dimensions(Value) -> Value raise LispError
+
+pub fn array_rank(Value) -> Int32 raise LispError
+
+pub fn array_total_size(Value) -> Int32 raise LispError
+
+pub fn arrayp(Value) -> Bool
+
+pub fn as_array(Value) -> LArray raise LispError
+
+pub fn as_symbol(Value) -> Symbol raise LispError
+
+pub fn aset(Value, Array[Int32], Value) -> Value raise LispError
+
+pub fn aset1(Value, Int32, Value) -> Value raise LispError
+
+pub fn ash(Value, Int32) -> Value raise LispError
+
+pub fn assoc(Value, Value) -> Value
+
+pub fn assoc_equal(Value, Value) -> Value
+
+pub fn assoc_test(Value, Value, (Value, Value) -> Bool raise) -> Value raise
+
+pub fn assq(Value, Value) -> Value
+
+pub fn atom(Value) -> Bool
+
+pub fn big_floor(@bigint.BigInt, @bigint.BigInt) -> (@bigint.BigInt, @bigint.BigInt)
+
+pub fn big_gcd(@bigint.BigInt, @bigint.BigInt) -> @bigint.BigInt
+
+pub fn big_isqrt(@bigint.BigInt) -> @bigint.BigInt
+
+pub fn big_to_double(@bigint.BigInt) -> Double
+
+pub fn bignump(Value) -> Bool
+
+pub fn bind(Value, Value) -> Binding
+
+pub fn bind_all(Array[(Value, Value)]) -> Array[Binding]
+
+pub fn both_case_p(Char) -> Bool
+
+pub fn boundp(Value) -> Bool
+
+pub fn butlast(Value, n? : Int32) -> Value
+
+pub fn caaadr(Value) -> Value
+
+pub fn caaar(Value) -> Value
+
+pub fn caaddr(Value) -> Value
+
+pub fn caadr(Value) -> Value
+
+pub fn caar(Value) -> Value
+
+pub fn cadadr(Value) -> Value
+
+pub fn cadar(Value) -> Value
+
+pub fn caddar(Value) -> Value
+
+pub fn cadddr(Value) -> Value
+
+pub fn caddr(Value) -> Value
+
+pub fn cadr(Value) -> Value
+
+pub fn capture_stdout(() -> Unit raise) -> String raise
+
+pub fn car(Value) -> Value
+
+pub fn car_strict(Value) -> Value raise LispError
+
+pub fn cdaar(Value) -> Value
+
+pub fn cdaddr(Value) -> Value
+
+pub fn cdadr(Value) -> Value
+
+pub fn cdar(Value) -> Value
+
+pub fn cddar(Value) -> Value
+
+pub fn cddddr(Value) -> Value
+
+pub fn cdddr(Value) -> Value
+
+pub fn cddr(Value) -> Value
+
+pub fn cdr(Value) -> Value
+
+pub fn cdr_strict(Value) -> Value raise LispError
+
+pub fn ceiling1(Value) -> Value raise LispError
+
+pub fn cexp(Value) -> Value raise LispError
+
+pub fn char_at(String, Int32) -> Char
+
+pub fn char_code(Char) -> Int32
+
+pub fn char_downcase(Char) -> Char
+
+pub fn char_list_to_string(Value) -> String
+
+pub fn char_upcase(Char) -> Char
+
+pub fn characterp(Value) -> Bool
+
+pub fn chars_to_string(Array[Char]) -> String
+
+pub fn cis(Value) -> Value raise LispError
+
+pub fn clog(Value) -> Value raise LispError
+
+pub fn clrhash(Value) -> Value raise LispError
+
+pub fn code_char(Int32) -> Char
+
+pub fn complex(Value, i? : Value) -> Value raise LispError
+
+pub fn complexp(Value) -> Bool
+
+pub fn concat_strings(Array[Value]) -> Value
+
+pub fn conjugate(Value) -> Value raise LispError
+
+pub fn cons(Value, Value) -> Value
+
+pub let console_in : Value
+
+pub let console_out : Value
+
+pub let console_reader : @ref.Ref[() -> String?]
+
+pub fn consp(Value) -> Bool
+
+pub fn copy_list(Value) -> Value
+
+pub fn copy_seq(Value) -> Value raise LispError
+
+pub fn copy_tree(Value) -> Value
+
+pub fn count_if((Value) -> Bool raise, Value) -> Int32 raise
+
+pub fn cpu_time() -> Double
+
+pub fn decode_float(Double) -> (Double, Int32, Double)
+
+pub fn defun(Value, (Array[Value]) -> Value raise, name? : String) -> Unit
+
+pub fn delete(Value, Value) -> Value
+
+pub fn denominator(Value) -> Value raise LispError
+
+pub fn digit_char_p(Char, radix? : Int32) -> Int32?
+
+pub fn directory_p(String) -> Bool
+
+pub fn division_by_zero() -> LispError
+
+pub let double_float_epsilon : Double
+
+pub fn double_to_rational(Double) -> Value raise LispError
+
+pub fn dsignbit(Double) -> Bool
+
+pub fn elt(Value, Int32) -> Value raise LispError
+
+pub fn eq(Value, Value) -> Bool
+
+pub fn eql(Value, Value) -> Bool
+
+pub fn equal(Value, Value) -> Bool
+
+pub fn equalp(Value, Value) -> Bool
+
+pub let error_output : Value
+
+pub fn evenp(Value) -> Bool raise LispError
+
+pub fn every((Value) -> Bool raise, Value) -> Bool raise
+
+pub fn exit_process(Int32) -> Unit
+
+pub fn expt(Value, Value) -> Value raise LispError
+
+pub fn[T] fail_with(String) -> T raise LispError
+
+pub fn fboundp(Value) -> Bool
+
+pub fn fifth(Value) -> Value
+
+pub fn fill_pointer(Value) -> Int32 raise LispError
+
+pub fn find(Value, Value) -> Value
+
+pub fn find_if((Value) -> Bool raise, Value) -> Value raise
+
+pub fn find_symbol(String) -> Value
+
+pub fn finish_output(stream? : Value) -> Unit
+
+pub fn first(Value) -> Value
+
+pub fn fixnump(Value) -> Bool
+
+pub fn flo(Double) -> Value
+
+pub fn float_digits(Double) -> (String, Int32)
+
+pub fn float_to_string(Double) -> String
+
+pub fn floatp(Value) -> Bool
+
+pub fn floor1(Value) -> Value raise LispError
+
+pub fn flush_stdout() -> Unit
+
+pub fn fmakunbound(Value) -> Value
+
+pub fn format(Value, String, Array[Value]) -> Value raise
+
+pub fn format_exp(Double, Int32?) -> String
+
+pub fn format_fixed(Double, Int32?, Int32?, Bool) -> String
+
+pub fn format_to_string(String, Array[Value], hook? : (Char, Bool, Bool, Array[Value?], Value, StringBuilder) -> Bool raise) -> String raise
+
+pub fn fourth(Value) -> Value
+
+pub fn fresh_line(stream? : Value) -> Bool
+
+pub fn from_big(@bigint.BigInt) -> Value
+
+pub fn from_double_integer(Double) -> @bigint.BigInt
+
+pub fn funcall(Value, Array[Value]) -> Value raise
+
+pub fn funcall0(Value) -> Value raise
+
+pub fn funcall1(Value, Value) -> Value raise
+
+pub fn funcall2(Value, Value, Value) -> Value raise
+
+pub fn funcall3(Value, Value, Value, Value) -> Value raise
+
+pub fn functionp(Value) -> Bool
+
+pub fn gensym(prefix? : String) -> Value
+
+pub fn get(Value, Value) -> Value
+
+pub fn get_default(Value, Value, Value) -> Value
+
+pub fn get_output_stream_string(Value) -> String
+
+pub fn getenv(String) -> String?
+
+pub fn getf(Value, Value, default? : Value) -> Value
+
+pub fn gethash(Value, Value) -> Value raise LispError
+
+pub fn gethash2(Value, Value) -> (Value, Bool) raise LispError
+
+pub fn hash_equal(Value) -> Int32
+
+pub fn hash_table_count(Value) -> Int32 raise LispError
+
+pub fn hash_table_p(Value) -> Bool
+
+pub fn imagpart(Value) -> Value
+
+pub fn int(Int32) -> Value
+
+pub fn int64(Int64) -> Value
+
+pub fn integer_decode_float(Double) -> (@bigint.BigInt, Int32, Int32)
+
+pub fn integer_length(Value) -> Int32 raise LispError
+
+pub fn integerp(Value) -> Bool
+
+pub fn intern(String) -> Symbol
+
+pub fn intersection(Value, Value, pred2? : (Value, Value) -> Bool raise) -> Value raise
+
+pub fn invert_case(String) -> String
+
+pub fn isqrt(Value) -> Value raise LispError
+
+pub fn keywordp(Value) -> Bool
+
+pub fn kw(String) -> Value
+
+pub fn lacos(Value) -> Value raise LispError
+
+pub fn lacosh(Value) -> Value raise LispError
+
+pub fn lasin(Value) -> Value raise LispError
+
+pub fn lasinh(Value) -> Value raise LispError
+
+pub fn last(Value) -> Value
+
+pub fn last_elem(Value) -> Value
+
+pub fn latan(Value, x? : Value) -> Value raise LispError
+
+pub fn latanh(Value) -> Value raise LispError
+
+pub fn lbool(Bool) -> Value
+
+pub fn lcos(Value) -> Value raise LispError
+
+pub fn lcosh(Value) -> Value raise LispError
+
+pub fn ldiff(Value, Value) -> Value
+
+pub let least_positive_double_float : Double
+
+pub let least_positive_normalized_double_float : Double
+
+pub fn length(Value) -> Int32
+
+pub fn lexp(Value) -> Value raise LispError
+
+pub fn lfloat(Value) -> Value raise LispError
+
+pub fn lfunc(String, (Array[Value]) -> Value raise) -> Value
+
+pub fn lisp_error(String) -> Value raise LispError
+
+pub fn list(Array[Value]) -> Value
+
+pub fn list1(Value) -> Value
+
+pub fn list2(Value, Value) -> Value
+
+pub fn list3(Value, Value, Value) -> Value
+
+pub fn list4(Value, Value, Value, Value) -> Value
+
+pub fn list_directory(String) -> Array[String]
+
+pub fn list_star(Array[Value]) -> Value
+
+pub fn list_to_array(Value) -> Array[Value]
+
+pub fn list_to_vector(Value) -> Value
+
+pub fn list_view(ArrayView[Value]) -> Value
+
+pub fn listp(Value) -> Bool
+
+pub fn llength(Value) -> Value
+
+pub fn llog(Value) -> Value raise LispError
+
+pub fn llog2(Value, Value) -> Value raise LispError
+
+pub fn lnot(Value) -> Value
+
+pub fn logand(Value, Value) -> Value raise LispError
+
+pub fn logbitp(Int32, Value) -> Bool raise LispError
+
+pub fn logcount(Value) -> Int32 raise LispError
+
+pub fn logior(Value, Value) -> Value raise LispError
+
+pub fn lognot(Value) -> Value raise LispError
+
+pub fn logxor(Value, Value) -> Value raise LispError
+
+pub fn lower_case_p(Char) -> Bool
+
+pub fn lread(String) -> Value raise LispError
+
+pub fn lread_all(String) -> Array[Value] raise LispError
+
+pub fn lsin(Value) -> Value raise LispError
+
+pub fn lsinh(Value) -> Value raise LispError
+
+pub fn lsqrt(Value) -> Value raise LispError
+
+pub fn lstr(String) -> Value
+
+pub fn lstring(Value) -> String
+
+pub fn ltan(Value) -> Value raise LispError
+
+pub fn ltanh(Value) -> Value raise LispError
+
+pub fn make_array(Array[Int32], initial? : Value, elt? : String, fill? : Int32) -> Value
+
+pub fn make_complex(Value, Value) -> Value raise LispError
+
+pub fn make_hash_table(kind? : HashTest) -> Value
+
+pub fn make_ratio(@bigint.BigInt, @bigint.BigInt) -> Value raise LispError
+
+pub fn make_string_buffer() -> Value
+
+pub fn make_string_input_stream(String) -> Value
+
+pub fn make_string_output_stream() -> Value
+
+pub fn make_struct(String, Array[Value]) -> Value
+
+pub fn make_symbol(String) -> Value
+
+pub fn makunbound(Value) -> Value
+
+pub fn mapc((Value) -> Unit raise, Value) -> Value raise
+
+pub fn mapcan((Value) -> Value raise, Value) -> Value raise
+
+pub fn mapcar((Value) -> Value raise, Value) -> Value raise
+
+pub fn mapcar2((Value, Value) -> Value raise, Value, Value) -> Value raise
+
+pub fn maphash((Value, Value) -> Unit raise, Value) -> Unit raise
+
+pub fn maplist((Value) -> Value raise, Value) -> Value raise
+
+pub fn member(Value, Value) -> Value
+
+pub fn member_equal(Value, Value) -> Value
+
+pub fn member_if((Value) -> Bool raise, Value) -> Value raise
+
+pub fn member_if_test(Value, Value, (Value, Value) -> Bool raise) -> Value raise
+
+pub fn memq(Value, Value) -> Value
+
+pub fn minusp(Value) -> Bool raise LispError
+
+pub let most_negative_fixnum : Value
+
+pub let most_positive_double_float : Double
+
+pub let most_positive_fixnum : Value
+
+pub fn nbutlast(Value, n? : Int32) -> Value
+
+pub fn nconc(Value, Value) -> Value
+
+pub fn nconc_n(Array[Value]) -> Value
+
+pub let nil : Value
+
+pub fn nreconc(Value, Value) -> Value
+
+pub fn nreverse(Value) -> Value
+
+pub fn nth(Int32, Value) -> Value
+
+pub fn nthcdr(Int32, Value) -> Value
+
+pub fn null(Value) -> Bool
+
+pub fn num_abs(Value) -> Value raise LispError
+
+pub fn num_add(Value, Value) -> Value raise LispError
+
+pub fn num_ceiling(Value, b? : Value) -> (Value, Value) raise LispError
+
+pub fn num_compare(Value, Value) -> Int32 raise LispError
+
+pub fn num_div(Value, Value) -> Value raise LispError
+
+pub fn num_eq(Value, Value) -> Bool raise LispError
+
+pub fn num_floor(Value, b? : Value) -> (Value, Value) raise LispError
+
+pub fn num_gcd(Value, Value) -> Value raise LispError
+
+pub fn num_ge(Value, Value) -> Bool raise LispError
+
+pub fn num_gt(Value, Value) -> Bool raise LispError
+
+pub fn num_inv(Value) -> Value raise LispError
+
+pub fn num_lcm(Value, Value) -> Value raise LispError
+
+pub fn num_le(Value, Value) -> Bool raise LispError
+
+pub fn num_lt(Value, Value) -> Bool raise LispError
+
+pub fn num_max(Value, Value) -> Value raise LispError
+
+pub fn num_min(Value, Value) -> Value raise LispError
+
+pub fn num_mod(Value, Value) -> Value raise LispError
+
+pub fn num_mul(Value, Value) -> Value raise LispError
+
+pub fn num_neg(Value) -> Value raise LispError
+
+pub fn num_prod(Array[Value]) -> Value raise LispError
+
+pub fn num_rem(Value, Value) -> Value raise LispError
+
+pub fn num_round(Value, b? : Value) -> (Value, Value) raise LispError
+
+pub fn num_sub(Value, Value) -> Value raise LispError
+
+pub fn num_sum(Array[Value]) -> Value raise LispError
+
+pub fn num_truncate(Value, b? : Value) -> (Value, Value) raise LispError
+
+pub fn numberp(Value) -> Bool
+
+pub fn numerator(Value) -> Value raise LispError
+
+pub fn oddp(Value) -> Bool raise LispError
+
+pub fn one_minus(Value) -> Value raise LispError
+
+pub fn one_plus(Value) -> Value raise LispError
+
+pub fn open_input_file(String) -> Value raise LispError
+
+pub fn out_stream(Value) -> LStream
+
+pub fn parse_integer(String, radix? : Int32) -> Value?
+
+pub fn parse_number_token(String) -> Value?
+
+pub fn peek_char(stream? : Value, eof_value? : Value) -> Value
+
+pub fn phase(Value) -> Value raise LispError
+
+pub fn physical_equal_value(Value, Value) -> Bool
+
+pub fn plusp(Value) -> Bool raise LispError
+
+pub fn pop_ref(@ref.Ref[Value]) -> Value
+
+pub fn pop_special(Value) -> Value
+
+pub fn position(Value, Value) -> Int32
+
+pub fn position_if((Value) -> Bool raise, Value) -> Int32 raise
+
+pub fn prin1(Value, stream? : Value) -> Value
+
+pub fn prin1_to_string(Value) -> String
+
+pub fn princ(Value, stream? : Value) -> Value
+
+pub fn princ_to_string(Value) -> String
+
+pub fn print(Value, stream? : Value) -> Value
+
+pub fn print_value(StringBuilder, Value, Bool) -> Unit
+
+pub fn probe_file(String) -> Bool
+
+pub fn[T] progv(Value, Value, () -> T raise) -> T raise
+
+pub fn push_ref(Value, @ref.Ref[Value]) -> Value
+
+pub fn push_special(Value, Value) -> Value
+
+pub fn putprop(Value, Value, Value) -> Value
+
+pub fn rassoc(Value, Value) -> Value
+
+pub fn ratio_to_double(@bigint.BigInt, @bigint.BigInt) -> Double
+
+pub fn rational(Value) -> Value raise LispError
+
+pub fn rationalize(Value) -> Value raise LispError
+
+pub fn rationalp(Value) -> Bool
+
+pub fn ratiop(Value) -> Bool
+
+pub fn read_char(stream? : Value, eof_value? : Value) -> Value
+
+pub fn read_file(String) -> String raise LispError
+
+pub fn read_line(stream? : Value) -> String?
+
+pub fn read_stdin_line() -> String?
+
+pub fn realp(Value) -> Bool
+
+pub fn realpart(Value) -> Value
+
+pub fn reduce((Value, Value) -> Value raise, Value, initial? : Value) -> Value raise
+
+pub fn remhash(Value, Value) -> Bool raise LispError
+
+pub fn remove(Value, Value) -> Value
+
+pub fn remove_duplicates(Value, pred2? : (Value, Value) -> Bool raise) -> Value raise
+
+pub fn remove_equal(Value, Value) -> Value
+
+pub fn remove_if((Value) -> Bool raise, Value) -> Value raise
+
+pub fn remove_if_not((Value) -> Bool raise, Value) -> Value raise
+
+pub fn remprop(Value, Value) -> Value
+
+pub fn rest(Value) -> Value
+
+pub fn revappend(Value, Value) -> Value
+
+pub fn reverse(Value) -> Value
+
+pub fn round1(Value) -> Value raise LispError
+
+pub fn rplaca(Value, Value) -> Value
+
+pub fn rplacd(Value, Value) -> Value
+
+pub fn scale_float(Double, Int32) -> Double
+
+pub fn second(Value) -> Value
+
+pub fn set(Value, Value) -> Value
+
+pub fn set_difference(Value, Value, pred2? : (Value, Value) -> Bool raise) -> Value raise
+
+pub fn set_fill_pointer(Value, Int32) -> Unit raise LispError
+
+pub fn set_symbol_plist(Value, Value) -> Value
+
+pub fn setf_car(Value, Value) -> Value
+
+pub fn setf_cdr(Value, Value) -> Value
+
+pub fn setf_get(Value, Value, Value) -> Value
+
+pub fn sethash(Value, Value, Value) -> Value raise LispError
+
+pub fn signum(Value) -> Value raise LispError
+
+pub fn some((Value) -> Bool raise, Value) -> Bool raise
+
+pub fn some_value((Value) -> Value raise, Value) -> Value raise
+
+pub fn sort_array(Array[Value], (Value, Value) -> Bool raise) -> Array[Value] raise
+
+pub fn sort_list(Value, (Value, Value) -> Bool raise) -> Value raise
+
+pub fn split_string(String, Char) -> Array[String]
+
+pub let standard_input : Value
+
+pub let standard_output : Value
+
+pub fn stdout_stream() -> Value
+
+pub fn stream_column(stream? : Value) -> Int32
+
+pub fn streamp(Value) -> Bool
+
+pub fn string(Value) -> Value
+
+pub fn string_chars(String) -> Array[Char]
+
+pub fn string_compare(String, String) -> Int32
+
+pub fn string_downcase(String) -> String
+
+pub fn string_equal(String, String) -> Bool
+
+pub fn string_left_trim(String, String) -> String
+
+pub fn string_length(String) -> Int32
+
+pub fn string_right_trim(String, String) -> String
+
+pub fn string_search(String, String, start? : Int32) -> Int32
+
+pub fn string_to_char_list(String) -> Value
+
+pub fn string_trim(String, String) -> String
+
+pub fn string_upcase(String) -> String
+
+pub fn stringp(Value) -> Bool
+
+pub fn struct_ref(Value, Int32) -> Value raise LispError
+
+pub fn struct_set(Value, Int32, Value) -> Value raise LispError
+
+pub fn struct_typep(Value, String) -> Bool
+
+pub fn sublis(Value, Value) -> Value
+
+pub fn subseq(Value, Int32, end? : Int32) -> Value raise LispError
+
+pub fn subsetp(Value, Value, pred2? : (Value, Value) -> Bool raise) -> Bool raise
+
+pub fn subst(Value, Value, Value) -> Value
+
+pub fn substring(String, Int32, end? : Int32) -> String
+
+pub fn sym(String) -> Value
+
+pub fn symbol_function(Value) -> Value raise LispError
+
+pub fn symbol_name(Value) -> String raise LispError
+
+pub fn symbol_plist(Value) -> Value
+
+pub fn symbol_value(Value) -> Value raise LispError
+
+pub fn symbolp(Value) -> Bool
+
+pub fn symval(Value) -> Value
+
+pub let t : Value
+
+pub fn tailp(Value, Value) -> Bool
+
+pub let terminal_io : Value
+
+pub fn terpri(stream? : Value) -> Unit
+
+pub fn third(Value) -> Value
+
+pub fn to_big(Value) -> @bigint.BigInt raise LispError
+
+pub fn to_double(Value) -> Double raise LispError
+
+pub fn to_int(Value) -> Int32 raise LispError
+
+pub fn to_int64(Value) -> Int64 raise LispError
+
+pub fn truncate1(Value) -> Value raise LispError
+
+pub fn type_error(Value, String) -> LispError
+
+pub fn unbind(Binding) -> Unit
+
+pub fn unbind_all(Array[Binding]) -> Unit
+
+pub fn union_(Value, Value, pred2? : (Value, Value) -> Bool raise) -> Value raise
+
+pub fn unread_char(Char, stream? : Value) -> Unit
+
+pub fn upper_case_p(Char) -> Bool
+
+pub fn vector(Array[Value]) -> Value
+
+pub fn vector_pop(Value) -> Value raise LispError
+
+pub fn vector_push_extend(Value, Value) -> Int32 raise LispError
+
+pub fn vector_to_list(Value) -> Value raise LispError
+
+pub fn vectorp(Value) -> Bool
+
+pub fn wall_time_ms() -> UInt64
+
+pub fn with_output_to_string((Value) -> Unit raise) -> String raise
+
+pub fn[T] with_special(Value, Value, () -> T raise) -> T raise
+
+pub fn[T] with_specials(Array[(Value, Value)], () -> T raise) -> T raise
+
+pub fn write_char(Char, stream? : Value) -> Unit
+
+pub fn write_file(String, String) -> Unit raise LispError
+
+pub fn write_stdout(String) -> Unit
+
+pub fn write_string(String, stream? : Value) -> Unit
+
+pub fn zerop(Value) -> Bool raise LispError
+
+// Errors
+pub(all) suberror LispError {
+  Throw(Value, Value)
+  SimpleError(String)
+  Condition(Symbol, String, Value)
+  ReturnFrom(Value, Value)
+  Go(Value)
+}
+pub impl Show for LispError
+
+// Types and methods
+pub(all) struct Any {
+  tag : String
+  mut data : Array[Value]
+}
+
+pub(all) struct Binding {
+  sym : Symbol
+  old : Value
+  was_bound : Bool
+}
+
+pub(all) struct Collector {
+  mut head : Value
+  mut tail : Value
+}
+pub fn Collector::add(Self, Value) -> Unit
+pub fn Collector::append_list(Self, Value) -> Unit
+pub fn Collector::new() -> Self
+pub fn Collector::result(Self) -> Value
+
+pub(all) struct Cons {
+  mut car : Value
+  mut cdr : Value
+}
+
+pub(all) enum HashTest {
+  Eq
+  Eql
+  Equal
+  Equalp
+} derive(Eq)
+
+pub(all) struct LArray {
+  mut data : Array[Value]
+  mut dims : Array[Int32]
+  mut fill : Int32?
+  elt : String
+}
+
+pub(all) struct LFunc {
+  name : String
+  call : (Array[Value]) -> Value raise
+}
+
+pub(all) struct LHash {
+  kind : HashTest
+  buckets : Map[Int32, Array[(Value, Value)]]
+  mut count : Int32
+  mut order : Array[Value]
+}
+pub fn LHash::clear(Self) -> Unit
+pub fn LHash::entries(Self) -> Array[(Value, Value)]
+pub fn LHash::get(Self, Value) -> Value?
+pub fn LHash::remove(Self, Value) -> Bool
+pub fn LHash::set(Self, Value, Value) -> Unit
+
+pub(all) struct LStream {
+  mut input : String
+  mut pos : Int32
+  unread : Array[Char]
+  out : StringBuilder?
+  name : String
+  sink : ((String) -> Unit)?
+  mut column : Int32
+  mut line : Int32
+  is_input : Bool
+  mut eof : Bool
+}
+pub fn LStream::peek_char(Self) -> Char?
+pub fn LStream::read_char(Self) -> Char?
+pub fn LStream::unread_char(Self, Char) -> Unit
+pub fn LStream::write_str(Self, String) -> Unit
+
+pub(all) struct LStruct {
+  stype : Symbol
+  slots : Array[Value]
+}
+
+pub(all) struct Symbol {
+  name : String
+  id : Int32
+  mut value : Value
+  mut bound : Bool
+  mut func : LFunc?
+  mut plist : Value
+  interned : Bool
+  mut constant : Bool
+}
+pub fn Symbol::to_value(Self) -> Value
+
+pub(all) enum Value {
+  Nil
+  Sym(Symbol)
+  Cons(Cons)
+  Fix(Int64)
+  Big(@bigint.BigInt)
+  Ratio(@bigint.BigInt, @bigint.BigInt)
+  Flo(Double)
+  Cplx(Value, Value)
+  Str(String)
+  Char(Char)
+  Vec(LArray)
+  Hash(LHash)
+  Func(LFunc)
+  Struct(LStruct)
+  Stream(LStream)
+  Box(@ref.Ref[Any])
+}
+pub fn Value::is_nil(Self) -> Bool
+pub fn Value::iter(Self) -> Iter[Self]
+pub fn Value::truthy(Self) -> Bool
+pub impl Show for Value
+
+// Type aliases
+
+// Traits
