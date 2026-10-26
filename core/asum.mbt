@@ -809,7 +809,7 @@ fn simpsum1(e : Value, k : Value, lo : Value, hi : Value) -> Value raise {
       acc = subst(k, i, acc)
       // If expression is still a summation, punt to previous
       // simplification code.
-      if symval(q_d_simpsum).truthy() && op_equalp(acc, q_p_sum).truthy() {
+      if symval(q_d_simpsum).truthy() && op_equalp(acc, list1(q_p_sum)).truthy() {
         let args = cdr(acc)
         acc = simpsum1_save(
           first(args),
@@ -820,7 +820,7 @@ fn simpsum1(e : Value, k : Value, lo : Value, hi : Value) -> Value raise {
       }
       // If the expression is no longer a %sum, resimplify.  Ordering of
       // expressions may change due to the gensym -> index substitution.
-      if op_equalp(acc, q_p_sum) is Nil {
+      if op_equalp(acc, list1(q_p_sum)) is Nil {
         acc = resimplify(acc)
       }
       acc
@@ -894,7 +894,7 @@ fn simpprod1(e : Value, k : Value, lo : Value, hi : Value) -> Value raise {
       // Hmm, this is curious... don't call existing product
       // simplifications if index range is infinite -- what's up with that??
       if symval(q_d_simpproduct).truthy() &&
-        op_equalp(acc, q_p_product).truthy() &&
+        op_equalp(acc, list1(q_p_product)).truthy() &&
         like(n, q_d_inf) is Nil {
         let args = cdr(acc)
         acc = simpprod1_save(
@@ -907,7 +907,7 @@ fn simpprod1(e : Value, k : Value, lo : Value, hi : Value) -> Value raise {
       acc = subst(k, i, acc)
       // If the expression is no longer a %product, resimplify.  Ordering of
       // expressions may change due to the gensym -> index substitution.
-      if op_equalp(acc, q_p_product) is Nil {
+      if op_equalp(acc, list1(q_p_product)) is Nil {
         acc = resimplify(acc)
       }
       acc

@@ -8,6 +8,7 @@ options(
   link: {
     "native": {
       "cc-flags": "-ffp-contract=off",
+      "cc-link-flags": "-Wl,-stack_size,0x20000000",
     },
   },
 )

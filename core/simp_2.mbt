@@ -813,7 +813,7 @@ fn simplambda(x : Value, vestigial : Value, simp_flag : Value) -> Value raise {
     let mut p = car(params)
     if !(
         mdefparam(p).truthy() ||
-        (op_equalp(p, q_mquote).truthy() && mdefparam(cadr(p)).truthy())
+        (op_equalp(p, list1(q_mquote)).truthy() && mdefparam(cadr(p)).truthy())
       ) {
       merr(
         "lambda: parameter must be a symbol and must not be a system constant; found: ~M",
