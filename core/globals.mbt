@@ -1440,4 +1440,24 @@ fn init_globals() -> Unit raise {
     list([q_boolean, globals__q_kw_properties, list([list2(q_evflag, t)])]),
   )
   |> ignore
+  // The translator (transl.lisp) is not ported, but its user-visible
+  // warning switches exist in Maxima with their :setting-list.
+  let tr_settings = list([
+    q_d_all,
+    sym("$compile"),
+    sym("$compfile"),
+    q_d_translate,
+  ])
+  for p in [
+    ("$tr_warn_undeclared", "$compile"),
+    ("$tr_warn_meval", "$compfile"),
+    ("$tr_warn_fexpr", "$compfile"),
+    ("$tr_warn_mode", "$all"),
+    ("$tr_warn_undefined_variable", "$all"),
+  ] {
+    let v = sym(p.0)
+    defvar_init(v, sym(p.1))
+    defmvar(v, val=symval(v), list([globals__q_kw_setting_list, tr_settings]))
+    |> ignore
+  }
 }
