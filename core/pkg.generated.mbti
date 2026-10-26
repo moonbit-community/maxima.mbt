@@ -11,6 +11,7 @@ pub fn initialize() -> Unit raise
 // Errors
 
 // Types and methods
+type CombinMinfact
 
 // Type aliases
 

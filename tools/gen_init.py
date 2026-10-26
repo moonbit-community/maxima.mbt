@@ -24,7 +24,7 @@ for d in db:
     if d["file"] in excluded:
         continue
     nm = "init_" + gen.mangle(d["file"].split("/")[-1])
-    if nm in defined:
+    if nm in defined and nm not in os.environ.get("SKIP_INIT", "").split(","):
         lines.append("  %s()" % nm)
 lines.append("}")
 open(os.path.join(ROOT, "core", "gen_init.mbt"), "w").write("\n".join(lines) + "\n")
