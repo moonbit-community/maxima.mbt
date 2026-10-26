@@ -156,6 +156,11 @@ fn needs_escape(name : String) -> Bool {
 }
 
 ///|
+/// The `:print-function` of defstruct types, by type name: a function of
+/// (struct stream depth) that writes the printed representation.
+pub let struct_print_functions : Map[String, Value] = Map::new()
+
+///|
 /// Print a value to a StringBuilder. `escape` is prin1 (true) vs princ.
 pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
   match x {
@@ -292,6 +297,12 @@ pub fn print_value(sb : StringBuilder, x : Value, escape : Bool) -> Unit {
       }
     Hash(_) => sb.write_string("#<HASH-TABLE>")
     Func(f) => sb.write_string("#<FUNCTION \{f.name}>")
+    Struct(s) if struct_print_functions.get(s.stype.name) is Some(f) => {
+      // defstruct :print-function: (funcall f struct stream depth)
+      let st = make_string_output_stream()
+      let _ = funcall(f, [x, st, Fix(0L)]) catch { _ => Nil }
+      sb.write_string(get_output_stream_string(st))
+    }
     Struct(s) => {
       sb.write_string("#S(" + s.stype.name)
       for v in s.slots {

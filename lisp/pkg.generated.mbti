@@ -665,6 +665,8 @@ pub fn read_char(stream? : Value, eof_value? : Value) -> Value
 
 pub fn read_file(String) -> String raise LispError
 
+pub fn read_file_bytes(String) -> Bytes raise LispError
+
 pub fn read_line(stream? : Value) -> String?
 
 pub fn read_stdin_line() -> String?
@@ -768,6 +770,8 @@ pub fn string_trim(String, String) -> String
 pub fn string_upcase(String) -> String
 
 pub fn stringp(Value) -> Bool
+
+pub let struct_print_functions : Map[String, Value]
 
 pub fn struct_ref(Value, Int32) -> Value raise LispError
 
