@@ -8,6 +8,7 @@ let api__initialized : Ref[Bool] = Ref(false)
 pub fn initialize() -> Unit raise {
   if !api__initialized.val {
     api__initialized.val = true
+    init_cl_specials()
     init_generated()
     init_cl__setup_paths()
   }

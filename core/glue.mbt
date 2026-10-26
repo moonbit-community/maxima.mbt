@@ -23,6 +23,18 @@ fn rest_args(args : Array[Value], n : Int) -> Value {
 ///|
 /// Value of keyword argument `:name` in `args[start:]`, if supplied.
 fn key_arg(args : Array[Value], start : Int, name : String) -> Value? {
+  // defmfun &key arguments arrive from Maxima as equations `name=value`
+  // (see defmfun-check.lisp); from Lisp callers as `:name value`.
+  let mname = "$" + name.substring(start=1)
+  for i in start..<args.length() {
+    let a = args[i]
+    if is_op(a, q_mequal) {
+      match cadr(a) {
+        Sym(s) if s.name == mname => return Some(caddr(a))
+        _ => ()
+      }
+    }
+  }
   let k = sym(name)
   let mut i = start
   while i + 1 < args.length() {
@@ -32,6 +44,15 @@ fn key_arg(args : Array[Value], start : Int, name : String) -> Value? {
     i += 2
   }
   None
+}
+
+///|
+/// Standard CL special variables Maxima's code reads.
+fn init_cl_specials() -> Unit {
+  set(q_ear_read_base, Fix(10L)) |> ignore
+  set(q_ear_print_base, Fix(10L)) |> ignore
+  set(sym("*print-radix*"), Nil) |> ignore
+  set(sym("*read-default-float-format*"), sym("double-float")) |> ignore
 }
 
 ///|

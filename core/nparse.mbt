@@ -29,6 +29,19 @@ fn nparse__cdaadr(x : Value) -> Value {
 }
 
 ///|
+/// `(digit-char-p c (max 10 *read-base*))`
+fn nparse__digitp_rb(v : Value) -> Bool {
+  let rb = match symval(q_ear_read_base) {
+    Fix(n) => n.to_int().max(10)
+    _ => 10
+  }
+  match v {
+    Char(c) => digit_char_p(c, radix=rb) is Some(_)
+    _ => false
+  }
+}
+
+///|
 fn nparse__digitp(v : Value) -> Bool {
   match v {
     Char(c) => digit_char_p(c, radix=10) is Some(_)
@@ -454,7 +467,7 @@ fn scan_token(flag : Value) -> Value raise {
       (
         flag &&
         !(
-          nparse__digitp(c) ||
+          nparse__digitp_rb(c) ||
           alphabetp(c).truthy() ||
           nparse__chr(c, '\\')
         )
@@ -513,6 +526,19 @@ fn scan_string(init_? : Value = Nil) -> Value raise {
 ///|
 fn readlist(lis : Value) -> Value raise {
   let s = char_list_to_string(lis)
+  // CL reads an integer token (no trailing decimal point) in *read-base*.
+  match symval(q_ear_read_base) {
+    Fix(rb) if rb != 10L && !s.contains(".") =>
+      match parse_integer(s, radix=rb.to_int()) {
+        Some(v) => return v
+        None =>
+          // Not a number in this base: the CL reader makes it a symbol.
+          if s.length() > 0 && s.iter().all(c => c.is_ascii_digit()) {
+            return sym(s)
+          }
+      }
+    _ => ()
+  }
   match parse_number_token(s) {
     Some(v) => v
     None => lread(s)
@@ -653,7 +679,7 @@ fn scan_digits(
   let mut l : Value = Nil
   while true {
     let c = parse_tyipeek()
-    if !nparse__digitp(c) {
+    if !nparse__digitp_rb(c) {
       if member(c, continuation_q).truthy() {
         let ch = match parse_tyi() {
           Char(x) => Value::Char(char_upcase(x))
