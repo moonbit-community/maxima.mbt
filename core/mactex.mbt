@@ -142,12 +142,26 @@ fn quote_chars(sym_ : Value, ch_str : Value) -> Value raise {
 }
 
 ///|
+/// Port: share packages (contrib/tex2ooo.lisp, utils/mactex-utilities.lisp)
+/// redefine functions of this file when loaded; in CL every caller then
+/// reaches the new definition through the function cell. The functions
+/// below that are called directly (not through a TEX property) first look
+/// here for such a definition, keyed by the Lisp function name.
+let mactex__redefined : Map[String, (Array[Value]) -> Value raise] = Map::new()
+
+///|
 fn quote__pct(sym_ : Value) -> Value raise {
+  if mactex__redefined.get("quote-%") is Some(f) {
+    return f([sym_])
+  }
   quote_chars(sym_, Str("$%&_"))
 }
 
 ///|
 fn tex1(mexplabel : Value, filename_or_stream? : Value = Nil) -> Value raise {
+  if mactex__redefined.get("tex1") is Some(f) {
+    return f([mexplabel, filename_or_stream])
+  }
   let mut mexplabel = mexplabel
   let mut itsalabel = false
   let mut need_to_close_texport = false
@@ -352,6 +366,9 @@ fn tex_atom(x : Value, l : Value, r : Value) -> Value raise {
 
 ///|
 fn tex_string(x : Value) -> Value raise {
+  if mactex__redefined.get("tex-string") is Some(f) {
+    return f([x])
+  }
   let s = mactex__string(x)
   if s == "" {
     Str("")
@@ -364,6 +381,9 @@ fn tex_string(x : Value) -> Value raise {
 
 ///|
 fn tex_char(x : Value) -> Value raise {
+  if mactex__redefined.get("tex-char") is Some(f) {
+    return f([x])
+  }
   match x {
     Char('|') => Str("\\mbox{\\verb/|/}")
     _ => Str("\\mbox{\\verb|" + mactex__string(x) + "|}")
@@ -388,6 +408,9 @@ fn tex_forms(f1 : Value, f2 : Value) -> Value raise {
 /// Detect and extract groups of trailing digits, e.g. foo_mm_nn, and then
 /// punt foo[mm, nn] to TEX-ARRAY. Otherwise, treat SYM as a simple symbol.
 fn tex_stripdollar(sym_ : Value) -> Value raise {
+  if mactex__redefined.get("tex-stripdollar") is Some(f) {
+    return f([sym_])
+  }
   let nn_list = extract_trailing_digits(Str(symbol_name(sym_)))
   if nn_list.truthy() {
     // If SYM matches $%I[_0-9]+, then we should not treat it as a
@@ -491,6 +514,9 @@ fn strcat(args : Value) -> Value raise {
 ///|
 /// Convert 1.2e20 to 1.2 \times 10^{20}.
 fn texnumformat(atom_ : Value) -> Value raise {
+  if mactex__redefined.get("texnumformat") is Some(f) {
+    return f([atom_])
+  }
   if integerp(atom_) {
     Str(char_list_to_string(exploden(atom_)))
   } else {
@@ -526,6 +552,9 @@ fn texnumformat(atom_ : Value) -> Value raise {
 
 ///|
 fn tex_paren(x : Value, l : Value, r : Value) -> Value raise {
+  if mactex__redefined.get("tex-paren") is Some(f) {
+    return f([x, l, r])
+  }
   tex(
     x,
     append(l, mactex__strs(["\\left("])),
@@ -537,6 +566,9 @@ fn tex_paren(x : Value, l : Value, r : Value) -> Value raise {
 
 ///|
 fn tex_array(x : Value, l : Value, r : Value) -> Value raise {
+  if mactex__redefined.get("tex-array") is Some(f) {
+    return f([x, l, r])
+  }
   tex_array_display_indices(x, l, r)
 }
 
@@ -856,6 +888,9 @@ fn maybe_tex_mexpt_trig_like(x : Value, l : Value, r : Value) -> Value raise {
 ///|
 /// Insert left-angle-brackets for mncexpt. a^<n> is how a^^n looks.
 fn tex_mexpt(x : Value, l : Value, r : Value) -> Value raise {
+  if mactex__redefined.get("tex-mexpt") is Some(f) {
+    return f([x, l, r])
+  }
   let nc = eq(caar(x), q_mncexpt) // true if a^^b rather than a^b
   if eq(caar(x), q_mexpt) {
     let v = maybe_tex_mexpt_trig_like(x, l, r)
@@ -933,6 +968,9 @@ fn tex_cubrt(x : Value, l : Value, r : Value) -> Value raise {
 
 ///|
 fn tex_mquotient(x : Value, l : Value, r : Value) -> Value raise {
+  if mactex__redefined.get("tex-mquotient") is Some(f) {
+    return f([x, l, r])
+  }
   twoargcheck(x) |> ignore
   // the divide bar groups things
   let l = tex(cadr(x), append(l, mactex__strs(["{{"])), Nil, q_mparen, q_mparen)
