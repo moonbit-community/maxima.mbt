@@ -56,4 +56,60 @@ fn macdes__create_list1(form : Value, l : Value) -> Value raise {
 ///|
 fn init_macdes() -> Unit raise {
   register_mspec(macdes__q_d_create_list, macdes__d_create_list)
+  register_mspec(macdes__q_d_apropos, macdes__d_apropos)
+}
+
+///|
+let macdes__q_d_apropos : Value = sym("$apropos")
+
+///|
+/// CL `(apropos-list s :maxima)`: every symbol whose name contains `s`,
+/// compared with CHAR-EQUAL (as SBCL does).
+fn macdes__apropos_list(s : String) -> Array[Value] {
+  let needle = s.to_lower()
+  let acc : Array[Value] = []
+  for sy in all_symbols() {
+    if sy.name.to_lower().contains(needle) {
+      acc.push(Sym(sy))
+    }
+  }
+  acc
+}
+
+///|
+/// `(defmspec $apropos (s) ...)`: the Maxima user symbols (names starting
+/// with $ or %) whose names contain the string or symbol name S.
+fn macdes__d_apropos(form : Value) -> Value raise {
+  let s0 = car(margs(form))
+  let s = match s0 {
+    Str(str) => str
+    Sym(_) => symbol_name(stripdollar(s0))
+    _ =>
+      return merr("apropos: argument must be a string or symbol; found: ~M", [
+        s0,
+      ])
+  }
+  // DELETE-IF-NOT keeps the symbols themselves; REMOVE-DUPLICATES keeps
+  // the last occurrence of each.
+  let kept : Array[Value] = []
+  for x in macdes__apropos_list(s) {
+    let name = symbol_name(x)
+    if name != "" && (name.has_prefix("$") || name.has_prefix("%")) {
+      kept.push(x)
+    }
+  }
+  let res = Collector::new()
+  for i, x in kept {
+    let mut later = false
+    for j in (i + 1)..<kept.length() {
+      if eq(kept[j], x) {
+        later = true
+        break
+      }
+    }
+    if !later {
+      res.add(x)
+    }
+  }
+  cons(list1(q_mlist), res.result())
 }
