@@ -1382,6 +1382,10 @@ fn gamma3__init() -> Unit raise {
   // Beta is symmetric beta(a,b) = beta(b,a)
   with_specials([(q_d_context, q_d_global), (q_context, q_d_global)], () => {
     meval(list3(list1(q_d_declare), q_p_beta, q_d_symmetric)) |> ignore
+    // As for erf_generalized (gamma_2.mbt): the CL image has the operator
+    // property too, since $symmetric is already on OPERS there.
+    putprop(q_p_beta, t, q_d_symmetric) |> ignore
+    putprop(q_p_beta, t, q_opers) |> ignore
     // Let's remove built-in symbols from list for user-defined properties.
     set(q_d_props, remove(q_p_beta, symval(q_d_props)))
   })
